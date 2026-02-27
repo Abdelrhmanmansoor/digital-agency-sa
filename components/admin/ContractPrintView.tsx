@@ -45,14 +45,17 @@ export default function ContractPrintView({ contract }: Props) {
 
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media print {
+          @page { size: A4 portrait; margin: 0; }
+          html, body { margin: 0 !important; padding: 0 !important; background: white !important; }
           .no-print { display: none !important; }
-          body { margin: 0 !important; padding: 0 !important; background: white !important; }
-          * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-          #contract-print-root { margin: 0 !important; box-shadow: none !important; }
+          .admin-sidebar, nav, aside { display: none !important; }
+          .admin-main { margin: 0 !important; padding: 0 !important; background: white !important; min-height: unset !important; }
+          #contract-print-root { width: 210mm !important; margin: 0 auto !important; box-shadow: none !important; border-radius: 0 !important; }
+          * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
         }
-      `}</style>
+      ` }} />
 
       <div
         id="contract-print-root"
@@ -69,27 +72,20 @@ export default function ContractPrintView({ contract }: Props) {
           overflow: "hidden",
         }}
       >
-        {/* Watermark */}
-        <div
+        {/* Watermark — real logo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo.png"
+          alt=""
           aria-hidden
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%) rotate(-30deg)",
-            fontFamily: "'Zain', sans-serif",
-            fontSize: "90px",
-            fontWeight: 800,
-            color: "rgba(200,169,98,0.06)",
-            whiteSpace: "nowrap",
-            pointerEvents: "none",
-            userSelect: "none",
-            zIndex: 0,
-            lineHeight: 1,
+            position: "absolute", top: "50%", left: "50%",
+            transform: "translate(-50%, -50%) rotate(-22deg)",
+            width: "60%", maxWidth: "390px", opacity: 0.05,
+            pointerEvents: "none", userSelect: "none", zIndex: 0,
+            filter: "sepia(1) saturate(0.4)",
           }}
-        >
-          وكالة رقمية
-        </div>
+        />
 
         {/* Header */}
         <div
@@ -108,27 +104,12 @@ export default function ContractPrintView({ contract }: Props) {
             }}
           >
             <div>
-              <div
-                style={{
-                  fontFamily: "'Zain', sans-serif",
-                  fontSize: "22px",
-                  fontWeight: 800,
-                  color: "#C8A962",
-                }}
-              >
-                وكالة رقمية
-              </div>
-              <div
-                style={{
-                  fontFamily: "Space Mono, monospace",
-                  fontSize: "9px",
-                  color: "rgba(200,169,98,0.45)",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                }}
-              >
-                DIGITAL AGENCY
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo.png"
+                alt="وكالة رقمية"
+                style={{ height: "40px", objectFit: "contain", maxWidth: "150px", filter: "brightness(0) invert(1)" }}
+              />
             </div>
             <div style={{ textAlign: "left" }}>
               <div
