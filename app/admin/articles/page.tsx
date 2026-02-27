@@ -8,7 +8,7 @@ export default async function ArticlesPage() {
   const session = await getSession();
   if (!session) redirect("/admin");
 
-  const articles = articlesDB.getAll();
+  const articles = await articlesDB.getAll();
 
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>

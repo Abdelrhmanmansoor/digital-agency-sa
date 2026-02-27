@@ -8,7 +8,7 @@ export default async function AdminPortfolioPage() {
   const session = await getSession();
   if (!session) redirect("/admin");
 
-  const projects = projectsDB.getAll();
+  const projects = await projectsDB.getAll();
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: "#0A0A0A" }}>

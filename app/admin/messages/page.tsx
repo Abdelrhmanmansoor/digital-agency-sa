@@ -7,7 +7,7 @@ export default async function MessagesPage() {
   const session = await getSession();
   if (!session) redirect("/admin");
 
-  const messages = messagesDB.getAll();
+  const messages = await messagesDB.getAll();
 
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>

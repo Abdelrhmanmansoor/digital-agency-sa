@@ -8,9 +8,11 @@ export default async function DashboardPage() {
   const session = await getSession();
   if (!session) redirect("/admin");
 
-  const articles = articlesDB.getAll();
-  const projects = projectsDB.getAll();
-  const messages = messagesDB.getAll();
+  const [articles, projects, messages] = await Promise.all([
+    articlesDB.getAll(),
+    projectsDB.getAll(),
+    messagesDB.getAll(),
+  ]);
   const newMessages = messages.filter((m) => m.status === "new").length;
 
   const stats = [
