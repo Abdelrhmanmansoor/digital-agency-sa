@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useLocale } from "next-intl";
 import { WHATSAPP_NUMBER, getWhatsAppLink } from "@/lib/utils";
+import PaymentLogos from "@/components/shared/PaymentLogos";
 
 /* ─── Types ─────────────────────────────────────────────── */
 interface Product {
@@ -1017,6 +1018,13 @@ export default function StoreContent() {
               تصفح الخدمات
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Payment Methods Section */}
+      <section style={{ background: "#080808", padding: "60px 0", borderTop: "1px solid rgba(200,169,98,0.08)" }}>
+        <div className="max-w-[1400px] mx-auto px-8">
+          <PaymentLogos variant="section" showTitle={true} />
         </div>
       </section>
     </div>
