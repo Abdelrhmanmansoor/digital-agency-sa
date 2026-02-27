@@ -14,7 +14,7 @@ export default async function MessagesPage() {
       <AdminSidebar />
       <main className="admin-main" style={{ padding: "40px" }}>
         <div style={{ marginBottom: "32px" }}>
-          <h1 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "28px", fontWeight: 700, color: "#0A0A0A", marginBottom: "4px" }}>
+          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#0A0A0A", marginBottom: "4px" }}>
             الرسائل
           </h1>
           <p style={{ color: "#8C8C7A", fontSize: "14px" }}>
@@ -53,7 +53,7 @@ export default async function MessagesPage() {
 
               <div>
                 <div style={{ display: "flex", gap: "12px", alignItems: "center", marginBottom: "4px" }}>
-                  <span style={{ fontFamily: "Noto Kufi Arabic", fontSize: "16px", fontWeight: msg.status === "new" ? 700 : 500, color: "#0A0A0A" }}>
+                  <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: msg.status === "new" ? 700 : 500, color: "#0A0A0A" }}>
                     {msg.name}
                   </span>
                   {msg.status === "new" && (
@@ -65,7 +65,7 @@ export default async function MessagesPage() {
                 <div style={{ fontSize: "13px", color: "#8C8C7A", fontFamily: "Space Mono", marginBottom: "8px" }}>
                   {msg.email} {msg.phone && `| ${msg.phone}`}
                 </div>
-                <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "Noto Sans Arabic", lineHeight: 1.7 }}>
+                <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif", lineHeight: 1.7 }}>
                   {msg.message}
                 </div>
               </div>
@@ -113,7 +113,7 @@ export default async function MessagesPage() {
           ))}
 
           {messages.length === 0 && (
-            <div style={{ padding: "80px", textAlign: "center", color: "#8C8C7A", fontFamily: "Noto Sans Arabic", fontSize: "16px" }}>
+            <div style={{ padding: "80px", textAlign: "center", color: "#8C8C7A", fontFamily: "'Zain', sans-serif", fontSize: "16px" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>📭</div>
               لا توجد رسائل بعد
             </div>

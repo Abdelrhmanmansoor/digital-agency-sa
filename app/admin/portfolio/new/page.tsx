@@ -55,7 +55,7 @@ export default function NewProjectPage() {
     color: "#FAFAF7",
     padding: "12px 16px",
     fontSize: "14px",
-    fontFamily: "Noto Sans Arabic, sans-serif",
+    fontFamily: "'Zain', sans-serif",
     outline: "none",
     transition: "border-color 0.2s",
     boxSizing: "border-box" as const,
@@ -85,7 +85,7 @@ export default function NewProjectPage() {
             >
               ← العودة للمشاريع
             </Link>
-            <h1 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "28px", fontWeight: 700, color: "#FAFAF7" }}>
+            <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#FAFAF7" }}>
               مشروع جديد
             </h1>
           </div>
@@ -99,7 +99,7 @@ export default function NewProjectPage() {
               color: "#ef4444",
               padding: "12px 16px",
               marginBottom: "24px",
-              fontFamily: "Noto Sans Arabic",
+              fontFamily: "'Zain', sans-serif",
               fontSize: "14px",
             }}
           >
@@ -216,7 +216,7 @@ export default function NewProjectPage() {
                 onChange={(e) => handleChange("featured", e.target.checked)}
                 style={{ width: "18px", height: "18px", accentColor: "#C8A962" }}
               />
-              <span style={{ color: "#FAFAF7", fontFamily: "Noto Sans Arabic", fontSize: "14px" }}>
+              <span style={{ color: "#FAFAF7", fontFamily: "'Zain', sans-serif", fontSize: "14px" }}>
                 مشروع مميز (يظهر في القسم الرئيسي)
               </span>
             </label>

@@ -28,7 +28,7 @@ export default function NotFound() {
       </div>
       <h1
         style={{
-          fontFamily: "Noto Kufi Arabic, sans-serif",
+          fontFamily: "'Zain', sans-serif",
           fontSize: "32px",
           fontWeight: 700,
           color: "#FAFAF7",

@@ -31,7 +31,7 @@ export default async function DashboardPage() {
         <div style={{ marginBottom: "40px" }}>
           <h1
             style={{
-              fontFamily: "Noto Kufi Arabic, sans-serif",
+              fontFamily: "'Zain', sans-serif",
               fontSize: "28px",
               fontWeight: 700,
               color: "#0A0A0A",
@@ -40,7 +40,7 @@ export default async function DashboardPage() {
           >
             لوحة التحكم
           </h1>
-          <p style={{ color: "#8C8C7A", fontSize: "14px", fontFamily: "Noto Sans Arabic, sans-serif" }}>
+          <p style={{ color: "#8C8C7A", fontSize: "14px", fontFamily: "'Zain', sans-serif" }}>
             مرحباً بك! إليك ملخص النشاط
           </p>
         </div>
@@ -83,7 +83,7 @@ export default async function DashboardPage() {
                 </div>
                 <div
                   style={{
-                    fontFamily: "Noto Sans Arabic, sans-serif",
+                    fontFamily: "'Zain', sans-serif",
                     fontSize: "13px",
                     color: "#8C8C7A",
                   }}
@@ -99,7 +99,7 @@ export default async function DashboardPage() {
           {/* Recent Articles */}
           <div style={{ background: "#FFFFFF", border: "1px solid #E8E6E1", padding: "28px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-              <h2 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "18px", fontWeight: 700, color: "#0A0A0A" }}>
+              <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#0A0A0A" }}>
                 أحدث المقالات
               </h2>
               <Link
@@ -124,7 +124,7 @@ export default async function DashboardPage() {
                   }}
                 >
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontFamily: "Noto Sans Arabic", fontSize: "14px", fontWeight: 600, color: "#0A0A0A", marginBottom: "2px" }}>
+                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 600, color: "#0A0A0A", marginBottom: "2px" }}>
                       {article.titleAr}
                     </div>
                     <div style={{ fontSize: "11px", color: "#8C8C7A", fontFamily: "Space Mono" }}>
@@ -153,7 +153,7 @@ export default async function DashboardPage() {
           {/* Recent Messages */}
           <div style={{ background: "#FFFFFF", border: "1px solid #E8E6E1", padding: "28px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
-              <h2 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "18px", fontWeight: 700, color: "#0A0A0A" }}>
+              <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#0A0A0A" }}>
                 آخر الرسائل
               </h2>
               <Link href="/admin/messages" style={{ fontFamily: "Space Mono", fontSize: "11px", color: "#C8A962", textDecoration: "none", letterSpacing: "0.1em", textTransform: "uppercase" }}>
@@ -188,7 +188,7 @@ export default async function DashboardPage() {
                     {msg.status === "new" ? "🔔" : "📬"}
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontFamily: "Noto Sans Arabic", fontSize: "14px", fontWeight: msg.status === "new" ? 700 : 400, color: "#0A0A0A", marginBottom: "2px" }}>
+                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: msg.status === "new" ? 700 : 400, color: "#0A0A0A", marginBottom: "2px" }}>
                       {msg.name}
                     </div>
                     <div style={{ fontSize: "12px", color: "#8C8C7A", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "180px" }}>
@@ -202,7 +202,7 @@ export default async function DashboardPage() {
               ))}
 
               {messages.length === 0 && (
-                <div style={{ textAlign: "center", padding: "32px 0", color: "#8C8C7A", fontFamily: "Noto Sans Arabic", fontSize: "14px" }}>
+                <div style={{ textAlign: "center", padding: "32px 0", color: "#8C8C7A", fontFamily: "'Zain', sans-serif", fontSize: "14px" }}>
                   لا توجد رسائل بعد
                 </div>
               )}
@@ -212,7 +212,7 @@ export default async function DashboardPage() {
 
         {/* Quick Actions */}
         <div style={{ marginTop: "24px", background: "#FFFFFF", border: "1px solid #E8E6E1", padding: "28px" }}>
-          <h2 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "18px", fontWeight: 700, color: "#0A0A0A", marginBottom: "20px" }}>
+          <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#0A0A0A", marginBottom: "20px" }}>
             إجراءات سريعة
           </h2>
           <div className="flex flex-wrap gap-4">
@@ -237,7 +237,7 @@ export default async function DashboardPage() {
                     cursor: "pointer",
                     transition: "all 0.2s",
                     fontSize: "14px",
-                    fontFamily: "Noto Sans Arabic, sans-serif",
+                    fontFamily: "'Zain', sans-serif",
                     color: "#0A0A0A",
                   }}
                   onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#C8A962"; e.currentTarget.style.color = "#C8A962"; }}

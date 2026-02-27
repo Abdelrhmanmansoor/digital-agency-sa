@@ -36,7 +36,7 @@ export default function AdminSidebar({ active: _active }: AdminSidebarProps = {}
       >
         <div
           style={{
-            fontFamily: "Noto Kufi Arabic, sans-serif",
+            fontFamily: "'Zain', sans-serif",
             fontSize: "20px",
             fontWeight: 800,
             color: "#C8A962",
@@ -93,7 +93,7 @@ export default function AdminSidebar({ active: _active }: AdminSidebarProps = {}
                 <span style={{ fontSize: "16px" }}>{item.icon}</span>
                 <span
                   style={{
-                    fontFamily: "Noto Sans Arabic, sans-serif",
+                    fontFamily: "'Zain', sans-serif",
                     fontSize: "14px",
                     color: isActive ? "#C8A962" : "#8C8C7A",
                     fontWeight: isActive ? 600 : 400,
@@ -126,7 +126,7 @@ export default function AdminSidebar({ active: _active }: AdminSidebarProps = {}
           onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
         >
           <span style={{ fontSize: "16px" }}>🚪</span>
-          <span style={{ fontFamily: "Noto Sans Arabic", fontSize: "14px", color: "#8C8C7A" }}>
+          <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "#8C8C7A" }}>
             تسجيل الخروج
           </span>
         </button>

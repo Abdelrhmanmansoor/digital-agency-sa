@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
@@ -70,7 +69,7 @@ export default async function BlogPage({
             </div>
             <h1
               style={{
-                fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "clamp(36px, 5vw, 64px)",
                 fontWeight: 700,
                 color: "#FAFAF7",
@@ -100,7 +99,7 @@ export default async function BlogPage({
                     padding: "8px 20px",
                     border: "1px solid #E8E6E1",
                     fontSize: "13px",
-                    fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif",
+                    fontFamily: "'Zain', sans-serif",
                     color: "#8C8C7A",
                     textDecoration: "none",
                     transition: "all 0.2s",
@@ -141,7 +140,7 @@ export default async function BlogPage({
                       </div>
                       <h2
                         style={{
-                          fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                          fontFamily: "'Zain', sans-serif",
                           fontSize: "17px",
                           fontWeight: 700,
                           color: "#0A0A0A",

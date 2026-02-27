@@ -84,7 +84,7 @@ export default function EditProjectPage() {
     color: "#FAFAF7",
     padding: "12px 16px",
     fontSize: "14px",
-    fontFamily: "Noto Sans Arabic, sans-serif",
+    fontFamily: "'Zain', sans-serif",
     outline: "none",
     boxSizing: "border-box" as const,
   };
@@ -122,13 +122,13 @@ export default function EditProjectPage() {
           >
             ← العودة للمشاريع
           </Link>
-          <h1 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "28px", fontWeight: 700, color: "#FAFAF7" }}>
+          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#FAFAF7" }}>
             تعديل المشروع
           </h1>
         </div>
 
         {error && (
-          <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)", color: "#ef4444", padding: "12px 16px", marginBottom: "24px", fontFamily: "Noto Sans Arabic", fontSize: "14px" }}>
+          <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)", color: "#ef4444", padding: "12px 16px", marginBottom: "24px", fontFamily: "'Zain', sans-serif", fontSize: "14px" }}>
             {error}
           </div>
         )}
@@ -192,7 +192,7 @@ export default function EditProjectPage() {
                 onChange={(e) => handleChange("featured", e.target.checked)}
                 style={{ width: "18px", height: "18px", accentColor: "#C8A962" }}
               />
-              <span style={{ color: "#FAFAF7", fontFamily: "Noto Sans Arabic", fontSize: "14px" }}>مشروع مميز</span>
+              <span style={{ color: "#FAFAF7", fontFamily: "'Zain', sans-serif", fontSize: "14px" }}>مشروع مميز</span>
             </label>
           </div>
 

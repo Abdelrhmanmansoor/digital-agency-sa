@@ -61,7 +61,7 @@ export default function AdminLoginPage() {
         <div className="relative z-10">
           <div
             style={{
-              fontFamily: "Noto Kufi Arabic, sans-serif",
+              fontFamily: "'Zain', sans-serif",
               fontSize: "32px",
               fontWeight: 800,
               color: "#C8A962",
@@ -77,7 +77,7 @@ export default function AdminLoginPage() {
         <div className="relative z-10">
           <h1
             style={{
-              fontFamily: "Noto Kufi Arabic, sans-serif",
+              fontFamily: "'Zain', sans-serif",
               fontSize: "48px",
               fontWeight: 700,
               color: "#FAFAF7",
@@ -108,7 +108,7 @@ export default function AdminLoginPage() {
           <div className="mb-12">
             <h2
               style={{
-                fontFamily: "Noto Kufi Arabic, sans-serif",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "28px",
                 fontWeight: 700,
                 color: "#0A0A0A",
@@ -181,7 +181,7 @@ export default function AdminLoginPage() {
                   border: "1px solid rgba(201,64,64,0.2)",
                   color: "#C94040",
                   fontSize: "14px",
-                  fontFamily: "Noto Sans Arabic, sans-serif",
+                  fontFamily: "'Zain', sans-serif",
                 }}
               >
                 ✗ {error}

@@ -52,7 +52,7 @@ export default async function ToolsPage({
             </div>
             <h1
               style={{
-                fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
                 fontSize: "clamp(36px, 5vw, 64px)",
                 fontWeight: 700,
                 color: "#FAFAF7",

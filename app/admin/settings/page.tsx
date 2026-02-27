@@ -35,7 +35,7 @@ export default function AdminSettingsPage() {
     color: "#FAFAF7",
     padding: "12px 16px",
     fontSize: "14px",
-    fontFamily: "Noto Sans Arabic, sans-serif",
+    fontFamily: "'Zain', sans-serif",
     outline: "none",
     boxSizing: "border-box" as const,
   };
@@ -64,7 +64,7 @@ export default function AdminSettingsPage() {
       <main style={{ flex: 1, padding: "40px", marginRight: "260px" }}>
         {/* Header */}
         <div style={{ marginBottom: "40px" }}>
-          <h1 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "28px", fontWeight: 700, color: "#FAFAF7", marginBottom: "4px" }}>
+          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#FAFAF7", marginBottom: "4px" }}>
             الإعدادات
           </h1>
           <p style={{ color: "#8C8C7A", fontFamily: "Space Mono", fontSize: "12px" }}>
@@ -80,7 +80,7 @@ export default function AdminSettingsPage() {
               color: "#22c55e",
               padding: "12px 16px",
               marginBottom: "24px",
-              fontFamily: "Noto Sans Arabic",
+              fontFamily: "'Zain', sans-serif",
               fontSize: "14px",
             }}
           >
@@ -91,7 +91,7 @@ export default function AdminSettingsPage() {
         <form onSubmit={handleSave}>
           {/* Site Info */}
           <div style={sectionStyle}>
-            <h2 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
+            <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
               معلومات الموقع
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
@@ -108,7 +108,7 @@ export default function AdminSettingsPage() {
 
           {/* Contact Info */}
           <div style={sectionStyle}>
-            <h2 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
+            <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
               معلومات التواصل
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
@@ -133,7 +133,7 @@ export default function AdminSettingsPage() {
 
           {/* Social Media */}
           <div style={sectionStyle}>
-            <h2 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
+            <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
               وسائل التواصل الاجتماعي
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
@@ -159,7 +159,7 @@ export default function AdminSettingsPage() {
 
           {/* Admin Account */}
           <div style={sectionStyle}>
-            <h2 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
+            <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
               حساب المدير
             </h2>
             <div

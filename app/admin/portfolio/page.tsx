@@ -20,7 +20,7 @@ export default async function AdminPortfolioPage() {
           <div>
             <h1
               style={{
-                fontFamily: "Noto Kufi Arabic",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "28px",
                 fontWeight: 700,
                 color: "#FAFAF7",
@@ -53,7 +53,7 @@ export default async function AdminPortfolioPage() {
             }}
           >
             <div style={{ fontSize: "48px", marginBottom: "16px" }}>📂</div>
-            <p style={{ fontFamily: "Noto Sans Arabic", fontSize: "16px" }}>لا توجد مشاريع بعد</p>
+            <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px" }}>لا توجد مشاريع بعد</p>
             <Link
               href="/admin/portfolio/new"
               style={{
@@ -127,7 +127,7 @@ export default async function AdminPortfolioPage() {
                   </div>
                   <h3
                     style={{
-                      fontFamily: "Noto Kufi Arabic",
+                      fontFamily: "'Zain', sans-serif",
                       fontSize: "17px",
                       fontWeight: 700,
                       color: "#FAFAF7",

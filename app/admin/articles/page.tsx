@@ -16,7 +16,7 @@ export default async function ArticlesPage() {
       <main className="admin-main" style={{ padding: "40px" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
           <div>
-            <h1 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "28px", fontWeight: 700, color: "#0A0A0A", marginBottom: "4px" }}>
+            <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#0A0A0A", marginBottom: "4px" }}>
               المقالات
             </h1>
             <p style={{ color: "#8C8C7A", fontSize: "14px" }}>{articles.length} مقال</p>
@@ -62,7 +62,7 @@ export default async function ArticlesPage() {
               }}
             >
               <div>
-                <div style={{ fontFamily: "Noto Sans Arabic", fontSize: "15px", fontWeight: 600, color: "#0A0A0A", marginBottom: "4px" }}>
+                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 600, color: "#0A0A0A", marginBottom: "4px" }}>
                   {article.titleAr}
                 </div>
                 <div style={{ fontSize: "12px", color: "#8C8C7A" }}>
@@ -77,7 +77,7 @@ export default async function ArticlesPage() {
                   border: "1px solid rgba(200,169,98,0.2)",
                   color: "#C8A962",
                   fontSize: "11px",
-                  fontFamily: "Noto Sans Arabic",
+                  fontFamily: "'Zain', sans-serif",
                   whiteSpace: "nowrap",
                 }}
               >
@@ -122,7 +122,7 @@ export default async function ArticlesPage() {
           ))}
 
           {articles.length === 0 && (
-            <div style={{ padding: "60px", textAlign: "center", color: "#8C8C7A", fontFamily: "Noto Sans Arabic", fontSize: "15px" }}>
+            <div style={{ padding: "60px", textAlign: "center", color: "#8C8C7A", fontFamily: "'Zain', sans-serif", fontSize: "15px" }}>
               لا توجد مقالات بعد. اضغط "+ مقال جديد" للبدء.
             </div>
           )}

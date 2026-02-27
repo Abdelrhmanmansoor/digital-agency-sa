@@ -87,7 +87,7 @@ export default function EditArticlePage() {
     color: "#FAFAF7",
     padding: "12px 16px",
     fontSize: "14px",
-    fontFamily: "Noto Sans Arabic, sans-serif",
+    fontFamily: "'Zain', sans-serif",
     outline: "none",
     boxSizing: "border-box" as const,
   };
@@ -126,7 +126,7 @@ export default function EditArticlePage() {
           >
             ← العودة للمقالات
           </Link>
-          <h1 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "28px", fontWeight: 700, color: "#FAFAF7" }}>
+          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#FAFAF7" }}>
             تعديل المقال
           </h1>
         </div>
@@ -139,7 +139,7 @@ export default function EditArticlePage() {
               color: "#ef4444",
               padding: "12px 16px",
               marginBottom: "24px",
-              fontFamily: "Noto Sans Arabic",
+              fontFamily: "'Zain', sans-serif",
               fontSize: "14px",
             }}
           >

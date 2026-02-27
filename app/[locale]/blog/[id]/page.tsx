@@ -235,7 +235,7 @@ export default async function BlogArticlePage({
             {/* Title */}
             <h1
               style={{
-                fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "clamp(28px, 4vw, 52px)",
                 fontWeight: 700,
                 color: "#FAFAF7",
@@ -282,7 +282,7 @@ export default async function BlogArticlePage({
             <div
               className="article-content"
               style={{
-                fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "17px",
                 lineHeight: 1.9,
                 color: "#2A2A25",
@@ -354,7 +354,7 @@ export default async function BlogArticlePage({
             <div className="max-w-[1400px] mx-auto px-8">
               <h2
                 style={{
-                  fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                  fontFamily: "'Zain', sans-serif",
                   fontSize: "28px",
                   fontWeight: 700,
                   color: "#0A0A0A",
@@ -387,7 +387,7 @@ export default async function BlogArticlePage({
                         </div>
                         <h3
                           style={{
-                            fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                            fontFamily: "'Zain', sans-serif",
                             fontSize: "17px",
                             fontWeight: 700,
                             color: "#0A0A0A",
@@ -409,7 +409,7 @@ export default async function BlogArticlePage({
 
       <style>{`
         .article-content h2 {
-          font-family: ${isRTL ? "'Noto Kufi Arabic'" : "sans-serif"};
+          font-family: 'Zain', sans-serif;
           font-size: 24px;
           font-weight: 700;
           color: #0A0A0A;

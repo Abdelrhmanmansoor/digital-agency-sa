@@ -61,7 +61,7 @@ export default function NewArticlePage() {
       <main className="admin-main" style={{ padding: "40px" }}>
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
-          <h1 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "24px", fontWeight: 700, color: "#0A0A0A" }}>
+          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "24px", fontWeight: 700, color: "#0A0A0A" }}>
             مقال جديد
           </h1>
           <div style={{ display: "flex", gap: "12px" }}>
@@ -73,7 +73,7 @@ export default function NewArticlePage() {
                 background: "transparent",
                 border: "1px solid #E8E6E1",
                 cursor: "pointer",
-                fontFamily: "Noto Sans Arabic",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "14px",
                 color: "#8C8C7A",
               }}
@@ -132,7 +132,7 @@ export default function NewArticlePage() {
                     onChange={(e) => setForm((p) => ({ ...p, contentAr: e.target.value }))}
                     rows={15}
                     className="form-input"
-                    style={{ ...inputStyle, resize: "vertical", fontFamily: "Noto Sans Arabic, sans-serif" }}
+                    style={{ ...inputStyle, resize: "vertical", fontFamily: "'Zain', sans-serif" }}
                   />
                 </div>
                 <div>
@@ -154,7 +154,7 @@ export default function NewArticlePage() {
           <div className="space-y-6">
             {/* Settings */}
             <div style={{ background: "#FFFFFF", border: "1px solid #E8E6E1", padding: "24px" }}>
-              <h3 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "16px", fontWeight: 700, color: "#0A0A0A", marginBottom: "20px" }}>
+              <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#0A0A0A", marginBottom: "20px" }}>
                 إعدادات المقال
               </h3>
               <div className="space-y-4">
@@ -191,7 +191,7 @@ export default function NewArticlePage() {
 
             {/* SEO */}
             <div style={{ background: "#FFFFFF", border: "1px solid #E8E6E1", padding: "24px" }}>
-              <h3 style={{ fontFamily: "Noto Kufi Arabic", fontSize: "16px", fontWeight: 700, color: "#0A0A0A", marginBottom: "20px" }}>
+              <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#0A0A0A", marginBottom: "20px" }}>
                 SEO
               </h3>
               <div className="space-y-4">
