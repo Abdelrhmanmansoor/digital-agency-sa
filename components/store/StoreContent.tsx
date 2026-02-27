@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLocale } from "next-intl";
 import { WHATSAPP_NUMBER, getWhatsAppLink } from "@/lib/utils";
 
 /* ─── Types ─────────────────────────────────────────────── */
@@ -496,6 +497,8 @@ const CATEGORIES = [
 ];
 
 export default function StoreContent() {
+  const locale = useLocale();
+  const dir = locale === "ar" ? "rtl" : "ltr";
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
   const filtered = activeCategory === "all"
@@ -503,7 +506,7 @@ export default function StoreContent() {
     : PRODUCTS.filter((p) => p.category === activeCategory);
 
   return (
-    <div dir="rtl" style={{ fontFamily: "'Zain', sans-serif" }}>
+    <div dir={dir} lang={locale} style={{ fontFamily: "'Zain', sans-serif" }}>
       {/* ═══ HERO ═══════════════════════════════════════════ */}
       <section
         style={{

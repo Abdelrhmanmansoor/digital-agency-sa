@@ -9,11 +9,10 @@ export const metadata: Metadata = {
     default: "وكالة رقمية | Salla Store Design & Digital Marketing",
     template: "%s | وكالة رقمية",
   },
-  description: "وكالة رقمية سعودية متخصصة في تصميم متاجر سلة وزد، التسويق الرقمي، والهويات البصرية",
-  keywords: ["تصميم متجر سلة", "وكالة تسويق رقمي", "salla store design", "digital marketing saudi"],
+  description: "وكالة رقمية متخصصة في تصميم متاجر سلة وزد، التسويق الرقمي، والهويات البصرية",
+  keywords: ["تصميم متجر سلة", "وكالة تسويق رقمي", "salla store design", "digital marketing"],
   openGraph: {
     type: "website",
-    locale: "ar_SA",
     siteName: "وكالة رقمية",
   },
 };
@@ -39,16 +38,16 @@ export default async function LocaleLayout({
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <>
-      {/* Set lang and dir on <html> element dynamically */}
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `document.documentElement.setAttribute('lang','${locale}');document.documentElement.setAttribute('dir','${dir}');`,
-        }}
-      />
-      <NextIntlClientProvider messages={messages} locale={locale}>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      {/* Wrapper div carries dir + lang — CSS [dir="rtl"] selectors work from here down */}
+      <div
+        dir={dir}
+        lang={locale}
+        id="locale-root"
+        style={{ minHeight: "100vh", overflowX: "hidden" }}
+      >
         {children}
-      </NextIntlClientProvider>
-    </>
+      </div>
+    </NextIntlClientProvider>
   );
 }

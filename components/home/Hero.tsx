@@ -178,7 +178,7 @@ export default function Hero() {
 
       {/* ── MAIN CONTENT ── */}
       <div
-        className="max-w-[1400px] mx-auto w-full"
+        className="max-w-[1400px] mx-auto w-full hero-content"
         style={{ padding: "120px 32px 80px", position:"relative", zIndex:1 }}
       >
         <div
@@ -199,14 +199,14 @@ export default function Hero() {
             }}
           >
             {/* Badges row */}
-            <div style={{ display:"flex", gap:"8px", marginBottom:"28px", flexWrap:"wrap" }} dir="ltr">
+            <div style={{ display:"flex", gap:"8px", marginBottom:"28px", flexWrap:"wrap" }}>
               <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(200,169,98,0.1)", border:"1px solid rgba(200,169,98,0.3)", borderRadius:"100px", padding:"5px 14px", fontSize:"11px", fontFamily:"Space Mono, monospace", color:"#C8A962", letterSpacing:"0.12em", textTransform:"uppercase" }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="#C8A962" style={{ flexShrink:0 }}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 {locale === "ar" ? "توفير حتى 70%" : "Save Up To 70%"}
               </span>
               <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(189,238,99,0.07)", border:"1px solid rgba(189,238,99,0.2)", borderRadius:"100px", padding:"5px 14px", fontSize:"11px", fontFamily:"Space Mono, monospace", color:"#BDEE63", letterSpacing:"0.12em", textTransform:"uppercase" }}>
                 <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#BDEE63", display:"inline-block", animation:"heroPulse 2s ease-in-out infinite" }} />
-                {locale === "ar" ? "وكالة سعودية" : "KSA Agency"}
+                {locale === "ar" ? "وكالة رقمية" : "Digital Agency"}
               </span>
             </div>
 
@@ -214,12 +214,14 @@ export default function Hero() {
             <h1
               style={{
                 fontFamily: "'Zain', sans-serif",
-                fontSize: "clamp(52px, 7vw, 100px)",
+                fontSize: "clamp(38px, 7vw, 100px)",
                 fontWeight: 800,
-                lineHeight: 1.0,
+                lineHeight: 1.1,
                 color: "#FFFFFF",
                 marginBottom: "28px",
                 letterSpacing: isRTL ? "-0.01em" : "-0.03em",
+                overflowWrap: "break-word",
+                wordBreak: "break-word",
               }}
             >
               {t("title1")}{" "}
@@ -536,10 +538,14 @@ export default function Hero() {
         @media (max-width: 768px) {
           .hero-bg-desktop { display: none !important; }
           .hero-bg-mobile { display: block !important; }
+          .hero-content { padding: 96px 16px 56px !important; }
         }
         @media (max-width: 900px) {
-          .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
           .hero-right { display: none !important; }
+        }
+        @media (max-width: 480px) {
+          .hero-content { padding: 88px 14px 48px !important; }
         }
       `}</style>
     </section>

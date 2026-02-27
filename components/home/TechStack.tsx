@@ -29,6 +29,7 @@ const PLATFORM_TOOLS = [
 /* ─── Individual card ─── */
 function ToolCard({ name, slug, color }: { name: string; slug: string; color: string }) {
   const [hovered, setHovered] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const iconUrl = `https://cdn.simpleicons.org/${slug}/${color.replace("#", "")}`;
 
   return (
@@ -49,15 +50,28 @@ function ToolCard({ name, slug, color }: { name: string; slug: string; color: st
         boxShadow: hovered ? `0 0 24px ${color}18` : "none",
       }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={iconUrl}
-        alt={name}
-        width={40}
-        height={40}
-        style={{ width: "40px", height: "40px", objectFit: "contain", filter: hovered ? "none" : "grayscale(0.3) opacity(0.85)" }}
-        loading="lazy"
-      />
+      {imgError ? (
+        /* Fallback: colored circle with first letter */
+        <div style={{
+          width: "40px", height: "40px", borderRadius: "8px",
+          background: `${color}22`, border: `1px solid ${color}44`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color,
+        }}>
+          {name.charAt(0)}
+        </div>
+      ) : (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={iconUrl}
+          alt={name}
+          width={40}
+          height={40}
+          onError={() => setImgError(true)}
+          style={{ width: "40px", height: "40px", objectFit: "contain", filter: hovered ? "none" : "grayscale(0.3) opacity(0.85)" }}
+          loading="lazy"
+        />
+      )}
       <span
         style={{
           fontFamily: "Space Mono, monospace",
@@ -68,6 +82,10 @@ function ToolCard({ name, slug, color }: { name: string; slug: string; color: st
           textTransform: "uppercase",
           lineHeight: 1.3,
           transition: "color 0.3s",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          maxWidth: "100%",
         }}
       >
         {name}
@@ -341,7 +359,7 @@ export default function TechStack() {
             <ToolCard name="Shopify" slug="shopify" color="#96BF48" />
             <ToolCard name="WordPress" slug="wordpress" color="#21759B" />
             <ToolCard name="WooCommerce" slug="woocommerce" color="#7F54B3" />
-            <ToolCard name="Claude AI" slug="anthropic" color="#C97B56" />
+            <ToolCard name="Claude AI" slug="claude" color="#C97B56" />
             <Card123 />
           </div>
         </div>
