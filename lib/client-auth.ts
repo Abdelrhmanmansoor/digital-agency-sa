@@ -2,10 +2,16 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { clientUsersDB, type ClientUser } from "./client-db";
 
+if (process.env.NODE_ENV === "production") {
+  if (!process.env.CLIENT_JWT_SECRET && !process.env.JWT_SECRET) {
+    throw new Error("CLIENT_JWT_SECRET (or JWT_SECRET) env var is required in production");
+  }
+}
+
 const CLIENT_SECRET = new TextEncoder().encode(
   process.env.CLIENT_JWT_SECRET ||
   process.env.JWT_SECRET ||
-  "client-secret-key-change-in-production-min-32-chars-here"
+  "dev-only-client-secret-do-not-use-in-production-placeholder"
 );
 
 export const CLIENT_COOKIE_NAME = "client-token";
@@ -14,7 +20,7 @@ export async function createClientToken(payload: { userId: string; email: string
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("30d")
+    .setExpirationTime("7d")
     .sign(CLIENT_SECRET);
 }
 
