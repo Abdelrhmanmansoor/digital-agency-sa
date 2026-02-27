@@ -9,6 +9,8 @@ const NAV_ITEMS = [
   { href: "/admin/articles", icon: "📄", label: "المقالات" },
   { href: "/admin/portfolio", icon: "💼", label: "الأعمال" },
   { href: "/admin/messages", icon: "📨", label: "الرسائل", badge: true },
+  { href: "/admin/invoices", icon: "🧾", label: "الفواتير" },
+  { href: "/admin/contracts", icon: "📋", label: "العقود" },
   { href: "/admin/settings", icon: "⚙️", label: "الإعدادات" },
 ];
 

@@ -11,6 +11,7 @@ const PolicyGenerator = dynamic(() => import("@/components/tools/PolicyGenerator
 const ContentPlanner = dynamic(() => import("@/components/tools/ContentPlanner"), { ssr: false });
 const NameGenerator = dynamic(() => import("@/components/tools/NameGenerator"), { ssr: false });
 const BannerSizes = dynamic(() => import("@/components/tools/BannerSizes"), { ssr: false });
+const DiscountTrap = dynamic(() => import("@/components/tools/DiscountTrap"), { ssr: false });
 
 const TOOLS = [
   { id: "profit", icon: "🧮", nameAr: "حاسبة الأرباح", nameEn: "Profit Calculator", descAr: "احسب هامش ربحك وصافي أرباحك بدقة", descEn: "Calculate your profit margins accurately" },
@@ -21,6 +22,7 @@ const TOOLS = [
   { id: "planner", icon: "🗓", nameAr: "مخطط المحتوى الشهري", nameEn: "Content Planner", descAr: "خطط محتوى 30 يوم بأفكار جاهزة", descEn: "Plan 30 days of content with ideas" },
   { id: "names", icon: "🏷", nameAr: "مولّد أسماء المتاجر", nameEn: "Store Name Generator", descAr: "احصل على أسماء مبدعة لمتجرك", descEn: "Get creative names for your store" },
   { id: "banners", icon: "📐", nameAr: "دليل مقاسات البنرات", nameEn: "Banner Sizes Guide", descAr: "مرجع شامل لجميع مقاسات سلة", descEn: "Complete reference for all Salla sizes" },
+  { id: "discount", icon: "⚠️", nameAr: "فخ الخصومات", nameEn: "Discount Trap", descAr: "اكتشف التكلفة الحقيقية للخصومات على أرباحك", descEn: "Discover the real cost of discounts on your profits" },
 ];
 
 // Competitor Analyzer (built inline since it's simpler)
@@ -149,6 +151,7 @@ const TOOL_COMPONENTS: Record<string, React.ComponentType<{ onClose: () => void 
   planner: ContentPlanner,
   names: NameGenerator,
   banners: BannerSizes,
+  discount: DiscountTrap,
 };
 
 export default function SallaTools() {

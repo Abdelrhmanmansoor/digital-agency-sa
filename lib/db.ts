@@ -519,3 +519,154 @@ export const messagesDB = {
     await redisSet("messages", all.filter((m) => m.id !== id));
   },
 };
+
+// ── Auto-increment counter via Redis INCR ─────────────────────────────────────
+async function redisIncr(key: string): Promise<number> {
+  if (!REDIS_URL || !REDIS_TOKEN) return Date.now();
+  try {
+    const res = await fetch(`${REDIS_URL}/pipeline`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${REDIS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([["INCR", key]]),
+      cache: "no-store",
+    });
+    const data = await res.json();
+    return data[0]?.result ?? 1;
+  } catch {
+    return 1;
+  }
+}
+
+// ── Invoice ───────────────────────────────────────────────────────────────────
+export interface InvoiceItem {
+  id: string;
+  descAr: string;
+  descEn: string;
+  qty: number;
+  unitPrice: number;
+  total: number;
+}
+
+export interface Invoice {
+  id: string;
+  number: string;
+  template: "classic" | "modern" | "minimal";
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+  clientCompany?: string;
+  items: InvoiceItem[];
+  subtotal: number;
+  vatRate: number;
+  vat: number;
+  total: number;
+  currency: "SAR";
+  status: "draft" | "sent" | "paid" | "cancelled";
+  issueDate: string;
+  dueDate: string;
+  notes?: string;
+  notesAr?: string;
+  bankName?: string;
+  iban?: string;
+  accountHolder?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const invoicesDB = {
+  getAll: () => redisGet<Invoice[]>("invoices", []),
+  getById: async (id: string) => {
+    const all = await redisGet<Invoice[]>("invoices", []);
+    return all.find((inv) => inv.id === id);
+  },
+  create: async (data: Omit<Invoice, "id" | "number" | "createdAt" | "updatedAt">) => {
+    const all = await redisGet<Invoice[]>("invoices", []);
+    const year = new Date().getFullYear();
+    const counter = await redisIncr(`invoice_counter_${year}`);
+    const newInvoice: Invoice = {
+      ...data,
+      id: Date.now().toString(),
+      number: `INV-${year}-${String(counter).padStart(3, "0")}`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    await redisSet("invoices", [newInvoice, ...all]);
+    return newInvoice;
+  },
+  update: async (id: string, updates: Partial<Invoice>) => {
+    const all = await redisGet<Invoice[]>("invoices", []);
+    const updated = all.map((inv) =>
+      inv.id === id ? { ...inv, ...updates, updatedAt: new Date().toISOString() } : inv
+    );
+    await redisSet("invoices", updated);
+    return updated.find((inv) => inv.id === id);
+  },
+  delete: async (id: string) => {
+    const all = await redisGet<Invoice[]>("invoices", []);
+    await redisSet("invoices", all.filter((inv) => inv.id !== id));
+  },
+};
+
+// ── Contract ──────────────────────────────────────────────────────────────────
+export interface Contract {
+  id: string;
+  number: string;
+  type: "service-agreement" | "maintenance" | "marketing" | "custom";
+  clientName: string;
+  clientNationalId?: string;
+  clientPhone: string;
+  clientEmail: string;
+  clientAddress?: string;
+  clientCompany?: string;
+  serviceTitle: string;
+  serviceTitleAr: string;
+  serviceDescription: string;
+  serviceDescriptionAr: string;
+  totalAmount: number;
+  paymentTerms: "full" | "50-50" | "custom";
+  paymentNotes?: string;
+  startDate: string;
+  deliveryDays: number;
+  deliverables: string[];
+  jurisdiction: string;
+  status: "draft" | "active" | "completed" | "terminated";
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const contractsDB = {
+  getAll: () => redisGet<Contract[]>("contracts", []),
+  getById: async (id: string) => {
+    const all = await redisGet<Contract[]>("contracts", []);
+    return all.find((c) => c.id === id);
+  },
+  create: async (data: Omit<Contract, "id" | "number" | "createdAt" | "updatedAt">) => {
+    const all = await redisGet<Contract[]>("contracts", []);
+    const year = new Date().getFullYear();
+    const counter = await redisIncr(`contract_counter_${year}`);
+    const newContract: Contract = {
+      ...data,
+      id: Date.now().toString(),
+      number: `CTR-${year}-${String(counter).padStart(3, "0")}`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    await redisSet("contracts", [newContract, ...all]);
+    return newContract;
+  },
+  update: async (id: string, updates: Partial<Contract>) => {
+    const all = await redisGet<Contract[]>("contracts", []);
+    const updated = all.map((c) =>
+      c.id === id ? { ...c, ...updates, updatedAt: new Date().toISOString() } : c
+    );
+    await redisSet("contracts", updated);
+    return updated.find((c) => c.id === id);
+  },
+  delete: async (id: string) => {
+    const all = await redisGet<Contract[]>("contracts", []);
+    await redisSet("contracts", all.filter((c) => c.id !== id));
+  },
+};

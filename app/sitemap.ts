@@ -4,7 +4,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://digitalagency.sa";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["ar", "en", "fr"];
-  const routes = ["/", "/blog", "/tools", "/portfolio", "/about", "/contact", "/pricing"];
+  const routes = ["/", "/blog", "/tools"];
 
   const entries: MetadataRoute.Sitemap = [];
 
