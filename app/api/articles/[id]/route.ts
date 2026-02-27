@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const article = articlesDB.getById(id);
+  const article = await articlesDB.getById(id);
   if (!article) {
     return NextResponse.json({ error: "Article not found" }, { status: 404 });
   }
@@ -23,7 +23,7 @@ export async function PUT(
 
   const { id } = await params;
   const body = await req.json();
-  const updated = articlesDB.update(id, body);
+  const updated = await articlesDB.update(id, body);
   if (!updated) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(updated);
 }
@@ -36,6 +36,6 @@ export async function DELETE(
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id } = await params;
-  articlesDB.delete(id);
+  await articlesDB.delete(id);
   return NextResponse.json({ success: true });
 }

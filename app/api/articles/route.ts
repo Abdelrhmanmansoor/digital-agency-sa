@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status");
 
-  let articles = articlesDB.getAll();
+  let articles = await articlesDB.getAll();
   if (status) {
     articles = articles.filter((a) => a.status === status);
   }
@@ -22,9 +22,9 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const article = articlesDB.create(body);
+    const article = await articlesDB.create(body);
     return NextResponse.json(article, { status: 201 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
   }
 }

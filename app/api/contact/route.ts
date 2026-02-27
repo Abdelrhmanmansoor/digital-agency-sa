@@ -10,17 +10,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Name, email, and message are required" }, { status: 400 });
     }
 
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
 
-    // Save message
-    const savedMessage = messagesDB.create({ name, email, phone, subject, message });
-
-    // In production, send email notification here
-    // await sendEmailNotification(savedMessage);
+    const savedMessage = await messagesDB.create({ name, email, phone, subject, message });
 
     return NextResponse.json({
       success: true,
@@ -34,10 +29,9 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-  // Only for admin
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status");
-  let messages = messagesDB.getAll();
+  let messages = await messagesDB.getAll();
   if (status) {
     messages = messages.filter((m) => m.status === status);
   }

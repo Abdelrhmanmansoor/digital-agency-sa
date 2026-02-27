@@ -3,7 +3,7 @@ import { projectsDB } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 
 export async function GET() {
-  const projects = projectsDB.getAll();
+  const projects = await projectsDB.getAll();
   return NextResponse.json(projects.sort((a, b) => a.order - b.order));
 }
 
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const project = projectsDB.create(body);
+    const project = await projectsDB.create(body);
     return NextResponse.json(project, { status: 201 });
   } catch {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });

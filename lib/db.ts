@@ -1,26 +1,37 @@
-import fs from "fs";
-import path from "path";
+// Upstash Redis REST API — no packages needed, works on Vercel serverless
+const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
+const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
 
-const DATA_DIR = path.join(process.cwd(), "data");
-
-function ensureDir() {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-}
-
-function readData<T>(filename: string, defaultValue: T): T {
-  ensureDir();
-  const filePath = path.join(DATA_DIR, filename);
-  if (!fs.existsSync(filePath)) return defaultValue;
+async function redisGet<T>(key: string, defaultValue: T): Promise<T> {
+  if (!REDIS_URL || !REDIS_TOKEN) return defaultValue;
   try {
-    return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    const res = await fetch(`${REDIS_URL}/get/${encodeURIComponent(key)}`, {
+      headers: { Authorization: `Bearer ${REDIS_TOKEN}` },
+      cache: "no-store",
+    });
+    const data = await res.json();
+    if (!data.result) return defaultValue;
+    return JSON.parse(data.result) as T;
   } catch {
     return defaultValue;
   }
 }
 
-function writeData<T>(filename: string, data: T): void {
-  ensureDir();
-  fs.writeFileSync(path.join(DATA_DIR, filename), JSON.stringify(data, null, 2), "utf-8");
+async function redisSet<T>(key: string, value: T): Promise<void> {
+  if (!REDIS_URL || !REDIS_TOKEN) return;
+  try {
+    await fetch(`${REDIS_URL}/pipeline`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${REDIS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([["SET", key, JSON.stringify(value)]]),
+      cache: "no-store",
+    });
+  } catch (e) {
+    console.error("Redis SET error:", e);
+  }
 }
 
 export interface Article {
@@ -116,49 +127,83 @@ const SAMPLE_PROJECTS: Project[] = [
 ];
 
 export const articlesDB = {
-  getAll: (): Article[] => readData<Article[]>("articles.json", SAMPLE_ARTICLES),
-  getById: (id: string) => articlesDB.getAll().find((a) => a.id === id),
-  create: (article: Omit<Article, "id" | "createdAt" | "updatedAt">) => {
-    const all = articlesDB.getAll();
-    const newArticle: Article = { ...article, id: Date.now().toString(), createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
-    writeData("articles.json", [newArticle, ...all]);
-    return newArticle;
-  },
-  update: (id: string, updates: Partial<Article>) => {
-    const all = articlesDB.getAll().map((a) => a.id === id ? { ...a, ...updates, updatedAt: new Date().toISOString() } : a);
-    writeData("articles.json", all);
+  getAll: () => redisGet<Article[]>("articles", SAMPLE_ARTICLES),
+  getById: async (id: string) => {
+    const all = await redisGet<Article[]>("articles", SAMPLE_ARTICLES);
     return all.find((a) => a.id === id);
   },
-  delete: (id: string) => { writeData("articles.json", articlesDB.getAll().filter((a) => a.id !== id)); },
+  create: async (article: Omit<Article, "id" | "createdAt" | "updatedAt">) => {
+    const all = await redisGet<Article[]>("articles", SAMPLE_ARTICLES);
+    const newArticle: Article = {
+      ...article,
+      id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    await redisSet("articles", [newArticle, ...all]);
+    return newArticle;
+  },
+  update: async (id: string, updates: Partial<Article>) => {
+    const all = await redisGet<Article[]>("articles", SAMPLE_ARTICLES);
+    const updated = all.map((a) =>
+      a.id === id ? { ...a, ...updates, updatedAt: new Date().toISOString() } : a
+    );
+    await redisSet("articles", updated);
+    return updated.find((a) => a.id === id);
+  },
+  delete: async (id: string) => {
+    const all = await redisGet<Article[]>("articles", SAMPLE_ARTICLES);
+    await redisSet("articles", all.filter((a) => a.id !== id));
+  },
 };
 
 export const projectsDB = {
-  getAll: (): Project[] => readData<Project[]>("projects.json", SAMPLE_PROJECTS),
-  getById: (id: string) => projectsDB.getAll().find((p) => p.id === id),
-  create: (project: Omit<Project, "id" | "createdAt">) => {
-    const all = projectsDB.getAll();
-    const newProject: Project = { ...project, id: Date.now().toString(), createdAt: new Date().toISOString() };
-    writeData("projects.json", [...all, newProject]);
-    return newProject;
-  },
-  update: (id: string, updates: Partial<Project>) => {
-    const all = projectsDB.getAll().map((p) => p.id === id ? { ...p, ...updates } : p);
-    writeData("projects.json", all);
+  getAll: () => redisGet<Project[]>("projects", SAMPLE_PROJECTS),
+  getById: async (id: string) => {
+    const all = await redisGet<Project[]>("projects", SAMPLE_PROJECTS);
     return all.find((p) => p.id === id);
   },
-  delete: (id: string) => { writeData("projects.json", projectsDB.getAll().filter((p) => p.id !== id)); },
+  create: async (project: Omit<Project, "id" | "createdAt">) => {
+    const all = await redisGet<Project[]>("projects", SAMPLE_PROJECTS);
+    const newProject: Project = {
+      ...project,
+      id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+    };
+    await redisSet("projects", [...all, newProject]);
+    return newProject;
+  },
+  update: async (id: string, updates: Partial<Project>) => {
+    const all = await redisGet<Project[]>("projects", SAMPLE_PROJECTS);
+    const updated = all.map((p) => (p.id === id ? { ...p, ...updates } : p));
+    await redisSet("projects", updated);
+    return updated.find((p) => p.id === id);
+  },
+  delete: async (id: string) => {
+    const all = await redisGet<Project[]>("projects", SAMPLE_PROJECTS);
+    await redisSet("projects", all.filter((p) => p.id !== id));
+  },
 };
 
 export const messagesDB = {
-  getAll: (): Message[] => readData<Message[]>("messages.json", []),
-  create: (message: Omit<Message, "id" | "createdAt" | "status">) => {
-    const all = messagesDB.getAll();
-    const newMessage: Message = { ...message, id: Date.now().toString(), status: "new", createdAt: new Date().toISOString() };
-    writeData("messages.json", [newMessage, ...all]);
+  getAll: () => redisGet<Message[]>("messages", []),
+  create: async (message: Omit<Message, "id" | "createdAt" | "status">) => {
+    const all = await redisGet<Message[]>("messages", []);
+    const newMessage: Message = {
+      ...message,
+      id: Date.now().toString(),
+      status: "new",
+      createdAt: new Date().toISOString(),
+    };
+    await redisSet("messages", [newMessage, ...all]);
     return newMessage;
   },
-  update: (id: string, status: Message["status"]) => {
-    writeData("messages.json", messagesDB.getAll().map((m) => m.id === id ? { ...m, status } : m));
+  update: async (id: string, status: Message["status"]) => {
+    const all = await redisGet<Message[]>("messages", []);
+    await redisSet("messages", all.map((m) => (m.id === id ? { ...m, status } : m)));
   },
-  delete: (id: string) => { writeData("messages.json", messagesDB.getAll().filter((m) => m.id !== id)); },
+  delete: async (id: string) => {
+    const all = await redisGet<Message[]>("messages", []);
+    await redisSet("messages", all.filter((m) => m.id !== id));
+  },
 };
