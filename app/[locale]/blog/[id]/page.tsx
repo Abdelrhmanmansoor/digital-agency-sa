@@ -367,13 +367,12 @@ export default async function BlogArticlePage({
                 {related.map((rel) => (
                   <Link key={rel.id} href={`/${locale}/blog/${rel.id}`} style={{ textDecoration: "none" }}>
                     <div
+                      className="blog-related-card"
                       style={{
                         border: "1px solid #E8E6E1",
                         overflow: "hidden",
                         transition: "border-color 0.3s",
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#C8A962")}
-                      onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#E8E6E1")}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -428,6 +427,9 @@ export default async function BlogArticlePage({
         .article-content a {
           color: #C8A962;
           text-decoration: none;
+        }
+        .blog-related-card:hover {
+          border-color: #C8A962 !important;
         }
       `}</style>
     </>

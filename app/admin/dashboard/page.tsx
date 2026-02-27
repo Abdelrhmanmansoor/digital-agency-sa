@@ -50,22 +50,13 @@ export default async function DashboardPage() {
           {stats.map((stat) => (
             <Link key={stat.label} href={stat.href} style={{ textDecoration: "none" }}>
               <div
+                className="dash-stat-card"
                 style={{
                   background: "#FFFFFF",
                   border: "1px solid #E8E6E1",
                   padding: "28px 24px",
                   transition: "all 0.2s ease",
                   cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#C8A962";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "#E8E6E1";
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "none";
                 }}
               >
                 <div style={{ fontSize: "28px", marginBottom: "12px" }}>{stat.icon}</div>
@@ -227,22 +218,7 @@ export default async function DashboardPage() {
                 target={action.external ? "_blank" : "_self"}
                 style={{ textDecoration: "none" }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    padding: "12px 20px",
-                    border: "1px solid #E8E6E1",
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                    fontSize: "14px",
-                    fontFamily: "'Zain', sans-serif",
-                    color: "#0A0A0A",
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#C8A962"; e.currentTarget.style.color = "#C8A962"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E8E6E1"; e.currentTarget.style.color = "#0A0A0A"; }}
-                >
+                <div className="dash-action">
                   <span style={{ fontSize: "18px" }}>{action.icon}</span>
                   {action.label}
                 </div>
@@ -251,6 +227,30 @@ export default async function DashboardPage() {
           </div>
         </div>
       </main>
+
+      <style>{`
+        .dash-stat-card:hover {
+          border-color: #C8A962 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .dash-action {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 20px;
+          border: 1px solid #E8E6E1;
+          cursor: pointer;
+          transition: all 0.2s;
+          font-size: 14px;
+          font-family: 'Zain', sans-serif;
+          color: #0A0A0A;
+        }
+        .dash-action:hover {
+          border-color: #C8A962 !important;
+          color: #C8A962 !important;
+        }
+      `}</style>
     </div>
   );
 }

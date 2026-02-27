@@ -73,14 +73,13 @@ export default async function AdminPortfolioPage() {
             {projects.map((project) => (
               <div
                 key={project.id}
+                className="admin-project-card"
                 style={{
                   background: "#141414",
                   border: "1px solid rgba(200,169,98,0.1)",
                   overflow: "hidden",
                   transition: "border-color 0.3s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(200,169,98,0.3)")}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(200,169,98,0.1)")}
               >
                 {/* Image */}
                 <div style={{ position: "relative", height: "180px", overflow: "hidden" }}>
@@ -190,6 +189,12 @@ export default async function AdminPortfolioPage() {
           </div>
         )}
       </main>
+
+      <style>{`
+        .admin-project-card:hover {
+          border-color: rgba(200,169,98,0.3) !important;
+        }
+      `}</style>
     </div>
   );
 }
