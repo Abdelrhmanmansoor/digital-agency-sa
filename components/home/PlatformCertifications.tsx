@@ -4,157 +4,35 @@ import { useState } from "react";
 import { useLocale } from "next-intl";
 
 /* ─────────────────────────────────────────────────────────────
-   Accurate SVG reproductions of the real logos
-   Based on official brand assets
+   Real logo images from /public/logos/
+   salla.svg  — official Salla wide logo (dark teal)
+   zid-wide.png — official Zid logo (purple)
+   google.png — official Google wordmark
+   meta.png   — official Meta wordmark
 ──────────────────────────────────────────────────────────── */
-
-/* Salla — teal #1B6B74, rounded-square basket + smile arc */
-function SallaLogo() {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-      {/* Icon: rounded square outline with smile inside */}
-      <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
-        <rect x="7" y="7" width="86" height="86" rx="24" stroke="#1B6B74" strokeWidth="8" fill="none" />
-        {/* Smile / basket arc */}
-        <path
-          d="M28 60 Q50 80 72 60"
-          stroke="#1B6B74"
-          strokeWidth="8"
-          strokeLinecap="round"
-          fill="none"
-        />
-      </svg>
-      {/* Text */}
-      <div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "19px", fontWeight: 800, color: "#1B6B74", lineHeight: 1 }}>سلة</div>
-        <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#1B6B74", letterSpacing: "0.02em" }}>salla</div>
-      </div>
-    </div>
-  );
-}
-
-/* Zid — purple #8B2FC9, 3-loop asterisk flower + "zid" */
-function ZidLogo() {
-  const purple = "#8B2FC9";
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-      {/* Icon: 3 figure-8 loops at 0°/60°/120° */}
-      <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
-        {/* Horizontal infinity loop */}
-        <path
-          d="M50 50 C50 34 70 30 74 50 C78 70 58 66 50 50 C42 34 22 30 26 50 C30 70 50 66 50 50Z"
-          stroke={purple} strokeWidth="5.5" fill="none" strokeLinecap="round"
-        />
-        {/* Rotated 60° */}
-        <g transform="rotate(60, 50, 50)">
-          <path
-            d="M50 50 C50 34 70 30 74 50 C78 70 58 66 50 50 C42 34 22 30 26 50 C30 70 50 66 50 50Z"
-            stroke={purple} strokeWidth="5.5" fill="none" strokeLinecap="round"
-          />
-        </g>
-        {/* Rotated 120° */}
-        <g transform="rotate(120, 50, 50)">
-          <path
-            d="M50 50 C50 34 70 30 74 50 C78 70 58 66 50 50 C42 34 22 30 26 50 C30 70 50 66 50 50Z"
-            stroke={purple} strokeWidth="5.5" fill="none" strokeLinecap="round"
-          />
-        </g>
-        {/* Center dot */}
-        <circle cx="50" cy="50" r="5" fill={purple} />
-      </svg>
-      {/* Text */}
-      <div style={{ fontFamily: "Space Mono, monospace", fontSize: "26px", fontWeight: 800, color: purple, letterSpacing: "-0.02em" }}>
-        zid
-      </div>
-    </div>
-  );
-}
-
-/* Google — official multicolor wordmark via SimpleIcons CDN */
-function GoogleLogo() {
-  const [err, setErr] = useState(false);
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-      {err ? (
-        /* Fallback: manual multicolor G */
-        <svg width="48" height="48" viewBox="0 0 100 100">
-          <path d="M90 50H52v16h22c-2 8-8 14-16 17l12 12c12-11 19-27 19-45H90z" fill="#4285F4" />
-          <path d="M14 50C14 34 30 22 50 28L60 18C46 10 28 12 16 22 4 32 0 48 6 62L20 52C16 52 14 51 14 50z" fill="#EA4335" />
-          <path d="M50 86c12 0 22-4 30-11L68 63C64 66 57 68 50 68c-14 0-26-9-30-22L6 58C14 74 30 86 50 86z" fill="#34A853" />
-          <path d="M14 50C14 43 16 37 20 32L6 20C0 28 0 38 6 48L20 52C16 52 14 51 14 50z" fill="#FBBC05" />
-        </svg>
-      ) : (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          src="https://cdn.simpleicons.org/google"
-          alt="Google"
-          width={40}
-          height={40}
-          onError={() => setErr(true)}
-          style={{ display: "block" }}
-        />
-      )}
-      {/* Multicolor "Google" wordmark */}
-      <span style={{ fontFamily: "Space Mono, monospace", fontSize: "20px", fontWeight: 700, letterSpacing: "-0.02em" }}>
-        <span style={{ color: "#4285F4" }}>G</span>
-        <span style={{ color: "#EA4335" }}>o</span>
-        <span style={{ color: "#FBBC05" }}>o</span>
-        <span style={{ color: "#4285F4" }}>g</span>
-        <span style={{ color: "#34A853" }}>l</span>
-        <span style={{ color: "#EA4335" }}>e</span>
-      </span>
-    </div>
-  );
-}
-
-/* Meta — official blue infinity + bold "Meta" */
-function MetaLogo() {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-      {/* Infinity / Meta symbol */}
-      <svg width="54" height="28" viewBox="0 0 160 80" fill="none">
-        <defs>
-          <linearGradient id="metaGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#0082FB" />
-            <stop offset="100%" stopColor="#0064E0" />
-          </linearGradient>
-        </defs>
-        {/* Left lobe */}
-        <path
-          d="M24 40 C24 20 40 8 56 20 C66 28 76 40 80 40 C76 40 66 52 56 60 C40 72 24 60 24 40Z"
-          fill="url(#metaGrad)"
-        />
-        {/* Right lobe */}
-        <path
-          d="M136 40 C136 20 120 8 104 20 C94 28 84 40 80 40 C84 40 94 52 104 60 C120 72 136 60 136 40Z"
-          fill="url(#metaGrad)"
-        />
-        {/* Center overlap gap */}
-        <path d="M80 40 C77 36 75 32 75 28 C75 20 82 16 90 20 L80 40Z" fill="url(#metaGrad)" />
-        <path d="M80 40 C83 44 85 48 85 52 C85 60 78 64 70 60 L80 40Z" fill="url(#metaGrad)" />
-      </svg>
-      <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "26px", fontWeight: 800, color: "#FAFAF7", letterSpacing: "-0.01em" }}>
-        Meta
-      </span>
-    </div>
-  );
-}
+const LOGOS = {
+  salla:  { src: "/logos/salla.svg",     w: 148, h: 62 },
+  zid:    { src: "/logos/zid-wide.png",  w: 140, h: 79 },
+  google: { src: "/logos/google.png",    w: 148, h: 50 },
+  meta:   { src: "/logos/meta.png",      w: 148, h: 30 },
+};
 
 /* ─────────────────────────────────────────────────────────────
    Individual partner card
 ──────────────────────────────────────────────────────────── */
 interface PartnerCardProps {
-  logo: React.ReactNode;
+  logoKey: keyof typeof LOGOS;
   badgeAr: string;
   badgeEn: string;
   accentColor: string;
-  accentRGB: string;   /* "r,g,b" */
+  accentRGB: string;
   features: { ar: string; en: string }[];
   isRTL: boolean;
 }
 
-function PartnerCard({ logo, badgeAr, badgeEn, accentColor, accentRGB, features, isRTL }: PartnerCardProps) {
+function PartnerCard({ logoKey, badgeAr, badgeEn, accentColor, accentRGB, features, isRTL }: PartnerCardProps) {
   const [hovered, setHovered] = useState(false);
+  const logo = LOGOS[logoKey];
 
   return (
     <div
@@ -174,18 +52,28 @@ function PartnerCard({ logo, badgeAr, badgeEn, accentColor, accentRGB, features,
         cursor: "default",
       }}
     >
-      {/* Logo area — white pill so real brand colors show correctly */}
+      {/* Logo on white background pill */}
       <div
         style={{
-          background: "rgba(255,255,255,0.96)",
+          background: "white",
           borderRadius: "10px",
-          padding: "14px 18px",
+          padding: "14px 20px",
           display: "inline-flex",
           alignItems: "center",
+          justifyContent: "center",
           alignSelf: "flex-start",
+          minWidth: "170px",
+          minHeight: "64px",
         }}
       >
-        {logo}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={logo.src}
+          alt={logoKey}
+          width={logo.w}
+          height={logo.h}
+          style={{ display: "block", objectFit: "contain", maxWidth: "100%", height: "auto" }}
+        />
       </div>
 
       {/* Partner badge */}
@@ -209,7 +97,7 @@ function PartnerCard({ logo, badgeAr, badgeEn, accentColor, accentRGB, features,
         </span>
       </div>
 
-      {/* Feature list */}
+      {/* Features */}
       <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "9px" }}>
         {features.map((f, i) => (
           <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
@@ -233,13 +121,13 @@ export default function PlatformCertifications() {
   const locale = useLocale();
   const isRTL = locale === "ar";
 
-  const partners = [
+  const partners: Omit<PartnerCardProps, "isRTL">[] = [
     {
-      logo: <SallaLogo />,
+      logoKey: "salla",
       badgeAr: "شريك سلة الرسمي",
       badgeEn: "Official Salla Partner",
-      accentColor: "#1B6B74",
-      accentRGB: "27,107,116",
+      accentColor: "#004956",
+      accentRGB: "0,73,86",
       features: [
         { ar: "تصميم متاجر سلة احترافية", en: "Professional Salla store design" },
         { ar: "تهيئة كاملة للجوال وسرعة التحميل", en: "Full mobile & speed optimization" },
@@ -248,11 +136,11 @@ export default function PlatformCertifications() {
       ],
     },
     {
-      logo: <ZidLogo />,
+      logoKey: "zid",
       badgeAr: "شريك زد الرسمي",
       badgeEn: "Official Zid Partner",
-      accentColor: "#8B2FC9",
-      accentRGB: "139,47,201",
+      accentColor: "#7B2FBE",
+      accentRGB: "123,47,190",
       features: [
         { ar: "تصميم متاجر زد بهوية بصرية مميزة", en: "Zid stores with strong brand identity" },
         { ar: "نموذج Figma قبل أي تنفيذ", en: "Figma prototype before development" },
@@ -261,7 +149,7 @@ export default function PlatformCertifications() {
       ],
     },
     {
-      logo: <GoogleLogo />,
+      logoKey: "google",
       badgeAr: "Google Partner معتمد",
       badgeEn: "Certified Google Partner",
       accentColor: "#4285F4",
@@ -274,7 +162,7 @@ export default function PlatformCertifications() {
       ],
     },
     {
-      logo: <MetaLogo />,
+      logoKey: "meta",
       badgeAr: "Meta Business Partner",
       badgeEn: "Meta Business Partner",
       accentColor: "#0082FB",
@@ -297,7 +185,6 @@ export default function PlatformCertifications() {
         overflow: "hidden",
       }}
     >
-      {/* Top/bottom divider lines */}
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,98,0.35), transparent)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,98,0.15), transparent)", pointerEvents: "none" }} />
 
@@ -333,21 +220,21 @@ export default function PlatformCertifications() {
           <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "17px", color: "rgba(255,255,255,0.42)", maxWidth: "580px", margin: "0 auto", lineHeight: 1.8 }}>
             {isRTL
               ? "نحن شركاء معتمدون مع سلة وزد ومنصات الإعلان العالمية — مما يعني أنك تحصل على الأفضل في كل منصة"
-              : "We are certified partners with Salla, Zid, and global ad platforms — giving you the best across every channel"}
+              : "Certified partners with Salla, Zid, and global ad platforms — best results across every channel"}
           </p>
         </div>
 
-        {/* Cards grid — 4 col → 2 → 1 */}
+        {/* Cards */}
         <div
           className="pc-grid"
           style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }}
         >
-          {partners.map((p, i) => (
-            <PartnerCard key={i} {...p} isRTL={isRTL} />
+          {partners.map((p) => (
+            <PartnerCard key={p.logoKey} {...p} isRTL={isRTL} />
           ))}
         </div>
 
-        {/* Bottom guarantees strip */}
+        {/* Guarantees strip */}
         <div
           style={{
             marginTop: "44px",
