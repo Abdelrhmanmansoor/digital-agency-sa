@@ -49,13 +49,14 @@ export default function PaymentLogos({ variant = "section", showTitle = true }: 
             <div
               key={logo.id}
               style={{
-                background: logo.bg === "white" ? "white" : logo.bg,
+                background: "rgba(255,255,255,0.05)",
                 borderRadius: "6px",
                 padding: "5px 10px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 height: "32px",
+                border: "1px solid rgba(255,255,255,0.07)",
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -64,7 +65,7 @@ export default function PaymentLogos({ variant = "section", showTitle = true }: 
                 alt={logo.alt}
                 width={logo.width * 0.6}
                 height={20}
-                style={{ display: "block", objectFit: "contain", maxWidth: "100%", height: "auto", maxHeight: "20px" }}
+                style={{ display: "block", objectFit: "contain", maxWidth: "100%", height: "auto", maxHeight: "20px", filter: "brightness(0) invert(1)", opacity: 0.7 }}
               />
             </div>
           ))}
@@ -88,13 +89,14 @@ export default function PaymentLogos({ variant = "section", showTitle = true }: 
             <div
               key={logo.id}
               style={{
-                background: logo.bg === "white" ? "white" : logo.bg,
+                background: "rgba(255,255,255,0.05)",
                 borderRadius: "6px",
                 padding: "5px 10px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 height: "34px",
+                border: "1px solid rgba(255,255,255,0.07)",
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -103,7 +105,7 @@ export default function PaymentLogos({ variant = "section", showTitle = true }: 
                 alt={logo.alt}
                 width={logo.width * 0.65}
                 height={22}
-                style={{ display: "block", objectFit: "contain", maxWidth: "100%", height: "auto", maxHeight: "22px" }}
+                style={{ display: "block", objectFit: "contain", maxWidth: "100%", height: "auto", maxHeight: "22px", filter: "brightness(0) invert(1)", opacity: 0.7 }}
               />
             </div>
           ))}
@@ -162,7 +164,7 @@ function LogoCard({ logo }: { logo: typeof PAYMENT_LOGOS[number] }) {
   return (
     <div
       style={{
-        background: logo.bg === "white" ? "white" : logo.bg,
+        background: "rgba(255,255,255,0.05)",
         borderRadius: "10px",
         padding: "10px 18px",
         display: "flex",
@@ -170,7 +172,7 @@ function LogoCard({ logo }: { logo: typeof PAYMENT_LOGOS[number] }) {
         justifyContent: "center",
         height: "52px",
         minWidth: "90px",
-        border: "1px solid rgba(255,255,255,0.06)",
+        border: "1px solid rgba(255,255,255,0.08)",
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -179,7 +181,15 @@ function LogoCard({ logo }: { logo: typeof PAYMENT_LOGOS[number] }) {
         alt={logo.alt}
         width={logo.width}
         height={32}
-        style={{ display: "block", objectFit: "contain", maxWidth: "100%", height: "auto", maxHeight: "32px" }}
+        style={{
+          display: "block",
+          objectFit: "contain",
+          maxWidth: "100%",
+          height: "auto",
+          maxHeight: "32px",
+          filter: "brightness(0) invert(1)",
+          opacity: 0.75,
+        }}
       />
     </div>
   );
