@@ -12,26 +12,34 @@ export const metadata: Metadata = {
 
 const FEATURES = [
   {
-    icon: "◉",
+    icon: "compare",
     title: "مقارنة حقيقية",
     desc: "أسعار من Amazon.sa وNoon وسلة وزد ومتاجر أخرى في وقت واحد",
   },
   {
-    icon: "◈",
+    icon: "profit",
     title: "معادلة الربح الحقيقية",
     desc: "هامشك بعد الشحن والإرجاع وضريبة القيمة المضافة — لا تخمين",
   },
   {
-    icon: "◆",
+    icon: "ai",
     title: "ذكاء سعودي",
     desc: "تحليل AI يفهم السوق السعودي ويتكلم بالعربي مباشرة",
   },
   {
-    icon: "◇",
+    icon: "track",
     title: "تتبع مستمر",
     desc: "أضف منتجاتك وتابع تحركات أسعار المنافسين من داشبورد واحد",
   },
 ];
+
+function FeatureIcon({ type }: { type: string }) {
+  const s = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none" as const, stroke: "#C8A962" as const, strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  if (type === "compare") return <svg {...s}><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>;
+  if (type === "profit") return <svg {...s}><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>;
+  if (type === "ai") return <svg {...s}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>;
+  return <svg {...s}><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>;
+}
 
 export default async function RadarPage({
   params,
@@ -84,6 +92,7 @@ export default async function RadarPage({
                 <div style={{
                   display: "inline-flex", alignItems: "center", gap: "8px",
                   border: "1px solid rgba(200,169,98,0.3)",
+                  borderRadius: "100px",
                   padding: "6px 16px", marginBottom: "28px",
                   fontSize: "12px", letterSpacing: "0.15em",
                   color: "#C8A962", fontFamily: "Space Mono, monospace",
@@ -140,13 +149,13 @@ export default async function RadarPage({
                       style={{
                         padding: "16px",
                         border: "1px solid rgba(200,169,98,0.1)",
-                        borderRadius: "2px",
+                        borderRadius: "12px",
                         background: "rgba(255,255,255,0.02)",
                       }}
                     >
-                      <span style={{ color: "#C8A962", fontSize: "18px", display: "block", marginBottom: "6px" }}>
-                        {f.icon}
-                      </span>
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", borderRadius: "10px", background: "rgba(200,169,98,0.08)", marginBottom: "10px" }}>
+                        <FeatureIcon type={f.icon} />
+                      </div>
                       <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", color: "#FAFAF7", fontWeight: 600, marginBottom: "4px" }}>
                         {f.title}
                       </div>

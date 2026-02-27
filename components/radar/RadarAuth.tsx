@@ -55,7 +55,7 @@ export default function RadarAuth() {
     width: "100%",
     background: "rgba(255,255,255,0.04)",
     border: "1px solid rgba(200,169,98,0.2)",
-    borderRadius: "2px",
+    borderRadius: "12px",
     padding: "14px 16px",
     color: "#FAFAF7",
     fontSize: "15px",
@@ -70,7 +70,7 @@ export default function RadarAuth() {
       style={{
         background: "rgba(255,255,255,0.03)",
         border: "1px solid rgba(200,169,98,0.15)",
-        borderRadius: "4px",
+        borderRadius: "20px",
         padding: "40px",
         maxWidth: "440px",
         width: "100%",
@@ -78,7 +78,7 @@ export default function RadarAuth() {
       }}
     >
       {/* Toggle */}
-      <div style={{ display: "flex", gap: "0", marginBottom: "32px", border: "1px solid rgba(200,169,98,0.15)", borderRadius: "2px", overflow: "hidden" }}>
+      <div style={{ display: "flex", gap: "0", marginBottom: "32px", border: "1px solid rgba(200,169,98,0.15)", borderRadius: "14px", overflow: "hidden" }}>
         {(["login", "register"] as const).map((m) => (
           <button
             key={m}
@@ -157,7 +157,7 @@ export default function RadarAuth() {
             background: loading ? "rgba(200,169,98,0.4)" : "#C8A962",
             color: "#0A0A0A",
             border: "none",
-            borderRadius: "2px",
+            borderRadius: "12px",
             fontSize: "16px",
             fontWeight: 700,
             fontFamily: "'Zain', sans-serif",

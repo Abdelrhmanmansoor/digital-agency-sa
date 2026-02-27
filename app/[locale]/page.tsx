@@ -11,7 +11,7 @@ import Services from "@/components/home/Services";
 import Pricing from "@/components/home/Pricing";
 import Portfolio from "@/components/home/Portfolio";
 import AboutAgency from "@/components/home/AboutAgency";
-import SallaTools from "@/components/home/SallaTools";
+import RadarPromo from "@/components/home/RadarPromo";
 import BlogPreview from "@/components/home/BlogPreview";
 import Testimonials from "@/components/home/Testimonials";
 import FAQ from "@/components/home/FAQ";
@@ -75,7 +75,7 @@ export default function HomePage() {
         <Pricing />
         <AboutAgency />
         <Testimonials />
-        <SallaTools />
+        <RadarPromo />
         <BlogPreview />
         <FAQ />
         <CTASection />

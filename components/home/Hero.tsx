@@ -201,7 +201,7 @@ export default function Hero() {
             {/* Badges row */}
             <div style={{ display:"flex", gap:"8px", marginBottom:"28px", flexWrap:"wrap" }} dir="ltr">
               <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(200,169,98,0.1)", border:"1px solid rgba(200,169,98,0.3)", borderRadius:"100px", padding:"5px 14px", fontSize:"11px", fontFamily:"Space Mono, monospace", color:"#C8A962", letterSpacing:"0.12em", textTransform:"uppercase" }}>
-                <span style={{ fontSize:"13px" }}>⚡</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#C8A962" style={{ flexShrink:0 }}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 {locale === "ar" ? "توفير حتى 70%" : "Save Up To 70%"}
               </span>
               <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(189,238,99,0.07)", border:"1px solid rgba(189,238,99,0.2)", borderRadius:"100px", padding:"5px 14px", fontSize:"11px", fontFamily:"Space Mono, monospace", color:"#BDEE63", letterSpacing:"0.12em", textTransform:"uppercase" }}>
@@ -435,7 +435,9 @@ export default function Hero() {
                 transition: "all 0.8s 0.7s cubic-bezier(0.19,1,0.22,1)",
               }}
             >
-              <span style={{ fontSize:"18px" }}>🚀</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink:0 }}>
+                <path d="M5 12h14M12 5l7 7-7 7" stroke="#0A0A0A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
               <div>
                 <div style={{ fontFamily:"Space Mono, monospace", fontSize:"11px", fontWeight:700, color:"#0A0A0A", lineHeight:1 }}>
                   {isRTL ? "متجر سلة #1" : "Top Salla Agency"}
@@ -466,7 +468,9 @@ export default function Hero() {
                 transition: "all 0.8s 0.9s cubic-bezier(0.19,1,0.22,1)",
               }}
             >
-              <div style={{ fontSize:"22px" }}>⭐</div>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#C8A962" style={{ flexShrink:0 }}>
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
               <div>
                 <div style={{ fontFamily:"Space Mono, monospace", fontSize:"13px", fontWeight:700, color:"#C8A962", lineHeight:1 }}>
                   5.0 / 5.0
@@ -496,7 +500,9 @@ export default function Hero() {
                 gap:"8px",
               }}
             >
-              <span style={{ fontSize:"16px" }}>✓</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink:0 }}>
+                <path d="M5 13l4 4L19 7" stroke="#BDEE63" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
               <div style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", color:"#BDEE63", letterSpacing:"0.08em", whiteSpace:"nowrap" }}>
                 {isRTL ? "تسليم في 7 أيام" : "7-day delivery"}
               </div>
