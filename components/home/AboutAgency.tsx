@@ -7,8 +7,10 @@ const VALUES = [
   {
     titleAr: "الجودة أولاً",
     titleEn: "Quality First",
+    titleFr: "La Qualité Avant Tout",
     descAr: "كل مشروع نُسلّمه يمر بمراجعة دقيقة للتفاصيل — لأننا نعرف أن تفاصيل الهوية تُحدث الفارق.",
     descEn: "Every project goes through meticulous detail review — because we know identity details make the difference.",
+    descFr: "Chaque projet passe par une révision méticuleuse des détails — car les détails d'identité font toujours la différence.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -18,8 +20,10 @@ const VALUES = [
   {
     titleAr: "الابتكار المستمر",
     titleEn: "Continuous Innovation",
+    titleFr: "Innovation Continue",
     descAr: "نتابع أحدث اتجاهات التصميم والتسويق لنُقدم لك حلولاً معاصرة تُفوق توقعاتك.",
     descEn: "We follow the latest design & marketing trends to deliver contemporary solutions that exceed expectations.",
+    descFr: "Nous suivons les dernières tendances design & marketing pour livrer des solutions contemporaines qui dépassent les attentes.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
@@ -29,8 +33,10 @@ const VALUES = [
   {
     titleAr: "الشراكة الحقيقية",
     titleEn: "Real Partnership",
+    titleFr: "Vrai Partenariat",
     descAr: "لسنا مجرد مزوّد خدمة — نحن شريك نجاحك على المدى البعيد ونستثمر في نموك.",
     descEn: "We're not just a service provider — we're your long-term success partner invested in your growth.",
+    descFr: "Nous ne sommes pas un simple prestataire — nous sommes votre partenaire de succès à long terme, investis dans votre croissance.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -43,8 +49,10 @@ const VALUES = [
   {
     titleAr: "النتائج تتكلم",
     titleEn: "Results Speak",
+    titleFr: "Les Résultats Parlent",
     descAr: "نقيس نجاحنا بنمو أعمالك — لا بعدد المشاريع التي سلّمناها بل بالأثر الذي تركناه.",
     descEn: "We measure success by your business growth — not by project count, but by the lasting impact we create.",
+    descFr: "Nous mesurons notre succès par la croissance de votre activité — pas par le nombre de projets livrés, mais par l'impact durable créé.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
@@ -55,10 +63,10 @@ const VALUES = [
 ];
 
 const STATS = [
-  { numAr: "250+", numEn: "250+", labelAr: "مشروع منجز", labelEn: "Projects Done", accent: "#BDEE63" },
-  { numAr: "86+",  numEn: "86+",  labelAr: "متجر مُطوَّر", labelEn: "Stores Built",  accent: "#C8A962" },
-  { numAr: "5",    numEn: "5",    labelAr: "سنوات خبرة",   labelEn: "Years Exp.",    accent: "#C8A962" },
-  { numAr: "98%",  numEn: "98%",  labelAr: "رضا العملاء",  labelEn: "Satisfaction",  accent: "#BDEE63" },
+  { numAr: "250+", numEn: "250+", labelAr: "مشروع منجز", labelEn: "Projects Done",  labelFr: "Projets Réalisés", accent: "#BDEE63" },
+  { numAr: "86+",  numEn: "86+",  labelAr: "متجر مُطوَّر", labelEn: "Stores Built",  labelFr: "Boutiques Créées", accent: "#C8A962" },
+  { numAr: "5",    numEn: "5",    labelAr: "سنوات خبرة",   labelEn: "Years Exp.",    labelFr: "Ans d'Expérience", accent: "#C8A962" },
+  { numAr: "98%",  numEn: "98%",  labelAr: "رضا العملاء",  labelEn: "Satisfaction",  labelFr: "Satisfaction",     accent: "#BDEE63" },
 ];
 
 export default function AboutAgency() {
@@ -148,7 +156,7 @@ export default function AboutAgency() {
               marginBottom: "28px",
             }}
           >
-            {isRTL ? "من نحن" : "About Us"}
+            {locale === "ar" ? "من نحن" : locale === "fr" ? "À Propos" : "About Us"}
           </div>
 
           {/* Heading */}
@@ -163,11 +171,17 @@ export default function AboutAgency() {
               letterSpacing: isRTL ? "-0.01em" : "-0.03em",
             }}
           >
-            {isRTL ? (
+            {locale === "ar" ? (
               <>
                 وكالة بُنيت على
                 <br />
                 <span style={{ color: "#BDEE63" }}>نجاح عملائها</span>
+              </>
+            ) : locale === "fr" ? (
+              <>
+                Une agence bâtie sur le
+                <br />
+                <span style={{ color: "#BDEE63" }}>succès de ses clients</span>
               </>
             ) : (
               <>
@@ -187,8 +201,10 @@ export default function AboutAgency() {
               maxWidth: "640px",
             }}
           >
-            {isRTL
+            {locale === "ar"
               ? "بدأنا بهدف واضح: تحويل متاجر سلة وزد إلى تجارب تسوّق استثنائية ترفع المبيعات وتُبهر العملاء. اليوم نخدم أكثر من 250 عميلاً في المملكة العربية السعودية، ونفخر بكل متجر بنيناه من الصفر وبكل هوية رسمناها من لا شيء."
+              : locale === "fr"
+              ? "Nous avons démarré avec un objectif clair : transformer les boutiques Salla et Zid en expériences d'achat exceptionnelles qui boostent les ventes. Aujourd'hui nous servons plus de 250 clients en Arabie Saoudite, fiers de chaque boutique construite et de chaque identité créée."
               : "We started with a clear goal: transform Salla and Zid stores into exceptional shopping experiences that boost sales and delight customers. Today we serve 250+ clients across Saudi Arabia, proud of every store built from scratch and every identity designed from nothing."}
           </p>
         </div>
@@ -230,7 +246,7 @@ export default function AboutAgency() {
                   marginBottom: "8px",
                 }}
               >
-                {isRTL ? stat.numAr : stat.numEn}
+                {locale === "ar" ? stat.numAr : stat.numEn}
               </div>
               <div
                 style={{
@@ -241,7 +257,7 @@ export default function AboutAgency() {
                   textTransform: "uppercase",
                 }}
               >
-                {isRTL ? stat.labelAr : stat.labelEn}
+                {locale === "ar" ? stat.labelAr : locale === "fr" ? stat.labelFr : stat.labelEn}
               </div>
             </div>
           ))}
@@ -316,7 +332,7 @@ export default function AboutAgency() {
                   lineHeight: 1.2,
                 }}
               >
-                {isRTL ? v.titleAr : v.titleEn}
+                {locale === "ar" ? v.titleAr : locale === "fr" ? v.titleFr : v.titleEn}
               </div>
 
               {/* Description */}
@@ -327,7 +343,7 @@ export default function AboutAgency() {
                   lineHeight: 1.8,
                 }}
               >
-                {isRTL ? v.descAr : v.descEn}
+                {locale === "ar" ? v.descAr : locale === "fr" ? v.descFr : v.descEn}
               </div>
             </div>
           ))}

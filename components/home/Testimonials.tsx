@@ -131,7 +131,7 @@ export default function Testimonials() {
   const isRTL = locale === "ar";
 
   const title = locale === "ar" ? "ماذا يقول عملاؤنا" : locale === "fr" ? "Ce que disent nos clients" : "What Our Clients Say";
-  const subtitle = locale === "ar" ? "250+ عميل يثق بنا" : "250+ clients trust us";
+  const subtitle = locale === "ar" ? "250+ عميل يثق بنا" : locale === "fr" ? "250+ clients nous font confiance" : "250+ clients trust us";
 
   return (
     <section style={{ background:"#0A0A0A", padding:"110px 0", overflow:"hidden" }}>

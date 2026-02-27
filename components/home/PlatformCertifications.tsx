@@ -24,13 +24,15 @@ interface PartnerCardProps {
   logoKey: keyof typeof LOGOS;
   badgeAr: string;
   badgeEn: string;
+  badgeFr: string;
   accentColor: string;
   accentRGB: string;
-  features: { ar: string; en: string }[];
-  isRTL: boolean;
+  features: { ar: string; en: string; fr: string }[];
+  locale: string;
 }
 
-function PartnerCard({ logoKey, badgeAr, badgeEn, accentColor, accentRGB, features, isRTL }: PartnerCardProps) {
+function PartnerCard({ logoKey, badgeAr, badgeEn, badgeFr, accentColor, accentRGB, features, locale }: PartnerCardProps) {
+  const isRTL = locale === "ar";
   const [hovered, setHovered] = useState(false);
   const logo = LOGOS[logoKey];
 
@@ -93,7 +95,7 @@ function PartnerCard({ logoKey, badgeAr, badgeEn, accentColor, accentRGB, featur
           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
         </svg>
         <span style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", color: accentColor, letterSpacing: "0.06em", whiteSpace: "nowrap" }}>
-          {isRTL ? badgeAr : badgeEn}
+          {locale === "ar" ? badgeAr : locale === "fr" ? badgeFr : badgeEn}
         </span>
       </div>
 
@@ -105,7 +107,7 @@ function PartnerCard({ logoKey, badgeAr, badgeEn, accentColor, accentRGB, featur
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
             </svg>
             <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.55)", lineHeight: 1.55 }}>
-              {isRTL ? f.ar : f.en}
+              {locale === "ar" ? f.ar : locale === "fr" ? f.fr : f.en}
             </span>
           </li>
         ))}
@@ -121,57 +123,61 @@ export default function PlatformCertifications() {
   const locale = useLocale();
   const isRTL = locale === "ar";
 
-  const partners: Omit<PartnerCardProps, "isRTL">[] = [
+  const partners: Omit<PartnerCardProps, "locale">[] = [
     {
       logoKey: "salla",
       badgeAr: "شريك سلة الرسمي",
       badgeEn: "Official Salla Partner",
+      badgeFr: "Partenaire Salla Officiel",
       accentColor: "#004956",
       accentRGB: "0,73,86",
       features: [
-        { ar: "تصميم متاجر سلة احترافية", en: "Professional Salla store design" },
-        { ar: "تهيئة كاملة للجوال وسرعة التحميل", en: "Full mobile & speed optimization" },
-        { ar: "ربط بوابات الدفع والشحن المحلي", en: "Local payment & shipping setup" },
-        { ar: "تسليم خلال 5 أيام عمل مضمونة", en: "Delivery in 5 guaranteed business days" },
+        { ar: "تصميم متاجر سلة احترافية", en: "Professional Salla store design", fr: "Conception boutique Salla professionnelle" },
+        { ar: "تهيئة كاملة للجوال وسرعة التحميل", en: "Full mobile & speed optimization", fr: "Optimisation mobile & vitesse complète" },
+        { ar: "ربط بوابات الدفع والشحن المحلي", en: "Local payment & shipping setup", fr: "Configuration paiement & livraison locale" },
+        { ar: "تسليم خلال 5 أيام عمل مضمونة", en: "Delivery in 5 guaranteed business days", fr: "Livraison en 5 jours ouvrables garantis" },
       ],
     },
     {
       logoKey: "zid",
       badgeAr: "شريك زد الرسمي",
       badgeEn: "Official Zid Partner",
+      badgeFr: "Partenaire Zid Officiel",
       accentColor: "#7B2FBE",
       accentRGB: "123,47,190",
       features: [
-        { ar: "تصميم متاجر زد بهوية بصرية مميزة", en: "Zid stores with strong brand identity" },
-        { ar: "نموذج Figma قبل أي تنفيذ", en: "Figma prototype before development" },
-        { ar: "تحليل المنافسين مجاناً", en: "Free competitor analysis included" },
-        { ar: "شهر دعم فني مجاني بعد التسليم", en: "1 month free post-launch support" },
+        { ar: "تصميم متاجر زد بهوية بصرية مميزة", en: "Zid stores with strong brand identity", fr: "Boutiques Zid avec identité visuelle forte" },
+        { ar: "نموذج Figma قبل أي تنفيذ", en: "Figma prototype before development", fr: "Prototype Figma avant tout développement" },
+        { ar: "تحليل المنافسين مجاناً", en: "Free competitor analysis included", fr: "Analyse concurrentielle gratuite incluse" },
+        { ar: "شهر دعم فني مجاني بعد التسليم", en: "1 month free post-launch support", fr: "1 mois de support gratuit post-lancement" },
       ],
     },
     {
       logoKey: "google",
       badgeAr: "Google Partner معتمد",
       badgeEn: "Certified Google Partner",
+      badgeFr: "Partenaire Google Certifié",
       accentColor: "#4285F4",
       accentRGB: "66,133,244",
       features: [
-        { ar: "إعلانات Google Ads بكفاءة عالية", en: "High-ROI Google Ads campaigns" },
-        { ar: "تحسين ظهور المتجر في البحث (SEO)", en: "Store SEO & search visibility" },
-        { ar: "Google Shopping للمتاجر الإلكترونية", en: "Google Shopping for e-commerce" },
-        { ar: "تتبع الأهداف وتقارير المبيعات", en: "Goal tracking & sales analytics" },
+        { ar: "إعلانات Google Ads بكفاءة عالية", en: "High-ROI Google Ads campaigns", fr: "Campagnes Google Ads à ROI élevé" },
+        { ar: "تحسين ظهور المتجر في البحث (SEO)", en: "Store SEO & search visibility", fr: "SEO & visibilité sur les moteurs de recherche" },
+        { ar: "Google Shopping للمتاجر الإلكترونية", en: "Google Shopping for e-commerce", fr: "Google Shopping pour le e-commerce" },
+        { ar: "تتبع الأهداف وتقارير المبيعات", en: "Goal tracking & sales analytics", fr: "Suivi des objectifs & analytiques ventes" },
       ],
     },
     {
       logoKey: "meta",
       badgeAr: "Meta Business Partner",
       badgeEn: "Meta Business Partner",
+      badgeFr: "Meta Business Partner",
       accentColor: "#0082FB",
       accentRGB: "0,130,251",
       features: [
-        { ar: "إدارة حملات ميتا وإنستغرام", en: "Meta & Instagram ad management" },
-        { ar: "إعداد Pixel ومتابعة التحويلات", en: "Pixel setup & conversion tracking" },
-        { ar: "تصميم إعلانات بصرية احترافية", en: "Professional ad creative design" },
-        { ar: "تقارير أداء أسبوعية تفصيلية", en: "Detailed weekly performance reports" },
+        { ar: "إدارة حملات ميتا وإنستغرام", en: "Meta & Instagram ad management", fr: "Gestion publicités Meta & Instagram" },
+        { ar: "إعداد Pixel ومتابعة التحويلات", en: "Pixel setup & conversion tracking", fr: "Configuration Pixel & suivi conversions" },
+        { ar: "تصميم إعلانات بصرية احترافية", en: "Professional ad creative design", fr: "Création de visuels publicitaires professionnels" },
+        { ar: "تقارير أداء أسبوعية تفصيلية", en: "Detailed weekly performance reports", fr: "Rapports de performance hebdomadaires détaillés" },
       ],
     },
   ];
@@ -208,18 +214,22 @@ export default function PlatformCertifications() {
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
             </svg>
             <span style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#C8A962" }}>
-              {isRTL ? "شراكات رسمية معتمدة" : "Official Certified Partnerships"}
+              {locale === "ar" ? "شراكات رسمية معتمدة" : locale === "fr" ? "Partenariats Officiels Certifiés" : "Official Certified Partnerships"}
             </span>
           </div>
 
           <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.2, marginBottom: "16px" }}>
-            {isRTL
+            {locale === "ar"
               ? "شركاء رسميون مع أبرز منصات التجارة الإلكترونية"
+              : locale === "fr"
+              ? "Partenaires Officiels des Principales Plateformes E-Commerce"
               : "Official Partners with Leading E-Commerce Platforms"}
           </h2>
           <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "17px", color: "rgba(255,255,255,0.42)", maxWidth: "580px", margin: "0 auto", lineHeight: 1.8 }}>
-            {isRTL
+            {locale === "ar"
               ? "نحن شركاء معتمدون مع سلة وزد ومنصات الإعلان العالمية — مما يعني أنك تحصل على الأفضل في كل منصة"
+              : locale === "fr"
+              ? "Partenaires certifiés avec Salla, Zid et les plateformes publicitaires mondiales — meilleurs résultats sur chaque canal"
               : "Certified partners with Salla, Zid, and global ad platforms — best results across every channel"}
           </p>
         </div>
@@ -230,7 +240,7 @@ export default function PlatformCertifications() {
           style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }}
         >
           {partners.map((p) => (
-            <PartnerCard key={p.logoKey} {...p} isRTL={isRTL} />
+            <PartnerCard key={p.logoKey} {...p} locale={locale} />
           ))}
         </div>
 
@@ -251,17 +261,17 @@ export default function PlatformCertifications() {
           }}
         >
           {[
-            { num: "48H",  ar: "أسرع تسليم في السوق",         en: "Fastest delivery in market" },
-            { num: "100%", ar: "رضا تام أو استرداد كامل",      en: "Full refund if unsatisfied" },
-            { num: "5★",   ar: "تقييم عملائنا الدائم",          en: "Consistent 5-star rating" },
-            { num: "2×",   ar: "مراجعات مجانية على كل مشروع",  en: "Free revisions per project" },
+            { num: "48H",  ar: "أسرع تسليم في السوق",         en: "Fastest delivery in market",       fr: "Livraison la plus rapide du marché" },
+            { num: "100%", ar: "رضا تام أو استرداد كامل",      en: "Full refund if unsatisfied",       fr: "Remboursement complet si insatisfait" },
+            { num: "5★",   ar: "تقييم عملائنا الدائم",          en: "Consistent 5-star rating",        fr: "Note 5 étoiles constante" },
+            { num: "2×",   ar: "مراجعات مجانية على كل مشروع",  en: "Free revisions per project",      fr: "Révisions gratuites par projet" },
           ].map((item) => (
             <div key={item.num} style={{ display: "flex", alignItems: "center", gap: "14px" }}>
               <span style={{ fontFamily: "Space Mono, monospace", fontSize: "22px", fontWeight: 700, color: "#C8A962", lineHeight: 1 }}>
                 {item.num}
               </span>
               <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.48)", lineHeight: 1.4 }}>
-                {isRTL ? item.ar : item.en}
+                {locale === "ar" ? item.ar : locale === "fr" ? item.fr : item.en}
               </span>
             </div>
           ))}

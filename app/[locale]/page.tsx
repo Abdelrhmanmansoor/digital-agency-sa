@@ -29,33 +29,45 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "hero" });
 
+  const metaTitle =
+    locale === "ar"
+      ? "وكالة رقمية — تصميم متاجر سلة وتسويق رقمي احترافي"
+      : locale === "fr"
+      ? "Agence Digitale — Conception Boutique Salla & Marketing Digital Professionnel"
+      : "Digital Agency — Salla Store Design & Digital Marketing";
+
+  const metaOgTitle =
+    locale === "ar"
+      ? "وكالة رقمية — تصميم متاجر سلة وتسويق رقمي"
+      : locale === "fr"
+      ? "Agence Digitale — Conception Boutique Salla & Marketing"
+      : "Digital Agency — Salla Store Design & Marketing";
+
+  const metaTwitterTitle =
+    locale === "ar"
+      ? "وكالة رقمية — تصميم متاجر سلة"
+      : locale === "fr"
+      ? "Agence Digitale — Boutique Salla"
+      : "Digital Agency — Salla Store Design";
+
   return {
-    title:
-      locale === "ar"
-        ? "وكالة رقمية — تصميم متاجر سلة وتسويق رقمي احترافي"
-        : "Digital Agency — Salla Store Design & Digital Marketing",
+    title: metaTitle,
     description: t("subtitle"),
     alternates: {
       canonical: `/${locale}`,
       languages: { ar: "/ar", en: "/en", fr: "/fr" },
     },
     openGraph: {
-      title:
-        locale === "ar"
-          ? "وكالة رقمية — تصميم متاجر سلة وتسويق رقمي"
-          : "Digital Agency — Salla Store Design & Marketing",
+      title: metaOgTitle,
       description: t("subtitle"),
       url: `https://digital-agency-sa.vercel.app/${locale}`,
-      siteName: "وكالة رقمية",
+      siteName: locale === "ar" ? "وكالة رقمية" : locale === "fr" ? "Agence Digitale" : "Digital Agency",
       locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title:
-        locale === "ar"
-          ? "وكالة رقمية — تصميم متاجر سلة"
-          : "Digital Agency — Salla Store Design",
+      title: metaTwitterTitle,
       description: t("subtitle"),
     },
   };

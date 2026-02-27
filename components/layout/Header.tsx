@@ -250,7 +250,7 @@ export default function Header() {
         >
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <div>
-              <div className="section-label" style={{ marginBottom: "12px" }}>تواصل معنا</div>
+              <div className="section-label" style={{ marginBottom: "12px" }}>{t("contact")}</div>
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}`}
                 target="_blank"

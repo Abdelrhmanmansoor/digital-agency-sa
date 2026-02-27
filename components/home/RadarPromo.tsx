@@ -16,8 +16,10 @@ const FEATURES = [
     key: "compare",
     titleAr: "مقارنة أسعار حقيقية",
     titleEn: "Real Price Comparison",
+    titleFr: "Comparaison de Prix Réels",
     descAr: "أسعار من 5+ منصات سعودية في نفس اللحظة — Amazon وNoon وسلة وزد وأكثر",
     descEn: "Prices from 5+ Saudi platforms simultaneously — Amazon, Noon, Salla, Zid, and more",
+    descFr: "Prix de 5+ plateformes saoudiennes simultanément — Amazon, Noon, Salla, Zid et plus",
     color: "#C8A962" as const,
     svgPath: "M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7",
   },
@@ -25,8 +27,10 @@ const FEATURES = [
     key: "profit",
     titleAr: "معادلة الربح الحقيقية",
     titleEn: "True Profit Formula",
+    titleFr: "Vraie Formule de Profit",
     descAr: "هامشك بعد الشحن والإرجاع وضريبة القيمة المضافة — بريك إيفن ومكسب فعلي",
     descEn: "Your margin after shipping, returns & VAT — real breakeven and actual profit",
+    descFr: "Votre marge après livraison, retours & TVA — seuil de rentabilité et profit réel",
     color: "#BDEE63" as const,
     svgPath: "M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6",
   },
@@ -34,8 +38,10 @@ const FEATURES = [
     key: "ai",
     titleAr: "ذكاء اصطناعي سعودي",
     titleEn: "Saudi AI Intelligence",
+    titleFr: "Intelligence IA Saoudienne",
     descAr: "تحليل مخصص يفهم ديناميكيات السوق السعودي ويتحدث بالعربية مباشرة",
     descEn: "Custom analysis understanding Saudi market dynamics, in Arabic",
+    descFr: "Analyse personnalisée comprenant les dynamiques du marché saoudien, en arabe",
     color: "#C8A962" as const,
     svgPath: "M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z",
   },
@@ -114,7 +120,7 @@ export default function RadarPromo() {
               fontFamily:"Space Mono, monospace", fontSize:"11px",
               letterSpacing:"0.18em", color:"#BDEE63", textTransform:"uppercase",
             }}>
-              {isRTL ? "حصري — أداة رادار" : "Exclusive — Radar Tool"}
+              {locale === "ar" ? "حصري — أداة رادار" : locale === "fr" ? "Exclusif — Outil Radar" : "Exclusive — Radar Tool"}
             </span>
           </div>
 
@@ -129,8 +135,10 @@ export default function RadarPromo() {
             transform: visible ? "translateY(0)" : "translateY(24px)",
             transition:"opacity 0.8s ease, transform 0.8s ease",
           }}>
-            {isRTL ? (
+            {locale === "ar" ? (
               <>اعرف موقعك في السوق<br /><span style={{ color:"#C8A962" }}>قبل منافسيك</span></>
+            ) : locale === "fr" ? (
+              <>Connaissez Votre Position sur le Marché<br /><span style={{ color:"#C8A962" }}>Avant Vos Concurrents</span></>
             ) : (
               <>Know Your Market Position<br /><span style={{ color:"#C8A962" }}>Before Your Competitors</span></>
             )}
@@ -146,8 +154,10 @@ export default function RadarPromo() {
             opacity: visible ? 1 : 0,
             transition:"opacity 0.8s 0.15s ease",
           }}>
-            {isRTL
+            {locale === "ar"
               ? "رادار يجمع أسعار Amazon وNoon وسلة وزد في ثوانٍ، يحسب هامشك الحقيقي بعد الشحن والضريبة، ويعطيك تحليل AI بالعربي"
+              : locale === "fr"
+              ? "Radar agrège les prix d'Amazon, Noon, Salla & Zid en quelques secondes, calcule votre marge réelle après frais de livraison & TVA, et fournit une analyse IA"
               : "Radar aggregates prices from Amazon, Noon, Salla & Zid in seconds, calculates your real margin after shipping & VAT, and delivers AI analysis in Arabic"}
           </p>
         </div>
@@ -201,10 +211,10 @@ export default function RadarPromo() {
                 </div>
                 <div>
                   <div style={{ fontFamily:"'Zain', sans-serif", fontSize:"17px", fontWeight:700, color:"#FAFAF7", marginBottom:"4px" }}>
-                    {isRTL ? feat.titleAr : feat.titleEn}
+                    {locale === "ar" ? feat.titleAr : locale === "fr" ? feat.titleFr : feat.titleEn}
                   </div>
                   <div style={{ fontFamily:"'Zain', sans-serif", fontSize:"14px", color:"rgba(255,255,255,0.4)", lineHeight:1.55 }}>
-                    {isRTL ? feat.descAr : feat.descEn}
+                    {locale === "ar" ? feat.descAr : locale === "fr" ? feat.descFr : feat.descEn}
                   </div>
                 </div>
               </div>
@@ -238,7 +248,7 @@ export default function RadarPromo() {
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                     <circle cx="12" cy="12" r="3"/>
                   </svg>
-                  {isRTL ? "جرّب رادار مجاناً" : "Try Radar Free"}
+                  {locale === "ar" ? "جرّب رادار مجاناً" : locale === "fr" ? "Essayez Radar Gratuitement" : "Try Radar Free"}
                 </button>
               </Link>
               <p style={{
@@ -246,7 +256,7 @@ export default function RadarPromo() {
                 fontSize:"11px", color:"rgba(255,255,255,0.2)",
                 fontFamily:"Space Mono, monospace", letterSpacing:"0.08em",
               }}>
-                {isRTL ? "لا يحتاج بطاقة بنكية — مجاني للأبد" : "No credit card — Free forever"}
+                {locale === "ar" ? "لا يحتاج بطاقة بنكية — مجاني للأبد" : locale === "fr" ? "Sans carte bancaire — Gratuit pour toujours" : "No credit card — Free forever"}
               </p>
             </div>
           </div>
@@ -270,10 +280,10 @@ export default function RadarPromo() {
               <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"22px" }}>
                 <div>
                   <div style={{ fontFamily:"Space Mono, monospace", fontSize:"9px", letterSpacing:"0.2em", color:"rgba(255,255,255,0.25)", textTransform:"uppercase", marginBottom:"4px" }}>
-                    {isRTL ? "تحليل لحظي" : "Live Analysis"}
+                    {locale === "ar" ? "تحليل لحظي" : locale === "fr" ? "Analyse en Direct" : "Live Analysis"}
                   </div>
                   <div style={{ fontFamily:"'Zain', sans-serif", fontSize:"17px", fontWeight:700, color:"#FAFAF7" }}>
-                    {isRTL ? "كفر آيفون 15 برو" : "iPhone 15 Pro Case"}
+                    {locale === "ar" ? "كفر آيفون 15 برو" : locale === "fr" ? "Coque iPhone 15 Pro" : "iPhone 15 Pro Case"}
                   </div>
                 </div>
                 <div style={{
@@ -295,14 +305,14 @@ export default function RadarPromo() {
                 marginBottom:"18px",
               }}>
                 <div style={{ fontFamily:"Space Mono, monospace", fontSize:"9px", letterSpacing:"0.2em", color:"rgba(200,169,98,0.65)", textTransform:"uppercase", marginBottom:"8px" }}>
-                  {isRTL ? "هامش الربح الحقيقي" : "True Profit Margin"}
+                  {locale === "ar" ? "هامش الربح الحقيقي" : locale === "fr" ? "Marge de Profit Réelle" : "True Profit Margin"}
                 </div>
                 <div style={{ display:"flex", alignItems:"baseline", gap:"10px" }}>
                   <span style={{ fontFamily:"Space Mono, monospace", fontSize:"46px", fontWeight:700, color:"#C8A962", lineHeight:1 }}>
                     {profit}%
                   </span>
                   <span style={{ fontFamily:"'Zain', sans-serif", fontSize:"14px", color:"rgba(255,255,255,0.35)" }}>
-                    {isRTL ? "بعد كل التكاليف" : "after all costs"}
+                    {locale === "ar" ? "بعد كل التكاليف" : locale === "fr" ? "après tous les frais" : "after all costs"}
                   </span>
                 </div>
               </div>
@@ -310,7 +320,7 @@ export default function RadarPromo() {
               {/* Competitor prices list */}
               <div style={{ marginBottom:"16px" }}>
                 <div style={{ fontFamily:"Space Mono, monospace", fontSize:"9px", letterSpacing:"0.2em", color:"rgba(255,255,255,0.2)", textTransform:"uppercase", marginBottom:"10px" }}>
-                  {isRTL ? "أسعار المنافسين" : "Competitor Prices"}
+                  {locale === "ar" ? "أسعار المنافسين" : locale === "fr" ? "Prix Concurrents" : "Competitor Prices"}
                 </div>
                 {COMPETITORS.map((c, i) => (
                   <div
@@ -334,7 +344,7 @@ export default function RadarPromo() {
                       </span>
                       {c.isYou && (
                         <span style={{ fontFamily:"Space Mono, monospace", fontSize:"9px", color:"#BDEE63", background:"rgba(189,238,99,0.1)", padding:"1px 6px", borderRadius:"4px" }}>
-                          {isRTL ? "أنت" : "YOU"}
+                          {locale === "ar" ? "أنت" : locale === "fr" ? "VOUS" : "YOU"}
                         </span>
                       )}
                     </div>
@@ -360,7 +370,7 @@ export default function RadarPromo() {
                   <polyline points="22 4 12 14.01 9 11.01"/>
                 </svg>
                 <span style={{ fontFamily:"'Zain', sans-serif", fontSize:"14px", color:"#BDEE63", fontWeight:600 }}>
-                  {isRTL ? "سعرك تنافسي — الأفضل في السوق الآن" : "Competitive price — best in market now"}
+                  {locale === "ar" ? "سعرك تنافسي — الأفضل في السوق الآن" : locale === "fr" ? "Prix compétitif — meilleur du marché maintenant" : "Competitive price — best in market now"}
                 </span>
               </div>
 

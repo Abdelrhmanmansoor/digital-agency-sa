@@ -9,11 +9,13 @@ const STEPS = [
     iconPath: "M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z",
     titleAr: "الاستشارة المجانية",
     titleEn: "Free Consultation",
+    titleFr: "Consultation Gratuite",
     descAr: "نبدأ بجلسة استشارية مجانية نفهم فيها نشاطك التجاري، جمهورك، والهدف الرئيسي من المشروع — لا نبدأ بدون فهم عميق.",
     descEn: "We start with a free consultation to understand your business, audience, and main project goal — we never begin without deep understanding.",
+    descFr: "Nous commençons par une consultation gratuite pour comprendre votre activité, votre audience et l'objectif principal du projet — nous ne commençons jamais sans une compréhension approfondie.",
     tags: [
-      { ar: "30 دقيقة مجاناً", en: "30 min free" },
-      { ar: "واتساب أو زووم", en: "WhatsApp or Zoom" },
+      { ar: "30 دقيقة مجاناً", en: "30 min free", fr: "30 min gratuits" },
+      { ar: "واتساب أو زووم", en: "WhatsApp or Zoom", fr: "WhatsApp ou Zoom" },
     ],
     accentColor: "#C8A962",
   },
@@ -22,11 +24,13 @@ const STEPS = [
     iconPath: "M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z",
     titleAr: "التصميم والنموذج الأولي",
     titleEn: "Design & Prototype",
+    titleFr: "Design & Prototype",
     descAr: "نصمم نموذجاً أولياً Figma قبل أي تنفيذ — ترى كيف سيبدو مشروعك بالكامل وتوافق عليه قبل أن نبدأ البرمجة.",
     descEn: "We create a Figma prototype before any development — you see exactly how your project looks and approve it before we write a single line of code.",
+    descFr: "Nous créons un prototype Figma avant tout développement — vous voyez exactement à quoi ressemble votre projet et l'approuvez avant que nous écrivions la première ligne de code.",
     tags: [
-      { ar: "نموذج Figma تفاعلي", en: "Interactive Figma prototype" },
-      { ar: "تعديلات غير محدودة", en: "Unlimited revisions" },
+      { ar: "نموذج Figma تفاعلي", en: "Interactive Figma prototype", fr: "Prototype Figma interactif" },
+      { ar: "تعديلات غير محدودة", en: "Unlimited revisions", fr: "Révisions illimitées" },
     ],
     accentColor: "#BDEE63",
   },
@@ -35,11 +39,13 @@ const STEPS = [
     iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
     titleAr: "التطوير والتنفيذ",
     titleEn: "Development & Build",
+    titleFr: "Développement & Réalisation",
     descAr: "بعد موافقتك على التصميم، نبدأ التنفيذ الكامل — برمجة، ربط بوابات الدفع، إعداد الشحن، تحميل المنتجات، وتحسين الأداء.",
     descEn: "After design approval, we execute everything — coding, payment gateway setup, shipping config, product upload, and performance optimization.",
+    descFr: "Après approbation du design, nous exécutons tout — code, configuration des passerelles de paiement, livraison, upload des produits et optimisation des performances.",
     tags: [
-      { ar: "تحديثات يومية", en: "Daily updates" },
-      { ar: "جاهز للجوال 100%", en: "100% mobile ready" },
+      { ar: "تحديثات يومية", en: "Daily updates", fr: "Mises à jour quotidiennes" },
+      { ar: "جاهز للجوال 100%", en: "100% mobile ready", fr: "100% compatible mobile" },
     ],
     accentColor: "#C8A962",
   },
@@ -48,11 +54,13 @@ const STEPS = [
     iconPath: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
     titleAr: "التسليم والمتابعة",
     titleEn: "Delivery & Support",
+    titleFr: "Livraison & Support",
     descAr: "نُسلّم مشروعك مع تدريب مجاني على الإدارة + شهر كامل من الدعم التقني المجاني. مشروعك ينجح ونجاحك هو نجاحنا.",
     descEn: "We deliver with free admin training + one full month of free technical support. Your project succeeds, and your success is our success.",
+    descFr: "Nous livrons votre projet avec une formation gratuite à l'administration + un mois complet de support technique gratuit. Votre succès est notre succès.",
     tags: [
-      { ar: "شهر دعم مجاني", en: "1 month free support" },
-      { ar: "تدريب على الإدارة", en: "Admin training" },
+      { ar: "شهر دعم مجاني", en: "1 month free support", fr: "1 mois de support gratuit" },
+      { ar: "تدريب على الإدارة", en: "Admin training", fr: "Formation administration" },
     ],
     accentColor: "#22C55E",
   },
@@ -111,7 +119,7 @@ export default function WorkProcess() {
                 color: "#C8A962",
               }}
             >
-              {isRTL ? "كيف نعمل" : "HOW WE WORK"}
+              {locale === "ar" ? "كيف نعمل" : locale === "fr" ? "COMMENT NOUS TRAVAILLONS" : "HOW WE WORK"}
             </span>
           </div>
           <h2
@@ -124,8 +132,10 @@ export default function WorkProcess() {
               maxWidth: "700px",
             }}
           >
-            {isRTL
+            {locale === "ar"
               ? "من الفكرة إلى الإطلاق في 4 خطوات مضمونة"
+              : locale === "fr"
+              ? "De l'Idée au Lancement en 4 Étapes Garanties"
               : "From Idea to Launch in 4 Guaranteed Steps"}
           </h2>
         </div>
@@ -233,7 +243,7 @@ export default function WorkProcess() {
                       transition: "color 0.2s",
                     }}
                   >
-                    {isRTL ? step.titleAr : step.titleEn}
+                    {locale === "ar" ? step.titleAr : locale === "fr" ? step.titleFr : step.titleEn}
                   </div>
                 </div>
               </button>
@@ -297,7 +307,7 @@ export default function WorkProcess() {
                 lineHeight: 1.2,
               }}
             >
-              {isRTL ? active.titleAr : active.titleEn}
+              {locale === "ar" ? active.titleAr : locale === "fr" ? active.titleFr : active.titleEn}
             </h3>
 
             {/* Gold divider */}
@@ -313,7 +323,7 @@ export default function WorkProcess() {
                 marginBottom: "28px",
               }}
             >
-              {isRTL ? active.descAr : active.descEn}
+              {locale === "ar" ? active.descAr : locale === "fr" ? active.descFr : active.descEn}
             </p>
 
             {/* Tags */}
@@ -335,7 +345,7 @@ export default function WorkProcess() {
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
                   </svg>
                   <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: active.accentColor, fontWeight: 600 }}>
-                    {isRTL ? tag.ar : tag.en}
+                    {locale === "ar" ? tag.ar : locale === "fr" ? tag.fr : tag.en}
                   </span>
                 </div>
               ))}

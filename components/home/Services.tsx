@@ -232,6 +232,8 @@ export default function Services() {
   const ctaText = locale === "ar" ? "اطلب الآن" : locale === "fr" ? "Commander" : "Order Now";
   const guaranteeText = locale === "ar"
     ? "✓ ضمان جودة 30 يوم  ·  ✓ دفع 50% مقدماً  ·  ✓ تسليم في الوقت المحدد"
+    : locale === "fr"
+    ? "✓ Garantie qualité 30 jours  ·  ✓ 50% à l'avance  ·  ✓ Livraison dans les délais"
     : "✓ 30-day quality guarantee  ·  ✓ 50% upfront  ·  ✓ On-time delivery";
 
   return (
