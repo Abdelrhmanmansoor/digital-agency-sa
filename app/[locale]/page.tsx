@@ -10,6 +10,8 @@ import Pricing from "@/components/home/Pricing";
 import Portfolio from "@/components/home/Portfolio";
 import SallaTools from "@/components/home/SallaTools";
 import BlogPreview from "@/components/home/BlogPreview";
+import Testimonials from "@/components/home/Testimonials";
+import FAQ from "@/components/home/FAQ";
 import CTASection from "@/components/home/CTASection";
 import Footer from "@/components/layout/Footer";
 
@@ -28,11 +30,7 @@ export async function generateMetadata({
     description: t("subtitle"),
     alternates: {
       canonical: `/${locale}`,
-      languages: {
-        ar: "/ar",
-        en: "/en",
-        fr: "/fr",
-      },
+      languages: { ar: "/ar", en: "/en", fr: "/fr" },
     },
   };
 }
@@ -45,12 +43,14 @@ export default function HomePage() {
       <main>
         <Hero />
         <PartnersMarquee />
-        <FeaturedPartner />
         <Services />
-        <Pricing />
+        <FeaturedPartner />
         <Portfolio />
+        <Pricing />
+        <Testimonials />
         <SallaTools />
         <BlogPreview />
+        <FAQ />
         <CTASection />
       </main>
       <Footer />

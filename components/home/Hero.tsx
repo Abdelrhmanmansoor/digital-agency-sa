@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { getWhatsAppLink } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 
 const STATS = [
   { value: 250, suffix: "+", key: "projects" },
@@ -29,12 +30,10 @@ function CountUp({ target, suffix, duration = 2000 }: { target: number; suffix: 
         if (entries[0].isIntersecting && !startedRef.current) {
           startedRef.current = true;
           const startTime = performance.now();
-          const animate = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(eased * target));
-            if (progress < 1) requestAnimationFrame(animate);
+          const animate = (ct: number) => {
+            const p = Math.min((ct - startTime) / duration, 1);
+            setCount(Math.floor((1 - Math.pow(1 - p, 3)) * target));
+            if (p < 1) requestAnimationFrame(animate);
           };
           requestAnimationFrame(animate);
         }
@@ -48,18 +47,10 @@ function CountUp({ target, suffix, duration = 2000 }: { target: number; suffix: 
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=80",
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80",
-  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1920&q=80",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80",
-];
-
 export default function Hero() {
   const t = useTranslations("hero");
   const locale = useLocale();
   const isRTL = locale === "ar";
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [wordIndex, setWordIndex] = useState(0);
   const [wordVisible, setWordVisible] = useState(true);
@@ -72,21 +63,10 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Cycling word animation
-  useEffect(() => {
     if (!isVisible) return;
     const cycle = setInterval(() => {
       setWordVisible(false);
-      setTimeout(() => {
-        setWordIndex((prev) => (prev + 1) % words.length);
-        setWordVisible(true);
-      }, 400);
+      setTimeout(() => { setWordIndex((p) => (p + 1) % words.length); setWordVisible(true); }, 380);
     }, 2800);
     return () => clearInterval(cycle);
   }, [isVisible, words.length]);
@@ -99,223 +79,234 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex flex-col justify-end"
-      style={{ height: "100vh", minHeight: "700px", overflow: "hidden" }}
+      className="relative flex flex-col items-center justify-center text-center"
+      style={{
+        minHeight: "100vh",
+        paddingTop: "120px",
+        paddingBottom: "80px",
+        background: "#0D0D0D",
+        overflow: "hidden",
+      }}
     >
-      {/* Background Slides */}
-      <div className="absolute inset-0">
-        {HERO_IMAGES.map((img, index) => (
-          <div
-            key={img}
-            className="absolute inset-0 transition-opacity duration-1000"
-            style={{ opacity: currentSlide === index ? 1 : 0 }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={img}
-              alt=""
-              className="w-full h-full object-cover"
-              style={{
-                transform: currentSlide === index ? "scale(1.05)" : "scale(1)",
-                transition: "transform 6s ease-in-out",
-              }}
-            />
-          </div>
-        ))}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(to top, #0A0A0A 0%, rgba(10,10,10,0.75) 45%, rgba(10,10,10,0.3) 100%)",
-          }}
-        />
-      </div>
-
-      {/* Subtle pattern */}
+      {/* ── Arch / dome decoration ── */}
       <div
-        className="absolute inset-0"
+        aria-hidden
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23C8A962' stroke-width='0.4'%3E%3Cpath d='M40 0 L80 20 L80 60 L40 80 L0 60 L0 20 Z'/%3E%3Cpath d='M40 10 L70 25 L70 55 L40 70 L10 55 L10 25 Z'/%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: "80px 80px",
-          opacity: 0.04,
+          position: "absolute",
+          top: "-80px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "700px",
+          height: "440px",
+          borderRadius: "50% 50% 0 0 / 100% 100% 0 0",
+          border: "1px solid rgba(189,238,99,0.12)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Arch inner glow */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          top: "-60px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "560px",
+          height: "360px",
+          borderRadius: "50% 50% 0 0 / 100% 100% 0 0",
+          border: "1px solid rgba(189,238,99,0.06)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Radial glow behind arch */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          top: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "800px",
+          height: "500px",
+          background: "radial-gradient(ellipse at 50% 0%, rgba(189,238,99,0.06) 0%, transparent 70%)",
+          pointerEvents: "none",
+          zIndex: 0,
         }}
       />
 
-      {/* Content */}
+      {/* Subtle dot grid */}
       <div
-        className="relative z-10 max-w-[1400px] mx-auto px-8 pb-24 w-full"
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+          pointerEvents: "none",
+          zIndex: 0,
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)",
+        }}
+      />
+
+      {/* ── Content ── */}
+      <div
+        className="relative z-10 max-w-[900px] mx-auto px-6"
         style={{
           opacity: isVisible ? 1 : 0,
-          transform: isVisible ? "translateY(0)" : "translateY(30px)",
-          transition: "all 1s cubic-bezier(0.19, 1, 0.22, 1)",
+          transform: isVisible ? "translateY(0)" : "translateY(24px)",
+          transition: "opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo)",
         }}
       >
-        {/* Small label */}
-        <div className="section-label mb-8" style={{ color: "rgba(200,169,98,0.8)" }}>
+        {/* Label badge */}
+        <div
+          className="inline-flex items-center gap-2 mb-8"
+          style={{
+            background: "rgba(189,238,99,0.1)",
+            border: "1px solid rgba(189,238,99,0.2)",
+            borderRadius: "100px",
+            padding: "6px 16px",
+            fontSize: "12px",
+            fontFamily: "Space Mono, monospace",
+            letterSpacing: "0.15em",
+            color: "var(--lime)",
+            textTransform: "uppercase",
+          }}
+        >
+          <span
+            style={{
+              width: "6px", height: "6px",
+              borderRadius: "50%",
+              background: "var(--lime)",
+              display: "inline-block",
+              animation: "pulse 2s ease-in-out infinite",
+            }}
+          />
           {locale === "ar" ? "وكالة رقمية سعودية" : locale === "fr" ? "Agence Digitale Saoudienne" : "Saudi Digital Agency"}
         </div>
 
-        {/* Main Heading */}
+        {/* Main heading */}
         <h1
-          className="mb-8"
           style={{
             fontFamily: isRTL ? "Noto Kufi Arabic, sans-serif" : "sans-serif",
-            fontSize: "clamp(44px, 7.5vw, 96px)",
+            fontSize: "clamp(42px, 6.5vw, 88px)",
             fontWeight: 800,
-            lineHeight: 1.03,
+            lineHeight: 1.05,
             color: "#FFFFFF",
-            maxWidth: "950px",
+            marginBottom: "20px",
+            letterSpacing: isRTL ? "0" : "-0.03em",
           }}
         >
-          {/* Line 1 */}
+          {t("title1")}{" "}
           <span
             style={{
-              display: "block",
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "none" : "translateY(20px)",
-              transition: "all 0.8s 0.1s cubic-bezier(0.19, 1, 0.22, 1)",
+              color: "var(--lime)",
+              display: "inline-block",
+              transition: "opacity 0.35s ease, transform 0.35s ease",
+              opacity: wordVisible ? 1 : 0,
+              transform: wordVisible ? "translateY(0)" : "translateY(-10px)",
             }}
           >
-            {t("title1")}{" "}
-            {/* Cycling word */}
-            <span
-              style={{
-                color: "#C8A962",
-                display: "inline-block",
-                transition: "opacity 0.35s ease, transform 0.35s ease",
-                opacity: wordVisible ? 1 : 0,
-                transform: wordVisible ? "translateY(0)" : "translateY(-12px)",
-                minWidth: isRTL ? "4ch" : "3ch",
-              }}
-            >
-              {words[wordIndex]}
-            </span>
+            {words[wordIndex]}
           </span>
-          {/* Line 2 */}
-          <span
-            style={{
-              display: "block",
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "none" : "translateY(20px)",
-              transition: "all 0.8s 0.25s cubic-bezier(0.19, 1, 0.22, 1)",
-              color: "rgba(255,255,255,0.35)",
-              fontSize: "0.6em",
-              fontWeight: 400,
-              letterSpacing: isRTL ? "0" : "0.04em",
-              marginTop: "4px",
-            }}
-          >
+          <br />
+          <span style={{ color: "rgba(255,255,255,0.28)", fontWeight: 300, fontSize: "0.62em", letterSpacing: isRTL ? "0" : "0.02em" }}>
             {t("title3")}
           </span>
         </h1>
 
         {/* Subtitle */}
         <p
-          className="mb-12"
           style={{
-            fontSize: "17px",
-            color: "#8C8C7A",
-            maxWidth: "520px",
+            fontSize: "18px",
+            color: "rgba(255,255,255,0.45)",
+            maxWidth: "560px",
             lineHeight: 1.75,
+            margin: "0 auto 48px",
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "none" : "translateY(20px)",
-            transition: "all 0.8s 0.4s cubic-bezier(0.19, 1, 0.22, 1)",
+            transition: "opacity 0.8s 0.3s var(--ease-out-expo)",
           }}
         >
           {t("subtitle")}
         </p>
 
+        {/* CTA row */}
+        <div
+          className="flex flex-wrap items-center justify-center gap-4 mb-16"
+          style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.8s 0.5s var(--ease-out-expo)" }}
+        >
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+            <button className="btn-primary" style={{ fontSize: "15px", padding: "16px 36px" }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+              <span>{t("cta_primary")}</span>
+            </button>
+          </a>
+          <Link href={`/${locale}#portfolio`}>
+            <button className="btn-secondary" style={{ fontSize: "15px", padding: "16px 36px" }}>
+              {t("cta_secondary")}
+            </button>
+          </Link>
+        </div>
+
         {/* Stats */}
         <div
-          className="flex flex-wrap gap-0 mb-12"
+          className="flex flex-wrap justify-center gap-0"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "none" : "translateY(20px)",
-            transition: "all 0.8s 0.55s cubic-bezier(0.19, 1, 0.22, 1)",
+            transition: "opacity 0.8s 0.7s var(--ease-out-expo)",
+            border: "1px solid rgba(255,255,255,0.07)",
+            borderRadius: "20px",
+            background: "rgba(255,255,255,0.02)",
+            backdropFilter: "blur(10px)",
+            overflow: "hidden",
           }}
         >
-          {STATS.map((stat, index) => (
-            <div key={stat.key} className="flex items-stretch">
-              <div className="px-8 py-4" style={{ minWidth: "120px" }}>
-                <div className="counter-number" style={{ fontSize: "clamp(28px, 3vw, 44px)" }}>
+          {STATS.map((stat, i) => (
+            <div
+              key={stat.key}
+              className="flex items-stretch"
+              style={{ flex: "1 1 120px" }}
+            >
+              <div className="px-8 py-6 flex flex-col items-center w-full">
+                <div className="counter-number" style={{ fontSize: "clamp(24px,3vw,40px)" }}>
                   <CountUp target={stat.value} suffix={stat.suffix} />
                 </div>
-                <div
-                  style={{
-                    fontSize: "11px",
-                    fontFamily: "Space Mono, monospace",
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    color: "#8C8C7A",
-                    marginTop: "4px",
-                  }}
-                >
+                <div style={{ fontSize: "11px", fontFamily: "Space Mono, monospace", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginTop: "6px" }}>
                   {t(`stats.${stat.key}` as "stats.projects")}
                 </div>
               </div>
-              {index < STATS.length - 1 && (
-                <div style={{ width: "1px", background: "rgba(200,169,98,0.3)", margin: "4px 0" }} />
+              {i < STATS.length - 1 && (
+                <div style={{ width: "1px", background: "rgba(255,255,255,0.07)", margin: "12px 0" }} />
               )}
             </div>
           ))}
         </div>
-
-        {/* CTA Buttons */}
-        <div
-          className="flex flex-wrap gap-4"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "none" : "translateY(20px)",
-            transition: "all 0.8s 0.7s cubic-bezier(0.19, 1, 0.22, 1)",
-          }}
-        >
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-            <button className="btn-primary">
-              <span>{t("cta_primary")}</span>
-              <span>{isRTL ? "←" : "→"}</span>
-            </button>
-          </a>
-          <Link href={`/${locale}#portfolio`}>
-            <button className="btn-secondary">{t("cta_secondary")}</button>
-          </Link>
-        </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll indicator */}
       <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        style={{ color: "rgba(255,255,255,0.4)", opacity: isVisible ? 1 : 0, transition: "opacity 1s 1.2s" }}
+        style={{ opacity: isVisible ? 1 : 0, transition: "opacity 1s 1.2s", color: "rgba(255,255,255,0.25)" }}
       >
-        <div style={{ fontSize: "11px", fontFamily: "Space Mono", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+        <div style={{ fontSize: "10px", fontFamily: "Space Mono", letterSpacing: "0.3em", textTransform: "uppercase" }}>
           {t("scroll")}
         </div>
         <div className="animate-bounce-subtle">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
             <path d="M8 2L8 14M8 14L3 9M8 14L13 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
       </div>
 
-      {/* Slide indicators */}
-      <div
-        className="absolute bottom-8 right-8 flex gap-2"
-        style={{ opacity: isVisible ? 1 : 0, transition: "opacity 1s 1.2s" }}
-      >
-        {HERO_IMAGES.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            style={{
-              width: currentSlide === index ? "24px" : "6px",
-              height: "2px",
-              background: currentSlide === index ? "#C8A962" : "rgba(255,255,255,0.3)",
-              border: "none",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-              padding: 0,
-            }}
-          />
-        ))}
-      </div>
+      <style>{`
+        @keyframes pulse {
+          0%,100% { opacity:1; transform:scale(1); }
+          50% { opacity:0.5; transform:scale(0.8); }
+        }
+      `}</style>
     </section>
   );
 }
