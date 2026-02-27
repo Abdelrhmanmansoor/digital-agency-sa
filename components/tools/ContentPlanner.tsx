@@ -181,7 +181,7 @@ export default function ContentPlanner({ onClose }: { onClose: () => void }) {
               <div style={{ fontFamily: "Space Mono", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#C8A962", marginBottom: "4px" }}>
                 {isRTL ? "أفضل أوقات النشر" : "Best Posting Times"}
               </div>
-              <div style={{ fontSize: "14px", color: "#2D2D2D", "'Zain', sans-serif" }}>
+              <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>
                 {BEST_TIMES_AR[platform]}
               </div>
             </div>
@@ -219,7 +219,7 @@ export default function ContentPlanner({ onClose }: { onClose: () => void }) {
                     {isRTL ? item.type : item.typeEn}
                   </span>
                 </div>
-                <div style={{ fontSize: "14px", color: "#2D2D2D", lineHeight: 1.6, "'Zain', sans-serif" }}>
+                <div style={{ fontSize: "14px", color: "#2D2D2D", lineHeight: 1.6, fontFamily: "'Zain', sans-serif" }}>
                   {item.idea}
                 </div>
               </div>

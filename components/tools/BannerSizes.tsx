@@ -61,7 +61,7 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
               border: "1px solid",
               borderColor: activeCategory === cat.category ? "#C8A962" : "#E8E6E1",
               color: activeCategory === cat.category ? "#0A0A0A" : "#8C8C7A",
-              "'Zain', sans-serif",
+              fontFamily: "'Zain', sans-serif",
               fontSize: "14px",
               fontWeight: activeCategory === cat.category ? 600 : 400,
               cursor: "pointer",
@@ -94,7 +94,7 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
             <div>
               <div
                 style={{
-                  "'Zain', sans-serif",
+                  fontFamily: "'Zain', sans-serif",
                   fontSize: "15px",
                   fontWeight: 600,
                   color: "#0A0A0A",
@@ -108,7 +108,7 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
                   fontSize: "12px",
                   color: "#8C8C7A",
                   lineHeight: 1.6,
-                  "'Zain', sans-serif",
+                  fontFamily: "'Zain', sans-serif",
                 }}
               >
                 {isRTL ? item.tips : item.tipsEn}
@@ -192,7 +192,7 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
           border: "1px solid rgba(200,169,98,0.2)",
           fontSize: "13px",
           color: "#8C8C7A",
-          "'Zain', sans-serif",
+          fontFamily: "'Zain', sans-serif",
           lineHeight: 1.7,
         }}
       >

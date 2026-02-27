@@ -84,7 +84,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
         <div>
           <h3
             style={{
-              "'Zain', sans-serif",
+              fontFamily: "'Zain', sans-serif",
               fontSize: "18px",
               fontWeight: 600,
               color: "#0A0A0A",
@@ -163,7 +163,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
         <div>
           <h3
             style={{
-              "'Zain', sans-serif",
+              fontFamily: "'Zain', sans-serif",
               fontSize: "18px",
               fontWeight: 600,
               color: "#0A0A0A",
@@ -252,7 +252,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
                   border: `1px solid ${results.netProfit > 0 ? "rgba(74,140,111,0.3)" : "rgba(201,64,64,0.3)"}`,
                   fontSize: "14px",
                   color: results.netProfit > 0 ? "#4A8C6F" : "#C94040",
-                  "'Zain', sans-serif",
+                  fontFamily: "'Zain', sans-serif",
                 }}
               >
                 {results.netProfit > 0
@@ -291,7 +291,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
               }}
             >
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🧮</div>
-              <div style={{ "'Zain', sans-serif", fontSize: "15px" }}>
+              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px" }}>
                 {isRTL ? "أدخل البيانات واضغط 'احسب الأرباح'" : "Enter data and press 'Calculate Profits'"}
               </div>
             </div>

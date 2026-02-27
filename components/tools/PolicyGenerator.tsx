@@ -196,7 +196,7 @@ export default function PolicyGenerator({ onClose }: { onClose: () => void }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Form */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", "'Zain', sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'Zain', sans-serif" }}>
             {isRTL ? "بيانات المتجر" : "Store Information"}
           </h3>
 
@@ -243,7 +243,7 @@ export default function PolicyGenerator({ onClose }: { onClose: () => void }) {
 
         {/* Generated Policies */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", "'Zain', sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'Zain', sans-serif" }}>
             {isRTL ? "السياسات المُنشأة" : "Generated Policies"}
           </h3>
 
@@ -260,7 +260,7 @@ export default function PolicyGenerator({ onClose }: { onClose: () => void }) {
                   borderColor: activePolicy === p.key ? "#C8A962" : "#E8E6E1",
                   color: activePolicy === p.key ? "#0A0A0A" : "#8C8C7A",
                   fontSize: "12px",
-                  "'Zain', sans-serif",
+                  fontFamily: "'Zain', sans-serif",
                   cursor: "pointer",
                   transition: "all 0.2s",
                 }}
@@ -283,7 +283,7 @@ export default function PolicyGenerator({ onClose }: { onClose: () => void }) {
                   fontSize: "13px",
                   lineHeight: 1.8,
                   color: "#2D2D2D",
-                  "'Zain', sans-serif",
+                  fontFamily: "'Zain', sans-serif",
                   marginBottom: "12px",
                 }}
               >
@@ -315,7 +315,7 @@ export default function PolicyGenerator({ onClose }: { onClose: () => void }) {
           ) : (
             <div style={{ padding: "60px 20px", textAlign: "center", border: "1px dashed #E8E6E1", color: "#8C8C7A" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>📋</div>
-              <div style={{ "'Zain', sans-serif", fontSize: "15px" }}>
+              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px" }}>
                 {isRTL ? "أدخل بيانات متجرك واضغط 'أنشئ السياسات'" : "Enter store details and press 'Generate Policies'"}
               </div>
             </div>
