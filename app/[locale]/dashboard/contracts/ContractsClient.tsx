@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Contract } from "@/lib/db";
 
 interface Props {
@@ -34,13 +35,31 @@ export default function ContractsClient({ contracts, locale }: Props) {
   return (
     <div style={{ padding: "40px", direction: isRTL ? "rtl" : "ltr", maxWidth: "1000px" }}>
       {/* Header */}
-      <div style={{ marginBottom: "36px" }}>
-        <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
-          {isRTL ? "عقودي" : "My Contracts"}
-        </h1>
-        <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)", marginTop: "8px" }}>
-          {contracts.length} {isRTL ? "عقد" : "contract(s)"}
-        </p>
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: "14px", marginBottom: "36px" }}>
+        <div>
+          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
+            {isRTL ? "عقودي" : "My Contracts"}
+          </h1>
+          <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)", marginTop: "8px" }}>
+            {contracts.length} {isRTL ? "عقد" : "contract(s)"}
+          </p>
+        </div>
+        <Link
+          href={`/${locale}/dashboard/contracts/new`}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: "8px",
+            padding: "10px 20px", borderRadius: "10px",
+            background: "rgba(74,158,255,0.1)", border: "1px solid rgba(74,158,255,0.25)",
+            color: "#4A9EFF", fontFamily: "'Zain', sans-serif",
+            fontSize: "15px", fontWeight: 700, textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          {isRTL ? "عقد جديد" : "New Contract"}
+        </Link>
       </div>
 
       {/* Empty state */}
