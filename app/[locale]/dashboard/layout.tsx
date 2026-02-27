@@ -27,18 +27,27 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#0A0A0A", color: "#FAFAF7" }}>
-      <DashboardSidebar user={{ name: user.name, email: user.email }} locale={locale} />
-      <main
-        style={{
-          flex: 1,
-          marginInlineStart: "260px",
-          minHeight: "100vh",
-          background: "#0A0A0A",
-        }}
-      >
-        {children}
-      </main>
-    </div>
+    <>
+      <style>{`
+        @media (max-width: 767px) {
+          #dash-main { margin-inline-start: 0 !important; padding-top: 56px; }
+          #dash-main > div { padding: 20px 16px !important; }
+        }
+      `}</style>
+      <div style={{ display: "flex", minHeight: "100vh", background: "#0A0A0A", color: "#FAFAF7" }}>
+        <DashboardSidebar user={{ name: user.name, email: user.email }} locale={locale} />
+        <main
+          id="dash-main"
+          style={{
+            flex: 1,
+            marginInlineStart: "260px",
+            minHeight: "100vh",
+            background: "#0A0A0A",
+          }}
+        >
+          {children}
+        </main>
+      </div>
+    </>
   );
 }

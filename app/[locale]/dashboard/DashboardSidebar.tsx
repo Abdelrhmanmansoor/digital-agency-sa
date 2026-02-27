@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface Props {
   user: { name: string; email: string };
@@ -81,8 +81,19 @@ export default function DashboardSidebar({ user, locale }: Props) {
   const router = useRouter();
   const isRTL = locale === "ar";
   const [loggingOut, setLoggingOut] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const basePath = `/${locale}/dashboard`;
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   const isActive = (href: string) => {
     const full = basePath + href;
@@ -97,8 +108,25 @@ export default function DashboardSidebar({ user, locale }: Props) {
   };
 
   return (
-    <aside
-      style={{
+    <>
+      {/* overlay */}
+      {isMobile && mobileOpen && (
+        <div onClick={() => setMobileOpen(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.65)", zIndex: 150, backdropFilter: "blur(2px)" }} />
+      )}
+
+      {/* Mobile topbar */}
+      {isMobile && (
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: "56px", background: "#111318", borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", zIndex: 100, direction: isRTL ? "rtl" : "ltr" }}>
+          <a href={`/${locale}`} style={{ textDecoration: "none", fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#C8A962", letterSpacing: "0.15em" }}>DIGITAL AGENCY</a>
+          <button onClick={() => setMobileOpen(true)} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "8px 12px", cursor: "pointer", color: "rgba(255,255,255,0.8)", display: "flex", alignItems: "center", gap: "6px", fontFamily: "Space Mono, monospace", fontSize: "10px" }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            MENU
+          </button>
+        </div>
+      )}
+
+      <aside
+        style={{
         position: "fixed",
         top: 0,
         [isRTL ? "right" : "left"]: 0,
@@ -108,17 +136,14 @@ export default function DashboardSidebar({ user, locale }: Props) {
         borderInlineEnd: "1px solid rgba(255,255,255,0.06)",
         display: "flex",
         flexDirection: "column",
-        zIndex: 100,
+        zIndex: 200,
         direction: isRTL ? "rtl" : "ltr",
+        transform: (isMobile && !mobileOpen) ? (isRTL ? "translateX(100%)" : "translateX(-100%)") : "translateX(0)",
+        transition: "transform 0.28s cubic-bezier(0.4,0,0.2,1)",
       }}
     >
       {/* Logo */}
-      <div
-        style={{
-          padding: "28px 24px",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
-        }}
-      >
+      <div style={{ padding: "20px", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <a href={`/${locale}`} style={{ textDecoration: "none" }}>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#C8A962", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             DIGITAL AGENCY
@@ -127,6 +152,11 @@ export default function DashboardSidebar({ user, locale }: Props) {
             {isRTL ? "بوابة العملاء" : "Client Portal"}
           </div>
         </a>
+        {isMobile && (
+          <button onClick={() => setMobileOpen(false)} style={{ background: "transparent", border: "none", cursor: "pointer", color: "rgba(255,255,255,0.4)", padding: "4px", display: "flex" }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        )}
       </div>
 
       {/* Nav */}
@@ -252,5 +282,6 @@ export default function DashboardSidebar({ user, locale }: Props) {
         </button>
       </div>
     </aside>
+    </>
   );
 }
