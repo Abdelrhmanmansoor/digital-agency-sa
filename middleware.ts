@@ -50,7 +50,15 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return intlMiddleware(request);
+  // Pass the pathname to server components via header (used by dashboard layout)
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", pathname);
+
+  const response = await intlMiddleware(
+    new NextRequest(request.url, { headers: requestHeaders, method: request.method })
+  );
+  response.headers.set("x-pathname", pathname);
+  return response;
 }
 
 export const config = {

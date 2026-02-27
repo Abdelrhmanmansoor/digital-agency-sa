@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { getClientSession } from "@/lib/client-auth";
 import DashboardSidebar from "./DashboardSidebar";
 
@@ -9,9 +10,18 @@ export default async function DashboardLayout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  const user = await getClientSession();
   const { locale } = await params;
 
+  // Read the current pathname injected by middleware
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") ?? "";
+
+  // Login page must NOT be wrapped with auth — it IS the auth page
+  if (pathname.includes("/dashboard/login")) {
+    return <>{children}</>;
+  }
+
+  const user = await getClientSession();
   if (!user) {
     redirect(`/${locale}/dashboard/login`);
   }
