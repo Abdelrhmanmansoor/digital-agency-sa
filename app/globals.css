@@ -82,7 +82,7 @@ h1,h2,h3,h4,h5,h6 { font-family:var(--font-arabic-display); font-weight:700; lin
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width:5px; }
 ::-webkit-scrollbar-track { background:var(--bg-base); }
-::-webkit-scrollbar-thumb { background:var(--lime-dark); border-radius:3px; }
+::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
 
 /* ===== SECTION LABEL (dot indicator) ===== */
 .section-label {

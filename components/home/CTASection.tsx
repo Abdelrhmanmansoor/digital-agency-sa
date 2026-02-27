@@ -173,8 +173,16 @@ export default function CTASection() {
               {/* Contact pills */}
               <div style={{ display:"flex", flexDirection:"column", gap:"10px" }}>
                 {[
-                  { icon:"📱", href:`https://wa.me/${AGENCY_INFO.whatsapp.replace(/\D/g,"")}`, label: AGENCY_INFO.whatsapp },
-                  { icon:"✉️", href:`mailto:${AGENCY_INFO.email}`, label: AGENCY_INFO.email },
+                  {
+                    svg: <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>,
+                    href: `https://wa.me/${AGENCY_INFO.whatsapp.replace(/\D/g,"")}`,
+                    label: AGENCY_INFO.whatsapp,
+                  },
+                  {
+                    svg: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
+                    href: `mailto:${AGENCY_INFO.email}`,
+                    label: AGENCY_INFO.email,
+                  },
                 ].map((item) => (
                   <a
                     key={item.href}
@@ -192,7 +200,7 @@ export default function CTASection() {
                     onMouseEnter={(e) => { e.currentTarget.style.color = "var(--lime)"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}
                   >
-                    <span style={{ fontSize:"16px" }}>{item.icon}</span>
+                    {item.svg}
                     {item.label}
                   </a>
                 ))}
@@ -209,7 +217,9 @@ export default function CTASection() {
                   gap:"8px",
                 }}
               >
-                <span style={{ fontSize:"14px" }}>🔒</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0 }}>
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+                </svg>
                 <span style={{ fontSize:"12px", color:"rgba(255,255,255,0.25)", fontFamily:"Space Mono, monospace", letterSpacing:"0.08em" }}>
                   {isRTL ? "بياناتك آمنة 100% — بدون تسليم بيانات لأطراف ثالثة" : "100% secure — no data shared with third parties"}
                 </span>
@@ -235,10 +245,26 @@ export default function CTASection() {
           dir={isRTL ? "rtl" : "ltr"}
         >
           {[
-            { icon:"⚡", title: isRTL ? "رد خلال ساعة" : "1-Hour Reply",        sub: isRTL ? "نرد على استفساراتك فوراً" : "We respond to queries fast" },
-            { icon:"🎨", title: isRTL ? "تصميم حصري" : "Exclusive Design",     sub: isRTL ? "كل مشروع فريد من نوعه"   : "Every project is unique" },
-            { icon:"✓",  title: isRTL ? "ضمان الجودة" : "Quality Guarantee",   sub: isRTL ? "أو استرداد كامل المبلغ"  : "Or full refund" },
-            { icon:"🤝", title: isRTL ? "دعم مستمر" : "Ongoing Support",       sub: isRTL ? "نحن معك بعد التسليم"     : "We're with you post-delivery" },
+            {
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BDEE63" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
+              title: isRTL ? "رد خلال ساعة" : "1-Hour Reply",
+              sub: isRTL ? "نرد على استفساراتك فوراً" : "We respond to queries fast",
+            },
+            {
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>,
+              title: isRTL ? "تصميم حصري" : "Exclusive Design",
+              sub: isRTL ? "كل مشروع فريد من نوعه" : "Every project is unique",
+            },
+            {
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BDEE63" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>,
+              title: isRTL ? "ضمان الجودة" : "Quality Guarantee",
+              sub: isRTL ? "أو استرداد كامل المبلغ" : "Or full refund",
+            },
+            {
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>,
+              title: isRTL ? "دعم مستمر" : "Ongoing Support",
+              sub: isRTL ? "نحن معك بعد التسليم" : "We're with you post-delivery",
+            },
           ].map((item, i) => (
             <div
               key={i}
@@ -251,7 +277,7 @@ export default function CTASection() {
               onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.015)"; }}
             >
-              <div style={{ fontSize:"22px", marginBottom:"8px" }}>{item.icon}</div>
+              <div style={{ marginBottom:"12px" }}>{item.svg}</div>
               <div style={{ fontFamily:"'Zain', sans-serif", fontSize:"16px", fontWeight:700, color:"#FAFAF7", marginBottom:"4px" }}>
                 {item.title}
               </div>

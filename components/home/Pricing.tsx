@@ -14,7 +14,7 @@ const PACKAGES_AR = [
     discount: "68%",
     badge: null,
     featured: false,
-    accentColor: "#4A9D8F",
+    accentColor: "#C8A962",
     features: [
       "تصميم متجر سلة احترافي",
       "إعداد حتى 20 منتج",
@@ -80,7 +80,7 @@ const PACKAGES_EN = [
     discount: "68%",
     badge: null,
     featured: false,
-    accentColor: "#4A9D8F",
+    accentColor: "#C8A962",
     features: [
       "Professional Salla store design",
       "Setup up to 20 products",
@@ -192,7 +192,8 @@ export default function Pricing() {
             }}
           >
             <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#BDEE63", display: "inline-block", animation: "pulse 2s ease-in-out infinite" }} />
-            {isRTL ? "⚡ عرض محدود — توفير يصل إلى 70%" : "⚡ Limited Offer — Save Up To 70%"}
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink:0 }}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            {isRTL ? "عرض محدود — توفير يصل إلى 70%" : "Limited Offer — Save Up To 70%"}
           </div>
         </div>
 
@@ -283,18 +284,31 @@ export default function Pricing() {
                 </div>
                 <div
                   style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "50%",
-                    background: `${pkg.accentColor}20`,
-                    border: `1px solid ${pkg.accentColor}40`,
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "12px",
+                    background: `${pkg.accentColor}12`,
+                    border: `1px solid ${pkg.accentColor}30`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "16px",
                   }}
                 >
-                  {pkg.id === "starter" ? "🚀" : pkg.id === "pro" ? "⭐" : "👑"}
+                  {pkg.id === "starter" ? (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={pkg.accentColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 19V5M5 12l7-7 7 7"/>
+                    </svg>
+                  ) : pkg.id === "pro" ? (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill={pkg.accentColor}>
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  ) : (
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={pkg.accentColor} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M6 3h12l4 6-10 13L2 9z"/>
+                      <path d="M11 3L8 9l4 13 4-13-3-6"/>
+                      <path d="M2 9h20"/>
+                    </svg>
+                  )}
                 </div>
               </div>
 
@@ -363,17 +377,9 @@ export default function Pricing() {
               <ul style={{ flex: 1, marginBottom: "28px", display: "flex", flexDirection: "column", gap: "10px" }}>
                 {pkg.features.map((feature) => (
                   <li key={feature} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                    <span
-                      style={{
-                        color: pkg.accentColor,
-                        fontSize: "14px",
-                        flexShrink: 0,
-                        marginTop: "2px",
-                        fontWeight: 700,
-                      }}
-                    >
-                      ✓
-                    </span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={pkg.accentColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0, marginTop:"3px" }}>
+                      <path d="M5 13l4 4L19 7"/>
+                    </svg>
                     <span style={{ color: "#9C9C8A", fontSize: "14px", lineHeight: 1.55 }}>
                       {feature}
                     </span>

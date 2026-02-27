@@ -50,7 +50,7 @@ const SERVICES = [
     badgeEn: null,
     featuresAr: ["إنشاء وإعداد الحساب", "رفع المنتجات والأسعار", "ربط بوابة الدفع", "إعداد طرق الشحن", "تدريب مجاني على الإدارة"],
     featuresEn: ["Account creation & setup", "Products & pricing upload", "Payment gateway connection", "Shipping methods setup", "Free admin training"],
-    color: "#7C9EFF",
+    color: "#C8A962",
     featured: false,
   },
   {
@@ -74,7 +74,7 @@ const SERVICES = [
     badgeEn: null,
     featuresAr: ["إدارة وإضافة المنتجات", "متابعة الطلبات يومياً", "خدمة العملاء والردود", "تقرير شهري مفصل", "دعم طارئ 24/7"],
     featuresEn: ["Product management & adding", "Daily order tracking", "Customer service & replies", "Detailed monthly report", "24/7 emergency support"],
-    color: "#F5A623",
+    color: "#BDEE63",
     featured: false,
   },
   {
@@ -96,7 +96,7 @@ const SERVICES = [
     badgeEn: null,
     featuresAr: ["إعلانات سناب شات وتيك توك", "إعلانات انستغرام وفيسبوك", "حملات جوجل ويوتيوب", "إنشاء المحتوى الإعلاني", "تقارير أداء أسبوعية"],
     featuresEn: ["Snapchat & TikTok ads", "Instagram & Facebook ads", "Google & YouTube campaigns", "Ad content creation", "Weekly performance reports"],
-    color: "#FF6B6B",
+    color: "#C8A962",
     featured: false,
   },
   {
@@ -119,7 +119,7 @@ const SERVICES = [
     badgeEn: null,
     featuresAr: ["لوجو احترافي متعدد الصيغ", "دليل الهوية البصرية", "تصاميم السوشيال ميديا", "بانرات وإعلانات مصورة", "موشن جرافيك بسيط"],
     featuresEn: ["Multi-format professional logo", "Brand identity guide", "Social media designs", "Banners & image ads", "Simple motion graphics"],
-    color: "#E8A0BF",
+    color: "#BDEE63",
     featured: false,
   },
   {
@@ -165,7 +165,7 @@ const SERVICES = [
     badgeEn: "Fast",
     featuresAr: ["تابي وتمارا (BNPL)", "STC Pay وأبشر", "Google Analytics & Search Console", "جوجل ميرشنت والإعلانات", "ربط خدمات الشحن"],
     featuresEn: ["Tabby & Tamara (BNPL)", "STC Pay & Absher", "Google Analytics & Search Console", "Google Merchant & Ads", "Shipping services link"],
-    color: "#7C9EFF",
+    color: "#C8A962",
     featured: false,
   },
   {
@@ -188,7 +188,7 @@ const SERVICES = [
     badgeEn: null,
     featuresAr: ["إصدار السجل التجاري", "وثيقة عمل حر", "فتح حساب بنكي تجاري", "التسجيل في معروف وأعمال", "تسجيل ضريبة القيمة المضافة"],
     featuresEn: ["Commercial registration", "Freelance work certificate", "Business bank account", "Maroof & Aamal registration", "VAT registration"],
-    color: "#F5A623",
+    color: "#BDEE63",
     featured: false,
   },
   {
@@ -212,7 +212,7 @@ const SERVICES = [
     badgeEn: null,
     featuresAr: ["30 تصميم سوشيال ميديا شهرياً", "كتابة كابشن وهاشتاقات", "ريلز وقصص انستغرام", "جدولة وتنظيم النشر", "تصوير منتجات إبداعي"],
     featuresEn: ["30 social media designs/month", "Caption & hashtag writing", "Instagram reels & stories", "Content scheduling", "Creative product photography"],
-    color: "#E8A0BF",
+    color: "#BDEE63",
     featured: false,
   },
 ];
