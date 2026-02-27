@@ -8,6 +8,8 @@ import PartnersMarquee from "@/components/home/PartnersMarquee";
 import TechStack from "@/components/home/TechStack";
 import FeaturedPartner from "@/components/home/FeaturedPartner";
 import Services from "@/components/home/Services";
+import PlatformCertifications from "@/components/home/PlatformCertifications";
+import WorkProcess from "@/components/home/WorkProcess";
 import Pricing from "@/components/home/Pricing";
 import Portfolio from "@/components/home/Portfolio";
 import AboutAgency from "@/components/home/AboutAgency";
@@ -68,8 +70,10 @@ export default function HomePage() {
       <main>
         <Hero />
         <TechStack />
+        <PlatformCertifications />
         <PartnersMarquee />
         <Services />
+        <WorkProcess />
         <FeaturedPartner />
         <Portfolio />
         <Pricing />
