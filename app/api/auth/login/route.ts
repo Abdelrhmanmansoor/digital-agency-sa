@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const token = await createToken({ email, role: "admin" });
 
     const response = NextResponse.json({ success: true, message: "Login successful" });
-    response.cookies.set("admin_token", token, {
+    response.cookies.set("admin-token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
@@ -33,6 +33,6 @@ export async function POST(req: NextRequest) {
 
 export async function DELETE() {
   const response = NextResponse.json({ success: true });
-  response.cookies.delete("admin_token");
+  response.cookies.delete("admin-token");
   return response;
 }
