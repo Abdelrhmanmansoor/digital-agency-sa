@@ -3,7 +3,7 @@
     "home": "Home",
     "services": "Services",
     "portfolio": "Portfolio",
-    "tools": "Salla Smart Tools",
+    "tools": "Radar",
     "blog": "Blog",
     "pricing": "Pricing",
     "about": "About Us",
@@ -232,5 +232,26 @@
     "calculate": "Calculate",
     "reset": "Reset",
     "whatsapp_number": "+201007835547"
+  },
+  "dashboard": {
+    "portal": "Client Portal",
+    "login": "Sign In",
+    "register": "Create Account",
+    "logout": "Sign Out",
+    "overview": "Overview",
+    "orders": "My Orders",
+    "files": "My Files",
+    "profile": "Profile",
+    "new_order": "New Service Order",
+    "order": {
+      "status": {
+        "pending": "Pending",
+        "in_progress": "In Progress",
+        "review": "Review",
+        "delivered": "Delivered",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      }
+    }
   }
 }

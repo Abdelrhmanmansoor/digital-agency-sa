@@ -3,7 +3,7 @@
     "home": "Accueil",
     "services": "Services",
     "portfolio": "Portfolio",
-    "tools": "Outils Salla",
+    "tools": "Radar",
     "blog": "Blog",
     "pricing": "Tarifs",
     "about": "À Propos",
@@ -232,5 +232,26 @@
     "calculate": "Calculer",
     "reset": "Réinitialiser",
     "whatsapp_number": "+201007835547"
+  },
+  "dashboard": {
+    "portal": "Portail Client",
+    "login": "Connexion",
+    "register": "Créer un compte",
+    "logout": "Déconnexion",
+    "overview": "Vue d'ensemble",
+    "orders": "Mes commandes",
+    "files": "Mes fichiers",
+    "profile": "Profil",
+    "new_order": "Nouvelle commande",
+    "order": {
+      "status": {
+        "pending": "En attente",
+        "in_progress": "En cours",
+        "review": "Révision",
+        "delivered": "Livré",
+        "completed": "Terminé",
+        "cancelled": "Annulé"
+      }
+    }
   }
 }

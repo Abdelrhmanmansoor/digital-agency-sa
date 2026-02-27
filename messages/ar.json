@@ -3,7 +3,7 @@
     "home": "الرئيسية",
     "services": "خدماتنا",
     "portfolio": "أعمالنا",
-    "tools": "أدوات سلة الذكية",
+    "tools": "رادار",
     "blog": "المدونة",
     "pricing": "الأسعار",
     "about": "من نحن",
@@ -232,5 +232,26 @@
     "calculate": "احسب",
     "reset": "إعادة ضبط",
     "whatsapp_number": "+201007835547"
+  },
+  "dashboard": {
+    "portal": "بوابة العملاء",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "overview": "نظرة عامة",
+    "orders": "طلباتي",
+    "files": "ملفاتي",
+    "profile": "حسابي",
+    "new_order": "طلب خدمة جديدة",
+    "order": {
+      "status": {
+        "pending": "قيد الانتظار",
+        "in_progress": "جاري التنفيذ",
+        "review": "مراجعة",
+        "delivered": "تم التسليم",
+        "completed": "مكتمل",
+        "cancelled": "ملغى"
+      }
+    }
   }
 }
