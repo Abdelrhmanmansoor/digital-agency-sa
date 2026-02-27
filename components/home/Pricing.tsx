@@ -4,6 +4,138 @@ import { useRef, useEffect, useState } from "react";
 import { useLocale } from "next-intl";
 import { getWhatsAppLink } from "@/lib/utils";
 
+const PACKAGES_AR = [
+  {
+    id: "starter",
+    name: "باقة الانطلاق",
+    tagline: "للمبتدئين وأصحاب المشاريع الناشئة",
+    price: "799",
+    oldPrice: "2,500",
+    discount: "68%",
+    badge: null,
+    featured: false,
+    accentColor: "#4A9D8F",
+    features: [
+      "تصميم متجر سلة احترافي",
+      "إعداد حتى 20 منتج",
+      "ربط بوابة دفع واحدة",
+      "تحسين صفحات المنتجات",
+      "دعم فني لمدة شهر",
+      "تسليم خلال 5 أيام",
+    ],
+  },
+  {
+    id: "pro",
+    name: "باقة الاحتراف",
+    tagline: "الخيار الأمثل للمتاجر الجادة",
+    price: "1,499",
+    oldPrice: "4,999",
+    discount: "70%",
+    badge: "★ الأكثر طلباً",
+    featured: true,
+    accentColor: "#C8A962",
+    features: [
+      "تصميم ثيم مخصص بالكامل",
+      "إعداد منتجات غير محدودة",
+      "ربط جميع بوابات الدفع",
+      "هوية بصرية كاملة (لوجو + ألوان)",
+      "إعداد حسابات سوشيال ميديا",
+      "حملة إطلاق تسويقية",
+      "تحسين SEO أساسي",
+      "دعم فني لمدة 3 أشهر",
+      "تسليم خلال 10 أيام",
+    ],
+  },
+  {
+    id: "enterprise",
+    name: "باقة التميز",
+    tagline: "للمتاجر الكبيرة والمشاريع المتطورة",
+    price: "2,999",
+    oldPrice: "8,500",
+    discount: "65%",
+    badge: null,
+    featured: false,
+    accentColor: "#BDEE63",
+    features: [
+      "كل مميزات باقة الاحتراف",
+      "تصميم UX/UI من الصفر",
+      "استراتيجية محتوى متكاملة",
+      "إعلانات ممولة Meta + Google",
+      "تقارير أداء شهرية مفصلة",
+      "مدير حساب خاص",
+      "أولوية قصوى في الدعم",
+      "دعم VIP لمدة 6 أشهر",
+      "تسليم خلال 14 يوم",
+    ],
+  },
+];
+
+const PACKAGES_EN = [
+  {
+    id: "starter",
+    name: "Starter",
+    tagline: "For beginners & new projects",
+    price: "799",
+    oldPrice: "2,500",
+    discount: "68%",
+    badge: null,
+    featured: false,
+    accentColor: "#4A9D8F",
+    features: [
+      "Professional Salla store design",
+      "Setup up to 20 products",
+      "One payment gateway",
+      "Product page optimization",
+      "1 month technical support",
+      "Delivered in 5 days",
+    ],
+  },
+  {
+    id: "pro",
+    name: "Professional",
+    tagline: "Best for serious stores",
+    price: "1,499",
+    oldPrice: "4,999",
+    discount: "70%",
+    badge: "★ Most Popular",
+    featured: true,
+    accentColor: "#C8A962",
+    features: [
+      "Fully custom theme design",
+      "Unlimited products setup",
+      "All payment gateways",
+      "Full brand identity (logo + colors)",
+      "Social media setup",
+      "Launch marketing campaign",
+      "Basic SEO optimization",
+      "3 months technical support",
+      "Delivered in 10 days",
+    ],
+  },
+  {
+    id: "enterprise",
+    name: "Enterprise",
+    tagline: "For large & advanced stores",
+    price: "2,999",
+    oldPrice: "8,500",
+    discount: "65%",
+    badge: null,
+    featured: false,
+    accentColor: "#BDEE63",
+    features: [
+      "All Professional features",
+      "Custom UX/UI from scratch",
+      "Full content strategy",
+      "Paid ads — Meta + Google",
+      "Detailed monthly reports",
+      "Dedicated account manager",
+      "Priority support",
+      "6 months VIP support",
+      "Delivered in 14 days",
+    ],
+  },
+];
+
 export default function Pricing() {
   const locale = useLocale();
   const isRTL = locale === "ar";
@@ -19,302 +151,360 @@ export default function Pricing() {
     return () => observer.disconnect();
   }, []);
 
-  const packages = locale === "ar" ? [
-    {
-      id: "basic",
-      name: "الأساسية",
-      price: "2,000",
-      description: "مثالية للمشاريع الناشئة",
-      features: [
-        "تصميم متجر سلة أساسي",
-        "إعداد 20 منتج",
-        "ربط بوابة دفع واحدة",
-        "دعم فني شهر واحد",
-        "ثيم جاهز معدّل",
-        "تدريب أساسي",
-      ],
-      featured: false,
-    },
-    {
-      id: "pro",
-      name: "الاحترافية",
-      price: "5,000",
-      description: "الأنسب للمشاريع الجادة",
-      features: [
-        "تصميم ثيم مخصص كامل",
-        "إعداد 100 منتج",
-        "ربط جميع بوابات الدفع",
-        "دعم فني 3 أشهر",
-        "تصميم هوية بصرية",
-        "إعداد سوشيال ميديا",
-        "حملة إطلاق تسويقية",
-        "تقرير أداء شهري",
-      ],
-      featured: true,
-    },
-    {
-      id: "enterprise",
-      name: "المتقدمة",
-      price: "8,000+",
-      description: "للمشاريع الكبيرة والمتاجر المتطورة",
-      features: [
-        "كل مميزات الاحترافية",
-        "تصميم مخصص من الصفر",
-        "منتجات غير محدودة",
-        "دعم VIP 6 أشهر",
-        "تطبيق جوال مخصص",
-        "أدوات تحليل متقدمة",
-        "استراتيجية تسويق كاملة",
-        "مدير حساب خاص",
-      ],
-      featured: false,
-    },
-  ] : [
-    {
-      id: "basic",
-      name: "Basic",
-      price: "2,000",
-      description: "Perfect for startups",
-      features: [
-        "Basic Salla store design",
-        "Setup 20 products",
-        "One payment gateway",
-        "1 month support",
-        "Modified ready theme",
-        "Basic training",
-      ],
-      featured: false,
-    },
-    {
-      id: "pro",
-      name: "Professional",
-      price: "5,000",
-      description: "Best for serious projects",
-      features: [
-        "Full custom theme design",
-        "Setup 100 products",
-        "All payment gateways",
-        "3 months support",
-        "Brand identity design",
-        "Social media setup",
-        "Launch marketing campaign",
-        "Monthly performance report",
-      ],
-      featured: true,
-    },
-    {
-      id: "enterprise",
-      name: "Enterprise",
-      price: "8,000+",
-      description: "For large and advanced stores",
-      features: [
-        "All Professional features",
-        "Fully custom design",
-        "Unlimited products",
-        "6 months VIP support",
-        "Custom mobile app",
-        "Advanced analytics",
-        "Full marketing strategy",
-        "Dedicated account manager",
-      ],
-      featured: false,
-    },
-  ];
+  const packages = locale === "ar" ? PACKAGES_AR : PACKAGES_EN;
 
   return (
     <section
       id="pricing"
-      className="relative pattern-overlay-dark"
-      style={{ background: "#0A0A0A", padding: "120px 0" }}
+      className="relative"
+      style={{ background: "#0A0A0A", padding: "120px 0", fontFamily: "'Zain', sans-serif" }}
     >
-      <div ref={ref} className="max-w-[1400px] mx-auto px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="section-label justify-center mb-6" style={{ color: "rgba(200,169,98,0.7)" }}>
-            {isRTL ? "الأسعار" : "Pricing"}
-          </div>
-          <h2
+      {/* Subtle bg pattern */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "radial-gradient(rgba(200,169,98,0.04) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          pointerEvents: "none",
+        }}
+      />
+
+      <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
+
+        {/* Limited offer banner */}
+        <div className="flex justify-center mb-10">
+          <div
             style={{
-              fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
-              fontSize: "clamp(32px, 4vw, 52px)",
-              fontWeight: 700,
-              color: "#FAFAF7",
-              marginBottom: "16px",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              background: "rgba(189,238,99,0.08)",
+              border: "1px solid rgba(189,238,99,0.25)",
+              borderRadius: "100px",
+              padding: "8px 20px",
+              fontSize: "13px",
+              fontFamily: "Space Mono, monospace",
+              color: "#BDEE63",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
             }}
           >
-            {isRTL ? "باقاتنا" : locale === "en" ? "Our Packages" : "Nos Forfaits"}
+            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#BDEE63", display: "inline-block", animation: "pulse 2s ease-in-out infinite" }} />
+            {isRTL ? "⚡ عرض محدود — توفير يصل إلى 70%" : "⚡ Limited Offer — Save Up To 70%"}
+          </div>
+        </div>
+
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2
+            style={{
+              fontSize: "clamp(32px, 4vw, 56px)",
+              fontWeight: 800,
+              color: "#FAFAF7",
+              marginBottom: "12px",
+              lineHeight: 1.1,
+            }}
+          >
+            {isRTL ? "باقات لا تُقاوَم" : "Unbeatable Packages"}
           </h2>
-          <p style={{ color: "#8C8C7A", fontSize: "16px" }}>
-            {isRTL ? "اختر الباقة المناسبة لمشروعك" : "Choose the right package for your project"}
+          <p style={{ color: "#8C8C7A", fontSize: "17px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.7 }}>
+            {isRTL
+              ? "جودة احترافية بأسعار تنافسية — استثمر في نجاح متجرك"
+              : "Professional quality at competitive prices — invest in your store's success"}
           </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        {/* Cards grid */}
+        <div
+          className="grid gap-6"
+          style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", alignItems: "stretch" }}
+        >
           {packages.map((pkg, index) => (
             <div
               key={pkg.id}
-              className="pricing-card"
               style={{
+                position: "relative",
+                background: pkg.featured
+                  ? "linear-gradient(160deg, rgba(200,169,98,0.08) 0%, rgba(10,10,10,0) 60%)"
+                  : "rgba(255,255,255,0.02)",
+                border: pkg.featured
+                  ? "1.5px solid rgba(200,169,98,0.45)"
+                  : "1px solid rgba(255,255,255,0.07)",
+                borderRadius: "20px",
+                padding: "36px 32px",
+                display: "flex",
+                flexDirection: "column",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible
-                  ? pkg.featured ? "scale(1.03)" : "translateY(0)"
-                  : "translateY(30px)",
-                transition: `all 0.6s ${index * 0.15}s cubic-bezier(0.19, 1, 0.22, 1)`,
-                border: pkg.featured ? "2px solid #C8A962" : "1px solid rgba(255,255,255,0.08)",
+                  ? "translateY(0) scale(1)"
+                  : "translateY(40px) scale(0.98)",
+                transition: `all 0.65s ${index * 0.12}s cubic-bezier(0.19,1,0.22,1)`,
               }}
             >
-              {/* Most popular badge */}
-              {pkg.featured && (
+              {/* Popular badge */}
+              {pkg.badge && (
                 <div
-                  className="absolute -top-4 left-1/2 -translate-x-1/2"
-                  style={{ whiteSpace: "nowrap" }}
+                  style={{
+                    position: "absolute",
+                    top: "-15px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    background: "#C8A962",
+                    color: "#0A0A0A",
+                    padding: "5px 18px",
+                    borderRadius: "100px",
+                    fontSize: "11px",
+                    fontFamily: "Space Mono, monospace",
+                    fontWeight: 700,
+                    letterSpacing: "0.12em",
+                    whiteSpace: "nowrap",
+                  }}
                 >
-                  <span
-                    style={{
-                      background: "#C8A962",
-                      color: "#0A0A0A",
-                      padding: "6px 20px",
-                      fontSize: "11px",
-                      fontFamily: "Space Mono, monospace",
-                      fontWeight: 700,
-                      letterSpacing: "0.15em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {isRTL ? "★ الأكثر طلباً" : "★ Most Popular"}
-                  </span>
+                  {pkg.badge}
                 </div>
               )}
 
-              {/* Package Name */}
-              <div style={{ marginBottom: "8px" }}>
+              {/* Discount chip */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "20px" }}>
                 <div
                   style={{
+                    background: "rgba(189,238,99,0.12)",
+                    color: "#BDEE63",
+                    padding: "4px 12px",
+                    borderRadius: "100px",
+                    fontSize: "12px",
                     fontFamily: "Space Mono, monospace",
-                    fontSize: "11px",
-                    letterSpacing: "0.2em",
-                    textTransform: "uppercase",
-                    color: pkg.featured ? "#C8A962" : "#8C8C7A",
-                    marginBottom: "8px",
+                    fontWeight: 700,
                   }}
                 >
-                  {pkg.description}
+                  {isRTL ? `وفّر ${pkg.discount}` : `-${pkg.discount}`}
                 </div>
+                <div
+                  style={{
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "50%",
+                    background: `${pkg.accentColor}20`,
+                    border: `1px solid ${pkg.accentColor}40`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "16px",
+                  }}
+                >
+                  {pkg.id === "starter" ? "🚀" : pkg.id === "pro" ? "⭐" : "👑"}
+                </div>
+              </div>
+
+              {/* Package name + tagline */}
+              <div style={{ marginBottom: "24px" }}>
                 <h3
                   style={{
-                    fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
-                    fontSize: "24px",
+                    fontSize: "22px",
                     fontWeight: 700,
                     color: "#FAFAF7",
+                    marginBottom: "6px",
                   }}
                 >
                   {pkg.name}
                 </h3>
+                <p style={{ fontSize: "13px", color: "#6B6B5A", lineHeight: 1.5 }}>
+                  {pkg.tagline}
+                </p>
               </div>
 
-              {/* Price */}
-              <div className="my-8 pb-8" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+              {/* Price block */}
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.03)",
+                  borderRadius: "14px",
+                  padding: "20px 24px",
+                  marginBottom: "28px",
+                  border: "1px solid rgba(255,255,255,0.05)",
+                }}
+              >
+                {/* Old price crossed */}
                 <div
                   style={{
                     fontFamily: "Space Mono, monospace",
-                    fontSize: "clamp(36px, 3vw, 48px)",
-                    fontWeight: 700,
-                    color: "#C8A962",
-                    lineHeight: 1,
+                    fontSize: "13px",
+                    color: "#555",
+                    textDecoration: "line-through",
+                    marginBottom: "4px",
                   }}
                 >
-                  {pkg.price}
-                  <span style={{ fontSize: "16px", color: "#8C8C7A", marginRight: "4px" }}>
-                    {isRTL ? " ر.س" : " SAR"}
+                  {pkg.oldPrice} {isRTL ? "ر.س" : "SAR"}
+                </div>
+                {/* New price */}
+                <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+                  <span
+                    style={{
+                      fontFamily: "Space Mono, monospace",
+                      fontSize: "clamp(38px, 3.5vw, 52px)",
+                      fontWeight: 700,
+                      color: pkg.featured ? "#C8A962" : "#FAFAF7",
+                      lineHeight: 1,
+                    }}
+                  >
+                    {pkg.price}
                   </span>
+                  <span style={{ fontSize: "15px", color: "#8C8C7A" }}>
+                    {isRTL ? "ر.س" : "SAR"}
+                  </span>
+                </div>
+                <div style={{ fontSize: "12px", color: "#4A4A3A", marginTop: "6px", fontFamily: "Space Mono, monospace" }}>
+                  {isRTL ? "دفعة واحدة — بدون رسوم خفية" : "One-time — no hidden fees"}
                 </div>
               </div>
 
               {/* Features */}
-              <ul className="space-y-3 mb-10">
+              <ul style={{ flex: 1, marginBottom: "28px", display: "flex", flexDirection: "column", gap: "10px" }}>
                 {pkg.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
+                  <li key={feature} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                     <span
-                      style={{ color: "#C8A962", fontSize: "14px", marginTop: "2px", flexShrink: 0 }}
+                      style={{
+                        color: pkg.accentColor,
+                        fontSize: "14px",
+                        flexShrink: 0,
+                        marginTop: "2px",
+                        fontWeight: 700,
+                      }}
                     >
                       ✓
                     </span>
-                    <span style={{ color: "#8C8C7A", fontSize: "14px", lineHeight: 1.6 }}>
+                    <span style={{ color: "#9C9C8A", fontSize: "14px", lineHeight: 1.55 }}>
                       {feature}
                     </span>
                   </li>
                 ))}
               </ul>
 
-              {/* CTA Button */}
+              {/* CTA */}
               <a
                 href={getWhatsAppLink(
                   isRTL
-                    ? `مرحباً! أريد الاستفسار عن باقة ${pkg.name} بسعر ${pkg.price} ر.س`
+                    ? `مرحباً! أريد الاستفسار عن ${pkg.name} بسعر ${pkg.price} ر.س`
                     : `Hello! I'm interested in the ${pkg.name} package at ${pkg.price} SAR`
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block"
+                style={{ display: "block" }}
               >
                 <button
-                  className="w-full py-4"
                   style={{
+                    width: "100%",
+                    padding: "14px 24px",
                     background: pkg.featured ? "#C8A962" : "transparent",
-                    border: pkg.featured ? "none" : "1px solid rgba(200,169,98,0.3)",
-                    color: pkg.featured ? "#0A0A0A" : "#C8A962",
+                    border: pkg.featured ? "none" : `1px solid ${pkg.accentColor}50`,
+                    borderRadius: "10px",
+                    color: pkg.featured ? "#0A0A0A" : pkg.accentColor,
                     fontFamily: "Space Mono, monospace",
                     fontSize: "12px",
-                    fontWeight: 600,
-                    letterSpacing: "0.12em",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
                     textTransform: "uppercase",
                     cursor: "pointer",
-                    transition: "all 0.3s ease",
+                    transition: "all 0.25s ease",
                   }}
                   onMouseEnter={(e) => {
                     if (pkg.featured) {
-                      e.currentTarget.style.background = "#0A0A0A";
-                      e.currentTarget.style.border = "1px solid #C8A962";
-                      e.currentTarget.style.color = "#C8A962";
+                      e.currentTarget.style.background = "#E0BF70";
+                      e.currentTarget.style.transform = "translateY(-2px)";
                     } else {
-                      e.currentTarget.style.background = "rgba(200,169,98,0.1)";
-                      e.currentTarget.style.borderColor = "#C8A962";
+                      e.currentTarget.style.background = `${pkg.accentColor}15`;
+                      e.currentTarget.style.borderColor = pkg.accentColor;
+                      e.currentTarget.style.transform = "translateY(-2px)";
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (pkg.featured) {
                       e.currentTarget.style.background = "#C8A962";
-                      e.currentTarget.style.border = "none";
-                      e.currentTarget.style.color = "#0A0A0A";
+                      e.currentTarget.style.transform = "translateY(0)";
                     } else {
                       e.currentTarget.style.background = "transparent";
-                      e.currentTarget.style.borderColor = "rgba(200,169,98,0.3)";
+                      e.currentTarget.style.borderColor = `${pkg.accentColor}50`;
+                      e.currentTarget.style.transform = "translateY(0)";
                     }
                   }}
                 >
-                  {isRTL ? "اطلب هذه الباقة" : "Request This Package"}
+                  {isRTL ? "اطلب الباقة الآن ←" : "Order Now →"}
                 </button>
               </a>
             </div>
           ))}
         </div>
 
-        {/* Custom Package CTA */}
+        {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <p style={{ color: "#8C8C7A", fontSize: "16px", marginBottom: "16px" }}>
-            {isRTL ? "هل تحتاج باقة مخصصة؟" : "Need a custom package?"}
-          </p>
-          <a
-            href={getWhatsAppLink(isRTL ? "مرحباً! أريد الاستفسار عن باقة مخصصة لمشروعي" : "Hello! I need a custom package for my project")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary inline-flex"
+          <div
+            style={{
+              display: "inline-flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "12px",
+              background: "rgba(255,255,255,0.02)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderRadius: "20px",
+              padding: "32px 48px",
+              maxWidth: "560px",
+            }}
           >
-            {isRTL ? "تواصل معنا ←" : "Contact Us →"}
-          </a>
+            <p style={{ color: "#6B6B5A", fontSize: "14px", fontFamily: "Space Mono, monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              {isRTL ? "تحتاج باقة مخصصة؟" : "Need a custom package?"}
+            </p>
+            <p style={{ color: "#9C9C8A", fontSize: "16px", lineHeight: 1.6 }}>
+              {isRTL
+                ? "نبني لك حلاً مخصصاً حسب متطلبات مشروعك ومتجرك"
+                : "We build a tailored solution for your project's specific needs"}
+            </p>
+            <a
+              href={getWhatsAppLink(
+                isRTL
+                  ? "مرحباً! أريد الاستفسار عن باقة مخصصة لمشروعي"
+                  : "Hello! I need a custom package for my project"
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button
+                style={{
+                  background: "transparent",
+                  border: "1px solid rgba(200,169,98,0.4)",
+                  color: "#C8A962",
+                  padding: "12px 32px",
+                  borderRadius: "8px",
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  cursor: "pointer",
+                  transition: "all 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(200,169,98,0.1)";
+                  e.currentTarget.style.borderColor = "#C8A962";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.borderColor = "rgba(200,169,98,0.4)";
+                }}
+              >
+                {isRTL ? "تواصل معنا →" : "Contact Us →"}
+              </button>
+            </a>
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes pulse {
+          0%,100% { opacity:1; transform:scale(1); }
+          50% { opacity:0.5; transform:scale(0.8); }
+        }
+      `}</style>
     </section>
   );
 }

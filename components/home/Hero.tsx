@@ -159,37 +159,62 @@ export default function Hero() {
           transition: "opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo)",
         }}
       >
-        {/* Label badge */}
+        {/* Limited offer badge */}
         <div
-          className="inline-flex items-center gap-2 mb-8"
+          className="inline-flex items-center gap-2 mb-4"
           style={{
-            background: "rgba(189,238,99,0.1)",
-            border: "1px solid rgba(189,238,99,0.2)",
+            background: "rgba(200,169,98,0.1)",
+            border: "1px solid rgba(200,169,98,0.35)",
             borderRadius: "100px",
-            padding: "6px 16px",
+            padding: "5px 14px",
             fontSize: "12px",
             fontFamily: "Space Mono, monospace",
-            letterSpacing: "0.15em",
-            color: "var(--lime)",
+            letterSpacing: "0.12em",
+            color: "#C8A962",
             textTransform: "uppercase",
           }}
         >
-          <span
+          <span style={{ fontSize: "13px" }}>⚡</span>
+          {locale === "ar" ? "عرض محدود — توفير حتى 70%" : locale === "fr" ? "Offre Limitée — Jusqu'à 70% d'économies" : "Limited Offer — Save Up To 70%"}
+        </div>
+
+        {/* Label badge */}
+        <div
+          className="flex justify-center mb-8"
+        >
+          <div
             style={{
-              width: "6px", height: "6px",
-              borderRadius: "50%",
-              background: "var(--lime)",
-              display: "inline-block",
-              animation: "pulse 2s ease-in-out infinite",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "rgba(189,238,99,0.1)",
+              border: "1px solid rgba(189,238,99,0.2)",
+              borderRadius: "100px",
+              padding: "6px 16px",
+              fontSize: "12px",
+              fontFamily: "Space Mono, monospace",
+              letterSpacing: "0.15em",
+              color: "var(--lime)",
+              textTransform: "uppercase",
             }}
-          />
-          {locale === "ar" ? "وكالة رقمية سعودية" : locale === "fr" ? "Agence Digitale Saoudienne" : "Saudi Digital Agency"}
+          >
+            <span
+              style={{
+                width: "6px", height: "6px",
+                borderRadius: "50%",
+                background: "var(--lime)",
+                display: "inline-block",
+                animation: "pulse 2s ease-in-out infinite",
+              }}
+            />
+            {locale === "ar" ? "وكالة رقمية سعودية" : locale === "fr" ? "Agence Digitale Saoudienne" : "Saudi Digital Agency"}
+          </div>
         </div>
 
         {/* Main heading */}
         <h1
           style={{
-            fontFamily: isRTL ? "Noto Kufi Arabic, sans-serif" : "sans-serif",
+            fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
             fontSize: "clamp(42px, 6.5vw, 88px)",
             fontWeight: 800,
             lineHeight: 1.05,

@@ -1,381 +1,435 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { useLocale } from "next-intl";
 import { getWhatsAppLink } from "@/lib/utils";
 
-interface Service {
-  number: string;
-  name: string;
-  description: string;
-  includes: string[];
-  price: string;
-  monthly?: boolean;
-  free?: boolean;
-  badge?: string;
-  image: string;
-}
-
-const SERVICE_IMAGES = [
-  "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80",
-  "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80",
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
-  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
-  "https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=600&q=80",
-  "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
+const SERVICES = [
+  {
+    id: "salla-design",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <path d="M8 21h8M12 17v4"/>
+        <path d="M7 8h3M7 11h5"/>
+        <rect x="13" y="7" width="5" height="5" rx="1"/>
+      </svg>
+    ),
+    nameAr: "تصميم متجر سلة احترافي",
+    nameEn: "Professional Salla Store Design",
+    nameFr: "Conception Boutique Salla Pro",
+    descAr: "تصميم متجر سلة متكامل يعكس هويتك ويزيد مبيعاتك — ألوان، خطوط، صفحات، وتجربة مستخدم مثالية للجوال",
+    descEn: "Complete Salla store design reflecting your brand — colors, fonts, pages & perfect mobile UX",
+    descFr: "Conception complète Salla — couleurs, polices, pages et UX mobile parfaite",
+    price: "1,299",
+    priceNote: "ريال",
+    badge: "الأكثر طلباً",
+    badgeEn: "Most Requested",
+    featuresAr: ["تصميم الصفحة الرئيسية والقوائم", "صفحات المنتجات الاحترافية", "ضبط الألوان والخطوط والشعار", "تهيئة كاملة للجوال", "مراجعتان مجانيتان"],
+    featuresEn: ["Homepage & navigation design", "Professional product pages", "Colors, fonts & logo setup", "Full mobile optimization", "Two free revisions"],
+    color: "#BDEE63",
+    featured: true,
+  },
+  {
+    id: "store-launch",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    ),
+    nameAr: "تأسيس متجر إلكتروني من الصفر",
+    nameEn: "E-Commerce Store from Scratch",
+    nameFr: "Boutique E-commerce de Zéro",
+    descAr: "إنشاء متجرك على سلة أو زد بالكامل — من إنشاء الحساب حتى رفع المنتجات وربط الدفع والشحن",
+    descEn: "Full store on Salla or Zid — account setup to products, payment & shipping",
+    descFr: "Boutique complète sur Salla ou Zid — de la création au paiement & livraison",
+    price: "799",
+    priceNote: "ريال",
+    badge: null,
+    badgeEn: null,
+    featuresAr: ["إنشاء وإعداد الحساب", "رفع المنتجات والأسعار", "ربط بوابة الدفع", "إعداد طرق الشحن", "تدريب مجاني على الإدارة"],
+    featuresEn: ["Account creation & setup", "Products & pricing upload", "Payment gateway connection", "Shipping methods setup", "Free admin training"],
+    color: "#7C9EFF",
+    featured: false,
+  },
+  {
+    id: "store-management",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+      </svg>
+    ),
+    nameAr: "إدارة وتشغيل المتجر الإلكتروني",
+    nameEn: "Store Management & Operation",
+    nameFr: "Gestion & Opération de Boutique",
+    descAr: "ندير متجرك باحترافية — إضافة المنتجات، متابعة الطلبات، خدمة العملاء، وتقارير شهرية",
+    descEn: "Professional store management — products, orders, customer service & monthly reports",
+    descFr: "Gestion professionnelle — produits, commandes, service client & rapports",
+    price: "999",
+    priceNote: "ريال/شهر",
+    badge: null,
+    badgeEn: null,
+    featuresAr: ["إدارة وإضافة المنتجات", "متابعة الطلبات يومياً", "خدمة العملاء والردود", "تقرير شهري مفصل", "دعم طارئ 24/7"],
+    featuresEn: ["Product management & adding", "Daily order tracking", "Customer service & replies", "Detailed monthly report", "24/7 emergency support"],
+    color: "#F5A623",
+    featured: false,
+  },
+  {
+    id: "digital-marketing",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    ),
+    nameAr: "تسويق رقمي وإعلانات ممولة",
+    nameEn: "Digital Marketing & Paid Ads",
+    nameFr: "Marketing Digital & Publicités",
+    descAr: "حملات إعلانية محترفة على سناب شات، انستغرام، تيك توك، وجوجل — نستهدف جمهورك المثالي لأعلى عائد",
+    descEn: "Pro ad campaigns on Snapchat, Instagram, TikTok & Google for maximum ROI",
+    descFr: "Campagnes pro sur Snapchat, Instagram, TikTok & Google pour ROI maximum",
+    price: "899",
+    priceNote: "ريال/شهر",
+    badge: null,
+    badgeEn: null,
+    featuresAr: ["إعلانات سناب شات وتيك توك", "إعلانات انستغرام وفيسبوك", "حملات جوجل ويوتيوب", "إنشاء المحتوى الإعلاني", "تقارير أداء أسبوعية"],
+    featuresEn: ["Snapchat & TikTok ads", "Instagram & Facebook ads", "Google & YouTube campaigns", "Ad content creation", "Weekly performance reports"],
+    color: "#FF6B6B",
+    featured: false,
+  },
+  {
+    id: "branding",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
+      </svg>
+    ),
+    nameAr: "هوية بصرية وتصميم جرافيك",
+    nameEn: "Brand Identity & Graphic Design",
+    nameFr: "Identité Visuelle & Graphisme",
+    descAr: "لوجو احترافي، ألوان العلامة التجارية، تصاميم السوشيال ميديا، وموشن جرافيك لمتجرك",
+    descEn: "Professional logo, brand colors, social media designs & motion graphics for your store",
+    descFr: "Logo pro, couleurs de marque, designs réseaux sociaux & motion graphics",
+    price: "799",
+    priceNote: "ريال",
+    badge: null,
+    badgeEn: null,
+    featuresAr: ["لوجو احترافي متعدد الصيغ", "دليل الهوية البصرية", "تصاميم السوشيال ميديا", "بانرات وإعلانات مصورة", "موشن جرافيك بسيط"],
+    featuresEn: ["Multi-format professional logo", "Brand identity guide", "Social media designs", "Banners & image ads", "Simple motion graphics"],
+    color: "#E8A0BF",
+    featured: false,
+  },
+  {
+    id: "seo",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35M11 8v6M8 11h6"/>
+      </svg>
+    ),
+    nameAr: "تحسين محركات البحث SEO",
+    nameEn: "Search Engine Optimization",
+    nameFr: "Optimisation Moteurs de Recherche",
+    descAr: "تصدّر نتائج جوجل وسناب شات — تحسين كلماتك المفتاحية، بناء الروابط، وزيادة زوار متجرك",
+    descEn: "Rank #1 on Google — keyword optimization, link building & traffic growth for your store",
+    descFr: "Classez-vous #1 sur Google — mots-clés, liens et croissance du trafic",
+    price: "699",
+    priceNote: "ريال/شهر",
+    badge: null,
+    badgeEn: null,
+    featuresAr: ["تحليل الكلمات المفتاحية", "تحسين محتوى المتجر", "بناء الروابط الخارجية", "تحسين سرعة الصفحات", "تقرير SEO شهري"],
+    featuresEn: ["Keyword research & analysis", "Store content optimization", "External link building", "Page speed optimization", "Monthly SEO report"],
+    color: "#BDEE63",
+    featured: false,
+  },
+  {
+    id: "integrations",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
+    ),
+    nameAr: "ربط الخدمات والتكاملات",
+    nameEn: "Integrations & Connections",
+    nameFr: "Intégrations & Connexions",
+    descAr: "ربط متجرك بكل الأدوات — تابي، تمارا، STC Pay، Google Analytics، وجوجل ميرشنت",
+    descEn: "Connect your store to all tools — Tabby, Tamara, STC Pay, Google Analytics & Merchant",
+    descFr: "Connectez à tous les outils — Tabby, Tamara, STC Pay, Google Analytics",
+    price: "299",
+    priceNote: "ريال",
+    badge: "سريع",
+    badgeEn: "Fast",
+    featuresAr: ["تابي وتمارا (BNPL)", "STC Pay وأبشر", "Google Analytics & Search Console", "جوجل ميرشنت والإعلانات", "ربط خدمات الشحن"],
+    featuresEn: ["Tabby & Tamara (BNPL)", "STC Pay & Absher", "Google Analytics & Search Console", "Google Merchant & Ads", "Shipping services link"],
+    color: "#7C9EFF",
+    featured: false,
+  },
+  {
+    id: "govt",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="m9 12 2 2 4-4"/>
+      </svg>
+    ),
+    nameAr: "الخدمات الحكومية والتجارية",
+    nameEn: "Government & Business Services",
+    nameFr: "Services Gouvernementaux",
+    descAr: "استخراج السجل التجاري، وثيقة العمل الحر، فتح الحساب البنكي، والتسجيل في منصات الأعمال",
+    descEn: "Commercial registration, freelance certificate, business bank account & platform registration",
+    descFr: "Enregistrement commercial, certificat freelance & ouverture compte bancaire",
+    price: "249",
+    priceNote: "ريال",
+    badge: null,
+    badgeEn: null,
+    featuresAr: ["إصدار السجل التجاري", "وثيقة عمل حر", "فتح حساب بنكي تجاري", "التسجيل في معروف وأعمال", "تسجيل ضريبة القيمة المضافة"],
+    featuresEn: ["Commercial registration", "Freelance work certificate", "Business bank account", "Maroof & Aamal registration", "VAT registration"],
+    color: "#F5A623",
+    featured: false,
+  },
+  {
+    id: "content",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 20h9"/>
+        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+        <path d="m15 5 3 3"/>
+      </svg>
+    ),
+    nameAr: "إنتاج المحتوى الرقمي",
+    nameEn: "Digital Content Production",
+    nameFr: "Production de Contenu Digital",
+    descAr: "محتوى سوشيال ميديا بالذكاء الاصطناعي — تصاميم يومية، ريلز، قصص، وكتابة محتوى إبداعي",
+    descEn: "AI-powered social media content — daily designs, reels, stories & creative copywriting",
+    descFr: "Contenu IA pour réseaux sociaux — designs, reels, stories & rédaction créative",
+    price: "1,199",
+    priceNote: "ريال/شهر",
+    badge: null,
+    badgeEn: null,
+    featuresAr: ["30 تصميم سوشيال ميديا شهرياً", "كتابة كابشن وهاشتاقات", "ريلز وقصص انستغرام", "جدولة وتنظيم النشر", "تصوير منتجات إبداعي"],
+    featuresEn: ["30 social media designs/month", "Caption & hashtag writing", "Instagram reels & stories", "Content scheduling", "Creative product photography"],
+    color: "#E8A0BF",
+    featured: false,
+  },
 ];
-
-function ServiceRow({ service, index, isRTL }: { service: Service; index: number; isRTL: boolean }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const waMessage = isRTL
-    ? `مرحباً! أنا مهتم بخدمة ${service.name}. أرجو التواصل معي لمناقشة التفاصيل.`
-    : `Hello! I'm interested in the ${service.name} service. Please contact me to discuss details.`;
-
-  return (
-    <div
-      ref={ref}
-      className={`service-row ${isOpen ? "is-open" : ""}`}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "none" : "translateY(20px)",
-        transition: `opacity 0.6s ${index * 0.08}s ease, transform 0.6s ${index * 0.08}s ease, border-color 0.3s`,
-      }}
-    >
-      <div
-        className="service-row-header"
-        onClick={() => setIsOpen(!isOpen)}
-        style={{ cursor: "pointer" }}
-      >
-        <span className="service-number">{service.number}</span>
-        <div
-          style={{
-            flex: 1,
-            height: "1px",
-            background: isOpen ? "#C8A962" : "#E8E6E1",
-            transition: "background 0.3s",
-            margin: "0 20px",
-          }}
-        />
-        <span
-          className="service-name"
-          style={{
-            fontFamily: isRTL ? "Noto Kufi Arabic, sans-serif" : "sans-serif",
-            fontSize: "clamp(18px, 2vw, 24px)",
-          }}
-        >
-          {service.name}
-        </span>
-        {service.badge && (
-          <span className="gold-badge ms-4">{service.badge}</span>
-        )}
-        {service.price !== "0" ? (
-          <div
-            style={{
-              fontFamily: "Space Mono, monospace",
-              fontSize: "14px",
-              color: isOpen ? "#C8A962" : "#8C8C7A",
-              transition: "color 0.3s",
-              marginRight: isRTL ? "0" : "24px",
-              marginLeft: isRTL ? "24px" : "0",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {isRTL ? `يبدأ من ${service.price} ر.س` : `From ${service.price} SAR`}
-            {service.monthly && (isRTL ? "/شهر" : "/mo")}
-          </div>
-        ) : (
-          <div
-            style={{
-              fontFamily: "Space Mono, monospace",
-              fontSize: "12px",
-              color: "#C8A962",
-              marginRight: isRTL ? "0" : "24px",
-              marginLeft: isRTL ? "24px" : "0",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
-          >
-            {isRTL ? "مجانية" : "FREE"}
-          </div>
-        )}
-        <div
-          style={{
-            width: "24px",
-            height: "24px",
-            border: "1px solid",
-            borderColor: isOpen ? "#C8A962" : "rgba(0,0,0,0.2)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            transition: "all 0.3s",
-            flexShrink: 0,
-          }}
-        >
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            style={{ transform: isOpen ? "rotate(45deg)" : "none", transition: "transform 0.3s", stroke: isOpen ? "#C8A962" : "currentColor" }}
-          >
-            <path d="M6 1V11M1 6H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </div>
-      </div>
-
-      <div className="service-row-body">
-        <div className="service-row-body-inner">
-          <div className="service-row-content" style={{ padding: "0 0 40px 0" }}>
-            {/* Image */}
-            <div className="service-image-reveal">
-              <div className="service-image-mask" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={service.image} alt={service.name} />
-            </div>
-
-            {/* Details */}
-            <div>
-              <p style={{ color: "#2D2D2D", fontSize: "16px", lineHeight: 1.8, marginBottom: "24px" }}>
-                {service.description}
-              </p>
-
-              <div style={{ marginBottom: "24px" }}>
-                <div
-                  style={{
-                    fontFamily: "Space Mono, monospace",
-                    fontSize: "11px",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: "#8C8C7A",
-                    marginBottom: "12px",
-                  }}
-                >
-                  {isRTL ? "يشمل" : "Includes"}:
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {service.includes.map((item) => (
-                    <span
-                      key={item}
-                      style={{
-                        padding: "6px 14px",
-                        border: "1px solid #E8E6E1",
-                        fontSize: "13px",
-                        color: "#2D2D2D",
-                      }}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <a
-                href={getWhatsAppLink(waMessage)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button className="btn-primary">
-                  <span>
-                    {service.free
-                      ? (isRTL ? "جرّب الآن مجاناً" : "Try Free Now")
-                      : (isRTL ? "اطلب هذه الخدمة" : "Request This Service")}
-                  </span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                  </svg>
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function Services() {
   const locale = useLocale();
   const isRTL = locale === "ar";
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-  const services: Service[] = locale === "ar" ? [
-    {
-      number: "01",
-      name: "تصميم وتطوير متاجر سلة",
-      description: "نحوّل رؤيتك إلى متجر رقمي يبيع وأنت نائم. تصميم احترافي مخصص، ثيمات حصرية، تجربة مستخدم تحوّل الزائر لعميل دائم.",
-      includes: ["تصميم UI/UX", "ثيم مخصص", "تحسين السرعة", "إعداد بوابات الدفع"],
-      price: "3,500",
-      image: SERVICE_IMAGES[0],
-    },
-    {
-      number: "02",
-      name: "إنشاء متجر إلكتروني من الصفر",
-      description: "من الفكرة للإطلاق في أقل من أسبوعين. نبني لك متجراً جاهزاً للبيع مع كل ما تحتاجه: منتجات، شحن، دفع، وتسويق.",
-      includes: ["إعداد المنصة", "إضافة المنتجات", "ربط الشحن والدفع", "تدريب شامل"],
-      price: "2,000",
-      image: SERVICE_IMAGES[1],
-    },
-    {
-      number: "03",
-      name: "التسويق الرقمي وإدارة الحملات",
-      description: "حملات مدروسة بالأرقام. نعرف كيف نوصل لعميلك المثالي في الوقت المثالي بالرسالة المثالية.",
-      includes: ["إدارة السوشيال", "إعلانات مدفوعة", "تحسين محركات البحث", "تحليل البيانات"],
-      price: "1,500",
-      monthly: true,
-      image: SERVICE_IMAGES[2],
-    },
-    {
-      number: "04",
-      name: "الهوية البصرية والبراندنق",
-      description: "هويتك البصرية هي أول ما يراه عميلك. نبنيها لتحكي قصتك وتترك أثراً لا يُنسى في ذهن كل من يراها.",
-      includes: ["شعار احترافي", "دليل الهوية", "تصاميم السوشيال", "مواد تسويقية"],
-      price: "2,500",
-      image: SERVICE_IMAGES[3],
-    },
-    {
-      number: "05",
-      name: "تطوير المواقع والتطبيقات",
-      description: "مواقع وتطبيقات سريعة وآمنة تعكس احترافية علامتك التجارية وتحقق أهدافك الرقمية.",
-      includes: ["تصميم UX/UI", "تطوير Frontend", "لوحة تحكم", "صيانة دورية"],
-      price: "5,000",
-      image: SERVICE_IMAGES[4],
-    },
-    {
-      number: "06",
-      name: "إنتاج المحتوى الإبداعي",
-      description: "محتوى يجذب، يقنع، ويحوّل. نصوص، تصاميم، وفيديوهات تتحدث بلسان علامتك التجارية.",
-      includes: ["تصوير منتجات", "تصاميم سوشيال", "كتابة محتوى", "مونتاج فيديو"],
-      price: "1,200",
-      monthly: true,
-      image: SERVICE_IMAGES[5],
-    },
-    {
-      number: "07",
-      name: "أدوات سلة الذكية",
-      description: "أدوات ذكية مجانية تساعدك على إدارة متجرك وتطويره — من غير ما تحتاج مبرمج.",
-      includes: ["حاسبة الأرباح", "مولّد CSS", "منشئ السياسات", "كاتب المحتوى الذكي"],
-      price: "0",
-      free: true,
-      badge: "★ مجانية",
-      image: SERVICE_IMAGES[6],
-    },
-  ] : [
-    {
-      number: "01",
-      name: "Salla Store Design & Development",
-      description: "We transform your vision into a digital store that sells while you sleep. Professional custom design, exclusive themes, UX that converts visitors into loyal customers.",
-      includes: ["UI/UX Design", "Custom Theme", "Speed Optimization", "Payment Setup"],
-      price: "3,500",
-      image: SERVICE_IMAGES[0],
-    },
-    {
-      number: "02",
-      name: "Complete E-commerce Store from Scratch",
-      description: "From idea to launch in less than two weeks. We build you a ready-to-sell store with everything you need.",
-      includes: ["Platform Setup", "Product Upload", "Shipping & Payment", "Training"],
-      price: "2,000",
-      image: SERVICE_IMAGES[1],
-    },
-    {
-      number: "03",
-      name: "Digital Marketing & Campaign Management",
-      description: "Data-driven campaigns. We know how to reach your ideal customer at the perfect time.",
-      includes: ["Social Management", "Paid Ads", "SEO", "Analytics"],
-      price: "1,500",
-      monthly: true,
-      image: SERVICE_IMAGES[2],
-    },
-    {
-      number: "04",
-      name: "Brand Identity & Visual Design",
-      description: "Your brand identity is the first thing your customer sees. We build it to tell your story.",
-      includes: ["Logo Design", "Brand Guide", "Social Designs", "Marketing Materials"],
-      price: "2,500",
-      image: SERVICE_IMAGES[3],
-    },
-    {
-      number: "05",
-      name: "Website & App Development",
-      description: "Fast, secure websites and apps that reflect your brand's professionalism.",
-      includes: ["UX/UI Design", "Frontend Dev", "Admin Panel", "Maintenance"],
-      price: "5,000",
-      image: SERVICE_IMAGES[4],
-    },
-    {
-      number: "06",
-      name: "Creative Content Production",
-      description: "Content that attracts, convinces, and converts. Texts, designs, and videos.",
-      includes: ["Product Photography", "Social Designs", "Copywriting", "Video Editing"],
-      price: "1,200",
-      monthly: true,
-      image: SERVICE_IMAGES[5],
-    },
-    {
-      number: "07",
-      name: "Salla Smart Tools",
-      description: "Free smart tools to help you manage and grow your store — no developer needed.",
-      includes: ["Profit Calculator", "CSS Generator", "Policy Builder", "Content Writer"],
-      price: "0",
-      free: true,
-      badge: "★ Free",
-      image: SERVICE_IMAGES[6],
-    },
-  ];
+  const title = locale === "ar" ? "خدماتنا الرقمية" : locale === "fr" ? "Nos Services Digitaux" : "Our Digital Services";
+  const subtitle = locale === "ar"
+    ? "تصميم متاجر سلة وزد، تسويق رقمي، هوية بصرية، SEO — كل ما يحتاجه متجرك في مكان واحد بأسعار لا تُنافَس"
+    : locale === "fr"
+    ? "Conception Salla & Zid, marketing digital, branding, SEO — tout ce dont votre boutique a besoin"
+    : "Salla & Zid store design, digital marketing, branding, SEO — everything your store needs at unbeatable prices";
+  const label = locale === "ar" ? "أسعار تنافسية جداً" : locale === "fr" ? "Prix très compétitifs" : "Very Competitive Prices";
+  const ctaText = locale === "ar" ? "اطلب الآن" : locale === "fr" ? "Commander" : "Order Now";
+  const guaranteeText = locale === "ar"
+    ? "✓ ضمان جودة 30 يوم  ·  ✓ دفع 50% مقدماً  ·  ✓ تسليم في الوقت المحدد"
+    : "✓ 30-day quality guarantee  ·  ✓ 50% upfront  ·  ✓ On-time delivery";
 
   return (
-    <section id="services" style={{ background: "#FFFFFF", padding: "120px 0" }}>
-      <div className="max-w-[1400px] mx-auto px-8">
+    <section id="services" style={{ background: "#0D0D0D", padding: "100px 0 120px" }}>
+      <div className="max-w-[1400px] mx-auto px-6">
+
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
-          <div>
-            <div className="section-label mb-4">
-              {isRTL ? "خدماتنا" : "Services"}
-            </div>
-            <h2
-              style={{
-                fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
-                fontSize: "clamp(32px, 4vw, 52px)",
-                fontWeight: 700,
-                color: "#0A0A0A",
-                lineHeight: 1.1,
-              }}
-            >
-              {isRTL ? "ما نُتقنه" : locale === "en" ? "What We Master" : "Ce Que Nous Maîtrisons"}
-            </h2>
-          </div>
-          <p style={{ color: "#8C8C7A", fontSize: "16px", maxWidth: "400px", lineHeight: 1.7 }}>
-            {isRTL
-              ? "من تصميم المتاجر إلى بناء الهويات — كل ما تحتاجه في مكان واحد"
-              : "From store design to brand building — everything you need in one place"}
+        <div className="text-center mb-16" dir={isRTL ? "rtl" : "ltr"}>
+          <div className="section-label justify-center mb-4">{label}</div>
+          <h2 style={{
+            fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
+            fontSize: "clamp(32px, 4.5vw, 60px)",
+            fontWeight: 800,
+            color: "#FFFFFF",
+            lineHeight: 1.05,
+            marginBottom: "16px",
+            letterSpacing: isRTL ? "0" : "-0.03em",
+          }}>
+            {title}
+          </h2>
+          <p style={{
+            color: "rgba(255,255,255,0.45)", fontSize: "clamp(15px, 2vw, 18px)",
+            maxWidth: "680px", margin: "0 auto", lineHeight: 1.7,
+            fontFamily: isRTL ? "'Zain', sans-serif" : "inherit",
+          }}>
+            {subtitle}
           </p>
         </div>
 
-        {/* Services List */}
-        <div>
-          {services.map((service, index) => (
-            <ServiceRow
-              key={service.number}
-              service={service}
-              index={index}
-              isRTL={isRTL}
-            />
-          ))}
+        {/* Services Grid */}
+        <div
+          dir={isRTL ? "rtl" : "ltr"}
+          className="services-grid"
+          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
+        >
+          {SERVICES.map((service) => {
+            const name = locale === "ar" ? service.nameAr : locale === "fr" ? service.nameFr : service.nameEn;
+            const desc = locale === "ar" ? service.descAr : locale === "fr" ? service.descFr : service.descEn;
+            const features = locale === "ar" ? service.featuresAr : service.featuresEn;
+            const badge = locale === "ar" ? service.badge : service.badgeEn;
+            const isHovered = hoveredId === service.id;
+            const isFeatured = service.featured;
+            const whatsapp = getWhatsAppLink(
+              isRTL
+                ? `مرحباً! أريد الاستفسار عن خدمة "${service.nameAr}" — السعر ${service.price} ${service.priceNote}`
+                : `Hello! I want to inquire about "${service.nameEn}" — Price ${service.price} SAR`
+            );
+
+            return (
+              <div
+                key={service.id}
+                onMouseEnter={() => setHoveredId(service.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                style={{
+                  background: isFeatured ? "rgba(189,238,99,0.04)" : "rgba(255,255,255,0.025)",
+                  border: `1px solid ${isHovered || isFeatured ? service.color + "50" : "rgba(255,255,255,0.07)"}`,
+                  borderRadius: "20px",
+                  padding: "28px",
+                  transition: "all 0.35s cubic-bezier(0.19,1,0.22,1)",
+                  transform: isHovered ? "translateY(-5px)" : "none",
+                  boxShadow: isHovered ? `0 20px 60px ${service.color}10` : "none",
+                  position: "relative",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "20px",
+                }}
+              >
+                {/* Top glow */}
+                <div style={{
+                  position: "absolute", top: 0, left: 0, right: 0, height: "1px",
+                  background: `linear-gradient(to right, transparent, ${service.color}60, transparent)`,
+                  opacity: isHovered || isFeatured ? 1 : 0, transition: "opacity 0.3s",
+                }} />
+
+                <div style={{ flex: 1 }}>
+                  {/* Icon + Badge */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "18px" }}>
+                    <div style={{
+                      width: "52px", height: "52px", borderRadius: "14px",
+                      background: `${service.color}12`,
+                      border: `1px solid ${service.color}25`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: service.color,
+                      flexShrink: 0,
+                    }}>
+                      {service.icon}
+                    </div>
+                    {badge && (
+                      <span style={{
+                        padding: "4px 12px", borderRadius: "100px",
+                        background: isFeatured ? "var(--lime)" : `${service.color}20`,
+                        color: isFeatured ? "#0D0D0D" : service.color,
+                        fontSize: "11px", fontWeight: 700,
+                        fontFamily: isRTL ? "'Zain', sans-serif" : "Space Mono, monospace",
+                      }}>
+                        {badge}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Title */}
+                  <h3 style={{
+                    fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
+                    fontSize: isRTL ? "20px" : "16px",
+                    fontWeight: 700, color: "#FFFFFF",
+                    marginBottom: "10px", lineHeight: 1.3,
+                  }}>
+                    {name}
+                  </h3>
+
+                  {/* Description */}
+                  <p style={{
+                    color: "rgba(255,255,255,0.48)",
+                    fontSize: isRTL ? "15px" : "13px",
+                    lineHeight: 1.65, marginBottom: "18px",
+                    fontFamily: isRTL ? "'Zain', sans-serif" : "inherit",
+                  }}>
+                    {desc}
+                  </p>
+
+                  {/* Features */}
+                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "8px" }}>
+                    {features.slice(0, 4).map((f, i) => (
+                      <li key={i} style={{
+                        display: "flex", alignItems: "center", gap: "10px",
+                        color: "rgba(255,255,255,0.6)",
+                        fontSize: isRTL ? "14px" : "12px",
+                        fontFamily: isRTL ? "'Zain', sans-serif" : "inherit",
+                      }}>
+                        <span style={{
+                          width: "5px", height: "5px", borderRadius: "50%",
+                          background: service.color, flexShrink: 0,
+                        }} />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Price + CTA */}
+                <div>
+                  <div style={{ marginBottom: "14px" }}>
+                    <span style={{
+                      fontFamily: "Space Mono, monospace",
+                      fontSize: "28px", fontWeight: 700,
+                      color: service.color,
+                    }}>
+                      {service.price}
+                    </span>
+                    <span style={{
+                      color: "rgba(255,255,255,0.35)", fontSize: "13px",
+                      [isRTL ? "marginRight" : "marginLeft"]: "6px",
+                    }}>
+                      {service.priceNote}
+                    </span>
+                  </div>
+                  <a href={whatsapp} target="_blank" rel="noopener noreferrer" style={{ display: "block" }}>
+                    <button style={{
+                      width: "100%", padding: "12px 20px", borderRadius: "100px",
+                      background: isHovered || isFeatured ? service.color : "transparent",
+                      border: `1px solid ${isHovered || isFeatured ? service.color : "rgba(255,255,255,0.15)"}`,
+                      color: isHovered || isFeatured ? "#0D0D0D" : "rgba(255,255,255,0.7)",
+                      fontWeight: 700,
+                      fontFamily: isRTL ? "'Zain', sans-serif" : "Space Mono, monospace",
+                      fontSize: isRTL ? "15px" : "12px",
+                      letterSpacing: isRTL ? "0" : "0.05em",
+                      cursor: "pointer",
+                      transition: "all 0.3s",
+                    }}>
+                      {ctaText}
+                    </button>
+                  </a>
+                </div>
+              </div>
+            );
+          })}
         </div>
+
+        {/* Guarantee note */}
+        <p dir={isRTL ? "rtl" : "ltr"} style={{
+          textAlign: "center", marginTop: "48px",
+          color: "rgba(255,255,255,0.22)",
+          fontSize: "12px", fontFamily: "Space Mono, monospace",
+          letterSpacing: "0.12em",
+        }}>
+          {guaranteeText}
+        </p>
       </div>
+
+      <style>{`
+        @media (max-width: 1100px) {
+          .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 600px) {
+          .services-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }
