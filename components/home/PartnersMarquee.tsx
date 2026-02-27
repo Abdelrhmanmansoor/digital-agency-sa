@@ -26,9 +26,27 @@ const PARTNERS_ROW2 = [
   { name: "Bronze Abaya",    file: "bronze-abaya.png", invert: false },
 ];
 
+/* ─────────────────────────────────────────
+   Platform & payment logos — /public/logos/
+   ───────────────────────────────────────── */
+const LOGOS_ROW3 = [
+  { name: "Salla",          file: "Salla2-01.png",          invert: true  },
+  { name: "Zid",            file: "Zid-En-01.png",          invert: true  },
+  { name: "Google",         file: "google.png",             invert: false },
+  { name: "Meta",           file: "meta.png",               invert: false },
+  { name: "Al Rajhi Bank",  file: "Al-Rajhi.png",           invert: true  },
+  { name: "Alinma Bank",    file: "Alinma.png",             invert: true  },
+  { name: "D360",           file: "D360.png",               invert: true  },
+  { name: "Fawry",          file: "Fawry.png",              invert: false },
+  { name: "Enjaz",          file: "Enjaz.png",              invert: true  },
+  { name: "Bank Al-Bilad",  file: "Bank-Albilad-01-1.png",  invert: true  },
+  { name: "Western Union",  file: "western Union-01.png",   invert: true  },
+  { name: "Arab Bank",      file: "Arab Bank.png",          invert: true  },
+];
+
 type Partner = { name: string; file: string; invert: boolean };
 
-function PartnerLogo({ partner }: { partner: Partner }) {
+function PartnerLogo({ partner, basePath = "/partners/" }: { partner: Partner; basePath?: string }) {
   return (
     <div
       className="partner-logo-item"
@@ -48,7 +66,7 @@ function PartnerLogo({ partner }: { partner: Partner }) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={`/partners/${partner.file}`}
+        src={`${basePath}${partner.file}`}
         alt={partner.name}
         style={{
           height: "40px",
@@ -75,6 +93,7 @@ export default function PartnersMarquee() {
   const t = useTranslations("partners");
   const row1 = buildRow(PARTNERS_ROW1);
   const row2 = buildRow(PARTNERS_ROW2);
+  const row3 = buildRow(LOGOS_ROW3);
 
   return (
     <section
@@ -183,7 +202,7 @@ export default function PartnersMarquee() {
       </div>
 
       {/* Row 2 ← */}
-      <div style={{ overflow: "hidden" }}>
+      <div style={{ overflow: "hidden", marginBottom: "16px" }}>
         <div
           style={{
             display: "flex",
@@ -199,6 +218,43 @@ export default function PartnersMarquee() {
         >
           {row2.map((p, i) => (
             <PartnerLogo key={`r2-${i}`} partner={p} />
+          ))}
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div style={{
+        maxWidth: "1400px", margin: "0 auto 28px", padding: "0 40px",
+        display: "flex", alignItems: "center", gap: "20px",
+      }}>
+        <div style={{ flex: 1, height: "1px", background: "rgba(200,169,98,0.08)" }} />
+        <span style={{
+          fontFamily: "Space Mono, monospace", fontSize: "9px",
+          letterSpacing: "0.3em", textTransform: "uppercase",
+          color: "rgba(200,169,98,0.3)", whiteSpace: "nowrap",
+        }}>
+          PLATFORMS &amp; INTEGRATIONS
+        </span>
+        <div style={{ flex: 1, height: "1px", background: "rgba(200,169,98,0.08)" }} />
+      </div>
+
+      {/* Row 3 → (platforms & payment logos) */}
+      <div style={{ overflow: "hidden" }}>
+        <div
+          style={{
+            display: "flex",
+            animation: "marquee 35s linear infinite",
+            width: "max-content",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.animationPlayState = "paused";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.animationPlayState = "running";
+          }}
+        >
+          {row3.map((p, i) => (
+            <PartnerLogo key={`r3-${i}`} partner={p} basePath="/logos/" />
           ))}
         </div>
       </div>

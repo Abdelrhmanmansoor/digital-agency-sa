@@ -13,6 +13,7 @@ import WorkProcess from "@/components/home/WorkProcess";
 import Pricing from "@/components/home/Pricing";
 import Portfolio from "@/components/home/Portfolio";
 import AboutAgency from "@/components/home/AboutAgency";
+import LawyerProduct from "@/components/home/LawyerProduct";
 import RadarPromo from "@/components/home/RadarPromo";
 import BlogPreview from "@/components/home/BlogPreview";
 import Testimonials from "@/components/home/Testimonials";
@@ -85,6 +86,7 @@ export default function HomePage() {
         <PlatformCertifications />
         <PartnersMarquee />
         <Services />
+        <LawyerProduct />
         <WorkProcess />
         <FeaturedPartner />
         <Portfolio />
