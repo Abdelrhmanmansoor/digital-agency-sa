@@ -64,16 +64,16 @@ export default function InvoiceDetailPage() {
     if (!invoice) return;
     const phone = invoice.clientPhone.replace(/\D/g, "");
     const text = encodeURIComponent(
-      `السلام عليكم ${invoice.clientName}،\n\nيسعدنا إرسال فاتورتكم رقم ${invoice.number} بمبلغ ${invoice.total.toFixed(2)} ريال سعودي.\n\nتاريخ الاستحقاق: ${new Date(invoice.dueDate).toLocaleDateString("ar-SA")}\n\nوكالة رقمية — +201007835547`
+      `السلام عليكم ${invoice.clientName}،\n\nيسعدنا إرسال فاتورتكم رقم ${invoice.number} بمبلغ ${invoice.total.toFixed(2)} ريال سعودي.\n\nتاريخ الاستحقاق: ${new Date(invoice.dueDate).toLocaleDateString("ar-SA")}\n\n+201007835547`
     );
     window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
   };
 
   const handleEmail = () => {
     if (!invoice) return;
-    const subject = encodeURIComponent(`فاتورة رقم ${invoice.number} — وكالة رقمية`);
+    const subject = encodeURIComponent(`فاتورة رقم ${invoice.number}`);
     const body = encodeURIComponent(
-      `السلام عليكم ${invoice.clientName},\n\nيسعدنا إرسال فاتورتكم رقم ${invoice.number}.\n\nالمبلغ الإجمالي: ${invoice.total.toFixed(2)} SAR\nتاريخ الاستحقاق: ${new Date(invoice.dueDate).toLocaleDateString("ar-SA")}\n\nشكراً،\nوكالة رقمية`
+      `السلام عليكم ${invoice.clientName},\n\nيسعدنا إرسال فاتورتكم رقم ${invoice.number}.\n\nالمبلغ الإجمالي: ${invoice.total.toFixed(2)} SAR\nتاريخ الاستحقاق: ${new Date(invoice.dueDate).toLocaleDateString("ar-SA")}\n\nشكراً لكم`
     );
     window.open(`mailto:${invoice.clientEmail}?subject=${subject}&body=${body}`);
   };

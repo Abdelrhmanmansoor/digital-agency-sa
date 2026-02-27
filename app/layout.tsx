@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "تصميم متجر سلة احترافي في السعودية 2026 | وكالة تسويق رقمي",
   description:
-    "أفضل وكالة رقمية متخصصة في تصميم متجر سلة وزد احترافي، تصميم موقع مكتب محاماة، وكالة تسويق رقمي في الرياض والسعودية. هوية بصرية، SEO، إعلانات ممولة، إدارة حسابات سوشيال ميديا، موشن جرافيك — كل ما يحتاجه عملك.",
+    "متخصصون في تصميم متجر سلة وزد احترافي، تصميم موقع مكتب محاماة، تسويق رقمي في الرياض والسعودية. هوية بصرية، SEO، إعلانات ممولة، إدارة حسابات سوشيال ميديا، موشن جرافيك — كل ما يحتاجه عملك.",
   keywords: [
     "تصميم متجر سلة احترافي",
     "تصميم متجر سلة في السعودية",
@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     "تجهيز متجر سلة كامل",
     "ربط بوابة الدفع تابي تمارا",
     "شركة تصميم متجر سلة في الرياض",
-    "وكالة رقمية",
   ],
   metadataBase: new URL("https://digital-agency-sa.vercel.app"),
   robots: { index: true, follow: true },
@@ -39,10 +38,10 @@ export const metadata: Metadata = {
 const LOCAL_BUSINESS_SCHEMA = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "ProfessionalService"],
-  name: "وكالة رقمية",
-  alternateName: ["Digital Agency SA", "وكالة تسويق رقمي في السعودية"],
+  name: "تصميم متجر سلة احترافي",
+  alternateName: ["Salla Store Design", "وكالة تسويق رقمي في السعودية"],
   description:
-    "أفضل وكالة رقمية في السعودية متخصصة في تصميم متجر سلة وزد احترافي، تصميم مواقع مكاتب المحاماة، وكالة تسويق رقمي، هوية بصرية، SEO، إعلانات ممولة سناب وجوجل وتيك توك، إدارة حسابات سوشيال ميديا، موشن جرافيك، ربط بوابات الدفع تابي وتمارا وSTC Pay.",
+    "متخصصون في تصميم متجر سلة وزد احترافي، تصميم مواقع مكاتب المحاماة، تسويق رقمي، هوية بصرية، SEO، إعلانات ممولة سناب وجوجل وتيك توك، إدارة حسابات سوشيال ميديا، موشن جرافيك، ربط بوابات الدفع تابي وتمارا وSTC Pay.",
   url: "https://digital-agency-sa.vercel.app",
   telephone: "+201007835547",
   email: "info@digitalagency.sa",
@@ -55,7 +54,7 @@ const LOCAL_BUSINESS_SCHEMA = {
   areaServed: ["SA", "الرياض", "جدة", "الدمام", "مكة المكرمة", "الخليج العربي"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "خدمات وكالة رقمية",
+    name: "خدماتنا",
     itemListElement: [
       {
         "@type": "Offer",
@@ -145,9 +144,9 @@ const LOCAL_BUSINESS_SCHEMA = {
 const WEBSITE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "وكالة رقمية — تصميم متجر سلة وتسويق رقمي في السعودية",
+  name: "تصميم متجر سلة وتسويق رقمي في السعودية",
   url: "https://digital-agency-sa.vercel.app",
-  description: "أفضل وكالة رقمية في السعودية — تصميم متجر سلة وزد، تصميم موقع مكتب محاماة، وكالة تسويق رقمي بالرياض",
+  description: "متخصصون في تصميم متجر سلة وزد، تصميم موقع مكتب محاماة، تسويق رقمي بالرياض",
   inLanguage: ["ar", "en", "fr"],
   potentialAction: {
     "@type": "SearchAction",

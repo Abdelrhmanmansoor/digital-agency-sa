@@ -204,9 +204,10 @@ export default function Hero() {
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="#C8A962" style={{ flexShrink:0 }}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 {locale === "ar" ? "توفير حتى 70%" : "Save Up To 70%"}
               </span>
-              <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(189,238,99,0.07)", border:"1px solid rgba(189,238,99,0.2)", borderRadius:"100px", padding:"5px 14px", fontSize:"11px", fontFamily:"Space Mono, monospace", color:"#BDEE63", letterSpacing:"0.12em", textTransform:"uppercase" }}>
+              <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(189,238,99,0.07)", border:"1px solid rgba(189,238,99,0.2)", borderRadius:"100px", padding:"5px 14px" }}>
                 <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#BDEE63", display:"inline-block", animation:"heroPulse 2s ease-in-out infinite" }} />
-                {locale === "ar" ? "وكالة رقمية" : "Digital Agency"}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo.png" alt="" style={{ height:"14px", width:"auto", objectFit:"contain", filter:"brightness(0) invert(1)", opacity:0.9 }} />
               </span>
             </div>
 

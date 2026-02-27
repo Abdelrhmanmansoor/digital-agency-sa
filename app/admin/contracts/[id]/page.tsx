@@ -58,16 +58,16 @@ export default function ContractDetailPage() {
     if (!contract) return;
     const phone = contract.clientPhone.replace(/\D/g, "");
     const text = encodeURIComponent(
-      `السلام عليكم ${contract.clientName}،\n\nيسعدنا إرسال عقد التعاون رقم ${contract.number} للخدمة: ${contract.serviceTitleAr}.\n\nالمبلغ الإجمالي: ${contract.totalAmount.toFixed(2)} ريال سعودي.\n\nوكالة رقمية — +201007835547`
+      `السلام عليكم ${contract.clientName}،\n\nيسعدنا إرسال عقد التعاون رقم ${contract.number} للخدمة: ${contract.serviceTitleAr}.\n\nالمبلغ الإجمالي: ${contract.totalAmount.toFixed(2)} ريال سعودي.\n\n+201007835547`
     );
     window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
   };
 
   const handleEmail = () => {
     if (!contract) return;
-    const subject = encodeURIComponent(`عقد رقم ${contract.number} — وكالة رقمية`);
+    const subject = encodeURIComponent(`عقد رقم ${contract.number}`);
     const body = encodeURIComponent(
-      `السلام عليكم ${contract.clientName},\n\nيسعدنا إرسال عقد التعاون رقم ${contract.number}.\n\nالخدمة: ${contract.serviceTitleAr}\nالمبلغ: ${contract.totalAmount.toFixed(2)} SAR\n\nوكالة رقمية`
+      `السلام عليكم ${contract.clientName},\n\nيسعدنا إرسال عقد التعاون رقم ${contract.number}.\n\nالخدمة: ${contract.serviceTitleAr}\nالمبلغ: ${contract.totalAmount.toFixed(2)} SAR\n\nشكراً لكم`
     );
     window.open(`mailto:${contract.clientEmail}?subject=${subject}&body=${body}`);
   };

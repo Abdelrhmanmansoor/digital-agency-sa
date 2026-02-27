@@ -54,7 +54,7 @@ export default function LoadingScreen() {
       }}>
         <Image
           src="/logo.png"
-          alt="وكالة رقمية"
+          alt="logo"
           width={180}
           height={72}
           style={{ width: 180, height: "auto", objectFit: "contain", filter: "drop-shadow(0 0 24px rgba(200,169,98,0.25))" }}

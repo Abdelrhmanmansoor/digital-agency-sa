@@ -10,7 +10,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: locale === "ar" ? "المدونة | وكالة رقمية" : "Blog | Digital Agency",
+    title: locale === "ar" ? "المدونة" : "Blog",
     description: locale === "ar"
       ? "مقالات ونصائح في التسويق الرقمي وتصميم المتاجر الإلكترونية"
       : "Articles and tips on digital marketing and e-commerce store design",

@@ -468,7 +468,7 @@ export default function NewInvoicePage() {
             </div>
             <div>
               <label style={labelStyle}>اسم صاحب الحساب</label>
-              {FIELD.input(accountHolder, setAccountHolder, "text", "وكالة رقمية")}
+              {FIELD.input(accountHolder, setAccountHolder, "text", "اسم صاحب الحساب")}
             </div>
             <div>
               <label style={labelStyle}>رقم IBAN</label>

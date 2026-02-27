@@ -40,10 +40,10 @@ export async function generateMetadata({
   /* ── Descriptions — keyword-dense but readable ── */
   const metaDesc =
     locale === "ar"
-      ? "أفضل وكالة رقمية في الرياض والسعودية — تصميم متجر سلة وزد احترافي يزيد مبيعاتك، تصميم موقع مكتب محاماة، وكالة تسويق رقمي متكاملة، هوية بصرية، موشن جرافيك، إعلانات سناب وجوجل وتيك توك، إدارة حسابات سوشيال ميديا، تحسين SEO، ربط تابي وتمارا وSTC Pay. أسعار تنافسية وتسليم في الوقت المحدد."
+      ? "تصميم متجر سلة وزد احترافي يزيد مبيعاتك في الرياض والسعودية — تصميم موقع مكتب محاماة، تسويق رقمي متكامل، هوية بصرية، موشن جرافيك، إعلانات سناب وجوجل وتيك توك، إدارة حسابات سوشيال ميديا، تحسين SEO، ربط تابي وتمارا وSTC Pay. أسعار تنافسية وتسليم في الوقت المحدد."
       : locale === "fr"
-      ? "Meilleure agence digitale en Arabie Saoudite — conception boutique Salla & Zid, site web cabinet d'avocats, marketing digital, identité visuelle, SEO, gestion réseaux sociaux. Livraison rapide, prix compétitifs."
-      : "Top digital agency in Saudi Arabia & Riyadh — professional Salla & Zid store design, law firm website, digital marketing, brand identity, SEO, Snapchat & Google ads, social media management. Competitive prices, on-time delivery.";
+      ? "Conception boutique Salla & Zid professionnelle en Arabie Saoudite — site web cabinet d'avocats, marketing digital, identité visuelle, SEO, gestion réseaux sociaux. Livraison rapide, prix compétitifs."
+      : "Professional Salla & Zid store design in Saudi Arabia & Riyadh — law firm website, digital marketing, brand identity, SEO, Snapchat & Google ads, social media management. Competitive prices, on-time delivery.";
 
   /* ── Keywords per locale ── */
   const metaKeywords =
@@ -74,7 +74,7 @@ export async function generateMetadata({
           "سيو للمتاجر الالكترونية",
           "ربط تابي وتمارا",
           "ربط STC Pay",
-          "وكالة رقمية",
+          "تصميم متجر سلة",
           "أفضل شركة تصميم متجر سلة",
           "تصميم متجر الكتروني بالسعودية",
         ]
@@ -100,10 +100,10 @@ export async function generateMetadata({
   /* ── OG title (shorter, for social sharing) ── */
   const metaOgTitle =
     locale === "ar"
-      ? "تصميم متجر سلة وزد + موقع محامي + تسويق رقمي | وكالة رقمية"
+      ? "تصميم متجر سلة وزد + موقع محامي + تسويق رقمي"
       : locale === "fr"
-      ? "Boutique Salla + Site Cabinet + Marketing Digital | Agence Digitale"
-      : "Salla Store + Law Firm Site + Digital Marketing | Digital Agency";
+      ? "Boutique Salla + Site Cabinet + Marketing Digital"
+      : "Salla Store + Law Firm Site + Digital Marketing";
 
   const metaTwitterTitle =
     locale === "ar"
@@ -125,7 +125,7 @@ export async function generateMetadata({
       description: metaDesc,
       url: `https://digital-agency-sa.vercel.app/${locale}`,
       siteName:
-        locale === "ar" ? "وكالة رقمية" : locale === "fr" ? "Agence Digitale" : "Digital Agency",
+        locale === "ar" ? "تصميم متجر سلة احترافي" : locale === "fr" ? "Conception Boutique Salla" : "Salla Store Design",
       locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
       type: "website",
     },

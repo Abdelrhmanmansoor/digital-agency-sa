@@ -11,8 +11,8 @@ export function getWhatsAppLink(message?: string) {
 }
 
 export const AGENCY_INFO = {
-  name: "وكالة رقمية",
-  nameEn: "Digital Agency",
+  name: "",
+  nameEn: "",
   whatsapp: WHATSAPP_NUMBER,
   email: "info@digitalagency.sa",
   phone: "+201007835547",

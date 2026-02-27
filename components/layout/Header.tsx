@@ -118,7 +118,7 @@ export default function Header() {
           >
             <Image
               src="/logo.png"
-              alt="وكالة رقمية"
+              alt="logo"
               width={isScrolled ? 100 : 120}
               height={isScrolled ? 40 : 48}
               style={{

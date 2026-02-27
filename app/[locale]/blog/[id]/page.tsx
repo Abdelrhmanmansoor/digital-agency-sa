@@ -177,7 +177,7 @@ export async function generateMetadata({
   const article = ARTICLES.find((a) => a.id === id);
   if (!article) return { title: "Article Not Found" };
   return {
-    title: `${locale === "ar" ? article.titleAr : article.titleEn} | وكالة رقمية`,
+    title: locale === "ar" ? article.titleAr : article.titleEn,
     description: locale === "ar" ? article.excerptAr : article.excerptEn,
     openGraph: {
       images: [article.image],

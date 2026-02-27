@@ -6,14 +6,13 @@ import { routing } from "@/i18n/routing";
 
 export const metadata: Metadata = {
   title: {
-    default: "وكالة رقمية | Salla Store Design & Digital Marketing",
-    template: "%s | وكالة رقمية",
+    default: "تصميم متجر سلة احترافي | Salla Store Design & Digital Marketing",
+    template: "%s",
   },
-  description: "وكالة رقمية متخصصة في تصميم متاجر سلة وزد، التسويق الرقمي، والهويات البصرية",
+  description: "متخصصون في تصميم متاجر سلة وزد، التسويق الرقمي، والهويات البصرية",
   keywords: ["تصميم متجر سلة", "وكالة تسويق رقمي", "salla store design", "digital marketing"],
   openGraph: {
     type: "website",
-    siteName: "وكالة رقمية",
   },
 };
 

@@ -7,8 +7,8 @@ export async function generateMetadata() {
   const locale = await getLocale();
   return {
     title: locale === "ar"
-      ? "سياسة الخصوصية والدفع والاسترجاع | وكالة رقمية"
-      : "Privacy, Payment & Return Policy | Digital Agency",
+      ? "سياسة الخصوصية والدفع والاسترجاع"
+      : "Privacy, Payment & Return Policy",
     robots: "index,follow",
   };
 }

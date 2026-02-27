@@ -6,8 +6,8 @@ import AdminSidebar from "@/components/admin/AdminSidebar";
 export default function AdminSettingsPage() {
   const [saved, setSaved] = useState(false);
   const [settings, setSettings] = useState({
-    siteName: "وكالة رقمية",
-    siteNameEn: "Digital Agency",
+    siteName: "",
+    siteNameEn: "",
     whatsapp: "+201007835547",
     email: "info@digitalagency.sa",
     phone: "+966 5X XXX XXXX",

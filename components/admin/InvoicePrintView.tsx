@@ -194,7 +194,7 @@ function ClassicTemplate({ invoice }: Props) {
         borderBottom: "1px solid #EEE8DE",
       }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo.png" alt="وكالة رقمية" style={{ height: "48px", objectFit: "contain", maxWidth: "170px" }} />
+        <img src="/logo.png" alt="logo" style={{ height: "48px", objectFit: "contain", maxWidth: "170px" }} />
 
         <div style={{ textAlign: "left" }}>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", color: "#BBA87E", letterSpacing: "0.3em", textTransform: "uppercase" }}>
@@ -288,7 +288,7 @@ function ModernTemplate({ invoice }: Props) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.png"
-            alt="وكالة رقمية"
+            alt="logo"
             style={{ height: "42px", objectFit: "contain", maxWidth: "160px", filter: "brightness(0) invert(1)" }}
           />
           <div style={{ textAlign: "left" }}>
@@ -356,7 +356,7 @@ function MinimalTemplate({ invoice }: Props) {
       {/* ── Header ── */}
       <div style={{ padding: "36px 44px 28px 40px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", direction: "rtl", position: "relative", zIndex: 1 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo.png" alt="وكالة رقمية" style={{ height: "44px", objectFit: "contain", maxWidth: "160px" }} />
+        <img src="/logo.png" alt="logo" style={{ height: "44px", objectFit: "contain", maxWidth: "160px" }} />
         <div style={{ textAlign: "left" }}>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#C8A962", letterSpacing: "0.3em", textTransform: "uppercase" }}>فاتورة · Invoice</div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "20px", fontWeight: 700, color: "#111", lineHeight: 1.15 }}>{invoice.number}</div>

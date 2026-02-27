@@ -9,14 +9,14 @@ const SECTIONS = [
     titleAr: "سياسة الخصوصية",
     titleEn: "Privacy Policy",
     contentAr: [
-      "نحن في وكالة رقمية نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية وفق أعلى المعايير.",
+      "نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية وفق أعلى المعايير.",
       "نجمع فقط البيانات الضرورية لتقديم خدماتنا: الاسم والبريد الإلكتروني ورقم الجوال.",
       "لن نشارك بياناتك مع أي طرف ثالث دون موافقتك الصريحة، إلا ما تقتضيه المتطلبات القانونية.",
       "نستخدم بروتوكولات تشفير SSL وأنظمة حماية متطورة لضمان أمان معلوماتك.",
       "يحق لك في أي وقت طلب حذف بياناتك أو تعديلها عبر التواصل معنا مباشرة.",
     ],
     contentEn: [
-      "At Digital Agency, we respect your privacy and are committed to protecting your personal data to the highest standards.",
+      "We respect your privacy and are committed to protecting your personal data to the highest standards.",
       "We collect only the data necessary to provide our services: name, email address, and phone number.",
       "We will not share your data with any third party without your explicit consent, except as required by law.",
       "We use SSL encryption protocols and advanced security systems to ensure the safety of your information.",

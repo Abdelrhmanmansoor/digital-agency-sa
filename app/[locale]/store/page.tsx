@@ -50,7 +50,7 @@ export async function generateMetadata({
       title: locale === "ar" ? titleAr : titleEn,
       description: locale === "ar" ? descAr : descEn,
       url: `https://digital-agency-sa.vercel.app/${locale}/store`,
-      siteName: "وكالة رقمية",
+      siteName: "تصميم متجر سلة احترافي",
       locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
       type: "website",
     },
