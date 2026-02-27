@@ -79,8 +79,8 @@ function PlatformScreenshot({ isRTL }: { isRTL: boolean }) {
         style={{
           position: "absolute",
           top: "52px",
-          right: isRTL ? "unset" : "16px",
-          left: isRTL ? "16px" : "unset",
+          right: "16px",
+          left: "unset",
           display: "flex",
           alignItems: "center",
           gap: "6px",
@@ -227,19 +227,72 @@ export default function FeaturedPartner() {
           </div>
         </div>
 
-        {/* ── Two-column layout ── */}
+        {/* ── Two-column layout — image always LEFT, text always RIGHT ── */}
         <div
           className="fp-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1.2fr",
+            gridTemplateColumns: "1.2fr 1fr",
             gap: "80px",
             alignItems: "center",
-            direction: isRTL ? "rtl" : "ltr",
           }}
         >
-          {/* Left: Copy */}
-          <div>
+          {/* LEFT: Platform screenshot */}
+          <div style={{ position: "relative" }}>
+            {/* Glow behind mockup */}
+            <div
+              style={{
+                position: "absolute",
+                inset: "-30px",
+                background: "radial-gradient(ellipse, rgba(200,169,98,0.07) 0%, transparent 70%)",
+                pointerEvents: "none",
+                zIndex: 0,
+              }}
+            />
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <PlatformScreenshot isRTL={isRTL} />
+            </div>
+
+            {/* Floating badge */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "-24px",
+                right: "-24px",
+                background: "#141414",
+                border: "1px solid rgba(200,169,98,0.25)",
+                borderRadius: "12px",
+                padding: "14px 18px",
+                boxShadow: "0 8px 40px rgba(0,0,0,0.6)",
+                zIndex: 10,
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: "'Zain', sans-serif",
+                  fontSize: "13px",
+                  fontWeight: 700,
+                  color: "#FAFAF7",
+                  marginBottom: "2px",
+                }}
+              >
+                {isRTL ? "بنيناها وندير كل شيء" : "Built & Fully Managed by Us"}
+              </div>
+              <div
+                style={{
+                  fontFamily: "Space Mono",
+                  fontSize: "9px",
+                  color: "rgba(200,169,98,0.6)",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                {isRTL ? "من الفكرة إلى التشغيل" : "From idea to operation"}
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT: Copy */}
+          <div style={{ direction: isRTL ? "rtl" : "ltr" }}>
             {/* Pioneer badge */}
             <div
               style={{
@@ -431,60 +484,6 @@ export default function FeaturedPartner() {
             </div>
           </div>
 
-          {/* Right: Real platform screenshot */}
-          <div style={{ position: "relative" }}>
-            {/* Glow behind mockup */}
-            <div
-              style={{
-                position: "absolute",
-                inset: "-30px",
-                background: "radial-gradient(ellipse, rgba(200,169,98,0.07) 0%, transparent 70%)",
-                pointerEvents: "none",
-                zIndex: 0,
-              }}
-            />
-            <div style={{ position: "relative", zIndex: 1 }}>
-              <PlatformScreenshot isRTL={isRTL} />
-            </div>
-
-            {/* Floating badge */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "-24px",
-                left: isRTL ? "unset" : "-24px",
-                right: isRTL ? "-24px" : "unset",
-                background: "#141414",
-                border: "1px solid rgba(200,169,98,0.25)",
-                borderRadius: "12px",
-                padding: "14px 18px",
-                boxShadow: "0 8px 40px rgba(0,0,0,0.6)",
-                zIndex: 10,
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "'Zain', sans-serif",
-                  fontSize: "13px",
-                  fontWeight: 700,
-                  color: "#FAFAF7",
-                  marginBottom: "2px",
-                }}
-              >
-                {isRTL ? "بنيناها وندير كل شيء" : "Built & Fully Managed by Us"}
-              </div>
-              <div
-                style={{
-                  fontFamily: "Space Mono",
-                  fontSize: "9px",
-                  color: "rgba(200,169,98,0.6)",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                {isRTL ? "من الفكرة إلى التشغيل" : "From idea to operation"}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
