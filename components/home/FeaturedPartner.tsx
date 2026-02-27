@@ -67,7 +67,7 @@ export default function FeaturedPartner() {
 
             <h2
               style={{
-                fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
                 fontSize: "clamp(36px, 4vw, 56px)",
                 fontWeight: 700,
                 lineHeight: 1.1,

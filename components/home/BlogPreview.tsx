@@ -103,7 +103,7 @@ export default function BlogPreview() {
             </div>
             <h2
               style={{
-                fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "clamp(32px, 4vw, 52px)",
                 fontWeight: 700,
                 color: "#0A0A0A",
@@ -179,7 +179,7 @@ export default function BlogPreview() {
 
             <h3
               style={{
-                fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "clamp(20px, 2vw, 28px)",
                 fontWeight: 700,
                 color: "#0A0A0A",
@@ -248,7 +248,7 @@ export default function BlogPreview() {
 
                 <h3
                   style={{
-                    fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                    fontFamily: "'Zain', sans-serif",
                     fontSize: "17px",
                     fontWeight: 700,
                     color: "#0A0A0A",

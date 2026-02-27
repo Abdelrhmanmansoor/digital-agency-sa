@@ -30,7 +30,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <div
               style={{
-                fontFamily: "Noto Kufi Arabic, sans-serif",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "28px",
                 fontWeight: 800,
                 color: "#C8A962",

@@ -132,7 +132,7 @@ export default function ContentWriter({ onClose }: { onClose: () => void }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Inputs */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", "'Zain', sans-serif" }}>
             {isRTL ? "تفاصيل المنتج" : "Product Details"}
           </h3>
 
@@ -233,7 +233,7 @@ export default function ContentWriter({ onClose }: { onClose: () => void }) {
 
         {/* Results */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", "'Zain', sans-serif" }}>
             {isRTL ? "النسخ المُنشأة (3 نسخ)" : "Generated Versions (3 Copies)"}
           </h3>
 
@@ -295,7 +295,7 @@ export default function ContentWriter({ onClose }: { onClose: () => void }) {
                       fontSize: "14px",
                       lineHeight: 1.8,
                       color: "#2D2D2D",
-                      fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif",
+                      "'Zain', sans-serif",
                     }}
                   >
                     {text}
@@ -306,7 +306,7 @@ export default function ContentWriter({ onClose }: { onClose: () => void }) {
           ) : (
             <div style={{ padding: "60px 20px", textAlign: "center", border: "1px dashed #E8E6E1", color: "#8C8C7A" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>✍️</div>
-              <div style={{ fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif", fontSize: "15px" }}>
+              <div style={{ "'Zain', sans-serif", fontSize: "15px" }}>
                 {isRTL ? "أدخل تفاصيل منتجك واضغط 'أنشئ المحتوى'" : "Enter your product details and press 'Generate Content'"}
               </div>
             </div>

@@ -107,7 +107,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Settings */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", "'Zain', sans-serif" }}>
             {isRTL ? "إعدادات المتجر" : "Store Settings"}
           </h3>
 
@@ -128,7 +128,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
                       textAlign: "center",
                       transition: "all 0.2s",
                       fontSize: "13px",
-                      fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif",
+                      "'Zain', sans-serif",
                       color: category === cat.value ? "#C8A962" : "#2D2D2D",
                     }}
                   >
@@ -157,7 +157,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
                       border: "1px solid",
                       borderColor: nameLanguage === lang.value ? "#C8A962" : "#E8E6E1",
                       color: nameLanguage === lang.value ? "#0A0A0A" : "#8C8C7A",
-                      fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif",
+                      "'Zain', sans-serif",
                       fontSize: "13px",
                       cursor: "pointer",
                       transition: "all 0.2s",
@@ -177,7 +177,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
 
         {/* Results */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", "'Zain', sans-serif" }}>
             {isRTL ? "20 اقتراح اسم" : "20 Name Suggestions"}
           </h3>
 
@@ -211,7 +211,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
                   <span
                     style={{
                       flex: 1,
-                      fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                      "'Zain', sans-serif",
                       fontSize: "16px",
                       fontWeight: 600,
                       color: "#0A0A0A",
@@ -265,7 +265,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
           ) : (
             <div style={{ padding: "60px 20px", textAlign: "center", border: "1px dashed #E8E6E1", color: "#8C8C7A" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🏷</div>
-              <div style={{ fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif", fontSize: "15px" }}>
+              <div style={{ "'Zain', sans-serif", fontSize: "15px" }}>
                 {isRTL ? "اختر نوع المتجر واضغط 'أنشئ أسماء'" : "Select store type and press 'Generate Names'"}
               </div>
             </div>

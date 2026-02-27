@@ -74,7 +74,7 @@ function CompetitorAnalyzer({ onClose }: { onClose: () => void }) {
             <span>{analyzing ? (isRTL ? "⏳ تحليل..." : "⏳ Analyzing...") : `📊 ${isRTL ? "حلّل" : "Analyze"}`}</span>
           </button>
         </div>
-        <div style={{ fontSize: "12px", color: "#8C8C7A", marginTop: "8px", fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif" }}>
+        <div style={{ fontSize: "12px", color: "#8C8C7A", marginTop: "8px", fontFamily: "'Zain', sans-serif" }}>
           {isRTL ? "* هذا التحليل تقديري بناءً على المعلومات المتاحة للعموم" : "* This analysis is estimated based on publicly available information"}
         </div>
       </div>
@@ -93,7 +93,7 @@ function CompetitorAnalyzer({ onClose }: { onClose: () => void }) {
                   <div style={{ fontSize: "11px", fontFamily: "Space Mono", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#C8A962", marginBottom: "4px" }}>
                     {isRTL ? item.labelAr : item.labelEn}
                   </div>
-                  <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif" }}>
+                  <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>
                     {item.value as string}
                   </div>
                 </div>
@@ -108,7 +108,7 @@ function CompetitorAnalyzer({ onClose }: { onClose: () => void }) {
               </div>
               <ul className="space-y-2">
                 {(res.strengths as string[]).map((s: string) => (
-                  <li key={s} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif" }}>• {s}</li>
+                  <li key={s} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>• {s}</li>
                 ))}
               </ul>
             </div>
@@ -118,7 +118,7 @@ function CompetitorAnalyzer({ onClose }: { onClose: () => void }) {
               </div>
               <ul className="space-y-2">
                 {(res.weaknesses as string[]).map((w: string) => (
-                  <li key={w} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif" }}>• {w}</li>
+                  <li key={w} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>• {w}</li>
                 ))}
               </ul>
             </div>
@@ -130,7 +130,7 @@ function CompetitorAnalyzer({ onClose }: { onClose: () => void }) {
             </div>
             <ul className="space-y-2">
               {(res.recommendations as string[]).map((r: string) => (
-                <li key={r} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif" }}>✓ {r}</li>
+                <li key={r} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>✓ {r}</li>
               ))}
             </ul>
           </div>
@@ -204,7 +204,7 @@ export default function SallaTools() {
             </div>
             <h2
               style={{
-                fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
                 fontSize: "clamp(32px, 4vw, 52px)",
                 fontWeight: 700,
                 color: "#FAFAF7",
@@ -249,7 +249,7 @@ export default function SallaTools() {
                 <div className="tool-icon">{tool.icon}</div>
                 <h3
                   style={{
-                    fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                    fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
                     fontSize: "16px",
                     fontWeight: 600,
                     color: "#FAFAF7",
@@ -305,7 +305,7 @@ export default function SallaTools() {
               <div>
                 <h2
                   style={{
-                    fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                    fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
                     fontSize: "22px",
                     fontWeight: 700,
                     color: "#FAFAF7",

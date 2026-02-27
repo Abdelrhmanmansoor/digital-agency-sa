@@ -219,7 +219,7 @@ export default function Header() {
                   <span
                     className="transition-all duration-300 group-hover:text-[#C8A962]"
                     style={{
-                      fontFamily: "Noto Kufi Arabic, sans-serif",
+                      fontFamily: "'Zain', sans-serif",
                       fontSize: isRTL ? "48px" : "42px",
                       fontWeight: 700,
                       color: "#FAFAF7",

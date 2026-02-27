@@ -138,7 +138,7 @@ export default function Portfolio() {
             </div>
             <h2
               style={{
-                fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                fontFamily: "'Zain', sans-serif",
                 fontSize: "clamp(32px, 4vw, 52px)",
                 fontWeight: 700,
                 color: "#0A0A0A",
@@ -168,7 +168,7 @@ export default function Portfolio() {
                   border: "none",
                   cursor: "pointer",
                   fontSize: "13px",
-                  fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif",
+                  fontFamily: "'Zain', sans-serif",
                   fontWeight: 500,
                   color: activeFilter === filter.key ? "#0A0A0A" : "#8C8C7A",
                   borderBottom: activeFilter === filter.key ? "2px solid #C8A962" : "2px solid transparent",
@@ -232,7 +232,7 @@ export default function Portfolio() {
                   </div>
                   <div
                     style={{
-                      fontFamily: isRTL ? "Noto Kufi Arabic" : "sans-serif",
+                      fontFamily: "'Zain', sans-serif",
                       fontSize: "20px",
                       fontWeight: 700,
                       color: "#FFFFFF",
