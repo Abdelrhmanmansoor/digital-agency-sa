@@ -60,9 +60,9 @@ export default function ContractsPage() {
     filter === "all" ? contracts : contracts.filter((c) => c.status === filter);
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#0A0A0A" }}>
+    <div>
       <AdminSidebar />
-      <div style={{ flex: 1, padding: "40px 48px", fontFamily: "'Zain', sans-serif" }}>
+      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'Zain', sans-serif" }}>
 
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>

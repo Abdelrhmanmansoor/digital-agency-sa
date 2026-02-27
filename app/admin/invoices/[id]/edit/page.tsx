@@ -150,9 +150,9 @@ export default function EditInvoicePage() {
 
   if (loading) {
     return (
-      <div style={{ display: "flex", minHeight: "100vh", background: "#0A0A0A" }}>
+      <div>
         <AdminSidebar />
-        <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.3)", fontFamily: "Space Mono, monospace" }}>
+        <div className="admin-main" style={{ background: "#0A0A0A", display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.3)", fontFamily: "Space Mono, monospace" }}>
           جارٍ التحميل...
         </div>
       </div>
@@ -160,9 +160,9 @@ export default function EditInvoicePage() {
   }
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", background: "#0A0A0A" }}>
+    <div>
       <AdminSidebar />
-      <div style={{ flex: 1, padding: "40px 48px", fontFamily: "'Zain', sans-serif", direction: "rtl" }}>
+      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'Zain', sans-serif", direction: "rtl" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
           <h1 style={{ fontSize: "26px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
             تعديل الفاتورة
