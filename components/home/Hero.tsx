@@ -90,6 +90,66 @@ export default function Hero() {
         alignItems: "center",
       }}
     >
+      {/* ── Background: banner image ── */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      >
+        {/* Desktop banner */}
+        <img
+          src="/hero-desktop.jpg"
+          alt=""
+          className="hero-bg-desktop"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 20%",
+            opacity: 0.18,
+            filter: "blur(1.5px) saturate(0.7)",
+          }}
+        />
+        {/* Mobile banner */}
+        <img
+          src="/hero-mobile.jpg"
+          alt=""
+          className="hero-bg-mobile"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center 20%",
+            opacity: 0.18,
+            filter: "blur(1.5px) saturate(0.7)",
+          }}
+        />
+        {/* Dark gradient overlay for blending */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,0.85) 75%, rgba(10,10,10,1) 100%)",
+          }}
+        />
+        {/* Radial vignette for extra depth */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "radial-gradient(ellipse 80% 80% at 50% 30%, transparent 30%, rgba(10,10,10,0.8) 100%)",
+          }}
+        />
+      </div>
+
       {/* ── Background: dot grid ── */}
       <div
         aria-hidden
@@ -99,6 +159,7 @@ export default function Hero() {
           backgroundSize: "44px 44px",
           maskImage: "radial-gradient(ellipse 90% 90% at 50% 40%, black 40%, transparent 100%)",
           pointerEvents: "none",
+          zIndex: 1,
         }}
       />
 
@@ -457,6 +518,12 @@ export default function Hero() {
         @keyframes heroPulse {
           0%,100% { opacity:1; transform:scale(1); }
           50% { opacity:0.4; transform:scale(0.75); }
+        }
+        .hero-bg-mobile { display: none !important; }
+        .hero-bg-desktop { display: block !important; }
+        @media (max-width: 768px) {
+          .hero-bg-desktop { display: none !important; }
+          .hero-bg-mobile { display: block !important; }
         }
         @media (max-width: 900px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }

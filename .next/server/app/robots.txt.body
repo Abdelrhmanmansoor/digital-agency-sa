@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+Host: https://digitalagency.sa
+Sitemap: https://digitalagency.sa/sitemap.xml
