@@ -15,7 +15,7 @@ export const AGENCY_INFO = {
   nameEn: "Digital Agency",
   whatsapp: WHATSAPP_NUMBER,
   email: "info@digitalagency.sa",
-  phone: "+966 5X XXX XXXX",
+  phone: "+201007835547",
   address: "المملكة العربية السعودية",
   social: {
     instagram: "",

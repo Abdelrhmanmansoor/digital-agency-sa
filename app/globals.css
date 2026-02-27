@@ -345,7 +345,37 @@ h1,h2,h3,h4,h5,h6 { font-family:var(--font-arabic-display); font-weight:700; lin
   .portfolio-item:nth-child(n) { grid-column:span 12; }
   .pricing-card.featured { transform:scale(1); }
   .service-row-content { padding-bottom:24px; }
+
+  /* ===== MOBILE FULLSCREEN MENU ===== */
+  .fullscreen-menu { flex-direction:column !important; overflow-y:auto; }
+
+  /* ===== MOBILE GENERAL SECTIONS ===== */
+  section { padding-top:64px !important; padding-bottom:64px !important; }
+  .section-px { padding-left:16px !important; padding-right:16px !important; }
+
+  /* Modal on mobile */
+  .modal-content { border-radius:16px 16px 0 0 !important; max-height:85vh; }
+  .modal-overlay { align-items:flex-end !important; padding:0 !important; }
+
+  /* Pricing cards stack */
+  .pricing-card { padding:32px 24px; }
+
+  /* Service rows */
+  .service-name { font-size:18px; }
+
+  /* Footer mobile */
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap:32px !important; }
+
+  /* Store product cards */
+  .store-product-card { padding:24px !important; }
 }
+
+@media (max-width:480px) {
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .store-comparison-table { font-size:12px; }
+  .store-comparison-table th, .store-comparison-table td { padding:10px 8px !important; }
+}
+
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after { animation-duration:0.01ms!important; animation-iteration-count:1!important; transition-duration:0.01ms!important; }
 }

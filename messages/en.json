@@ -7,13 +7,14 @@
     "blog": "Blog",
     "pricing": "Pricing",
     "about": "About Us",
-    "contact": "Contact"
+    "contact": "Contact",
+    "store": "Services Store"
   },
   "hero": {
     "title1": "We Craft",
     "title2": "Impact",
     "title3": "We Don't Follow Trends",
-    "subtitle": "Saudi digital agency specializing in e-commerce stores, digital marketing, and brand identity",
+    "subtitle": "Digital agency specializing in e-commerce stores, digital marketing, and brand identity",
     "cta_primary": "Start Your Project",
     "cta_secondary": "View Our Work",
     "scroll": "Explore More",

@@ -17,12 +17,20 @@ export default function Header() {
   const locale = useLocale();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const isRTL = locale === "ar";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   useEffect(() => {
@@ -38,6 +46,7 @@ export default function Header() {
     { key: "home", href: `/${locale}` },
     { key: "services", href: `/${locale}#services` },
     { key: "portfolio", href: `/${locale}#portfolio` },
+    { key: "store", href: `/${locale}/store`, badge: "جديد" },
     { key: "tools", href: `/${locale}/tools`, badge: "★" },
     { key: "blog", href: `/${locale}/blog` },
     { key: "pricing", href: `/${locale}#pricing` },
@@ -51,15 +60,18 @@ export default function Header() {
       <header
         className="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300"
         style={{
-          height: isScrolled ? "64px" : "80px",
+          height: isScrolled ? "60px" : "72px",
           background: isScrolled ? "rgba(10,10,10,0.96)" : "transparent",
           backdropFilter: isScrolled ? "blur(20px)" : "none",
           borderBottom: isScrolled ? "1px solid rgba(200,169,98,0.1)" : "none",
         }}
       >
-        <div className="max-w-[1400px] mx-auto px-8 h-full flex items-center justify-between relative z-10">
+        <div
+          className="max-w-[1400px] mx-auto h-full flex items-center justify-between relative z-10"
+          style={{ padding: isMobile ? "0 16px" : "0 32px" }}
+        >
           {/* Left side */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             {/* Language Switcher */}
             <div className="flex items-center gap-1">
               {locales.map((l, i) => (
@@ -84,7 +96,7 @@ export default function Header() {
               ))}
             </div>
 
-            {/* WhatsApp */}
+            {/* WhatsApp — desktop only */}
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}`}
               target="_blank"
@@ -107,10 +119,10 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="وكالة رقمية"
-              width={isScrolled ? 110 : 130}
-              height={isScrolled ? 44 : 52}
+              width={isScrolled ? 100 : 120}
+              height={isScrolled ? 40 : 48}
               style={{
-                width: isScrolled ? "110px" : "130px",
+                width: isMobile ? "90px" : isScrolled ? "100px" : "120px",
                 height: "auto",
                 transition: "all 0.3s ease",
                 objectFit: "contain",
@@ -122,35 +134,46 @@ export default function Header() {
           {/* Right side — Hamburger */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="relative flex flex-col gap-1.5 items-end cursor-pointer group"
             aria-label="Toggle menu"
-            style={{ padding: "8px", background: "none", border: "none" }}
+            style={{
+              padding: "8px",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              display: "flex",
+              flexDirection: "column",
+              gap: "6px",
+              alignItems: "flex-end",
+            }}
           >
             <span
-              className="block transition-all duration-300"
               style={{
+                display: "block",
                 width: "28px",
                 height: "1.5px",
                 background: isMenuOpen ? "#C8A962" : "rgba(255,255,255,0.8)",
-                transform: isMenuOpen ? "translateY(6px) rotate(45deg)" : "none",
+                transform: isMenuOpen ? "translateY(7.5px) rotate(45deg)" : "none",
+                transition: "all 0.3s ease",
               }}
             />
             <span
-              className="block transition-all duration-300"
               style={{
+                display: "block",
                 width: "20px",
                 height: "1.5px",
                 background: isMenuOpen ? "#C8A962" : "rgba(255,255,255,0.8)",
                 opacity: isMenuOpen ? 0 : 1,
+                transition: "all 0.3s ease",
               }}
             />
             <span
-              className="block transition-all duration-300"
               style={{
+                display: "block",
                 width: "28px",
                 height: "1.5px",
                 background: isMenuOpen ? "#C8A962" : "rgba(255,255,255,0.8)",
-                transform: isMenuOpen ? "translateY(-6px) rotate(-45deg)" : "none",
+                transform: isMenuOpen ? "translateY(-7.5px) rotate(-45deg)" : "none",
+                transition: "all 0.3s ease",
               }}
             />
           </button>
@@ -160,57 +183,123 @@ export default function Header() {
       {/* Full-Screen Menu */}
       <div
         className={`fullscreen-menu ${isMenuOpen ? "is-open" : ""}`}
-        style={{ flexDirection: isRTL ? "row" : "row-reverse" }}
+        style={{
+          flexDirection: isMobile ? "column" : isRTL ? "row" : "row-reverse",
+          overflowY: isMobile ? "auto" : "hidden",
+        }}
       >
         {/* Pattern overlay */}
-        <div className="absolute inset-0 pattern-overlay-dark" style={{ opacity: 0.03 }} />
+        <div className="absolute inset-0 pattern-overlay-dark" style={{ opacity: 0.03, pointerEvents: "none" }} />
 
-        {/* Left column — Contact Info */}
+        {/* Nav Links column */}
         <div
-          className="relative z-10 flex flex-col justify-end p-16 border-t border-[rgba(200,169,98,0.1)]"
-          style={{ width: "35%" }}
+          className="relative z-10 flex flex-col justify-center"
+          style={{
+            width: isMobile ? "100%" : "65%",
+            padding: isMobile ? "80px 24px 32px" : "0 64px",
+            borderRight: !isMobile && isRTL ? "1px solid rgba(200,169,98,0.1)" : "none",
+            borderLeft: !isMobile && !isRTL ? "1px solid rgba(200,169,98,0.1)" : "none",
+          }}
         >
-          <div className="space-y-6">
+          <ul className="menu-links" style={{ margin: 0, padding: 0, listStyle: "none" }} dir={isRTL ? "rtl" : "ltr"}>
+            {navItems.map((item) => (
+              <li key={item.key} style={{ marginBottom: isMobile ? "4px" : "0" }}>
+                <Link
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="group flex items-center gap-3"
+                  style={{ textDecoration: "none", padding: isMobile ? "10px 0" : "12px 0" }}
+                >
+                  <span
+                    className="transition-all duration-300 group-hover:text-[#C8A962]"
+                    style={{
+                      fontFamily: "'Zain', sans-serif",
+                      fontSize: isMobile ? "34px" : isRTL ? "48px" : "42px",
+                      fontWeight: 700,
+                      color: "#FAFAF7",
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    {t(item.key as "home")}
+                  </span>
+                  {item.badge && (
+                    <span className="gold-badge" style={{ fontSize: "10px" }}>{item.badge}</span>
+                  )}
+                  <span
+                    className="opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    style={{ color: "#C8A962", fontSize: "20px", marginRight: isRTL ? "auto" : "0", marginLeft: !isRTL ? "auto" : "0" }}
+                  >
+                    {isRTL ? "←" : "→"}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact Info column */}
+        <div
+          className="relative z-10 flex flex-col"
+          style={{
+            width: isMobile ? "100%" : "35%",
+            padding: isMobile ? "24px 24px 40px" : "0 64px",
+            justifyContent: isMobile ? "flex-start" : "flex-end",
+            paddingBottom: isMobile ? "40px" : "64px",
+            borderTop: isMobile ? "1px solid rgba(200,169,98,0.1)" : "none",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
             <div>
-              <div className="section-label mb-3">تواصل معنا</div>
+              <div className="section-label" style={{ marginBottom: "12px" }}>تواصل معنا</div>
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block text-white hover:text-[#C8A962] transition-colors"
-                style={{ fontSize: "20px", fontWeight: 600 }}
+                style={{ fontSize: isMobile ? "18px" : "20px", fontWeight: 600, fontFamily: "Space Mono, monospace" }}
               >
                 {WHATSAPP_NUMBER}
               </a>
+              {AGENCY_INFO.email && (
+                <a
+                  href={`mailto:${AGENCY_INFO.email}`}
+                  className="block transition-colors mt-2"
+                  style={{ fontSize: "14px", color: "rgba(255,255,255,0.4)" }}
+                >
+                  {AGENCY_INFO.email}
+                </a>
+              )}
             </div>
 
-            <div className="flex gap-4 mt-8">
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
               {[
-                {
+                ...(AGENCY_INFO.social.instagram ? [{
                   label: "Instagram",
-                  href: "#",
+                  href: AGENCY_INFO.social.instagram,
                   icon: (
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                   ),
-                },
-                {
-                  label: "X / Twitter",
-                  href: "#",
+                }] : []),
+                ...(AGENCY_INFO.social.twitter ? [{
+                  label: "X",
+                  href: AGENCY_INFO.social.twitter,
                   icon: (
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                     </svg>
                   ),
-                },
-                {
+                }] : []),
+                ...(AGENCY_INFO.social.tiktok ? [{
                   label: "TikTok",
-                  href: "#",
+                  href: AGENCY_INFO.social.tiktok,
                   icon: (
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.19 8.19 0 004.83 1.56V6.8a4.84 4.84 0 01-1.06-.11z"/>
                     </svg>
                   ),
-                },
+                }] : []),
                 {
                   label: "WhatsApp",
                   href: `https://wa.me/${WHATSAPP_NUMBER.replace("+", "")}`,
@@ -235,47 +324,6 @@ export default function Header() {
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Right column — Nav Links */}
-        <div
-          className="relative z-10 flex flex-col justify-center px-16"
-          style={{ width: "65%", borderRight: isRTL ? "1px solid rgba(200,169,98,0.1)" : "none", borderLeft: !isRTL ? "1px solid rgba(200,169,98,0.1)" : "none" }}
-        >
-          <ul className="menu-links space-y-2" dir={isRTL ? "rtl" : "ltr"}>
-            {navItems.map((item) => (
-              <li key={item.key}>
-                <Link
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="group flex items-center gap-4 py-3"
-                  style={{ textDecoration: "none" }}
-                >
-                  <span
-                    className="transition-all duration-300 group-hover:text-[#C8A962]"
-                    style={{
-                      fontFamily: "'Zain', sans-serif",
-                      fontSize: isRTL ? "48px" : "42px",
-                      fontWeight: 700,
-                      color: "#FAFAF7",
-                      lineHeight: 1.1,
-                    }}
-                  >
-                    {t(item.key as "home")}
-                  </span>
-                  {item.badge && (
-                    <span className="gold-badge text-xs">{item.badge}</span>
-                  )}
-                  <span
-                    className="opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0"
-                    style={{ color: "#C8A962", fontSize: "24px" }}
-                  >
-                    {isRTL ? "←" : "→"}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </>
