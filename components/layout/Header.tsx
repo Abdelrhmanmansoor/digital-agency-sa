@@ -47,7 +47,7 @@ export default function Header() {
     { key: "services", href: `/${locale}#services` },
     { key: "portfolio", href: `/${locale}#portfolio` },
     { key: "store", href: `/${locale}/store`, badge: "جديد" },
-    { key: "tools", href: `/${locale}/tools`, badge: "★" },
+    { key: "tools", href: `/${locale}/radar`, badge: "★" },
     { key: "blog", href: `/${locale}/blog` },
     { key: "pricing", href: `/${locale}#pricing` },
     { key: "about", href: `/${locale}#about` },
