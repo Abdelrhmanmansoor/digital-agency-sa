@@ -5,7 +5,7 @@ import { jwtVerify } from "jose";
 const RADAR_SECRET = new TextEncoder().encode(
   process.env.RADAR_JWT_SECRET ||
   process.env.JWT_SECRET ||
-  "radar-secret-key-change-in-production-min-32-chars-here"
+  "dev-only-radar-secret-do-not-use-in-production-placeholder"
 );
 
 export async function verifyRadarToken(token: string) {

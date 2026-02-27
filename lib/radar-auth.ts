@@ -2,10 +2,16 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { radarUsersDB, type RadarUser } from "./radar-db";
 
+if (process.env.NODE_ENV === "production") {
+  if (!process.env.RADAR_JWT_SECRET && !process.env.JWT_SECRET) {
+    throw new Error("RADAR_JWT_SECRET (or JWT_SECRET) env var is required in production");
+  }
+}
+
 const RADAR_SECRET = new TextEncoder().encode(
   process.env.RADAR_JWT_SECRET ||
   process.env.JWT_SECRET ||
-  "radar-secret-key-change-in-production-min-32-chars-here"
+  "dev-only-radar-secret-do-not-use-in-production-placeholder"
 );
 
 const COOKIE_NAME = "radar-token";
@@ -14,7 +20,7 @@ export async function createRadarToken(payload: { userId: string; email: string 
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("30d")
+    .setExpirationTime("7d")
     .sign(RADAR_SECRET);
 }
 
