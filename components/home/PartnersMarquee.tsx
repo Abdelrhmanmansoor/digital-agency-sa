@@ -97,6 +97,7 @@ export default function PartnersMarquee() {
 
   return (
     <section
+      className="partners-section"
       style={{
         background: "#0A0A0A",
         padding: "80px 0",
@@ -106,6 +107,33 @@ export default function PartnersMarquee() {
         position: "relative",
       }}
     >
+      <style>{`
+        @media (max-width: 768px) {
+          .partners-fade-left,
+          .partners-fade-right {
+            width: 60px !important;
+          }
+          .partner-logo-item {
+            padding: 0 20px !important;
+            height: 52px !important;
+          }
+          .partner-logo-item img {
+            height: 30px !important;
+            max-width: 100px !important;
+          }
+          .partners-section {
+            padding: 48px 0 !important;
+          }
+          .partners-title-area {
+            margin-bottom: 28px !important;
+            padding: 0 16px !important;
+          }
+          .partners-divider {
+            padding: 0 16px !important;
+            margin-bottom: 20px !important;
+          }
+        }
+      `}</style>
       {/* Radial glow */}
       <div
         style={{
@@ -118,7 +146,7 @@ export default function PartnersMarquee() {
       />
 
       {/* Title */}
-      <div className="max-w-[1400px] mx-auto px-8 mb-14 relative z-10">
+      <div className="partners-title-area max-w-[1400px] mx-auto px-8 mb-14 relative z-10">
         <div className="flex items-center justify-center gap-5">
           <div
             style={{
@@ -167,6 +195,7 @@ export default function PartnersMarquee() {
       {(["left", "right"] as const).map((side) => (
         <div
           key={side}
+          className={side === "left" ? "partners-fade-left" : "partners-fade-right"}
           style={{
             position: "absolute",
             top: 0,
@@ -223,7 +252,7 @@ export default function PartnersMarquee() {
       </div>
 
       {/* Divider */}
-      <div style={{
+      <div className="partners-divider" style={{
         maxWidth: "1400px", margin: "0 auto 28px", padding: "0 40px",
         display: "flex", alignItems: "center", gap: "20px",
       }}>

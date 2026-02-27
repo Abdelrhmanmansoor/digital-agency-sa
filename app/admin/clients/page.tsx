@@ -49,6 +49,7 @@ export default function ClientsPage() {
   const [selected, setSelected] = useState<ClientGroup | null>(null);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [mobileView, setMobileView] = useState<"list" | "detail">("list");
 
   useEffect(() => {
     async function load() {
@@ -100,25 +101,157 @@ export default function ClientsPage() {
     c.company?.toLowerCase().includes(search.toLowerCase())
   );
 
+  function selectClient(client: ClientGroup) {
+    setSelected(client);
+    setMobileView("detail");
+  }
+
   return (
     <div className="admin-layout">
+      <style>{`
+        .clients-header {
+          padding: 28px 40px 20px;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .clients-body {
+          display: grid;
+          grid-template-columns: 300px 1fr;
+          height: calc(100vh - 110px);
+          overflow: hidden;
+        }
+        .clients-list-col {
+          border-left: 1px solid rgba(255,255,255,0.06);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+        .clients-detail-col {
+          overflow-y: auto;
+          padding: 24px 32px;
+        }
+        .clients-summary-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 10px;
+          margin-bottom: 32px;
+        }
+        .clients-back-btn {
+          display: none;
+        }
+        .inv-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 12px 16px;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.06);
+          border-radius: 10px;
+          transition: all 0.15s;
+          gap: 8px;
+        }
+        .inv-row-left {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          min-width: 0;
+        }
+        .inv-row-right {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+          .clients-header {
+            padding: 18px 16px 14px;
+          }
+          .clients-body {
+            display: block;
+            height: auto;
+            min-height: calc(100vh - 90px);
+            overflow: visible;
+          }
+          .clients-list-col {
+            border-left: none;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            height: auto;
+            max-height: 100vh;
+            overflow: hidden;
+          }
+          .clients-list-col.mobile-hidden {
+            display: none;
+          }
+          .clients-detail-col {
+            padding: 16px;
+            height: auto;
+            overflow: visible;
+          }
+          .clients-detail-col.mobile-hidden {
+            display: none;
+          }
+          .clients-summary-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 24px;
+          }
+          .clients-back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #FAFAF7;
+            font-family: 'Zain', sans-serif;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+          }
+          .inv-row {
+            flex-wrap: wrap;
+            gap: 6px;
+          }
+          .inv-row-left {
+            flex: 1;
+          }
+          .inv-row-right {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .cta-buttons {
+            width: 100%;
+            justify-content: stretch !important;
+          }
+          .cta-buttons a {
+            flex: 1;
+            text-align: center;
+          }
+        }
+        @media (max-width: 480px) {
+          .clients-summary-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+      `}</style>
+
       <AdminSidebar />
       <main className="admin-main" dir="rtl">
-        <div style={{ padding: "32px 40px 24px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", marginBottom: "4px" }}>
+        <div className="clients-header">
+          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "24px", fontWeight: 800, color: "#FAFAF7", marginBottom: "2px" }}>
             داشبورد العملاء
           </h1>
-          <p style={{ color: "#8C8C7A", fontSize: "14px" }}>
+          <p style={{ color: "#8C8C7A", fontSize: "13px" }}>
             كل فواتير وعقود كل عميل في مكان واحد
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "320px 1fr", height: "calc(100vh - 120px)", overflow: "hidden" }}>
+        <div className="clients-body">
 
           {/* ── Left: Clients list ── */}
-          <div style={{ borderLeft: "1px solid rgba(255,255,255,0.06)", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+          <div className={`clients-list-col${mobileView === "detail" ? " mobile-hidden" : ""}`}>
             {/* Search */}
-            <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+            <div style={{ padding: "14px 16px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
               <input
                 type="text"
                 placeholder="ابحث عن عميل..."
@@ -128,20 +261,20 @@ export default function ClientsPage() {
                   width: "100%", padding: "9px 14px", background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.08)", borderRadius: "8px",
                   color: "#FAFAF7", fontSize: "14px", fontFamily: "'Zain', sans-serif",
-                  outline: "none",
+                  outline: "none", boxSizing: "border-box",
                 }}
               />
             </div>
 
             {/* Stats row */}
-            <div style={{ display: "flex", padding: "12px 20px", gap: "12px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+            <div style={{ display: "flex", padding: "10px 16px", gap: "10px", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
               {[
                 { label: "العملاء", value: clients.length },
                 { label: "الفواتير", value: clients.reduce((s, c) => s + c.invoices.length, 0) },
                 { label: "العقود", value: clients.reduce((s, c) => s + c.contracts.length, 0) },
               ].map(({ label, value }) => (
-                <div key={label} style={{ flex: 1, textAlign: "center", background: "rgba(200,169,98,0.06)", borderRadius: "8px", padding: "8px 4px" }}>
-                  <div style={{ fontFamily: "Space Mono, monospace", fontSize: "18px", fontWeight: 700, color: "#C8A962" }}>{value}</div>
+                <div key={label} style={{ flex: 1, textAlign: "center", background: "rgba(200,169,98,0.06)", borderRadius: "8px", padding: "7px 4px" }}>
+                  <div style={{ fontFamily: "Space Mono, monospace", fontSize: "16px", fontWeight: 700, color: "#C8A962" }}>{value}</div>
                   <div style={{ fontSize: "11px", color: "#8C8C7A" }}>{label}</div>
                 </div>
               ))}
@@ -159,9 +292,9 @@ export default function ClientsPage() {
                   return (
                     <div
                       key={client.key}
-                      onClick={() => setSelected(client)}
+                      onClick={() => selectClient(client)}
                       style={{
-                        padding: "14px 20px",
+                        padding: "12px 16px",
                         cursor: "pointer",
                         background: isSelected ? "rgba(200,169,98,0.08)" : "transparent",
                         borderRight: isSelected ? "3px solid #C8A962" : "3px solid transparent",
@@ -171,14 +304,13 @@ export default function ClientsPage() {
                       onMouseEnter={e => { if (!isSelected) e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
                       onMouseLeave={e => { if (!isSelected) e.currentTarget.style.background = "transparent"; }}
                     >
-                      {/* Avatar */}
-                      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                         <div style={{
-                          width: "40px", height: "40px", borderRadius: "50%", flexShrink: 0,
+                          width: "38px", height: "38px", borderRadius: "50%", flexShrink: 0,
                           background: isSelected ? "rgba(200,169,98,0.15)" : "rgba(255,255,255,0.06)",
                           border: `1px solid ${isSelected ? "rgba(200,169,98,0.3)" : "rgba(255,255,255,0.08)"}`,
                           display: "flex", alignItems: "center", justifyContent: "center",
-                          fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: 700,
+                          fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 700,
                           color: isSelected ? "#C8A962" : "#8C8C7A",
                         }}>
                           {(client.name || "?")[0]}
@@ -192,8 +324,7 @@ export default function ClientsPage() {
                           </div>
                         </div>
                       </div>
-                      {/* Badges */}
-                      <div style={{ display: "flex", gap: "6px", marginTop: "8px" }}>
+                      <div style={{ display: "flex", gap: "6px", marginTop: "7px", flexWrap: "wrap" }}>
                         {client.invoices.length > 0 && (
                           <span style={{ padding: "2px 8px", borderRadius: "100px", background: "rgba(200,169,98,0.1)", color: "#C8A962", fontSize: "10px", fontFamily: "Space Mono, monospace" }}>
                             {client.invoices.length} فاتورة
@@ -218,9 +349,9 @@ export default function ClientsPage() {
           </div>
 
           {/* ── Right: Client detail ── */}
-          <div style={{ overflowY: "auto", padding: "28px 36px" }}>
+          <div className={`clients-detail-col${mobileView === "list" ? " mobile-hidden" : ""}`}>
             {!selected ? (
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", color: "#8C8C7A" }}>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", minHeight: "300px", color: "#8C8C7A" }}>
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" style={{ marginBottom: "16px", opacity: 0.3 }}>
                   <circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
                 </svg>
@@ -228,38 +359,49 @@ export default function ClientsPage() {
               </div>
             ) : (
               <>
+                {/* Mobile back button */}
+                <button
+                  className="clients-back-btn"
+                  onClick={() => { setMobileView("list"); }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                  </svg>
+                  رجوع للقائمة
+                </button>
+
                 {/* Client header */}
-                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "32px", flexWrap: "wrap", gap: "16px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "24px", flexWrap: "wrap", gap: "14px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
                     <div style={{
-                      width: "56px", height: "56px", borderRadius: "50%",
+                      width: "50px", height: "50px", borderRadius: "50%", flexShrink: 0,
                       background: "rgba(200,169,98,0.12)", border: "1px solid rgba(200,169,98,0.25)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      fontFamily: "'Zain', sans-serif", fontSize: "22px", fontWeight: 800, color: "#C8A962",
+                      fontFamily: "'Zain', sans-serif", fontSize: "20px", fontWeight: 800, color: "#C8A962",
                     }}>
                       {(selected.name || "?")[0]}
                     </div>
                     <div>
-                      <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "22px", fontWeight: 800, color: "#FAFAF7", marginBottom: "4px" }}>
+                      <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "20px", fontWeight: 800, color: "#FAFAF7", marginBottom: "3px" }}>
                         {selected.name}
                       </h2>
-                      {selected.company && <div style={{ color: "#C8A962", fontSize: "14px", marginBottom: "2px", fontFamily: "'Zain', sans-serif" }}>{selected.company}</div>}
-                      <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-                        <span style={{ color: "#8C8C7A", fontSize: "12px", fontFamily: "Space Mono, monospace" }}>{selected.email}</span>
-                        <span style={{ color: "#8C8C7A", fontSize: "12px", fontFamily: "Space Mono, monospace" }}>{selected.phone}</span>
+                      {selected.company && <div style={{ color: "#C8A962", fontSize: "13px", marginBottom: "2px", fontFamily: "'Zain', sans-serif" }}>{selected.company}</div>}
+                      <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                        <span style={{ color: "#8C8C7A", fontSize: "11px", fontFamily: "Space Mono, monospace" }}>{selected.email}</span>
+                        <span style={{ color: "#8C8C7A", fontSize: "11px", fontFamily: "Space Mono, monospace" }}>{selected.phone}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* CTA buttons */}
-                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                  <div className="cta-buttons" style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
                     <Link
                       href={`/admin/invoices/new?client=${encodeURIComponent(selected.name)}&email=${encodeURIComponent(selected.email || "")}&phone=${encodeURIComponent(selected.phone || "")}`}
                       style={{
-                        padding: "9px 20px", borderRadius: "8px", textDecoration: "none",
+                        padding: "8px 16px", borderRadius: "8px", textDecoration: "none",
                         background: "rgba(200,169,98,0.1)", border: "1px solid rgba(200,169,98,0.25)",
-                        color: "#C8A962", fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 600,
-                        display: "inline-block",
+                        color: "#C8A962", fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
+                        display: "inline-block", whiteSpace: "nowrap",
                       }}
                     >
                       + فاتورة جديدة
@@ -267,10 +409,10 @@ export default function ClientsPage() {
                     <Link
                       href={`/admin/contracts/new?client=${encodeURIComponent(selected.name)}&email=${encodeURIComponent(selected.email || "")}&phone=${encodeURIComponent(selected.phone || "")}`}
                       style={{
-                        padding: "9px 20px", borderRadius: "8px", textDecoration: "none",
+                        padding: "8px 16px", borderRadius: "8px", textDecoration: "none",
                         background: "rgba(74,158,255,0.1)", border: "1px solid rgba(74,158,255,0.2)",
-                        color: "#4A9EFF", fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 600,
-                        display: "inline-block",
+                        color: "#4A9EFF", fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
+                        display: "inline-block", whiteSpace: "nowrap",
                       }}
                     >
                       + عقد جديد
@@ -280,10 +422,10 @@ export default function ClientsPage() {
                         href={`https://wa.me/${selected.phone.replace(/\D/g, "")}`}
                         target="_blank" rel="noopener noreferrer"
                         style={{
-                          padding: "9px 20px", borderRadius: "8px", textDecoration: "none",
+                          padding: "8px 16px", borderRadius: "8px", textDecoration: "none",
                           background: "rgba(37,211,102,0.08)", border: "1px solid rgba(37,211,102,0.2)",
-                          color: "#25D366", fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 600,
-                          display: "inline-block",
+                          color: "#25D366", fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
+                          display: "inline-block", whiteSpace: "nowrap",
                         }}
                       >
                         واتساب
@@ -293,7 +435,7 @@ export default function ClientsPage() {
                 </div>
 
                 {/* Summary cards */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "36px" }}>
+                <div className="clients-summary-grid">
                   {[
                     { label: "الفواتير", value: selected.invoices.length, color: "#C8A962" },
                     { label: "العقود", value: selected.contracts.length, color: "#4A9EFF" },
@@ -301,46 +443,42 @@ export default function ClientsPage() {
                     { label: "آخر نشاط", value: fmtDate(selected.lastActivity), color: "#8C8C7A" },
                   ].map(({ label, value, color }) => (
                     <div key={label} style={{
-                      padding: "16px 18px", background: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(255,255,255,0.06)", borderRadius: "12px",
+                      padding: "14px 16px", background: "rgba(255,255,255,0.03)",
+                      border: "1px solid rgba(255,255,255,0.06)", borderRadius: "10px",
                     }}>
-                      <div style={{ fontSize: "11px", color: "#8C8C7A", marginBottom: "6px", fontFamily: "Space Mono, monospace", letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</div>
-                      <div style={{ fontFamily: "Space Mono, monospace", fontSize: "18px", fontWeight: 700, color }}>{value}</div>
+                      <div style={{ fontSize: "10px", color: "#8C8C7A", marginBottom: "5px", fontFamily: "Space Mono, monospace", letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</div>
+                      <div style={{ fontFamily: "Space Mono, monospace", fontSize: "16px", fontWeight: 700, color, wordBreak: "break-all" }}>{value}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Invoices */}
                 {selected.invoices.length > 0 && (
-                  <div style={{ marginBottom: "36px" }}>
-                    <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#C8A962", marginBottom: "14px" }}>
+                  <div style={{ marginBottom: "28px" }}>
+                    <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "17px", fontWeight: 700, color: "#C8A962", marginBottom: "12px" }}>
                       الفواتير ({selected.invoices.length})
                     </h3>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
                       {selected.invoices.map(inv => (
                         <Link key={inv.id} href={`/admin/invoices/${inv.id}`} style={{ textDecoration: "none" }}>
-                          <div style={{
-                            display: "flex", alignItems: "center", justifyContent: "space-between",
-                            padding: "14px 18px", background: "rgba(255,255,255,0.03)",
-                            border: "1px solid rgba(255,255,255,0.06)", borderRadius: "10px",
-                            transition: "all 0.15s",
-                          }}
+                          <div
+                            className="inv-row"
                             onMouseEnter={e => { e.currentTarget.style.background = "rgba(200,169,98,0.06)"; e.currentTarget.style.borderColor = "rgba(200,169,98,0.2)"; }}
                             onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)"; }}
                           >
-                            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#C8A962", fontWeight: 700 }}>{inv.number}</div>
-                              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "#AAA" }}>{fmtDate(inv.issueDate)}</div>
+                            <div className="inv-row-left">
+                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#C8A962", fontWeight: 700, flexShrink: 0 }}>{inv.number}</div>
+                              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "#AAA" }}>{fmtDate(inv.issueDate)}</div>
                             </div>
-                            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#FAFAF7" }}>
+                            <div className="inv-row-right">
+                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700, color: "#FAFAF7" }}>
                                 {fmtAmt(inv.total)} ﷼
                               </div>
                               <span style={{
                                 padding: "3px 10px", borderRadius: "100px", fontSize: "11px",
                                 background: `${STATUS_COLOR[inv.status] || "#AAA"}18`,
                                 color: STATUS_COLOR[inv.status] || "#AAA",
-                                fontFamily: "'Zain', sans-serif",
+                                fontFamily: "'Zain', sans-serif", whiteSpace: "nowrap",
                               }}>
                                 {STATUS_LABEL[inv.status] || inv.status}
                               </span>
@@ -354,37 +492,33 @@ export default function ClientsPage() {
 
                 {/* Contracts */}
                 {selected.contracts.length > 0 && (
-                  <div>
-                    <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#4A9EFF", marginBottom: "14px" }}>
+                  <div style={{ marginBottom: "16px" }}>
+                    <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "17px", fontWeight: 700, color: "#4A9EFF", marginBottom: "12px" }}>
                       العقود ({selected.contracts.length})
                     </h3>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
                       {selected.contracts.map(ctr => (
                         <Link key={ctr.id} href={`/admin/contracts/${ctr.id}`} style={{ textDecoration: "none" }}>
-                          <div style={{
-                            display: "flex", alignItems: "center", justifyContent: "space-between",
-                            padding: "14px 18px", background: "rgba(255,255,255,0.03)",
-                            border: "1px solid rgba(255,255,255,0.06)", borderRadius: "10px",
-                            transition: "all 0.15s",
-                          }}
+                          <div
+                            className="inv-row"
                             onMouseEnter={e => { e.currentTarget.style.background = "rgba(74,158,255,0.06)"; e.currentTarget.style.borderColor = "rgba(74,158,255,0.2)"; }}
                             onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)"; }}
                           >
-                            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#4A9EFF", fontWeight: 700 }}>{ctr.number}</div>
-                              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "#C8A962" }}>
+                            <div className="inv-row-left">
+                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#4A9EFF", fontWeight: 700, flexShrink: 0 }}>{ctr.number}</div>
+                              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "#C8A962" }}>
                                 {STATUS_LABEL[ctr.type] || ctr.type}
                               </div>
                             </div>
-                            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#FAFAF7" }}>
+                            <div className="inv-row-right">
+                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700, color: "#FAFAF7" }}>
                                 {fmtAmt(ctr.totalAmount)} ﷼
                               </div>
                               <span style={{
                                 padding: "3px 10px", borderRadius: "100px", fontSize: "11px",
                                 background: `${STATUS_COLOR[ctr.status] || "#AAA"}18`,
                                 color: STATUS_COLOR[ctr.status] || "#AAA",
-                                fontFamily: "'Zain', sans-serif",
+                                fontFamily: "'Zain', sans-serif", whiteSpace: "nowrap",
                               }}>
                                 {STATUS_LABEL[ctr.status] || ctr.status}
                               </span>
@@ -397,7 +531,7 @@ export default function ClientsPage() {
                 )}
 
                 {selected.invoices.length === 0 && selected.contracts.length === 0 && (
-                  <div style={{ textAlign: "center", padding: "60px 20px", color: "#8C8C7A", fontFamily: "'Zain', sans-serif", fontSize: "16px" }}>
+                  <div style={{ textAlign: "center", padding: "50px 20px", color: "#8C8C7A", fontFamily: "'Zain', sans-serif", fontSize: "16px" }}>
                     لا يوجد فواتير أو عقود لهذا العميل بعد
                   </div>
                 )}
