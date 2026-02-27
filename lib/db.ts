@@ -615,23 +615,58 @@ export interface Contract {
   id: string;
   number: string;
   type: "service-agreement" | "maintenance" | "marketing" | "custom";
+
+  // ── الطرف الأول (Service Provider) ─────────────────────────────────────────
+  providerType?: "institution" | "individual-saudi" | "individual-expat";
+  providerEntityName?: string;   // اسم المؤسسة / الشركة
+  providerOwnerName?: string;    // اسم المالك / الممثل القانوني
+  providerFullName?: string;     // الاسم الكامل (للأفراد)
+  providerNationalId?: string;   // رقم الهوية الوطنية
+  providerIqama?: string;        // رقم الإقامة
+  providerIqamaExpiry?: string;  // تاريخ انتهاء الإقامة
+  providerFreelanceDoc?: string; // رقم وثيقة العمل الحر
+  providerCR?: string;           // رقم السجل التجاري
+  providerVAT?: string;          // رقم ضريبة القيمة المضافة
+  providerProfession?: string;   // المهنة / النشاط
+  providerPhone?: string;
+  providerEmail?: string;
+  providerAddress?: string;
+  providerCity?: string;
+
+  // ── الطرف الثاني (Client) ───────────────────────────────────────────────────
+  clientType?: "individual" | "institution";
   clientName: string;
   clientNationalId?: string;
+  clientIqama?: string;          // رقم إقامة العميل
+  clientCR?: string;             // سجل تجاري العميل
+  clientVAT?: string;            // رقم ضريبة القيمة المضافة العميل
   clientPhone: string;
   clientEmail: string;
   clientAddress?: string;
-  clientCompany?: string;
+  clientCompany?: string;        // اسم مؤسسة / شركة العميل
+
+  // ── الخدمة ──────────────────────────────────────────────────────────────────
   serviceTitle: string;
   serviceTitleAr: string;
   serviceDescription: string;
   serviceDescriptionAr: string;
+
+  // ── المالية ─────────────────────────────────────────────────────────────────
   totalAmount: number;
-  paymentTerms: "full" | "50-50" | "custom";
+  paymentTerms: "full" | "50-50" | "3-installments" | "custom";
   paymentNotes?: string;
+  revisions?: number;            // عدد جولات المراجعة
+  penaltyPerDay?: number;        // غرامة التأخير اليومية (ريال)
+
+  // ── التنفيذ ─────────────────────────────────────────────────────────────────
   startDate: string;
   deliveryDays: number;
   deliverables: string[];
+
+  // ── القانوني ────────────────────────────────────────────────────────────────
   jurisdiction: string;
+  useArbitration?: boolean;      // true = SCCA التحكيم، false = المحاكم التجارية
+
   status: "draft" | "active" | "completed" | "terminated";
   createdAt: string;
   updatedAt: string;
