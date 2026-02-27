@@ -4,6 +4,7 @@ import LoadingScreen from "@/components/layout/LoadingScreen";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/home/Hero";
 import PartnersMarquee from "@/components/home/PartnersMarquee";
+import TechStack from "@/components/home/TechStack";
 import FeaturedPartner from "@/components/home/FeaturedPartner";
 import Services from "@/components/home/Services";
 import Pricing from "@/components/home/Pricing";
@@ -42,6 +43,7 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
+        <TechStack />
         <PartnersMarquee />
         <Services />
         <FeaturedPartner />
