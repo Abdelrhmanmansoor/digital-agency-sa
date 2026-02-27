@@ -12,6 +12,12 @@ const STATS = [
   { value: 98, suffix: "%", key: "satisfaction" },
 ];
 
+const CYCLING_WORDS = {
+  ar: ["التأثير", "النجاح", "التميز", "الإبداع", "الهوية"],
+  en: ["Impact", "Success", "Excellence", "Growth", "Identity"],
+  fr: ["l'Impact", "le Succès", "l'Excellence", "la Croissance", "l'Identité"],
+};
+
 function CountUp({ target, suffix, duration = 2000 }: { target: number; suffix: string; duration?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -26,7 +32,6 @@ function CountUp({ target, suffix, duration = 2000 }: { target: number; suffix: 
           const animate = (currentTime: number) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            // Ease out cubic
             const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.floor(eased * target));
             if (progress < 1) requestAnimationFrame(animate);
@@ -36,19 +41,13 @@ function CountUp({ target, suffix, duration = 2000 }: { target: number; suffix: 
       },
       { threshold: 0.5 }
     );
-
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [target, duration]);
 
-  return (
-    <span ref={ref}>
-      {count}{suffix}
-    </span>
-  );
+  return <span ref={ref}>{count}{suffix}</span>;
 }
 
-// Hero slide images (Unsplash)
 const HERO_IMAGES = [
   "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=80",
   "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80",
@@ -62,9 +61,13 @@ export default function Hero() {
   const isRTL = locale === "ar";
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [wordVisible, setWordVisible] = useState(true);
+
+  const words = CYCLING_WORDS[locale as keyof typeof CYCLING_WORDS] || CYCLING_WORDS.en;
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 2000); // After loading screen
+    const timer = setTimeout(() => setIsVisible(true), 2200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -74,6 +77,19 @@ export default function Hero() {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  // Cycling word animation
+  useEffect(() => {
+    if (!isVisible) return;
+    const cycle = setInterval(() => {
+      setWordVisible(false);
+      setTimeout(() => {
+        setWordIndex((prev) => (prev + 1) % words.length);
+        setWordVisible(true);
+      }, 400);
+    }, 2800);
+    return () => clearInterval(cycle);
+  }, [isVisible, words.length]);
 
   const whatsappLink = getWhatsAppLink(
     isRTL
@@ -106,17 +122,15 @@ export default function Hero() {
             />
           </div>
         ))}
-
-        {/* Gradient overlay */}
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(to top, #0A0A0A 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.3) 100%)",
+            background: "linear-gradient(to top, #0A0A0A 0%, rgba(10,10,10,0.75) 45%, rgba(10,10,10,0.3) 100%)",
           }}
         />
       </div>
 
-      {/* Islamic Pattern subtle overlay */}
+      {/* Subtle pattern */}
       <div
         className="absolute inset-0"
         style={{
@@ -137,7 +151,7 @@ export default function Hero() {
       >
         {/* Small label */}
         <div className="section-label mb-8" style={{ color: "rgba(200,169,98,0.8)" }}>
-          {locale === "ar" ? "وكالة رقمية سعودية" : locale === "en" ? "Saudi Digital Agency" : "Agence Digitale Saoudienne"}
+          {locale === "ar" ? "وكالة رقمية سعودية" : locale === "fr" ? "Agence Digitale Saoudienne" : "Saudi Digital Agency"}
         </div>
 
         {/* Main Heading */}
@@ -145,16 +159,16 @@ export default function Hero() {
           className="mb-8"
           style={{
             fontFamily: isRTL ? "Noto Kufi Arabic, sans-serif" : "sans-serif",
-            fontSize: "clamp(40px, 7vw, 90px)",
+            fontSize: "clamp(44px, 7.5vw, 96px)",
             fontWeight: 800,
-            lineHeight: 1.05,
+            lineHeight: 1.03,
             color: "#FFFFFF",
-            maxWidth: "900px",
+            maxWidth: "950px",
           }}
         >
+          {/* Line 1 */}
           <span
             style={{
-              animationDelay: "0.1s",
               display: "block",
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "none" : "translateY(20px)",
@@ -162,14 +176,32 @@ export default function Hero() {
             }}
           >
             {t("title1")}{" "}
-            <span style={{ color: "#C8A962" }}>{t("title2")}</span>
+            {/* Cycling word */}
+            <span
+              style={{
+                color: "#C8A962",
+                display: "inline-block",
+                transition: "opacity 0.35s ease, transform 0.35s ease",
+                opacity: wordVisible ? 1 : 0,
+                transform: wordVisible ? "translateY(0)" : "translateY(-12px)",
+                minWidth: isRTL ? "4ch" : "3ch",
+              }}
+            >
+              {words[wordIndex]}
+            </span>
           </span>
+          {/* Line 2 */}
           <span
             style={{
               display: "block",
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "none" : "translateY(20px)",
               transition: "all 0.8s 0.25s cubic-bezier(0.19, 1, 0.22, 1)",
+              color: "rgba(255,255,255,0.35)",
+              fontSize: "0.6em",
+              fontWeight: 400,
+              letterSpacing: isRTL ? "0" : "0.04em",
+              marginTop: "4px",
             }}
           >
             {t("title3")}
@@ -180,10 +212,10 @@ export default function Hero() {
         <p
           className="mb-12"
           style={{
-            fontSize: "18px",
+            fontSize: "17px",
             color: "#8C8C7A",
-            maxWidth: "560px",
-            lineHeight: 1.7,
+            maxWidth: "520px",
+            lineHeight: 1.75,
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "none" : "translateY(20px)",
             transition: "all 0.8s 0.4s cubic-bezier(0.19, 1, 0.22, 1)",
@@ -202,10 +234,7 @@ export default function Hero() {
           }}
         >
           {STATS.map((stat, index) => (
-            <div
-              key={stat.key}
-              className="flex items-stretch"
-            >
+            <div key={stat.key} className="flex items-stretch">
               <div className="px-8 py-4" style={{ minWidth: "120px" }}>
                 <div className="counter-number" style={{ fontSize: "clamp(28px, 3vw, 44px)" }}>
                   <CountUp target={stat.value} suffix={stat.suffix} />
@@ -224,13 +253,7 @@ export default function Hero() {
                 </div>
               </div>
               {index < STATS.length - 1 && (
-                <div
-                  style={{
-                    width: "1px",
-                    background: "rgba(200,169,98,0.3)",
-                    margin: "4px 0",
-                  }}
-                />
+                <div style={{ width: "1px", background: "rgba(200,169,98,0.3)", margin: "4px 0" }} />
               )}
             </div>
           ))}
@@ -248,13 +271,11 @@ export default function Hero() {
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
             <button className="btn-primary">
               <span>{t("cta_primary")}</span>
-              <span>←</span>
+              <span>{isRTL ? "←" : "→"}</span>
             </button>
           </a>
           <Link href={`/${locale}#portfolio`}>
-            <button className="btn-secondary">
-              {t("cta_secondary")}
-            </button>
+            <button className="btn-secondary">{t("cta_secondary")}</button>
           </Link>
         </div>
       </div>
@@ -262,7 +283,7 @@ export default function Hero() {
       {/* Scroll Indicator */}
       <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        style={{ color: "rgba(255,255,255,0.4)", opacity: isVisible ? 1 : 0, transition: "opacity 1s 1s" }}
+        style={{ color: "rgba(255,255,255,0.4)", opacity: isVisible ? 1 : 0, transition: "opacity 1s 1.2s" }}
       >
         <div style={{ fontSize: "11px", fontFamily: "Space Mono", letterSpacing: "0.2em", textTransform: "uppercase" }}>
           {t("scroll")}
@@ -277,7 +298,7 @@ export default function Hero() {
       {/* Slide indicators */}
       <div
         className="absolute bottom-8 right-8 flex gap-2"
-        style={{ opacity: isVisible ? 1 : 0, transition: "opacity 1s 1s" }}
+        style={{ opacity: isVisible ? 1 : 0, transition: "opacity 1s 1.2s" }}
       >
         {HERO_IMAGES.map((_, index) => (
           <button
