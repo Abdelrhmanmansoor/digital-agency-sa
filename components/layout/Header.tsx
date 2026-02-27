@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
-import { WHATSAPP_NUMBER } from "@/lib/utils";
+import { WHATSAPP_NUMBER, AGENCY_INFO } from "@/lib/utils";
 
 const locales = [
   { code: "ar", label: "AR", dir: "rtl" },
@@ -49,7 +49,7 @@ export default function Header() {
     <>
       {/* Main Header */}
       <header
-        className="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 overflow-hidden"
+        className="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300"
         style={{
           height: isScrolled ? "64px" : "80px",
           background: isScrolled ? "rgba(10,10,10,0.96)" : "transparent",
@@ -57,42 +57,6 @@ export default function Header() {
           borderBottom: isScrolled ? "1px solid rgba(200,169,98,0.1)" : "none",
         }}
       >
-        {/* Elegant Background Images */}
-        <div 
-          className="absolute inset-0 transition-opacity duration-500"
-          style={{ 
-            opacity: isScrolled ? 0 : 0.15,
-            pointerEvents: "none"
-          }}
-        >
-          {/* Desktop Background */}
-          <div 
-            className="hidden md:block absolute inset-0"
-            style={{
-              backgroundImage: "url('/header/desktop-bg.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center top",
-              filter: "blur(1px)",
-            }}
-          />
-          {/* Mobile Background */}
-          <div 
-            className="block md:hidden absolute inset-0"
-            style={{
-              backgroundImage: "url('/header/mobile-bg.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center top",
-              filter: "blur(1px)",
-            }}
-          />
-          {/* Gradient Overlay for blend effect */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              background: "linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.8) 100%)",
-            }}
-          />
-        </div>
         <div className="max-w-[1400px] mx-auto px-8 h-full flex items-center justify-between relative z-10">
           {/* Left side */}
           <div className="flex items-center gap-6">

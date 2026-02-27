@@ -111,9 +111,8 @@ export default function Hero() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "center 20%",
-            opacity: 0.18,
-            filter: "blur(1.5px) saturate(0.7)",
+            objectPosition: "center 30%",
+            opacity: 0.35,
           }}
         />
         {/* Mobile banner */}
@@ -127,25 +126,32 @@ export default function Hero() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "center 20%",
-            opacity: 0.18,
-            filter: "blur(1.5px) saturate(0.7)",
+            objectPosition: "center 30%",
+            opacity: 0.35,
           }}
         />
-        {/* Dark gradient overlay for blending */}
+        {/* Elegant gradient overlay for premium look */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,0.85) 75%, rgba(10,10,10,1) 100%)",
+            background: "linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.95) 100%)",
           }}
         />
-        {/* Radial vignette for extra depth */}
+        {/* Gold/Lime accent gradient from sides */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "radial-gradient(ellipse 80% 80% at 50% 30%, transparent 30%, rgba(10,10,10,0.8) 100%)",
+            background: "linear-gradient(135deg, rgba(200,169,98,0.08) 0%, transparent 40%, transparent 60%, rgba(189,238,99,0.06) 100%)",
+          }}
+        />
+        {/* Radial vignette for depth */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "radial-gradient(ellipse 100% 70% at 50% 20%, transparent 40%, rgba(10,10,10,0.7) 100%)",
           }}
         />
       </div>

@@ -134,7 +134,7 @@ export default function Testimonials() {
   const subtitle = locale === "ar" ? "250+ عميل يثق بنا" : "250+ clients trust us";
 
   return (
-    <section id="about" style={{ background:"#0A0A0A", padding:"110px 0", overflow:"hidden" }}>
+    <section style={{ background:"#0A0A0A", padding:"110px 0", overflow:"hidden" }}>
 
       {/* Header */}
       <div className="max-w-[1400px] mx-auto px-8 text-center mb-16" dir={isRTL ? "rtl" : "ltr"}>
