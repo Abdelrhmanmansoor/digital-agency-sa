@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { WHATSAPP_NUMBER } from "@/lib/utils";
 
@@ -103,19 +104,19 @@ export default function Header() {
             href={`/${locale}`}
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
           >
-            <div
+            <Image
+              src="/logo.png"
+              alt="وكالة رقمية"
+              width={isScrolled ? 110 : 130}
+              height={isScrolled ? 44 : 52}
               style={{
-                fontFamily: "Noto Kufi Arabic, sans-serif",
-                fontWeight: 800,
-                fontSize: isScrolled ? "20px" : "24px",
-                color: isScrolled ? "#FAFAF7" : "#C8A962",
-                letterSpacing: "-0.02em",
+                width: isScrolled ? "110px" : "130px",
+                height: "auto",
                 transition: "all 0.3s ease",
-                lineHeight: 1,
+                objectFit: "contain",
               }}
-            >
-              وكالة رقمية
-            </div>
+              priority
+            />
           </Link>
 
           {/* Right side — Hamburger */}

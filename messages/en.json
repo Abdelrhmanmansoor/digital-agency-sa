@@ -213,7 +213,10 @@
     "our_services": "Our Services",
     "contact_us": "Contact Us",
     "rights": "All Rights Reserved",
-    "address": "Saudi Arabia"
+    "address": "Saudi Arabia",
+    "phone_label": "Phone / WhatsApp",
+    "email_label": "Email",
+    "location_label": "Location"
   },
   "common": {
     "loading": "Loading...",

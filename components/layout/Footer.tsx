@@ -7,17 +7,18 @@ import { AGENCY_INFO } from "@/lib/utils";
 export default function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
+  const tServices = useTranslations("services.list");
   const locale = useLocale();
 
   const currentYear = new Date().getFullYear();
 
   const quickLinks = ["home", "portfolio", "blog", "about", "contact"] as const;
   const serviceLinks = [
-    { key: "salla_design", label: locale === "ar" ? "تصميم متاجر سلة" : "Salla Store Design" },
-    { key: "digital_marketing", label: locale === "ar" ? "التسويق الرقمي" : "Digital Marketing" },
-    { key: "branding", label: locale === "ar" ? "الهوية البصرية" : "Brand Identity" },
-    { key: "web_dev", label: locale === "ar" ? "تطوير المواقع" : "Web Development" },
-    { key: "salla_tools", label: locale === "ar" ? "أدوات سلة الذكية" : "Salla Smart Tools" },
+    { key: "salla_design", label: tServices("salla_design.name") },
+    { key: "digital_marketing", label: tServices("digital_marketing.name") },
+    { key: "branding", label: tServices("branding.name") },
+    { key: "web_dev", label: tServices("web_dev.name") },
+    { key: "salla_tools", label: tServices("salla_tools.name") },
   ];
 
   return (
@@ -185,7 +186,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div>
                 <div style={{ color: "#8C8C7A", fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "4px" }}>
-                  {locale === "ar" ? "هاتف / واتساب" : "Phone / WhatsApp"}
+                  {t("phone_label")}
                 </div>
                 <a
                   href={`https://wa.me/${AGENCY_INFO.phone.replace("+", "")}`}
@@ -197,7 +198,7 @@ export default function Footer() {
               </div>
               <div>
                 <div style={{ color: "#8C8C7A", fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "4px" }}>
-                  {locale === "ar" ? "البريد الإلكتروني" : "Email"}
+                  {t("email_label")}
                 </div>
                 <a
                   href={`mailto:${AGENCY_INFO.email}`}
@@ -209,7 +210,7 @@ export default function Footer() {
               </div>
               <div>
                 <div style={{ color: "#8C8C7A", fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "4px" }}>
-                  {locale === "ar" ? "الموقع" : "Location"}
+                  {t("location_label")}
                 </div>
                 <div style={{ color: "#FAFAF7", fontSize: "14px" }}>
                   {t("address")}
