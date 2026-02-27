@@ -29,17 +29,20 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="md:col-span-1">
-            <div
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.png"
+              alt="logo"
               style={{
-                fontFamily: "'Zain', sans-serif",
-                fontSize: "28px",
-                fontWeight: 800,
-                color: "#C8A962",
+                height: "34px",
+                width: "auto",
+                objectFit: "contain",
                 marginBottom: "16px",
+                filter: "brightness(0) invert(1)",
+                opacity: 0.88,
+                display: "block",
               }}
-            >
-              وكالة رقمية
-            </div>
+            />
             <p
               style={{
                 color: "#8C8C7A",
@@ -240,7 +243,10 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="max-w-[1400px] mx-auto px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div style={{ color: "#8C8C7A", fontSize: "13px" }}>
-          © {currentYear} وكالة رقمية. {t("rights")}.
+          © {currentYear}{" "}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="logo" style={{ height: "12px", width: "auto", objectFit: "contain", verticalAlign: "middle", filter: "brightness(0) invert(1)", opacity: 0.5, display: "inline-block", margin: "0 4px" }} />
+          . {t("rights")}.
         </div>
         <div
           style={{

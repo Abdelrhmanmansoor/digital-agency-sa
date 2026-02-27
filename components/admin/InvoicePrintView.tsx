@@ -216,7 +216,8 @@ function ClassicTemplate({ invoice }: Props) {
         {/* From */}
         <div style={{ minWidth: "130px" }}>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#C8A962", letterSpacing: "0.25em", marginBottom: "6px", textTransform: "uppercase" }}>صادرة من</div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 800, color: "#111" }}>وكالة رقمية</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="logo" style={{ height: "20px", width: "auto", objectFit: "contain", display: "block", marginBottom: "2px" }} />
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#999", marginTop: "3px" }}>+201007835547</div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#999" }}>info@digitalagency.sa</div>
         </div>
@@ -255,7 +256,7 @@ function ClassicTemplate({ invoice }: Props) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="" style={{ height: "22px", objectFit: "contain", opacity: 0.4 }} />
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#BBB", textAlign: "center" }}>
-            وكالة رقمية · +201007835547 · info@digitalagency.sa
+            +201007835547 · info@digitalagency.sa
           </div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#C8A962", fontWeight: 600 }}>{invoice.number}</div>
         </div>
@@ -329,7 +330,7 @@ function ModernTemplate({ invoice }: Props) {
         {/* Footer */}
         <div style={{ marginTop: "32px", paddingTop: "13px", borderTop: "1px solid #E0DAD0", display: "flex", justifyContent: "space-between", alignItems: "center", direction: "rtl" }}>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#CCC" }}>
-            وكالة رقمية · +201007835547 · info@digitalagency.sa
+            +201007835547 · info@digitalagency.sa
           </div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#C8A962", fontWeight: 600 }}>{invoice.number}</div>
         </div>

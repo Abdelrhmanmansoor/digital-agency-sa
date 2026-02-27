@@ -59,17 +59,21 @@ export default function AdminLoginPage() {
         />
 
         <div className="relative z-10">
-          <div
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.png"
+            alt="logo"
             style={{
-              fontFamily: "'Zain', sans-serif",
-              fontSize: "32px",
-              fontWeight: 800,
-              color: "#C8A962",
+              height: "32px",
+              width: "auto",
+              objectFit: "contain",
+              filter: "brightness(0) invert(1)",
+              opacity: 0.85,
+              display: "block",
+              marginBottom: "4px",
             }}
-          >
-            وكالة رقمية
-          </div>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", letterSpacing: "0.3em", color: "rgba(200,169,98,0.5)", textTransform: "uppercase", marginTop: "4px" }}>
+          />
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", letterSpacing: "0.3em", color: "rgba(200,169,98,0.5)", textTransform: "uppercase" }}>
             ADMIN PANEL
           </div>
         </div>
@@ -95,7 +99,9 @@ export default function AdminLoginPage() {
         </div>
 
         <div className="relative z-10" style={{ color: "#8C8C7A", fontFamily: "Space Mono", fontSize: "12px", letterSpacing: "0.1em" }}>
-          © 2025 وكالة رقمية
+          © 2026{" "}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.png" alt="logo" style={{ height: "11px", width: "auto", objectFit: "contain", verticalAlign: "middle", filter: "brightness(0) invert(1)", opacity: 0.4, display: "inline-block", margin: "0 3px" }} />
         </div>
       </div>
 

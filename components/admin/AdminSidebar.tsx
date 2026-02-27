@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { href: "/admin/articles", icon: "📄", label: "المقالات" },
   { href: "/admin/portfolio", icon: "💼", label: "الأعمال" },
   { href: "/admin/messages", icon: "📨", label: "الرسائل", badge: true },
+  { href: "/admin/clients", icon: "👤", label: "العملاء" },
   { href: "/admin/invoices", icon: "🧾", label: "الفواتير" },
   { href: "/admin/contracts", icon: "📋", label: "العقود" },
   { href: "/admin/settings", icon: "⚙️", label: "الإعدادات" },
@@ -36,16 +37,19 @@ export default function AdminSidebar({ active: _active }: AdminSidebarProps = {}
           borderBottom: "1px solid rgba(255,255,255,0.06)",
         }}
       >
-        <div
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo.png"
+          alt="logo"
           style={{
-            fontFamily: "'Zain', sans-serif",
-            fontSize: "20px",
-            fontWeight: 800,
-            color: "#C8A962",
+            height: "26px",
+            width: "auto",
+            objectFit: "contain",
+            filter: "brightness(0) invert(1)",
+            opacity: 0.85,
+            display: "block",
           }}
-        >
-          وكالة رقمية
-        </div>
+        />
         <div
           style={{
             fontFamily: "Space Mono, monospace",
