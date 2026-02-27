@@ -1,10 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { getRadarSession } from "@/lib/radar-auth";
 import { radarUsersDB, radarProductsDB, radarAnalysesDB } from "@/lib/radar-db";
 import type { Competitor, ProfitMetrics, AnalysisResult } from "@/lib/radar-db";
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+// Initialized lazily so env vars are available at runtime
+let openai: OpenAI | null = null;
+function getOpenAI(): OpenAI {
+  if (!openai) {
+    const key = process.env.OPENAI_API_KEY;
+    if (!key || key.includes("ضع")) {
+      throw new Error("OPENAI_API_KEY غير مضبوط في .env.local");
+    }
+    openai = new OpenAI({ apiKey: key });
+  }
+  return openai;
+}
 
 // ─── Price parser (handles Arabic + Latin numerals, SAR/ريال/ر.س) ──────────
 function parsePrice(raw: string): number | null {
@@ -98,8 +109,8 @@ async function generateInsight(params: {
   const topCompetitors = competitors.slice(0, 3).map(c => `${c.store}: ${c.price}ر`).join("، ");
 
   try {
-    const msg = await anthropic.messages.create({
-      model: "claude-haiku-4-5-20251001",
+    const completion = await getOpenAI().chat.completions.create({
+      model: "gpt-4o-mini",
       max_tokens: 300,
       messages: [
         {
@@ -120,10 +131,9 @@ ROAS المطلوب: ${profitMetrics.breakevenRoas}x
       ],
     });
 
-    const content = msg.content[0];
-    return content.type === "text" ? content.text : "تعذّر توليد التحليل.";
+    return completion.choices[0]?.message?.content || "تعذّر توليد التحليل.";
   } catch (e) {
-    console.error("Anthropic error:", e);
+    console.error("OpenAI error:", e);
     return "تعذّر توليد التحليل في الوقت الحالي.";
   }
 }
