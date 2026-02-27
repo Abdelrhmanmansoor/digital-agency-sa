@@ -2,30 +2,123 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "وكالة رقمية — تصميم متاجر سلة وتسويق رقمي",
+  title: "تصميم متجر سلة احترافي في السعودية 2026 | وكالة تسويق رقمي",
   description:
-    "وكالة رقمية متخصصة في تصميم وتطوير متاجر سلة وزد وشوبيفاي، التسويق الرقمي، بناء الهويات البصرية، وإنتاج المحتوى.",
+    "أفضل وكالة رقمية متخصصة في تصميم متجر سلة وزد احترافي، تصميم موقع مكتب محاماة، وكالة تسويق رقمي في الرياض والسعودية. هوية بصرية، SEO، إعلانات ممولة، إدارة حسابات سوشيال ميديا، موشن جرافيك — كل ما يحتاجه عملك.",
+  keywords: [
+    "تصميم متجر سلة احترافي",
+    "تصميم متجر سلة في السعودية",
+    "تصميم متجر زد",
+    "تصميم متجر سلة وزد",
+    "إنشاء متجر الكتروني",
+    "تصميم متجر الكتروني",
+    "وكالة تسويق رقمي في السعودية",
+    "أفضل وكالة تسويق رقمي بالرياض",
+    "شركة تسويق الكتروني في الرياض",
+    "تصميم موقع مكتب محاماة",
+    "تصميم موقع محامي في السعودية",
+    "موقع مكتب محاماة احترافي",
+    "تصميم هوية بصرية احترافية",
+    "تصميم شعار احترافي",
+    "تحسين محركات البحث SEO",
+    "إعلانات سناب شات",
+    "إعلانات جوجل",
+    "إدارة حسابات سوشيال ميديا",
+    "موشن جرافيك",
+    "تصميم متجر سلة مع هوية بصرية",
+    "تصميم متجر سلة يزيد المبيعات",
+    "تجهيز متجر سلة كامل",
+    "ربط بوابة الدفع تابي تمارا",
+    "شركة تصميم متجر سلة في الرياض",
+    "وكالة رقمية",
+  ],
   metadataBase: new URL("https://digital-agency-sa.vercel.app"),
   robots: { index: true, follow: true },
 };
 
 const LOCAL_BUSINESS_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "ProfessionalService"],
   name: "وكالة رقمية",
-  alternateName: "Digital Agency SA",
+  alternateName: ["Digital Agency SA", "وكالة تسويق رقمي في السعودية"],
   description:
-    "وكالة رقمية متخصصة في تصميم متاجر سلة وزد، التسويق الرقمي، والهويات البصرية",
+    "أفضل وكالة رقمية في السعودية متخصصة في تصميم متجر سلة وزد احترافي، تصميم مواقع مكاتب المحاماة، وكالة تسويق رقمي، هوية بصرية، SEO، إعلانات ممولة سناب وجوجل وتيك توك، إدارة حسابات سوشيال ميديا، موشن جرافيك، ربط بوابات الدفع تابي وتمارا وSTC Pay.",
   url: "https://digital-agency-sa.vercel.app",
   telephone: "+201007835547",
   email: "info@digitalagency.sa",
   address: {
     "@type": "PostalAddress",
     addressCountry: "SA",
-    addressRegion: "المملكة العربية السعودية",
+    addressRegion: "الرياض",
+    addressLocality: "المملكة العربية السعودية",
   },
-  areaServed: "SA",
-  serviceType: ["Salla Store Design", "Digital Marketing", "Brand Identity", "E-commerce", "SEO"],
+  areaServed: ["SA", "الرياض", "جدة", "الدمام", "مكة المكرمة", "الخليج العربي"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "خدمات وكالة رقمية",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "تصميم متجر سلة احترافي",
+          description: "تصميم متجر سلة متكامل يزيد مبيعاتك — ألوان، خطوط، صفحات، وتجربة مستخدم مثالية للجوال",
+        },
+        price: "1299",
+        priceCurrency: "SAR",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "تصميم متجر زد احترافي",
+          description: "تصميم وتجهيز متجر زد بالكامل من إنشاء الحساب حتى ربط الدفع والشحن",
+        },
+        price: "799",
+        priceCurrency: "SAR",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "تصميم موقع مكتب محاماة",
+          description: "موقع إلكتروني احترافي لمكاتب المحاماة والمحامين في السعودية — تصميم يعكس هيبة مكتبك ويبني الثقة مع موكليك",
+        },
+        price: "1999",
+        priceCurrency: "SAR",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "وكالة تسويق رقمي في السعودية",
+          description: "خدمات التسويق الرقمي الشاملة — إعلانات سناب شات وجوجل وتيك توك، إدارة حسابات، تقارير أداء أسبوعية",
+        },
+        price: "899",
+        priceCurrency: "SAR",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "تصميم هوية بصرية احترافية",
+          description: "شعار احترافي، ألوان العلامة التجارية، دليل الهوية البصرية، تصاميم سوشيال ميديا، موشن جرافيك",
+        },
+        price: "799",
+        priceCurrency: "SAR",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "تحسين محركات البحث SEO",
+          description: "تصدر نتائج جوجل — تحسين كلمات مفتاحية، بناء روابط، تحسين سرعة الموقع، تقارير SEO شهرية",
+        },
+        price: "699",
+        priceCurrency: "SAR",
+      },
+    ],
+  },
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "5.0",
@@ -35,6 +128,35 @@ const LOCAL_BUSINESS_SCHEMA = {
   },
   priceRange: "$$",
   currenciesAccepted: "SAR",
+  paymentAccepted: "Cash, Credit Card, مدى, Apple Pay, STC Pay, تابي, تمارا",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"],
+    opens: "09:00",
+    closes: "23:00",
+  },
+  sameAs: [
+    "https://www.instagram.com/digitalagencysa",
+    "https://twitter.com/digitalagencysa",
+    "https://www.snapchat.com/add/digitalagencysa",
+  ],
+};
+
+const WEBSITE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "وكالة رقمية — تصميم متجر سلة وتسويق رقمي في السعودية",
+  url: "https://digital-agency-sa.vercel.app",
+  description: "أفضل وكالة رقمية في السعودية — تصميم متجر سلة وزد، تصميم موقع مكتب محاماة، وكالة تسويق رقمي بالرياض",
+  inLanguage: ["ar", "en", "fr"],
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://digital-agency-sa.vercel.app/ar?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({
@@ -54,6 +176,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(LOCAL_BUSINESS_SCHEMA) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_SCHEMA) }}
         />
       </head>
       <body suppressHydrationWarning>{children}</body>

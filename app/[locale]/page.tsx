@@ -28,48 +28,111 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "hero" });
 
+  /* ── Titles — SEO keyword pattern: [primary keyword] + [geo] + [year] | [brand] ── */
   const metaTitle =
     locale === "ar"
-      ? "وكالة رقمية — تصميم متاجر سلة وتسويق رقمي احترافي"
+      ? "تصميم متجر سلة احترافي في السعودية 2026 | وكالة تسويق رقمي"
       : locale === "fr"
-      ? "Agence Digitale — Conception Boutique Salla & Marketing Digital Professionnel"
-      : "Digital Agency — Salla Store Design & Digital Marketing";
+      ? "Conception Boutique Salla Professionnelle en Arabie 2026 | Agence Marketing Digital"
+      : "Professional Salla Store Design Saudi Arabia 2026 | Digital Marketing Agency";
 
+  /* ── Descriptions — keyword-dense but readable ── */
+  const metaDesc =
+    locale === "ar"
+      ? "أفضل وكالة رقمية في الرياض والسعودية — تصميم متجر سلة وزد احترافي يزيد مبيعاتك، تصميم موقع مكتب محاماة، وكالة تسويق رقمي متكاملة، هوية بصرية، موشن جرافيك، إعلانات سناب وجوجل وتيك توك، إدارة حسابات سوشيال ميديا، تحسين SEO، ربط تابي وتمارا وSTC Pay. أسعار تنافسية وتسليم في الوقت المحدد."
+      : locale === "fr"
+      ? "Meilleure agence digitale en Arabie Saoudite — conception boutique Salla & Zid, site web cabinet d'avocats, marketing digital, identité visuelle, SEO, gestion réseaux sociaux. Livraison rapide, prix compétitifs."
+      : "Top digital agency in Saudi Arabia & Riyadh — professional Salla & Zid store design, law firm website, digital marketing, brand identity, SEO, Snapchat & Google ads, social media management. Competitive prices, on-time delivery.";
+
+  /* ── Keywords per locale ── */
+  const metaKeywords =
+    locale === "ar"
+      ? [
+          "تصميم متجر سلة احترافي",
+          "تصميم متجر سلة في الرياض",
+          "تصميم متجر سلة في السعودية",
+          "تصميم متجر زد",
+          "تصميم متجر سلة وزد",
+          "إنشاء متجر الكتروني",
+          "تجهيز متجر سلة كامل",
+          "تصميم متجر سلة يزيد المبيعات",
+          "وكالة تسويق رقمي في السعودية",
+          "أفضل وكالة تسويق رقمي بالرياض",
+          "شركة تسويق الكتروني الرياض",
+          "تصميم موقع مكتب محاماة",
+          "تصميم موقع محامي في السعودية",
+          "موقع مكتب محاماة احترافي",
+          "تصميم هوية بصرية احترافية",
+          "تصميم شعار احترافي السعودية",
+          "موشن جرافيك",
+          "إعلانات سناب شات السعودية",
+          "إعلانات جوجل بالسعودية",
+          "إعلانات تيك توك",
+          "إدارة حسابات سوشيال ميديا",
+          "تحسين محركات البحث SEO",
+          "سيو للمتاجر الالكترونية",
+          "ربط تابي وتمارا",
+          "ربط STC Pay",
+          "وكالة رقمية",
+          "أفضل شركة تصميم متجر سلة",
+          "تصميم متجر الكتروني بالسعودية",
+        ]
+      : locale === "fr"
+      ? [
+          "conception boutique Salla",
+          "agence marketing digital Arabie Saoudite",
+          "design identité visuelle",
+          "site web cabinet avocats",
+          "SEO arabe",
+        ]
+      : [
+          "Salla store design Saudi Arabia",
+          "Zid store design",
+          "digital marketing agency Riyadh",
+          "law firm website Saudi Arabia",
+          "brand identity design",
+          "SEO Arabic",
+          "Snapchat ads Saudi",
+          "social media management",
+        ];
+
+  /* ── OG title (shorter, for social sharing) ── */
   const metaOgTitle =
     locale === "ar"
-      ? "وكالة رقمية — تصميم متاجر سلة وتسويق رقمي"
+      ? "تصميم متجر سلة وزد + موقع محامي + تسويق رقمي | وكالة رقمية"
       : locale === "fr"
-      ? "Agence Digitale — Conception Boutique Salla & Marketing"
-      : "Digital Agency — Salla Store Design & Marketing";
+      ? "Boutique Salla + Site Cabinet + Marketing Digital | Agence Digitale"
+      : "Salla Store + Law Firm Site + Digital Marketing | Digital Agency";
 
   const metaTwitterTitle =
     locale === "ar"
-      ? "وكالة رقمية — تصميم متاجر سلة"
+      ? "أفضل وكالة تصميم متجر سلة في السعودية"
       : locale === "fr"
-      ? "Agence Digitale — Boutique Salla"
-      : "Digital Agency — Salla Store Design";
+      ? "Meilleure agence Salla en Arabie Saoudite"
+      : "Best Salla Store Design Agency in Saudi Arabia";
 
   return {
     title: metaTitle,
-    description: t("subtitle"),
+    description: metaDesc,
+    keywords: metaKeywords,
     alternates: {
       canonical: `/${locale}`,
       languages: { ar: "/ar", en: "/en", fr: "/fr" },
     },
     openGraph: {
       title: metaOgTitle,
-      description: t("subtitle"),
+      description: metaDesc,
       url: `https://digital-agency-sa.vercel.app/${locale}`,
-      siteName: locale === "ar" ? "وكالة رقمية" : locale === "fr" ? "Agence Digitale" : "Digital Agency",
+      siteName:
+        locale === "ar" ? "وكالة رقمية" : locale === "fr" ? "Agence Digitale" : "Digital Agency",
       locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: metaTwitterTitle,
-      description: t("subtitle"),
+      description: metaDesc,
     },
   };
 }
