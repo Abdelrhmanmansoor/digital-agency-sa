@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -45,8 +45,8 @@
   --font-display:        'Satoshi','Clash Display',sans-serif;
   --font-body:           'General Sans',sans-serif;
   --font-mono:           'Space Mono','JetBrains Mono',monospace;
-  --font-arabic:         'Noto Sans Arabic',sans-serif;
-  --font-arabic-display: 'Noto Kufi Arabic',sans-serif;
+  --font-arabic:         'Zain',sans-serif;
+  --font-arabic-display: 'Zain',sans-serif;
 
   /* Easing */
   --ease-custom:    cubic-bezier(0.4,0,0.2,1);
