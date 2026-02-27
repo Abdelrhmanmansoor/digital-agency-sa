@@ -12,7 +12,7 @@ import { useLocale } from "next-intl";
 ──────────────────────────────────────────────────────────── */
 const LOGOS = {
   salla:  { src: "/logos/salla.svg",     w: 148, h: 62 },
-  zid:    { src: "/logos/zid-wide.png",  w: 140, h: 79 },
+  zid:    { src: "/logos/zid.svg",        w: 120, h: 46 },
   google: { src: "/logos/google.png",    w: 148, h: 50 },
   meta:   { src: "/logos/meta.png",      w: 148, h: 30 },
 };
