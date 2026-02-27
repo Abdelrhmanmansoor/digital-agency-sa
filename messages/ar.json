@@ -8,7 +8,9 @@
     "pricing": "الأسعار",
     "about": "من نحن",
     "contact": "تواصل معنا",
-    "store": "متجر الخدمات"
+    "store": "متجر الخدمات",
+    "client_portal": "بوابة العملاء",
+    "my_account": "حسابي"
   },
   "hero": {
     "title1": "نَصنع",

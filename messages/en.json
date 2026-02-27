@@ -8,7 +8,9 @@
     "pricing": "Pricing",
     "about": "About Us",
     "contact": "Contact",
-    "store": "Services Store"
+    "store": "Services Store",
+    "client_portal": "Client Portal",
+    "my_account": "My Account"
   },
   "hero": {
     "title1": "We Craft",

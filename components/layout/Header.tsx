@@ -131,7 +131,30 @@ export default function Header() {
             />
           </Link>
 
-          {/* Right side — Hamburger */}
+          {/* Right side — Portal + Hamburger */}
+          <div className="flex items-center gap-3">
+            {/* Client Portal button — desktop */}
+            <Link
+              href={`/${locale}/dashboard`}
+              className="hidden md:flex items-center gap-2 transition-all duration-200 hover:border-[#C8A962] hover:text-[#C8A962]"
+              style={{
+                fontFamily: "Space Mono, monospace",
+                fontSize: "10px",
+                letterSpacing: "0.12em",
+                color: "rgba(255,255,255,0.6)",
+                border: "1px solid rgba(255,255,255,0.15)",
+                borderRadius: "6px",
+                padding: "7px 14px",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              {t("my_account")}
+            </Link>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
@@ -177,6 +200,7 @@ export default function Header() {
               }}
             />
           </button>
+          </div>
         </div>
       </header>
 
@@ -249,6 +273,52 @@ export default function Header() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+
+            {/* Client Portal CTA */}
+            <div>
+              <div className="section-label" style={{ marginBottom: "12px" }}>{t("client_portal")}</div>
+              <Link
+                href={`/${locale}/dashboard`}
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  background: "rgba(200,169,98,0.1)",
+                  border: "1px solid rgba(200,169,98,0.3)",
+                  borderRadius: "10px",
+                  padding: "14px 20px",
+                  textDecoration: "none",
+                  color: "#C8A962",
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: "11px",
+                  letterSpacing: "0.1em",
+                  width: "100%",
+                  boxSizing: "border-box" as const,
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "rgba(200,169,98,0.18)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#C8A962";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "rgba(200,169,98,0.1)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,169,98,0.3)";
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <span style={{ flex: 1 }}>
+                  {isRTL ? "الفواتير والعقود والطلبات" : "Invoices, Contracts & Orders"}
+                </span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <path d={isRTL ? "M15 18l-6-6 6-6" : "M9 18l6-6-6-6"} />
+                </svg>
+              </Link>
+            </div>
+
             <div>
               <div className="section-label" style={{ marginBottom: "12px" }}>{t("contact")}</div>
               <a

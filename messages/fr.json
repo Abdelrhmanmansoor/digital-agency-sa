@@ -8,7 +8,9 @@
     "pricing": "Tarifs",
     "about": "À Propos",
     "contact": "Contact",
-    "store": "Boutique"
+    "store": "Boutique",
+    "client_portal": "Espace Client",
+    "my_account": "Mon Compte"
   },
   "hero": {
     "title1": "Nous Créons",
