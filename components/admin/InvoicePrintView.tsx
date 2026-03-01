@@ -60,7 +60,7 @@ function Badge({ status }: { status: string }) {
   );
 }
 
-/* ── Logo watermark - MORE VISIBLE ─────────────────────────────────────────*/
+/* ── Logo watermark - Professional & Elegant ──────────────────────────────*/
 function Watermark() {
   return (
     <div
@@ -69,14 +69,14 @@ function Watermark() {
         position: "absolute",
         top: "50%",
         left: "50%",
-        transform: "translate(-50%, -50%) rotate(-22deg)",
+        transform: "translate(-50%, -50%) rotate(-18deg)",
         width: "100%",
-        maxWidth: "500px",
+        maxWidth: "420px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        opacity: 0.12,
+        opacity: 0.08,
         pointerEvents: "none",
         userSelect: "none",
         zIndex: 0,
@@ -87,21 +87,11 @@ function Watermark() {
         src="/logo.png"
         alt=""
         style={{
-          width: "280px",
+          width: "320px",
           height: "auto",
-          filter: "sepia(0.5) saturate(0.6)",
+          filter: "grayscale(30%) contrast(0.9)",
         }}
       />
-      <div style={{
-        fontFamily: "Space Mono, monospace",
-        fontSize: "14px",
-        letterSpacing: "0.3em",
-        color: "#C8A962",
-        marginTop: "8px",
-        fontWeight: 600,
-      }}>
-        DIGITAL AGENCY
-      </div>
     </div>
   );
 }
@@ -724,7 +714,7 @@ function ClassicTemplate({ invoice }: Props) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="logo" style={{ height: "20px", width: "auto", objectFit: "contain", display: "block", marginBottom: "2px" }} />
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#999", marginTop: "3px" }}>+201007835547</div>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#999" }}>info@digitalagency.sa</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#999" }}>info@solimanx.com</div>
         </div>
 
         {/* Divider */}
@@ -761,7 +751,7 @@ function ClassicTemplate({ invoice }: Props) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="" style={{ height: "22px", objectFit: "contain", opacity: 0.4 }} />
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#BBB", textAlign: "center" }}>
-            +201007835547 · info@digitalagency.sa
+            +201007835547 · info@solimanx.com
           </div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#C8A962", fontWeight: 600 }}>{invoice.number}</div>
         </div>
@@ -835,7 +825,7 @@ function ModernTemplate({ invoice }: Props) {
         {/* Footer */}
         <div style={{ marginTop: "32px", paddingTop: "13px", borderTop: "1px solid #E0DAD0", display: "flex", justifyContent: "space-between", alignItems: "center", direction: "rtl" }}>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#CCC" }}>
-            +201007835547 · info@digitalagency.sa
+            +201007835547 · info@solimanx.com
           </div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#C8A962", fontWeight: 600 }}>{invoice.number}</div>
         </div>
@@ -904,7 +894,7 @@ function MinimalTemplate({ invoice }: Props) {
         <div style={{ marginTop: "32px", paddingTop: "13px", borderTop: "1px solid #E0D8CC", display: "flex", justifyContent: "space-between", alignItems: "center", direction: "rtl" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="" style={{ height: "20px", objectFit: "contain", opacity: 0.3 }} />
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#CCC" }}>info@digitalagency.sa</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#CCC" }}>info@solimanx.com</div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#C8A962", fontWeight: 600 }}>{invoice.number}</div>
         </div>
       </div>
@@ -913,16 +903,20 @@ function MinimalTemplate({ invoice }: Props) {
 }
 
 /* ════════════════════════════════════════════════════════════════════════════
-   PRINT CSS — hides sidebar, resets margins, forces A4
+   PRINT CSS — Professional multi-page support with consistent styling
 ════════════════════════════════════════════════════════════════════════════ */
 const PRINT_CSS = `
 @media print {
-  @page { size: A4 portrait; margin: 0; }
+  @page { 
+    size: A4 portrait; 
+    margin: 12mm 8mm 12mm 8mm;
+  }
 
   html, body {
     margin: 0 !important;
     padding: 0 !important;
     background: white !important;
+    font-size: 12pt !important;
   }
 
   /* Hide ALL admin chrome */
@@ -943,11 +937,40 @@ const PRINT_CSS = `
 
   /* The invoice container itself */
   #invoice-print-root {
-    width: 210mm !important;
+    width: 100% !important;
+    max-width: 210mm !important;
     margin: 0 auto !important;
     box-shadow: none !important;
     border-radius: 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Elegant page breaks - keep sections together */
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; page-break-after: auto; }
+  thead { display: table-header-group; }
+  tfoot { display: table-footer-group; }
+  
+  /* Keep payment sections together */
+  [style*="background: #F8F5EE"],
+  [style*="background: linear-gradient"],
+  [style*="background: #FFF9E6"] {
     page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Repeat header elements on each page */
+  .invoice-header {
+    position: running(header);
+  }
+
+  /* Watermark on every page */
+  [aria-hidden="true"] {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
   }
 
   /* Force-print background colors & images */
@@ -955,6 +978,12 @@ const PRINT_CSS = `
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
+  }
+
+  /* Orphan/widow control for professional text flow */
+  p, div {
+    orphans: 3;
+    widows: 3;
   }
 }
 `;

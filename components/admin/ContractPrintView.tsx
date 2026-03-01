@@ -123,21 +123,21 @@ export default function ContractPrintView({ contract: c }: Props) {
           overflow: "hidden",
         }}
       >
-        {/* Logo watermark - MORE VISIBLE */}
+        {/* Logo watermark - Professional & Elegant */}
         <div
           aria-hidden
           style={{
             position: "absolute",
             top: "50%",
             left: "50%",
-            transform: "translate(-50%, -50%) rotate(-22deg)",
+            transform: "translate(-50%, -50%) rotate(-18deg)",
             width: "100%",
-            maxWidth: "480px",
+            maxWidth: "420px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            opacity: 0.1,
+            opacity: 0.08,
             pointerEvents: "none",
             userSelect: "none",
             zIndex: 0,
@@ -148,21 +148,11 @@ export default function ContractPrintView({ contract: c }: Props) {
             src="/logo.png"
             alt=""
             style={{
-              width: "260px",
+              width: "320px",
               height: "auto",
-              filter: "sepia(0.5) saturate(0.6)",
+              filter: "grayscale(30%) contrast(0.9)",
             }}
           />
-          <div style={{
-            fontFamily: "Space Mono, monospace",
-            fontSize: "12px",
-            letterSpacing: "0.3em",
-            color: "#C8A962",
-            marginTop: "8px",
-            fontWeight: 600,
-          }}>
-            DIGITAL AGENCY
-          </div>
         </div>
 
         {/* ══ HEADER ══ */}
@@ -418,7 +408,7 @@ export default function ContractPrintView({ contract: c }: Props) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="" style={{ height: "18px", objectFit: "contain", opacity: 0.35 }} />
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", color: "#BBB", textAlign: "center" }}>
-            {c.providerEmail ?? "info@digitalagency.sa"} · {c.providerPhone ?? "+201007835547"}
+          {c.providerEmail ?? "info@solimanx.com"} · {c.providerPhone ?? "+201007835547"}
           </div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", color: "#C8A962", fontWeight: 600 }}>{c.number}</div>
         </div>
