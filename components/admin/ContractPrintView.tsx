@@ -123,15 +123,47 @@ export default function ContractPrintView({ contract: c }: Props) {
           overflow: "hidden",
         }}
       >
-        {/* Logo watermark */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo.png" alt="" aria-hidden style={{
-          position: "absolute", top: "50%", left: "50%",
-          transform: "translate(-50%, -50%) rotate(-22deg)",
-          width: "60%", maxWidth: "390px", opacity: 0.05,
-          pointerEvents: "none", userSelect: "none", zIndex: 0,
-          filter: "sepia(1) saturate(0.4)",
-        }} />
+        {/* Logo watermark - MORE VISIBLE */}
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%) rotate(-22deg)",
+            width: "100%",
+            maxWidth: "480px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            opacity: 0.1,
+            pointerEvents: "none",
+            userSelect: "none",
+            zIndex: 0,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo.png"
+            alt=""
+            style={{
+              width: "260px",
+              height: "auto",
+              filter: "sepia(0.5) saturate(0.6)",
+            }}
+          />
+          <div style={{
+            fontFamily: "Space Mono, monospace",
+            fontSize: "12px",
+            letterSpacing: "0.3em",
+            color: "#C8A962",
+            marginTop: "8px",
+            fontWeight: 600,
+          }}>
+            DIGITAL AGENCY
+          </div>
+        </div>
 
         {/* ══ HEADER ══ */}
         <div style={{ background: "#0A0A0A", padding: "20px 40px 16px", position: "relative", zIndex: 1 }}>

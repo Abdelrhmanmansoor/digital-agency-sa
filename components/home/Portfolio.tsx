@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocale } from "next-intl";
 import type { Project } from "@/lib/db";
+import WebsitePreview from "@/components/shared/WebsitePreview";
 
 const FILTERS = [
   { key: "all",       labelAr: "الكل",        labelEn: "All" },
@@ -93,6 +94,7 @@ export default function Portfolio() {
             {FILTERS.map((filter) => (
               <button
                 key={filter.key}
+                data-filter={filter.key}
                 onClick={() => setActiveFilter(filter.key)}
                 style={{
                   padding: "8px 20px",
@@ -140,71 +142,97 @@ export default function Portfolio() {
         {/* Project grid */}
         {!loading && displayed.length > 0 && (
           <div className="portfolio-grid">
-            {displayed.map((project, index) => (
-              <a
-                key={project.id}
-                href={project.url || "#"}
-                target={project.url && project.url !== "#" ? "_blank" : "_self"}
-                rel="noopener noreferrer"
-                className="portfolio-item"
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "none" : "translateY(30px)",
-                  transition: `opacity 0.6s ${index * 0.08}s ease, transform 0.6s ${index * 0.08}s ease`,
-                  display: "block",
-                  textDecoration: "none",
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={project.image}
-                  alt={isRTL ? project.nameAr : project.nameEn}
-                  loading="lazy"
-                />
+            {displayed.map((project, index) => {
+              // Use WebsitePreview for website projects with valid URLs
+              const hasValidUrl = project.url && project.url !== "#" && project.url.startsWith("http");
+              const isWebsite = project.category === "websites";
 
-                <div className="portfolio-overlay">
-                  <div className="portfolio-info">
-                    <div
-                      style={{
-                        fontFamily: "Space Mono, monospace",
-                        fontSize: "10px",
-                        letterSpacing: "0.2em",
-                        textTransform: "uppercase",
-                        color: "#C8A962",
-                        marginBottom: "8px",
-                      }}
-                    >
-                      {FILTERS.find((f) => f.key === project.category)?.[isRTL ? "labelAr" : "labelEn"] ?? project.category}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "'Zain', sans-serif",
-                        fontSize: "20px",
-                        fontWeight: 700,
-                        color: "#FFFFFF",
-                        marginBottom: "8px",
-                      }}
-                    >
-                      {isRTL ? project.nameAr : project.nameEn}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "'Zain', sans-serif",
-                        fontSize: "13px",
-                        color: "rgba(255,255,255,0.6)",
-                        marginBottom: "12px",
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {isRTL ? project.descriptionAr : project.descriptionEn}
-                    </div>
-                    <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "12px", fontFamily: "Space Mono" }}>
-                      {isRTL ? "عرض المشروع ←" : "View Project →"}
+              if (isWebsite && hasValidUrl && project.url) {
+                return (
+                  <div
+                    key={project.id}
+                    style={{
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible ? "none" : "translateY(30px)",
+                      transition: `opacity 0.6s ${index * 0.08}s ease, transform 0.6s ${index * 0.08}s ease`,
+                    }}
+                  >
+                    <WebsitePreview
+                      url={project.url}
+                      title={isRTL ? project.nameAr : project.nameEn}
+                      description={isRTL ? project.descriptionAr : project.descriptionEn}
+                    />
+                  </div>
+                );
+              }
+
+              // Default card for other projects
+              return (
+                <a
+                  key={project.id}
+                  href={project.url || "#"}
+                  target={project.url && project.url !== "#" ? "_blank" : "_self"}
+                  rel="noopener noreferrer"
+                  className="portfolio-item"
+                  style={{
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? "none" : "translateY(30px)",
+                    transition: `opacity 0.6s ${index * 0.08}s ease, transform 0.6s ${index * 0.08}s ease`,
+                    display: "block",
+                    textDecoration: "none",
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={project.image}
+                    alt={isRTL ? project.nameAr : project.nameEn}
+                    loading="lazy"
+                  />
+
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-info">
+                      <div
+                        style={{
+                          fontFamily: "Space Mono, monospace",
+                          fontSize: "10px",
+                          letterSpacing: "0.2em",
+                          textTransform: "uppercase",
+                          color: "#C8A962",
+                          marginBottom: "8px",
+                        }}
+                      >
+                        {FILTERS.find((f) => f.key === project.category)?.[isRTL ? "labelAr" : "labelEn"] ?? project.category}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "'Zain', sans-serif",
+                          fontSize: "20px",
+                          fontWeight: 700,
+                          color: "#FFFFFF",
+                          marginBottom: "8px",
+                        }}
+                      >
+                        {isRTL ? project.nameAr : project.nameEn}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "'Zain', sans-serif",
+                          fontSize: "13px",
+                          color: "rgba(255,255,255,0.6)",
+                          marginBottom: "12px",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {isRTL ? project.descriptionAr : project.descriptionEn}
+                      </div>
+                      <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "12px", fontFamily: "Space Mono" }}>
+                        {isRTL ? "عرض المشروع ←" : "View Project →"}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
-            ))}
+                </a>
+              );
+            })}
           </div>
         )}
 

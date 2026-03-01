@@ -125,6 +125,19 @@ const SAMPLE_PROJECTS: Project[] = [
     createdAt: "2024-01-01T00:00:00.000Z",
   },
   {
+    id: "26",
+    nameAr: "جوخ — مجوهرات فاخرة",
+    nameEn: "JOGH — Luxury Jewelry",
+    descriptionAr: "متجر إلكتروني فاخر للمجوهرات والإكسسوارات يجمع بين الأصالة واللمسة العصرية، مع خامات مختارة بعناية وفخامة تنبع من الهوية",
+    descriptionEn: "Premium e-commerce store for luxury jewelry and accessories blending authenticity with modern elegance, featuring carefully selected materials",
+    category: "websites",
+    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
+    url: "https://joghstore.com/ar/",
+    featured: true,
+    order: 2,
+    createdAt: "2025-03-01T00:00:00.000Z",
+  },
+  {
     id: "2",
     nameAr: "سرداب — أزياء فاخرة",
     nameEn: "Serdab — Luxury Fashion",
@@ -275,7 +288,7 @@ const SAMPLE_PROJECTS: Project[] = [
     descriptionEn: "Professional website & brand identity for JOGH luxury jewelry brand",
     category: "websites",
     image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
-    url: "#",
+    url: "https://www.jogh.sa",
     featured: false,
     order: 13,
     createdAt: "2024-07-15T00:00:00.000Z",
@@ -314,7 +327,7 @@ const SAMPLE_PROJECTS: Project[] = [
     descriptionEn: "Web app development for home maintenance & cleaning services",
     category: "websites",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-    url: "#",
+    url: "https://www.mrsool.sa",
     featured: false,
     order: 16,
     createdAt: "2024-09-01T00:00:00.000Z",
@@ -379,7 +392,7 @@ const SAMPLE_PROJECTS: Project[] = [
     descriptionEn: "Professional website for Saudi tech company with custom dashboard",
     category: "websites",
     image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
-    url: "#",
+    url: "https://www.stc.com.sa",
     featured: false,
     order: 21,
     createdAt: "2024-11-15T00:00:00.000Z",
@@ -550,6 +563,48 @@ export interface InvoiceItem {
   total: number;
 }
 
+// Payment method types
+export type PaymentMethodType = "bank" | "western_union" | "paypal" | "cash" | "instapay" | "vodafone_cash";
+
+export interface PaymentMethod {
+  type: PaymentMethodType;
+  // Bank Transfer
+  bankName?: string;
+  iban?: string;
+  accountHolder?: string;
+  accountNumber?: string;
+  swiftCode?: string;
+  // Western Union / Money Transfer
+  receiverName?: string;
+  receiverCountry?: string;
+  receiverCity?: string;
+  receiverPhone?: string;
+  // PayPal
+  paypalEmail?: string;
+  // Vodafone Cash / InstaPay
+  walletNumber?: string;
+  walletHolder?: string;
+}
+
+// Previous payment record
+export interface PaymentRecord {
+  id: string;
+  date: string;
+  amount: number;
+  method: PaymentMethodType;
+  transferNumber?: string; // رقم الحوالة
+  notes?: string;
+}
+
+// Additional costs (hosting, fees, etc.)
+export interface AdditionalCost {
+  id: string;
+  descAr: string;
+  descEn?: string;
+  amount: number;
+  type: "hosting" | "domain" | "fee" | "other";
+}
+
 export interface Invoice {
   id: string;
   number: string;
@@ -563,15 +618,35 @@ export interface Invoice {
   vatRate: number;
   vat: number;
   total: number;
-  currency: "SAR";
-  status: "draft" | "sent" | "paid" | "cancelled";
+  currency: "SAR" | "USD" | "EGP" | "EUR";
+  status: "draft" | "sent" | "paid" | "partial" | "cancelled";
   issueDate: string;
   dueDate: string;
   notes?: string;
   notesAr?: string;
+  
+  // Legacy bank fields (kept for compatibility)
   bankName?: string;
   iban?: string;
   accountHolder?: string;
+  
+  // New payment methods system
+  paymentMethods?: PaymentMethod[];
+  selectedPaymentMethod?: PaymentMethodType;
+  
+  // Payment history
+  payments?: PaymentRecord[];
+  totalPaid?: number;
+  remainingBalance?: number;
+  
+  // Additional costs
+  additionalCosts?: AdditionalCost[];
+  additionalCostsTotal?: number;
+  
+  // Related invoices (for tracking)
+  relatedInvoices?: string[]; // Invoice numbers
+  parentInvoice?: string; // If this is a follow-up invoice
+  
   createdAt: string;
   updatedAt: string;
 }

@@ -1,46 +1,4 @@
 {
-  "components\\home\\SallaTools.tsx -> @/components/tools/BannerSizes": {
-    "id": "components\\home\\SallaTools.tsx -> @/components/tools/BannerSizes",
-    "files": [
-      "static/chunks/_app-pages-browser_components_tools_BannerSizes_tsx.js"
-    ]
-  },
-  "components\\home\\SallaTools.tsx -> @/components/tools/CSSGenerator": {
-    "id": "components\\home\\SallaTools.tsx -> @/components/tools/CSSGenerator",
-    "files": [
-      "static/chunks/_app-pages-browser_components_tools_CSSGenerator_tsx.js"
-    ]
-  },
-  "components\\home\\SallaTools.tsx -> @/components/tools/ContentPlanner": {
-    "id": "components\\home\\SallaTools.tsx -> @/components/tools/ContentPlanner",
-    "files": [
-      "static/chunks/_app-pages-browser_components_tools_ContentPlanner_tsx.js"
-    ]
-  },
-  "components\\home\\SallaTools.tsx -> @/components/tools/ContentWriter": {
-    "id": "components\\home\\SallaTools.tsx -> @/components/tools/ContentWriter",
-    "files": [
-      "static/chunks/_app-pages-browser_components_tools_ContentWriter_tsx.js"
-    ]
-  },
-  "components\\home\\SallaTools.tsx -> @/components/tools/NameGenerator": {
-    "id": "components\\home\\SallaTools.tsx -> @/components/tools/NameGenerator",
-    "files": [
-      "static/chunks/_app-pages-browser_components_tools_NameGenerator_tsx.js"
-    ]
-  },
-  "components\\home\\SallaTools.tsx -> @/components/tools/PolicyGenerator": {
-    "id": "components\\home\\SallaTools.tsx -> @/components/tools/PolicyGenerator",
-    "files": [
-      "static/chunks/_app-pages-browser_components_tools_PolicyGenerator_tsx.js"
-    ]
-  },
-  "components\\home\\SallaTools.tsx -> @/components/tools/ProfitCalculator": {
-    "id": "components\\home\\SallaTools.tsx -> @/components/tools/ProfitCalculator",
-    "files": [
-      "static/chunks/_app-pages-browser_components_tools_ProfitCalculator_tsx.js"
-    ]
-  },
   "node_modules\\next\\dist\\client\\dev\\hot-reloader\\app\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts": {
     "id": "node_modules\\next\\dist\\client\\dev\\hot-reloader\\app\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts",
     "files": [
