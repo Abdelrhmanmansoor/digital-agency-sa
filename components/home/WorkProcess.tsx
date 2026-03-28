@@ -77,7 +77,7 @@ export default function WorkProcess() {
     <section
       style={{
         background: "#050505",
-        padding: "100px 0",
+        padding: "72px 0",
         position: "relative",
         overflow: "hidden",
       }}

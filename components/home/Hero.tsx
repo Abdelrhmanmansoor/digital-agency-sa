@@ -202,7 +202,7 @@ export default function Hero() {
             <div style={{ display:"flex", gap:"8px", marginBottom:"28px", flexWrap:"wrap" }}>
               <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(200,169,98,0.1)", border:"1px solid rgba(200,169,98,0.3)", borderRadius:"100px", padding:"5px 14px", fontSize:"11px", fontFamily:"Space Mono, monospace", color:"#C8A962", letterSpacing:"0.12em", textTransform:"uppercase" }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="#C8A962" style={{ flexShrink:0 }}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                {locale === "ar" ? "توفير حتى 70%" : "Save Up To 70%"}
+                {locale === "ar" ? "+250 مشروع منجز" : "250+ Projects Done"}
               </span>
               <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(189,238,99,0.07)", border:"1px solid rgba(189,238,99,0.2)", borderRadius:"100px", padding:"5px 14px" }}>
                 <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#BDEE63", display:"inline-block", animation:"heroPulse 2s ease-in-out infinite" }} />

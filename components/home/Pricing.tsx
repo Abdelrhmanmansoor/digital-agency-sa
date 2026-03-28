@@ -9,9 +9,6 @@ const PACKAGES_AR = [
     id: "starter",
     name: "باقة الانطلاق",
     tagline: "للمبتدئين وأصحاب المشاريع الناشئة",
-    price: "799",
-    oldPrice: "2,500",
-    discount: "68%",
     badge: null,
     featured: false,
     accentColor: "#C8A962",
@@ -23,14 +20,12 @@ const PACKAGES_AR = [
       "دعم فني لمدة شهر",
       "تسليم خلال 5 أيام",
     ],
+    waMsg: "مرحباً! أريد الاستفسار عن باقة الانطلاق لتصميم متجر سلة",
   },
   {
     id: "pro",
     name: "باقة الاحتراف",
     tagline: "الخيار الأمثل للمتاجر الجادة",
-    price: "1,499",
-    oldPrice: "4,999",
-    discount: "70%",
     badge: "★ الأكثر طلباً",
     featured: true,
     accentColor: "#C8A962",
@@ -45,14 +40,12 @@ const PACKAGES_AR = [
       "دعم فني لمدة 3 أشهر",
       "تسليم خلال 10 أيام",
     ],
+    waMsg: "مرحباً! أريد الاستفسار عن باقة الاحتراف لتصميم متجر سلة",
   },
   {
     id: "enterprise",
     name: "باقة التميز",
     tagline: "للمتاجر الكبيرة والمشاريع المتطورة",
-    price: "2,999",
-    oldPrice: "8,500",
-    discount: "65%",
     badge: null,
     featured: false,
     accentColor: "#BDEE63",
@@ -67,6 +60,7 @@ const PACKAGES_AR = [
       "دعم VIP لمدة 6 أشهر",
       "تسليم خلال 14 يوم",
     ],
+    waMsg: "مرحباً! أريد الاستفسار عن باقة التميز لمشروعي",
   },
 ];
 
@@ -75,9 +69,6 @@ const PACKAGES_EN = [
     id: "starter",
     name: "Starter",
     tagline: "For beginners & new projects",
-    price: "799",
-    oldPrice: "2,500",
-    discount: "68%",
     badge: null,
     featured: false,
     accentColor: "#C8A962",
@@ -89,14 +80,12 @@ const PACKAGES_EN = [
       "1 month technical support",
       "Delivered in 5 days",
     ],
+    waMsg: "Hello! I'm interested in the Starter package for Salla store design",
   },
   {
     id: "pro",
     name: "Professional",
     tagline: "Best for serious stores",
-    price: "1,499",
-    oldPrice: "4,999",
-    discount: "70%",
     badge: "★ Most Popular",
     featured: true,
     accentColor: "#C8A962",
@@ -111,14 +100,12 @@ const PACKAGES_EN = [
       "3 months technical support",
       "Delivered in 10 days",
     ],
+    waMsg: "Hello! I'm interested in the Professional package for my Salla store",
   },
   {
     id: "enterprise",
     name: "Enterprise",
     tagline: "For large & advanced stores",
-    price: "2,999",
-    oldPrice: "8,500",
-    discount: "65%",
     badge: null,
     featured: false,
     accentColor: "#BDEE63",
@@ -133,6 +120,7 @@ const PACKAGES_EN = [
       "6 months VIP support",
       "Delivered in 14 days",
     ],
+    waMsg: "Hello! I'd like to discuss a custom Enterprise package for my project",
   },
 ];
 
@@ -157,7 +145,7 @@ export default function Pricing() {
     <section
       id="pricing"
       className="relative"
-      style={{ background: "#0A0A0A", padding: "120px 0", fontFamily: "'Zain', sans-serif" }}
+      style={{ background: "#0A0A0A", padding: "80px 0", fontFamily: "'Zain', sans-serif" }}
     >
       {/* Subtle bg pattern */}
       <div
@@ -173,47 +161,23 @@ export default function Pricing() {
 
       <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
 
-        {/* Limited offer banner */}
-        <div className="flex justify-center mb-10">
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              background: "rgba(189,238,99,0.08)",
-              border: "1px solid rgba(189,238,99,0.25)",
-              borderRadius: "100px",
-              padding: "8px 20px",
-              fontSize: "13px",
-              fontFamily: "Space Mono, monospace",
-              color: "#BDEE63",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-            }}
-          >
-            <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#BDEE63", display: "inline-block", animation: "pulse 2s ease-in-out infinite" }} />
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink:0 }}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            {isRTL ? "عرض محدود — توفير يصل إلى 70%" : "Limited Offer — Save Up To 70%"}
-          </div>
-        </div>
-
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2
             style={{
-              fontSize: "clamp(32px, 4vw, 56px)",
+              fontSize: "clamp(28px, 4vw, 52px)",
               fontWeight: 800,
               color: "#FAFAF7",
               marginBottom: "12px",
               lineHeight: 1.1,
             }}
           >
-            {isRTL ? "باقات لا تُقاوَم" : "Unbeatable Packages"}
+            {isRTL ? "باقاتنا الاحترافية" : "Our Packages"}
           </h2>
-          <p style={{ color: "#8C8C7A", fontSize: "17px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.7 }}>
+          <p style={{ color: "#8C8C7A", fontSize: "16px", maxWidth: "440px", margin: "0 auto", lineHeight: 1.7 }}>
             {isRTL
-              ? "جودة احترافية بأسعار تنافسية — استثمر في نجاح متجرك"
-              : "Professional quality at competitive prices — invest in your store's success"}
+              ? "تواصل معنا عبر واتساب لمعرفة السعر المناسب لمشروعك"
+              : "Contact us on WhatsApp for pricing tailored to your project"}
           </p>
         </div>
 
@@ -267,21 +231,8 @@ export default function Pricing() {
                 </div>
               )}
 
-              {/* Discount chip */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "20px" }}>
-                <div
-                  style={{
-                    background: "rgba(189,238,99,0.12)",
-                    color: "#BDEE63",
-                    padding: "4px 12px",
-                    borderRadius: "100px",
-                    fontSize: "12px",
-                    fontFamily: "Space Mono, monospace",
-                    fontWeight: 700,
-                  }}
-                >
-                  {isRTL ? `وفّر ${pkg.discount}` : `-${pkg.discount}`}
-                </div>
+              {/* Icon */}
+              <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "20px" }}>
                 <div
                   style={{
                     width: "44px",
@@ -329,50 +280,6 @@ export default function Pricing() {
                 </p>
               </div>
 
-              {/* Price block */}
-              <div
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  borderRadius: "14px",
-                  padding: "20px 24px",
-                  marginBottom: "28px",
-                  border: "1px solid rgba(255,255,255,0.05)",
-                }}
-              >
-                {/* Old price crossed */}
-                <div
-                  style={{
-                    fontFamily: "Space Mono, monospace",
-                    fontSize: "13px",
-                    color: "#555",
-                    textDecoration: "line-through",
-                    marginBottom: "4px",
-                  }}
-                >
-                  {pkg.oldPrice} {isRTL ? "ر.س" : "SAR"}
-                </div>
-                {/* New price */}
-                <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
-                  <span
-                    style={{
-                      fontFamily: "Space Mono, monospace",
-                      fontSize: "clamp(38px, 3.5vw, 52px)",
-                      fontWeight: 700,
-                      color: pkg.featured ? "#C8A962" : "#FAFAF7",
-                      lineHeight: 1,
-                    }}
-                  >
-                    {pkg.price}
-                  </span>
-                  <span style={{ fontSize: "15px", color: "#8C8C7A" }}>
-                    {isRTL ? "ر.س" : "SAR"}
-                  </span>
-                </div>
-                <div style={{ fontSize: "12px", color: "#4A4A3A", marginTop: "6px", fontFamily: "Space Mono, monospace" }}>
-                  {isRTL ? "دفعة واحدة — بدون رسوم خفية" : "One-time — no hidden fees"}
-                </div>
-              </div>
-
               {/* Features */}
               <ul style={{ flex: 1, marginBottom: "28px", display: "flex", flexDirection: "column", gap: "10px" }}>
                 {pkg.features.map((feature) => (
@@ -387,13 +294,9 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              {/* CTA */}
+              {/* CTA → WhatsApp */}
               <a
-                href={getWhatsAppLink(
-                  isRTL
-                    ? `مرحباً! أريد الاستفسار عن ${pkg.name} بسعر ${pkg.price} ر.س`
-                    : `Hello! I'm interested in the ${pkg.name} package at ${pkg.price} SAR`
-                )}
+                href={getWhatsAppLink(pkg.waMsg)}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ display: "block" }}
@@ -413,6 +316,10 @@ export default function Pricing() {
                     textTransform: "uppercase",
                     cursor: "pointer",
                     transition: "all 0.25s ease",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
                   }}
                   onMouseEnter={(e) => {
                     if (pkg.featured) {
@@ -435,7 +342,11 @@ export default function Pricing() {
                     }
                   }}
                 >
-                  {isRTL ? "اطلب الباقة الآن ←" : "Order Now →"}
+                  {/* WhatsApp icon */}
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  {isRTL ? "تواصل عبر واتساب" : "Chat on WhatsApp"}
                 </button>
               </a>
             </div>
@@ -443,7 +354,7 @@ export default function Pricing() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12">
           <div
             style={{
               display: "inline-flex",
@@ -453,14 +364,14 @@ export default function Pricing() {
               background: "rgba(255,255,255,0.02)",
               border: "1px solid rgba(255,255,255,0.06)",
               borderRadius: "20px",
-              padding: "32px 48px",
-              maxWidth: "560px",
+              padding: "28px 40px",
+              maxWidth: "520px",
             }}
           >
             <p style={{ color: "#6B6B5A", fontSize: "14px", fontFamily: "Space Mono, monospace", letterSpacing: "0.1em", textTransform: "uppercase" }}>
               {isRTL ? "تحتاج باقة مخصصة؟" : "Need a custom package?"}
             </p>
-            <p style={{ color: "#9C9C8A", fontSize: "16px", lineHeight: 1.6 }}>
+            <p style={{ color: "#9C9C8A", fontSize: "15px", lineHeight: 1.6 }}>
               {isRTL
                 ? "نبني لك حلاً مخصصاً حسب متطلبات مشروعك ومتجرك"
                 : "We build a tailored solution for your project's specific needs"}
@@ -504,13 +415,6 @@ export default function Pricing() {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes pulse {
-          0%,100% { opacity:1; transform:scale(1); }
-          50% { opacity:0.5; transform:scale(0.8); }
-        }
-      `}</style>
     </section>
   );
 }

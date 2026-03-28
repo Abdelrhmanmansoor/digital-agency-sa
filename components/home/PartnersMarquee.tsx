@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 /* ─────────────────────────────────────────
@@ -47,6 +48,9 @@ const LOGOS_ROW3 = [
 type Partner = { name: string; file: string; invert: boolean };
 
 function PartnerLogo({ partner, basePath = "/partners/" }: { partner: Partner; basePath?: string }) {
+  const [hidden, setHidden] = useState(false);
+  if (hidden) return null;
+
   return (
     <div
       className="partner-logo-item"
@@ -68,6 +72,7 @@ function PartnerLogo({ partner, basePath = "/partners/" }: { partner: Partner; b
       <img
         src={`${basePath}${partner.file}`}
         alt={partner.name}
+        onError={() => setHidden(true)}
         style={{
           height: "40px",
           width: "auto",

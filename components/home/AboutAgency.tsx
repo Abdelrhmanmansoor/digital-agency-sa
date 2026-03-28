@@ -91,7 +91,7 @@ export default function AboutAgency() {
       dir={isRTL ? "rtl" : "ltr"}
       style={{
         background: "#0A0A0A",
-        padding: "120px 0",
+        padding: "80px 0",
         position: "relative",
         overflow: "hidden",
       }}

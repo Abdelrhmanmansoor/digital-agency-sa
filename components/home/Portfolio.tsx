@@ -54,7 +54,7 @@ export default function Portfolio() {
   const displayed = showAll ? filtered : filtered.slice(0, 6);
 
   return (
-    <section id="portfolio" ref={sectionRef} style={{ background: "#FFFFFF", padding: "120px 0" }}>
+    <section id="portfolio" ref={sectionRef} style={{ background: "#FFFFFF", padding: "80px 0" }}>
       <div className="max-w-[1400px] mx-auto px-8">
 
         {/* Header */}

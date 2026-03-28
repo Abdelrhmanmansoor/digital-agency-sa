@@ -237,7 +237,7 @@ export default function Services() {
     : "✓ 30-day quality guarantee  ·  ✓ 50% upfront  ·  ✓ On-time delivery";
 
   return (
-    <section id="services" style={{ background: "#0D0D0D", padding: "100px 0 120px" }}>
+    <section id="services" style={{ background: "#0D0D0D", padding: "72px 0 80px" }}>
       <div className="max-w-[1400px] mx-auto px-6">
 
         {/* Header */}
