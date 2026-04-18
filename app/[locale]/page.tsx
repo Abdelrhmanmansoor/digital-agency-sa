@@ -14,6 +14,7 @@ import FAQ from "@/components/home/FAQ";
 import CTASection from "@/components/home/CTASection";
 import Footer from "@/components/layout/Footer";
 import FloatingActions from "@/components/home/FloatingActions";
+import AIPhotography from "@/components/home/AIPhotography";
 
 export async function generateMetadata({
   params,
@@ -25,18 +26,18 @@ export async function generateMetadata({
   /* ── Titles — SEO keyword pattern: [primary keyword] + [geo] + [year] | [brand] ── */
   const metaTitle =
     locale === "ar"
-      ? "تصميم متجر سلة وزد احترافي في السعودية 2026 | وكالة تسويق رقمي"
+      ? "تصميم متجر سلة وزد احترافي يبيع يومياً 2026 | أفضل وكالة رقمية السعودية"
       : locale === "fr"
-      ? "Conception Boutique Salla & Zid Professionnelle en Arabie 2026 | Agence Marketing Digital"
-      : "Professional Salla & Zid Store Design Saudi Arabia 2026 | Digital Marketing Agency";
+      ? "Conception Boutique Salla & Zid Pro en Arabie 2026 | Agence Marketing Digital"
+      : "Salla & Zid Store Design That Sells Daily 2026 | Top Saudi Digital Agency";
 
   /* ── Descriptions — keyword-dense but readable ── */
   const metaDesc =
     locale === "ar"
-      ? "متخصصون في تصميم متجر سلة وزد احترافي يزيد مبيعاتك — تخصيص ثيم سلة، ربط بوابات الدفع تابي وتمارا وSTC Pay، إعداد المنتجات، SEO للمتاجر. نخدم الرياض وجدة والسعودية. تسويق رقمي، هوية بصرية، إعلانات سناب وجوجل. تواصل واتساب."
+      ? "نحوّل فكرتك إلى متجر إلكتروني يبيع يومياً — تصميم متجر سلة وزد احترافي، تصوير منتجات بالذكاء الاصطناعي، تحسين معدل التحويل CRO، بناء فنل مبيعات، SEO، إعلانات سناب وجوجل. نخدم الرياض وجدة وكامل السعودية. رد خلال أقل من ساعة."
       : locale === "fr"
-      ? "Experts en boutique Salla & Zid en Arabie Saoudite — thème personnalisé, passerelles de paiement, SEO e-commerce, marketing digital, identité visuelle. Contactez-nous sur WhatsApp."
-      : "Specialists in Salla & Zid store design Saudi Arabia — custom themes, payment gateways (Tabby, Tamara, STC Pay), product setup, SEO for stores. Serving Riyadh, Jeddah & all KSA. WhatsApp for pricing.";
+      ? "Experts Salla & Zid en Arabie Saoudite — thème personnalisé, photographie IA, CRO, entonnoir de vente, SEO, publicités. Réponse en moins d'1 heure."
+      : "We turn your idea into a daily-selling e-commerce store — Salla & Zid design, AI product photography, conversion optimization, sales funnels, SEO & ads. Serving all KSA. Reply in under 1 hour.";
 
   /* ── Keywords per locale ── */
   const metaKeywords =
@@ -55,19 +56,34 @@ export async function generateMetadata({
           "تصميم صفحات منتجات سلة",
           "ربط بوابة دفع سلة",
           "إطلاق متجر سلة جاهز",
+          "تعديل CSS سلة",
+          "تعديلات سلة",
+          "خبراء منصة سلة",
           // زد — secondary cluster
           "تصميم متجر زد",
           "تصميم متجر زد في السعودية",
           "تجهيز متجر زد من الصفر",
           "تصميم متجر سلة وزد",
-          // متاجر عامة
-          "إنشاء متجر الكتروني",
-          "تصميم متجر الكتروني بالسعودية",
-          // وكالة تسويق
+          "متجر سلة زد",
+          "متاجر السعودية",
+          // شركة تسويق
+          "افضل شركة تسويق سعودية",
           "وكالة تسويق رقمي في السعودية",
           "أفضل وكالة تسويق رقمي بالرياض",
-          // خدمات أخرى
-          "تصميم موقع مكتب محاماة",
+          "شركة تسويق سعودية",
+          "شركة برمجة سعودية",
+          "أفضل شركة تسويق",
+          // كيفية الإنشاء
+          "كيف اصمم متجر سعودي",
+          "إنشاء متجر الكتروني",
+          "تصميم متجر الكتروني بالسعودية",
+          // ادفاز
+          "ادفاز",
+          "خبراء المنصات",
+          // خدمات تخصصية
+          "تصوير منتجات بالذكاء الاصطناعي",
+          "تحسين معدل التحويل",
+          "بناء فنل مبيعات",
           "تصميم هوية بصرية احترافية",
           "موشن جرافيك",
           "إعلانات سناب شات السعودية",
@@ -83,8 +99,9 @@ export async function generateMetadata({
           "conception boutique Zid",
           "agence marketing digital Arabie Saoudite",
           "design identité visuelle",
-          "site web cabinet avocats",
+          "photographie produits IA",
           "SEO boutique en ligne",
+          "entonnoir de vente",
         ]
       : [
           "Salla store design Saudi Arabia",
@@ -92,27 +109,30 @@ export async function generateMetadata({
           "custom Salla theme design",
           "Salla store setup",
           "digital marketing agency Riyadh",
-          "law firm website Saudi Arabia",
-          "brand identity design",
-          "SEO for online stores",
+          "AI product photography Saudi",
+          "conversion rate optimization Saudi Arabia",
+          "sales funnel building",
+          "brand identity design Saudi",
+          "SEO for online stores Saudi Arabia",
           "Snapchat ads Saudi",
           "social media management Saudi Arabia",
+          "best digital agency Saudi Arabia",
         ];
 
   /* ── OG title (shorter, for social sharing) ── */
   const metaOgTitle =
     locale === "ar"
-      ? "تصميم متجر سلة وزد + هوية بصرية + تسويق رقمي — السعودية"
+      ? "نحوّل فكرتك لمتجر يبيع يومياً — سلة + زد + تصوير AI + تسويق رقمي"
       : locale === "fr"
-      ? "Boutique Salla & Zid + Identité Visuelle + Marketing Digital"
-      : "Salla & Zid Store Design + Branding + Digital Marketing — KSA";
+      ? "Transformez Votre Idée en Boutique Qui Vend Chaque Jour"
+      : "Turn Your Idea Into a Store That Sells Daily — Salla, Zid, AI & Marketing";
 
   const metaTwitterTitle =
     locale === "ar"
-      ? "أفضل وكالة تصميم متجر سلة وزد في السعودية 2026"
+      ? "أفضل وكالة تصميم متجر سلة وزد + تصوير AI في السعودية 2026"
       : locale === "fr"
-      ? "Meilleure agence Salla & Zid en Arabie Saoudite"
-      : "Best Salla & Zid Store Design Agency in Saudi Arabia 2026";
+      ? "Meilleure agence Salla & Zid + Photographie IA en Arabie Saoudite"
+      : "Best Salla & Zid Store Design + AI Photography Agency in Saudi Arabia 2026";
 
   return {
     title: metaTitle,
@@ -149,6 +169,7 @@ export default function HomePage() {
         <Hero />
         <PartnersMarquee />
         <Services />
+        <AIPhotography />
         <Portfolio />
         <MidCTA />
         <Pricing />

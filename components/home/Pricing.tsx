@@ -8,59 +8,67 @@ const PACKAGES_AR = [
   {
     id: "starter",
     name: "باقة الانطلاق",
-    tagline: "للمبتدئين وأصحاب المشاريع الناشئة",
+    tagline: "للمشاريع الناشئة التي تريد نتيجة سريعة",
     badge: null,
     featured: false,
     accentColor: "#C8A962",
+    price: "1,499",
+    currency: "ريال",
+    valueLabel: "قيمة الباقة تفوق 3,000 ريال",
     features: [
-      "تصميم متجر سلة احترافي",
-      "إعداد حتى 20 منتج",
-      "ربط بوابة دفع واحدة",
-      "تحسين صفحات المنتجات",
+      "تصميم متجر سلة / زد احترافي",
+      "إعداد حتى 30 منتج",
+      "ربط بوابة دفع واحدة (مدى / STC Pay)",
+      "تهيئة الجوال والسرعة",
       "دعم فني لمدة شهر",
-      "تسليم خلال 5 أيام",
+      "تسليم خلال 5 أيام مضمون",
     ],
-    waMsg: "مرحباً! أريد الاستفسار عن باقة الانطلاق لتصميم متجر سلة",
+    waMsg: "مرحباً! أريد الاستفسار عن باقة الانطلاق بسعر 1,499 ريال",
+  },
+  {
+    id: "growth",
+    name: "باقة النمو",
+    tagline: "الأكثر اختياراً — نتائج أسرع وتأثير أعمق",
+    badge: "★ الأكثر طلباً",
+    featured: true,
+    accentColor: "#A3FF12",
+    price: "2,999",
+    currency: "ريال",
+    valueLabel: "قيمة الباقة تفوق 7,000 ريال",
+    features: [
+      "تصميم ثيم مخصص 100% من الصفر",
+      "منتجات غير محدودة + صفحات Landing",
+      "ربط جميع بوابات الدفع (تابي، تمارا، STC)",
+      "هوية بصرية كاملة — لوجو + ألوان + خطوط",
+      "تحسين SEO للمتجر",
+      "حملة إطلاق على سوشيال ميديا",
+      "دعم VIP لمدة 3 أشهر",
+      "تسليم خلال 10 أيام",
+    ],
+    waMsg: "مرحباً! أريد الاستفسار عن باقة النمو بسعر 2,999 ريال",
   },
   {
     id: "pro",
     name: "باقة الاحتراف",
-    tagline: "الخيار الأمثل للمتاجر الجادة",
-    badge: "★ الأكثر طلباً",
-    featured: true,
-    accentColor: "#C8A962",
-    features: [
-      "تصميم ثيم مخصص بالكامل",
-      "إعداد منتجات غير محدودة",
-      "ربط جميع بوابات الدفع",
-      "هوية بصرية كاملة (لوجو + ألوان)",
-      "إعداد حسابات سوشيال ميديا",
-      "حملة إطلاق تسويقية",
-      "تحسين SEO أساسي",
-      "دعم فني لمدة 3 أشهر",
-      "تسليم خلال 10 أيام",
-    ],
-    waMsg: "مرحباً! أريد الاستفسار عن باقة الاحتراف لتصميم متجر سلة",
-  },
-  {
-    id: "enterprise",
-    name: "باقة التميز",
-    tagline: "للمتاجر الكبيرة والمشاريع المتطورة",
+    tagline: "للمشاريع الجادة التي تريد التصدر والسيطرة",
     badge: null,
     featured: false,
-    accentColor: "#BDEE63",
+    accentColor: "#C8A962",
+    price: "5,999",
+    currency: "ريال",
+    valueLabel: "قيمة الباقة تفوق 15,000 ريال",
     features: [
-      "كل مميزات باقة الاحتراف",
-      "تصميم UX/UI من الصفر",
-      "استراتيجية محتوى متكاملة",
-      "إعلانات ممولة Meta + Google",
-      "تقارير أداء شهرية مفصلة",
-      "مدير حساب خاص",
-      "أولوية قصوى في الدعم",
+      "كل مميزات باقة النمو",
+      "تصميم UX/UI متكامل من الصفر",
+      "استراتيجية محتوى 3 أشهر",
+      "إعلانات ممولة Meta + Snapchat + Google",
+      "تصوير منتجات بالذكاء الاصطناعي",
+      "تقارير أداء مفصلة شهرياً",
+      "مدير حساب خاص مخصص لك",
       "دعم VIP لمدة 6 أشهر",
       "تسليم خلال 14 يوم",
     ],
-    waMsg: "مرحباً! أريد الاستفسار عن باقة التميز لمشروعي",
+    waMsg: "مرحباً! أريد الاستفسار عن باقة الاحتراف بسعر 5,999 ريال",
   },
 ];
 
@@ -68,59 +76,67 @@ const PACKAGES_EN = [
   {
     id: "starter",
     name: "Starter",
-    tagline: "For beginners & new projects",
+    tagline: "For new projects that need fast results",
     badge: null,
     featured: false,
     accentColor: "#C8A962",
+    price: "1,499",
+    currency: "SAR",
+    valueLabel: "Package value exceeds 3,000 SAR",
     features: [
-      "Professional Salla store design",
-      "Setup up to 20 products",
-      "One payment gateway",
-      "Product page optimization",
+      "Professional Salla / Zid store design",
+      "Setup up to 30 products",
+      "One payment gateway (Mada / STC Pay)",
+      "Mobile & speed optimization",
       "1 month technical support",
-      "Delivered in 5 days",
+      "Guaranteed delivery in 5 days",
     ],
-    waMsg: "Hello! I'm interested in the Starter package for Salla store design",
+    waMsg: "Hello! I'm interested in the Starter package at 1,499 SAR",
+  },
+  {
+    id: "growth",
+    name: "Growth",
+    tagline: "Most chosen — faster results, deeper impact",
+    badge: "★ Most Popular",
+    featured: true,
+    accentColor: "#A3FF12",
+    price: "2,999",
+    currency: "SAR",
+    valueLabel: "Package value exceeds 7,000 SAR",
+    features: [
+      "100% custom theme from scratch",
+      "Unlimited products + Landing pages",
+      "All gateways (Tabby, Tamara, STC)",
+      "Full brand identity — logo + colors",
+      "Store SEO optimization",
+      "Social media launch campaign",
+      "3 months VIP support",
+      "Delivered in 10 days",
+    ],
+    waMsg: "Hello! I'm interested in the Growth package at 2,999 SAR",
   },
   {
     id: "pro",
-    name: "Professional",
-    tagline: "Best for serious stores",
-    badge: "★ Most Popular",
-    featured: true,
-    accentColor: "#C8A962",
-    features: [
-      "Fully custom theme design",
-      "Unlimited products setup",
-      "All payment gateways",
-      "Full brand identity (logo + colors)",
-      "Social media setup",
-      "Launch marketing campaign",
-      "Basic SEO optimization",
-      "3 months technical support",
-      "Delivered in 10 days",
-    ],
-    waMsg: "Hello! I'm interested in the Professional package for my Salla store",
-  },
-  {
-    id: "enterprise",
-    name: "Enterprise",
-    tagline: "For large & advanced stores",
+    name: "Pro",
+    tagline: "For serious projects that want to dominate",
     badge: null,
     featured: false,
-    accentColor: "#BDEE63",
+    accentColor: "#C8A962",
+    price: "5,999",
+    currency: "SAR",
+    valueLabel: "Package value exceeds 15,000 SAR",
     features: [
-      "All Professional features",
-      "Custom UX/UI from scratch",
-      "Full content strategy",
-      "Paid ads — Meta + Google",
-      "Detailed monthly reports",
-      "Dedicated account manager",
-      "Priority support",
+      "Everything in Growth",
+      "Full UX/UI design from scratch",
+      "3-month content strategy",
+      "Paid ads — Meta + Snap + Google",
+      "AI product photography",
+      "Detailed monthly performance reports",
+      "Dedicated personal account manager",
       "6 months VIP support",
       "Delivered in 14 days",
     ],
-    waMsg: "Hello! I'd like to discuss a custom Enterprise package for my project",
+    waMsg: "Hello! I'm interested in the Pro package at 5,999 SAR",
   },
 ];
 
@@ -162,22 +178,27 @@ export default function Pricing() {
       <div ref={ref} className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
 
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2
-            style={{
-              fontSize: "clamp(28px, 4vw, 52px)",
-              fontWeight: 800,
-              color: "#FAFAF7",
-              marginBottom: "12px",
-              lineHeight: 1.1,
-            }}
-          >
-            {isRTL ? "باقاتنا الاحترافية" : "Our Packages"}
+        <div className="text-center mb-12" dir={isRTL ? "rtl" : "ltr"}>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: "8px",
+            background: "rgba(163,255,18,0.08)", border: "1px solid rgba(163,255,18,0.2)",
+            borderRadius: "100px", padding: "6px 18px", marginBottom: "20px",
+          }}>
+            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#A3FF12" }}>
+              {isRTL ? "استثمار يعود بضعفه" : "Investment That Pays Back"}
+            </span>
+          </div>
+          <h2 style={{
+            fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 800,
+            color: "#FAFAF7", marginBottom: "12px", lineHeight: 1.1,
+            fontFamily: "'Zain', sans-serif",
+          }}>
+            {isRTL ? "باقات مدروسة للنتائج الحقيقية" : "Packages Built for Real Results"}
           </h2>
-          <p style={{ color: "#8C8C7A", fontSize: "16px", maxWidth: "440px", margin: "0 auto", lineHeight: 1.7 }}>
+          <p style={{ color: "#8C8C7A", fontSize: "16px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.7, fontFamily: "'Zain', sans-serif" }}>
             {isRTL
-              ? "تواصل معنا عبر واتساب لمعرفة السعر المناسب لمشروعك"
-              : "Contact us on WhatsApp for pricing tailored to your project"}
+              ? "لا تدفع مقابل تصميم — تدفع مقابل نمو مبيعاتك. كل ريال تستثمره يعود بضعفه."
+              : "You're not paying for design — you're paying for sales growth. Every riyal invested returns double."}
           </p>
         </div>
 
@@ -195,7 +216,7 @@ export default function Pricing() {
                   ? "linear-gradient(160deg, rgba(200,169,98,0.08) 0%, rgba(10,10,10,0) 60%)"
                   : "rgba(255,255,255,0.02)",
                 border: pkg.featured
-                  ? "1.5px solid rgba(200,169,98,0.45)"
+                  ? `1.5px solid rgba(163,255,18,0.45)`
                   : "1px solid rgba(255,255,255,0.07)",
                 borderRadius: "20px",
                 padding: "36px 32px",
@@ -263,21 +284,42 @@ export default function Pricing() {
                 </div>
               </div>
 
-              {/* Package name + tagline */}
-              <div style={{ marginBottom: "24px" }}>
-                <h3
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: 700,
-                    color: "#FAFAF7",
-                    marginBottom: "6px",
-                  }}
-                >
+              {/* Package name + price + tagline */}
+              <div style={{ marginBottom: "20px" }}>
+                <h3 style={{
+                  fontSize: "20px", fontWeight: 700, color: "#FAFAF7",
+                  marginBottom: "4px", fontFamily: "'Zain', sans-serif",
+                }}>
                   {pkg.name}
                 </h3>
-                <p style={{ fontSize: "13px", color: "#6B6B5A", lineHeight: 1.5 }}>
+                <p style={{ fontSize: "13px", color: "#6B6B5A", lineHeight: 1.5, marginBottom: "16px", fontFamily: "'Zain', sans-serif" }}>
                   {pkg.tagline}
                 </p>
+                {/* Price */}
+                <div style={{ display: "flex", alignItems: "baseline", gap: "6px", marginBottom: "6px" }}>
+                  <span style={{
+                    fontFamily: "Space Mono, monospace", fontSize: "36px",
+                    fontWeight: 700, color: pkg.accentColor, lineHeight: 1,
+                  }}>
+                    {(pkg as {price?: string}).price}
+                  </span>
+                  <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.4)", fontFamily: "'Zain', sans-serif" }}>
+                    {(pkg as {currency?: string}).currency}
+                  </span>
+                </div>
+                {/* Value label */}
+                <div style={{
+                  display: "inline-flex", alignItems: "center", gap: "5px",
+                  background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: "6px", padding: "3px 10px",
+                }}>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={pkg.accentColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                  <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)", fontFamily: "'Zain', sans-serif" }}>
+                    {(pkg as {valueLabel?: string}).valueLabel}
+                  </span>
+                </div>
               </div>
 
               {/* Features */}

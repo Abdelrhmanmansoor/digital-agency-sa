@@ -13,9 +13,9 @@ const STATS = [
 ];
 
 const CYCLING_WORDS = {
-  ar: ["التأثير", "النجاح", "التميز", "الإبداع", "الهوية"],
-  en: ["Impact",  "Success", "Excellence", "Growth",  "Identity"],
-  fr: ["l'Impact", "le Succès", "l'Excellence", "la Croissance", "l'Identité"],
+  ar: ["يبيع يوميًا", "يحقق أرباحًا", "يسبق المنافسين", "ينمو تلقائيًا", "يُدهش العملاء"],
+  en: ["Sells Daily",  "Grows Fast", "Beats Competitors", "Runs Itself",  "Converts Visitors"],
+  fr: ["Vend Chaque Jour", "Croît Vite", "Bat la Concurrence", "Automatisé", "Convertit Plus"],
 };
 
 const CHART_BARS = [40, 65, 48, 80, 72, 90, 78, 95, 85, 100];
@@ -215,7 +215,7 @@ export default function Hero() {
             <h1
               style={{
                 fontFamily: "'Zain', sans-serif",
-                fontSize: "clamp(38px, 7vw, 100px)",
+                fontSize: "clamp(36px, 6.5vw, 90px)",
                 fontWeight: 800,
                 lineHeight: 1.1,
                 color: "#FFFFFF",
@@ -225,32 +225,53 @@ export default function Hero() {
                 wordBreak: "break-word",
               }}
             >
-              {t("title1")}{" "}
-              <span
-                style={{
-                  color: "var(--lime)",
-                  display: "inline-block",
-                  transition: "opacity 0.32s ease, transform 0.32s ease",
-                  opacity: wordVisible ? 1 : 0,
-                  transform: wordVisible ? "translateY(0)" : "translateY(-12px)",
-                }}
-              >
-                {words[wordIndex]}
-              </span>
-              <br />
-              <span
-                style={{
-                  color: "rgba(255,255,255,0.2)",
-                  fontWeight: 300,
-                  fontSize: "0.58em",
-                  letterSpacing: isRTL ? "0" : "0.02em",
-                  lineHeight: 1.3,
-                  display: "block",
-                  marginTop: "4px",
-                }}
-              >
-                {t("title3")}
-              </span>
+              {isRTL ? (
+                <>
+                  نحوّل فكرتك إلى
+                  <br />
+                  <span style={{ display: "inline-block", position: "relative" }}>
+                    <span style={{ color: "#A3FF12" }}>مشروع رقمي</span>
+                    {/* underline glow */}
+                    <span style={{
+                      position: "absolute", bottom: "-4px", left: 0, right: 0,
+                      height: "3px", borderRadius: "2px",
+                      background: "linear-gradient(to right, #A3FF12, transparent)",
+                      opacity: 0.6,
+                    }} />
+                  </span>
+                  <br />
+                  <span
+                    style={{
+                      color: "#A3FF12",
+                      display: "inline-block",
+                      transition: "opacity 0.32s ease, transform 0.32s ease",
+                      opacity: wordVisible ? 1 : 0,
+                      transform: wordVisible ? "translateY(0)" : "translateY(-12px)",
+                    }}
+                  >
+                    {words[wordIndex]}
+                  </span>
+                </>
+              ) : (
+                <>
+                  We turn your idea
+                  <br />
+                  into a <span style={{ color: "#A3FF12" }}>digital project</span>
+                  <br />
+                  that{" "}
+                  <span
+                    style={{
+                      color: "#A3FF12",
+                      display: "inline-block",
+                      transition: "opacity 0.32s ease, transform 0.32s ease",
+                      opacity: wordVisible ? 1 : 0,
+                      transform: wordVisible ? "translateY(0)" : "translateY(-12px)",
+                    }}
+                  >
+                    {words[wordIndex]}
+                  </span>
+                </>
+              )}
             </h1>
 
             {/* Subtitle */}
@@ -271,197 +292,88 @@ export default function Hero() {
             {/* CTA Buttons */}
             <div
               className="flex flex-wrap gap-3"
-              style={{ marginBottom: "56px", opacity: entered ? 1 : 0, transition: "opacity 0.9s 0.35s ease" }}
+              style={{ marginBottom: "40px", opacity: entered ? 1 : 0, transition: "opacity 0.9s 0.35s ease" }}
             >
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <button
-                  className="btn-primary"
-                  style={{ fontSize:"15px", padding:"16px 32px", borderRadius:"12px" }}
+                  style={{
+                    fontSize: "16px", padding: "18px 36px", borderRadius: "14px",
+                    background: "#A3FF12", color: "#0A0A0A", fontWeight: 800,
+                    fontFamily: "'Zain', sans-serif", border: "none", cursor: "pointer",
+                    display: "flex", alignItems: "center", gap: "10px",
+                    boxShadow: "0 0 32px rgba(163,255,18,0.35), 0 4px 16px rgba(163,255,18,0.2)",
+                    transition: "all 0.25s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
+                    e.currentTarget.style.boxShadow = "0 0 48px rgba(163,255,18,0.5), 0 8px 24px rgba(163,255,18,0.3)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "none";
+                    e.currentTarget.style.boxShadow = "0 0 32px rgba(163,255,18,0.35), 0 4px 16px rgba(163,255,18,0.2)";
+                  }}
                 >
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                   </svg>
-                  <span>{t("cta_primary")}</span>
+                  <span>{isRTL ? "ابدأ مشروعك الآن" : "Start Your Project"}</span>
                 </button>
               </a>
               <Link href={`/${locale}#portfolio`}>
                 <button
-                  className="btn-secondary"
-                  style={{ fontSize:"15px", padding:"16px 32px", borderRadius:"12px" }}
+                  style={{
+                    fontSize: "15px", padding: "18px 32px", borderRadius: "14px",
+                    background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.8)",
+                    fontWeight: 600, fontFamily: "'Zain', sans-serif",
+                    border: "1px solid rgba(255,255,255,0.14)", cursor: "pointer",
+                    display: "flex", alignItems: "center", gap: "8px",
+                    transition: "all 0.25s ease", backdropFilter: "blur(8px)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.28)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
+                    e.currentTarget.style.transform = "none";
+                  }}
                 >
-                  {t("cta_secondary")}
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                  </svg>
+                  <span>{isRTL ? "شاهد أعمالنا" : "View Our Work"}</span>
                 </button>
               </Link>
             </div>
 
-            {/* Luxury Portfolio Buttons */}
+            {/* Quick trust pills */}
             <div
-              className="flex flex-wrap gap-4"
-              style={{ marginBottom: "44px", opacity: entered ? 1 : 0, transition: "opacity 0.9s 0.45s ease" }}
+              style={{
+                display: "flex", flexWrap: "wrap", gap: "10px",
+                marginBottom: "44px", opacity: entered ? 1 : 0, transition: "opacity 0.9s 0.45s ease",
+              }}
             >
-              <Link href={`/${locale}#portfolio`} onClick={() => {
-                setTimeout(() => {
-                  const sallaFilter = document.querySelector('[data-filter="salla"]') as HTMLElement;
-                  if (sallaFilter) sallaFilter.click();
-                }, 100);
-              }}>
-                <button
-                  className="group relative overflow-hidden"
+              {[
+                { icon: "⚡", text: isRTL ? "تسليم في 5 أيام" : "5-Day Delivery" },
+                { icon: "🔒", text: isRTL ? "دفع آمن 100%" : "100% Secure Payment" },
+                { icon: "↩", text: isRTL ? "ضمان استرداد" : "Money-Back Guarantee" },
+              ].map((pill) => (
+                <span
+                  key={pill.text}
                   style={{
-                    fontSize: "14px",
-                    padding: "18px 32px",
-                    borderRadius: "16px",
-                    background: "linear-gradient(135deg, rgba(200,169,98,0.15) 0%, rgba(200,169,98,0.05) 100%)",
-                    border: "1px solid rgba(200,169,98,0.4)",
-                    color: "#C8A962",
-                    fontFamily: "'Zain', sans-serif",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    transition: "all 0.4s cubic-bezier(0.19,1,0.22,1)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    boxShadow: "0 4px 24px rgba(200,169,98,0.15), inset 0 1px 0 rgba(255,255,255,0.1)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "linear-gradient(135deg, rgba(200,169,98,0.25) 0%, rgba(200,169,98,0.1) 100%)";
-                    e.currentTarget.style.borderColor = "rgba(200,169,98,0.6)";
-                    e.currentTarget.style.boxShadow = "0 8px 32px rgba(200,169,98,0.25), inset 0 1px 0 rgba(255,255,255,0.15)";
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "linear-gradient(135deg, rgba(200,169,98,0.15) 0%, rgba(200,169,98,0.05) 100%)";
-                    e.currentTarget.style.borderColor = "rgba(200,169,98,0.4)";
-                    e.currentTarget.style.boxShadow = "0 4px 24px rgba(200,169,98,0.15), inset 0 1px 0 rgba(255,255,255,0.1)";
-                    e.currentTarget.style.transform = "translateY(0)";
+                    display: "inline-flex", alignItems: "center", gap: "6px",
+                    background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
+                    borderRadius: "100px", padding: "7px 14px",
+                    fontSize: "13px", color: "rgba(255,255,255,0.6)",
+                    fontFamily: "'Zain', sans-serif", backdropFilter: "blur(8px)",
                   }}
                 >
-                  <span style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "10px",
-                    background: "linear-gradient(135deg, rgba(200,169,98,0.2) 0%, rgba(200,169,98,0.1) 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    border: "1px solid rgba(200,169,98,0.3)",
-                  }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
-                      <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h4v4H7V7zm0 6h4v4H7v-4zm6-6h4v4h-4V7zm0 6h4v4h-4v-4z" fill="currentColor"/>
-                    </svg>
-                  </span>
-                  <span style={{ display: "flex", flexDirection: "column", alignItems: isRTL ? "flex-end" : "flex-start" }}>
-                    <span style={{ fontSize: "13px", fontWeight: 700 }}>
-                      {isRTL ? "شاهد أعمالنا" : "View Our Work"}
-                    </span>
-                    <span style={{ fontSize: "11px", opacity: 0.7, fontWeight: 400 }}>
-                      {isRTL ? "في تصميم المتاجر" : "in Store Design"}
-                    </span>
-                  </span>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    style={{
-                      marginRight: isRTL ? "8px" : "0",
-                      marginLeft: isRTL ? "0" : "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    className="group-hover:translate-x-1"
-                  >
-                    <path
-                      d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"}
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </Link>
-
-              <Link href={`/${locale}#portfolio`} onClick={() => {
-                setTimeout(() => {
-                  const websitesFilter = document.querySelector('[data-filter="websites"]') as HTMLElement;
-                  if (websitesFilter) websitesFilter.click();
-                }, 100);
-              }}>
-                <button
-                  className="group relative overflow-hidden"
-                  style={{
-                    fontSize: "14px",
-                    padding: "18px 32px",
-                    borderRadius: "16px",
-                    background: "linear-gradient(135deg, rgba(189,238,99,0.12) 0%, rgba(189,238,99,0.04) 100%)",
-                    border: "1px solid rgba(189,238,99,0.35)",
-                    color: "#BDEE63",
-                    fontFamily: "'Zain', sans-serif",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    transition: "all 0.4s cubic-bezier(0.19,1,0.22,1)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    boxShadow: "0 4px 24px rgba(189,238,99,0.12), inset 0 1px 0 rgba(255,255,255,0.08)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "linear-gradient(135deg, rgba(189,238,99,0.22) 0%, rgba(189,238,99,0.08) 100%)";
-                    e.currentTarget.style.borderColor = "rgba(189,238,99,0.55)";
-                    e.currentTarget.style.boxShadow = "0 8px 32px rgba(189,238,99,0.22), inset 0 1px 0 rgba(255,255,255,0.12)";
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "linear-gradient(135deg, rgba(189,238,99,0.12) 0%, rgba(189,238,99,0.04) 100%)";
-                    e.currentTarget.style.borderColor = "rgba(189,238,99,0.35)";
-                    e.currentTarget.style.boxShadow = "0 4px 24px rgba(189,238,99,0.12), inset 0 1px 0 rgba(255,255,255,0.08)";
-                    e.currentTarget.style.transform = "translateY(0)";
-                  }}
-                >
-                  <span style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "10px",
-                    background: "linear-gradient(135deg, rgba(189,238,99,0.18) 0%, rgba(189,238,99,0.08) 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    border: "1px solid rgba(189,238,99,0.25)",
-                  }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/>
-                    </svg>
-                  </span>
-                  <span style={{ display: "flex", flexDirection: "column", alignItems: isRTL ? "flex-end" : "flex-start" }}>
-                    <span style={{ fontSize: "13px", fontWeight: 700 }}>
-                      {isRTL ? "شاهد أعمالنا" : "View Our Work"}
-                    </span>
-                    <span style={{ fontSize: "11px", opacity: 0.7, fontWeight: 400 }}>
-                      {isRTL ? "في تصميم مواقع المحاماة" : "in Law Firm Websites"}
-                    </span>
-                  </span>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    style={{
-                      marginRight: isRTL ? "8px" : "0",
-                      marginLeft: isRTL ? "0" : "8px",
-                      transition: "transform 0.3s ease",
-                    }}
-                    className="group-hover:translate-x-1"
-                  >
-                    <path
-                      d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"}
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </Link>
+                  <span>{pill.icon}</span>
+                  <span>{pill.text}</span>
+                </span>
+              ))}
             </div>
 
             {/* Stats row */}

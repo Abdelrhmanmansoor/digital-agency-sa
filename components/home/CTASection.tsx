@@ -30,12 +30,12 @@ export default function CTASection() {
       : "Hello! I'd like to book a free consultation with your team."
   );
 
-  const headingLine1 = locale === "ar" ? "خطوتك التالية" : locale === "fr" ? "Votre prochaine" : "Your next big";
-  const headingLine2 = locale === "ar" ? "تبدأ هنا ." : locale === "fr" ? "étape commence ici." : "move starts here.";
+  const headingLine1 = locale === "ar" ? "مشروعك التالي" : locale === "fr" ? "Votre prochain" : "Your next";
+  const headingLine2 = locale === "ar" ? "يبدأ الآن ." : locale === "fr" ? "projet commence ici." : "project starts now.";
   const sub = locale === "ar"
-    ? "فريقنا يتحول أفكارك إلى متاجر ومشاريع رقمية تُدهش المنافسين وتُسعد العملاء"
-    : "Our team turns your ideas into digital stores and projects that outshine competitors";
-  const btnPrimary  = locale === "ar" ? "تواصل عبر واتساب" : "Contact via WhatsApp";
+    ? "فريقنا متاح الآن — رد خلال أقل من ساعة. نحوّل فكرتك إلى مشروع رقمي يبيع يوميًا."
+    : "Our team is available now — reply in under 1 hour. We turn your idea into a daily-selling digital project.";
+  const btnPrimary  = locale === "ar" ? "ابدأ مشروعك الآن" : "Start Your Project Now";
   const btnSecondary = locale === "ar" ? "استشارة مجانية ←" : "Free Consultation →";
 
   return (
@@ -143,7 +143,19 @@ export default function CTASection() {
               }}
             >
               {/* Green top accent */}
-              <div style={{ position:"absolute", top:0, left:0, right:0, height:"2px", background:"linear-gradient(to right, transparent, rgba(189,238,99,0.6), transparent)" }} />
+              <div style={{ position:"absolute", top:0, left:0, right:0, height:"2px", background:"linear-gradient(to right, transparent, rgba(163,255,18,0.6), transparent)" }} />
+
+              {/* Reply-time badge */}
+              <div style={{
+                display:"inline-flex", alignItems:"center", gap:"6px",
+                background:"rgba(163,255,18,0.08)", border:"1px solid rgba(163,255,18,0.2)",
+                borderRadius:"100px", padding:"5px 14px", marginBottom:"20px",
+              }}>
+                <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#A3FF12", animation:"ctaPulse 2s infinite" }} />
+                <span style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", letterSpacing:"0.15em", textTransform:"uppercase", color:"#A3FF12" }}>
+                  {isRTL ? "رد خلال أقل من ساعة" : "Reply in under 1 hour"}
+                </span>
+              </div>
 
               {/* Main CTA */}
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" style={{ display:"block", marginBottom:"12px" }}>
@@ -246,24 +258,28 @@ export default function CTASection() {
         >
           {[
             {
-              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BDEE63" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
-              title: isRTL ? "رد خلال ساعة" : "1-Hour Reply",
-              sub: isRTL ? "نرد على استفساراتك فوراً" : "We respond to queries fast",
+              metric: isRTL ? "+300" : "300+",
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3FF12" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>,
+              title: isRTL ? "+300 عميل سعيد" : "300+ Happy Clients",
+              sub: isRTL ? "في السعودية ودول الخليج" : "Across Saudi Arabia & Gulf",
             },
             {
-              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>,
-              title: isRTL ? "تصميم حصري" : "Exclusive Design",
-              sub: isRTL ? "كل مشروع فريد من نوعه" : "Every project is unique",
+              metric: "35%",
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>,
+              title: isRTL ? "متوسط زيادة المبيعات 35%" : "35% Avg Sales Increase",
+              sub: isRTL ? "خلال أول 30 يوم من التسليم" : "Within first 30 days of delivery",
             },
             {
-              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BDEE63" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>,
-              title: isRTL ? "ضمان الجودة" : "Quality Guarantee",
-              sub: isRTL ? "أو استرداد كامل المبلغ" : "Or full refund",
+              metric: "<1h",
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3FF12" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
+              title: isRTL ? "رد خلال أقل من ساعة" : "Reply in Under 1 Hour",
+              sub: isRTL ? "فريقنا متاح على مدار الساعة" : "Our team is always available",
             },
             {
-              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>,
-              title: isRTL ? "دعم مستمر" : "Ongoing Support",
-              sub: isRTL ? "نحن معك بعد التسليم" : "We're with you post-delivery",
+              metric: "5★",
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="#C8A962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>,
+              title: isRTL ? "تقييم 5 نجوم دائماً" : "Always 5-Star Rated",
+              sub: isRTL ? "رضا 98% من عملائنا" : "98% client satisfaction",
             },
           ].map((item, i) => (
             <div
@@ -277,11 +293,18 @@ export default function CTASection() {
               onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.015)"; }}
             >
-              <div style={{ marginBottom:"12px" }}>{item.svg}</div>
-              <div style={{ fontFamily:"'Zain', sans-serif", fontSize:"16px", fontWeight:700, color:"#FAFAF7", marginBottom:"4px" }}>
+              <div style={{ marginBottom:"10px" }}>{item.svg}</div>
+              <div style={{
+                fontFamily:"Space Mono, monospace", fontSize:"22px",
+                fontWeight:700, color: i % 2 === 0 ? "#A3FF12" : "#C8A962",
+                lineHeight:1, marginBottom:"6px",
+              }}>
+                {(item as {metric?: string}).metric}
+              </div>
+              <div style={{ fontFamily:"'Zain', sans-serif", fontSize:"14px", fontWeight:700, color:"#FAFAF7", marginBottom:"3px" }}>
                 {item.title}
               </div>
-              <div style={{ fontSize:"12px", color:"rgba(255,255,255,0.35)", lineHeight:1.5 }}>
+              <div style={{ fontSize:"12px", color:"rgba(255,255,255,0.32)", lineHeight:1.5 }}>
                 {item.sub}
               </div>
             </div>
@@ -290,6 +313,10 @@ export default function CTASection() {
       </div>
 
       <style>{`
+        @keyframes ctaPulse {
+          0%,100% { opacity:1; transform:scale(1); }
+          50% { opacity:0.4; transform:scale(0.75); }
+        }
         @media (max-width: 900px) {
           .cta-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
           .cta-bottom-bar { grid-template-columns: 1fr 1fr !important; }
