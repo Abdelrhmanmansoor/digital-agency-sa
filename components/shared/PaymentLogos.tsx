@@ -72,6 +72,7 @@ interface Props {
 /* ─────────────────────────────── LUXURY 3D CARD ─────────────────────────────── */
 function LuxuryPaymentCard({ method, idx }: { method: typeof PRIMARY_PAYMENTS[0]; idx: number }) {
   const [hovered, setHovered] = useState(false);
+  const floatAnim = `plcFloat${idx % 3} ${3.5 + idx * 0.4}s ease-in-out infinite`;
 
   return (
     <div
@@ -85,12 +86,13 @@ function LuxuryPaymentCard({ method, idx }: { method: typeof PRIMARY_PAYMENTS[0]
         border: `1px solid ${hovered ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.08)"}`,
         display: "flex", alignItems: "center", justifyContent: "center",
         cursor: "default", flexShrink: 0,
-        transition: "all 0.3s cubic-bezier(0.19,1,0.22,1)",
-        transform: hovered ? "translateY(-6px) scale(1.04)" : "none",
+        transition: "border-color 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.19,1,0.22,1)",
+        transform: hovered ? "translateY(-8px) scale(1.05)" : undefined,
+        animation: hovered ? "none" : floatAnim,
+        animationDelay: `${idx * 0.6}s`,
         boxShadow: hovered
           ? `0 20px 48px ${method.glow}, 0 0 0 1px rgba(255,255,255,0.12)`
           : `0 8px 24px rgba(0,0,0,0.4)`,
-        animationDelay: `${idx * 0.1}s`,
         overflow: "hidden",
       }}
     >
@@ -246,6 +248,21 @@ export default function PaymentLogos({ variant = "luxury", showTitle = true }: P
             </div>
           ))}
         </div>
+
+        <style>{`
+          @keyframes plcFloat0 {
+            0%,100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+          }
+          @keyframes plcFloat1 {
+            0%,100% { transform: translateY(0px) rotate(0.5deg); }
+            50% { transform: translateY(-10px) rotate(-0.5deg); }
+          }
+          @keyframes plcFloat2 {
+            0%,100% { transform: translateY(0px) rotate(-0.5deg); }
+            50% { transform: translateY(-6px) rotate(0.5deg); }
+          }
+        `}</style>
       </div>
     );
   }

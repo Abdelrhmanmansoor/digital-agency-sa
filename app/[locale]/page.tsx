@@ -15,6 +15,9 @@ import CTASection from "@/components/home/CTASection";
 import Footer from "@/components/layout/Footer";
 import FloatingActions from "@/components/home/FloatingActions";
 import AIPhotography from "@/components/home/AIPhotography";
+import EcommerceSection from "@/components/home/EcommerceSection";
+import SocialMediaSection from "@/components/home/SocialMediaSection";
+import GoldGuarantee from "@/components/home/GoldGuarantee";
 
 export async function generateMetadata({
   params,
@@ -160,8 +163,75 @@ export async function generateMetadata({
 }
 
 export default function HomePage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://www.solimanx.com/#business",
+        "name": "وكالة رقمية — AM Design",
+        "alternateName": "AM Design KSA",
+        "description": "وكالة رقمية متخصصة في تصميم متاجر سلة وزد، تصوير منتجات بالذكاء الاصطناعي، وتسويق رقمي في السعودية",
+        "url": "https://www.solimanx.com",
+        "telephone": "+201007835547",
+        "priceRange": "1499 SAR - 5999 SAR",
+        "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
+        "address": { "@type": "PostalAddress", "addressCountry": "SA" },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "300",
+          "bestRating": "5",
+          "worstRating": "1",
+        },
+        "sameAs": [
+          "https://www.instagram.com/amdesign.ksa/",
+          "https://x.com/am_designing",
+          "https://www.tiktok.com/@amdesigne.sa",
+        ],
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.solimanx.com/#salla-design",
+        "name": "تصميم متجر سلة احترافي",
+        "description": "تصميم وتخصيص متجر سلة احترافي يزيد المبيعات — ثيم مخصص، ربط بوابات دفع، تجهيز كامل",
+        "provider": { "@id": "https://www.solimanx.com/#business" },
+        "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
+        "offers": {
+          "@type": "Offer",
+          "price": "1499",
+          "priceCurrency": "SAR",
+        },
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.solimanx.com/#ai-photography",
+        "name": "تصوير منتجات بالذكاء الاصطناعي",
+        "description": "تصوير منتجات احترافي بالذكاء الاصطناعي بجودة إعلانية — بدون تكلفة استوديو",
+        "provider": { "@id": "https://www.solimanx.com/#business" },
+        "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.solimanx.com/#website",
+        "url": "https://www.solimanx.com",
+        "name": "AM Design — تصميم متجر سلة وزد",
+        "inLanguage": ["ar", "en", "fr"],
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.solimanx.com/ar?q={search_term_string}",
+          "query-input": "required name=search_term_string",
+        },
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <LoadingScreen />
       <ScrollProgress />
       <Header />
@@ -170,7 +240,10 @@ export default function HomePage() {
         <PartnersMarquee />
         <Services />
         <AIPhotography />
+        <EcommerceSection />
         <Portfolio />
+        <SocialMediaSection />
+        <GoldGuarantee />
         <MidCTA />
         <Pricing />
         <Testimonials />
