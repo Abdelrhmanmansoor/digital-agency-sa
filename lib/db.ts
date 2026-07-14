@@ -747,6 +747,70 @@ export interface Contract {
   updatedAt: string;
 }
 
+// ── Store Orders (المتجر الإلكتروني) ──────────────────────────────────────────
+export interface StoreOrderItem {
+  productId: string;
+  nameAr: string;
+  nameEn: string;
+  unitPrice: number; // server-verified price from lib/store-data.ts
+  qty: number;
+  lineTotal: number;
+}
+
+export interface StoreOrder {
+  id: string;
+  number: string; // ORD-{year}-001
+  customer: {
+    name: string;
+    phone: string;
+    email?: string;
+    city?: string;
+    country?: string;
+  };
+  items: StoreOrderItem[];
+  subtotal: number;
+  vatRate: number;
+  vatAmount: number;
+  total: number;
+  currency: "SAR";
+  paymentMethod: "whatsapp" | "bank_transfer";
+  notes?: string;
+  status: "pending" | "confirmed" | "in_progress" | "delivered" | "cancelled";
+  locale: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export const storeOrdersDB = {
+  getAll: () => redisGet<StoreOrder[]>("store_orders", []),
+  getById: async (id: string) => {
+    const all = await redisGet<StoreOrder[]>("store_orders", []);
+    return all.find((o) => o.id === id);
+  },
+  create: async (data: Omit<StoreOrder, "id" | "number" | "createdAt" | "updatedAt">) => {
+    const all = await redisGet<StoreOrder[]>("store_orders", []);
+    const year = new Date().getFullYear();
+    const counter = await redisIncr(`store_order_counter_${year}`);
+    const newOrder: StoreOrder = {
+      ...data,
+      id: Date.now().toString(),
+      number: `ORD-${year}-${String(counter).padStart(3, "0")}`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    await redisSet("store_orders", [newOrder, ...all]);
+    return newOrder;
+  },
+  updateStatus: async (id: string, status: StoreOrder["status"]) => {
+    const all = await redisGet<StoreOrder[]>("store_orders", []);
+    const updated = all.map((o) =>
+      o.id === id ? { ...o, status, updatedAt: new Date().toISOString() } : o
+    );
+    await redisSet("store_orders", updated);
+    return updated.find((o) => o.id === id);
+  },
+};
+
 export const contractsDB = {
   getAll: () => redisGet<Contract[]>("contracts", []),
   getById: async (id: string) => {

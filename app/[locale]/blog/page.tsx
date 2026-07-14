@@ -64,12 +64,12 @@ export default async function BlogPage({
             }}
           />
           <div className="max-w-[1400px] mx-auto px-8 relative z-10 text-center">
-            <div className="section-label justify-center mb-6" style={{ color: "rgba(200,169,98,0.6)" }}>
+            <div className="section-label justify-center mb-6" style={{ color: "rgba(240,177,0,0.6)" }}>
               {isRTL ? "المدونة" : "Blog"}
             </div>
             <h1
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "clamp(36px, 5vw, 64px)",
                 fontWeight: 700,
                 color: "#FAFAF7",
@@ -99,7 +99,7 @@ export default async function BlogPage({
                     padding: "8px 20px",
                     border: "1px solid #E8E6E1",
                     fontSize: "13px",
-                    fontFamily: "'Zain', sans-serif",
+                    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                     color: "#8C8C7A",
                     textDecoration: "none",
                     transition: "all 0.2s",
@@ -140,7 +140,7 @@ export default async function BlogPage({
                       </div>
                       <h2
                         style={{
-                          fontFamily: "'Zain', sans-serif",
+                          fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                           fontSize: "17px",
                           fontWeight: 700,
                           color: "#0A0A0A",
@@ -155,7 +155,7 @@ export default async function BlogPage({
                         <span style={{ fontFamily: "Space Mono", fontSize: "11px", color: "#8C8C7A" }}>
                           ⏱ {article.readTime} {isRTL ? "دقيقة" : "min read"}
                         </span>
-                        <span style={{ fontFamily: "Space Mono", fontSize: "12px", color: "#C8A962", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                        <span style={{ fontFamily: "Space Mono", fontSize: "12px", color: "#F0B100", letterSpacing: "0.08em", textTransform: "uppercase" }}>
                           {isRTL ? "اقرأ ←" : "Read →"}
                         </span>
                       </div>

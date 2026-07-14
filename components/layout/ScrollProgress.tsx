@@ -34,9 +34,9 @@ export default function ScrollProgress() {
         style={{
           height: "100%",
           width: `${progress}%`,
-          background: "linear-gradient(to right, #BDEE63, #C8A962)",
+          background: "linear-gradient(to right, #F0B100, #F0B100)",
           transition: "width 0.08s linear",
-          boxShadow: "0 0 8px rgba(189,238,99,0.5)",
+          boxShadow: "0 0 8px rgba(240,177,0,0.5)",
         }}
       />
     </div>

@@ -60,7 +60,7 @@ export function QuickStartSection() {
         </div>
         <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-[#f4ece5]" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100} aria-label="نسبة إتمام خطوات الإعداد">
           <div
-            className="h-full rounded-full bg-gradient-to-l from-[#a51218] to-[#C9A227] transition-all duration-500"
+            className="h-full rounded-full bg-gradient-to-l from-[#a51218] to-[#F0B100] transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -186,7 +186,7 @@ export function HeaderSection() {
               ) : s.name === "Split منقسم" ? (
                 <>
                   <span className="flex gap-1"><span className="h-2 w-6 rounded-full bg-[#d8c9bc]" /><span className="h-2 w-6 rounded-full bg-[#d8c9bc]" /></span>
-                  <span className="flex gap-1"><span className="h-3 w-3 rounded-full bg-[#C9A227]" /><span className="h-3 w-3 rounded-full bg-[#d8c9bc]" /></span>
+                  <span className="flex gap-1"><span className="h-3 w-3 rounded-full bg-[#F0B100]" /><span className="h-3 w-3 rounded-full bg-[#d8c9bc]" /></span>
                 </>
               ) : (
                 <>
@@ -253,7 +253,7 @@ export function FooterSection() {
       <ul className="grid gap-2.5 sm:grid-cols-2">
         {FOOTER_GUIDE.options.map((o) => (
           <li key={o} className="flex gap-2.5 rounded-xl bg-white p-3.5 text-sm leading-7 text-[#5f5148]">
-            <span className="mt-1 h-4 w-4 shrink-0 rounded-full bg-[#C9A227]/20 text-center text-[10px] font-black leading-4 text-[#7a5d10]">✓</span>
+            <span className="mt-1 h-4 w-4 shrink-0 rounded-full bg-[#F0B100]/20 text-center text-[10px] font-black leading-4 text-[#7a5d10]">✓</span>
             {o}
           </li>
         ))}
@@ -264,7 +264,7 @@ export function FooterSection() {
           <Pill tone="neutral">مثال — فوتر بسيط</Pill>
           <p className="mt-3 text-sm leading-8 text-[#5f5148]">{FOOTER_GUIDE.simple}</p>
         </div>
-        <div className="rounded-2xl border border-[#C9A227]/40 bg-[#faf5ea] p-5">
+        <div className="rounded-2xl border border-[#F0B100]/40 bg-[#faf5ea] p-5">
           <Pill tone="gold">مثال — فوتر متكامل</Pill>
           <p className="mt-3 text-sm leading-8 text-[#5f5148]">{FOOTER_GUIDE.full}</p>
         </div>
@@ -330,7 +330,7 @@ export function MobileSection() {
               <div className="flex items-center justify-between bg-white px-3 py-2">
                 <span className="h-2.5 w-6 rounded-full bg-[#eadfd4]" />
                 <span className="h-3.5 w-3.5 rounded-md bg-[#a51218]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#C9A227]/60" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#F0B100]/60" />
               </div>
               <div className="m-2 flex h-20 items-end rounded-lg bg-[linear-gradient(135deg,#a51218,#211711)] p-2">
                 <span className="block h-2 w-16 rounded-full bg-white/80" />
@@ -345,7 +345,7 @@ export function MobileSection() {
               </div>
               <div className="mt-2 flex items-center justify-around bg-[#211711] px-3 py-2.5">
                 {[0, 1, 2, 3].map((i) => (
-                  <span key={i} className={`h-2 w-2 rounded-full ${i === 0 ? "bg-[#C9A227]" : "bg-white/30"}`} />
+                  <span key={i} className={`h-2 w-2 rounded-full ${i === 0 ? "bg-[#F0B100]" : "bg-white/30"}`} />
                 ))}
               </div>
             </div>

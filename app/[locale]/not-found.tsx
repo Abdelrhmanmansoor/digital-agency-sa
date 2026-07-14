@@ -19,7 +19,7 @@ export default function NotFound() {
           fontFamily: "Space Mono, monospace",
           fontSize: "120px",
           fontWeight: 700,
-          color: "rgba(200,169,98,0.2)",
+          color: "rgba(240,177,0,0.2)",
           lineHeight: 1,
           marginBottom: "24px",
         }}
@@ -28,7 +28,7 @@ export default function NotFound() {
       </div>
       <h1
         style={{
-          fontFamily: "'Zain', sans-serif",
+          fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
           fontSize: "32px",
           fontWeight: 700,
           color: "#FAFAF7",

@@ -4,10 +4,10 @@ import { useState } from "react";
 import type { ServiceOrder, OrderStatus } from "@/lib/client-db";
 
 const STATUS_LABELS: Record<OrderStatus, { ar: string; en: string; color: string; bg: string }> = {
-  pending:     { ar: "قيد الانتظار", en: "Pending",     color: "#C8A962", bg: "rgba(200,169,98,0.12)" },
+  pending:     { ar: "قيد الانتظار", en: "Pending",     color: "#F0B100", bg: "rgba(240,177,0,0.12)" },
   in_progress: { ar: "جاري التنفيذ", en: "In Progress", color: "#3B82F6", bg: "rgba(59,130,246,0.12)" },
   review:      { ar: "مراجعة",       en: "Review",      color: "#A855F7", bg: "rgba(168,85,247,0.12)" },
-  delivered:   { ar: "تم التسليم",   en: "Delivered",   color: "#BDEE63", bg: "rgba(189,238,99,0.12)" },
+  delivered:   { ar: "تم التسليم",   en: "Delivered",   color: "#F0B100", bg: "rgba(240,177,0,0.12)" },
   completed:   { ar: "مكتمل",        en: "Completed",   color: "#22C55E", bg: "rgba(34,197,94,0.12)" },
   cancelled:   { ar: "ملغى",         en: "Cancelled",   color: "#EF4444", bg: "rgba(239,68,68,0.12)" },
 };
@@ -37,10 +37,10 @@ export default function OrdersListClient({ orders, locale }: Props) {
     <div style={{ padding: "40px", direction: isRTL ? "rtl" : "ltr", maxWidth: "900px" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "32px", flexWrap: "wrap", gap: "16px" }}>
         <div>
-          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
+          <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
             {isRTL ? "طلباتي" : "My Orders"}
           </h1>
-          <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)", marginTop: "6px" }}>
+          <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)", marginTop: "6px" }}>
             {orders.length} {isRTL ? "طلب إجمالي" : "total orders"}
           </p>
         </div>
@@ -51,11 +51,11 @@ export default function OrdersListClient({ orders, locale }: Props) {
             alignItems: "center",
             gap: "8px",
             padding: "11px 20px",
-            background: "#C8A962",
+            background: "#F0B100",
             color: "#0A0A0A",
             borderRadius: "10px",
             textDecoration: "none",
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             fontSize: "14px",
             fontWeight: 700,
           }}
@@ -82,9 +82,9 @@ export default function OrdersListClient({ orders, locale }: Props) {
                 fontSize: "12px",
                 fontFamily: "Space Mono, monospace",
                 transition: "all 0.2s",
-                background: active ? "#C8A962" : "transparent",
+                background: active ? "#F0B100" : "transparent",
                 color: active ? "#0A0A0A" : "rgba(255,255,255,0.45)",
-                borderColor: active ? "#C8A962" : "rgba(255,255,255,0.12)",
+                borderColor: active ? "#F0B100" : "rgba(255,255,255,0.12)",
               }}
             >
               {isRTL ? t.ar : t.en} ({count})
@@ -97,7 +97,7 @@ export default function OrdersListClient({ orders, locale }: Props) {
       {filtered.length === 0 ? (
         <div style={{ textAlign: "center", padding: "60px 0" }}>
           <div style={{ fontSize: "40px", marginBottom: "12px" }}>📭</div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.3)" }}>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.3)" }}>
             {isRTL ? "لا توجد طلبات في هذه الفئة" : "No orders in this category"}
           </div>
         </div>
@@ -121,16 +121,16 @@ export default function OrdersListClient({ orders, locale }: Props) {
                 transition: "all 0.2s",
                 gap: "16px",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,169,98,0.2)"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.05)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(240,177,0,0.2)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.025)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
             >
               <div style={{ flex: 1 }}>
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#FAFAF7", marginBottom: "5px" }}>{o.title}</div>
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#FAFAF7", marginBottom: "5px" }}>{o.title}</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
                   {isRTL ? o.serviceNameAr : o.serviceNameEn} · {new Date(o.createdAt).toLocaleDateString(isRTL ? "ar-SA" : "en-US")}
                 </div>
                 {o.deliveredFiles?.length > 0 && (
-                  <div style={{ marginTop: "8px", fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#BDEE63" }}>
+                  <div style={{ marginTop: "8px", fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#F0B100" }}>
                     {o.deliveredFiles.length} {isRTL ? "ملف مسلّم" : "files delivered"}
                   </div>
                 )}

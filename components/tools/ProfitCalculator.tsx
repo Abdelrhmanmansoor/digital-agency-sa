@@ -84,7 +84,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
         <div>
           <h3
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "18px",
               fontWeight: 600,
               color: "#0A0A0A",
@@ -163,7 +163,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
         <div>
           <h3
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "18px",
               fontWeight: 600,
               color: "#0A0A0A",
@@ -188,7 +188,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
                   labelAr: "هامش الربح",
                   labelEn: "Profit Margin",
                   value: `${results.profitMargin.toFixed(1)}%`,
-                  color: results.profitMargin > 20 ? "#4A8C6F" : results.profitMargin > 10 ? "#C8A962" : "#C94040",
+                  color: results.profitMargin > 20 ? "#4A8C6F" : results.profitMargin > 10 ? "#F0B100" : "#C94040",
                 },
                 {
                   icon: "⚖️",
@@ -252,7 +252,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
                   border: `1px solid ${results.netProfit > 0 ? "rgba(74,140,111,0.3)" : "rgba(201,64,64,0.3)"}`,
                   fontSize: "14px",
                   color: results.netProfit > 0 ? "#4A8C6F" : "#C94040",
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 }}
               >
                 {results.netProfit > 0
@@ -275,7 +275,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
                   textTransform: "uppercase",
                   transition: "all 0.3s",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#C8A962"; e.currentTarget.style.color = "#C8A962"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#F0B100"; e.currentTarget.style.color = "#F0B100"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E8E6E1"; e.currentTarget.style.color = "#8C8C7A"; }}
               >
                 {copied ? (isRTL ? "✓ تم النسخ!" : "✓ Copied!") : (isRTL ? "نسخ النتائج" : "Copy Results")}
@@ -291,7 +291,7 @@ export default function ProfitCalculator({ onClose }: { onClose: () => void }) {
               }}
             >
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🧮</div>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px" }}>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px" }}>
                 {isRTL ? "أدخل البيانات واضغط 'احسب الأرباح'" : "Enter data and press 'Calculate Profits'"}
               </div>
             </div>

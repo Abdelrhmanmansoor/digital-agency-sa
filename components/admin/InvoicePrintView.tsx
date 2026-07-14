@@ -52,7 +52,7 @@ function Badge({ status }: { status: string }) {
   return (
     <span style={{
       display: "inline-block", padding: "3px 11px", borderRadius: "20px",
-      fontFamily: "'Zain', sans-serif", fontSize: "11px", fontWeight: 700,
+      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", fontWeight: 700,
       background: c.bg, color: c.color, border: `1px solid ${c.border}`,
     }}>
       {STATUS_LABELS[status] ?? status}
@@ -114,25 +114,25 @@ function PaymentMethodSection({
   const renderBankDetails = () => (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
       <div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>اسم البنك</div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>اسم البنك</div>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
           {method?.bankName || invoice.bankName}
         </div>
       </div>
       <div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>صاحب الحساب</div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>صاحب الحساب</div>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
           {method?.accountHolder || invoice.accountHolder}
         </div>
       </div>
       <div style={{ gridColumn: "1 / -1" }}>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>رقم الآيبان (IBAN)</div>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>رقم الآيبان (IBAN)</div>
         <div style={{ 
           fontFamily: "Space Mono, monospace", 
           fontSize: "13px", 
           letterSpacing: "0.08em", 
           color: "#0A0A0A",
-          background: "rgba(200, 169, 98, 0.08)",
+          background: "rgba(240,177,0, 0.08)",
           padding: "8px 12px",
           borderRadius: "6px",
           border: `1px solid ${accent}30`,
@@ -144,7 +144,7 @@ function PaymentMethodSection({
       </div>
       {(method?.accountNumber) && (
         <div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>رقم الحساب</div>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>رقم الحساب</div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#222", direction: "ltr" }}>
             {method.accountNumber}
           </div>
@@ -152,7 +152,7 @@ function PaymentMethodSection({
       )}
       {(method?.swiftCode) && (
         <div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>SWIFT Code</div>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>SWIFT Code</div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#222", direction: "ltr" }}>
             {method.swiftCode}
           </div>
@@ -164,10 +164,10 @@ function PaymentMethodSection({
   const renderWesternUnion = () => (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
       <div style={{ gridColumn: "1 / -1", background: "#FFF8E1", padding: "12px 16px", borderRadius: "8px", border: "1px solid #FFE082" }}>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", fontWeight: 700, color: "#F57C00", marginBottom: "8px" }}>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", fontWeight: 700, color: "#F57C00", marginBottom: "8px" }}>
           ⚡ خطوات التحويل عبر ويسترن يونيون
         </div>
-        <ol style={{ margin: 0, paddingRight: "16px", fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "#5D4037", lineHeight: 1.8 }}>
+        <ol style={{ margin: 0, paddingRight: "16px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "#5D4037", lineHeight: 1.8 }}>
           <li>توجه لأقرب فرع ويسترن يونيون</li>
           <li>اختر "إرسال أموال" (Send Money)</li>
           <li>أدخل بيانات المستلم أدناه</li>
@@ -175,25 +175,25 @@ function PaymentMethodSection({
         </ol>
       </div>
       <div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>اسم المستلم (بالإنجليزية)</div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 800, color: "#0A0A0A" }}>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>اسم المستلم (بالإنجليزية)</div>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 800, color: "#0A0A0A" }}>
           {method?.receiverName}
         </div>
       </div>
       <div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>الدولة</div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>الدولة</div>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
           {method?.receiverCountry}
         </div>
       </div>
       <div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>المدينة</div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>المدينة</div>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
           {method?.receiverCity}
         </div>
       </div>
       <div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>رقم الهاتف</div>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>رقم الهاتف</div>
         <div style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#222", direction: "ltr" }}>
           {method?.receiverPhone}
         </div>
@@ -203,7 +203,7 @@ function PaymentMethodSection({
 
   const renderPayPal = () => (
     <div>
-      <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>PayPal Email</div>
+      <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>PayPal Email</div>
       <div style={{ 
         fontFamily: "Space Mono, monospace", 
         fontSize: "14px", 
@@ -223,7 +223,7 @@ function PaymentMethodSection({
   const renderWallet = () => (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
       <div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>رقم المحفظة</div>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>رقم المحفظة</div>
         <div style={{ 
           fontFamily: "Space Mono, monospace", 
           fontSize: "16px", 
@@ -240,8 +240,8 @@ function PaymentMethodSection({
         </div>
       </div>
       <div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>اسم صاحب المحفظة</div>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA", marginBottom: "3px" }}>اسم صاحب المحفظة</div>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#222" }}>
           {method?.walletHolder}
         </div>
       </div>
@@ -293,7 +293,7 @@ function PaymentMethodSection({
             طريقة الدفع
           </div>
           <div style={{ 
-            fontFamily: "'Zain', sans-serif", 
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif", 
             fontSize: "16px", 
             fontWeight: 800, 
             color: "#0A0A0A",
@@ -361,7 +361,7 @@ function PaymentsHistory({
           display: "flex", 
           justifyContent: "space-between", 
           marginBottom: "8px",
-          fontFamily: "'Zain', sans-serif",
+          fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
           fontSize: "12px",
         }}>
           <span style={{ color: "#666" }}>نسبة السداد</span>
@@ -376,7 +376,7 @@ function PaymentsHistory({
           <div style={{ 
             width: `${paidPercentage}%`, 
             height: "100%", 
-            background: `linear-gradient(90deg, ${accent}, #BDEE63)`,
+            background: `linear-gradient(90deg, ${accent}, #F0B100)`,
             borderRadius: "5px",
             transition: "width 0.5s ease",
           }} />
@@ -396,13 +396,13 @@ function PaymentsHistory({
         <tbody>
           {payments.map((payment, i) => (
             <tr key={payment.id} style={{ borderBottom: "1px solid #E8E6E1", background: i % 2 === 1 ? "#FAFAF8" : "white" }}>
-              <td style={{ padding: "10px 12px", fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "#333" }}>
+              <td style={{ padding: "10px 12px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "#333" }}>
                 {fmtDate(payment.date)}
               </td>
               <td style={{ padding: "10px 12px", textAlign: "center", fontFamily: "Space Mono, monospace", fontSize: "12px", fontWeight: 600, color: "#15803D" }}>
                 +{fmt(payment.amount)} {currencySymbol}
               </td>
-              <td style={{ padding: "10px 12px", textAlign: "center", fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "#666" }}>
+              <td style={{ padding: "10px 12px", textAlign: "center", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "#666" }}>
                 {PAYMENT_METHOD_LABELS[payment.method]?.ar || payment.method}
               </td>
               <td style={{ padding: "10px 12px", textAlign: "left", fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#888" }}>
@@ -423,16 +423,16 @@ function PaymentsHistory({
         borderRadius: "8px",
       }}>
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", color: "rgba(200,169,98,0.6)", letterSpacing: "0.12em", marginBottom: "4px" }}>إجمالي الفاتورة</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", color: "rgba(240,177,0,0.6)", letterSpacing: "0.12em", marginBottom: "4px" }}>إجمالي الفاتورة</div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#FFF" }}>{fmt(total)} {currencySymbol}</div>
         </div>
         <div style={{ textAlign: "center", borderInline: "1px solid rgba(255,255,255,0.1)" }}>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", color: "rgba(200,169,98,0.6)", letterSpacing: "0.12em", marginBottom: "4px" }}>المدفوع</div>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#BDEE63" }}>{fmt(totalPaid || 0)} {currencySymbol}</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", color: "rgba(240,177,0,0.6)", letterSpacing: "0.12em", marginBottom: "4px" }}>المدفوع</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#F0B100" }}>{fmt(totalPaid || 0)} {currencySymbol}</div>
         </div>
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", color: "rgba(200,169,98,0.6)", letterSpacing: "0.12em", marginBottom: "4px" }}>المتبقي</div>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: remaining > 0 ? "#F87171" : "#BDEE63" }}>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", color: "rgba(240,177,0,0.6)", letterSpacing: "0.12em", marginBottom: "4px" }}>المتبقي</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: remaining > 0 ? "#F87171" : "#F0B100" }}>
             {fmt(remaining)} {currencySymbol}
           </div>
         </div>
@@ -504,10 +504,10 @@ function AdditionalCostsSection({
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{ fontSize: "14px" }}>{typeIcons[cost.type]}</span>
             <div>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#333" }}>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#333" }}>
                 {cost.descAr}
               </div>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#888" }}>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#888" }}>
                 {typeLabels[cost.type]}
               </div>
             </div>
@@ -527,7 +527,7 @@ function AdditionalCostsSection({
         background: "#FFE082",
         borderRadius: "6px",
       }}>
-        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 800, color: "#5D4037" }}>
+        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 800, color: "#5D4037" }}>
           إجمالي المصروفات
         </div>
         <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#5D4037" }}>
@@ -568,7 +568,7 @@ function InvoiceBody({ invoice, accent }: { invoice: Invoice; accent: string }) 
           {invoice.items.map((item, i) => (
             <tr key={i} style={{ borderBottom: "1px solid #F0EDE8", background: i % 2 === 1 ? "#FDFBF8" : "transparent" }}>
               <td style={{ padding: "11px 16px", textAlign: "right" }}>
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 600, color: "#111" }}>{item.descAr}</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 600, color: "#111" }}>{item.descAr}</div>
                 {item.descEn && (
                   <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#C0B89A", marginTop: "2px", direction: "ltr", textAlign: "left" }}>
                     {item.descEn}
@@ -601,21 +601,21 @@ function InvoiceBody({ invoice, accent }: { invoice: Invoice; accent: string }) 
       <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "28px" }}>
         <div style={{ width: "300px", direction: "rtl" }}>
           <div style={{ display: "flex", justifyContent: "space-between", padding: "7px 2px", borderBottom: "1px solid #EEEBE5" }}>
-            <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "#777" }}>المجموع الفرعي</span>
+            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "#777" }}>المجموع الفرعي</span>
             <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12.5px", color: "#333" }}>{fmt(invoice.subtotal)} {currencySymbol}</span>
           </div>
           {(invoice.additionalCostsTotal || 0) > 0 && (
             <div style={{ display: "flex", justifyContent: "space-between", padding: "7px 2px", borderBottom: "1px solid #EEEBE5" }}>
-              <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "#F57C00" }}>+ المصروفات الإضافية</span>
+              <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "#F57C00" }}>+ المصروفات الإضافية</span>
               <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12.5px", color: "#F57C00" }}>{fmt(invoice.additionalCostsTotal || 0)} {currencySymbol}</span>
             </div>
           )}
           <div style={{ display: "flex", justifyContent: "space-between", padding: "7px 2px", borderBottom: "1px solid #EEEBE5" }}>
-            <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "#777" }}>ضريبة القيمة المضافة ({invoice.vatRate}٪)</span>
+            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "#777" }}>ضريبة القيمة المضافة ({invoice.vatRate}٪)</span>
             <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12.5px", color: "#333" }}>{fmt(invoice.vat)} {currencySymbol}</span>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 16px", background: accent, borderRadius: "8px", marginTop: "10px" }}>
-            <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 800, color: "#0A0A0A" }}>الإجمالي</span>
+            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 800, color: "#0A0A0A" }}>الإجمالي</span>
             <span style={{ fontFamily: "Space Mono, monospace", fontSize: "16px", fontWeight: 700, color: "#0A0A0A" }}>{fmt(invoice.total)} {currencySymbol}</span>
           </div>
           
@@ -631,7 +631,7 @@ function InvoiceBody({ invoice, accent }: { invoice: Invoice; accent: string }) 
               marginTop: "8px",
               border: "1px solid #FECACA",
             }}>
-              <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#B91C1C" }}>المتبقي للسداد</span>
+              <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#B91C1C" }}>المتبقي للسداد</span>
               <span style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#B91C1C" }}>{fmt(invoice.remainingBalance)} {currencySymbol}</span>
             </div>
           )}
@@ -655,7 +655,7 @@ function InvoiceBody({ invoice, accent }: { invoice: Invoice; accent: string }) 
         <div style={{ borderTop: "1px solid #EEEBE5", paddingTop: "16px", direction: "rtl" }}>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#BBA", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "7px" }}>ملاحظات</div>
           {invoice.notesAr && (
-            <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "#555", lineHeight: 1.9, margin: 0 }}>{invoice.notesAr}</p>
+            <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "#555", lineHeight: 1.9, margin: 0 }}>{invoice.notesAr}</p>
           )}
           {invoice.notes && (
             <p style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#999", lineHeight: 1.7, margin: "5px 0 0", direction: "ltr" }}>{invoice.notes}</p>
@@ -675,12 +675,12 @@ function ClassicTemplate({ invoice }: Props) {
     <div id="invoice-print-root" style={{
       width: "210mm", minHeight: "297mm", background: "white",
       position: "relative", overflow: "hidden",
-      fontFamily: "'Zain', sans-serif", boxSizing: "border-box",
+      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", boxSizing: "border-box",
     }}>
       <Watermark />
 
       {/* ── Top gold strip ── */}
-      <div style={{ background: "#C8A962", height: "7px" }} />
+      <div style={{ background: "#F0B100", height: "7px" }} />
 
       {/* ── Header ── */}
       <div style={{
@@ -710,7 +710,7 @@ function ClassicTemplate({ invoice }: Props) {
       }}>
         {/* From */}
         <div style={{ minWidth: "130px" }}>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#C8A962", letterSpacing: "0.25em", marginBottom: "6px", textTransform: "uppercase" }}>صادرة من</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#F0B100", letterSpacing: "0.25em", marginBottom: "6px", textTransform: "uppercase" }}>صادرة من</div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="logo" style={{ height: "20px", width: "auto", objectFit: "contain", display: "block", marginBottom: "2px" }} />
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#999", marginTop: "3px" }}>+201007835547</div>
@@ -722,9 +722,9 @@ function ClassicTemplate({ invoice }: Props) {
 
         {/* To */}
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#C8A962", letterSpacing: "0.25em", marginBottom: "6px", textTransform: "uppercase" }}>صادرة إلى</div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 800, color: "#111" }}>{invoice.clientName}</div>
-          {invoice.clientCompany && <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "#666" }}>{invoice.clientCompany}</div>}
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#F0B100", letterSpacing: "0.25em", marginBottom: "6px", textTransform: "uppercase" }}>صادرة إلى</div>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 800, color: "#111" }}>{invoice.clientName}</div>
+          {invoice.clientCompany && <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "#666" }}>{invoice.clientCompany}</div>}
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#999", marginTop: "3px" }}>{invoice.clientEmail}</div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#999" }}>{invoice.clientPhone}</div>
         </div>
@@ -733,32 +733,32 @@ function ClassicTemplate({ invoice }: Props) {
         <div style={{ textAlign: "left", flexShrink: 0 }}>
           <div style={{ marginBottom: "10px" }}>
             <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#BBA", letterSpacing: "0.2em", textTransform: "uppercase" }}>تاريخ الإصدار</div>
-            <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#333" }}>{fmtDate(invoice.issueDate)}</div>
+            <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#333" }}>{fmtDate(invoice.issueDate)}</div>
           </div>
           <div>
             <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#BBA", letterSpacing: "0.2em", textTransform: "uppercase" }}>تاريخ الاستحقاق</div>
-            <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#C8A962" }}>{fmtDate(invoice.dueDate)}</div>
+            <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#F0B100" }}>{fmtDate(invoice.dueDate)}</div>
           </div>
         </div>
       </div>
 
       {/* ── Body ── */}
       <div style={{ padding: "26px 40px 24px", position: "relative", zIndex: 1 }}>
-        <InvoiceBody invoice={invoice} accent="#C8A962" />
+        <InvoiceBody invoice={invoice} accent="#F0B100" />
 
         {/* Footer */}
-        <div style={{ marginTop: "32px", paddingTop: "13px", borderTop: "2px solid #C8A962", display: "flex", justifyContent: "space-between", alignItems: "center", direction: "rtl" }}>
+        <div style={{ marginTop: "32px", paddingTop: "13px", borderTop: "2px solid #F0B100", display: "flex", justifyContent: "space-between", alignItems: "center", direction: "rtl" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="" style={{ height: "22px", objectFit: "contain", opacity: 0.4 }} />
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#BBB", textAlign: "center" }}>
             +201007835547 · info@solimanx.com
           </div>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#C8A962", fontWeight: 600 }}>{invoice.number}</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#F0B100", fontWeight: 600 }}>{invoice.number}</div>
         </div>
       </div>
 
       {/* Bottom gold strip */}
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "#C8A962", height: "5px" }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "#F0B100", height: "5px" }} />
     </div>
   );
 }
@@ -772,7 +772,7 @@ function ModernTemplate({ invoice }: Props) {
     <div id="invoice-print-root" style={{
       width: "210mm", minHeight: "297mm", background: "white",
       position: "relative", overflow: "hidden",
-      fontFamily: "'Zain', sans-serif", boxSizing: "border-box",
+      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", boxSizing: "border-box",
     }}>
       <Watermark />
 
@@ -787,8 +787,8 @@ function ModernTemplate({ invoice }: Props) {
             style={{ height: "42px", objectFit: "contain", maxWidth: "160px", filter: "brightness(0) invert(1)" }}
           />
           <div style={{ textAlign: "left" }}>
-            <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "rgba(200,169,98,0.55)", letterSpacing: "0.32em", textTransform: "uppercase" }}>Invoice</div>
-            <div style={{ fontFamily: "Space Mono, monospace", fontSize: "22px", fontWeight: 700, color: "#C8A962", lineHeight: 1.1 }}>{invoice.number}</div>
+            <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "rgba(240,177,0,0.55)", letterSpacing: "0.32em", textTransform: "uppercase" }}>Invoice</div>
+            <div style={{ fontFamily: "Space Mono, monospace", fontSize: "22px", fontWeight: 700, color: "#F0B100", lineHeight: 1.1 }}>{invoice.number}</div>
             <div style={{ marginTop: "5px" }}><Badge status={invoice.status} /></div>
           </div>
         </div>
@@ -796,38 +796,38 @@ function ModernTemplate({ invoice }: Props) {
         {/* Client + dates in dark area */}
         <div style={{ display: "flex", justifyContent: "space-between", gap: "24px" }}>
           <div>
-            <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "rgba(200,169,98,0.5)", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "5px" }}>صادرة إلى</div>
-            <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#FAFAF7" }}>{invoice.clientName}</div>
-            {invoice.clientCompany && <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.45)" }}>{invoice.clientCompany}</div>}
+            <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "rgba(240,177,0,0.5)", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "5px" }}>صادرة إلى</div>
+            <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#FAFAF7" }}>{invoice.clientName}</div>
+            {invoice.clientCompany && <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.45)" }}>{invoice.clientCompany}</div>}
             <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "rgba(255,255,255,0.38)", marginTop: "3px" }}>{invoice.clientEmail}</div>
             <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "rgba(255,255,255,0.38)" }}>{invoice.clientPhone}</div>
           </div>
           <div style={{ textAlign: "left", flexShrink: 0 }}>
             <div style={{ marginBottom: "10px" }}>
-              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "rgba(200,169,98,0.5)", letterSpacing: "0.2em", textTransform: "uppercase" }}>تاريخ الإصدار</div>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.8)" }}>{fmtDate(invoice.issueDate)}</div>
+              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "rgba(240,177,0,0.5)", letterSpacing: "0.2em", textTransform: "uppercase" }}>تاريخ الإصدار</div>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.8)" }}>{fmtDate(invoice.issueDate)}</div>
             </div>
             <div>
-              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "rgba(200,169,98,0.5)", letterSpacing: "0.2em", textTransform: "uppercase" }}>تاريخ الاستحقاق</div>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#C8A962" }}>{fmtDate(invoice.dueDate)}</div>
+              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "rgba(240,177,0,0.5)", letterSpacing: "0.2em", textTransform: "uppercase" }}>تاريخ الاستحقاق</div>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#F0B100" }}>{fmtDate(invoice.dueDate)}</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* ── Gold gradient accent line ── */}
-      <div style={{ height: "3px", background: "linear-gradient(90deg, #9A7B3E 0%, #C8A962 40%, #E8C97A 60%, #C8A962 100%)" }} />
+      <div style={{ height: "3px", background: "linear-gradient(90deg, #9A7B3E 0%, #F0B100 40%, #E8C97A 60%, #F0B100 100%)" }} />
 
       {/* ── Body ── */}
       <div style={{ padding: "28px 40px 24px", position: "relative", zIndex: 1 }}>
-        <InvoiceBody invoice={invoice} accent="#C8A962" />
+        <InvoiceBody invoice={invoice} accent="#F0B100" />
 
         {/* Footer */}
         <div style={{ marginTop: "32px", paddingTop: "13px", borderTop: "1px solid #E0DAD0", display: "flex", justifyContent: "space-between", alignItems: "center", direction: "rtl" }}>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#CCC" }}>
             +201007835547 · info@solimanx.com
           </div>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#C8A962", fontWeight: 600 }}>{invoice.number}</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#F0B100", fontWeight: 600 }}>{invoice.number}</div>
         </div>
       </div>
     </div>
@@ -843,8 +843,8 @@ function MinimalTemplate({ invoice }: Props) {
     <div id="invoice-print-root" style={{
       width: "210mm", minHeight: "297mm", background: "#FAFAF8",
       position: "relative", overflow: "hidden",
-      fontFamily: "'Zain', sans-serif", boxSizing: "border-box",
-      borderRight: "5px solid #C8A962",
+      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", boxSizing: "border-box",
+      borderRight: "5px solid #F0B100",
     }}>
       <Watermark />
 
@@ -853,7 +853,7 @@ function MinimalTemplate({ invoice }: Props) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/logo.png" alt="logo" style={{ height: "44px", objectFit: "contain", maxWidth: "160px" }} />
         <div style={{ textAlign: "left" }}>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#C8A962", letterSpacing: "0.3em", textTransform: "uppercase" }}>فاتورة · Invoice</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#F0B100", letterSpacing: "0.3em", textTransform: "uppercase" }}>فاتورة · Invoice</div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "20px", fontWeight: 700, color: "#111", lineHeight: 1.15 }}>{invoice.number}</div>
           <div style={{ marginTop: "5px" }}><Badge status={invoice.status} /></div>
         </div>
@@ -865,20 +865,20 @@ function MinimalTemplate({ invoice }: Props) {
       {/* ── Client + dates ── */}
       <div style={{ padding: "20px 44px 18px 40px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", direction: "rtl", position: "relative", zIndex: 1, gap: "24px" }}>
         <div>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#C8A962", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "5px" }}>صادرة إلى</div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#111" }}>{invoice.clientName}</div>
-          {invoice.clientCompany && <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "#777" }}>{invoice.clientCompany}</div>}
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#F0B100", letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "5px" }}>صادرة إلى</div>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#111" }}>{invoice.clientName}</div>
+          {invoice.clientCompany && <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "#777" }}>{invoice.clientCompany}</div>}
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#AAA", marginTop: "3px" }}>{invoice.clientEmail}</div>
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#AAA" }}>{invoice.clientPhone}</div>
         </div>
         <div style={{ textAlign: "left", flexShrink: 0 }}>
           <div style={{ marginBottom: "10px" }}>
             <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#CCC", letterSpacing: "0.2em", textTransform: "uppercase" }}>تاريخ الإصدار</div>
-            <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#333" }}>{fmtDate(invoice.issueDate)}</div>
+            <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#333" }}>{fmtDate(invoice.issueDate)}</div>
           </div>
           <div>
             <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#CCC", letterSpacing: "0.2em", textTransform: "uppercase" }}>تاريخ الاستحقاق</div>
-            <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#C8A962" }}>{fmtDate(invoice.dueDate)}</div>
+            <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#F0B100" }}>{fmtDate(invoice.dueDate)}</div>
           </div>
         </div>
       </div>
@@ -888,14 +888,14 @@ function MinimalTemplate({ invoice }: Props) {
 
       {/* ── Body ── */}
       <div style={{ padding: "20px 44px 24px 40px", position: "relative", zIndex: 1 }}>
-        <InvoiceBody invoice={invoice} accent="#C8A962" />
+        <InvoiceBody invoice={invoice} accent="#F0B100" />
 
         {/* Footer */}
         <div style={{ marginTop: "32px", paddingTop: "13px", borderTop: "1px solid #E0D8CC", display: "flex", justifyContent: "space-between", alignItems: "center", direction: "rtl" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.png" alt="" style={{ height: "20px", objectFit: "contain", opacity: 0.3 }} />
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8.5px", color: "#CCC" }}>info@solimanx.com</div>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#C8A962", fontWeight: 600 }}>{invoice.number}</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#F0B100", fontWeight: 600 }}>{invoice.number}</div>
         </div>
       </div>
     </div>

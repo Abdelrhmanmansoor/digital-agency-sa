@@ -82,8 +82,8 @@ export default function Hero() {
     <section
       aria-label="hero"
       style={{
-        minHeight: "100vh",
-        background: "#0A0A0A",
+        minHeight: "calc(100vh - 110px)",
+        background: "#FFFFFF",
         position: "relative",
         overflow: "hidden",
         display: "flex",
@@ -104,6 +104,7 @@ export default function Hero() {
         <img
           src="/hero-desktop.jpg"
           alt=""
+          loading="lazy"
           className="hero-bg-desktop"
           style={{
             position: "absolute",
@@ -112,13 +113,14 @@ export default function Hero() {
             height: "100%",
             objectFit: "cover",
             objectPosition: "center 30%",
-            opacity: 0.35,
+            opacity: 0.18,
           }}
         />
         {/* Mobile banner */}
         <img
           src="/hero-mobile.jpg"
           alt=""
+          loading="lazy"
           className="hero-bg-mobile"
           style={{
             position: "absolute",
@@ -127,7 +129,7 @@ export default function Hero() {
             height: "100%",
             objectFit: "cover",
             objectPosition: "center 30%",
-            opacity: 0.35,
+            opacity: 0.18,
           }}
         />
         {/* Elegant gradient overlay for premium look */}
@@ -135,7 +137,7 @@ export default function Hero() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.6) 50%, rgba(10,10,10,0.95) 100%)",
+            background: "linear-gradient(180deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,1) 100%)",
           }}
         />
         {/* Gold/Lime accent gradient from sides */}
@@ -143,7 +145,7 @@ export default function Hero() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(135deg, rgba(200,169,98,0.08) 0%, transparent 40%, transparent 60%, rgba(189,238,99,0.06) 100%)",
+            background: "linear-gradient(135deg, rgba(240,177,0,0.12) 0%, transparent 45%, transparent 55%, rgba(240,177,0,0.08) 100%)",
           }}
         />
         {/* Radial vignette for depth */}
@@ -151,7 +153,7 @@ export default function Hero() {
           style={{
             position: "absolute",
             inset: 0,
-            background: "radial-gradient(ellipse 100% 70% at 50% 20%, transparent 40%, rgba(10,10,10,0.7) 100%)",
+            background: "radial-gradient(ellipse 100% 70% at 50% 20%, transparent 35%, rgba(255,255,255,0.9) 100%)",
           }}
         />
       </div>
@@ -159,22 +161,22 @@ export default function Hero() {
       {/* ── Background: dot grid ── */}
       <div
         aria-hidden
-        style={{
-          position: "absolute", inset: 0,
-          backgroundImage: "radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px)",
-          backgroundSize: "44px 44px",
-          maskImage: "radial-gradient(ellipse 90% 90% at 50% 40%, black 40%, transparent 100%)",
-          pointerEvents: "none",
-          zIndex: 1,
-        }}
-      />
+          style={{
+            position: "absolute", inset: 0,
+            backgroundImage: "radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px)",
+            backgroundSize: "44px 44px",
+            maskImage: "radial-gradient(ellipse 90% 90% at 50% 40%, black 40%, transparent 100%)",
+            pointerEvents: "none",
+            zIndex: 1,
+          }}
+        />
 
       {/* ── Background: glowing orbs ── */}
-      <div aria-hidden style={{ position:"absolute", top:"-10%", right:"5%", width:"700px", height:"700px", borderRadius:"50%", background:"radial-gradient(circle, rgba(189,238,99,0.06) 0%, transparent 65%)", pointerEvents:"none" }} />
-      <div aria-hidden style={{ position:"absolute", bottom:"0", left:"-5%", width:"600px", height:"600px", borderRadius:"50%", background:"radial-gradient(circle, rgba(200,169,98,0.07) 0%, transparent 65%)", pointerEvents:"none" }} />
+      <div aria-hidden style={{ position:"absolute", top:"-10%", right:"5%", width:"700px", height:"700px", borderRadius:"50%", background:"radial-gradient(circle, rgba(240,177,0,0.10) 0%, transparent 65%)", pointerEvents:"none" }} />
+      <div aria-hidden style={{ position:"absolute", bottom:"0", left:"-5%", width:"600px", height:"600px", borderRadius:"50%", background:"radial-gradient(circle, rgba(240,177,0,0.10) 0%, transparent 65%)", pointerEvents:"none" }} />
 
       {/* ── Background: horizontal accent line ── */}
-      <div aria-hidden style={{ position:"absolute", top:"50%", left:0, right:0, height:"1px", background:"linear-gradient(to right, transparent, rgba(200,169,98,0.06) 30%, rgba(200,169,98,0.06) 70%, transparent)", pointerEvents:"none" }} />
+      <div aria-hidden style={{ position:"absolute", top:"50%", left:0, right:0, height:"1px", background:"linear-gradient(to right, transparent, rgba(240,177,0,0.18) 30%, rgba(240,177,0,0.18) 70%, transparent)", pointerEvents:"none" }} />
 
       {/* ── MAIN CONTENT ── */}
       <div
@@ -200,25 +202,25 @@ export default function Hero() {
           >
             {/* Badges row */}
             <div style={{ display:"flex", gap:"8px", marginBottom:"28px", flexWrap:"wrap" }}>
-              <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(200,169,98,0.1)", border:"1px solid rgba(200,169,98,0.3)", borderRadius:"100px", padding:"5px 14px", fontSize:"11px", fontFamily:"Space Mono, monospace", color:"#C8A962", letterSpacing:"0.12em", textTransform:"uppercase" }}>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="#C8A962" style={{ flexShrink:0 }}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(240,177,0,0.12)", border:"1px solid rgba(240,177,0,0.3)", borderRadius:"100px", padding:"5px 14px", fontSize:"11px", fontFamily:"Space Mono, monospace", color:"#F0B100", letterSpacing:"0.12em", textTransform:"uppercase" }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#F0B100" style={{ flexShrink:0 }}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                 {locale === "ar" ? "+250 مشروع منجز" : "250+ Projects Done"}
               </span>
-              <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(189,238,99,0.07)", border:"1px solid rgba(189,238,99,0.2)", borderRadius:"100px", padding:"5px 14px" }}>
-                <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#BDEE63", display:"inline-block", animation:"heroPulse 2s ease-in-out infinite" }} />
+              <span style={{ display:"inline-flex", alignItems:"center", gap:"7px", background:"rgba(240,177,0,0.08)", border:"1px solid rgba(240,177,0,0.2)", borderRadius:"100px", padding:"5px 14px" }}>
+                <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#F0B100", display:"inline-block", animation:"heroPulse 2s ease-in-out infinite" }} />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logo.png" alt="" style={{ height:"14px", width:"auto", objectFit:"contain", filter:"brightness(0) invert(1)", opacity:0.9 }} />
+                <img src="/logo.png" alt="" loading="lazy" style={{ height:"14px", width:"auto", objectFit:"contain", opacity:0.9 }} />
               </span>
             </div>
 
             {/* Main heading */}
             <h1
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "clamp(36px, 6.5vw, 90px)",
                 fontWeight: 800,
                 lineHeight: 1.1,
-                color: "#FFFFFF",
+                color: "#1A1A1A",
                 marginBottom: "28px",
                 letterSpacing: isRTL ? "-0.01em" : "-0.03em",
                 overflowWrap: "break-word",
@@ -230,19 +232,19 @@ export default function Hero() {
                   نحوّل فكرتك إلى
                   <br />
                   <span style={{ display: "inline-block", position: "relative" }}>
-                    <span style={{ color: "#A3FF12" }}>مشروع رقمي</span>
+                    <span style={{ color: "#F0B100" }}>مشروع رقمي</span>
                     {/* underline glow */}
                     <span style={{
                       position: "absolute", bottom: "-4px", left: 0, right: 0,
                       height: "3px", borderRadius: "2px",
-                      background: "linear-gradient(to right, #A3FF12, transparent)",
-                      opacity: 0.6,
-                    }} />
+                        background: "linear-gradient(to right, #F0B100, transparent)",
+                        opacity: 0.6,
+                      }} />
                   </span>
                   <br />
                   <span
                     style={{
-                      color: "#A3FF12",
+                      color: "#F0B100",
                       display: "inline-block",
                       transition: "opacity 0.32s ease, transform 0.32s ease",
                       opacity: wordVisible ? 1 : 0,
@@ -256,12 +258,12 @@ export default function Hero() {
                 <>
                   We turn your idea
                   <br />
-                  into a <span style={{ color: "#A3FF12" }}>digital project</span>
+                   into a <span style={{ color: "#F0B100" }}>digital project</span>
                   <br />
                   that{" "}
                   <span
                     style={{
-                      color: "#A3FF12",
+                      color: "#F0B100",
                       display: "inline-block",
                       transition: "opacity 0.32s ease, transform 0.32s ease",
                       opacity: wordVisible ? 1 : 0,
@@ -278,15 +280,18 @@ export default function Hero() {
             <p
               style={{
                 fontSize: "17px",
-                color: "rgba(255,255,255,0.42)",
+                color: "rgba(26,26,26,0.65)",
                 maxWidth: "500px",
                 lineHeight: 1.8,
                 marginBottom: "44px",
                 opacity: entered ? 1 : 0,
                 transition: "opacity 0.9s 0.2s ease",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               }}
             >
-              {t("subtitle")}
+              {isRTL
+                ? "تصميم متاجر سلة وزد، تصوير منتجات بالذكاء الاصطناعي، وتسويق رقمي يحقق نتائج حقيقية"
+                : "Salla & Zid store design, AI product photography, and digital marketing that drives real results"}
             </p>
 
             {/* CTA Buttons */}
@@ -298,19 +303,19 @@ export default function Hero() {
                 <button
                   style={{
                     fontSize: "16px", padding: "18px 36px", borderRadius: "14px",
-                    background: "#A3FF12", color: "#0A0A0A", fontWeight: 800,
-                    fontFamily: "'Zain', sans-serif", border: "none", cursor: "pointer",
+                    background: "#F0B100", color: "#1A1A1A", fontWeight: 800,
+                    fontFamily: "'ThmanyahSans', 'Zain', sans-serif", border: "none", cursor: "pointer",
                     display: "flex", alignItems: "center", gap: "10px",
-                    boxShadow: "0 0 32px rgba(163,255,18,0.35), 0 4px 16px rgba(163,255,18,0.2)",
+                    boxShadow: "0 0 32px rgba(240,177,0,0.25), 0 4px 16px rgba(240,177,0,0.15)",
                     transition: "all 0.25s ease",
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
-                    e.currentTarget.style.boxShadow = "0 0 48px rgba(163,255,18,0.5), 0 8px 24px rgba(163,255,18,0.3)";
+                    e.currentTarget.style.boxShadow = "0 0 48px rgba(240,177,0,0.4), 0 8px 24px rgba(240,177,0,0.25)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "none";
-                    e.currentTarget.style.boxShadow = "0 0 32px rgba(163,255,18,0.35), 0 4px 16px rgba(163,255,18,0.2)";
+                    e.currentTarget.style.boxShadow = "0 0 32px rgba(240,177,0,0.25), 0 4px 16px rgba(240,177,0,0.15)";
                   }}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{ flexShrink: 0 }}>
@@ -323,20 +328,20 @@ export default function Hero() {
                 <button
                   style={{
                     fontSize: "15px", padding: "18px 32px", borderRadius: "14px",
-                    background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.8)",
-                    fontWeight: 600, fontFamily: "'Zain', sans-serif",
-                    border: "1px solid rgba(255,255,255,0.14)", cursor: "pointer",
+                    background: "rgba(255,255,255,0.7)", color: "#1A1A1A",
+                    fontWeight: 600, fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
+                    border: "1px solid rgba(0,0,0,0.12)", cursor: "pointer",
                     display: "flex", alignItems: "center", gap: "8px",
                     transition: "all 0.25s ease", backdropFilter: "blur(8px)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.28)";
+                    e.currentTarget.style.background = "#FFFFFF";
+                    e.currentTarget.style.borderColor = "rgba(0,0,0,0.2)";
                     e.currentTarget.style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
+                    e.currentTarget.style.background = "rgba(255,255,255,0.7)";
+                    e.currentTarget.style.borderColor = "rgba(0,0,0,0.12)";
                     e.currentTarget.style.transform = "none";
                   }}
                 >
@@ -364,10 +369,10 @@ export default function Hero() {
                   key={pill.text}
                   style={{
                     display: "inline-flex", alignItems: "center", gap: "6px",
-                    background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
+                    background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.08)",
                     borderRadius: "100px", padding: "7px 14px",
-                    fontSize: "13px", color: "rgba(255,255,255,0.6)",
-                    fontFamily: "'Zain', sans-serif", backdropFilter: "blur(8px)",
+                    fontSize: "13px", color: "#6B6B6B",
+                    fontFamily: "'ThmanyahSans', 'Zain', sans-serif", backdropFilter: "blur(8px)",
                   }}
                 >
                   <span>{pill.icon}</span>
@@ -383,7 +388,7 @@ export default function Hero() {
                 gap: "32px",
                 flexWrap: "wrap",
                 paddingTop: "28px",
-                borderTop: "1px solid rgba(255,255,255,0.07)",
+                borderTop: "1px solid rgba(0,0,0,0.08)",
                 opacity: entered ? 1 : 0,
                 transition: "opacity 0.9s 0.5s ease",
               }}
@@ -395,7 +400,7 @@ export default function Hero() {
                       fontFamily: "Space Mono, monospace",
                       fontSize: "clamp(22px, 2.5vw, 32px)",
                       fontWeight: 700,
-                      color: "#BDEE63",
+                      color: "#F0B100",
                       lineHeight: 1,
                       marginBottom: "5px",
                     }}
@@ -408,7 +413,7 @@ export default function Hero() {
                       fontFamily: "Space Mono, monospace",
                       letterSpacing: "0.15em",
                       textTransform: "uppercase",
-                      color: "rgba(255,255,255,0.28)",
+                      color: "rgba(26,26,26,0.55)",
                     }}
                   >
                     {t(`stats.${stat.key}` as "stats.projects")}
@@ -431,27 +436,27 @@ export default function Hero() {
             {/* Main card — Results Dashboard */}
             <div
               style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.09)",
+                background: "#FFFFFF",
+                border: "1px solid rgba(0,0,0,0.08)",
                 borderRadius: "24px",
                 padding: "28px",
                 backdropFilter: "blur(12px)",
-                boxShadow: "0 40px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)",
+                boxShadow: "0 30px 60px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.6)",
               }}
             >
               {/* Card header */}
               <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:"24px" }}>
                 <div>
-                  <div style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(255,255,255,0.3)", marginBottom:"4px" }}>
+                  <div style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", letterSpacing:"0.2em", textTransform:"uppercase", color:"rgba(26,26,26,0.5)", marginBottom:"4px" }}>
                     {isRTL ? "نتائج عملائنا" : "Client Results"}
                   </div>
-                  <div style={{ fontFamily:"'Zain', sans-serif", fontSize:"18px", fontWeight:700, color:"#FAFAF7" }}>
+                  <div style={{ fontFamily:"'ThmanyahSans', 'Zain', sans-serif", fontSize:"18px", fontWeight:700, color:"#1A1A1A" }}>
                     {isRTL ? "أداء المتاجر المُدارة" : "Managed Stores Performance"}
                   </div>
                 </div>
-                <div style={{ display:"flex", alignItems:"center", gap:"6px", background:"rgba(189,238,99,0.1)", border:"1px solid rgba(189,238,99,0.2)", borderRadius:"8px", padding:"6px 12px" }}>
-                  <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#BDEE63", animation:"heroPulse 2s infinite" }} />
-                  <span style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", color:"#BDEE63", letterSpacing:"0.1em" }}>LIVE</span>
+                <div style={{ display:"flex", alignItems:"center", gap:"6px", background:"rgba(240,177,0,0.12)", border:"1px solid rgba(240,177,0,0.25)", borderRadius:"8px", padding:"6px 12px" }}>
+                  <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#F0B100", animation:"heroPulse 2s infinite" }} />
+                  <span style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", color:"#F0B100", letterSpacing:"0.1em" }}>LIVE</span>
                 </div>
               </div>
 
@@ -465,10 +470,10 @@ export default function Hero() {
                       height: `${h}%`,
                       borderRadius: "4px 4px 0 0",
                       background: i === CHART_BARS.length - 1
-                        ? "linear-gradient(to top, #BDEE63, #9DC832)"
+                        ? "linear-gradient(to top, #F0B100, #D89E00)"
                         : i >= CHART_BARS.length - 3
-                        ? "rgba(189,238,99,0.4)"
-                        : "rgba(255,255,255,0.08)",
+                        ? "rgba(240,177,0,0.4)"
+                        : "rgba(0,0,0,0.08)",
                       transition: `height 1.2s ${0.5 + i * 0.06}s cubic-bezier(0.19,1,0.22,1)`,
                     }}
                   />
@@ -478,15 +483,15 @@ export default function Hero() {
               {/* Key metrics row */}
               <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:"12px" }}>
                 {[
-                  { label: isRTL ? "متوسط زيادة المبيعات" : "Avg Sales Increase", value: "+247%", color: "#BDEE63" },
-                  { label: isRTL ? "رضا العملاء" : "Client Satisfaction", value: "98%", color: "#C8A962" },
+                  { label: isRTL ? "متوسط زيادة المبيعات" : "Avg Sales Increase", value: "+247%", color: "#F0B100" },
+                  { label: isRTL ? "رضا العملاء" : "Client Satisfaction", value: "98%", color: "#F0B100" },
                   { label: isRTL ? "وقت التسليم" : "Avg Delivery", value: isRTL ? "7 أيام" : "7 days", color: "#FAFAF7" },
                 ].map((m) => (
                   <div
                     key={m.label}
                     style={{
-                      background:"rgba(255,255,255,0.03)",
-                      border:"1px solid rgba(255,255,255,0.06)",
+                      background:"#FAFAFA",
+                      border:"1px solid rgba(0,0,0,0.08)",
                       borderRadius:"12px",
                       padding:"14px 12px",
                     }}
@@ -494,7 +499,7 @@ export default function Hero() {
                     <div style={{ fontFamily:"Space Mono, monospace", fontSize:"18px", fontWeight:700, color:m.color, marginBottom:"4px", lineHeight:1 }}>
                       {m.value}
                     </div>
-                    <div style={{ fontSize:"10px", color:"rgba(255,255,255,0.3)", lineHeight:1.4 }}>
+                    <div style={{ fontSize:"10px", color:"rgba(26,26,26,0.5)", lineHeight:1.4 }}>
                       {m.label}
                     </div>
                   </div>
@@ -509,13 +514,13 @@ export default function Hero() {
                 top:"-18px",
                 right: isRTL ? "auto" : "-18px",
                 left: isRTL ? "-18px" : "auto",
-                background:"#BDEE63",
+                background:"#F0B100",
                 borderRadius:"14px",
                 padding:"10px 16px",
                 display:"flex",
                 alignItems:"center",
                 gap:"8px",
-                boxShadow:"0 8px 32px rgba(189,238,99,0.3)",
+                boxShadow:"0 8px 32px rgba(240,177,0,0.3)",
                 transform: entered ? "translateY(0) rotate(-2deg)" : "translateY(-20px)",
                 transition: "all 0.8s 0.7s cubic-bezier(0.19,1,0.22,1)",
               }}
@@ -541,7 +546,7 @@ export default function Hero() {
                 left: isRTL ? "auto" : "-28px",
                 right: isRTL ? "-28px" : "auto",
                 background:"rgba(10,10,10,0.9)",
-                border:"1px solid rgba(200,169,98,0.4)",
+                border:"1px solid rgba(240,177,0,0.4)",
                 borderRadius:"14px",
                 padding:"12px 16px",
                 display:"flex",
@@ -553,11 +558,11 @@ export default function Hero() {
                 transition: "all 0.8s 0.9s cubic-bezier(0.19,1,0.22,1)",
               }}
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#C8A962" style={{ flexShrink:0 }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#F0B100" style={{ flexShrink:0 }}>
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
               <div>
-                <div style={{ fontFamily:"Space Mono, monospace", fontSize:"13px", fontWeight:700, color:"#C8A962", lineHeight:1 }}>
+                <div style={{ fontFamily:"Space Mono, monospace", fontSize:"13px", fontWeight:700, color:"#F0B100", lineHeight:1 }}>
                   5.0 / 5.0
                 </div>
                 <div style={{ fontSize:"10px", color:"rgba(255,255,255,0.4)", marginTop:"2px" }}>
@@ -574,7 +579,7 @@ export default function Hero() {
                 left: isRTL ? "auto" : "-36px",
                 right: isRTL ? "-36px" : "auto",
                 background:"rgba(10,10,10,0.88)",
-                border:"1px solid rgba(189,238,99,0.3)",
+                border:"1px solid rgba(240,177,0,0.3)",
                 borderRadius:"12px",
                 padding:"10px 14px",
                 backdropFilter:"blur(12px)",
@@ -586,9 +591,9 @@ export default function Hero() {
               }}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ flexShrink:0 }}>
-                <path d="M5 13l4 4L19 7" stroke="#BDEE63" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5 13l4 4L19 7" stroke="#F0B100" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <div style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", color:"#BDEE63", letterSpacing:"0.08em", whiteSpace:"nowrap" }}>
+              <div style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", color:"#F0B100", letterSpacing:"0.08em", whiteSpace:"nowrap" }}>
                 {isRTL ? "تسليم في 7 أيام" : "7-day delivery"}
               </div>
             </div>

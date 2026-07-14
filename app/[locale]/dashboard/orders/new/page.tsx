@@ -57,7 +57,7 @@ export default function NewOrderPage() {
     padding: "12px 16px",
     color: "#FAFAF7",
     fontSize: "15px",
-    fontFamily: "'Zain', sans-serif",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
     outline: "none",
     boxSizing: "border-box",
     marginBottom: "20px",
@@ -77,10 +77,10 @@ export default function NewOrderPage() {
     <div style={{ padding: "40px", direction: isRTL ? "rtl" : "ltr", maxWidth: "760px" }}>
       {/* Header */}
       <div style={{ marginBottom: "36px" }}>
-        <a href={`${basePath}/orders`} style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#C8A962", textDecoration: "none", letterSpacing: "0.1em" }}>
+        <a href={`${basePath}/orders`} style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "#F0B100", textDecoration: "none", letterSpacing: "0.1em" }}>
           {isRTL ? "← طلباتي" : "← My Orders"}
         </a>
-        <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", marginTop: "12px", marginBottom: "8px" }}>
+        <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", marginTop: "12px", marginBottom: "8px" }}>
           {isRTL ? "طلب خدمة جديدة" : "New Service Order"}
         </h1>
         {/* Progress */}
@@ -89,14 +89,14 @@ export default function NewOrderPage() {
             <div key={s} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <div style={{
                 width: "28px", height: "28px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
-                background: step >= s ? "#C8A962" : "rgba(255,255,255,0.06)",
+                background: step >= s ? "#F0B100" : "rgba(255,255,255,0.06)",
                 color: step >= s ? "#0A0A0A" : "rgba(255,255,255,0.25)",
                 fontFamily: "Space Mono, monospace", fontSize: "11px", fontWeight: 700, flexShrink: 0,
               }}>{s}</div>
-              {s < 3 && <div style={{ width: "32px", height: "2px", background: step > s ? "#C8A962" : "rgba(255,255,255,0.08)" }} />}
+              {s < 3 && <div style={{ width: "32px", height: "2px", background: step > s ? "#F0B100" : "rgba(255,255,255,0.08)" }} />}
             </div>
           ))}
-          <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.4)", marginInlineStart: "8px" }}>
+          <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.4)", marginInlineStart: "8px" }}>
             {step === 1 ? (isRTL ? "اختر الخدمة" : "Choose service") : step === 2 ? (isRTL ? "تفاصيل الطلب" : "Order details") : (isRTL ? "مراجعة وإرسال" : "Review & submit")}
           </span>
         </div>
@@ -112,8 +112,8 @@ export default function NewOrderPage() {
                 key={s.id}
                 onClick={() => setServiceType(s.id)}
                 style={{
-                  background: serviceType === s.id ? "rgba(200,169,98,0.1)" : "rgba(255,255,255,0.03)",
-                  border: `1px solid ${serviceType === s.id ? "rgba(200,169,98,0.4)" : "rgba(255,255,255,0.07)"}`,
+                  background: serviceType === s.id ? "rgba(240,177,0,0.1)" : "rgba(255,255,255,0.03)",
+                  border: `1px solid ${serviceType === s.id ? "rgba(240,177,0,0.4)" : "rgba(255,255,255,0.07)"}`,
                   borderRadius: "12px",
                   padding: "18px 16px",
                   cursor: "pointer",
@@ -121,10 +121,10 @@ export default function NewOrderPage() {
                   transition: "all 0.2s",
                 }}
               >
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 700, color: serviceType === s.id ? "#C8A962" : "#FAFAF7", marginBottom: "4px" }}>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 700, color: serviceType === s.id ? "#F0B100" : "#FAFAF7", marginBottom: "4px" }}>
                   {isRTL ? s.ar : s.en}
                 </div>
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.35)" }}>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.35)" }}>
                   {isRTL ? s.desc_ar : s.desc_en}
                 </div>
               </button>
@@ -134,7 +134,7 @@ export default function NewOrderPage() {
             onClick={() => { if (serviceType) setStep(2); }}
             disabled={!serviceType}
             style={{
-              background: serviceType ? "#C8A962" : "rgba(255,255,255,0.06)",
+              background: serviceType ? "#F0B100" : "rgba(255,255,255,0.06)",
               color: serviceType ? "#0A0A0A" : "rgba(255,255,255,0.25)",
               border: "none", borderRadius: "10px", padding: "13px 32px",
               cursor: serviceType ? "pointer" : "not-allowed",
@@ -169,24 +169,24 @@ export default function NewOrderPage() {
                 key={i}
                 onClick={() => setBudget(b)}
                 style={{
-                  padding: "7px 14px", borderRadius: "20px", border: "1px solid", cursor: "pointer", fontSize: "12px", fontFamily: "'Zain', sans-serif",
-                  background: budget === b ? "rgba(200,169,98,0.12)" : "transparent",
-                  color: budget === b ? "#C8A962" : "rgba(255,255,255,0.4)",
-                  borderColor: budget === b ? "rgba(200,169,98,0.35)" : "rgba(255,255,255,0.12)",
+                  padding: "7px 14px", borderRadius: "20px", border: "1px solid", cursor: "pointer", fontSize: "12px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
+                  background: budget === b ? "rgba(240,177,0,0.12)" : "transparent",
+                  color: budget === b ? "#F0B100" : "rgba(255,255,255,0.4)",
+                  borderColor: budget === b ? "rgba(240,177,0,0.35)" : "rgba(255,255,255,0.12)",
                 }}
               >{b}</button>
             ))}
           </div>
 
           <div style={{ display: "flex", gap: "12px" }}>
-            <button onClick={() => setStep(1)} style={{ background: "transparent", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "12px 24px", cursor: "pointer", fontFamily: "'Zain', sans-serif", fontSize: "14px" }}>
+            <button onClick={() => setStep(1)} style={{ background: "transparent", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "12px 24px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px" }}>
               {isRTL ? "→ السابق" : "← Back"}
             </button>
             <button
               onClick={() => { if (title && description && requirements) setStep(3); }}
               disabled={!title || !description || !requirements}
               style={{
-                background: title && description && requirements ? "#C8A962" : "rgba(255,255,255,0.06)",
+                background: title && description && requirements ? "#F0B100" : "rgba(255,255,255,0.06)",
                 color: title && description && requirements ? "#0A0A0A" : "rgba(255,255,255,0.25)",
                 border: "none", borderRadius: "10px", padding: "12px 28px",
                 cursor: title && description && requirements ? "pointer" : "not-allowed",
@@ -203,7 +203,7 @@ export default function NewOrderPage() {
       {step === 3 && (
         <div>
           <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "14px", padding: "28px", marginBottom: "24px" }}>
-            <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "20px" }}>
+            <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "20px" }}>
               {isRTL ? "مراجعة الطلب" : "Order Review"}
             </h3>
             {[
@@ -218,22 +218,22 @@ export default function NewOrderPage() {
                 <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "4px" }}>
                   {isRTL ? item!.label_ar : item!.label_en}
                 </div>
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "#FAFAF7", lineHeight: 1.6 }}>{item!.value}</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "#FAFAF7", lineHeight: 1.6 }}>{item!.value}</div>
               </div>
             ))}
           </div>
 
           {error && (
-            <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: "8px", padding: "12px 16px", color: "#FCA5A5", fontFamily: "'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>
+            <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: "8px", padding: "12px 16px", color: "#FCA5A5", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>
               {error}
             </div>
           )}
 
           <div style={{ display: "flex", gap: "12px" }}>
-            <button onClick={() => setStep(2)} style={{ background: "transparent", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "12px 24px", cursor: "pointer", fontFamily: "'Zain', sans-serif", fontSize: "14px" }}>
+            <button onClick={() => setStep(2)} style={{ background: "transparent", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "10px", padding: "12px 24px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px" }}>
               {isRTL ? "→ تعديل" : "← Edit"}
             </button>
-            <button onClick={handleSubmit} disabled={loading} style={{ background: loading ? "rgba(200,169,98,0.5)" : "#C8A962", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 32px", cursor: loading ? "not-allowed" : "pointer", fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700 }}>
+            <button onClick={handleSubmit} disabled={loading} style={{ background: loading ? "rgba(240,177,0,0.5)" : "#F0B100", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 32px", cursor: loading ? "not-allowed" : "pointer", fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700 }}>
               {loading ? (isRTL ? "جاري الإرسال..." : "Submitting...") : (isRTL ? "إرسال الطلب" : "Submit Order")}
             </button>
           </div>

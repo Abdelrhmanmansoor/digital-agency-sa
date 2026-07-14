@@ -51,11 +51,11 @@ export default function NewProjectPage() {
   const inputStyle = {
     width: "100%",
     background: "#0A0A0A",
-    border: "1px solid rgba(200,169,98,0.2)",
+    border: "1px solid rgba(240,177,0,0.2)",
     color: "#FAFAF7",
     padding: "12px 16px",
     fontSize: "14px",
-    fontFamily: "'Zain', sans-serif",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
     outline: "none",
     transition: "border-color 0.2s",
     boxSizing: "border-box" as const,
@@ -85,7 +85,7 @@ export default function NewProjectPage() {
             >
               ← العودة للمشاريع
             </Link>
-            <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#FAFAF7" }}>
+            <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#FAFAF7" }}>
               مشروع جديد
             </h1>
           </div>
@@ -99,7 +99,7 @@ export default function NewProjectPage() {
               color: "#ef4444",
               padding: "12px 16px",
               marginBottom: "24px",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "14px",
             }}
           >
@@ -214,9 +214,9 @@ export default function NewProjectPage() {
                 type="checkbox"
                 checked={form.featured}
                 onChange={(e) => handleChange("featured", e.target.checked)}
-                style={{ width: "18px", height: "18px", accentColor: "#C8A962" }}
+                style={{ width: "18px", height: "18px", accentColor: "#F0B100" }}
               />
-              <span style={{ color: "#FAFAF7", fontFamily: "'Zain', sans-serif", fontSize: "14px" }}>
+              <span style={{ color: "#FAFAF7", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px" }}>
                 مشروع مميز (يظهر في القسم الرئيسي)
               </span>
             </label>

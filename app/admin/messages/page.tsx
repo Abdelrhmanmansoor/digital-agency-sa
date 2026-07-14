@@ -14,7 +14,7 @@ export default async function MessagesPage() {
       <AdminSidebar />
       <main className="admin-main" style={{ padding: "40px" }}>
         <div style={{ marginBottom: "32px" }}>
-          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#0A0A0A", marginBottom: "4px" }}>
+          <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#0A0A0A", marginBottom: "4px" }}>
             الرسائل
           </h1>
           <p style={{ color: "#8C8C7A", fontSize: "14px" }}>
@@ -33,14 +33,14 @@ export default async function MessagesPage() {
                 gridTemplateColumns: "auto 1fr auto",
                 gap: "20px",
                 alignItems: "start",
-                background: msg.status === "new" ? "rgba(200,169,98,0.03)" : "transparent",
+                background: msg.status === "new" ? "rgba(240,177,0,0.03)" : "transparent",
               }}
             >
               <div
                 style={{
                   width: "44px",
                   height: "44px",
-                  background: msg.status === "new" ? "rgba(200,169,98,0.15)" : "#F0EDE8",
+                  background: msg.status === "new" ? "rgba(240,177,0,0.15)" : "#F0EDE8",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -53,11 +53,11 @@ export default async function MessagesPage() {
 
               <div>
                 <div style={{ display: "flex", gap: "12px", alignItems: "center", marginBottom: "4px" }}>
-                  <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: msg.status === "new" ? 700 : 500, color: "#0A0A0A" }}>
+                  <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", fontWeight: msg.status === "new" ? 700 : 500, color: "#0A0A0A" }}>
                     {msg.name}
                   </span>
                   {msg.status === "new" && (
-                    <span style={{ padding: "2px 8px", background: "#C8A962", color: "#0A0A0A", fontSize: "10px", fontFamily: "Space Mono", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                    <span style={{ padding: "2px 8px", background: "#F0B100", color: "#0A0A0A", fontSize: "10px", fontFamily: "Space Mono", letterSpacing: "0.1em", textTransform: "uppercase" }}>
                       جديد
                     </span>
                   )}
@@ -65,7 +65,7 @@ export default async function MessagesPage() {
                 <div style={{ fontSize: "13px", color: "#8C8C7A", fontFamily: "Space Mono", marginBottom: "8px" }}>
                   {msg.email} {msg.phone && `| ${msg.phone}`}
                 </div>
-                <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif", lineHeight: 1.7 }}>
+                <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", lineHeight: 1.7 }}>
                   {msg.message}
                 </div>
               </div>
@@ -81,9 +81,9 @@ export default async function MessagesPage() {
                   style={{
                     display: "block",
                     padding: "6px 14px",
-                    background: "rgba(200,169,98,0.1)",
-                    border: "1px solid rgba(200,169,98,0.2)",
-                    color: "#C8A962",
+                    background: "rgba(240,177,0,0.1)",
+                    border: "1px solid rgba(240,177,0,0.2)",
+                    color: "#F0B100",
                     fontSize: "11px",
                     fontFamily: "Space Mono",
                     textDecoration: "none",
@@ -113,7 +113,7 @@ export default async function MessagesPage() {
           ))}
 
           {messages.length === 0 && (
-            <div style={{ padding: "80px", textAlign: "center", color: "#8C8C7A", fontFamily: "'Zain', sans-serif", fontSize: "16px" }}>
+            <div style={{ padding: "80px", textAlign: "center", color: "#8C8C7A", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>📭</div>
               لا توجد رسائل بعد
             </div>

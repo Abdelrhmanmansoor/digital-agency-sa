@@ -5,6 +5,7 @@ import { useLocale } from "next-intl";
 import Link from "next/link";
 import { getWhatsAppLink } from "@/lib/utils";
 import PaymentLogos from "@/components/shared/PaymentLogos";
+import { useCart } from "@/components/store/CartContext";
 import { 
   PRODUCTS, 
   CATEGORIES, 
@@ -15,6 +16,59 @@ import {
   type Product,
   type BadgeType
 } from "@/lib/store-data";
+
+/* ─── Store Logos (Hero) ─────────────────────────────────── */
+type StoreLogo = {
+  nameAr: string;
+  nameEn: string;
+  file: string;
+  featured?: boolean;
+  maxHeight?: number;
+};
+
+const STORE_LOGOS: StoreLogo[] = [
+  {
+    nameAr: "TF1",
+    nameEn: "TF1 Power Your Passion",
+    file: "tf1.png",
+    featured: true,
+    maxHeight: 62,
+  },
+  {
+    nameAr: "حلا هوم",
+    nameEn: "Hala Home",
+    file: "hala-home.png",
+    maxHeight: 48,
+  },
+  {
+    nameAr: "الفلمنكي",
+    nameEn: "Al-Flamanki",
+    file: "al-flamanki.png",
+    maxHeight: 56,
+  },
+  {
+    nameAr: "أوبيا",
+    nameEn: "Obeya",
+    file: "obeya.png",
+    maxHeight: 46,
+  },
+  {
+    nameAr: "عباية بوتيك",
+    nameEn: "Abaya Boutique",
+    file: "abaya-boutique.png",
+    maxHeight: 56,
+  },
+  {
+    nameAr: "شعار زهري",
+    nameEn: "Floral Mark",
+    file: "floral-mark.png",
+    maxHeight: 50,
+  },
+];
+
+function buildLogoRow(arr: StoreLogo[]) {
+  return [...arr, ...arr];
+}
 
 /* ─── Favorites Hook ─────────────────────────────────────── */
 function useFavorites() {
@@ -41,7 +95,7 @@ function Stars({ rating }: { rating: number }) {
   return (
     <div style={{ display: "flex", gap: "2px" }}>
       {[1, 2, 3, 4, 5].map((s) => (
-        <svg key={s} width="12" height="12" viewBox="0 0 24 24" fill={s <= Math.floor(rating) ? "#C8A962" : "rgba(200,169,98,0.3)"}>
+        <svg key={s} width="12" height="12" viewBox="0 0 24 24" fill={s <= Math.floor(rating) ? "#F0B100" : "rgba(240,177,0,0.3)"}>
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
       ))}
@@ -70,71 +124,83 @@ function ProductCard({
     ? (isAr ? product.badgeLabelAr : product.badgeLabelEn) || product.badge
     : null;
 
-  const whatsappMsg = isAr 
-    ? `مرحباً، أريد طلب خدمة: ${name} بسعر ${product.price.toLocaleString()} ر.س`
-    : `Hello, I want to order: ${name} for ${product.price.toLocaleString()} SAR`;
+  const { addItem } = useCart();
+  const [justAdded, setJustAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    addItem({
+      productId: product.id,
+      slug: product.slug,
+      nameAr: product.nameAr,
+      nameEn: product.nameEn,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      isMonthly: product.isMonthly,
+    });
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1600);
+  };
 
   return (
     <div
       className="store-product-card"
       style={{
-        background: "linear-gradient(160deg, #141414 0%, #111111 100%)",
-        border: "1px solid rgba(255,255,255,0.07)",
-        borderRadius: "20px",
+        background: "#FFFFFF",
+        border: "1px solid rgba(0,0,0,0.08)",
+        borderRadius: "14px",
         position: "relative",
         display: "flex",
         flexDirection: "column",
         transition: "all 0.35s ease",
         overflow: "hidden",
+        boxShadow: "0 10px 24px rgba(0,0,0,0.06)",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(200,169,98,0.3)";
+        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(240,177,0,0.4)";
         (e.currentTarget as HTMLDivElement).style.transform = "translateY(-6px)";
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 24px 60px rgba(200,169,98,0.12)";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 24px 60px rgba(0,0,0,0.12)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.07)";
+        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,0,0,0.08)";
         (e.currentTarget as HTMLDivElement).style.transform = "none";
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 10px 24px rgba(0,0,0,0.06)";
       }}
     >
       {/* ═══ Product Image Area ═══ */}
       <div style={{
         position: "relative",
         height: "200px",
-        background: "linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%)",
+        background: "linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 100%)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        borderBottom: "1px solid rgba(255,255,255,0.05)",
+        borderBottom: "1px solid rgba(0,0,0,0.06)",
       }}>
         {/* Decorative pattern */}
         <div style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%23C8A962' stroke-width='0.3'%3E%3Cpolygon points='20,5 35,15 35,30 20,40 5,30 5,15'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='%23C9A227' stroke-width='0.3'%3E%3Cpolygon points='20,5 35,15 35,30 20,40 5,30 5,15'/%3E%3C/g%3E%3C/svg%3E")`,
           backgroundSize: "40px 40px",
-          opacity: 0.06,
+          opacity: 0.08,
         }} />
 
         {/* Product icon/placeholder */}
         <div style={{
           width: "100px",
           height: "100px",
-          background: "linear-gradient(135deg, rgba(200,169,98,0.15) 0%, rgba(200,169,98,0.05) 100%)",
-          border: "2px solid rgba(200,169,98,0.2)",
-          borderRadius: "20px",
+          background: "linear-gradient(135deg, rgba(240,177,0,0.12) 0%, rgba(240,177,0,0.05) 100%)",
+          border: "2px solid rgba(240,177,0,0.25)",
+          borderRadius: "14px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           fontSize: "40px",
         }}>
-          {product.category === "salla" && "🛒"}
-          {product.category === "zid" && "🏪"}
-          {product.category === "design" && "🎨"}
+          {product.category === "store" && "🛒"}
+          {product.category === "integrations" && "🔗"}
           {product.category === "marketing" && "📈"}
-          {product.category === "web" && "💻"}
-          {product.category === "seo" && "🔍"}
+          {product.category === "development" && "💻"}
         </div>
 
         {/* Badge ribbon */}
@@ -151,7 +217,7 @@ function ProductCard({
             letterSpacing: "0.05em",
             padding: "6px 40px",
             transform: isAr ? "rotate(45deg)" : "rotate(-45deg)",
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             textTransform: "uppercase",
             boxShadow: `0 4px 12px ${badgeStyle.bg}`,
           }}>
@@ -168,8 +234,8 @@ function ProductCard({
             [isAr ? "left" : "right"]: "12px",
             width: "40px",
             height: "40px",
-            background: isFavorite ? "rgba(239,68,68,0.15)" : "rgba(255,255,255,0.08)",
-            border: isFavorite ? "1px solid rgba(239,68,68,0.3)" : "1px solid rgba(255,255,255,0.1)",
+          background: isFavorite ? "rgba(239,68,68,0.12)" : "rgba(0,0,0,0.04)",
+          border: isFavorite ? "1px solid rgba(239,68,68,0.3)" : "1px solid rgba(0,0,0,0.1)",
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
@@ -194,13 +260,13 @@ function ProductCard({
           position: "absolute",
           bottom: "12px",
           [isAr ? "left" : "right"]: "12px",
-          background: "rgba(189,238,99,0.15)",
-          border: "1px solid rgba(189,238,99,0.3)",
-          color: "#BDEE63",
+          background: "rgba(240,177,0,0.15)",
+          border: "1px solid rgba(240,177,0,0.35)",
+          color: "#8A6D00",
           fontSize: "11px",
           fontWeight: 700,
           padding: "5px 12px",
-          borderRadius: "100px",
+          borderRadius: "10px",
           fontFamily: "Space Mono, monospace",
         }}>
           {isAr ? `وفّر ${savings}%` : `Save ${savings}%`}
@@ -215,16 +281,16 @@ function ProductCard({
           style={{ textDecoration: "none" }}
         >
           <h3 style={{
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             fontSize: "20px",
             fontWeight: 800,
-            color: "#FAFAF7",
+            color: "#1A1A1A",
             marginBottom: "8px",
             lineHeight: 1.3,
             transition: "color 0.3s ease",
           }}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLHeadingElement).style.color = "#C8A962"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLHeadingElement).style.color = "#FAFAF7"; }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLHeadingElement).style.color = "#F0B100"; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLHeadingElement).style.color = "#1A1A1A"; }}
           >
             {name}
           </h3>
@@ -232,7 +298,7 @@ function ProductCard({
 
         {/* Short description */}
         <p style={{
-          color: "rgba(255,255,255,0.45)",
+          color: "rgba(26,26,26,0.65)",
           fontSize: "14px",
           lineHeight: 1.6,
           marginBottom: "16px",
@@ -241,33 +307,51 @@ function ProductCard({
           {shortDesc}
         </p>
 
+        {/* Social proof */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "8px",
+          marginBottom: "16px",
+          padding: "10px 12px",
+          background: "rgba(240,177,0,0.08)",
+          border: "1px solid rgba(240,177,0,0.2)",
+          borderRadius: "12px",
+          fontSize: "12px",
+          color: "#1A1A1A",
+        }}>
+          <span>{isAr ? `🔥 طلب ${product.monthlyOrders} شخص هذا الشهر` : `🔥 ${product.monthlyOrders} orders this month`}</span>
+          <span style={{ color: "rgba(26,26,26,0.6)" }}>{isAr ? `👀 ${product.views} مشاهدة` : `👀 ${product.views} views`}</span>
+        </div>
+
         {/* Price block */}
         <div style={{ marginBottom: "16px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
             <span style={{
               fontFamily: "Space Mono, monospace",
               fontSize: "12px",
-              color: "rgba(255,255,255,0.3)",
-              textDecoration: "line-through",
-            }}>
-              {product.originalPrice.toLocaleString()} {isAr ? "ر.س" : "SAR"}
-            </span>
-          </div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
-            <span style={{
-              fontFamily: "Space Mono, monospace",
-              fontSize: "28px",
-              fontWeight: 700,
-              color: "#C8A962",
-              lineHeight: 1,
-            }}>
-              {product.price.toLocaleString()}
-            </span>
-            <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "14px" }}>
-              {isAr ? "ر.س" : "SAR"}{product.isMonthly ? (isAr ? " / شهر" : " /mo") : ""}
-            </span>
-          </div>
+            color: "rgba(26,26,26,0.45)",
+            textDecoration: "line-through",
+          }}>
+            {product.originalPrice.toLocaleString()} {isAr ? "ر.س" : "SAR"}
+          </span>
         </div>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "6px" }}>
+          <span style={{
+            fontFamily: "Space Mono, monospace",
+            fontSize: "28px",
+            fontWeight: 700,
+            color: "#8A6D00",
+            lineHeight: 1,
+          }}>
+            {product.price.toLocaleString()}
+          </span>
+          <span style={{ color: "rgba(26,26,26,0.6)", fontSize: "14px" }}>
+            {isAr ? "ر.س" : "SAR"}{product.isMonthly ? (isAr ? " / شهر" : " /mo") : ""}
+          </span>
+        </div>
+      </div>
 
         {/* Rating and delivery */}
         <div style={{
@@ -276,21 +360,21 @@ function ProductCard({
           justifyContent: "space-between",
           marginBottom: "16px",
           paddingTop: "16px",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "1px solid rgba(0,0,0,0.08)",
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <Stars rating={product.rating} />
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#C8A962" }}>
+            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#8A6D00" }}>
               {product.rating}
             </span>
-            <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)" }}>
+            <span style={{ fontSize: "11px", color: "rgba(26,26,26,0.5)" }}>
               ({product.reviewCount})
             </span>
           </div>
           <span style={{
             fontFamily: "Space Mono, monospace",
             fontSize: "11px",
-            color: "rgba(255,255,255,0.4)",
+            color: "rgba(26,26,26,0.6)",
             display: "flex",
             alignItems: "center",
             gap: "4px",
@@ -312,35 +396,35 @@ function ProductCard({
               gap: "6px",
               padding: "12px 16px",
               background: "transparent",
-              border: "1px solid rgba(200,169,98,0.3)",
-              color: "#C8A962",
-              borderRadius: "100px",
-              fontFamily: "'Zain', sans-serif",
-              fontSize: "14px",
-              fontWeight: 600,
-              textDecoration: "none",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = "rgba(200,169,98,0.1)";
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "#C8A962";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(200,169,98,0.3)";
-            }}
-          >
-            {isAr ? "التفاصيل" : "Details"}
+            border: "1px solid rgba(240,177,0,0.4)",
+            color: "#8A6D00",
+            borderRadius: "10px",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
+            fontSize: "14px",
+            fontWeight: 600,
+            textDecoration: "none",
+            transition: "all 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.background = "rgba(240,177,0,0.12)";
+            (e.currentTarget as HTMLAnchorElement).style.borderColor = "#F0B100";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+            (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(240,177,0,0.4)";
+          }}
+        >
+          {isAr ? "التفاصيل" : "Details"}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 18l6-6-6-6"/>
             </svg>
           </Link>
 
-          {/* Buy now button */}
-          <a
-            href={getWhatsAppLink(whatsappMsg)}
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* Add to cart button */}
+          <button
+            onClick={handleAddToCart}
+            disabled={!product.inStock}
+            aria-label={isAr ? `أضف ${name} إلى السلة` : `Add ${name} to cart`}
             style={{
               flex: 1,
               display: "flex",
@@ -348,30 +432,33 @@ function ProductCard({
               justifyContent: "center",
               gap: "6px",
               padding: "12px 16px",
-              background: product.popular ? "#BDEE63" : "#C8A962",
+              background: justAdded ? "#2F855A" : "#F0B100",
               border: "none",
-              color: "#0A0A0A",
-              borderRadius: "100px",
-              fontFamily: "'Zain', sans-serif",
+              color: justAdded ? "#FFFFFF" : "#111111",
+              borderRadius: "10px",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "14px",
               fontWeight: 700,
-              textDecoration: "none",
+              cursor: product.inStock ? "pointer" : "not-allowed",
+              opacity: product.inStock ? 1 : 0.5,
               transition: "all 0.3s ease",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 24px rgba(200,169,98,0.3)";
+              if (!justAdded) (e.currentTarget as HTMLButtonElement).style.background = "#D89E00";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.transform = "none";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+              if (!justAdded) (e.currentTarget as HTMLButtonElement).style.background = "#F0B100";
             }}
           >
-            {isAr ? "اشتري الآن" : "Buy Now"}
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-            </svg>
-          </a>
+            {justAdded ? (isAr ? "تمت الإضافة ✓" : "Added ✓") : isAr ? "أضف للسلة" : "Add to Cart"}
+            {!justAdded && (
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
     </div>
@@ -392,7 +479,7 @@ const SMART_SERVICES = [
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+    <div style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
       <button
         onClick={() => setOpen(!open)}
         style={{
@@ -404,8 +491,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           background: "none",
           border: "none",
           cursor: "pointer",
-          color: "#FAFAF7",
-          fontFamily: "'Zain', sans-serif",
+          color: "#111111",
+          fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
           fontSize: "17px",
           fontWeight: 600,
           textAlign: "inherit",
@@ -414,7 +501,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       >
         <span style={{ flex: 1 }}>{question}</span>
         <span style={{
-          color: open ? "#C8A962" : "rgba(255,255,255,0.4)",
+          color: open ? "#F0B100" : "rgba(26,26,26,0.5)",
           fontSize: "20px",
           transition: "transform 0.3s ease",
           transform: open ? "rotate(45deg)" : "none",
@@ -422,7 +509,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       </button>
       <div style={{ display: "grid", gridTemplateRows: open ? "1fr" : "0fr", transition: "grid-template-rows 0.4s ease" }}>
         <div style={{ overflow: "hidden" }}>
-          <p style={{ padding: "0 0 22px", color: "rgba(255,255,255,0.5)", fontSize: "15px", lineHeight: 1.8 }}>{answer}</p>
+          <p style={{ padding: "0 0 22px", color: "rgba(26,26,26,0.65)", fontSize: "15px", lineHeight: 1.8 }}>{answer}</p>
         </div>
       </div>
     </div>
@@ -438,12 +525,13 @@ export default function StoreContent() {
   const { favorites, toggleFavorite } = useFavorites();
 
   const filtered = getProductsByCategory(activeCategory);
+  const logosRow = buildLogoRow(STORE_LOGOS);
 
   return (
-    <div dir={dir} lang={locale} style={{ fontFamily: "'Zain', sans-serif" }}>
+    <div dir={dir} lang={locale} style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
       {/* ═══ HERO ═══════════════════════════════════════════ */}
       <section style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #111111 100%)",
+        background: "linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%)",
         padding: "140px 0 100px",
         position: "relative",
         overflow: "hidden",
@@ -452,9 +540,9 @@ export default function StoreContent() {
         <div style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23C8A962' stroke-width='0.4'%3E%3Cpolygon points='30,5 55,20 55,45 30,60 5,45 5,20'/%3E%3Cpolygon points='30,15 45,22.5 45,37.5 30,45 15,37.5 15,22.5'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23C9A227' stroke-width='0.4'%3E%3Cpolygon points='30,5 55,20 55,45 30,60 5,45 5,20'/%3E%3Cpolygon points='30,15 45,22.5 45,37.5 30,45 15,37.5 15,22.5'/%3E%3C/g%3E%3C/svg%3E")`,
           backgroundSize: "60px 60px",
-          opacity: 0.04,
+          opacity: 0.08,
         }} />
 
         {/* Glow */}
@@ -465,7 +553,7 @@ export default function StoreContent() {
           transform: "translate(-50%,-50%)",
           width: "600px",
           height: "300px",
-          background: "radial-gradient(ellipse, rgba(200,169,98,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(240,177,0,0.12) 0%, transparent 70%)",
         }} />
 
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1, textAlign: "center" }}>
@@ -475,23 +563,23 @@ export default function StoreContent() {
             alignItems: "center",
             gap: "8px",
             padding: "6px 20px",
-            background: "rgba(200,169,98,0.08)",
-            border: "1px solid rgba(200,169,98,0.2)",
-            borderRadius: "100px",
+            background: "rgba(240,177,0,0.12)",
+            border: "1px solid rgba(240,177,0,0.3)",
+            borderRadius: "10px",
             marginBottom: "32px",
           }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#BDEE63" }} />
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", letterSpacing: "0.2em", color: "#C8A962", textTransform: "uppercase" }}>
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#F0B100" }} />
+            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", letterSpacing: "0.2em", color: "#8A6D00", textTransform: "uppercase" }}>
               {isAr ? "متجر الخدمات الرقمية" : "Digital Services Store"}
             </span>
           </div>
 
           {/* Headline */}
-          <h1 style={{ fontSize: "clamp(40px, 6vw, 80px)", fontWeight: 900, lineHeight: 1.1, marginBottom: "24px", color: "#FAFAF7" }}>
+          <h1 style={{ fontSize: "clamp(40px, 6vw, 80px)", fontWeight: 900, lineHeight: 1.1, marginBottom: "24px", color: "#1A1A1A" }}>
             {isAr ? "خدمات رقمية احترافية" : "Professional Digital Services"}
             <br />
             <span style={{
-              background: "linear-gradient(135deg, #C8A962 0%, #E8D5A3 50%, #C8A962 100%)",
+              background: "linear-gradient(135deg, #F0B100 0%, #F3DFA0 50%, #F0B100 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -501,11 +589,11 @@ export default function StoreContent() {
           </h1>
 
           {/* Subtitle */}
-          <p style={{ fontSize: "18px", color: "rgba(255,255,255,0.5)", maxWidth: "600px", margin: "0 auto 48px", lineHeight: 1.7 }}>
+          <p style={{ fontSize: "18px", color: "rgba(26,26,26,0.65)", maxWidth: "600px", margin: "0 auto 48px", lineHeight: 1.7 }}>
             {isAr ? (
-              <>أسعارنا أقل من المنافسين بـ <span style={{ color: "#BDEE63", fontWeight: 700 }}>70%</span> — بدون التنازل عن الجودة. ضمان رضا 100%.</>
+              <>أسعارنا أقل من المنافسين بـ <span style={{ color: "#8A6D00", fontWeight: 700 }}>70%</span> — بدون التنازل عن الجودة. ضمان رضا 100%.</>
             ) : (
-              <>Our prices are <span style={{ color: "#BDEE63", fontWeight: 700 }}>70% lower</span> than competitors — without compromising quality.</>
+              <>Our prices are <span style={{ color: "#8A6D00", fontWeight: 700 }}>70% lower</span> than competitors — without compromising quality. 100% satisfaction guaranteed.</>
             )}
           </p>
 
@@ -518,10 +606,10 @@ export default function StoreContent() {
               { value: isAr ? "7 أيام" : "7 Days", labelAr: "ضمان استرداد", labelEn: "Money Back" },
             ].map((stat) => (
               <div key={stat.labelAr} style={{ textAlign: "center" }}>
-                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "clamp(24px, 3vw, 32px)", fontWeight: 700, color: "#C8A962", marginBottom: "8px" }}>
+                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "clamp(24px, 3vw, 32px)", fontWeight: 700, color: "#8A6D00", marginBottom: "8px" }}>
                   {stat.value}
                 </div>
-                <div style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
+                <div style={{ fontSize: "13px", color: "rgba(26,26,26,0.6)" }}>
                   {isAr ? stat.labelAr : stat.labelEn}
                 </div>
               </div>
@@ -536,27 +624,405 @@ export default function StoreContent() {
               alignItems: "center",
               gap: "10px",
               padding: "16px 40px",
-              background: "#BDEE63",
-              color: "#0A0A0A",
-              borderRadius: "100px",
+              background: "#F0B100",
+              color: "#1A1A1A",
+              borderRadius: "10px",
               fontWeight: 700,
               fontSize: "17px",
               textDecoration: "none",
               transition: "all 0.3s ease",
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#9DC832"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#BDEE63"; }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#D89E00"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#F0B100"; }}
           >
             {isAr ? "تصفح الخدمات" : "Browse Services"}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M12 5l0 14M5 12l7 7 7-7"/>
             </svg>
           </a>
+
+          {/* ═══ Premium Client Logo Showcase ═══ */}
+          <div style={{ marginTop: "72px", position: "relative" }}>
+            <style>{`
+              @keyframes store-marquee-ltr {
+                from { transform: translateX(0); }
+                to { transform: translateX(-50%); }
+              }
+              @keyframes store-marquee-rtl {
+                from { transform: translateX(-50%); }
+                to { transform: translateX(0); }
+              }
+              @keyframes store-marquee-ltr-slow {
+                from { transform: translateX(-50%); }
+                to { transform: translateX(0); }
+              }
+              @keyframes store-marquee-rtl-slow {
+                from { transform: translateX(0); }
+                to { transform: translateX(-50%); }
+              }
+              @keyframes store-featured-glow {
+                0%, 100% { 
+                  box-shadow: 0 14px 40px rgba(240,177,0,0.25), 0 0 0 1px rgba(240,177,0,0.3);
+                  transform: scale(1.08);
+                }
+                50% { 
+                  box-shadow: 0 20px 60px rgba(240,177,0,0.45), 0 0 20px rgba(240,177,0,0.15), 0 0 0 1px rgba(240,177,0,0.5);
+                  transform: scale(1.12);
+                }
+              }
+              @keyframes store-logo-float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-3px); }
+              }
+              @keyframes store-shine {
+                0% { left: -100%; }
+                50%, 100% { left: 200%; }
+              }
+              @keyframes store-badge-pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.6; }
+              }
+              .store-logo-card {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+              }
+              .store-logo-card:hover {
+                transform: translateY(-4px) scale(1.04) !important;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.12) !important;
+                border-color: rgba(240,177,0,0.4) !important;
+              }
+              .store-featured-card:hover {
+                transform: translateY(-6px) scale(1.14) !important;
+              }
+              @media (max-width: 768px) {
+                .store-logo-card {
+                  height: 72px !important;
+                  min-width: 140px !important;
+                  padding: 10px 18px !important;
+                }
+                .store-featured-card {
+                  height: 90px !important;
+                  min-width: 180px !important;
+                }
+                .store-logos-title {
+                  font-size: 11px !important;
+                  letter-spacing: 0.2em !important;
+                }
+                .store-logos-subtitle {
+                  font-size: 13px !important;
+                }
+              }
+            `}</style>
+
+            {/* Section Header */}
+            <div style={{ textAlign: "center", marginBottom: "28px" }}>
+              <div style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                marginBottom: "12px",
+              }}>
+                <div style={{ width: "40px", height: "1px", background: "linear-gradient(to right, transparent, rgba(240,177,0,0.5))" }} />
+                <div
+                  className="store-logos-title"
+                  style={{
+                    fontFamily: "Space Mono, monospace",
+                    fontSize: "12px",
+                    letterSpacing: "0.35em",
+                    textTransform: "uppercase",
+                    color: "rgba(240,177,0,0.7)",
+                  }}
+                >
+                  {isAr ? "عملاء يثقون بنا" : "Clients Who Trust Us"}
+                </div>
+                <div style={{ width: "40px", height: "1px", background: "linear-gradient(to left, transparent, rgba(240,177,0,0.5))" }} />
+              </div>
+              <div className="store-logos-subtitle" style={{ color: "rgba(26,26,26,0.55)", fontSize: "15px", lineHeight: 1.6 }}>
+                {isAr ? "شعارات مختارة من مشاريعنا الناجحة" : "Selected logos from our successful projects"}
+              </div>
+            </div>
+
+            {/* Marquee Container */}
+            <div
+              style={{
+                position: "relative",
+                padding: "24px 0",
+                borderRadius: "24px",
+                border: "1px solid rgba(240,177,0,0.15)",
+                background: "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%)",
+                backdropFilter: "blur(12px)",
+                overflow: "hidden",
+              }}
+            >
+              {/* Gradient fade edges */}
+              {(["left", "right"] as const).map((side) => (
+                <div
+                  key={side}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    bottom: 0,
+                    [side]: 0,
+                    width: "140px",
+                    background: `linear-gradient(to ${side === "left" ? "right" : "left"}, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 30%, transparent 100%)`,
+                    zIndex: 3,
+                    pointerEvents: "none",
+                  }}
+                />
+              ))}
+
+              {/* Row 1 — Primary direction */}
+              <div style={{ overflow: "hidden", marginBottom: "14px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "20px",
+                    width: "max-content",
+                    animation: `${isAr ? "store-marquee-rtl" : "store-marquee-ltr"} 28s linear infinite`,
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.animationPlayState = "paused";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.animationPlayState = "running";
+                  }}
+                >
+                  {logosRow.map((logo, index) => (
+                    <div
+                      key={`row1-${logo.file}-${index}`}
+                      className={`store-logo-card ${logo.featured ? "store-featured-card" : ""}`}
+                      style={{
+                        height: logo.featured ? "100px" : "82px",
+                        minWidth: logo.featured ? "220px" : "160px",
+                        padding: logo.featured ? "14px 32px" : "12px 24px",
+                        borderRadius: "14px",
+                        border: logo.featured 
+                          ? "2px solid rgba(240,177,0,0.5)" 
+                          : "1px solid rgba(0,0,0,0.06)",
+                        background: logo.featured
+                          ? "linear-gradient(135deg, rgba(240,177,0,0.12) 0%, #FFFFFF 50%, rgba(240,177,0,0.08) 100%)"
+                          : "#FFFFFF",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        position: "relative",
+                        overflow: "hidden",
+                        boxShadow: logo.featured
+                          ? "0 14px 40px rgba(240,177,0,0.25), 0 0 0 1px rgba(240,177,0,0.3)"
+                          : "0 8px 20px rgba(0,0,0,0.04)",
+                        transform: logo.featured ? "scale(1.08)" : "none",
+                        animation: logo.featured ? "store-featured-glow 3.5s ease-in-out infinite" : "store-logo-float 6s ease-in-out infinite",
+                        animationDelay: logo.featured ? "0s" : `${index * 0.5}s`,
+                        flexShrink: 0,
+                      }}
+                    >
+                      {/* Shine effect on featured */}
+                      {logo.featured && (
+                        <div style={{
+                          position: "absolute",
+                          top: 0,
+                          left: "-100%",
+                          width: "60%",
+                          height: "100%",
+                          background: "linear-gradient(90deg, transparent 0%, rgba(240,177,0,0.12) 50%, transparent 100%)",
+                          animation: "store-shine 4s ease-in-out infinite",
+                          pointerEvents: "none",
+                        }} />
+                      )}
+                      
+                      {/* Featured badge */}
+                      {logo.featured && (
+                        <div style={{
+                          position: "absolute",
+                          top: "6px",
+                          [isAr ? "left" : "right"]: "8px",
+                          background: "linear-gradient(135deg, #F0B100, #F3DFA0)",
+                          color: "#1A1A1A",
+                          fontSize: "7px",
+                          fontWeight: 800,
+                          padding: "2px 8px",
+                          borderRadius: "10px",
+                          fontFamily: "Space Mono, monospace",
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          animation: "store-badge-pulse 2.5s ease-in-out infinite",
+                        }}>
+                          ★ {isAr ? "مميز" : "FEATURED"}
+                        </div>
+                      )}
+
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`/store-logos/${logo.file}`}
+                        alt={isAr ? logo.nameAr : logo.nameEn}
+                        style={{
+                          height: `${logo.featured ? (logo.maxHeight ?? 46) + 10 : logo.maxHeight ?? 46}px`,
+                          width: "auto",
+                          maxWidth: logo.featured ? "200px" : "140px",
+                          objectFit: "contain",
+                          display: "block",
+                          filter: logo.featured ? "none" : "grayscale(0.15)",
+                          transition: "filter 0.4s ease",
+                        }}
+                        loading="lazy"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display = "none";
+                          const parent = (e.currentTarget as HTMLImageElement).parentElement;
+                          if (parent) {
+                            const fallback = document.createElement("span");
+                            fallback.textContent = isAr ? logo.nameAr : logo.nameEn;
+                            fallback.style.cssText = "font-family: 'ThmanyahSans', 'Zain', sans-serif; font-size: 16px; font-weight: 700; color: rgba(26,26,26,0.7); white-space: nowrap;";
+                            parent.appendChild(fallback);
+                          }
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Row 2 — Reverse direction, slower */}
+              <div style={{ overflow: "hidden" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "20px",
+                    width: "max-content",
+                    animation: `${isAr ? "store-marquee-rtl-slow" : "store-marquee-ltr-slow"} 35s linear infinite`,
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.animationPlayState = "paused";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.animationPlayState = "running";
+                  }}
+                >
+                  {[...logosRow].reverse().map((logo, index) => (
+                    <div
+                      key={`row2-${logo.file}-${index}`}
+                      className={`store-logo-card ${logo.featured ? "store-featured-card" : ""}`}
+                      style={{
+                        height: logo.featured ? "100px" : "82px",
+                        minWidth: logo.featured ? "220px" : "160px",
+                        padding: logo.featured ? "14px 32px" : "12px 24px",
+                        borderRadius: "14px",
+                        border: logo.featured 
+                          ? "2px solid rgba(240,177,0,0.5)" 
+                          : "1px solid rgba(0,0,0,0.06)",
+                        background: logo.featured
+                          ? "linear-gradient(135deg, rgba(240,177,0,0.12) 0%, #FFFFFF 50%, rgba(240,177,0,0.08) 100%)"
+                          : "#FFFFFF",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        position: "relative",
+                        overflow: "hidden",
+                        boxShadow: logo.featured
+                          ? "0 14px 40px rgba(240,177,0,0.25), 0 0 0 1px rgba(240,177,0,0.3)"
+                          : "0 8px 20px rgba(0,0,0,0.04)",
+                        transform: logo.featured ? "scale(1.08)" : "none",
+                        animation: logo.featured ? "store-featured-glow 3.5s ease-in-out infinite" : "store-logo-float 6s ease-in-out infinite",
+                        animationDelay: logo.featured ? "0s" : `${index * 0.7}s`,
+                        flexShrink: 0,
+                      }}
+                    >
+                      {/* Shine effect on featured */}
+                      {logo.featured && (
+                        <div style={{
+                          position: "absolute",
+                          top: 0,
+                          left: "-100%",
+                          width: "60%",
+                          height: "100%",
+                          background: "linear-gradient(90deg, transparent 0%, rgba(240,177,0,0.12) 50%, transparent 100%)",
+                          animation: "store-shine 4s ease-in-out infinite",
+                          animationDelay: "2s",
+                          pointerEvents: "none",
+                        }} />
+                      )}
+                      
+                      {/* Featured badge */}
+                      {logo.featured && (
+                        <div style={{
+                          position: "absolute",
+                          top: "6px",
+                          [isAr ? "left" : "right"]: "8px",
+                          background: "linear-gradient(135deg, #F0B100, #F3DFA0)",
+                          color: "#1A1A1A",
+                          fontSize: "7px",
+                          fontWeight: 800,
+                          padding: "2px 8px",
+                          borderRadius: "10px",
+                          fontFamily: "Space Mono, monospace",
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          animation: "store-badge-pulse 2.5s ease-in-out infinite",
+                        }}>
+                          ★ {isAr ? "مميز" : "FEATURED"}
+                        </div>
+                      )}
+
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={`/store-logos/${logo.file}`}
+                        alt={isAr ? logo.nameAr : logo.nameEn}
+                        style={{
+                          height: `${logo.featured ? (logo.maxHeight ?? 46) + 10 : logo.maxHeight ?? 46}px`,
+                          width: "auto",
+                          maxWidth: logo.featured ? "200px" : "140px",
+                          objectFit: "contain",
+                          display: "block",
+                          filter: logo.featured ? "none" : "grayscale(0.15)",
+                          transition: "filter 0.4s ease",
+                        }}
+                        loading="lazy"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display = "none";
+                          const parent = (e.currentTarget as HTMLImageElement).parentElement;
+                          if (parent) {
+                            const fallback = document.createElement("span");
+                            fallback.textContent = isAr ? logo.nameAr : logo.nameEn;
+                            fallback.style.cssText = "font-family: 'ThmanyahSans', 'Zain', sans-serif; font-size: 16px; font-weight: 700; color: rgba(26,26,26,0.7); white-space: nowrap;";
+                            parent.appendChild(fallback);
+                          }
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Client count indicator */}
+            <div style={{
+              textAlign: "center",
+              marginTop: "16px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+            }}>
+              <div style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "#22C55E",
+                animation: "store-badge-pulse 2s ease-in-out infinite",
+              }} />
+              <span style={{
+                fontFamily: "Space Mono, monospace",
+                fontSize: "11px",
+                color: "rgba(26,26,26,0.5)",
+                letterSpacing: "0.05em",
+              }}>
+                {isAr ? "وأكثر من ١٠٠ عميل آخر..." : "And 100+ more clients..."}
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ═══ TRUST BAR ══════════════════════════════════════ */}
-      <div style={{ background: "#111", borderTop: "1px solid rgba(200,169,98,0.1)", borderBottom: "1px solid rgba(200,169,98,0.1)", padding: "20px 0" }}>
+      <div style={{ background: "#FFFFFF", borderTop: "1px solid rgba(0,0,0,0.08)", borderBottom: "1px solid rgba(0,0,0,0.08)", padding: "20px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
           <div style={{ display: "flex", gap: "32px", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
             {(isAr ? [
@@ -565,8 +1031,8 @@ export default function StoreContent() {
               "100% Satisfaction", "Pay After Approval", "On-Time Delivery", "24/7 Support", "Unlimited Revisions"
             ]).map((item) => (
               <div key={item} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <span style={{ color: "#BDEE63", fontSize: "14px" }}>✓</span>
-                <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.5)", whiteSpace: "nowrap" }}>{item}</span>
+                <span style={{ color: "#8A6D00", fontSize: "14px" }}>✓</span>
+                <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(26,26,26,0.6)", whiteSpace: "nowrap" }}>{item}</span>
               </div>
             ))}
           </div>
@@ -574,38 +1040,38 @@ export default function StoreContent() {
       </div>
 
       {/* ═══ COMPARISON TABLE ════════════════════════════════ */}
-      <section style={{ background: "#0A0A0A", padding: "100px 0" }}>
+      <section style={{ background: "#FFFFFF", padding: "100px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#FAFAF7", marginBottom: "16px" }}>
-              {isAr ? <>لماذا أسعارنا <span style={{ color: "#C8A962" }}>الأفضل في السوق؟</span></> : <>Why Our Prices Are <span style={{ color: "#C8A962" }}>The Best?</span></>}
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#1A1A1A", marginBottom: "16px" }}>
+              {isAr ? <>لماذا أسعارنا <span style={{ color: "#8A6D00" }}>الأفضل في السوق؟</span></> : <>Why Our Prices Are <span style={{ color: "#8A6D00" }}>The Best?</span></>}
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "16px" }}>
+            <p style={{ color: "rgba(26,26,26,0.65)", fontSize: "16px" }}>
               {isAr ? "قارن بنفسك — نفس الجودة، أقل من نصف السعر" : "Compare yourself — same quality, less than half the price"}
             </p>
           </div>
 
           <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: 0, border: "1px solid rgba(255,255,255,0.07)", borderRadius: "16px", overflow: "hidden" }}>
+            <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: 0, border: "1px solid rgba(0,0,0,0.08)", borderRadius: "16px", overflow: "hidden" }}>
               <thead>
-                <tr style={{ background: "#141414" }}>
-                  <th style={{ padding: "16px 20px", textAlign: isAr ? "right" : "left", fontSize: "13px", color: "rgba(255,255,255,0.4)", fontFamily: "Space Mono, monospace", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                <tr style={{ background: "#FFFFFF" }}>
+                  <th style={{ padding: "16px 20px", textAlign: isAr ? "right" : "left", fontSize: "13px", color: "rgba(26,26,26,0.6)", fontFamily: "Space Mono, monospace", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
                     {isAr ? "الخدمة" : "Service"}
                   </th>
-                  <th style={{ padding: "16px 20px", textAlign: "center", fontSize: "13px", color: "rgba(255,255,255,0.4)", fontFamily: "Space Mono, monospace", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                  <th style={{ padding: "16px 20px", textAlign: "center", fontSize: "13px", color: "rgba(26,26,26,0.6)", fontFamily: "Space Mono, monospace", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
                     {isAr ? "المنافسون" : "Competitors"}
                   </th>
-                  <th style={{ padding: "16px 20px", textAlign: "center", fontSize: "14px", color: "#BDEE63", fontFamily: "Space Mono, monospace", fontWeight: 700, borderBottom: "1px solid rgba(255,255,255,0.07)", background: "rgba(189,238,99,0.05)" }}>
+                  <th style={{ padding: "16px 20px", textAlign: "center", fontSize: "14px", color: "#8A6D00", fontFamily: "Space Mono, monospace", fontWeight: 700, borderBottom: "1px solid rgba(0,0,0,0.08)", background: "rgba(240,177,0,0.08)" }}>
                     {isAr ? "نحن ✓" : "Us ✓"}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {COMPETITOR_COMPARISON.map((row, i) => (
-                  <tr key={row.service} style={{ background: i % 2 === 0 ? "#0D0D0D" : "#111111" }}>
-                    <td style={{ padding: "16px 20px", fontSize: "15px", color: "#FAFAF7", fontWeight: 600, borderBottom: "1px solid rgba(255,255,255,0.05)" }}>{row.service}</td>
-                    <td style={{ padding: "16px 20px", textAlign: "center", fontSize: "14px", color: "rgba(255,100,100,0.7)", fontFamily: "Space Mono, monospace", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>{row.competitor}</td>
-                    <td style={{ padding: "16px 20px", textAlign: "center", fontSize: "16px", color: "#C8A962", fontFamily: "Space Mono, monospace", fontWeight: 700, borderBottom: "1px solid rgba(255,255,255,0.05)", background: "rgba(189,238,99,0.04)" }}>{row.ours}</td>
+                  <tr key={row.service} style={{ background: i % 2 === 0 ? "#FFFFFF" : "#FFFFFF" }}>
+                    <td style={{ padding: "16px 20px", fontSize: "15px", color: "#1A1A1A", fontWeight: 600, borderBottom: "1px solid rgba(0,0,0,0.06)" }}>{row.service}</td>
+                    <td style={{ padding: "16px 20px", textAlign: "center", fontSize: "14px", color: "rgba(220,90,90,0.8)", fontFamily: "Space Mono, monospace", borderBottom: "1px solid rgba(0,0,0,0.06)" }}>{row.competitor}</td>
+                    <td style={{ padding: "16px 20px", textAlign: "center", fontSize: "16px", color: "#8A6D00", fontFamily: "Space Mono, monospace", fontWeight: 700, borderBottom: "1px solid rgba(0,0,0,0.06)", background: "rgba(240,177,0,0.08)" }}>{row.ours}</td>
                   </tr>
                 ))}
               </tbody>
@@ -615,14 +1081,14 @@ export default function StoreContent() {
       </section>
 
       {/* ═══ PRODUCTS GRID ═══════════════════════════════════ */}
-      <section id="products" style={{ background: "linear-gradient(180deg, #0A0A0A 0%, #0D0D0D 100%)", padding: "100px 0" }}>
+      <section id="products" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%)", padding: "100px 0" }}>
         <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 24px" }}>
           {/* Header */}
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#FAFAF7", marginBottom: "16px" }}>
-              {isAr ? <>اختر الخدمة <span style={{ color: "#C8A962" }}>المناسبة لك</span></> : <>Choose The <span style={{ color: "#C8A962" }}>Right Service</span></>}
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#1A1A1A", marginBottom: "16px" }}>
+              {isAr ? <>اختر الخدمة <span style={{ color: "#8A6D00" }}>المناسبة لك</span></> : <>Choose The <span style={{ color: "#8A6D00" }}>Right Service</span></>}
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "16px" }}>
+            <p style={{ color: "rgba(26,26,26,0.65)", fontSize: "16px" }}>
               {isAr ? "اضغط على أي منتج لمعرفة التفاصيل الكاملة" : "Click any product to see full details"}
             </p>
           </div>
@@ -635,13 +1101,13 @@ export default function StoreContent() {
                 onClick={() => setActiveCategory(cat.key)}
                 style={{
                   padding: "10px 22px",
-                  borderRadius: "100px",
-                  border: activeCategory === cat.key ? "none" : "1px solid rgba(255,255,255,0.1)",
-                  background: activeCategory === cat.key ? "#C8A962" : "transparent",
-                  color: activeCategory === cat.key ? "#0A0A0A" : "rgba(255,255,255,0.5)",
-                  fontFamily: "'Zain', sans-serif",
+                  borderRadius: "10px",
+                  border: activeCategory === cat.key ? "1px solid rgba(240,177,0,0.4)" : "1px solid rgba(0,0,0,0.12)",
+                  background: activeCategory === cat.key ? "#F0B100" : "#FFFFFF",
+                  color: activeCategory === cat.key ? "#1A1A1A" : "#1A1A1A",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                   fontSize: "15px",
-                  fontWeight: activeCategory === cat.key ? 700 : 400,
+                  fontWeight: activeCategory === cat.key ? 700 : 600,
                   cursor: "pointer",
                   transition: "all 0.3s ease",
                   display: "flex",
@@ -675,11 +1141,11 @@ export default function StoreContent() {
       </section>
 
       {/* ═══ SMART SERVICES ══════════════════════════════════ */}
-      <section style={{ background: "#111", padding: "100px 0", borderTop: "1px solid rgba(200,169,98,0.08)" }}>
+      <section style={{ background: "#FFFFFF", padding: "100px 0", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#FAFAF7", marginBottom: "16px" }}>
-              {isAr ? <>ضمانات لا تجدها <span style={{ color: "#C8A962" }}>عند أحد غيرنا</span></> : <>Guarantees You Won't Find <span style={{ color: "#C8A962" }}>Anywhere Else</span></>}
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, color: "#1A1A1A", marginBottom: "16px" }}>
+              {isAr ? <>ضمانات لا تجدها <span style={{ color: "#8A6D00" }}>عند أحد غيرنا</span></> : <>Guarantees You Won't Find <span style={{ color: "#8A6D00" }}>Anywhere Else</span></>}
             </h2>
           </div>
 
@@ -688,32 +1154,32 @@ export default function StoreContent() {
               <div
                 key={service.titleAr}
                 style={{
-                  background: "linear-gradient(160deg, #141414, #111)",
-                  border: "1px solid rgba(255,255,255,0.06)",
+                  background: "#FFFFFF",
+                  border: "1px solid rgba(0,0,0,0.08)",
                   borderRadius: "16px",
                   padding: "28px 24px",
                   transition: "all 0.3s ease",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(200,169,98,0.25)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.06)"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(240,177,0,0.35)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(0,0,0,0.08)"; }}
               >
                 <div style={{
                   width: "48px",
                   height: "48px",
-                  background: "rgba(200,169,98,0.08)",
-                  border: "1px solid rgba(200,169,98,0.15)",
+                  background: "rgba(240,177,0,0.12)",
+                  border: "1px solid rgba(240,177,0,0.25)",
                   borderRadius: "12px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: "20px",
-                  color: "#C8A962",
+                  color: "#8A6D00",
                   marginBottom: "16px",
                 }}>{service.icon}</div>
-                <h3 style={{ fontSize: "17px", fontWeight: 700, color: "#FAFAF7", marginBottom: "10px" }}>
+                <h3 style={{ fontSize: "17px", fontWeight: 700, color: "#1A1A1A", marginBottom: "10px" }}>
                   {isAr ? service.titleAr : service.titleEn}
                 </h3>
-                <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.4)", lineHeight: 1.7 }}>
+                <p style={{ fontSize: "14px", color: "rgba(26,26,26,0.65)", lineHeight: 1.7 }}>
                   {isAr ? service.descAr : service.descEn}
                 </p>
               </div>
@@ -723,11 +1189,11 @@ export default function StoreContent() {
       </section>
 
       {/* ═══ GOLDEN BUNDLE ═══════════════════════════════════ */}
-      <section style={{ background: "#0A0A0A", padding: "100px 0" }}>
+      <section style={{ background: "#FFFFFF", padding: "100px 0" }}>
         <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
           <div style={{
-            background: "linear-gradient(135deg, #141414 0%, #1A1508 100%)",
-            border: "1.5px solid rgba(200,169,98,0.3)",
+            background: "#FFFFFF",
+            border: "1.5px solid rgba(240,177,0,0.35)",
             borderRadius: "24px",
             padding: "60px 48px",
             position: "relative",
@@ -741,7 +1207,7 @@ export default function StoreContent() {
               transform: "translate(-50%,-50%)",
               width: "400px",
               height: "200px",
-              background: "radial-gradient(ellipse, rgba(200,169,98,0.1) 0%, transparent 70%)",
+              background: "radial-gradient(ellipse, rgba(240,177,0,0.18) 0%, transparent 70%)",
             }} />
 
             <div style={{ position: "relative", zIndex: 1 }}>
@@ -750,42 +1216,42 @@ export default function StoreContent() {
                 alignItems: "center",
                 gap: "8px",
                 padding: "6px 20px",
-                background: "rgba(200,169,98,0.12)",
-                border: "1px solid rgba(200,169,98,0.3)",
-                borderRadius: "100px",
+                background: "rgba(240,177,0,0.12)",
+                border: "1px solid rgba(240,177,0,0.3)",
+                borderRadius: "10px",
                 marginBottom: "24px",
               }}>
-                <span style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", letterSpacing: "0.2em", color: "#C8A962", textTransform: "uppercase" }}>
+                <span style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", letterSpacing: "0.2em", color: "#8A6D00", textTransform: "uppercase" }}>
                   ★ {isAr ? "الباقة الذهبية" : "Golden Package"}
                 </span>
               </div>
 
-              <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 900, color: "#FAFAF7", marginBottom: "16px", lineHeight: 1.2 }}>
+              <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 900, color: "#1A1A1A", marginBottom: "16px", lineHeight: 1.2 }}>
                 {isAr ? "متجر سلة + هوية بصرية" : "Salla Store + Brand Identity"}
                 <br />
-                <span style={{ color: "#C8A962" }}>{isAr ? "+ إدارة سوشيال 3 أشهر" : "+ 3 Months Social Media"}</span>
+                <span style={{ color: "#8A6D00" }}>{isAr ? "+ إدارة سوشيال 3 أشهر" : "+ 3 Months Social Media"}</span>
               </h2>
 
-              <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "16px", marginBottom: "36px" }}>
+              <p style={{ color: "rgba(26,26,26,0.65)", fontSize: "16px", marginBottom: "36px" }}>
                 {isAr ? "الباقة الأكثر شمولاً — كل ما تحتاجه لإطلاق مشروعك" : "The most comprehensive package — everything you need to launch"}
               </p>
 
               <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "20px", marginBottom: "40px", flexWrap: "wrap" }}>
                 <div>
-                  <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", color: "rgba(255,255,255,0.3)", textDecoration: "line-through", marginBottom: "4px" }}>
+                  <div style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", color: "rgba(26,26,26,0.45)", textDecoration: "line-through", marginBottom: "4px" }}>
                     16,000 {isAr ? "ر.س" : "SAR"}
                   </div>
                   <div style={{ display: "flex", alignItems: "baseline", gap: "8px" }}>
-                    <span style={{ fontFamily: "Space Mono, monospace", fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 700, color: "#C8A962" }}>4,499</span>
-                    <span style={{ color: "rgba(255,255,255,0.5)", fontSize: "18px" }}>{isAr ? "ر.س" : "SAR"}</span>
+                    <span style={{ fontFamily: "Space Mono, monospace", fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 700, color: "#8A6D00" }}>4,499</span>
+                    <span style={{ color: "rgba(26,26,26,0.6)", fontSize: "18px" }}>{isAr ? "ر.س" : "SAR"}</span>
                   </div>
                 </div>
                 <div style={{
-                  background: "rgba(189,238,99,0.12)",
-                  border: "1px solid rgba(189,238,99,0.3)",
-                  borderRadius: "100px",
+                  background: "rgba(240,177,0,0.12)",
+                  border: "1px solid rgba(240,177,0,0.3)",
+                  borderRadius: "10px",
                   padding: "10px 24px",
-                  color: "#BDEE63",
+                  color: "#8A6D00",
                   fontFamily: "Space Mono, monospace",
                   fontSize: "14px",
                   fontWeight: 700,
@@ -803,16 +1269,16 @@ export default function StoreContent() {
                   alignItems: "center",
                   gap: "10px",
                   padding: "16px 48px",
-                  background: "#C8A962",
-                  color: "#0A0A0A",
-                  borderRadius: "100px",
+                  background: "#F0B100",
+                  color: "#1A1A1A",
+                  borderRadius: "10px",
                   fontWeight: 700,
                   fontSize: "18px",
                   textDecoration: "none",
                   transition: "all 0.3s ease",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#E8D5A3"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#C8A962"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#F3DFA0"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#F0B100"; }}
               >
                 {isAr ? "اطلب الباقة الذهبية" : "Get Golden Package"}
               </a>
@@ -822,10 +1288,10 @@ export default function StoreContent() {
       </section>
 
       {/* ═══ FAQ ═════════════════════════════════════════════ */}
-      <section style={{ background: "#111", padding: "100px 0", borderTop: "1px solid rgba(200,169,98,0.08)" }}>
+      <section style={{ background: "#FFFFFF", padding: "100px 0", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", padding: "0 24px" }}>
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <h2 style={{ fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 800, color: "#FAFAF7" }}>
+            <h2 style={{ fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 800, color: "#1A1A1A" }}>
               {isAr ? "أسئلة شائعة" : "FAQ"}
             </h2>
           </div>
@@ -847,18 +1313,18 @@ export default function StoreContent() {
 
       {/* ═══ FINAL CTA ═══════════════════════════════════════ */}
       <section style={{
-        background: "linear-gradient(135deg, #0A0A0A 0%, #141414 100%)",
+        background: "linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 100%)",
         padding: "100px 0",
-        borderTop: "1px solid rgba(200,169,98,0.1)",
+        borderTop: "1px solid rgba(0,0,0,0.08)",
         textAlign: "center",
       }}>
         <div style={{ maxWidth: "700px", margin: "0 auto", padding: "0 24px" }}>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 900, color: "#FAFAF7", marginBottom: "20px", lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 900, color: "#1A1A1A", marginBottom: "20px", lineHeight: 1.2 }}>
             {isAr ? "جاهز تبدأ مشروعك" : "Ready To Start"}
             <br />
-            <span style={{ color: "#C8A962" }}>{isAr ? "بأسعار تنافسية؟" : "With Competitive Prices?"}</span>
+            <span style={{ color: "#8A6D00" }}>{isAr ? "بأسعار تنافسية؟" : "With Competitive Prices?"}</span>
           </h2>
-          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "16px", marginBottom: "40px" }}>
+          <p style={{ color: "rgba(26,26,26,0.65)", fontSize: "16px", marginBottom: "40px" }}>
             {isAr ? "تواصل معنا الآن واحصل على استشارة مجانية" : "Contact us now for a free consultation"}
           </p>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
@@ -871,9 +1337,9 @@ export default function StoreContent() {
                 alignItems: "center",
                 gap: "8px",
                 padding: "16px 32px",
-                background: "#BDEE63",
-                color: "#0A0A0A",
-                borderRadius: "100px",
+                background: "#F0B100",
+                color: "#1A1A1A",
+                borderRadius: "10px",
                 fontWeight: 700,
                 fontSize: "17px",
                 textDecoration: "none",
@@ -888,10 +1354,10 @@ export default function StoreContent() {
                 alignItems: "center",
                 gap: "8px",
                 padding: "16px 32px",
-                background: "transparent",
-                border: "1px solid rgba(200,169,98,0.4)",
-                color: "#C8A962",
-                borderRadius: "100px",
+                background: "#FFFFFF",
+                border: "1px solid rgba(240,177,0,0.4)",
+                color: "#8A6D00",
+                borderRadius: "10px",
                 fontWeight: 700,
                 fontSize: "17px",
                 textDecoration: "none",

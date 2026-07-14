@@ -11,7 +11,7 @@ const PACKAGES_AR = [
     tagline: "للمشاريع الناشئة التي تريد نتيجة سريعة",
     badge: null,
     featured: false,
-    accentColor: "#C8A962",
+    accentColor: "#F0B100",
     price: "1,499",
     currency: "ريال",
     valueLabel: "قيمة الباقة تفوق 3,000 ريال",
@@ -31,7 +31,7 @@ const PACKAGES_AR = [
     tagline: "الأكثر اختياراً — نتائج أسرع وتأثير أعمق",
     badge: "★ الأكثر طلباً",
     featured: true,
-    accentColor: "#A3FF12",
+    accentColor: "#F0B100",
     price: "2,999",
     currency: "ريال",
     valueLabel: "قيمة الباقة تفوق 7,000 ريال",
@@ -53,7 +53,7 @@ const PACKAGES_AR = [
     tagline: "للمشاريع الجادة التي تريد التصدر والسيطرة",
     badge: null,
     featured: false,
-    accentColor: "#C8A962",
+    accentColor: "#F0B100",
     price: "5,999",
     currency: "ريال",
     valueLabel: "قيمة الباقة تفوق 15,000 ريال",
@@ -79,7 +79,7 @@ const PACKAGES_EN = [
     tagline: "For new projects that need fast results",
     badge: null,
     featured: false,
-    accentColor: "#C8A962",
+    accentColor: "#F0B100",
     price: "1,499",
     currency: "SAR",
     valueLabel: "Package value exceeds 3,000 SAR",
@@ -99,7 +99,7 @@ const PACKAGES_EN = [
     tagline: "Most chosen — faster results, deeper impact",
     badge: "★ Most Popular",
     featured: true,
-    accentColor: "#A3FF12",
+    accentColor: "#F0B100",
     price: "2,999",
     currency: "SAR",
     valueLabel: "Package value exceeds 7,000 SAR",
@@ -121,7 +121,7 @@ const PACKAGES_EN = [
     tagline: "For serious projects that want to dominate",
     badge: null,
     featured: false,
-    accentColor: "#C8A962",
+    accentColor: "#F0B100",
     price: "5,999",
     currency: "SAR",
     valueLabel: "Package value exceeds 15,000 SAR",
@@ -161,7 +161,7 @@ export default function Pricing() {
     <section
       id="pricing"
       className="relative"
-      style={{ background: "#0A0A0A", padding: "80px 0", fontFamily: "'Zain', sans-serif" }}
+      style={{ background: "#0A0A0A", padding: "80px 0", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}
     >
       {/* Subtle bg pattern */}
       <div
@@ -169,7 +169,7 @@ export default function Pricing() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: "radial-gradient(rgba(200,169,98,0.04) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(rgba(240,177,0,0.04) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
           pointerEvents: "none",
         }}
@@ -181,21 +181,21 @@ export default function Pricing() {
         <div className="text-center mb-12" dir={isRTL ? "rtl" : "ltr"}>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: "8px",
-            background: "rgba(163,255,18,0.08)", border: "1px solid rgba(163,255,18,0.2)",
+            background: "rgba(240,177,0,0.08)", border: "1px solid rgba(240,177,0,0.2)",
             borderRadius: "100px", padding: "6px 18px", marginBottom: "20px",
           }}>
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#A3FF12" }}>
+            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#F0B100" }}>
               {isRTL ? "استثمار يعود بضعفه" : "Investment That Pays Back"}
             </span>
           </div>
           <h2 style={{
             fontSize: "clamp(28px, 4vw, 52px)", fontWeight: 800,
             color: "#FAFAF7", marginBottom: "12px", lineHeight: 1.1,
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
           }}>
             {isRTL ? "باقات مدروسة للنتائج الحقيقية" : "Packages Built for Real Results"}
           </h2>
-          <p style={{ color: "#8C8C7A", fontSize: "16px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.7, fontFamily: "'Zain', sans-serif" }}>
+          <p style={{ color: "#8C8C7A", fontSize: "16px", maxWidth: "480px", margin: "0 auto", lineHeight: 1.7, fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
             {isRTL
               ? "لا تدفع مقابل تصميم — تدفع مقابل نمو مبيعاتك. كل ريال تستثمره يعود بضعفه."
               : "You're not paying for design — you're paying for sales growth. Every riyal invested returns double."}
@@ -213,10 +213,10 @@ export default function Pricing() {
               style={{
                 position: "relative",
                 background: pkg.featured
-                  ? "linear-gradient(160deg, rgba(200,169,98,0.08) 0%, rgba(10,10,10,0) 60%)"
+                  ? "linear-gradient(160deg, rgba(240,177,0,0.08) 0%, rgba(10,10,10,0) 60%)"
                   : "rgba(255,255,255,0.02)",
                 border: pkg.featured
-                  ? `1.5px solid rgba(163,255,18,0.45)`
+                  ? `1.5px solid rgba(240,177,0,0.45)`
                   : "1px solid rgba(255,255,255,0.07)",
                 borderRadius: "20px",
                 padding: "36px 32px",
@@ -237,7 +237,7 @@ export default function Pricing() {
                     top: "-15px",
                     left: "50%",
                     transform: "translateX(-50%)",
-                    background: "#C8A962",
+                    background: "#F0B100",
                     color: "#0A0A0A",
                     padding: "5px 18px",
                     borderRadius: "100px",
@@ -288,11 +288,11 @@ export default function Pricing() {
               <div style={{ marginBottom: "20px" }}>
                 <h3 style={{
                   fontSize: "20px", fontWeight: 700, color: "#FAFAF7",
-                  marginBottom: "4px", fontFamily: "'Zain', sans-serif",
+                  marginBottom: "4px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 }}>
                   {pkg.name}
                 </h3>
-                <p style={{ fontSize: "13px", color: "#6B6B5A", lineHeight: 1.5, marginBottom: "16px", fontFamily: "'Zain', sans-serif" }}>
+                <p style={{ fontSize: "13px", color: "#6B6B5A", lineHeight: 1.5, marginBottom: "16px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                   {pkg.tagline}
                 </p>
                 {/* Price */}
@@ -303,7 +303,7 @@ export default function Pricing() {
                   }}>
                     {(pkg as {price?: string}).price}
                   </span>
-                  <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.4)", fontFamily: "'Zain', sans-serif" }}>
+                  <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.4)", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                     {(pkg as {currency?: string}).currency}
                   </span>
                 </div>
@@ -316,7 +316,7 @@ export default function Pricing() {
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={pkg.accentColor} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
-                  <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)", fontFamily: "'Zain', sans-serif" }}>
+                  <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                     {(pkg as {valueLabel?: string}).valueLabel}
                   </span>
                 </div>
@@ -347,7 +347,7 @@ export default function Pricing() {
                   style={{
                     width: "100%",
                     padding: "14px 24px",
-                    background: pkg.featured ? "#C8A962" : "transparent",
+                    background: pkg.featured ? "#F0B100" : "transparent",
                     border: pkg.featured ? "none" : `1px solid ${pkg.accentColor}50`,
                     borderRadius: "10px",
                     color: pkg.featured ? "#0A0A0A" : pkg.accentColor,
@@ -375,7 +375,7 @@ export default function Pricing() {
                   }}
                   onMouseLeave={(e) => {
                     if (pkg.featured) {
-                      e.currentTarget.style.background = "#C8A962";
+                      e.currentTarget.style.background = "#F0B100";
                       e.currentTarget.style.transform = "translateY(0)";
                     } else {
                       e.currentTarget.style.background = "transparent";
@@ -430,8 +430,8 @@ export default function Pricing() {
               <button
                 style={{
                   background: "transparent",
-                  border: "1px solid rgba(200,169,98,0.4)",
-                  color: "#C8A962",
+                  border: "1px solid rgba(240,177,0,0.4)",
+                  color: "#F0B100",
                   padding: "12px 32px",
                   borderRadius: "8px",
                   fontFamily: "Space Mono, monospace",
@@ -443,12 +443,12 @@ export default function Pricing() {
                   transition: "all 0.25s ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(200,169,98,0.1)";
-                  e.currentTarget.style.borderColor = "#C8A962";
+                  e.currentTarget.style.background = "rgba(240,177,0,0.1)";
+                  e.currentTarget.style.borderColor = "#F0B100";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = "transparent";
-                  e.currentTarget.style.borderColor = "rgba(200,169,98,0.4)";
+                  e.currentTarget.style.borderColor = "rgba(240,177,0,0.4)";
                 }}
               >
                 {isRTL ? "تواصل معنا →" : "Contact Us →"}

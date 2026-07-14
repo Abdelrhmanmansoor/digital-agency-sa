@@ -46,7 +46,7 @@ function computeRows(inputs: Inputs): { margin: number; rows: Row[] } {
 
 const VERDICT_COLORS = {
   safe: { bg: "rgba(74,140,111,0.1)", border: "rgba(74,140,111,0.3)", text: "#4A8C6F" },
-  risky: { bg: "rgba(200,169,98,0.1)", border: "rgba(200,169,98,0.3)", text: "#C8A962" },
+  risky: { bg: "rgba(240,177,0,0.1)", border: "rgba(240,177,0,0.3)", text: "#F0B100" },
   danger: { bg: "rgba(201,64,64,0.1)", border: "rgba(201,64,64,0.3)", text: "#C94040" },
   impossible: { bg: "rgba(201,64,64,0.15)", border: "rgba(201,64,64,0.4)", text: "#C94040" },
 };
@@ -154,7 +154,7 @@ export default function DiscountTrap({ onClose }: { onClose: () => void }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Inputs */}
         <div>
-          <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px" }}>
+          <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px" }}>
             {t.inputsTitle}
           </h3>
 
@@ -210,12 +210,12 @@ export default function DiscountTrap({ onClose }: { onClose: () => void }) {
             style={{
               marginTop: "24px",
               padding: "16px 20px",
-              background: "rgba(200,169,98,0.06)",
-              border: "1px solid rgba(200,169,98,0.15)",
+              background: "rgba(240,177,0,0.06)",
+              border: "1px solid rgba(240,177,0,0.15)",
               borderRadius: "8px",
             }}
           >
-            <div style={{ ...labelStyle, color: "#C8A962", marginBottom: "10px" }}>{t.formula}</div>
+            <div style={{ ...labelStyle, color: "#F0B100", marginBottom: "10px" }}>{t.formula}</div>
             <div
               style={{
                 fontFamily: "Space Mono, monospace",
@@ -236,7 +236,7 @@ export default function DiscountTrap({ onClose }: { onClose: () => void }) {
 
         {/* Results */}
         <div>
-          <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px" }}>
+          <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px" }}>
             {t.resultsTitle}
           </h3>
 
@@ -285,7 +285,7 @@ export default function DiscountTrap({ onClose }: { onClose: () => void }) {
                         fontFamily: "Space Mono, monospace",
                         letterSpacing: "0.1em",
                         textTransform: "uppercase",
-                        color: "#C8A962",
+                        color: "#F0B100",
                       }}
                     >
                       {h}
@@ -360,7 +360,7 @@ export default function DiscountTrap({ onClose }: { onClose: () => void }) {
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                 {[
                   { color: "#4A8C6F", label: `${t.safe} (<30%)` },
-                  { color: "#C8A962", label: `${t.risky} (30-80%)` },
+                  { color: "#F0B100", label: `${t.risky} (30-80%)` },
                   { color: "#C94040", label: `${t.danger} (>80%)` },
                 ].map((item) => (
                   <div key={item.color} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
@@ -374,15 +374,15 @@ export default function DiscountTrap({ onClose }: { onClose: () => void }) {
               <div
                 style={{
                   padding: "16px 20px",
-                  background: "rgba(200,169,98,0.08)",
-                  border: "1px solid rgba(200,169,98,0.2)",
+                  background: "rgba(240,177,0,0.08)",
+                  border: "1px solid rgba(240,177,0,0.2)",
                   fontSize: "14px",
                   color: "#2D2D2D",
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                   lineHeight: 1.8,
                 }}
               >
-                <div style={{ ...labelStyle, color: "#C8A962", marginBottom: "8px" }}>{t.insight}</div>
+                <div style={{ ...labelStyle, color: "#F0B100", marginBottom: "8px" }}>{t.insight}</div>
                 {getInsight(result.margin)}
               </div>
 
@@ -402,7 +402,7 @@ export default function DiscountTrap({ onClose }: { onClose: () => void }) {
                   textTransform: "uppercase",
                   transition: "all 0.3s",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#C8A962"; e.currentTarget.style.color = "#C8A962"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#F0B100"; e.currentTarget.style.color = "#F0B100"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E8E6E1"; e.currentTarget.style.color = "#8C8C7A"; }}
               >
                 {copied ? `✓ ${t.copied}` : t.copy}
@@ -411,7 +411,7 @@ export default function DiscountTrap({ onClose }: { onClose: () => void }) {
           ) : (
             <div style={{ padding: "60px 20px", textAlign: "center", border: "1px dashed #E8E6E1", color: "#8C8C7A" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>⚠</div>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px" }}>{t.placeholder}</div>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px" }}>{t.placeholder}</div>
             </div>
           )}
         </div>

@@ -229,8 +229,8 @@ export default function TechStack() {
     <section
       style={{
         background: "#060606",
-        borderTop: "1px solid rgba(200,169,98,0.06)",
-        borderBottom: "1px solid rgba(200,169,98,0.06)",
+        borderTop: "1px solid rgba(240,177,0,0.06)",
+        borderBottom: "1px solid rgba(240,177,0,0.06)",
         padding: "100px 0",
         position: "relative",
         overflow: "hidden",
@@ -242,7 +242,7 @@ export default function TechStack() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(200,169,98,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,98,0.03) 1px, transparent 1px)",
+            "linear-gradient(rgba(240,177,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(240,177,0,0.03) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
           pointerEvents: "none",
         }}
@@ -258,7 +258,7 @@ export default function TechStack() {
               fontSize: "11px",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "rgba(200,169,98,0.7)",
+              color: "rgba(240,177,0,0.7)",
               marginBottom: "16px",
             }}
           >
@@ -266,7 +266,7 @@ export default function TechStack() {
           </div>
           <h2
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "clamp(32px, 4vw, 52px)",
               fontWeight: 800,
               color: "#FAFAF7",
@@ -278,7 +278,7 @@ export default function TechStack() {
           </h2>
           <p
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "17px",
               color: "rgba(255,255,255,0.4)",
               maxWidth: "520px",
@@ -369,7 +369,7 @@ export default function TechStack() {
           style={{
             marginTop: "48px",
             paddingTop: "32px",
-            borderTop: "1px solid rgba(200,169,98,0.08)",
+            borderTop: "1px solid rgba(240,177,0,0.08)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -380,7 +380,7 @@ export default function TechStack() {
         >
           <span
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "15px",
               color: "rgba(255,255,255,0.3)",
             }}
@@ -392,10 +392,10 @@ export default function TechStack() {
               <span
                 key={i}
                 style={{
-                  fontFamily: i === 0 ? "Space Mono, monospace" : "'Zain', sans-serif",
+                  fontFamily: i === 0 ? "Space Mono, monospace" : "'ThmanyahSans', 'Zain', sans-serif",
                   fontSize: i === 0 ? "20px" : "13px",
                   fontWeight: i === 0 ? 700 : 400,
-                  color: i === 0 ? "#C8A962" : "rgba(255,255,255,0.3)",
+                  color: i === 0 ? "#F0B100" : "rgba(255,255,255,0.3)",
                 }}
               >
                 {t}

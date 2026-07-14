@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.solimanx.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://tf1one.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,7 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/api"],
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,

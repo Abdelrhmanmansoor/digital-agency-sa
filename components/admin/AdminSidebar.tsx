@@ -56,7 +56,7 @@ export default function AdminSidebar({ active: _active }: AdminSidebarProps = {}
             fontSize: "10px",
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "rgba(200,169,98,0.4)",
+            color: "rgba(240,177,0,0.4)",
             marginTop: "2px",
           }}
         >
@@ -80,8 +80,8 @@ export default function AdminSidebar({ active: _active }: AdminSidebarProps = {}
                   alignItems: "center",
                   gap: "12px",
                   padding: "12px 16px",
-                  background: isActive ? "rgba(200,169,98,0.12)" : "transparent",
-                  borderRight: isActive ? "2px solid #C8A962" : "2px solid transparent",
+                  background: isActive ? "rgba(240,177,0,0.12)" : "transparent",
+                  borderRight: isActive ? "2px solid #F0B100" : "2px solid transparent",
                   transition: "all 0.2s ease",
                   cursor: "pointer",
                 }}
@@ -99,9 +99,9 @@ export default function AdminSidebar({ active: _active }: AdminSidebarProps = {}
                 <span style={{ fontSize: "16px" }}>{item.icon}</span>
                 <span
                   style={{
-                    fontFamily: "'Zain', sans-serif",
+                    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                     fontSize: "14px",
-                    color: isActive ? "#C8A962" : "#8C8C7A",
+                    color: isActive ? "#F0B100" : "#8C8C7A",
                     fontWeight: isActive ? 600 : 400,
                   }}
                 >
@@ -132,7 +132,7 @@ export default function AdminSidebar({ active: _active }: AdminSidebarProps = {}
           onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
         >
           <span style={{ fontSize: "16px" }}>🚪</span>
-          <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "#8C8C7A" }}>
+          <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "#8C8C7A" }}>
             تسجيل الخروج
           </span>
         </button>

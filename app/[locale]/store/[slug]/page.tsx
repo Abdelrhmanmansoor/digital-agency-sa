@@ -47,15 +47,55 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 /* ─── Page Component ────────────────────────────────────────────────────────── */
 export default async function ProductPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const product = getProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
+  const isAr = locale === "ar";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        name: isAr ? product.nameAr : product.nameEn,
+        description: isAr ? product.shortDescAr : product.shortDescEn,
+        sku: product.id,
+        brand: { "@type": "Brand", name: "AM Design" },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: String(product.rating),
+          reviewCount: String(product.reviewCount),
+        },
+        offers: {
+          "@type": "Offer",
+          price: String(product.price),
+          priceCurrency: "SAR",
+          availability: product.inStock
+            ? "https://schema.org/InStock"
+            : "https://schema.org/OutOfStock",
+          url: `https://tf1one.com/${locale}/store/${product.slug}`,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: isAr ? "الرئيسية" : "Home", item: `https://tf1one.com/${locale}` },
+          { "@type": "ListItem", position: 2, name: isAr ? "المتجر" : "Store", item: `https://tf1one.com/${locale}/store` },
+          { "@type": "ListItem", position: 3, name: isAr ? product.nameAr : product.nameEn },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <main>
         <ProductDetailClient product={product} />

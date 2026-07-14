@@ -43,7 +43,7 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     id: "salla-design",
     slug: "salla-design",
-    color: "#BDEE63",
+    color: "#F0B100",
     price: "1,299",
     priceNote: "ريال",
     priceNoteEn: "SAR",
@@ -301,7 +301,7 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     id: "seo",
     slug: "seo",
-    color: "#BDEE63",
+    color: "#F0B100",
     price: "699",
     priceNote: "ريال/شهر",
     priceNoteEn: "SAR/mo",

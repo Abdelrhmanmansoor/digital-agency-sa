@@ -8,7 +8,7 @@ const TESTIMONIALS = [
     roleAr: "صاحب متجر سلة", roleEn: "Salla Store Owner",
     textAr: "فريق محترف جداً، صمموا متجري بشكل احترافي وزادوا مبيعاتي بنسبة 40% خلال الشهر الأول. أنصح بهم بقوة.",
     textEn: "Extremely professional team. They designed my store beautifully and increased my sales by 40% in the first month.",
-    stars: 5, avatar: "م", accentColor: "#BDEE63",
+    stars: 5, avatar: "م", accentColor: "#F0B100",
   },
   {
     nameAr: "سارة الشمري",      nameEn: "Sara Al-Shammari",
@@ -22,7 +22,7 @@ const TESTIMONIALS = [
     roleAr: "صاحب متجر ملابس", roleEn: "Fashion Store Owner",
     textAr: "الحملة التسويقية حققت مبيعات في أسبوع تساوي مبيعات شهر كامل. عمل احترافي بكل معنى الكلمة.",
     textEn: "The marketing campaign achieved in one week what normally takes a month. Truly professional work.",
-    stars: 5, avatar: "ع", accentColor: "#BDEE63",
+    stars: 5, avatar: "ع", accentColor: "#F0B100",
   },
   {
     nameAr: "نورة القحطاني",     nameEn: "Noura Al-Qahtani",
@@ -36,7 +36,7 @@ const TESTIMONIALS = [
     roleAr: "صاحب متجر عسل",  roleEn: "Honey Store Owner",
     textAr: "الأدوات المجانية كانت نقطة تحول لمتجري. والدعم الفني لا يقدر بثمن. استمروا في هذا العمل الرائع.",
     textEn: "The free tools were a turning point for my store. The technical support is priceless.",
-    stars: 5, avatar: "خ", accentColor: "#BDEE63",
+    stars: 5, avatar: "خ", accentColor: "#F0B100",
   },
   {
     nameAr: "ريم الزهراني",   nameEn: "Reem Al-Zahrani",
@@ -57,12 +57,13 @@ function TestimonialCard({ t, locale }: { t: typeof TESTIMONIALS[0]; locale: str
       style={{
         flexShrink: 0,
         width: "320px",
-        background: "rgba(255,255,255,0.03)",
-        border: "1px solid rgba(255,255,255,0.07)",
+        background: "#FFFFFF",
+        border: "1px solid rgba(0,0,0,0.08)",
         borderRadius: "20px",
         padding: "28px",
         position: "relative",
         overflow: "hidden",
+        boxShadow: "0 10px 24px rgba(0,0,0,0.06)",
       }}
     >
       {/* Accent top line */}
@@ -78,7 +79,7 @@ function TestimonialCard({ t, locale }: { t: typeof TESTIMONIALS[0]; locale: str
         style={{
           position:"absolute", top:"12px", right:"20px",
           fontFamily:"serif", fontSize:"64px", lineHeight:1,
-          color:"rgba(255,255,255,0.04)",
+          color:"rgba(0,0,0,0.04)",
           pointerEvents:"none",
           userSelect:"none",
         }}
@@ -89,14 +90,14 @@ function TestimonialCard({ t, locale }: { t: typeof TESTIMONIALS[0]; locale: str
       {/* Stars */}
       <div style={{ display:"flex", gap:"3px", marginBottom:"14px" }}>
         {Array.from({ length: t.stars }).map((_, i) => (
-          <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="#BDEE63">
+          <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="#F0B100">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
           </svg>
         ))}
       </div>
 
       {/* Text */}
-      <p style={{ color:"rgba(255,255,255,0.65)", fontSize:"14px", lineHeight:1.7, marginBottom:"22px", minHeight:"64px" }}>
+      <p style={{ color:"rgba(26,26,26,0.7)", fontSize:"14px", lineHeight:1.7, marginBottom:"22px", minHeight:"64px" }}>
         {locale === "ar" ? t.textAr : t.textEn}
       </p>
 
@@ -108,16 +109,16 @@ function TestimonialCard({ t, locale }: { t: typeof TESTIMONIALS[0]; locale: str
             background:`${t.accentColor}18`,
             border:`1px solid ${t.accentColor}40`,
             display:"flex", alignItems:"center", justifyContent:"center",
-            fontFamily:"'Zain', sans-serif", fontSize:"17px", fontWeight:700, color:t.accentColor,
+            fontFamily:"'ThmanyahSans', 'Zain', sans-serif", fontSize:"17px", fontWeight:700, color:t.accentColor,
           }}
         >
           {t.avatar}
         </div>
         <div>
-          <div style={{ fontSize:"14px", fontWeight:700, color:"#FAFAF7" }}>
+          <div style={{ fontSize:"14px", fontWeight:700, color:"#1A1A1A" }}>
             {locale === "ar" ? t.nameAr : t.nameEn}
           </div>
-          <div style={{ fontSize:"11px", color:"rgba(255,255,255,0.35)", marginTop:"2px" }}>
+          <div style={{ fontSize:"11px", color:"rgba(26,26,26,0.55)", marginTop:"2px" }}>
             {locale === "ar" ? t.roleAr : t.roleEn}
           </div>
         </div>
@@ -134,29 +135,29 @@ export default function Testimonials() {
   const subtitle = locale === "ar" ? "250+ عميل يثق بنا" : locale === "fr" ? "250+ clients nous font confiance" : "250+ clients trust us";
 
   return (
-    <section style={{ background:"#0A0A0A", padding:"110px 0", overflow:"hidden" }}>
+    <section style={{ background:"#FFFFFF", padding:"110px 0", overflow:"hidden" }}>
 
       {/* Header */}
       <div className="max-w-[1400px] mx-auto px-8 text-center mb-16" dir={isRTL ? "rtl" : "ltr"}>
         {/* Rating badge */}
-        <div style={{ display:"inline-flex", alignItems:"center", gap:"8px", marginBottom:"16px", background:"rgba(200,169,98,0.08)", border:"1px solid rgba(200,169,98,0.2)", borderRadius:"100px", padding:"6px 18px" }}>
+        <div style={{ display:"inline-flex", alignItems:"center", gap:"8px", marginBottom:"16px", background:"rgba(240,177,0,0.12)", border:"1px solid rgba(240,177,0,0.3)", borderRadius:"100px", padding:"6px 18px" }}>
           <div style={{ display:"flex", gap:"2px" }}>
             {[...Array(5)].map((_, i) => (
-              <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="#C8A962">
+              <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="#F0B100">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             ))}
           </div>
-          <span style={{ fontFamily:"Space Mono, monospace", fontSize:"11px", color:"#C8A962", letterSpacing:"0.12em" }}>
+          <span style={{ fontFamily:"Space Mono, monospace", fontSize:"11px", color:"#F0B100", letterSpacing:"0.12em" }}>
             5.0 · {subtitle}
           </span>
         </div>
 
         <h2
           style={{
-            fontFamily:"'Zain', sans-serif",
+            fontFamily:"'ThmanyahSans', 'Zain', sans-serif",
             fontSize:"clamp(30px, 4.5vw, 56px)",
-            fontWeight:800, color:"#FFFFFF", lineHeight:1.1,
+            fontWeight:800, color:"#1A1A1A", lineHeight:1.1,
           }}
         >
           {title}

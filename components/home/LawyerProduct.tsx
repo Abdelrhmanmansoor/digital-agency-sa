@@ -5,7 +5,7 @@ import { useLocale } from "next-intl";
 import { getWhatsAppLink } from "@/lib/utils";
 
 /* ── Scales of justice icon ── */
-const ScalesIcon = ({ size = 20, color = "#C8A962" }: { size?: number; color?: string }) => (
+const ScalesIcon = ({ size = 20, color = "#F0B100" }: { size?: number; color?: string }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M12 2v20" />
     <path d="M3 9h18" />
@@ -25,9 +25,9 @@ function LawSiteMockup() {
         borderRadius: "18px",
         overflow: "hidden",
         boxShadow:
-          "0 0 0 1px rgba(200,169,98,0.15), 0 40px 100px rgba(0,0,0,0.75), 0 0 80px rgba(200,169,98,0.06)",
+          "0 0 0 1px rgba(240,177,0,0.15), 0 40px 100px rgba(0,0,0,0.75), 0 0 80px rgba(240,177,0,0.06)",
         background: "#0A0C10",
-        fontFamily: "'Zain', sans-serif",
+        fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
         userSelect: "none",
       }}
     >
@@ -60,7 +60,7 @@ function LawSiteMockup() {
         >
           alqanoni-law.com
         </div>
-        <div style={{ width: "28px", height: "20px", background: "rgba(200,169,98,0.08)", borderRadius: "4px", flexShrink: 0 }} />
+        <div style={{ width: "28px", height: "20px", background: "rgba(240,177,0,0.08)", borderRadius: "4px", flexShrink: 0 }} />
       </div>
 
       {/* Site header */}
@@ -72,14 +72,14 @@ function LawSiteMockup() {
           justifyContent: "space-between",
           alignItems: "center",
           direction: "rtl",
-          borderBottom: "2px solid #C8A962",
+          borderBottom: "2px solid #F0B100",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <ScalesIcon size={18} color="#C8A962" />
+          <ScalesIcon size={18} color="#F0B100" />
           <div>
-            <div style={{ color: "#C8A962", fontSize: "11px", fontWeight: 800, lineHeight: 1.2 }}>مكتب القانوني للمحاماة</div>
-            <div style={{ color: "rgba(200,169,98,0.45)", fontSize: "7.5px", letterSpacing: "0.08em" }}>LAW FIRM & LEGAL CONSULTANCY</div>
+            <div style={{ color: "#F0B100", fontSize: "11px", fontWeight: 800, lineHeight: 1.2 }}>مكتب القانوني للمحاماة</div>
+            <div style={{ color: "rgba(240,177,0,0.45)", fontSize: "7.5px", letterSpacing: "0.08em" }}>LAW FIRM & LEGAL CONSULTANCY</div>
           </div>
         </div>
         <div style={{ display: "flex", gap: "14px" }}>
@@ -92,9 +92,9 @@ function LawSiteMockup() {
             style={{
               padding: "3px 10px",
               borderRadius: "100px",
-              background: "rgba(200,169,98,0.15)",
-              border: "1px solid rgba(200,169,98,0.3)",
-              color: "#C8A962",
+              background: "rgba(240,177,0,0.15)",
+              border: "1px solid rgba(240,177,0,0.3)",
+              color: "#F0B100",
               fontSize: "8px",
               fontWeight: 700,
             }}
@@ -112,7 +112,7 @@ function LawSiteMockup() {
           direction: "rtl",
           position: "relative",
           overflow: "hidden",
-          borderBottom: "1px solid rgba(200,169,98,0.07)",
+          borderBottom: "1px solid rgba(240,177,0,0.07)",
         }}
       >
         {/* Background decoration */}
@@ -124,7 +124,7 @@ function LawSiteMockup() {
             width: "200px",
             height: "200px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(200,169,98,0.04) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(240,177,0,0.04) 0%, transparent 70%)",
             pointerEvents: "none",
           }}
         />
@@ -133,15 +133,15 @@ function LawSiteMockup() {
             display: "inline-flex",
             alignItems: "center",
             gap: "5px",
-            background: "rgba(200,169,98,0.08)",
-            border: "1px solid rgba(200,169,98,0.18)",
+            background: "rgba(240,177,0,0.08)",
+            border: "1px solid rgba(240,177,0,0.18)",
             borderRadius: "100px",
             padding: "3px 9px",
             marginBottom: "10px",
           }}
         >
-          <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#C8A962" }} />
-          <span style={{ color: "#C8A962", fontSize: "7.5px", fontFamily: "Space Mono, monospace", letterSpacing: "0.12em" }}>
+          <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#F0B100" }} />
+          <span style={{ color: "#F0B100", fontSize: "7.5px", fontFamily: "Space Mono, monospace", letterSpacing: "0.12em" }}>
             LEGAL EXCELLENCE
           </span>
         </div>
@@ -158,7 +158,7 @@ function LawSiteMockup() {
               }}
             >
               نحمي حقوقك بخبرة<br />
-              <span style={{ color: "#C8A962" }}>واحترافية لا تُضاهى</span>
+              <span style={{ color: "#F0B100" }}>واحترافية لا تُضاهى</span>
             </h3>
             <p
               style={{
@@ -176,11 +176,11 @@ function LawSiteMockup() {
                 style={{
                   padding: "6px 16px",
                   borderRadius: "100px",
-                  background: "linear-gradient(135deg, #B8963A, #C8A962, #DFC07A)",
+                  background: "linear-gradient(135deg, #B8963A, #F0B100, #DFC07A)",
                   fontSize: "9px",
                   fontWeight: 800,
                   color: "#0A0A0A",
-                  boxShadow: "0 4px 16px rgba(200,169,98,0.25)",
+                  boxShadow: "0 4px 16px rgba(240,177,0,0.25)",
                 }}
               >
                 احجز استشارة الآن
@@ -204,15 +204,15 @@ function LawSiteMockup() {
               width: "70px",
               height: "70px",
               borderRadius: "50%",
-              background: "rgba(200,169,98,0.05)",
-              border: "1px solid rgba(200,169,98,0.12)",
+              background: "rgba(240,177,0,0.05)",
+              border: "1px solid rgba(240,177,0,0.12)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               flexShrink: 0,
             }}
           >
-            <ScalesIcon size={32} color="rgba(200,169,98,0.6)" />
+            <ScalesIcon size={32} color="rgba(240,177,0,0.6)" />
           </div>
         </div>
       </div>
@@ -226,14 +226,14 @@ function LawSiteMockup() {
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: "8px",
           direction: "rtl",
-          borderBottom: "1px solid rgba(200,169,98,0.06)",
+          borderBottom: "1px solid rgba(240,177,0,0.06)",
         }}
       >
         {[
           {
             title: "قانون تجاري",
             icon: (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F0B100" strokeWidth="1.5">
                 <rect x="2" y="7" width="20" height="14" rx="2" />
                 <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
               </svg>
@@ -242,7 +242,7 @@ function LawSiteMockup() {
           {
             title: "عقود العمل",
             icon: (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F0B100" strokeWidth="1.5">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                 <polyline points="14,2 14,8 20,8" />
                 <line x1="9" y1="13" x2="15" y2="13" />
@@ -253,7 +253,7 @@ function LawSiteMockup() {
           {
             title: "قضايا مدنية",
             icon: (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.5">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F0B100" strokeWidth="1.5">
                 <path d="M3 22V12l9-9 9 9v10H3z" />
                 <rect x="9" y="14" width="6" height="8" />
               </svg>
@@ -263,8 +263,8 @@ function LawSiteMockup() {
           <div
             key={title}
             style={{
-              background: "rgba(200,169,98,0.03)",
-              border: "1px solid rgba(200,169,98,0.08)",
+              background: "rgba(240,177,0,0.03)",
+              border: "1px solid rgba(240,177,0,0.08)",
               borderRadius: "8px",
               padding: "10px 8px",
               textAlign: "center",
@@ -279,7 +279,7 @@ function LawSiteMockup() {
       {/* Stats bar */}
       <div
         style={{
-          background: "rgba(200,169,98,0.03)",
+          background: "rgba(240,177,0,0.03)",
           padding: "12px 22px",
           display: "flex",
           justifyContent: "space-around",
@@ -294,7 +294,7 @@ function LawSiteMockup() {
           <div key={label} style={{ textAlign: "center" }}>
             <div
               style={{
-                color: "#C8A962",
+                color: "#F0B100",
                 fontSize: "16px",
                 fontFamily: "Space Mono, monospace",
                 fontWeight: 700,
@@ -352,7 +352,7 @@ export default function LawyerProduct() {
           inset: 0,
           opacity: 0.025,
           backgroundImage:
-            "linear-gradient(rgba(200,169,98,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,98,1) 1px, transparent 1px)",
+            "linear-gradient(rgba(240,177,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(240,177,0,1) 1px, transparent 1px)",
           backgroundSize: "70px 70px",
           pointerEvents: "none",
         }}
@@ -366,7 +366,7 @@ export default function LawyerProduct() {
           left: 0,
           right: 0,
           height: "1px",
-          background: "linear-gradient(90deg, transparent 0%, rgba(200,169,98,0.18) 40%, rgba(200,169,98,0.18) 60%, transparent 100%)",
+          background: "linear-gradient(90deg, transparent 0%, rgba(240,177,0,0.18) 40%, rgba(240,177,0,0.18) 60%, transparent 100%)",
         }}
       />
 
@@ -379,7 +379,7 @@ export default function LawyerProduct() {
           transform: "translate(-50%,-50%)",
           width: "800px",
           height: "400px",
-          background: "radial-gradient(ellipse, rgba(200,169,98,0.04) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(240,177,0,0.04) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
@@ -403,20 +403,20 @@ export default function LawyerProduct() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
-                background: "rgba(200,169,98,0.07)",
-                border: "1px solid rgba(200,169,98,0.2)",
+                background: "rgba(240,177,0,0.07)",
+                border: "1px solid rgba(240,177,0,0.2)",
                 borderRadius: "100px",
                 padding: "6px 18px",
                 marginBottom: "28px",
               }}
             >
-              <ScalesIcon size={13} color="#C8A962" />
+              <ScalesIcon size={13} color="#F0B100" />
               <span
                 style={{
                   fontFamily: "Space Mono, monospace",
                   fontSize: "10px",
                   letterSpacing: "0.28em",
-                  color: "#C8A962",
+                  color: "#F0B100",
                   textTransform: "uppercase",
                 }}
               >
@@ -427,7 +427,7 @@ export default function LawyerProduct() {
             {/* Headline */}
             <h2
               style={{
-                fontFamily: isAr ? "'Zain', sans-serif" : "sans-serif",
+                fontFamily: isAr ? "'ThmanyahSans', 'Zain', sans-serif" : "sans-serif",
                 fontSize: "clamp(30px, 3.2vw, 54px)",
                 fontWeight: 800,
                 lineHeight: 1.1,
@@ -439,17 +439,17 @@ export default function LawyerProduct() {
               {isAr ? (
                 <>
                   موقع احترافي<br />
-                  <span style={{ color: "#C8A962" }}>لمكتبك القانوني</span>
+                  <span style={{ color: "#F0B100" }}>لمكتبك القانوني</span>
                 </>
               ) : isFr ? (
                 <>
                   Site Web Professionnel<br />
-                  <span style={{ color: "#C8A962" }}>pour Votre Cabinet</span>
+                  <span style={{ color: "#F0B100" }}>pour Votre Cabinet</span>
                 </>
               ) : (
                 <>
                   Professional Website<br />
-                  <span style={{ color: "#C8A962" }}>for Your Law Firm</span>
+                  <span style={{ color: "#F0B100" }}>for Your Law Firm</span>
                 </>
               )}
             </h2>
@@ -461,7 +461,7 @@ export default function LawyerProduct() {
                 fontSize: isAr ? "17px" : "15px",
                 lineHeight: 1.8,
                 marginBottom: "36px",
-                fontFamily: isAr ? "'Zain', sans-serif" : "inherit",
+                fontFamily: isAr ? "'ThmanyahSans', 'Zain', sans-serif" : "inherit",
                 maxWidth: "500px",
               }}
             >
@@ -491,7 +491,7 @@ export default function LawyerProduct() {
                     gap: "12px",
                     color: "rgba(255,255,255,0.68)",
                     fontSize: isAr ? "15.5px" : "14px",
-                    fontFamily: isAr ? "'Zain', sans-serif" : "inherit",
+                    fontFamily: isAr ? "'ThmanyahSans', 'Zain', sans-serif" : "inherit",
                   }}
                 >
                   <div
@@ -500,14 +500,14 @@ export default function LawyerProduct() {
                       height: "22px",
                       borderRadius: "50%",
                       flexShrink: 0,
-                      background: "rgba(200,169,98,0.08)",
-                      border: "1px solid rgba(200,169,98,0.25)",
+                      background: "rgba(240,177,0,0.08)",
+                      border: "1px solid rgba(240,177,0,0.25)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                     }}
                   >
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F0B100" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="20,6 9,17 4,12" />
                     </svg>
                   </div>
@@ -524,8 +524,8 @@ export default function LawyerProduct() {
                 gap: "28px",
                 flexWrap: "wrap",
                 padding: "24px 28px",
-                background: "rgba(200,169,98,0.04)",
-                border: "1px solid rgba(200,169,98,0.12)",
+                background: "rgba(240,177,0,0.04)",
+                border: "1px solid rgba(240,177,0,0.12)",
                 borderRadius: "16px",
               }}
             >
@@ -548,7 +548,7 @@ export default function LawyerProduct() {
                       fontFamily: "Space Mono, monospace",
                       fontSize: "42px",
                       fontWeight: 700,
-                      color: "#C8A962",
+                      color: "#F0B100",
                       lineHeight: 1,
                     }}
                   >
@@ -558,7 +558,7 @@ export default function LawyerProduct() {
                     style={{
                       color: "rgba(255,255,255,0.3)",
                       fontSize: "14px",
-                      fontFamily: isAr ? "'Zain', sans-serif" : "inherit",
+                      fontFamily: isAr ? "'ThmanyahSans', 'Zain', sans-serif" : "inherit",
                     }}
                   >
                     {isAr ? "ريال" : "SAR"}
@@ -569,7 +569,7 @@ export default function LawyerProduct() {
                     color: "rgba(255,255,255,0.2)",
                     fontSize: "10px",
                     marginTop: "2px",
-                    fontFamily: isAr ? "'Zain', sans-serif" : "Space Mono, monospace",
+                    fontFamily: isAr ? "'ThmanyahSans', 'Zain', sans-serif" : "Space Mono, monospace",
                   }}
                 >
                   {isAr ? "✓ تسليم خلال 7 أيام  ·  ✓ مراجعتان مجانيتان" : "✓ 7-day delivery  ·  ✓ 2 free revisions"}
@@ -584,19 +584,19 @@ export default function LawyerProduct() {
                     padding: "15px 36px",
                     borderRadius: "100px",
                     background: hovered
-                      ? "linear-gradient(135deg, #B8963A, #C8A962, #E0C878)"
-                      : "linear-gradient(135deg, #C8A962, #DFC07A)",
+                      ? "linear-gradient(135deg, #B8963A, #F0B100, #E0C878)"
+                      : "linear-gradient(135deg, #F0B100, #DFC07A)",
                     border: "none",
                     color: "#0A0A0A",
                     fontWeight: 800,
-                    fontFamily: isAr ? "'Zain', sans-serif" : "Space Mono, monospace",
+                    fontFamily: isAr ? "'ThmanyahSans', 'Zain', sans-serif" : "Space Mono, monospace",
                     fontSize: isAr ? "17px" : "12px",
                     letterSpacing: isAr ? "0" : "0.04em",
                     cursor: "pointer",
                     transition: "all 0.3s cubic-bezier(0.19,1,0.22,1)",
                     boxShadow: hovered
-                      ? "0 12px 40px rgba(200,169,98,0.45)"
-                      : "0 6px 24px rgba(200,169,98,0.25)",
+                      ? "0 12px 40px rgba(240,177,0,0.45)"
+                      : "0 6px 24px rgba(240,177,0,0.25)",
                     transform: hovered ? "translateY(-2px)" : "none",
                     whiteSpace: "nowrap",
                   }}
@@ -622,7 +622,7 @@ export default function LawyerProduct() {
                 position: "absolute",
                 width: "80%",
                 height: "70%",
-                background: "radial-gradient(ellipse, rgba(200,169,98,0.07) 0%, transparent 65%)",
+                background: "radial-gradient(ellipse, rgba(240,177,0,0.07) 0%, transparent 65%)",
                 pointerEvents: "none",
               }}
             />

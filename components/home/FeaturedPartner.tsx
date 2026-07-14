@@ -71,7 +71,7 @@ function MinistryCommerceLogo() {
       <div>
         <div
           style={{
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             fontSize: "16px",
             fontWeight: 800,
             color: "#005E45",
@@ -108,7 +108,7 @@ function MinistryCommerceLogo() {
           </svg>
           <span
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "10px",
               fontWeight: 700,
               color: "#005E45",
@@ -167,7 +167,7 @@ function MinistryHRLogo() {
       <div>
         <div
           style={{
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             fontSize: "15px",
             fontWeight: 800,
             color: "#006B71",
@@ -178,7 +178,7 @@ function MinistryHRLogo() {
         </div>
         <div
           style={{
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             fontSize: "14px",
             fontWeight: 700,
             color: "#006B71",
@@ -203,7 +203,7 @@ function MinistryHRLogo() {
           </svg>
           <span
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "10px",
               fontWeight: 700,
               color: "#006B71",
@@ -223,7 +223,7 @@ function MinistryHRLogo() {
 function PlatformMockup() {
   const jobCards = [
     { role: "مدير فني", club: "نادي الهلال", city: "الرياض", type: "دوام كامل", accent: "#1B4FBE" },
-    { role: "لياقة بدنية", club: "نادي النصر", city: "الرياض", type: "عقد موسمي", accent: "#C8A962" },
+    { role: "لياقة بدنية", club: "نادي النصر", city: "الرياض", type: "عقد موسمي", accent: "#F0B100" },
     { role: "مسوق رياضي", club: "أكاديمية الشباب", city: "جدة", type: "بدوام جزئي", accent: "#22C55E" },
   ];
 
@@ -234,7 +234,7 @@ function PlatformMockup() {
         border: "1px solid rgba(255,255,255,0.12)",
         borderRadius: "14px",
         overflow: "hidden",
-        boxShadow: "0 50px 120px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.05), 0 0 80px rgba(200,169,98,0.10)",
+        boxShadow: "0 50px 120px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.05), 0 0 80px rgba(240,177,0,0.10)",
         position: "relative",
       }}
     >
@@ -315,7 +315,7 @@ function PlatformMockup() {
                 width: "28px",
                 height: "28px",
                 borderRadius: "6px",
-                background: "linear-gradient(135deg, #C8A962, #8B6914)",
+                background: "linear-gradient(135deg, #F0B100, #8B6914)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -323,11 +323,11 @@ function PlatformMockup() {
             >
               <span style={{ fontFamily: "Space Mono", fontSize: "8px", fontWeight: 700, color: "#000" }}>TF1</span>
             </div>
-            <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 800, color: "#fff" }}>TF1ONE</span>
+            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 800, color: "#fff" }}>TF1ONE</span>
           </div>
           <div style={{ display: "flex", gap: "18px" }}>
             {["فرص العمل", "الأندية", "اللاعبون"].map((item) => (
-              <span key={item} style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.55)", cursor: "pointer" }}>
+              <span key={item} style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.55)", cursor: "pointer" }}>
                 {item}
               </span>
             ))}
@@ -345,14 +345,14 @@ function PlatformMockup() {
           }}
         >
           {/* Decorative glow */}
-          <div style={{ position: "absolute", top: "-30px", left: "20px", width: "120px", height: "120px", borderRadius: "50%", background: "radial-gradient(circle, rgba(200,169,98,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", top: "-30px", left: "20px", width: "120px", height: "120px", borderRadius: "50%", background: "radial-gradient(circle, rgba(240,177,0,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", letterSpacing: "0.14em", color: "#C8A962", textTransform: "uppercase", marginBottom: "7px" }}>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", letterSpacing: "0.14em", color: "#F0B100", textTransform: "uppercase", marginBottom: "7px" }}>
             منصة التوظيف الرياضية #1 في السعودية
           </div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "19px", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.3, marginBottom: "12px" }}>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "19px", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.3, marginBottom: "12px" }}>
             انضم إلى أقوى شبكة رياضية<br />
-            <span style={{ color: "#C8A962" }}>في المملكة العربية السعودية</span>
+            <span style={{ color: "#F0B100" }}>في المملكة العربية السعودية</span>
           </div>
 
           {/* Search bar */}
@@ -360,7 +360,7 @@ function PlatformMockup() {
             <svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)">
               <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
             </svg>
-            <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.35)" }}>
+            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.35)" }}>
               ابحث عن فرصة رياضية...
             </span>
           </div>
@@ -369,8 +369,8 @@ function PlatformMockup() {
           <div style={{ display: "flex", gap: "22px" }}>
             {[["500+", "لاعب"], ["80+", "نادي"], ["1,200+", "وظيفة"]].map(([num, label]) => (
               <div key={label}>
-                <div style={{ fontFamily: "Space Mono", fontSize: "14px", fontWeight: 700, color: "#C8A962" }}>{num}</div>
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.45)" }}>{label}</div>
+                <div style={{ fontFamily: "Space Mono", fontSize: "14px", fontWeight: 700, color: "#F0B100" }}>{num}</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.45)" }}>{label}</div>
               </div>
             ))}
           </div>
@@ -401,11 +401,11 @@ function PlatformMockup() {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" /></svg>
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 700, color: "#FAFAF7" }}>{card.role}</div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.4)" }}>{card.club} · {card.city}</div>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 700, color: "#FAFAF7" }}>{card.role}</div>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.4)" }}>{card.club} · {card.city}</div>
                   </div>
                 </div>
-                <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#C8A962", background: "rgba(200,169,98,0.1)", border: "1px solid rgba(200,169,98,0.22)", borderRadius: "4px", padding: "3px 8px", whiteSpace: "nowrap" }}>
+                <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#F0B100", background: "rgba(240,177,0,0.1)", border: "1px solid rgba(240,177,0,0.22)", borderRadius: "4px", padding: "3px 8px", whiteSpace: "nowrap" }}>
                   {card.type}
                 </span>
               </div>
@@ -435,21 +435,21 @@ export default function FeaturedPartner() {
     <section style={{ background: "#050505", padding: "120px 0", position: "relative", overflow: "hidden" }}>
 
       {/* Ambient glows */}
-      <div style={{ position: "absolute", top: "10%", left: "5%", width: "600px", height: "600px", borderRadius: "50%", background: "radial-gradient(circle, rgba(200,169,98,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: "10%", left: "5%", width: "600px", height: "600px", borderRadius: "50%", background: "radial-gradient(circle, rgba(240,177,0,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", bottom: "10%", right: "5%", width: "500px", height: "500px", borderRadius: "50%", background: "radial-gradient(circle, rgba(34,197,94,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
 
       {/* Grid texture */}
-      <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(200,169,98,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,98,0.015) 1px, transparent 1px)", backgroundSize: "80px 80px", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(240,177,0,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(240,177,0,0.015) 1px, transparent 1px)", backgroundSize: "80px 80px", pointerEvents: "none" }} />
 
       <div className="max-w-[1400px] mx-auto px-8 relative z-10">
 
         {/* Section label */}
         <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "64px", direction: isRTL ? "rtl" : "ltr" }}>
-          <span style={{ fontFamily: "Space Mono, monospace", fontSize: "72px", fontWeight: 800, color: "rgba(200,169,98,0.08)", lineHeight: 1, userSelect: "none" }}>01</span>
+          <span style={{ fontFamily: "Space Mono, monospace", fontSize: "72px", fontWeight: 800, color: "rgba(240,177,0,0.08)", lineHeight: 1, userSelect: "none" }}>01</span>
           <div>
-            <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(200,169,98,0.7)", marginBottom: "6px" }}>{label}</div>
+            <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(240,177,0,0.7)", marginBottom: "6px" }}>{label}</div>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <div style={{ width: "32px", height: "2px", background: "#C8A962" }} />
+              <div style={{ width: "32px", height: "2px", background: "#F0B100" }} />
               <span style={{ fontFamily: "Space Mono", fontSize: "9px", letterSpacing: "0.15em", color: "rgba(255,255,255,0.2)", textTransform: "uppercase" }}>TF1ONE.COM</span>
             </div>
           </div>
@@ -460,16 +460,16 @@ export default function FeaturedPartner() {
 
           {/* LEFT — Platform mockup */}
           <div style={{ position: "relative" }}>
-            <div style={{ position: "absolute", inset: "-40px", background: "radial-gradient(ellipse, rgba(200,169,98,0.09) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
+            <div style={{ position: "absolute", inset: "-40px", background: "radial-gradient(ellipse, rgba(240,177,0,0.09) 0%, transparent 70%)", pointerEvents: "none", zIndex: 0 }} />
             <div style={{ position: "relative", zIndex: 1 }}>
               <PlatformMockup />
             </div>
             {/* Floating badge */}
-            <div style={{ position: "absolute", bottom: "-24px", right: "-20px", background: "#171A23", border: "1px solid rgba(200,169,98,0.3)", borderRadius: "12px", padding: "14px 18px", boxShadow: "0 8px 40px rgba(0,0,0,0.7)", zIndex: 10 }}>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 700, color: "#FAFAF7", marginBottom: "2px" }}>
+            <div style={{ position: "absolute", bottom: "-24px", right: "-20px", background: "#171A23", border: "1px solid rgba(240,177,0,0.3)", borderRadius: "12px", padding: "14px 18px", boxShadow: "0 8px 40px rgba(0,0,0,0.7)", zIndex: 10 }}>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 700, color: "#FAFAF7", marginBottom: "2px" }}>
                 {isRTL ? "بنيناها وندير كل شيء" : "Built & Fully Managed by Us"}
               </div>
-              <div style={{ fontFamily: "Space Mono", fontSize: "9px", color: "rgba(200,169,98,0.6)", letterSpacing: "0.08em" }}>
+              <div style={{ fontFamily: "Space Mono", fontSize: "9px", color: "rgba(240,177,0,0.6)", letterSpacing: "0.08em" }}>
                 {isRTL ? "من الفكرة إلى التشغيل" : "From idea to operation"}
               </div>
             </div>
@@ -487,20 +487,20 @@ export default function FeaturedPartner() {
             </div>
 
             {/* Headline */}
-            <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "clamp(26px, 3.2vw, 48px)", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.15, marginBottom: "20px", wordBreak: "break-word" }}>
+            <h2 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "clamp(26px, 3.2vw, 48px)", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.15, marginBottom: "20px", wordBreak: "break-word" }}>
               {isRTL ? headline_ar : headline_en}
             </h2>
 
             {/* Gold divider */}
-            <div style={{ width: "48px", height: "3px", background: "linear-gradient(to right, #C8A962, #a07d3a)", marginBottom: "20px" }} />
+            <div style={{ width: "48px", height: "3px", background: "linear-gradient(to right, #F0B100, #a07d3a)", marginBottom: "20px" }} />
 
             {/* Description */}
-            <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.5)", lineHeight: 1.9, marginBottom: "32px", wordBreak: "break-word" }}>
+            <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.5)", lineHeight: 1.9, marginBottom: "32px", wordBreak: "break-word" }}>
               {isRTL ? sub_ar : sub_en}
             </p>
 
             {/* Timeline */}
-            <div style={{ borderRight: isRTL ? "2px solid rgba(200,169,98,0.15)" : "none", borderLeft: !isRTL ? "2px solid rgba(200,169,98,0.15)" : "none", paddingRight: isRTL ? "24px" : 0, paddingLeft: !isRTL ? "24px" : 0, marginBottom: "32px", display: "flex", flexDirection: "column", gap: "18px" }}>
+            <div style={{ borderRight: isRTL ? "2px solid rgba(240,177,0,0.15)" : "none", borderLeft: !isRTL ? "2px solid rgba(240,177,0,0.15)" : "none", paddingRight: isRTL ? "24px" : 0, paddingLeft: !isRTL ? "24px" : 0, marginBottom: "32px", display: "flex", flexDirection: "column", gap: "18px" }}>
               {[
                 { icon: "💡", title_ar: "التأسيس والرؤية", title_en: "Vision & Founding", text_ar: "أسّسنا الفكرة وبنينا نموذج العمل من الصفر", text_en: "Conceptualized the idea and built the business model from scratch" },
                 { icon: "⚙️", title_ar: "التطوير التقني الكامل", title_en: "Full Technical Build", text_ar: "منصة ويب + تطبيق + لوحة تحكم للوكلاء والأندية", text_en: "Full web platform + app + control panel for agents & clubs" },
@@ -509,10 +509,10 @@ export default function FeaturedPartner() {
                 <div key={item.title_ar} style={{ display: "flex", gap: "14px", alignItems: "flex-start" }}>
                   <span style={{ fontSize: "18px", marginTop: "2px" }}>{item.icon}</span>
                   <div>
-                    <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#C8A962", marginBottom: "4px" }}>
+                    <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#F0B100", marginBottom: "4px" }}>
                       {isRTL ? item.title_ar : item.title_en}
                     </div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.45)", lineHeight: 1.6 }}>
                       {isRTL ? item.text_ar : item.text_en}
                     </div>
                   </div>
@@ -523,9 +523,9 @@ export default function FeaturedPartner() {
             {/* Stats grid */}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "32px" }}>
               {PLATFORM_STATS.map((s) => (
-                <div key={s.value} style={{ textAlign: "center", padding: "14px 8px", border: "1px solid rgba(200,169,98,0.12)", background: "rgba(200,169,98,0.04)", borderRadius: "4px" }}>
-                  <div style={{ fontFamily: "Space Mono, monospace", fontSize: "20px", fontWeight: 700, color: "#C8A962", lineHeight: 1 }}>{s.value}</div>
-                  <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.35)", marginTop: "4px" }}>{isRTL ? s.label_ar : s.label_en}</div>
+                <div key={s.value} style={{ textAlign: "center", padding: "14px 8px", border: "1px solid rgba(240,177,0,0.12)", background: "rgba(240,177,0,0.04)", borderRadius: "4px" }}>
+                  <div style={{ fontFamily: "Space Mono, monospace", fontSize: "20px", fontWeight: 700, color: "#F0B100", lineHeight: 1 }}>{s.value}</div>
+                  <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.35)", marginTop: "4px" }}>{isRTL ? s.label_ar : s.label_en}</div>
                 </div>
               ))}
             </div>
@@ -547,7 +547,7 @@ export default function FeaturedPartner() {
                 href="https://www.tf1one.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "linear-gradient(135deg, #C8A962, #a07d3a)", color: "#000", fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 700, padding: "12px 28px", borderRadius: "2px", textDecoration: "none", transition: "opacity 0.2s" }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "linear-gradient(135deg, #F0B100, #a07d3a)", color: "#000", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 700, padding: "12px 28px", borderRadius: "2px", textDecoration: "none", transition: "opacity 0.2s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
                 onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
               >
@@ -558,8 +558,8 @@ export default function FeaturedPartner() {
                 href="https://wa.me/201007835547"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "transparent", color: "rgba(255,255,255,0.6)", fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 600, padding: "12px 24px", borderRadius: "2px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", transition: "all 0.2s" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(200,169,98,0.4)"; e.currentTarget.style.color = "#C8A962"; }}
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "transparent", color: "rgba(255,255,255,0.6)", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 600, padding: "12px 24px", borderRadius: "2px", textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)", transition: "all 0.2s" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(240,177,0,0.4)"; e.currentTarget.style.color = "#F0B100"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "rgba(255,255,255,0.6)"; }}
               >
                 {isRTL ? "ابدأ مشروعك معنا" : "Start Your Project"}

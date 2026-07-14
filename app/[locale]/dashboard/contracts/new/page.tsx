@@ -79,7 +79,7 @@ export default function NewContractPage() {
     background: "rgba(255,255,255,0.05)",
     border: "1px solid rgba(255,255,255,0.1)",
     borderRadius: "8px", color: "#FAFAF7",
-    fontFamily: "'Zain', sans-serif", fontSize: "14px",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px",
     outline: "none", boxSizing: "border-box",
   };
   const label: React.CSSProperties = {
@@ -97,7 +97,7 @@ export default function NewContractPage() {
       {/* Back */}
       <Link href={`/${locale}/dashboard/contracts`} style={{
         display: "inline-flex", alignItems: "center", gap: "6px",
-        color: "rgba(255,255,255,0.4)", fontFamily: "'Zain', sans-serif",
+        color: "rgba(255,255,255,0.4)", fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
         fontSize: "13px", textDecoration: "none", marginBottom: "24px",
       }}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -106,10 +106,10 @@ export default function NewContractPage() {
         {isRTL ? "رجوع للعقود" : "Back to Contracts"}
       </Link>
 
-      <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "26px", fontWeight: 800, color: "#FAFAF7", marginBottom: "4px" }}>
+      <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "26px", fontWeight: 800, color: "#FAFAF7", marginBottom: "4px" }}>
         {isRTL ? "طلب عقد جديد" : "New Contract Request"}
       </h1>
-      <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.35)", marginBottom: "32px" }}>
+      <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.35)", marginBottom: "32px" }}>
         {isRTL ? "سيُراجع فريقنا الطلب ويتواصل معك" : "Our team will review the request and contact you"}
       </p>
 
@@ -193,7 +193,7 @@ export default function NewContractPage() {
             padding: "12px 16px",
             background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)",
             borderRadius: "8px", color: "#EF4444",
-            fontFamily: "'Zain', sans-serif", fontSize: "14px",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px",
           }}>
             {error}
           </div>
@@ -203,10 +203,10 @@ export default function NewContractPage() {
           type="submit" disabled={loading}
           style={{
             width: "100%", padding: "14px",
-            background: loading ? "rgba(200,169,98,0.3)" : "rgba(200,169,98,0.15)",
-            border: "1px solid rgba(200,169,98,0.4)",
-            borderRadius: "10px", color: "#C8A962",
-            fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: 700,
+            background: loading ? "rgba(240,177,0,0.3)" : "rgba(240,177,0,0.15)",
+            border: "1px solid rgba(240,177,0,0.4)",
+            borderRadius: "10px", color: "#F0B100",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", fontWeight: 700,
             cursor: loading ? "not-allowed" : "pointer", transition: "all 0.2s",
           }}
         >

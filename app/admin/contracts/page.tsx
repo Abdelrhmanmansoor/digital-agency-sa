@@ -22,7 +22,7 @@ const STATUS_LABELS: Record<string, string> = {
 
 const STATUS_COLORS: Record<string, { bg: string; text: string }> = {
   draft: { bg: "rgba(255,255,255,0.08)", text: "#aaa" },
-  active: { bg: "rgba(200,169,98,0.15)", text: "#C8A962" },
+  active: { bg: "rgba(240,177,0,0.15)", text: "#F0B100" },
   completed: { bg: "rgba(34,197,94,0.15)", text: "#22C55E" },
   terminated: { bg: "rgba(239,68,68,0.15)", text: "#EF4444" },
 };
@@ -62,7 +62,7 @@ export default function ContractsPage() {
   return (
     <div>
       <AdminSidebar />
-      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'Zain', sans-serif" }}>
+      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
 
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
@@ -73,7 +73,7 @@ export default function ContractsPage() {
             </p>
           </div>
           <Link href="/admin/contracts/new">
-            <button style={{ background: "#C8A962", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 24px", fontSize: "15px", fontWeight: 700, cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>
+            <button style={{ background: "#F0B100", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 24px", fontSize: "15px", fontWeight: 700, cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
               + عقد جديد
             </button>
           </Link>
@@ -86,14 +86,14 @@ export default function ContractsPage() {
               key={s}
               onClick={() => setFilter(s)}
               style={{
-                background: filter === s ? "rgba(200,169,98,0.15)" : "rgba(255,255,255,0.04)",
-                border: `1px solid ${filter === s ? "rgba(200,169,98,0.4)" : "rgba(255,255,255,0.08)"}`,
-                color: filter === s ? "#C8A962" : "rgba(255,255,255,0.5)",
+                background: filter === s ? "rgba(240,177,0,0.15)" : "rgba(255,255,255,0.04)",
+                border: `1px solid ${filter === s ? "rgba(240,177,0,0.4)" : "rgba(255,255,255,0.08)"}`,
+                color: filter === s ? "#F0B100" : "rgba(255,255,255,0.5)",
                 borderRadius: "8px",
                 padding: "8px 16px",
                 fontSize: "13px",
                 cursor: "pointer",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               }}
             >
               {s === "all" ? "الكل" : STATUS_LABELS[s]}
@@ -122,14 +122,14 @@ export default function ContractsPage() {
                 {filtered.map((c) => (
                   <tr key={c.id} style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
                     <td style={{ padding: "16px 20px" }}>
-                      <span style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#C8A962", fontWeight: 600 }}>{c.number}</span>
+                      <span style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#F0B100", fontWeight: 600 }}>{c.number}</span>
                     </td>
                     <td style={{ padding: "16px 20px" }}>
                       <div style={{ fontSize: "14px", fontWeight: 600, color: "#FAFAF7" }}>{c.clientName}</div>
                       {c.clientCompany && <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", marginTop: "2px" }}>{c.clientCompany}</div>}
                     </td>
                     <td style={{ padding: "16px 20px" }}>
-                      <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.6)", fontFamily: "'Zain', sans-serif" }}>
+                      <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.6)", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                         {TYPE_LABELS[c.type] ?? c.type}
                       </span>
                     </td>
@@ -142,22 +142,22 @@ export default function ContractsPage() {
                       </span>
                     </td>
                     <td style={{ padding: "16px 20px" }}>
-                      <span style={{ padding: "4px 12px", borderRadius: "20px", fontSize: "12px", fontWeight: 600, background: STATUS_COLORS[c.status]?.bg, color: STATUS_COLORS[c.status]?.text, fontFamily: "'Zain', sans-serif" }}>
+                      <span style={{ padding: "4px 12px", borderRadius: "20px", fontSize: "12px", fontWeight: 600, background: STATUS_COLORS[c.status]?.bg, color: STATUS_COLORS[c.status]?.text, fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                         {STATUS_LABELS[c.status] ?? c.status}
                       </span>
                     </td>
                     <td style={{ padding: "16px 20px" }}>
                       <div style={{ display: "flex", gap: "8px" }}>
                         <Link href={`/admin/contracts/${c.id}`}>
-                          <button style={{ background: "rgba(200,169,98,0.1)", border: "1px solid rgba(200,169,98,0.3)", color: "#C8A962", borderRadius: "6px", padding: "6px 12px", fontSize: "12px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>عرض</button>
+                          <button style={{ background: "rgba(240,177,0,0.1)", border: "1px solid rgba(240,177,0,0.3)", color: "#F0B100", borderRadius: "6px", padding: "6px 12px", fontSize: "12px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>عرض</button>
                         </Link>
                         <Link href={`/admin/contracts/${c.id}/edit`}>
-                          <button style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)", borderRadius: "6px", padding: "6px 12px", fontSize: "12px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>تعديل</button>
+                          <button style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.6)", borderRadius: "6px", padding: "6px 12px", fontSize: "12px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>تعديل</button>
                         </Link>
                         <button
                           onClick={() => handleDelete(c.id)}
                           disabled={deleting === c.id}
-                          style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#EF4444", borderRadius: "6px", padding: "6px 12px", fontSize: "12px", cursor: "pointer", fontFamily: "'Zain', sans-serif", opacity: deleting === c.id ? 0.5 : 1 }}
+                          style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#EF4444", borderRadius: "6px", padding: "6px 12px", fontSize: "12px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", opacity: deleting === c.id ? 0.5 : 1 }}
                         >
                           حذف
                         </button>

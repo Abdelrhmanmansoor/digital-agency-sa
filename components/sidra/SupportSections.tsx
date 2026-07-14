@@ -115,7 +115,7 @@ export function OffersSection({ orderHref }: { orderHref: string }) {
       />
 
       {activeOffer ? (
-        <div className="overflow-hidden rounded-[30px] border border-[#C9A227]/40 bg-[linear-gradient(135deg,#fbf7f2,#faf3e3)] p-8">
+        <div className="overflow-hidden rounded-[30px] border border-[#F0B100]/40 bg-[linear-gradient(135deg,#fbf7f2,#faf3e3)] p-8">
           <div className="flex flex-wrap items-center gap-6">
             <div className="flex-1">
               {offer.discountLabel ? (
@@ -134,7 +134,7 @@ export function OffersSection({ orderHref }: { orderHref: string }) {
             </div>
             <div className="flex flex-col gap-3">
               {offer.couponCode ? (
-                <div className="flex items-center gap-3 rounded-2xl border-2 border-dashed border-[#C9A227] bg-white px-5 py-3">
+                <div className="flex items-center gap-3 rounded-2xl border-2 border-dashed border-[#F0B100] bg-white px-5 py-3">
                   <span className="font-mono text-lg font-black tracking-widest text-[#211711]">{offer.couponCode}</span>
                   <CopyButton text={offer.couponCode} label="نسخ الكود" />
                 </div>
@@ -272,7 +272,7 @@ export function SupportSection({ whatsappBase, email }: { whatsappBase: string; 
             <ul className="mt-4 space-y-2 text-sm leading-7 text-[#5f5148]">
               {p.items.map((x) => (
                 <li key={x} className="flex gap-2">
-                  <span className="text-[#C9A227]" aria-hidden>✓</span>
+                  <span className="text-[#F0B100]" aria-hidden>✓</span>
                   {x}
                 </li>
               ))}
@@ -508,7 +508,7 @@ export function FinalCTA({ orderHref, customHref }: { orderHref: string; customH
   return (
     <section className="mx-auto max-w-5xl px-5 pb-16 sm:px-8">
       <div className="relative overflow-hidden rounded-[36px] bg-[#211711] p-8 text-white shadow-[0_28px_80px_rgba(33,23,17,0.2)] sm:p-12">
-        <div aria-hidden className="pointer-events-none absolute -top-24 end-0 h-72 w-72 rounded-full bg-[#C9A227]/15 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -top-24 end-0 h-72 w-72 rounded-full bg-[#F0B100]/15 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-24 start-0 h-72 w-72 rounded-full bg-[#a51218]/25 blur-3xl" />
 
         <div className="relative">
@@ -549,7 +549,7 @@ export function FinalCTA({ orderHref, customHref }: { orderHref: string; customH
             </a>
             <a
               href="#support"
-              className="inline-flex items-center justify-center rounded-full px-8 py-4 font-bold text-white/70 underline decoration-[#C9A227] decoration-2 underline-offset-8 transition hover:text-white"
+              className="inline-flex items-center justify-center rounded-full px-8 py-4 font-bold text-white/70 underline decoration-[#F0B100] decoration-2 underline-offset-8 transition hover:text-white"
             >
               راجع سياسة الدعم
             </a>

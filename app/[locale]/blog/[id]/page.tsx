@@ -222,7 +222,7 @@ export default async function BlogArticlePage({
                 {isRTL ? "المدونة" : "Blog"}
               </Link>
               <span style={{ color: "#3A3A35" }}>/</span>
-              <span style={{ color: "#C8A962", fontSize: "13px", fontFamily: "Space Mono" }}>
+              <span style={{ color: "#F0B100", fontSize: "13px", fontFamily: "Space Mono" }}>
                 {isRTL ? article.categoryAr : article.categoryEn}
               </span>
             </div>
@@ -235,7 +235,7 @@ export default async function BlogArticlePage({
             {/* Title */}
             <h1
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "clamp(28px, 4vw, 52px)",
                 fontWeight: 700,
                 color: "#FAFAF7",
@@ -282,7 +282,7 @@ export default async function BlogArticlePage({
             <div
               className="article-content"
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "17px",
                 lineHeight: 1.9,
                 color: "#2A2A25",
@@ -331,7 +331,7 @@ export default async function BlogArticlePage({
                   href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(isRTL ? article.titleAr : article.titleEn)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: "#C8A962", textDecoration: "none", fontFamily: "Space Mono", fontSize: "13px" }}
+                  style={{ color: "#F0B100", textDecoration: "none", fontFamily: "Space Mono", fontSize: "13px" }}
                 >
                   Twitter
                 </a>
@@ -339,7 +339,7 @@ export default async function BlogArticlePage({
                   href={`https://wa.me/?text=${encodeURIComponent(isRTL ? article.titleAr : article.titleEn)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: "#C8A962", textDecoration: "none", fontFamily: "Space Mono", fontSize: "13px" }}
+                  style={{ color: "#F0B100", textDecoration: "none", fontFamily: "Space Mono", fontSize: "13px" }}
                 >
                   WhatsApp
                 </a>
@@ -354,7 +354,7 @@ export default async function BlogArticlePage({
             <div className="max-w-[1400px] mx-auto px-8">
               <h2
                 style={{
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                   fontSize: "28px",
                   fontWeight: 700,
                   color: "#0A0A0A",
@@ -386,7 +386,7 @@ export default async function BlogArticlePage({
                         </div>
                         <h3
                           style={{
-                            fontFamily: "'Zain', sans-serif",
+                            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                             fontSize: "17px",
                             fontWeight: 700,
                             color: "#0A0A0A",
@@ -408,7 +408,7 @@ export default async function BlogArticlePage({
 
       <style>{`
         .article-content h2 {
-          font-family: 'Zain', sans-serif;
+          font-family: 'ThmanyahSans', 'Zain', sans-serif;
           font-size: 24px;
           font-weight: 700;
           color: #0A0A0A;
@@ -425,11 +425,11 @@ export default async function BlogArticlePage({
           margin-bottom: 8px;
         }
         .article-content a {
-          color: #C8A962;
+          color: #F0B100;
           text-decoration: none;
         }
         .blog-related-card:hover {
-          border-color: #C8A962 !important;
+          border-color: #F0B100 !important;
         }
       `}</style>
     </>

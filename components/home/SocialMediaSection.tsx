@@ -132,14 +132,14 @@ export default function SocialMediaSection() {
             </span>
           </div>
           <h2 style={{
-            fontFamily: "'Zain', sans-serif", fontSize: "clamp(26px, 3.5vw, 48px)",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "clamp(26px, 3.5vw, 48px)",
             fontWeight: 800, color: "#FFFFFF", lineHeight: 1.1, marginBottom: "12px",
           }}>
             {isRTL
-              ? <>نشارك خلف الكواليس <span style={{ color: "#A3FF12" }}>يومياً</span></>
-              : <>We share behind-the-scenes <span style={{ color: "#A3FF12" }}>daily</span></>}
+              ? <>نشارك خلف الكواليس <span style={{ color: "#F0B100" }}>يومياً</span></>
+              : <>We share behind-the-scenes <span style={{ color: "#F0B100" }}>daily</span></>}
           </h2>
-          <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.38)", maxWidth: "500px", margin: "0 auto" }}>
+          <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.38)", maxWidth: "500px", margin: "0 auto" }}>
             {isRTL
               ? "نصائح تجارة إلكترونية، كواليس المشاريع، وأفكار تسويقية مجانية كل يوم"
               : "E-commerce tips, project behind-the-scenes & free marketing ideas every day"}
@@ -212,7 +212,7 @@ export default function SocialMediaSection() {
 
                   {/* Description */}
                   <p style={{
-                    fontFamily: "'Zain', sans-serif", fontSize: "13px",
+                    fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px",
                     color: "rgba(255,255,255,0.5)", lineHeight: 1.6, margin: "0 0 16px",
                   }}>
                     {isRTL ? p.descAr : p.descEn}
@@ -224,7 +224,7 @@ export default function SocialMediaSection() {
                     paddingTop: "14px", borderTop: "1px solid rgba(255,255,255,0.07)",
                   }}>
                     <span style={{
-                      fontFamily: "'Zain', sans-serif", fontSize: "13px",
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px",
                       color: isH ? p.color : "rgba(255,255,255,0.5)",
                       fontWeight: 600, transition: "color 0.3s",
                     }}>

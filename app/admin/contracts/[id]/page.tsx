@@ -88,7 +88,7 @@ export default function ContractDetailPage() {
   return (
     <div>
       <AdminSidebar />
-      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'Zain', sans-serif", direction: "rtl" }}>
+      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", direction: "rtl" }}>
 
         {/* Action bar */}
         <div className="no-print" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "28px" }}>
@@ -98,7 +98,7 @@ export default function ContractDetailPage() {
                 ← العقود
               </Link>
               <span style={{ color: "rgba(255,255,255,0.15)" }}>/</span>
-              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#C8A962" }}>{contract.number}</span>
+              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#F0B100" }}>{contract.number}</span>
             </div>
             <h1 style={{ fontSize: "24px", fontWeight: 800, color: "#FAFAF7", margin: "8px 0 0" }}>
               {contract.clientName}
@@ -110,7 +110,7 @@ export default function ContractDetailPage() {
               value={contract.status}
               onChange={(e) => handleStatusChange(e.target.value as Contract["status"])}
               disabled={updatingStatus}
-              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", color: "#FAFAF7", borderRadius: "8px", padding: "9px 14px", fontFamily: "'Zain', sans-serif", fontSize: "13px", cursor: "pointer", outline: "none" }}
+              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", color: "#FAFAF7", borderRadius: "8px", padding: "9px 14px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", cursor: "pointer", outline: "none" }}
             >
               <option value="draft">مسودة</option>
               <option value="active">نشط</option>
@@ -118,25 +118,25 @@ export default function ContractDetailPage() {
               <option value="terminated">منتهي</option>
             </select>
 
-            <button onClick={handleWhatsApp} style={{ background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.3)", color: "#25D366", borderRadius: "8px", padding: "9px 16px", fontSize: "13px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>
+            <button onClick={handleWhatsApp} style={{ background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.3)", color: "#25D366", borderRadius: "8px", padding: "9px 16px", fontSize: "13px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
               واتساب
             </button>
 
-            <button onClick={handleEmail} style={{ background: "rgba(66,133,244,0.1)", border: "1px solid rgba(66,133,244,0.25)", color: "#4285F4", borderRadius: "8px", padding: "9px 16px", fontSize: "13px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>
+            <button onClick={handleEmail} style={{ background: "rgba(66,133,244,0.1)", border: "1px solid rgba(66,133,244,0.25)", color: "#4285F4", borderRadius: "8px", padding: "9px 16px", fontSize: "13px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
               إيميل
             </button>
 
             <Link href={`/admin/contracts/${id}/edit`}>
-              <button style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.7)", borderRadius: "8px", padding: "9px 16px", fontSize: "13px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>
+              <button style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.7)", borderRadius: "8px", padding: "9px 16px", fontSize: "13px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                 تعديل
               </button>
             </Link>
 
-            <button onClick={handlePrint} style={{ background: "#C8A962", border: "none", color: "#0A0A0A", borderRadius: "8px", padding: "9px 20px", fontSize: "14px", fontWeight: 700, cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>
+            <button onClick={handlePrint} style={{ background: "#F0B100", border: "none", color: "#0A0A0A", borderRadius: "8px", padding: "9px 20px", fontSize: "14px", fontWeight: 700, cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
               طباعة / PDF
             </button>
 
-            <button onClick={handleDelete} style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#EF4444", borderRadius: "8px", padding: "9px 16px", fontSize: "13px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>
+            <button onClick={handleDelete} style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)", color: "#EF4444", borderRadius: "8px", padding: "9px 16px", fontSize: "13px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
               حذف
             </button>
           </div>
@@ -149,7 +149,7 @@ export default function ContractDetailPage() {
 
         {/* Meta info */}
         <div className="no-print" style={{ marginTop: "24px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "10px", padding: "16px 24px", display: "flex", gap: "32px", fontSize: "13px", color: "rgba(255,255,255,0.4)", fontFamily: "Space Mono, monospace" }}>
-          <span>الحالة: <strong style={{ color: "#C8A962" }}>{STATUS_LABELS[contract.status]}</strong></span>
+          <span>الحالة: <strong style={{ color: "#F0B100" }}>{STATUS_LABELS[contract.status]}</strong></span>
           <span>أيام التنفيذ: <strong style={{ color: "#FAFAF7" }}>{contract.deliveryDays}</strong></span>
           <span>الاختصاص: <strong style={{ color: "#FAFAF7" }}>{contract.jurisdiction}</strong></span>
           <span>أُنشئ: {new Date(contract.createdAt).toLocaleDateString("ar-SA")}</span>

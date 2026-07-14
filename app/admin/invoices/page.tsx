@@ -55,7 +55,7 @@ export default function InvoicesPage() {
   return (
     <div>
       <AdminSidebar />
-      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'Zain', sans-serif" }}>
+      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
 
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
@@ -70,7 +70,7 @@ export default function InvoicesPage() {
           <Link href="/admin/invoices/new">
             <button
               style={{
-                background: "#C8A962",
+                background: "#F0B100",
                 color: "#0A0A0A",
                 border: "none",
                 borderRadius: "10px",
@@ -78,7 +78,7 @@ export default function InvoicesPage() {
                 fontSize: "15px",
                 fontWeight: 700,
                 cursor: "pointer",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               }}
             >
               + فاتورة جديدة
@@ -93,14 +93,14 @@ export default function InvoicesPage() {
               key={s}
               onClick={() => setFilter(s)}
               style={{
-                background: filter === s ? "rgba(200,169,98,0.15)" : "rgba(255,255,255,0.04)",
-                border: `1px solid ${filter === s ? "rgba(200,169,98,0.4)" : "rgba(255,255,255,0.08)"}`,
-                color: filter === s ? "#C8A962" : "rgba(255,255,255,0.5)",
+                background: filter === s ? "rgba(240,177,0,0.15)" : "rgba(255,255,255,0.04)",
+                border: `1px solid ${filter === s ? "rgba(240,177,0,0.4)" : "rgba(255,255,255,0.08)"}`,
+                color: filter === s ? "#F0B100" : "rgba(255,255,255,0.5)",
                 borderRadius: "8px",
                 padding: "8px 16px",
                 fontSize: "13px",
                 cursor: "pointer",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               }}
             >
               {s === "all" ? "الكل" : STATUS_LABELS[s]}
@@ -147,7 +147,7 @@ export default function InvoicesPage() {
                     style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}
                   >
                     <td style={{ padding: "16px 20px" }}>
-                      <span style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#C8A962", fontWeight: 600 }}>
+                      <span style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#F0B100", fontWeight: 600 }}>
                         {inv.number}
                       </span>
                     </td>
@@ -179,7 +179,7 @@ export default function InvoicesPage() {
                         fontWeight: 600,
                         background: STATUS_COLORS[inv.status]?.bg,
                         color: STATUS_COLORS[inv.status]?.text,
-                        fontFamily: "'Zain', sans-serif",
+                        fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                       }}>
                         {STATUS_LABELS[inv.status] ?? inv.status}
                       </span>
@@ -193,14 +193,14 @@ export default function InvoicesPage() {
                       <div style={{ display: "flex", gap: "8px" }}>
                         <Link href={`/admin/invoices/${inv.id}`}>
                           <button style={{
-                            background: "rgba(200,169,98,0.1)",
-                            border: "1px solid rgba(200,169,98,0.3)",
-                            color: "#C8A962",
+                            background: "rgba(240,177,0,0.1)",
+                            border: "1px solid rgba(240,177,0,0.3)",
+                            color: "#F0B100",
                             borderRadius: "6px",
                             padding: "6px 12px",
                             fontSize: "12px",
                             cursor: "pointer",
-                            fontFamily: "'Zain', sans-serif",
+                            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                           }}>
                             عرض
                           </button>
@@ -214,7 +214,7 @@ export default function InvoicesPage() {
                             padding: "6px 12px",
                             fontSize: "12px",
                             cursor: "pointer",
-                            fontFamily: "'Zain', sans-serif",
+                            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                           }}>
                             تعديل
                           </button>
@@ -230,7 +230,7 @@ export default function InvoicesPage() {
                             padding: "6px 12px",
                             fontSize: "12px",
                             cursor: "pointer",
-                            fontFamily: "'Zain', sans-serif",
+                            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                             opacity: deleting === inv.id ? 0.5 : 1,
                           }}
                         >

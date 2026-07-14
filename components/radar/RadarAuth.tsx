@@ -54,12 +54,12 @@ export default function RadarAuth() {
   const inputStyle: React.CSSProperties = {
     width: "100%",
     background: "rgba(255,255,255,0.04)",
-    border: "1px solid rgba(200,169,98,0.2)",
+    border: "1px solid rgba(240,177,0,0.2)",
     borderRadius: "12px",
     padding: "14px 16px",
     color: "#FAFAF7",
     fontSize: "15px",
-    fontFamily: "'Zain', sans-serif",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
     outline: "none",
     transition: "border-color 0.2s",
     direction: "rtl",
@@ -69,7 +69,7 @@ export default function RadarAuth() {
     <div
       style={{
         background: "rgba(255,255,255,0.03)",
-        border: "1px solid rgba(200,169,98,0.15)",
+        border: "1px solid rgba(240,177,0,0.15)",
         borderRadius: "20px",
         padding: "40px",
         maxWidth: "440px",
@@ -78,7 +78,7 @@ export default function RadarAuth() {
       }}
     >
       {/* Toggle */}
-      <div style={{ display: "flex", gap: "0", marginBottom: "32px", border: "1px solid rgba(200,169,98,0.15)", borderRadius: "14px", overflow: "hidden" }}>
+      <div style={{ display: "flex", gap: "0", marginBottom: "32px", border: "1px solid rgba(240,177,0,0.15)", borderRadius: "14px", overflow: "hidden" }}>
         {(["login", "register"] as const).map((m) => (
           <button
             key={m}
@@ -86,11 +86,11 @@ export default function RadarAuth() {
             style={{
               flex: 1,
               padding: "10px",
-              background: mode === m ? "#C8A962" : "transparent",
+              background: mode === m ? "#F0B100" : "transparent",
               color: mode === m ? "#0A0A0A" : "rgba(255,255,255,0.5)",
               border: "none",
               cursor: "pointer",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "15px",
               fontWeight: mode === m ? 700 : 400,
               transition: "all 0.2s",
@@ -143,7 +143,7 @@ export default function RadarAuth() {
         />
 
         {error && (
-          <div style={{ color: "#ff6b6b", fontSize: "13px", textAlign: "center", fontFamily: "'Zain', sans-serif" }}>
+          <div style={{ color: "#ff6b6b", fontSize: "13px", textAlign: "center", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
             {error}
           </div>
         )}
@@ -154,13 +154,13 @@ export default function RadarAuth() {
           style={{
             width: "100%",
             padding: "14px",
-            background: loading ? "rgba(200,169,98,0.4)" : "#C8A962",
+            background: loading ? "rgba(240,177,0,0.4)" : "#F0B100",
             color: "#0A0A0A",
             border: "none",
             borderRadius: "12px",
             fontSize: "16px",
             fontWeight: 700,
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             cursor: loading ? "not-allowed" : "pointer",
             letterSpacing: "0.05em",
             transition: "all 0.2s",
@@ -175,7 +175,7 @@ export default function RadarAuth() {
         </button>
       </form>
 
-      <p style={{ textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: "12px", marginTop: "20px", fontFamily: "'Zain', sans-serif" }}>
+      <p style={{ textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: "12px", marginTop: "20px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
         مجاني للأبد — لا بيانات بنكية مطلوبة
       </p>
     </div>

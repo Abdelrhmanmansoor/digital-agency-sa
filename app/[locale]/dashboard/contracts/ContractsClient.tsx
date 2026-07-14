@@ -11,7 +11,7 @@ interface Props {
 const STATUS_LABELS: Record<string, { ar: string; en: string; color: string; bg: string }> = {
   draft:      { ar: "مسودة",    en: "Draft",      color: "#94A3B8", bg: "rgba(148,163,184,0.1)" },
   active:     { ar: "نشط",      en: "Active",     color: "#3B82F6", bg: "rgba(59,130,246,0.1)" },
-  completed:  { ar: "مكتمل",    en: "Completed",  color: "#BDEE63", bg: "rgba(189,238,99,0.1)" },
+  completed:  { ar: "مكتمل",    en: "Completed",  color: "#F0B100", bg: "rgba(240,177,0,0.1)" },
   terminated: { ar: "منتهي",    en: "Terminated", color: "#EF4444", bg: "rgba(239,68,68,0.1)" },
 };
 
@@ -37,10 +37,10 @@ export default function ContractsClient({ contracts, locale }: Props) {
       {/* Header */}
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: "14px", marginBottom: "36px" }}>
         <div>
-          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
+          <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
             {isRTL ? "عقودي" : "My Contracts"}
           </h1>
-          <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)", marginTop: "8px" }}>
+          <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)", marginTop: "8px" }}>
             {contracts.length} {isRTL ? "عقد" : "contract(s)"}
           </p>
         </div>
@@ -50,7 +50,7 @@ export default function ContractsClient({ contracts, locale }: Props) {
             display: "inline-flex", alignItems: "center", gap: "8px",
             padding: "10px 20px", borderRadius: "10px",
             background: "rgba(74,158,255,0.1)", border: "1px solid rgba(74,158,255,0.25)",
-            color: "#4A9EFF", fontFamily: "'Zain', sans-serif",
+            color: "#4A9EFF", fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             fontSize: "15px", fontWeight: 700, textDecoration: "none",
             whiteSpace: "nowrap",
           }}
@@ -78,10 +78,10 @@ export default function ContractsClient({ contracts, locale }: Props) {
               <line x1="9" y1="16" x2="12" y2="16" />
             </svg>
           </div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "8px" }}>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "8px" }}>
             {isRTL ? "لا توجد عقود بعد" : "No contracts yet"}
           </div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)" }}>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)" }}>
             {isRTL ? "ستظهر عقودك هنا بعد إعدادها من فريقنا" : "Your contracts will appear here once set up by our team"}
           </div>
         </div>
@@ -110,23 +110,23 @@ export default function ContractsClient({ contracts, locale }: Props) {
                     {/* Icon */}
                     <div style={{
                       width: "48px", height: "48px", borderRadius: "12px",
-                      background: "rgba(200,169,98,0.08)", border: "1px solid rgba(200,169,98,0.15)",
+                      background: "rgba(240,177,0,0.08)", border: "1px solid rgba(240,177,0,0.15)",
                       display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
                     }}>
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0B100" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                         <line x1="9" y1="12" x2="15" y2="12" />
                         <line x1="9" y1="16" x2="12" y2="16" />
                       </svg>
                     </div>
                     <div>
-                      <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#C8A962", letterSpacing: "0.05em" }}>
+                      <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#F0B100", letterSpacing: "0.05em" }}>
                         {c.number}
                       </div>
-                      <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "17px", fontWeight: 800, color: "#FAFAF7", marginTop: "2px" }}>
+                      <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "17px", fontWeight: 800, color: "#FAFAF7", marginTop: "2px" }}>
                         {isRTL ? c.serviceTitleAr : c.serviceTitle}
                       </div>
-                      <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.35)", marginTop: "2px" }}>
+                      <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.35)", marginTop: "2px" }}>
                         {isRTL ? type.ar : type.en}
                       </div>
                     </div>
@@ -137,7 +137,7 @@ export default function ContractsClient({ contracts, locale }: Props) {
                     <span style={{
                       padding: "5px 14px", borderRadius: "7px",
                       background: status.bg, color: status.color,
-                      fontFamily: "'Zain', sans-serif", fontSize: "12px", fontWeight: 700,
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", fontWeight: 700,
                     }}>
                       {isRTL ? status.ar : status.en}
                     </span>
@@ -156,7 +156,7 @@ export default function ContractsClient({ contracts, locale }: Props) {
                 {/* Info grid */}
                 <div style={{ display: "flex", gap: "28px", flexWrap: "wrap", marginBottom: "14px" }}>
                   <div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
                       {isRTL ? "تاريخ البداية" : "Start Date"}
                     </div>
                     <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
@@ -164,7 +164,7 @@ export default function ContractsClient({ contracts, locale }: Props) {
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
                       {isRTL ? "تاريخ التسليم" : "Delivery"}
                     </div>
                     <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
@@ -172,7 +172,7 @@ export default function ContractsClient({ contracts, locale }: Props) {
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
                       {isRTL ? "مدة التنفيذ" : "Duration"}
                     </div>
                     <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
@@ -180,16 +180,16 @@ export default function ContractsClient({ contracts, locale }: Props) {
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
                       {isRTL ? "شروط الدفع" : "Payment Terms"}
                     </div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.7)" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.7)" }}>
                       {isRTL ? payment.ar : payment.en}
                     </div>
                   </div>
                   {c.revisions != null && (
                     <div>
-                      <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
+                      <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
                         {isRTL ? "جولات المراجعة" : "Revisions"}
                       </div>
                       <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
@@ -202,10 +202,10 @@ export default function ContractsClient({ contracts, locale }: Props) {
                 {/* Service description */}
                 {(c.serviceDescriptionAr || c.serviceDescription) && (
                   <div style={{ marginBottom: "14px", padding: "12px 14px", background: "rgba(255,255,255,0.02)", borderRadius: "8px" }}>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "6px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "6px" }}>
                       {isRTL ? "نطاق العمل" : "Scope of Work"}
                     </div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.7)", lineHeight: "1.6" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.7)", lineHeight: "1.6" }}>
                       {isRTL ? (c.serviceDescriptionAr || c.serviceDescription) : (c.serviceDescription || c.serviceDescriptionAr)}
                     </div>
                   </div>
@@ -213,19 +213,19 @@ export default function ContractsClient({ contracts, locale }: Props) {
 
                 {/* Deliverables */}
                 {c.deliverables && c.deliverables.length > 0 && (
-                  <div style={{ padding: "12px 14px", background: "rgba(200,169,98,0.04)", border: "1px solid rgba(200,169,98,0.1)", borderRadius: "8px" }}>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(200,169,98,0.6)", marginBottom: "8px" }}>
+                  <div style={{ padding: "12px 14px", background: "rgba(240,177,0,0.04)", border: "1px solid rgba(240,177,0,0.1)", borderRadius: "8px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(240,177,0,0.6)", marginBottom: "8px" }}>
                       {isRTL ? "المنجزات المتفق عليها" : "Agreed Deliverables"}
                     </div>
                     <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "5px" }}>
                       {c.deliverables.map((d, idx) => (
                         <li key={idx} style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
-                          <span style={{ color: "#C8A962", marginTop: "1px", flexShrink: 0 }}>
+                          <span style={{ color: "#F0B100", marginTop: "1px", flexShrink: 0 }}>
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                               <polyline points="20 6 9 17 4 12" />
                             </svg>
                           </span>
-                          <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.7)" }}>{d}</span>
+                          <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.7)" }}>{d}</span>
                         </li>
                       ))}
                     </ul>
@@ -234,7 +234,7 @@ export default function ContractsClient({ contracts, locale }: Props) {
 
                 {/* Jurisdiction */}
                 {c.jurisdiction && (
-                  <div style={{ marginTop: "12px", fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.25)" }}>
+                  <div style={{ marginTop: "12px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.25)" }}>
                     {isRTL ? `الاختصاص القضائي: ${c.jurisdiction}` : `Jurisdiction: ${c.jurisdiction}`}
                     {c.useArbitration != null && (
                       <span style={{ marginInlineStart: "12px" }}>

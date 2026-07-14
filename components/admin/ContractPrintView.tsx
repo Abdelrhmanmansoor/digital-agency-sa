@@ -38,7 +38,7 @@ function InfoRow({ label, value }: { label: string; value?: string | number }) {
       }}>
         {label}
       </span>
-      <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#111", flex: 1 }}>
+      <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600, color: "#111", flex: 1 }}>
         {value}
       </span>
     </div>
@@ -52,20 +52,20 @@ function Article({ num, title, children }: { num: string; title: string; childre
       <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "6px" }}>
         <div style={{
           width: "24px", height: "24px", borderRadius: "50%",
-          background: "#C8A962", display: "flex", alignItems: "center", justifyContent: "center",
+          background: "#F0B100", display: "flex", alignItems: "center", justifyContent: "center",
           flexShrink: 0,
         }}>
           <span style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", fontWeight: 700, color: "#0A0A0A" }}>{num}</span>
         </div>
         <div style={{
-          fontFamily: "'Zain', sans-serif", fontSize: "13.5px", fontWeight: 800, color: "#0A0A0A",
+          fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13.5px", fontWeight: 800, color: "#0A0A0A",
           borderBottom: "1px solid #E8E0CE", paddingBottom: "3px", flex: 1,
         }}>
           {title}
         </div>
       </div>
       <div style={{
-        paddingRight: "33px", fontFamily: "'Zain', sans-serif",
+        paddingRight: "33px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
         fontSize: "13px", color: "#2a2a2a", lineHeight: 2, textAlign: "justify",
       }}>
         {children}
@@ -118,7 +118,7 @@ export default function ContractPrintView({ contract: c }: Props) {
         id="contract-print-root"
         style={{
           width: "210mm", minHeight: "297mm", background: "white",
-          position: "relative", fontFamily: "'Zain', sans-serif",
+          position: "relative", fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
           color: "#1a1a1a", direction: "rtl", boxSizing: "border-box",
           overflow: "hidden",
         }}
@@ -161,26 +161,26 @@ export default function ContractPrintView({ contract: c }: Props) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo.png" alt="" style={{ height: "36px", objectFit: "contain", maxWidth: "140px", filter: "brightness(0) invert(1)" }} />
             <div style={{ textAlign: "left" }}>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 700, color: "#C8A962" }}>{contractType}</div>
-              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "rgba(200,169,98,0.55)", letterSpacing: "0.1em" }}>{c.number}</div>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 700, color: "#F0B100" }}>{contractType}</div>
+              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "rgba(240,177,0,0.55)", letterSpacing: "0.1em" }}>{c.number}</div>
             </div>
           </div>
         </div>
-        <div style={{ height: "3px", background: "linear-gradient(90deg, #9A7B3E, #C8A962, #E8C97A, #C8A962, #9A7B3E)" }} />
+        <div style={{ height: "3px", background: "linear-gradient(90deg, #9A7B3E, #F0B100, #E8C97A, #F0B100, #9A7B3E)" }} />
 
         {/* ══ BODY ══ */}
         <div style={{ padding: "24px 40px 28px", position: "relative", zIndex: 1 }}>
 
           {/* Basmalah */}
           <div style={{ textAlign: "center", marginBottom: "5px" }}>
-            <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: 800, color: "#C8A962" }}>
+            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", fontWeight: 800, color: "#F0B100" }}>
               بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
             </span>
           </div>
 
           {/* Title */}
           <div style={{ textAlign: "center", marginBottom: "3px" }}>
-            <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "19px", fontWeight: 800, color: "#0A0A0A" }}>
+            <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "19px", fontWeight: 800, color: "#0A0A0A" }}>
               {contractType}
             </div>
           </div>
@@ -189,7 +189,7 @@ export default function ContractPrintView({ contract: c }: Props) {
           <div style={{ textAlign: "center", marginBottom: "16px" }}>
             <span style={{ fontFamily: "Space Mono, monospace", fontSize: "9.5px", color: "#888", letterSpacing: "0.1em" }}>{c.number}</span>
             <span style={{ margin: "0 8px", color: "#DDD" }}>·</span>
-            <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "#666" }}>
+            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "#666" }}>
               تاريخ التحرير: {fmtDate(c.startDate)} · مدينة {c.jurisdiction}
             </span>
           </div>
@@ -202,10 +202,10 @@ export default function ContractPrintView({ contract: c }: Props) {
           }}>
             {/* Column headers */}
             <div style={{ background: "#0A0A0A", padding: "8px 16px", borderLeft: "1px solid #1E1E1E" }}>
-              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#C8A962", letterSpacing: "0.2em" }}>الطرف الأول — مقدم الخدمة</div>
+              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#F0B100", letterSpacing: "0.2em" }}>الطرف الأول — مقدم الخدمة</div>
             </div>
             <div style={{ background: "#0A0A0A", padding: "8px 16px" }}>
-              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#C8A962", letterSpacing: "0.2em" }}>الطرف الثاني — العميل</div>
+              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#F0B100", letterSpacing: "0.2em" }}>الطرف الثاني — العميل</div>
             </div>
 
             {/* First Party data */}
@@ -351,47 +351,47 @@ export default function ContractPrintView({ contract: c }: Props) {
             overflow: "hidden", pageBreakInside: "avoid",
           }}>
             <div style={{ background: "#F8F5EE", padding: "9px 20px", borderBottom: "1px solid #E0D8CC", display: "flex", alignItems: "center", gap: "8px" }}>
-              <div style={{ width: "3px", height: "15px", background: "#C8A962", borderRadius: "2px" }} />
-              <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "13.5px", fontWeight: 800, color: "#0A0A0A" }}>التوقيعات والاعتماد</span>
+              <div style={{ width: "3px", height: "15px", background: "#F0B100", borderRadius: "2px" }} />
+              <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13.5px", fontWeight: 800, color: "#0A0A0A" }}>التوقيعات والاعتماد</span>
             </div>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
               {/* First party */}
               <div style={{ padding: "16px 20px", borderLeft: "1px solid #EEE" }}>
-                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#C8A962", letterSpacing: "0.2em", marginBottom: "8px" }}>الطرف الأول / مقدم الخدمة</div>
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12.5px", fontWeight: 700, color: "#111", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#F0B100", letterSpacing: "0.2em", marginBottom: "8px" }}>الطرف الأول / مقدم الخدمة</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12.5px", fontWeight: 700, color: "#111", marginBottom: "12px" }}>
                   {providerDisplayName}
                   {c.providerOwnerName && (
                     <div style={{ fontSize: "10.5px", color: "#888", fontWeight: 400, marginTop: "1px" }}>{c.providerOwnerName}</div>
                   )}
                 </div>
                 <div style={{ borderBottom: "1px solid #888", marginBottom: "3px", height: "32px" }} />
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA" }}>التوقيع</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA" }}>التوقيع</div>
                 <div style={{ marginTop: "10px", borderBottom: "1px solid #BBB", height: "28px" }} />
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA" }}>التاريخ</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA" }}>التاريخ</div>
                 <div style={{ marginTop: "10px", width: "72px", height: "72px", border: "1px dashed #CCC", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "9px", color: "#CCC" }}>الختم</span>
+                  <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "9px", color: "#CCC" }}>الختم</span>
                 </div>
               </div>
 
               {/* Second party */}
               <div style={{ padding: "16px 20px" }}>
-                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#C8A962", letterSpacing: "0.2em", marginBottom: "8px" }}>الطرف الثاني / العميل</div>
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12.5px", fontWeight: 700, color: "#111", marginBottom: "12px" }}>
+                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "7.5px", color: "#F0B100", letterSpacing: "0.2em", marginBottom: "8px" }}>الطرف الثاني / العميل</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12.5px", fontWeight: 700, color: "#111", marginBottom: "12px" }}>
                   {c.clientType === "institution" ? (c.clientCompany ?? c.clientName) : c.clientName}
                 </div>
                 <div style={{ borderBottom: "1px solid #888", marginBottom: "3px", height: "32px" }} />
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA" }}>التوقيع</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA" }}>التوقيع</div>
                 <div style={{ marginTop: "10px", borderBottom: "1px solid #BBB", height: "28px" }} />
-                <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#AAA" }}>التاريخ</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#AAA" }}>التاريخ</div>
                 <div style={{ marginTop: "10px", width: "72px", height: "72px", border: "1px dashed #CCC", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "9px", color: "#CCC" }}>الختم</span>
+                  <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "9px", color: "#CCC" }}>الختم</span>
                 </div>
               </div>
             </div>
 
             <div style={{ background: "#F8F5EE", padding: "8px 20px", borderTop: "1px solid #E0D8CC" }}>
-              <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "#999", margin: 0, lineHeight: 1.8, textAlign: "center" }}>
+              <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "#999", margin: 0, lineHeight: 1.8, textAlign: "center" }}>
                 هذا العقد محرَّر من نسختين أصليتين متطابقتين لكل طرف نسخة للعمل بها قانوناً · يخضع لنظام المعاملات المدنية السعودي والشريعة الإسلامية
               </p>
             </div>
@@ -401,7 +401,7 @@ export default function ContractPrintView({ contract: c }: Props) {
 
         {/* ══ FOOTER ══ */}
         <div style={{
-          borderTop: "2px solid #C8A962", padding: "10px 40px",
+          borderTop: "2px solid #F0B100", padding: "10px 40px",
           display: "flex", justifyContent: "space-between", alignItems: "center",
           position: "relative", zIndex: 1, background: "#FAFAF8",
         }}>
@@ -410,7 +410,7 @@ export default function ContractPrintView({ contract: c }: Props) {
           <div style={{ fontFamily: "Space Mono, monospace", fontSize: "8px", color: "#BBB", textAlign: "center" }}>
           {c.providerEmail ?? "info@solimanx.com"} · {c.providerPhone ?? "+201007835547"}
           </div>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", color: "#C8A962", fontWeight: 600 }}>{c.number}</div>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", color: "#F0B100", fontWeight: 600 }}>{c.number}</div>
         </div>
 
       </div>

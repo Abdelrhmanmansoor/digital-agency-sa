@@ -132,7 +132,7 @@ export default function WebsitePreview({ url, title, description, className = ""
             <div className="text-center">
               <div
                 className="w-12 h-12 mx-auto mb-3 rounded-full border-2 border-t-transparent animate-spin"
-                style={{ borderColor: "rgba(200, 169, 98, 0.3)", borderTopColor: "#C8A962" }}
+                style={{ borderColor: "rgba(240,177,0, 0.3)", borderTopColor: "#F0B100" }}
               />
               <p className="text-xs text-white/40">جاري تحميل المعاينة...</p>
             </div>
@@ -145,8 +145,8 @@ export default function WebsitePreview({ url, title, description, className = ""
             <div
               className="w-16 h-16 mb-4 rounded-2xl flex items-center justify-center"
               style={{
-                background: "linear-gradient(135deg, rgba(200,169,98,0.1) 0%, rgba(200,169,98,0.05) 100%)",
-                border: "1px solid rgba(200,169,98,0.2)",
+                background: "linear-gradient(135deg, rgba(240,177,0,0.1) 0%, rgba(240,177,0,0.05) 100%)",
+                border: "1px solid rgba(240,177,0,0.2)",
               }}
             >
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" className="text-amber-500">
@@ -204,9 +204,9 @@ export default function WebsitePreview({ url, title, description, className = ""
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:scale-105"
             style={{
-              background: "linear-gradient(135deg, #C8A962 0%, #B8944F 100%)",
+              background: "linear-gradient(135deg, #F0B100 0%, #B8944F 100%)",
               color: "#0A0A0A",
-              boxShadow: "0 10px 30px rgba(200, 169, 98, 0.4)",
+              boxShadow: "0 10px 30px rgba(240,177,0, 0.4)",
             }}
           >
             <span>زيارة الموقع</span>

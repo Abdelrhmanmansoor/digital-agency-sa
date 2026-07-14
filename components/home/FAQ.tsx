@@ -90,7 +90,7 @@ export default function FAQ() {
           left: isRTL ? "auto" : 0,
           right: isRTL ? 0 : "auto",
           width:"3px",
-          background:"linear-gradient(to bottom, transparent, rgba(189,238,99,0.15) 30%, rgba(189,238,99,0.15) 70%, transparent)",
+          background:"linear-gradient(to bottom, transparent, rgba(240,177,0,0.15) 30%, rgba(240,177,0,0.15) 70%, transparent)",
           pointerEvents:"none",
         }}
       />
@@ -105,7 +105,7 @@ export default function FAQ() {
           </div>
           <h2
             style={{
-              fontFamily:"'Zain', sans-serif",
+              fontFamily:"'ThmanyahSans', 'Zain', sans-serif",
               fontSize:"clamp(30px, 4.5vw, 56px)",
               fontWeight:800, color:"#FFFFFF", lineHeight:1.1,
             }}
@@ -163,7 +163,7 @@ export default function FAQ() {
                     </span>
                     <span
                       style={{
-                        fontFamily:"'Zain', sans-serif",
+                        fontFamily:"'ThmanyahSans', 'Zain', sans-serif",
                         fontSize:"17px",
                         fontWeight: isOpen ? 700 : 600,
                         color: isOpen ? "#FAFAF7" : "rgba(255,255,255,0.75)",
@@ -185,7 +185,7 @@ export default function FAQ() {
                       borderColor: isOpen ? "var(--lime)" : "rgba(255,255,255,0.12)",
                       display:"flex", alignItems:"center", justifyContent:"center",
                       flexShrink:0,
-                      background: isOpen ? "rgba(189,238,99,0.1)" : "transparent",
+                      background: isOpen ? "rgba(240,177,0,0.1)" : "transparent",
                       transition:"all 0.3s ease",
                     }}
                   >
@@ -239,8 +239,8 @@ export default function FAQ() {
             alignItems:"center",
             justifyContent:"space-between",
             padding:"28px 32px",
-            background:"rgba(189,238,99,0.04)",
-            border:"1px solid rgba(189,238,99,0.12)",
+            background:"rgba(240,177,0,0.04)",
+            border:"1px solid rgba(240,177,0,0.12)",
             borderRadius:"16px",
             flexWrap:"wrap",
             gap:"20px",
@@ -248,7 +248,7 @@ export default function FAQ() {
           dir={isRTL ? "rtl" : "ltr"}
         >
           <div>
-            <div style={{ fontFamily:"'Zain', sans-serif", fontSize:"17px", fontWeight:700, color:"#FAFAF7", marginBottom:"4px" }}>
+            <div style={{ fontFamily:"'ThmanyahSans', 'Zain', sans-serif", fontSize:"17px", fontWeight:700, color:"#FAFAF7", marginBottom:"4px" }}>
               {locale === "ar" ? "لم تجد إجابتك؟" : locale === "fr" ? "Vous n'avez pas trouvé votre réponse?" : "Didn't find your answer?"}
             </div>
             <div style={{ fontSize:"13px", color:"rgba(255,255,255,0.38)" }}>

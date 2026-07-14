@@ -150,7 +150,7 @@ export default function EditContractPage() {
   const inp: React.CSSProperties = {
     width: "100%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)",
     borderRadius: "8px", padding: "10px 14px", color: "#FAFAF7",
-    fontFamily: "'Zain', sans-serif", fontSize: "14px", boxSizing: "border-box", outline: "none",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", boxSizing: "border-box", outline: "none",
   };
   const lbl: React.CSSProperties = {
     display: "block", fontSize: "11px", color: "rgba(255,255,255,0.4)",
@@ -161,15 +161,15 @@ export default function EditContractPage() {
     borderRadius: "14px", padding: "24px 28px", marginBottom: "20px",
   };
   const secTitle: React.CSSProperties = {
-    fontSize: "15px", fontWeight: 700, color: "#C8A962", marginBottom: "16px",
-    fontFamily: "'Zain', sans-serif", display: "flex", alignItems: "center", gap: "8px",
+    fontSize: "15px", fontWeight: 700, color: "#F0B100", marginBottom: "16px",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif", display: "flex", alignItems: "center", gap: "8px",
   };
   const typeBtn = (active: boolean): React.CSSProperties => ({
     padding: "10px 14px", borderRadius: "10px", cursor: "pointer", fontSize: "13px",
-    fontWeight: 600, fontFamily: "'Zain', sans-serif",
-    border: `2px solid ${active ? "#C8A962" : "rgba(255,255,255,0.08)"}`,
-    background: active ? "rgba(200,169,98,0.12)" : "rgba(255,255,255,0.03)",
-    color: active ? "#C8A962" : "rgba(255,255,255,0.6)",
+    fontWeight: 600, fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
+    border: `2px solid ${active ? "#F0B100" : "rgba(255,255,255,0.08)"}`,
+    background: active ? "rgba(240,177,0,0.12)" : "rgba(255,255,255,0.03)",
+    color: active ? "#F0B100" : "rgba(255,255,255,0.6)",
   });
 
   if (loading) {
@@ -186,7 +186,7 @@ export default function EditContractPage() {
   return (
     <div>
       <AdminSidebar />
-      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'Zain', sans-serif", direction: "rtl" }}>
+      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", direction: "rtl" }}>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
           <div>
@@ -194,8 +194,8 @@ export default function EditContractPage() {
             <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.35)", margin: "4px 0 0", fontFamily: "Space Mono, monospace" }}>وفق نظام المعاملات المدنية السعودي</p>
           </div>
           <div style={{ display: "flex", gap: "12px" }}>
-            <button onClick={() => router.back()} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.45)", borderRadius: "10px", padding: "11px 22px", fontSize: "14px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>إلغاء</button>
-            <button onClick={handleSave} disabled={saving} style={{ background: "#C8A962", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "11px 28px", fontSize: "15px", fontWeight: 700, cursor: saving ? "not-allowed" : "pointer", fontFamily: "'Zain', sans-serif", opacity: saving ? 0.7 : 1 }}>
+            <button onClick={() => router.back()} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.45)", borderRadius: "10px", padding: "11px 22px", fontSize: "14px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>إلغاء</button>
+            <button onClick={handleSave} disabled={saving} style={{ background: "#F0B100", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "11px 28px", fontSize: "15px", fontWeight: 700, cursor: saving ? "not-allowed" : "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", opacity: saving ? 0.7 : 1 }}>
               {saving ? "جارٍ الحفظ..." : "حفظ التعديلات"}
             </button>
           </div>
@@ -203,7 +203,7 @@ export default function EditContractPage() {
 
         {/* Type */}
         <div style={sec}>
-          <div style={secTitle}><span style={{ background: "#C8A962", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>١</span> نوع العقد والحالة</div>
+          <div style={secTitle}><span style={{ background: "#F0B100", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>١</span> نوع العقد والحالة</div>
           <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginBottom: "14px" }}>
             {([["service-agreement", "خدمات"], ["maintenance", "صيانة"], ["marketing", "تسويق"], ["custom", "مخصص"]] as const).map(([val, lbl2]) => (
               <button key={val} onClick={() => setType(val)} style={typeBtn(type === val)}>{lbl2}</button>
@@ -222,7 +222,7 @@ export default function EditContractPage() {
 
         {/* Provider */}
         <div style={sec}>
-          <div style={secTitle}><span style={{ background: "#C8A962", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٢</span> الطرف الأول — مقدم الخدمة</div>
+          <div style={secTitle}><span style={{ background: "#F0B100", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٢</span> الطرف الأول — مقدم الخدمة</div>
           <div style={{ display: "flex", gap: "8px", marginBottom: "18px" }}>
             {([["institution", "مؤسسة / شركة"], ["individual-saudi", "فرد سعودي"], ["individual-expat", "مقيم / غير سعودي"]] as const).map(([val, label]) => (
               <button key={val} onClick={() => setProviderType(val)} style={{ ...typeBtn(providerType === val), flex: 1, fontSize: "12px" }}>{label}</button>
@@ -264,7 +264,7 @@ export default function EditContractPage() {
 
         {/* Client */}
         <div style={sec}>
-          <div style={secTitle}><span style={{ background: "#C8A962", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٣</span> الطرف الثاني — العميل</div>
+          <div style={secTitle}><span style={{ background: "#F0B100", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٣</span> الطرف الثاني — العميل</div>
           <div style={{ display: "flex", gap: "8px", marginBottom: "18px" }}>
             {([["individual", "فرد"], ["institution", "مؤسسة / شركة"]] as const).map(([val, label]) => (
               <button key={val} onClick={() => setClientType(val)} style={{ ...typeBtn(clientType === val), minWidth: "120px" }}>{label}</button>
@@ -293,7 +293,7 @@ export default function EditContractPage() {
 
         {/* Service */}
         <div style={sec}>
-          <div style={secTitle}><span style={{ background: "#C8A962", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٤</span> موضوع العقد</div>
+          <div style={secTitle}><span style={{ background: "#F0B100", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٤</span> موضوع العقد</div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px", marginBottom: "14px" }}>
             <div><label style={lbl}>عنوان الخدمة بالعربي</label><input value={serviceTitleAr} onChange={e => setServiceTitleAr(e.target.value)} style={inp} /></div>
             <div><label style={lbl}>Service Title (English)</label><input value={serviceTitle} onChange={e => setServiceTitle(e.target.value)} style={{ ...inp, direction: "ltr", fontFamily: "Space Mono, monospace", fontSize: "12px" }} /></div>
@@ -306,7 +306,7 @@ export default function EditContractPage() {
 
         {/* Financial */}
         <div style={sec}>
-          <div style={secTitle}><span style={{ background: "#C8A962", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٥</span> القيمة المالية وشروط الدفع</div>
+          <div style={secTitle}><span style={{ background: "#F0B100", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٥</span> القيمة المالية وشروط الدفع</div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "14px" }}>
             <div><label style={lbl}>المبلغ الإجمالي (ريال)</label><input type="number" value={totalAmount} onChange={e => setTotalAmount(e.target.value)} style={{ ...inp, direction: "ltr", fontFamily: "Space Mono, monospace" }} /></div>
             <div>
@@ -334,7 +334,7 @@ export default function EditContractPage() {
 
         {/* Timeline */}
         <div style={sec}>
-          <div style={secTitle}><span style={{ background: "#C8A962", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٦</span> المدة والتسليمات</div>
+          <div style={secTitle}><span style={{ background: "#F0B100", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٦</span> المدة والتسليمات</div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "14px", marginBottom: "18px" }}>
             <div><label style={lbl}>تاريخ البدء</label><input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} style={inp} /></div>
             <div><label style={lbl}>مدة التنفيذ (أيام عمل)</label><input type="number" value={deliveryDays} onChange={e => setDeliveryDays(e.target.value)} style={{ ...inp, direction: "ltr", fontFamily: "Space Mono, monospace" }} /></div>
@@ -346,14 +346,14 @@ export default function EditContractPage() {
               <button onClick={() => removeDeliverable(i)} disabled={deliverables.length === 1} style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.15)", color: "#EF4444", borderRadius: "8px", padding: "0 13px", cursor: deliverables.length === 1 ? "not-allowed" : "pointer", opacity: deliverables.length === 1 ? 0.3 : 1, fontSize: "16px", flexShrink: 0 }}>×</button>
             </div>
           ))}
-          <button onClick={addDeliverable} style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.45)", borderRadius: "8px", padding: "9px 18px", fontSize: "13px", cursor: "pointer", fontFamily: "'Zain', sans-serif", width: "100%", marginTop: "4px" }}>
+          <button onClick={addDeliverable} style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(255,255,255,0.14)", color: "rgba(255,255,255,0.45)", borderRadius: "8px", padding: "9px 18px", fontSize: "13px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", width: "100%", marginTop: "4px" }}>
             + إضافة تسليم
           </button>
         </div>
 
         {/* Legal */}
         <div style={sec}>
-          <div style={secTitle}><span style={{ background: "#C8A962", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٧</span> الاختصاص القضائي</div>
+          <div style={secTitle}><span style={{ background: "#F0B100", borderRadius: "50%", width: 22, height: 22, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#0A0A0A", fontFamily: "Space Mono, monospace" }}>٧</span> الاختصاص القضائي</div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
             <div><label style={lbl}>المدينة / الاختصاص</label><input value={jurisdiction} onChange={e => setJurisdiction(e.target.value)} style={inp} /></div>
             <div>
@@ -367,8 +367,8 @@ export default function EditContractPage() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", paddingBottom: "40px" }}>
-          <button onClick={() => router.back()} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.45)", borderRadius: "10px", padding: "12px 24px", fontSize: "14px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>إلغاء</button>
-          <button onClick={handleSave} disabled={saving} style={{ background: "#C8A962", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 32px", fontSize: "16px", fontWeight: 700, cursor: saving ? "not-allowed" : "pointer", fontFamily: "'Zain', sans-serif", opacity: saving ? 0.7 : 1 }}>
+          <button onClick={() => router.back()} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.45)", borderRadius: "10px", padding: "12px 24px", fontSize: "14px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>إلغاء</button>
+          <button onClick={handleSave} disabled={saving} style={{ background: "#F0B100", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 32px", fontSize: "16px", fontWeight: 700, cursor: saving ? "not-allowed" : "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", opacity: saving ? 0.7 : 1 }}>
             {saving ? "جارٍ الحفظ..." : "حفظ التعديلات"}
           </button>
         </div>

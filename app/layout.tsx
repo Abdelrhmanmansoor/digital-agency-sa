@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "ربط تابي وتمارا",
     "شركة تصميم متجر سلة الرياض",
   ],
-  metadataBase: new URL("https://www.solimanx.com"),
+  metadataBase: new URL("https://tf1one.com"),
   robots: { index: true, follow: true },
 };
 
@@ -42,9 +42,9 @@ const LOCAL_BUSINESS_SCHEMA = {
   alternateName: ["Salla Store Design", "وكالة تسويق رقمي في السعودية"],
   description:
     "متخصصون في تصميم متجر سلة وزد احترافي، تصميم مواقع مكاتب المحاماة، تسويق رقمي، هوية بصرية، SEO، إعلانات ممولة سناب وجوجل وتيك توك، إدارة حسابات سوشيال ميديا، موشن جرافيك، ربط بوابات الدفع تابي وتمارا وSTC Pay.",
-  url: "https://www.solimanx.com",
+  url: "https://tf1one.com",
   telephone: "+201007835547",
-  email: "info@digitalagency.sa",
+  email: "mansoor77soliman@gmail.com",
   address: {
     "@type": "PostalAddress",
     addressCountry: "SA",
@@ -135,9 +135,9 @@ const LOCAL_BUSINESS_SCHEMA = {
     closes: "23:00",
   },
   sameAs: [
-    "https://www.instagram.com/digitalagencysa",
-    "https://twitter.com/digitalagencysa",
-    "https://www.snapchat.com/add/digitalagencysa",
+    "https://www.instagram.com/amdesign.ksa/",
+    "https://x.com/am_designing",
+    "https://www.tiktok.com/@amdesigne.sa",
   ],
 };
 
@@ -145,8 +145,8 @@ const WEBSITE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "تصميم متجر سلة وتسويق رقمي في السعودية",
-  url: "https://www.solimanx.com",
-  description: "متخصصون في تصميم متجر سلة وزد، تصميم موقع مكتب محاماة، تسويق رقمي بالرياض",
+  url: "https://tf1one.com",
+  description: "متخصصون في تصميم متجر سلة وزد، تصميم مواقع احترافية، وتسويق رقمي داخل السعودية",
   inLanguage: ["ar", "en", "fr"],
   potentialAction: {
     "@type": "SearchAction",
@@ -168,6 +168,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="icon" href="/logo.png" type="image/png" />
         <link
           href="https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
           rel="stylesheet"

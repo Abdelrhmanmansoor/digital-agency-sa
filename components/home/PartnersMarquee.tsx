@@ -107,8 +107,8 @@ export default function PartnersMarquee() {
         background: "#0A0A0A",
         padding: "80px 0",
         overflow: "hidden",
-        borderTop: "1px solid rgba(200,169,98,0.08)",
-        borderBottom: "1px solid rgba(200,169,98,0.08)",
+        borderTop: "1px solid rgba(240,177,0,0.08)",
+        borderBottom: "1px solid rgba(240,177,0,0.08)",
         position: "relative",
       }}
     >
@@ -145,7 +145,7 @@ export default function PartnersMarquee() {
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(200,169,98,0.03) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(240,177,0,0.03) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
@@ -158,7 +158,7 @@ export default function PartnersMarquee() {
               flex: 1,
               maxWidth: "120px",
               height: "1px",
-              background: "linear-gradient(to right, transparent, rgba(200,169,98,0.3))",
+              background: "linear-gradient(to right, transparent, rgba(240,177,0,0.3))",
             }}
           />
           <div
@@ -167,7 +167,7 @@ export default function PartnersMarquee() {
               fontSize: "11px",
               letterSpacing: "0.4em",
               textTransform: "uppercase",
-              color: "rgba(200,169,98,0.55)",
+              color: "rgba(240,177,0,0.55)",
               whiteSpace: "nowrap",
             }}
           >
@@ -178,7 +178,7 @@ export default function PartnersMarquee() {
               flex: 1,
               maxWidth: "120px",
               height: "1px",
-              background: "linear-gradient(to left, transparent, rgba(200,169,98,0.3))",
+              background: "linear-gradient(to left, transparent, rgba(240,177,0,0.3))",
             }}
           />
         </div>
@@ -261,15 +261,15 @@ export default function PartnersMarquee() {
         maxWidth: "1400px", margin: "0 auto 28px", padding: "0 40px",
         display: "flex", alignItems: "center", gap: "20px",
       }}>
-        <div style={{ flex: 1, height: "1px", background: "rgba(200,169,98,0.08)" }} />
+        <div style={{ flex: 1, height: "1px", background: "rgba(240,177,0,0.08)" }} />
         <span style={{
           fontFamily: "Space Mono, monospace", fontSize: "9px",
           letterSpacing: "0.3em", textTransform: "uppercase",
-          color: "rgba(200,169,98,0.3)", whiteSpace: "nowrap",
+          color: "rgba(240,177,0,0.3)", whiteSpace: "nowrap",
         }}>
           PLATFORMS &amp; INTEGRATIONS
         </span>
-        <div style={{ flex: 1, height: "1px", background: "rgba(200,169,98,0.08)" }} />
+        <div style={{ flex: 1, height: "1px", background: "rgba(240,177,0,0.08)" }} />
       </div>
 
       {/* Row 3 → (platforms & payment logos) */}

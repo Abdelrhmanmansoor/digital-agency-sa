@@ -103,7 +103,7 @@ export default function BlogPreview() {
             </div>
             <h2
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "clamp(32px, 4vw, 52px)",
                 fontWeight: 700,
                 color: "#0A0A0A",
@@ -131,7 +131,7 @@ export default function BlogPreview() {
                 transition: "all 0.3s ease",
                 whiteSpace: "nowrap",
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#C8A962"; e.currentTarget.style.color = "#C8A962"; }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#F0B100"; e.currentTarget.style.color = "#F0B100"; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E8E6E1"; e.currentTarget.style.color = "#0A0A0A"; }}
             >
               {isRTL ? "اقرأ جميع المقالات ←" : "Read All Articles →"}
@@ -179,7 +179,7 @@ export default function BlogPreview() {
 
             <h3
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "clamp(20px, 2vw, 28px)",
                 fontWeight: 700,
                 color: "#0A0A0A",
@@ -205,7 +205,7 @@ export default function BlogPreview() {
                     fontSize: "12px",
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
-                    color: "#C8A962",
+                    color: "#F0B100",
                     cursor: "pointer",
                   }}
                 >
@@ -248,7 +248,7 @@ export default function BlogPreview() {
 
                 <h3
                   style={{
-                    fontFamily: "'Zain', sans-serif",
+                    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                     fontSize: "17px",
                     fontWeight: 700,
                     color: "#0A0A0A",
@@ -257,7 +257,7 @@ export default function BlogPreview() {
                     cursor: "pointer",
                     transition: "color 0.2s",
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = "#C8A962"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "#F0B100"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.color = "#0A0A0A"; }}
                 >
                   {isRTL ? post.titleAr : post.titleEn}
@@ -274,7 +274,7 @@ export default function BlogPreview() {
                         fontSize: "11px",
                         letterSpacing: "0.08em",
                         textTransform: "uppercase",
-                        color: "#C8A962",
+                        color: "#F0B100",
                         cursor: "pointer",
                       }}
                     >

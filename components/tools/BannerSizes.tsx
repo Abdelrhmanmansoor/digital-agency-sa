@@ -57,11 +57,11 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
             onClick={() => setActiveCategory(cat.category)}
             style={{
               padding: "10px 24px",
-              background: activeCategory === cat.category ? "#C8A962" : "transparent",
+              background: activeCategory === cat.category ? "#F0B100" : "transparent",
               border: "1px solid",
-              borderColor: activeCategory === cat.category ? "#C8A962" : "#E8E6E1",
+              borderColor: activeCategory === cat.category ? "#F0B100" : "#E8E6E1",
               color: activeCategory === cat.category ? "#0A0A0A" : "#8C8C7A",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "14px",
               fontWeight: activeCategory === cat.category ? 600 : 400,
               cursor: "pointer",
@@ -88,13 +88,13 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
               border: "1px solid #E8E6E1",
               transition: "border-color 0.2s",
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#C8A962"; }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#F0B100"; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E8E6E1"; }}
           >
             <div>
               <div
                 style={{
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                   fontSize: "15px",
                   fontWeight: 600,
                   color: "#0A0A0A",
@@ -108,7 +108,7 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
                   fontSize: "12px",
                   color: "#8C8C7A",
                   lineHeight: 1.6,
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 }}
               >
                 {isRTL ? item.tips : item.tipsEn}
@@ -121,7 +121,7 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
                   fontFamily: "Space Mono, monospace",
                   fontSize: "18px",
                   fontWeight: 700,
-                  color: "#C8A962",
+                  color: "#F0B100",
                   lineHeight: 1,
                 }}
               >
@@ -160,11 +160,11 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
                   style={{
                     padding: "6px 14px",
                     background: "transparent",
-                    border: "1px solid rgba(200,169,98,0.3)",
+                    border: "1px solid rgba(240,177,0,0.3)",
                     cursor: "pointer",
                     fontSize: "11px",
                     fontFamily: "Space Mono",
-                    color: "#C8A962",
+                    color: "#F0B100",
                     textDecoration: "none",
                     textAlign: "center",
                     textTransform: "uppercase",
@@ -172,7 +172,7 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
                     transition: "all 0.2s",
                     whiteSpace: "nowrap",
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(200,169,98,0.1)"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(240,177,0,0.1)"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; }}
                 >
                   Canva ↗
@@ -188,11 +188,11 @@ export default function BannerSizes({ onClose }: { onClose: () => void }) {
         style={{
           marginTop: "20px",
           padding: "16px",
-          background: "rgba(200,169,98,0.08)",
-          border: "1px solid rgba(200,169,98,0.2)",
+          background: "rgba(240,177,0,0.08)",
+          border: "1px solid rgba(240,177,0,0.2)",
           fontSize: "13px",
           color: "#8C8C7A",
-          fontFamily: "'Zain', sans-serif",
+          fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
           lineHeight: 1.7,
         }}
       >

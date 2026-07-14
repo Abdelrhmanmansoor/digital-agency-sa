@@ -41,7 +41,7 @@ export default function CTASection() {
   return (
     <section
       id="contact"
-      style={{ background:"#0A0A0A", padding:"140px 0", overflow:"hidden", position:"relative" }}
+      style={{ background:"#FFFFFF", padding:"140px 0", overflow:"hidden", position:"relative" }}
     >
       {/* Horizontal lime beam */}
       <div
@@ -49,7 +49,7 @@ export default function CTASection() {
         style={{
           position:"absolute", top:"50%", left:0, right:0,
           height:"1px",
-          background:"linear-gradient(to right, transparent 0%, rgba(189,238,99,0.0) 20%, rgba(189,238,99,0.15) 50%, rgba(189,238,99,0.0) 80%, transparent 100%)",
+          background:"linear-gradient(to right, transparent 0%, rgba(240,177,0,0.0) 20%, rgba(240,177,0,0.18) 50%, rgba(240,177,0,0.0) 80%, transparent 100%)",
           transform:"translateY(-50%)",
           pointerEvents:"none",
         }}
@@ -64,7 +64,7 @@ export default function CTASection() {
           fontFamily:"Space Mono, monospace",
           fontSize:"clamp(80px, 15vw, 220px)",
           fontWeight:900,
-          color:"rgba(255,255,255,0.015)",
+          color:"rgba(0,0,0,0.03)",
           letterSpacing:"-0.04em",
           whiteSpace:"nowrap",
           pointerEvents:"none",
@@ -96,18 +96,18 @@ export default function CTASection() {
             dir={isRTL ? "rtl" : "ltr"}
           >
             {/* Section label */}
-            <div style={{ display:"inline-flex", alignItems:"center", gap:"8px", background:"rgba(189,238,99,0.08)", border:"1px solid rgba(189,238,99,0.18)", borderRadius:"100px", padding:"6px 16px", fontSize:"11px", fontFamily:"Space Mono, monospace", letterSpacing:"0.2em", color:"var(--lime)", textTransform:"uppercase", marginBottom:"28px" }}>
-              <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"var(--lime)", display:"inline-block" }} />
+            <div style={{ display:"inline-flex", alignItems:"center", gap:"8px", background:"rgba(240,177,0,0.12)", border:"1px solid rgba(240,177,0,0.25)", borderRadius:"100px", padding:"6px 16px", fontSize:"11px", fontFamily:"Space Mono, monospace", letterSpacing:"0.2em", color:"#F0B100", textTransform:"uppercase", marginBottom:"28px" }}>
+              <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#F0B100", display:"inline-block" }} />
               {isRTL ? "ابدأ الآن" : "Get Started"}
             </div>
 
             {/* Heading */}
             <h2
               style={{
-                fontFamily:"'Zain', sans-serif",
+                fontFamily:"'ThmanyahSans', 'Zain', sans-serif",
                 fontSize:"clamp(42px, 5.5vw, 76px)",
                 fontWeight:800,
-                color:"#FFFFFF",
+                color:"#1A1A1A",
                 lineHeight:1.05,
                 marginBottom:"24px",
                 letterSpacing: isRTL ? "-0.01em" : "-0.03em",
@@ -115,10 +115,10 @@ export default function CTASection() {
             >
               {headingLine1}
               <br />
-              <span style={{ color:"var(--lime)" }}>{headingLine2}</span>
+              <span style={{ color:"#F0B100" }}>{headingLine2}</span>
             </h2>
 
-            <p style={{ color:"rgba(255,255,255,0.42)", fontSize:"17px", lineHeight:1.75, maxWidth:"440px" }}>
+            <p style={{ color:"rgba(26,26,26,0.65)", fontSize:"17px", lineHeight:1.75, maxWidth:"440px" }}>
               {sub}
             </p>
           </div>
@@ -134,8 +134,8 @@ export default function CTASection() {
           >
             <div
               style={{
-                background:"rgba(255,255,255,0.03)",
-                border:"1px solid rgba(255,255,255,0.08)",
+                background:"#FFFFFF",
+                border:"1px solid rgba(0,0,0,0.08)",
                 borderRadius:"24px",
                 padding:"40px 36px",
                 position:"relative",
@@ -143,16 +143,16 @@ export default function CTASection() {
               }}
             >
               {/* Green top accent */}
-              <div style={{ position:"absolute", top:0, left:0, right:0, height:"2px", background:"linear-gradient(to right, transparent, rgba(163,255,18,0.6), transparent)" }} />
+              <div style={{ position:"absolute", top:0, left:0, right:0, height:"2px", background:"linear-gradient(to right, transparent, rgba(240,177,0,0.6), transparent)" }} />
 
               {/* Reply-time badge */}
               <div style={{
                 display:"inline-flex", alignItems:"center", gap:"6px",
-                background:"rgba(163,255,18,0.08)", border:"1px solid rgba(163,255,18,0.2)",
+                background:"rgba(240,177,0,0.12)", border:"1px solid rgba(240,177,0,0.3)",
                 borderRadius:"100px", padding:"5px 14px", marginBottom:"20px",
               }}>
-                <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#A3FF12", animation:"ctaPulse 2s infinite" }} />
-                <span style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", letterSpacing:"0.15em", textTransform:"uppercase", color:"#A3FF12" }}>
+                <span style={{ width:"6px", height:"6px", borderRadius:"50%", background:"#F0B100", animation:"ctaPulse 2s infinite" }} />
+                <span style={{ fontFamily:"Space Mono, monospace", fontSize:"10px", letterSpacing:"0.15em", textTransform:"uppercase", color:"#F0B100" }}>
                   {isRTL ? "رد خلال أقل من ساعة" : "Reply in under 1 hour"}
                 </span>
               </div>
@@ -180,7 +180,7 @@ export default function CTASection() {
               </a>
 
               {/* Divider */}
-              <div style={{ borderTop:"1px solid rgba(255,255,255,0.06)", marginBottom:"24px" }} />
+              <div style={{ borderTop:"1px solid rgba(0,0,0,0.08)", marginBottom:"24px" }} />
 
               {/* Contact pills */}
               <div style={{ display:"flex", flexDirection:"column", gap:"10px" }}>
@@ -203,14 +203,14 @@ export default function CTASection() {
                     rel="noopener noreferrer"
                     style={{
                       display:"flex", alignItems:"center", gap:"10px",
-                      color:"rgba(255,255,255,0.4)", fontSize:"13px",
+                      color:"rgba(26,26,26,0.65)", fontSize:"13px",
                       fontFamily:"Space Mono, monospace",
                       textDecoration:"none",
                       padding:"10px 0",
                       transition:"color 0.2s",
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = "var(--lime)"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = "#F0B100"; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(26,26,26,0.65)"; }}
                   >
                     {item.svg}
                     {item.label}
@@ -223,19 +223,19 @@ export default function CTASection() {
                 style={{
                   marginTop:"20px",
                   paddingTop:"20px",
-                  borderTop:"1px solid rgba(255,255,255,0.05)",
-                  display:"flex",
-                  alignItems:"center",
-                  gap:"8px",
-                }}
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0 }}>
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
-                </svg>
-                <span style={{ fontSize:"12px", color:"rgba(255,255,255,0.25)", fontFamily:"Space Mono, monospace", letterSpacing:"0.08em" }}>
-                  {isRTL ? "بياناتك آمنة 100% — بدون تسليم بيانات لأطراف ثالثة" : "100% secure — no data shared with third parties"}
-                </span>
-              </div>
+                borderTop:"1px solid rgba(0,0,0,0.08)",
+                display:"flex",
+                alignItems:"center",
+                gap:"8px",
+              }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(26,26,26,0.35)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink:0 }}>
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+              <span style={{ fontSize:"12px", color:"rgba(26,26,26,0.5)", fontFamily:"Space Mono, monospace", letterSpacing:"0.08em" }}>
+                {isRTL ? "بياناتك آمنة 100% — بدون تسليم بيانات لأطراف ثالثة" : "100% secure — no data shared with third parties"}
+              </span>
+            </div>
             </div>
           </div>
         </div>
@@ -247,7 +247,7 @@ export default function CTASection() {
             display:"grid",
             gridTemplateColumns:"repeat(4, 1fr)",
             gap:"0",
-            border:"1px solid rgba(255,255,255,0.06)",
+            border:"1px solid rgba(0,0,0,0.08)",
             borderRadius:"20px",
             overflow:"hidden",
             opacity: visible ? 1 : 0,
@@ -259,25 +259,25 @@ export default function CTASection() {
           {[
             {
               metric: isRTL ? "+300" : "300+",
-              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3FF12" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>,
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0B100" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>,
               title: isRTL ? "+300 عميل سعيد" : "300+ Happy Clients",
               sub: isRTL ? "في السعودية ودول الخليج" : "Across Saudi Arabia & Gulf",
             },
             {
               metric: "35%",
-              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>,
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2E6BFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>,
               title: isRTL ? "متوسط زيادة المبيعات 35%" : "35% Avg Sales Increase",
               sub: isRTL ? "خلال أول 30 يوم من التسليم" : "Within first 30 days of delivery",
             },
             {
               metric: "<1h",
-              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3FF12" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0B100" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>,
               title: isRTL ? "رد خلال أقل من ساعة" : "Reply in Under 1 Hour",
               sub: isRTL ? "فريقنا متاح على مدار الساعة" : "Our team is always available",
             },
             {
               metric: "5★",
-              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="#C8A962"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>,
+              svg: <svg width="20" height="20" viewBox="0 0 24 24" fill="#F0B100"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>,
               title: isRTL ? "تقييم 5 نجوم دائماً" : "Always 5-Star Rated",
               sub: isRTL ? "رضا 98% من عملائنا" : "98% client satisfaction",
             },
@@ -286,25 +286,25 @@ export default function CTASection() {
               key={i}
               style={{
                 padding:"28px 24px",
-                borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                background:"rgba(255,255,255,0.015)",
+                borderLeft: i > 0 ? "1px solid rgba(0,0,0,0.08)" : "none",
+                background:"#FFFFFF",
                 transition:"background 0.2s",
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.015)"; }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = "#FAFAFA"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "#FFFFFF"; }}
             >
               <div style={{ marginBottom:"10px" }}>{item.svg}</div>
               <div style={{
                 fontFamily:"Space Mono, monospace", fontSize:"22px",
-                fontWeight:700, color: i % 2 === 0 ? "#A3FF12" : "#C8A962",
+                fontWeight:700, color: i % 2 === 0 ? "#F0B100" : "#2E6BFF",
                 lineHeight:1, marginBottom:"6px",
               }}>
                 {(item as {metric?: string}).metric}
               </div>
-              <div style={{ fontFamily:"'Zain', sans-serif", fontSize:"14px", fontWeight:700, color:"#FAFAF7", marginBottom:"3px" }}>
+              <div style={{ fontFamily:"'ThmanyahSans', 'Zain', sans-serif", fontSize:"14px", fontWeight:700, color:"#1A1A1A", marginBottom:"3px" }}>
                 {item.title}
               </div>
-              <div style={{ fontSize:"12px", color:"rgba(255,255,255,0.32)", lineHeight:1.5 }}>
+              <div style={{ fontSize:"12px", color:"rgba(26,26,26,0.6)", lineHeight:1.5 }}>
                 {item.sub}
               </div>
             </div>

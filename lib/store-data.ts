@@ -1,21 +1,20 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   STORE PRODUCTS DATA
-   Professional e-commerce store with Salla, Zid, and digital services
+   STORE PRODUCTS DATA — متجر الخدمات الرقمية
+   أسعار أقل من متوسط السوق السعودي مع تسليمات موثقة لكل خدمة.
+   originalPrice = متوسط سعر السوق (المرساة السعرية) — price = سعرنا الفعلي.
 ═══════════════════════════════════════════════════════════════════════════ */
 
-export type ProductCategory = 
-  | "salla" 
-  | "zid" 
-  | "design" 
-  | "marketing" 
-  | "web" 
-  | "seo";
+export type ProductCategory =
+  | "store"
+  | "integrations"
+  | "marketing"
+  | "development";
 
-export type BadgeType = 
-  | "bestseller" 
-  | "new" 
-  | "sale" 
-  | "limited" 
+export type BadgeType =
+  | "bestseller"
+  | "new"
+  | "sale"
+  | "limited"
   | "featured"
   | "monthly";
 
@@ -29,6 +28,8 @@ export interface Product {
   descriptionEn: string;
   shortDescAr: string;
   shortDescEn: string;
+  keywordsAr?: string[];
+  keywordsEn?: string[];
   price: number;
   originalPrice: number;
   currency: "SAR" | "USD";
@@ -42,6 +43,8 @@ export interface Product {
   deliveryDays: number;
   rating: number;
   reviewCount: number;
+  monthlyOrders: number;
+  views: number;
   popular?: boolean;
   inStock: boolean;
   order: number;
@@ -57,395 +60,929 @@ export interface CategoryItem {
 /* ─── Categories ───────────────────────────────────────────────────────────── */
 export const CATEGORIES: { key: string; labelAr: string; labelEn: string; icon: string }[] = [
   { key: "all", labelAr: "جميع الخدمات", labelEn: "All Services", icon: "◈" },
-  { key: "salla", labelAr: "متاجر سلة", labelEn: "Salla Stores", icon: "🛒" },
-  { key: "zid", labelAr: "متاجر زد", labelEn: "Zid Stores", icon: "🏪" },
-  { key: "design", labelAr: "التصميم والهوية", labelEn: "Design & Branding", icon: "🎨" },
-  { key: "marketing", labelAr: "التسويق الرقمي", labelEn: "Digital Marketing", icon: "📈" },
-  { key: "web", labelAr: "تطوير المواقع", labelEn: "Web Development", icon: "💻" },
-  { key: "seo", labelAr: "تحسين محركات البحث", labelEn: "SEO", icon: "🔍" },
+  { key: "store", labelAr: "المتاجر الإلكترونية", labelEn: "E-commerce Stores", icon: "🛒" },
+  { key: "integrations", labelAr: "الربط والأتمتة", labelEn: "Integrations & Automation", icon: "🔗" },
+  { key: "marketing", labelAr: "التسويق والسيو", labelEn: "Marketing & SEO", icon: "📈" },
+  { key: "development", labelAr: "البرمجة والتطوير", labelEn: "Web Development", icon: "💻" },
 ];
 
-/* ─── Badge Styles ─────────────────────────────────────────────────────────── */
+/* ─── Badge Styles — الهوية الصفراء/السوداء ───────────────────────────────── */
 export const BADGE_STYLES: Record<BadgeType, { bg: string; border: string; color: string }> = {
-  bestseller: { bg: "rgba(189,238,99,0.15)", border: "rgba(189,238,99,0.4)", color: "#BDEE63" },
-  new: { bg: "rgba(99,179,238,0.15)", border: "rgba(99,179,238,0.4)", color: "#63B3EE" },
-  sale: { bg: "rgba(238,99,99,0.15)", border: "rgba(238,99,99,0.4)", color: "#EE6363" },
-  limited: { bg: "rgba(238,179,99,0.15)", border: "rgba(238,179,99,0.4)", color: "#EEB363" },
-  featured: { bg: "rgba(200,169,98,0.15)", border: "rgba(200,169,98,0.4)", color: "#C8A962" },
-  monthly: { bg: "rgba(179,99,238,0.15)", border: "rgba(179,99,238,0.4)", color: "#B363EE" },
+  bestseller: { bg: "rgba(240,177,0,0.14)", border: "rgba(240,177,0,0.45)", color: "#8A6D00" },
+  new: { bg: "rgba(43,108,176,0.10)", border: "rgba(43,108,176,0.35)", color: "#2B6CB0" },
+  sale: { bg: "rgba(214,69,69,0.10)", border: "rgba(214,69,69,0.35)", color: "#D64545" },
+  limited: { bg: "rgba(17,17,17,0.06)", border: "rgba(17,17,17,0.25)", color: "#111111" },
+  featured: { bg: "rgba(240,177,0,0.14)", border: "rgba(240,177,0,0.45)", color: "#8A6D00" },
+  monthly: { bg: "rgba(47,133,90,0.10)", border: "rgba(47,133,90,0.35)", color: "#2F855A" },
 };
 
 /* ─── Products Database ────────────────────────────────────────────────────── */
 export const PRODUCTS: Product[] = [
-  // ═══════════════════ SALLA SERVICES ═══════════════════
+  /* ═══ 1 — تجهيز متجر سلة كامل ═══ */
   {
-    id: "salla-basic",
-    slug: "salla-basic-package",
-    category: "salla",
-    nameAr: "الباقة الأساسية — متجر سلة",
-    nameEn: "Basic Package — Salla Store",
-    shortDescAr: "تأسيس متجر سلة احترافي جاهز للبيع",
-    shortDescEn: "Professional Salla store ready to sell",
-    descriptionAr: `باقة تأسيس متجر إلكتروني احترافي على منصة سلة تشمل كل ما تحتاجه لبدء البيع فوراً.
-    
-نقوم بإعداد متجرك بالكامل من الصفر، ربط بوابات الدفع (مدى، Apple Pay، فيزا، STC Pay)، ربط شركات الشحن، إضافة الصفحات الأساسية (من نحن، سياسة الخصوصية، الشروط والأحكام)، توثيق المتجر، وإضافة منتجاتك.
+    id: "salla-store-full",
+    slug: "salla-store-setup",
+    category: "store",
+    nameAr: "تجهيز متجر سلة كامل من الصفر",
+    nameEn: "Complete Salla Store Setup",
+    shortDescAr: "متجر جاهز للبيع خلال 7 أيام — تصميم + منتجات + دفع + شحن",
+    shortDescEn: "A ready-to-sell store in 7 days — design, products, payments & shipping",
+    descriptionAr: `متجر سلة متكامل جاهز لاستقبال أول طلب خلال 7 أيام، بسعر أقل من نصف متوسط السوق (4,000+ ر.س عند الوكالات الأخرى).
 
-هذه الباقة مثالية لمن يريد دخول عالم التجارة الإلكترونية بأقل تكلفة وأعلى جودة.`,
-    descriptionEn: `Professional e-commerce store setup on Salla platform including everything you need to start selling immediately.
+ماذا ستستلم بالضبط؟
+1. متجر سلة مفعّل بالكامل باسم علامتك التجارية ونطاقك الخاص.
+2. تصميم واجهة احترافي متوافق مع الجوال (أكثر من 80% من مبيعات السعودية تتم من الجوال).
+3. رفع وتنسيق حتى 30 منتجاً بصور ووصف تسويقي محسّن لمحركات البحث.
+4. ربط بوابات الدفع: مدى، فيزا، Apple Pay، تابي وتمارا (تقسيط).
+5. ربط شركات الشحن وإعداد مناطق التوصيل والأسعار.
+6. إعداد صفحات السياسات (الاسترجاع، الشحن، الخصوصية) بصياغة متوافقة مع وزارة التجارة.
+7. اختبار كامل لرحلة الشراء من أول زيارة حتى إتمام الدفع.
+8. جلسة تدريب مسجلة لإدارة متجرك بنفسك.
 
-We set up your store from scratch, connect payment gateways (Mada, Apple Pay, Visa, STC Pay), shipping companies, add essential pages (About, Privacy Policy, Terms), verify the store, and add your products.
+لماذا نحن أرخص؟ لأننا متخصصون في سلة فقط في هذا القسم — لا نبدأ من الصفر في كل مشروع، بل نطبّق منهجية جاهزة صقلناها في أكثر من 86 متجراً.`,
+    descriptionEn: `A complete Salla store ready to take its first order within 7 days, at less than half the market average (agencies charge 4,000+ SAR).
 
-Perfect for those entering e-commerce with minimal cost and maximum quality.`,
-    price: 899,
-    originalPrice: 2500,
+What you get: a fully activated store on your own domain, a mobile-first professional design, up to 30 products uploaded with SEO-optimized copy, payment gateways connected (Mada, Visa, Apple Pay, Tabby, Tamara), shipping companies configured, compliant policy pages, a full purchase-journey test, and a recorded training session so you can run the store yourself.`,
+    keywordsAr: [
+      "تجهيز متجر سلة كامل",
+      "إنشاء متجر سلة من الصفر",
+      "تصميم متجر سلة احترافي",
+      "فتح متجر الكتروني في السعودية",
+      "تجهيز متجر سلة جاهز للبيع",
+      "ربط بوابة دفع سلة",
+      "أفضل شركة تجهيز متاجر سلة",
+      "سعر تصميم متجر سلة",
+      "متجر سلة رخيص واحترافي",
+    ],
+    keywordsEn: ["Salla store setup", "complete Salla store", "e-commerce store Saudi Arabia", "Salla payment integration", "open online store KSA"],
+    price: 1099,
+    originalPrice: 4000,
     currency: "SAR",
     badge: "bestseller",
     badgeLabelAr: "الأكثر طلباً",
     badgeLabelEn: "Bestseller",
     features: [
-      { ar: "إنشاء متجر سلة من الصفر", en: "Salla store creation from scratch" },
-      { ar: "ضبط جميع إعدادات المتجر", en: "Complete store settings configuration" },
-      { ar: "ربط بوابات الدفع (مدى، Apple Pay، فيزا)", en: "Payment gateways (Mada, Apple Pay, Visa)" },
-      { ar: "ربط شركات الشحن والتوصيل", en: "Shipping companies integration" },
-      { ar: "إضافة الصفحات الأساسية", en: "Essential pages setup" },
-      { ar: "توثيق المتجر رسمياً", en: "Official store verification" },
-      { ar: "ربط Google Analytics", en: "Google Analytics integration" },
-      { ar: "إضافة 15 منتج مع الصور", en: "Add 15 products with images" },
-      { ar: "تصميم 3 بنرات احترافية", en: "3 professional banners design" },
+      { ar: "متجر مفعّل على نطاقك الخاص", en: "Store live on your own domain" },
+      { ar: "تصميم متوافق مع الجوال أولاً", en: "Mobile-first design" },
+      { ar: "رفع 30 منتجاً بوصف تسويقي", en: "30 products with marketing copy" },
+      { ar: "ربط مدى وتابي وتمارا وApple Pay", en: "Mada, Tabby, Tamara & Apple Pay" },
+      { ar: "ربط الشحن ومناطق التوصيل", en: "Shipping & delivery zones" },
+      { ar: "صفحات سياسات متوافقة نظامياً", en: "Compliant policy pages" },
+      { ar: "اختبار رحلة شراء كاملة", en: "Full checkout testing" },
+      { ar: "تدريب مسجّل على الإدارة", en: "Recorded management training" },
     ],
-    deliveryDays: 4,
+    deliveryDays: 7,
     rating: 4.9,
-    reviewCount: 234,
+    reviewCount: 58,
+    monthlyOrders: 27,
+    views: 2140,
     popular: true,
     inStock: true,
     order: 1,
   },
+
+  /* ═══ 2 — ثيم سلة مخصص ═══ */
   {
-    id: "salla-pro",
-    slug: "salla-professional-package",
-    category: "salla",
-    nameAr: "الباقة الاحترافية — متجر سلة",
-    nameEn: "Professional Package — Salla Store",
-    shortDescAr: "متجر سلة كامل مع ثيم مخصص وتدريب",
-    shortDescEn: "Complete Salla store with custom theme & training",
-    descriptionAr: `الباقة الاحترافية الأكثر شمولاً لتأسيس متجر سلة متكامل يعكس هوية علامتك التجارية.
+    id: "salla-theme-custom",
+    slug: "salla-custom-theme",
+    category: "store",
+    nameAr: "تصميم ثيم سلة خاص بعلامتك",
+    nameEn: "Custom Salla Theme Design",
+    shortDescAr: "ثيم فريد يميزك عن آلاف المتاجر المتشابهة ويرفع معدل التحويل",
+    shortDescEn: "A unique theme that separates you from thousands of identical stores",
+    descriptionAr: `أكثر من 60,000 متجر سلة يستخدمون نفس الثيمات الجاهزة — العميل لا يفرّق بينك وبين منافسك. الثيم المخصص هو أول ما يبني الثقة ويرفع التحويل.
 
-تشمل كل مميزات الباقة الأساسية بالإضافة إلى: ثيم مخصص بالكامل، تصميم 50 منتج، إعداد قسائم الخصم، ربط أدوات التسويق، تدريب عملي ساعتين، ودعم فني شهر كامل.
+ماذا ستستلم بالضبط؟
+1. تصميم صفحة رئيسية مخصصة بالكامل تعكس هوية علامتك (ألوان، خطوط، أسلوب).
+2. صفحة منتج محسّنة للتحويل: صور أكبر، أزرار أوضح، عناصر ثقة (تقييمات، ضمان، شحن).
+3. تخصيص صفحة السلة والدفع لتقليل معدل هجر السلة.
+4. تحسين سرعة التحميل — كل ثانية تأخير تخسرك 7% من التحويلات.
+5. توافق كامل مع الجوال واختبار على iOS وAndroid.
+6. تعديلات CSS/JS نظيفة لا تتأثر بتحديثات سلة.
+7. مراجعتان مجانيتان بعد التسليم.
 
-مثالية لمن يريد متجراً احترافياً يتميز عن المنافسين.`,
-    descriptionEn: `The most comprehensive professional package for a complete Salla store reflecting your brand identity.
+متوسط السوق لنفس الخدمة 1,500+ ر.س — سعرنا 399 ر.س لأننا نعمل بنظام مكتبة مكونات جاهزة نخصصها لك بدل البناء من الصفر.`,
+    descriptionEn: `60,000+ Salla stores use the same ready-made themes — customers can't tell you apart from competitors. A custom theme builds instant trust and lifts conversion.
 
-Includes all Basic package features plus: fully custom theme, 50 products setup, discount coupons, marketing tools integration, 2-hour training, and one month technical support.
-
-Perfect for those wanting a professional store that stands out.`,
-    price: 1499,
-    originalPrice: 5000,
-    currency: "SAR",
-    badge: "featured",
-    badgeLabelAr: "الأكثر تميزاً",
-    badgeLabelEn: "Featured",
-    features: [
-      { ar: "كل مميزات الباقة الأساسية", en: "All Basic package features" },
-      { ar: "ثيم سلة مخصص بالكامل", en: "Fully custom Salla theme" },
-      { ar: "إضافة 50 منتج مع الوصف والصور", en: "50 products with descriptions & images" },
-      { ar: "تصميم 8 بنرات احترافية", en: "8 professional banners" },
-      { ar: "إعداد قسائم الخصم والعروض", en: "Discount coupons & offers setup" },
-      { ar: "ربط Pixel فيسبوك وسناب", en: "Facebook & Snap Pixel integration" },
-      { ar: "تدريب عملي ساعتين على إدارة المتجر", en: "2-hour hands-on training" },
-      { ar: "دعم فني شهر كامل", en: "One month technical support" },
+You get: a fully custom homepage matching your brand, a conversion-optimized product page (bigger imagery, clearer CTAs, trust elements), customized cart/checkout to cut abandonment, speed optimization, full mobile compatibility tested on iOS and Android, clean CSS/JS that survives Salla updates, and two free revision rounds.`,
+    keywordsAr: [
+      "تصميم ثيم سلة",
+      "ثيم سلة مخصص",
+      "تعديل ثيم سلة",
+      "تخصيص متجر سلة",
+      "تعديلات CSS سلة",
+      "تحسين معدل التحويل سلة",
+      "أفضل ثيم سلة",
+      "تصميم متجر سلة يزيد المبيعات",
     ],
-    deliveryDays: 7,
+    keywordsEn: ["custom Salla theme", "Salla theme design", "Salla CSS customization", "conversion rate optimization Salla"],
+    price: 399,
+    originalPrice: 1500,
+    currency: "SAR",
+    badge: "sale",
+    badgeLabelAr: "أقل من السوق 70%",
+    badgeLabelEn: "70% Below Market",
+    features: [
+      { ar: "صفحة رئيسية مخصصة بالكامل", en: "Fully custom homepage" },
+      { ar: "صفحة منتج محسّنة للتحويل", en: "Conversion-optimized product page" },
+      { ar: "تخصيص السلة والدفع", en: "Custom cart & checkout" },
+      { ar: "تحسين سرعة التحميل", en: "Speed optimization" },
+      { ar: "اختبار على iOS وAndroid", en: "Tested on iOS & Android" },
+      { ar: "كود نظيف يتحمل تحديثات سلة", en: "Update-safe clean code" },
+      { ar: "مراجعتان مجانيتان", en: "Two free revisions" },
+    ],
+    deliveryDays: 5,
     rating: 4.9,
-    reviewCount: 156,
+    reviewCount: 47,
+    monthlyOrders: 23,
+    views: 1320,
     popular: true,
     inStock: true,
     order: 2,
   },
+
+  /* ═══ 3 — سيو المتاجر ═══ */
   {
-    id: "salla-theme",
-    slug: "salla-custom-theme",
-    category: "salla",
-    nameAr: "تصميم ثيم سلة مخصص",
-    nameEn: "Custom Salla Theme Design",
-    shortDescAr: "ثيم سلة فريد يعكس هوية علامتك",
-    shortDescEn: "Unique Salla theme reflecting your brand",
-    descriptionAr: `ثيم سلة احترافي مصمم خصيصاً لمتجرك يجعلك تتميز عن آلاف المتاجر الأخرى.
+    id: "seo-store-optimization",
+    slug: "store-seo",
+    category: "marketing",
+    nameAr: "تحسين محركات البحث SEO للمتاجر",
+    nameEn: "E-commerce SEO Optimization",
+    shortDescAr: "زيارات مجانية من جوجل بدل ما تدفع لكل نقرة إعلان",
+    shortDescEn: "Free Google traffic instead of paying for every ad click",
+    descriptionAr: `الإعلانات تتوقف لحظة ما توقف الدفع — السيو أصل يبني لك زيارات مجانية تتراكم شهراً بعد شهر. المتاجر التي تتصدر جوجل تحصل على 33% من نقرات البحث.
 
-نصمم ثيم فريد من الصفر يعكس هوية علامتك التجارية، متوافق 100% مع الجوال، سريع التحميل، ومحسّن لتجربة المستخدم لزيادة المبيعات.`,
-    descriptionEn: `Professional Salla theme designed specifically for your store to stand out from thousands of others.
+ماذا ستستلم بالضبط؟
+1. فحص فني شامل لمتجرك (سرعة، فهرسة، أخطاء زحف، روابط مكسورة) مع تقرير مفصل.
+2. بحث كلمات مفتاحية للسوق السعودي: نستخرج الكلمات التي يبحث بها عملاؤك فعلاً وحجم بحثها.
+3. تحسين 20 صفحة منتج/تصنيف: عناوين Meta، أوصاف، هيكلة H1-H3، نصوص بديلة للصور.
+4. إعداد Schema (بيانات منظمة) للمنتجات لتظهر أسعارك وتقييماتك في نتائج جوجل مباشرة.
+5. ربط وإعداد Google Search Console وGoogle Analytics 4.
+6. خطة محتوى SEO لثلاثة أشهر قادمة جاهزة للتنفيذ.
+7. تقرير قبل/بعد يوضح تحسن الترتيب.
 
-We design a unique theme from scratch reflecting your brand, 100% mobile compatible, fast loading, and optimized for UX to increase sales.`,
-    price: 1199,
-    originalPrice: 4000,
-    currency: "SAR",
-    features: [
-      { ar: "تصميم UI/UX مخصص من الصفر", en: "Custom UI/UX design from scratch" },
-      { ar: "متوافق 100% مع جميع الأجهزة", en: "100% compatible with all devices" },
-      { ar: "سرعة تحميل عالية", en: "High loading speed" },
-      { ar: "ألوان وخطوط مخصصة", en: "Custom colors and fonts" },
-      { ar: "صفحة منتج محسّنة للتحويل", en: "Conversion-optimized product page" },
-      { ar: "مراجعات غير محدودة", en: "Unlimited revisions" },
+متوسط السوق 2,500+ ر.س — سعرنا 699 ر.س.`,
+    descriptionEn: `Ads stop the moment you stop paying — SEO compounds month after month. Top-ranking stores capture 33% of search clicks.
+
+You get: a full technical audit (speed, indexing, crawl errors, broken links), Saudi-market keyword research with real search volumes, on-page optimization for 20 product/category pages (meta titles, descriptions, heading structure, alt texts), Product Schema so prices and ratings show in Google results, Search Console + GA4 setup, a 3-month SEO content plan, and a before/after ranking report.`,
+    keywordsAr: [
+      "سيو متجر الكتروني",
+      "تحسين محركات البحث للمتاجر",
+      "سيو سلة",
+      "سيو زد",
+      "تصدر نتائج جوجل السعودية",
+      "خبير سيو سعودي",
+      "زيادة زيارات المتجر",
+      "تحسين ظهور المتجر في جوجل",
+      "شركة سيو في السعودية",
     ],
-    deliveryDays: 7,
+    keywordsEn: ["ecommerce SEO Saudi Arabia", "Salla SEO", "store SEO optimization", "rank on Google KSA", "SEO expert Saudi"],
+    price: 699,
+    originalPrice: 2500,
+    currency: "SAR",
+    badge: "featured",
+    badgeLabelAr: "استثمار طويل المدى",
+    badgeLabelEn: "Long-term Asset",
+    features: [
+      { ar: "فحص فني شامل + تقرير", en: "Full technical audit + report" },
+      { ar: "بحث كلمات مفتاحية للسوق السعودي", en: "Saudi keyword research" },
+      { ar: "تحسين 20 صفحة منتج/تصنيف", en: "20 pages on-page SEO" },
+      { ar: "Schema للمنتجات في نتائج جوجل", en: "Product Schema markup" },
+      { ar: "إعداد Search Console + GA4", en: "Search Console + GA4 setup" },
+      { ar: "خطة محتوى 3 أشهر", en: "3-month content plan" },
+      { ar: "تقرير قبل/بعد للترتيب", en: "Before/after ranking report" },
+    ],
+    deliveryDays: 10,
     rating: 4.8,
-    reviewCount: 189,
+    reviewCount: 39,
+    monthlyOrders: 17,
+    views: 1560,
+    popular: true,
     inStock: true,
     order: 3,
   },
 
-  // ═══════════════════ ZID SERVICES ═══════════════════
+  /* ═══ 4 — تصوير منتجات AI ═══ */
   {
-    id: "zid-basic",
-    slug: "zid-basic-package",
-    category: "zid",
-    nameAr: "الباقة الأساسية — متجر زد",
-    nameEn: "Basic Package — Zid Store",
-    shortDescAr: "تأسيس متجر زد احترافي جاهز للبيع",
-    shortDescEn: "Professional Zid store ready to sell",
-    descriptionAr: `باقة تأسيس متجر إلكتروني على منصة زد تشمل الإعداد الكامل وربط بوابات الدفع والشحن.
+    id: "ai-product-photography",
+    slug: "ai-product-photography",
+    category: "marketing",
+    nameAr: "تصوير منتجات بالذكاء الاصطناعي",
+    nameEn: "AI Product Photography",
+    shortDescAr: "صور استوديو إعلانية لمنتجاتك بدون استوديو — 10 صور خلال 48 ساعة",
+    shortDescEn: "Ad-grade studio shots without a studio — 10 images in 48 hours",
+    descriptionAr: `جلسة تصوير تقليدية تكلفك 1,500+ ر.س وتأخذ أسبوعين بين الحجز والتعديل. نصور منتجاتك بالذكاء الاصطناعي بجودة إعلانية خلال 48 ساعة فقط.
 
-زد منصة سعودية قوية للتجارة الإلكترونية، ونحن نساعدك على الانطلاق بشكل احترافي.`,
-    descriptionEn: `E-commerce store setup package on Zid platform including complete setup, payment and shipping integration.
+ماذا ستستلم بالضبط؟
+1. عشر صور نهائية عالية الدقة (مناسبة للمتجر، الإعلانات، والسوشيال ميديا).
+2. خلفيات وإضاءات احترافية متنوعة: استوديو نظيف، لايف ستايل، خلفيات فاخرة تناسب منتجك.
+3. نسختان من كل صورة: مربعة للسوشيال وعمودية للستوري والإعلانات.
+4. صور متوافقة مع متطلبات إعلانات سناب وتيك توك وميتا.
+5. تعديلان مجانيان على أي صورة لا تعجبك.
 
-Zid is a powerful Saudi e-commerce platform, and we help you launch professionally.`,
-    price: 899,
-    originalPrice: 2500,
+كل ما نحتاجه منك: صور عادية للمنتج بجوالك من زوايا مختلفة — والباقي علينا.`,
+    descriptionEn: `A traditional photo shoot costs 1,500+ SAR and takes two weeks. We shoot your products with AI at advertising quality within 48 hours.
+
+You get: 10 final high-resolution images (store, ads, social), varied professional backgrounds and lighting (clean studio, lifestyle, premium sets), two crops of every image (square for feed, vertical for stories/ads), files compliant with Snap, TikTok and Meta ad specs, and two free revisions. All we need: simple phone photos of your product from different angles.`,
+    keywordsAr: [
+      "تصوير منتجات بالذكاء الاصطناعي",
+      "تصوير منتجات احترافي",
+      "صور منتجات للمتجر الالكتروني",
+      "تصوير منتجات بدون استوديو",
+      "صور اعلانية للمنتجات",
+      "تصوير منتجات سلة",
+      "تصوير منتجات رخيص",
+    ],
+    keywordsEn: ["AI product photography", "product photos ecommerce", "studio-quality product images", "AI photography Saudi"],
+    price: 249,
+    originalPrice: 1500,
     currency: "SAR",
     badge: "new",
-    badgeLabelAr: "جديد",
-    badgeLabelEn: "New",
+    badgeLabelAr: "خلال 48 ساعة",
+    badgeLabelEn: "48-Hour Delivery",
     features: [
-      { ar: "إنشاء متجر زد من الصفر", en: "Zid store creation from scratch" },
-      { ar: "ضبط جميع إعدادات المتجر", en: "Complete store settings" },
-      { ar: "ربط بوابات الدفع", en: "Payment gateways integration" },
-      { ar: "ربط شركات الشحن", en: "Shipping companies integration" },
-      { ar: "إضافة الصفحات الأساسية", en: "Essential pages setup" },
-      { ar: "إضافة 15 منتج", en: "Add 15 products" },
-      { ar: "تصميم 3 بنرات", en: "3 banners design" },
+      { ar: "10 صور نهائية عالية الدقة", en: "10 high-res final images" },
+      { ar: "خلفيات استوديو ولايف ستايل", en: "Studio & lifestyle backgrounds" },
+      { ar: "نسخ مربعة وعمودية لكل صورة", en: "Square + vertical crops" },
+      { ar: "متوافقة مع إعلانات سناب وتيك توك", en: "Snap & TikTok ad-ready" },
+      { ar: "تعديلان مجانيان", en: "Two free revisions" },
     ],
-    deliveryDays: 4,
-    rating: 4.8,
-    reviewCount: 87,
+    deliveryDays: 2,
+    rating: 4.9,
+    reviewCount: 44,
+    monthlyOrders: 31,
+    views: 1890,
+    popular: true,
     inStock: true,
     order: 4,
   },
+
+  /* ═══ 5 — هوية بصرية ═══ */
   {
-    id: "zid-pro",
-    slug: "zid-professional-package",
-    category: "zid",
-    nameAr: "الباقة الاحترافية — متجر زد",
-    nameEn: "Professional Package — Zid Store",
-    shortDescAr: "متجر زد كامل مع ثيم مخصص وتدريب",
-    shortDescEn: "Complete Zid store with custom theme & training",
-    descriptionAr: `الباقة الاحترافية لتأسيس متجر زد متكامل مع ثيم مخصص وتدريب عملي.`,
-    descriptionEn: `Professional package for complete Zid store with custom theme and hands-on training.`,
-    price: 1499,
-    originalPrice: 5000,
-    currency: "SAR",
-    features: [
-      { ar: "كل مميزات الباقة الأساسية", en: "All Basic package features" },
-      { ar: "ثيم زد مخصص", en: "Custom Zid theme" },
-      { ar: "إضافة 50 منتج", en: "50 products setup" },
-      { ar: "تصميم 8 بنرات", en: "8 banners design" },
-      { ar: "ربط أدوات التسويق", en: "Marketing tools integration" },
-      { ar: "تدريب عملي ساعتين", en: "2-hour training" },
-      { ar: "دعم فني شهر", en: "One month support" },
+    id: "brand-identity",
+    slug: "brand-identity-design",
+    category: "marketing",
+    nameAr: "هوية بصرية متكاملة",
+    nameEn: "Complete Brand Identity",
+    shortDescAr: "شعار + ألوان + خطوط + دليل استخدام — علامة يثق بها العميل من أول نظرة",
+    shortDescEn: "Logo, colors, typography & brand guide — trusted at first glance",
+    descriptionAr: `العميل يحكم على متجرك خلال 3 ثوانٍ من أول زيارة. الهوية المتناسقة ترفع إدراك القيمة وتسمح لك بالتسعير الأعلى.
+
+ماذا ستستلم بالضبط؟
+1. ثلاثة مقترحات شعار مختلفة الاتجاه، وتطوير المقترح المختار حتى الرضا الكامل.
+2. لوحة ألوان أساسية وثانوية بأكوادها الجاهزة للويب والطباعة.
+3. اختيار خطوط عربية وإنجليزية مرخصة تناسب شخصية علامتك.
+4. دليل هوية PDF (Brand Guide) يضمن ثبات الشكل في كل تصاميمك القادمة.
+5. ملفات الشعار بكل الصيغ: AI, SVG, PNG شفاف، ونسخ للسوشيال ميديا.
+6. تطبيقات جاهزة: غلاف حسابات السوشيال، قالب ستوري، بطاقة عمل.
+
+متوسط السوق 3,000+ ر.س — سعرنا 799 ر.س بنفس جودة المخرجات.`,
+    descriptionEn: `Customers judge your store within 3 seconds. A consistent identity raises perceived value and lets you charge premium prices.
+
+You get: three distinct logo concepts with unlimited refinement of the chosen one, primary/secondary color palettes with web and print codes, licensed Arabic + English font pairing, a PDF brand guide, logo files in every format (AI, SVG, transparent PNG, social versions), plus ready applications: social covers, a story template, and a business card.`,
+    keywordsAr: [
+      "تصميم هوية بصرية",
+      "تصميم شعار احترافي",
+      "هوية تجارية متكاملة",
+      "تصميم لوجو سعودي",
+      "دليل هوية بصرية",
+      "تصميم هوية متجر الكتروني",
+      "أسعار تصميم الهوية البصرية",
     ],
-    deliveryDays: 7,
-    rating: 4.9,
-    reviewCount: 64,
+    keywordsEn: ["brand identity design", "professional logo design", "brand guidelines", "visual identity Saudi Arabia"],
+    price: 799,
+    originalPrice: 3000,
+    currency: "SAR",
+    badge: "featured",
+    badgeLabelAr: "قيمة استثنائية",
+    badgeLabelEn: "Exceptional Value",
+    features: [
+      { ar: "3 مقترحات شعار + تطوير غير محدود", en: "3 logo concepts, unlimited refinement" },
+      { ar: "لوحة ألوان للويب والطباعة", en: "Web & print color palettes" },
+      { ar: "خطوط عربية وإنجليزية مرخصة", en: "Licensed AR/EN fonts" },
+      { ar: "دليل هوية PDF كامل", en: "Full PDF brand guide" },
+      { ar: "ملفات بكل الصيغ AI/SVG/PNG", en: "All file formats" },
+      { ar: "قوالب سوشيال وبطاقة عمل", en: "Social templates + business card" },
+    ],
+    deliveryDays: 6,
+    rating: 4.8,
+    reviewCount: 36,
+    monthlyOrders: 14,
+    views: 1240,
     inStock: true,
     order: 5,
   },
 
-  // ═══════════════════ DESIGN SERVICES ═══════════════════
+  /* ═══ 6 — التسويق الإلكتروني الشامل ═══ */
   {
-    id: "brand-identity",
-    slug: "brand-identity-design",
-    category: "design",
-    nameAr: "هوية بصرية احترافية كاملة",
-    nameEn: "Complete Professional Brand Identity",
-    shortDescAr: "شعار وهوية بصرية تحكي قصة علامتك",
-    shortDescEn: "Logo & brand identity telling your story",
-    descriptionAr: `هوية بصرية متكاملة تشمل الشعار ودليل الهوية وجميع التطبيقات.
+    id: "digital-marketing",
+    slug: "digital-marketing",
+    category: "marketing",
+    nameAr: "إدارة التسويق الإلكتروني الشاملة",
+    nameEn: "Full Digital Marketing Management",
+    shortDescAr: "حملات ميتا وتيك توك وسناب بإدارة كاملة وتقارير أسبوعية",
+    shortDescEn: "Meta, TikTok & Snapchat campaigns fully managed with weekly reports",
+    descriptionAr: `أغلب الميزانيات الإعلانية تُهدر بسبب استهداف خاطئ وإعلانات لا تُختبر. نحن ندير حملاتك بمنهجية اختبار مستمر: نجرب، نقيس، نوقف الخاسر ونضاعف الرابح.
 
-نصمم لك هوية بصرية فريدة تعكس شخصية علامتك وتترك انطباعاً لا يُنسى.`,
-    descriptionEn: `Complete brand identity including logo, brand guide, and all applications.
+ماذا ستستلم شهرياً؟
+1. استراتيجية شهرية مبنية على بيانات متجرك وسلوك جمهورك.
+2. إدارة كاملة للحملات على منصتين من اختيارك (ميتا، تيك توك، سناب).
+3. ثمانية تصاميم إعلانية شهرياً (صور + فيديو قصير) بنصوص بيعية مختبرة.
+4. إعداد وتتبع التحويلات (Pixel + Conversion API) لقياس المبيعات الفعلية.
+5. اختبار A/B مستمر للجمهور والتصاميم والعروض.
+6. تقرير أسبوعي واضح: كم صرفنا، كم بعنا، وما هي الخطوة القادمة.
+7. اجتماع شهري لمراجعة الأداء والخطة.
 
-We design a unique visual identity reflecting your brand personality and leaving an unforgettable impression.`,
-    price: 999,
-    originalPrice: 4000,
-    currency: "SAR",
-    badge: "bestseller",
-    badgeLabelAr: "الأكثر طلباً",
-    badgeLabelEn: "Bestseller",
-    features: [
-      { ar: "شعار بنسختين (عربي + إنجليزي)", en: "Logo in 2 versions (Arabic + English)" },
-      { ar: "دليل الهوية البصرية الكامل", en: "Complete brand guide" },
-      { ar: "بطاقة أعمال + ورق رسمي", en: "Business card + letterhead" },
-      { ar: "قوالب سوشيال ميديا (10 تصاميم)", en: "Social media templates (10 designs)" },
-      { ar: "ملفات مفتوحة AI / PSD", en: "Open files AI / PSD" },
-      { ar: "3 مراجعات مجانية", en: "3 free revisions" },
+ملاحظة: الميزانية الإعلانية تُدفع للمنصات مباشرة من حسابك — رسومنا للإدارة فقط. متوسط السوق 3,000+ ر.س شهرياً.`,
+    descriptionEn: `Most ad budgets are wasted on wrong targeting and untested creatives. We manage your campaigns with a continuous testing methodology: test, measure, kill losers, scale winners.
+
+Monthly you get: a data-driven strategy, full campaign management on two platforms of your choice (Meta, TikTok, Snapchat), 8 ad creatives (statics + short video) with tested sales copy, conversion tracking setup (Pixel + Conversion API), continuous A/B testing, a clear weekly report (spend, sales, next steps), and a monthly performance review call. Ad budget is paid directly to platforms from your own account — our fee covers management only.`,
+    keywordsAr: [
+      "إدارة حملات إعلانية",
+      "إعلانات تيك توك السعودية",
+      "إعلانات سناب شات",
+      "إعلانات ميتا انستقرام",
+      "وكالة تسويق رقمي سعودية",
+      "إدارة إعلانات المتاجر",
+      "أفضل شركة تسويق الكتروني",
+      "زيادة مبيعات المتجر الالكتروني",
     ],
-    deliveryDays: 5,
-    rating: 4.9,
-    reviewCount: 203,
-    popular: true,
+    keywordsEn: ["digital marketing management", "TikTok ads Saudi", "Snapchat ads KSA", "Meta ads ecommerce", "performance marketing agency"],
+    price: 999,
+    originalPrice: 3000,
+    currency: "SAR",
+    isMonthly: true,
+    badge: "monthly",
+    badgeLabelAr: "اشتراك شهري",
+    badgeLabelEn: "Monthly",
+    features: [
+      { ar: "إدارة كاملة لمنصتين إعلانيتين", en: "Full management of 2 platforms" },
+      { ar: "8 تصاميم إعلانية شهرياً", en: "8 monthly ad creatives" },
+      { ar: "تتبع تحويلات Pixel + API", en: "Pixel + Conversion API tracking" },
+      { ar: "اختبار A/B مستمر", en: "Continuous A/B testing" },
+      { ar: "تقرير أسبوعي بالأرقام", en: "Weekly numbers report" },
+      { ar: "اجتماع مراجعة شهري", en: "Monthly review call" },
+    ],
+    deliveryDays: 30,
+    rating: 4.8,
+    reviewCount: 66,
+    monthlyOrders: 21,
+    views: 1600,
     inStock: true,
     order: 6,
   },
-  {
-    id: "product-photography",
-    slug: "product-photography",
-    category: "design",
-    nameAr: "تصوير منتجات احترافي",
-    nameEn: "Professional Product Photography",
-    shortDescAr: "صور منتجات بجودة تزيد المبيعات",
-    shortDescEn: "Product photos that increase sales",
-    descriptionAr: `تصوير منتجاتك بجودة احترافية تجعل العميل يشتري فوراً.`,
-    descriptionEn: `Professional product photography that makes customers buy immediately.`,
-    price: 599,
-    originalPrice: 2000,
-    currency: "SAR",
-    features: [
-      { ar: "تصوير حتى 20 منتج", en: "Up to 20 products" },
-      { ar: "خلفيات متعددة", en: "Multiple backgrounds" },
-      { ar: "تعديل احترافي", en: "Professional editing" },
-      { ar: "صيغة JPG + PNG", en: "JPG + PNG formats" },
-      { ar: "جاهزة للمتاجر", en: "Store-ready" },
-    ],
-    deliveryDays: 3,
-    rating: 4.8,
-    reviewCount: 78,
-    inStock: true,
-    order: 7,
-  },
 
-  // ═══════════════════ MARKETING SERVICES ═══════════════════
+  /* ═══ 7 — إدارة سوشيال ميديا ═══ */
   {
-    id: "social-management",
+    id: "social-media-management",
     slug: "social-media-management",
     category: "marketing",
-    nameAr: "إدارة السوشيال ميديا",
+    nameAr: "إدارة حسابات السوشيال ميديا",
     nameEn: "Social Media Management",
-    shortDescAr: "حضور رقمي قوي ومحتوى يبيع",
-    shortDescEn: "Strong digital presence & content that sells",
-    descriptionAr: `إدارة حساباتك على السوشيال ميديا بشكل احترافي يزيد التفاعل والمبيعات.`,
-    descriptionEn: `Professional social media management that increases engagement and sales.`,
-    price: 799,
-    originalPrice: 3000,
+    shortDescAr: "محتوى يومي احترافي يبني الثقة ويحوّل المتابع إلى عميل",
+    shortDescEn: "Daily professional content that turns followers into customers",
+    descriptionAr: `الحساب المهمل يقتل الثقة: أول ما يفعله العميل قبل الشراء هو فتح حسابك. النشاط المستمر بمحتوى احترافي = ثقة = مبيعات.
+
+ماذا ستستلم شهرياً؟
+1. عشرون تصميم منشور احترافي متوافق مع هويتك البصرية.
+2. ثمانية ستوريز تفاعلية (استطلاعات، أسئلة، عروض).
+3. أربعة فيديوهات ريلز قصيرة بمونتاج جذاب.
+4. كتابة المحتوى والكابشن بأسلوب يناسب جمهورك السعودي.
+5. جدولة ونشر تلقائي في أفضل أوقات التفاعل.
+6. الرد على التعليقات والرسائل خلال ساعات العمل.
+7. تقرير شهري: نمو المتابعين، التفاعل، وأفضل المنشورات أداءً.
+
+منصتان من اختيارك (انستقرام، تيك توك، سناب، X). متوسط السوق 2,000+ ر.س شهرياً.`,
+    descriptionEn: `A neglected account kills trust — checking your profile is the first thing customers do before buying.
+
+Monthly you get: 20 branded post designs, 8 interactive stories, 4 edited Reels, Saudi-audience copywriting, scheduled publishing at peak engagement times, comment/DM responses during business hours, and a monthly growth report. Two platforms of your choice (Instagram, TikTok, Snapchat, X).`,
+    keywordsAr: [
+      "إدارة حسابات سوشيال ميديا",
+      "إدارة انستقرام للمتاجر",
+      "صناعة محتوى سعودي",
+      "تصميم منشورات سوشيال ميديا",
+      "إدارة تيك توك",
+      "شركة إدارة سوشيال ميديا",
+      "أسعار إدارة السوشيال ميديا",
+    ],
+    keywordsEn: ["social media management Saudi", "Instagram management", "content creation KSA", "TikTok management"],
+    price: 749,
+    originalPrice: 2000,
     currency: "SAR",
     isMonthly: true,
     badge: "monthly",
     badgeLabelAr: "شهري",
     badgeLabelEn: "Monthly",
     features: [
-      { ar: "20 منشور شهري (تصميم + كتابة)", en: "20 monthly posts (design + copy)" },
-      { ar: "إدارة إنستغرام + تويتر + تيك توك", en: "Instagram + Twitter + TikTok" },
-      { ar: "تقرير أداء أسبوعي", en: "Weekly performance report" },
-      { ar: "رد على التعليقات والرسائل", en: "Comments & messages response" },
-      { ar: "قصص يومية (Stories)", en: "Daily Stories" },
+      { ar: "20 تصميم منشور شهرياً", en: "20 monthly post designs" },
+      { ar: "8 ستوريز تفاعلية", en: "8 interactive stories" },
+      { ar: "4 فيديوهات ريلز", en: "4 Reels videos" },
+      { ar: "كتابة محتوى بلهجة جمهورك", en: "Audience-tuned copywriting" },
+      { ar: "نشر تلقائي بأفضل الأوقات", en: "Peak-time scheduling" },
+      { ar: "رد على التعليقات والرسائل", en: "Comments & DM handling" },
+      { ar: "تقرير نمو شهري", en: "Monthly growth report" },
     ],
     deliveryDays: 30,
     rating: 4.7,
-    reviewCount: 112,
+    reviewCount: 52,
+    monthlyOrders: 19,
+    views: 1420,
+    inStock: true,
+    order: 7,
+  },
+
+  /* ═══ 8 — صفحة هبوط + فنل ═══ */
+  {
+    id: "landing-funnel",
+    slug: "landing-page-funnel",
+    category: "development",
+    nameAr: "صفحة هبوط + فنل مبيعات",
+    nameEn: "Landing Page + Sales Funnel",
+    shortDescAr: "صفحة مصممة لهدف واحد: تحويل زائر الإعلان إلى مشترٍ",
+    shortDescEn: "One goal: turn ad visitors into buyers",
+    descriptionAr: `إرسال زوار الإعلانات إلى الصفحة الرئيسية يهدر 80% منهم. صفحة الهبوط المتخصصة ترفع التحويل 2-5 أضعاف لأنها مبنية لهدف واحد فقط.
+
+ماذا ستستلم بالضبط؟
+1. صفحة هبوط سريعة (تحميل أقل من ثانيتين) مصممة على منهجية AIDA البيعية.
+2. كتابة نصوص بيعية (Copywriting) عربية مقنعة: عنوان، فوائد، إثبات اجتماعي، عرض، ونداء إجراء.
+3. نموذج طلب/تواصل مربوط بواتساب أو بريدك مباشرة.
+4. تركيب Pixel لمنصات الإعلان وGoogle Analytics لقياس كل زيارة.
+5. متوافقة تماماً مع الجوال حيث تأتي أغلب نقرات الإعلانات.
+6. نسخة ثانية بعنوان وعرض مختلف لاختبار A/B.
+
+متوسط السوق 2,000+ ر.س — سعرنا 599 ر.س.`,
+    descriptionEn: `Sending ad traffic to your homepage wastes 80% of it. A dedicated landing page lifts conversion 2-5x because it's built for one goal.
+
+You get: a fast landing page (sub-2s load) built on the AIDA framework, persuasive Arabic sales copy (headline, benefits, social proof, offer, CTA), a lead form wired to WhatsApp or email, ad Pixels + Google Analytics installed, full mobile optimization, and a second variant for A/B testing.`,
+    keywordsAr: [
+      "تصميم صفحة هبوط",
+      "صفحة هبوط احترافية",
+      "بناء فنل مبيعات",
+      "صفحة بيع منتج",
+      "زيادة تحويلات الإعلانات",
+      "تصميم landing page بالعربي",
+    ],
+    keywordsEn: ["landing page design", "sales funnel", "conversion landing page Arabic", "lead generation page"],
+    price: 599,
+    originalPrice: 2000,
+    currency: "SAR",
+    badge: "sale",
+    badgeLabelAr: "يضاعف التحويل",
+    badgeLabelEn: "Conversion Multiplier",
+    features: [
+      { ar: "تحميل أقل من ثانيتين", en: "Sub-2s load time" },
+      { ar: "نصوص بيعية بمنهجية AIDA", en: "AIDA sales copywriting" },
+      { ar: "نموذج مربوط بواتساب", en: "WhatsApp-wired lead form" },
+      { ar: "Pixel + Google Analytics", en: "Pixels + Analytics installed" },
+      { ar: "نسخة ثانية لاختبار A/B", en: "A/B test variant included" },
+    ],
+    deliveryDays: 4,
+    rating: 4.8,
+    reviewCount: 29,
+    monthlyOrders: 15,
+    views: 980,
     inStock: true,
     order: 8,
   },
+
+  /* ═══ 9 — تحليل المنافسين ═══ */
   {
-    id: "paid-ads",
-    slug: "paid-advertising-campaigns",
-    category: "marketing",
-    nameAr: "إعلانات Google و Meta",
-    nameEn: "Google & Meta Ads",
-    shortDescAr: "حملات إعلانية تصل لعميلك المثالي",
-    shortDescEn: "Ad campaigns reaching your ideal customer",
-    descriptionAr: `حملات إعلانية مدروسة على Google و Meta تحقق أعلى عائد على الاستثمار.`,
-    descriptionEn: `Strategic advertising campaigns on Google & Meta achieving highest ROI.`,
-    price: 899,
-    originalPrice: 3500,
-    currency: "SAR",
-    isMonthly: true,
-    badge: "limited",
-    badgeLabelAr: "ROI مضمون",
-    badgeLabelEn: "Guaranteed ROI",
-    features: [
-      { ar: "إعداد وإدارة الحملات", en: "Campaign setup & management" },
-      { ar: "استهداف دقيق للجمهور", en: "Precise audience targeting" },
-      { ar: "Meta + Google + TikTok", en: "Meta + Google + TikTok" },
-      { ar: "A/B Testing", en: "A/B Testing" },
-      { ar: "تقرير أسبوعي مفصّل", en: "Detailed weekly report" },
+    id: "store-products-analysis",
+    slug: "store-products-analysis",
+    category: "integrations",
+    nameAr: "تحليل المنافسين والأسعار",
+    nameEn: "Competitor & Pricing Analysis",
+    shortDescAr: "اعرف أسعار منافسيك ومنتجاتهم الرابحة قبل ما تقرر",
+    shortDescEn: "Know competitor prices and winning products before you decide",
+    descriptionAr: `التسعير العشوائي يخسّرك مرتين: سعر مرتفع يطرد العملاء، وسعر منخفض يأكل ربحك. القرار الصحيح يبدأ من بيانات السوق الحقيقية.
+
+ماذا ستستلم بالضبط؟
+1. سحب بيانات منتجات حتى 5 متاجر منافسة (أسعار، تقييمات، عدد المراجعات).
+2. جدول مقارنة أسعار تفصيلي منتجاً بمنتج مقابل منتجاتك.
+3. تحديد المنتجات الأكثر مبيعاً لدى منافسيك (بناءً على المراجعات والظهور).
+4. كشف فجوات السوق: منتجات مطلوبة لا يوفرها منافسوك.
+5. توصيات تسعير عملية لكل فئة منتجات.
+6. تقرير PDF نهائي + ملف Excel قابل للفرز والتحديث.
+
+متوسط السوق 1,800+ ر.س — سعرنا 549 ر.س.`,
+    descriptionEn: `Random pricing hurts twice: too high repels customers, too low eats margin. Good decisions start with real market data.
+
+You get: product data pulled from up to 5 competitor stores (prices, ratings, review counts), a product-by-product price comparison against yours, identification of their best sellers, market-gap discovery (in-demand products they don't carry), actionable pricing recommendations per category, and a final PDF report + sortable Excel file.`,
+    keywordsAr: [
+      "تحليل المنافسين",
+      "سحب منتجات المتاجر",
+      "تحليل أسعار السوق",
+      "دراسة السوق السعودي",
+      "مقارنة أسعار المنافسين",
+      "تحليل متاجر سلة",
     ],
-    deliveryDays: 30,
-    rating: 4.9,
-    reviewCount: 94,
+    keywordsEn: ["competitor analysis ecommerce", "product scraping", "pricing analysis Saudi", "market research KSA"],
+    price: 549,
+    originalPrice: 1800,
+    currency: "SAR",
+    badge: "featured",
+    badgeLabelAr: "قرارات بالبيانات",
+    badgeLabelEn: "Data-Driven",
+    features: [
+      { ar: "بيانات 5 متاجر منافسة", en: "Data from 5 competitor stores" },
+      { ar: "مقارنة أسعار منتجاً بمنتج", en: "Product-level price comparison" },
+      { ar: "كشف المنتجات الرابحة", en: "Best-seller identification" },
+      { ar: "فجوات السوق غير المستغلة", en: "Market gap discovery" },
+      { ar: "توصيات تسعير عملية", en: "Actionable pricing advice" },
+      { ar: "تقرير PDF + ملف Excel", en: "PDF report + Excel file" },
+    ],
+    deliveryDays: 3,
+    rating: 4.8,
+    reviewCount: 31,
+    monthlyOrders: 18,
+    views: 980,
     inStock: true,
     order: 9,
   },
 
-  // ═══════════════════ WEB DEVELOPMENT ═══════════════════
+  /* ═══ 10 — ربط الدفع والشحن ═══ */
   {
-    id: "website-dev",
-    slug: "professional-website-development",
-    category: "web",
-    nameAr: "تطوير موقع ويب احترافي",
-    nameEn: "Professional Website Development",
-    shortDescAr: "موقع سريع وجميل يحقق أهدافك",
-    shortDescEn: "Fast & beautiful website achieving your goals",
-    descriptionAr: `موقع ويب احترافي مصمم ومطوّر خصيصاً لعلامتك التجارية.
+    id: "integrations-suite",
+    slug: "payment-shipping-integrations",
+    category: "integrations",
+    nameAr: "ربط بوابات الدفع والشحن",
+    nameEn: "Payment & Shipping Integrations",
+    shortDescAr: "تابي وتمارا ومدى وApple Pay + شركات الشحن — خلال 48 ساعة",
+    shortDescEn: "Tabby, Tamara, Mada, Apple Pay & shipping — within 48 hours",
+    descriptionAr: `إضافة تابي وتمارا وحدها ترفع متوسط قيمة الطلب 30-40% لأن العميل يقسّط بدل ما يؤجل الشراء. وApple Pay يختصر الدفع لنقرة واحدة.
 
-نستخدم أحدث التقنيات (Next.js / React) لبناء موقع سريع، آمن، ومتوافق مع جميع الأجهزة.`,
-    descriptionEn: `Professional website designed and developed specifically for your brand.
+ماذا ستستلم بالضبط؟
+1. تفعيل وربط بوابات الدفع: مدى، فيزا/ماستركارد، Apple Pay، STC Pay.
+2. تفعيل التقسيط: تابي وتمارا مع ظهور شعاراتهما في صفحات المنتجات.
+3. ربط شركات الشحن التي تختارها وإعداد مناطق وأسعار التوصيل.
+4. إعداد الفواتير الضريبية المتوافقة مع هيئة الزكاة والضريبة.
+5. اختبار عمليات دفع حقيقية على كل بوابة قبل التسليم.
+6. توثيق بسيط بخطوات إدارة كل خدمة بنفسك.
 
-We use latest technologies (Next.js / React) to build a fast, secure website compatible with all devices.`,
-    price: 2499,
-    originalPrice: 8000,
+متوسط السوق 1,200+ ر.س — سعرنا 449 ر.س وخلال 48 ساعة.`,
+    descriptionEn: `Adding Tabby and Tamara alone lifts average order value 30-40% — customers split payments instead of postponing. Apple Pay cuts checkout to one tap.
+
+You get: payment gateways activated (Mada, Visa/MC, Apple Pay, STC Pay), installment options (Tabby, Tamara) with product-page badges, your chosen shipping companies connected with zones and rates, ZATCA-compliant tax invoice setup, real test transactions on every gateway before handover, and simple documentation to manage everything yourself.`,
+    keywordsAr: [
+      "ربط تابي بالمتجر",
+      "ربط تمارا",
+      "تفعيل مدى للمتجر الالكتروني",
+      "ربط Apple Pay",
+      "ربط شركات الشحن",
+      "بوابات الدفع السعودية",
+      "ربط STC Pay",
+    ],
+    keywordsEn: ["Tabby integration", "Tamara integration", "Mada payment setup", "Apple Pay store", "shipping integration Saudi"],
+    price: 449,
+    originalPrice: 1200,
+    currency: "SAR",
+    badge: "sale",
+    badgeLabelAr: "خلال 48 ساعة",
+    badgeLabelEn: "48-Hour Setup",
+    features: [
+      { ar: "مدى وفيزا وApple Pay وSTC Pay", en: "Mada, Visa, Apple Pay, STC Pay" },
+      { ar: "تقسيط تابي وتمارا", en: "Tabby & Tamara installments" },
+      { ar: "ربط الشحن ومناطق التوصيل", en: "Shipping + delivery zones" },
+      { ar: "فواتير متوافقة مع الزكاة والضريبة", en: "ZATCA-compliant invoices" },
+      { ar: "اختبار دفع حقيقي لكل بوابة", en: "Real test transactions" },
+    ],
+    deliveryDays: 2,
+    rating: 4.7,
+    reviewCount: 26,
+    monthlyOrders: 14,
+    views: 740,
+    inStock: true,
+    order: 10,
+  },
+
+  /* ═══ 11 — الأتمتة ═══ */
+  {
+    id: "automation-workflows",
+    slug: "automation-workflows",
+    category: "integrations",
+    nameAr: "أتمتة عمليات المتجر",
+    nameEn: "Store Automation Workflows",
+    shortDescAr: "وفّر 10+ ساعات أسبوعياً — المهام المتكررة تشتغل وحدها",
+    shortDescEn: "Save 10+ hours weekly — repetitive tasks run themselves",
+    descriptionAr: `كل ساعة تقضيها في نسخ الطلبات ومتابعة المخزون يدوياً هي ساعة مسروقة من نمو متجرك — والأخطاء اليدوية تكلف أكثر.
+
+ماذا ستستلم بالضبط؟
+1. ثلاثة سيناريوهات أتمتة كاملة من اختيارك، أمثلة:
+   • طلب جديد → إشعار واتساب فوري لك + تسجيل تلقائي في Google Sheets.
+   • مخزون منخفض → تنبيه تلقائي قبل نفاد المنتج.
+   • عميل جديد → رسالة ترحيب + كود خصم لطلبه القادم.
+   • سلة متروكة → رسالة تذكير تلقائية.
+2. ربط أدواتك الحالية ببعضها (المتجر، الشيتات، الواتساب، البريد).
+3. اختبار كل سيناريو على بيانات حقيقية قبل التفعيل.
+4. فيديو شرح لإدارة وتعديل الأتمتة بنفسك.
+
+متوسط السوق 2,000+ ر.س — سعرنا 649 ر.س.`,
+    descriptionEn: `Every hour spent copying orders and checking stock manually is stolen from growth — and manual errors cost more.
+
+You get: three complete automation scenarios of your choice (e.g., new order → instant WhatsApp alert + Google Sheets log; low stock → automatic warning; new customer → welcome message + discount code; abandoned cart → reminder), your existing tools connected together, every scenario tested on real data, and a walkthrough video to manage automations yourself.`,
+    keywordsAr: [
+      "أتمتة المتاجر الالكترونية",
+      "أتمتة الطلبات",
+      "ربط المتجر بقوقل شيت",
+      "تنبيهات واتساب للطلبات",
+      "رسائل السلة المتروكة",
+      "أتمتة سلة",
+    ],
+    keywordsEn: ["ecommerce automation", "order automation", "abandoned cart messages", "store workflow automation"],
+    price: 649,
+    originalPrice: 2000,
+    currency: "SAR",
+    badge: "limited",
+    badgeLabelAr: "وفّر وقتك",
+    badgeLabelEn: "Time Saver",
+    features: [
+      { ar: "3 سيناريوهات أتمتة كاملة", en: "3 complete automation flows" },
+      { ar: "إشعارات واتساب فورية", en: "Instant WhatsApp alerts" },
+      { ar: "رسائل السلة المتروكة", en: "Abandoned cart recovery" },
+      { ar: "ربط أدواتك الحالية", en: "Your tools connected" },
+      { ar: "اختبار على بيانات حقيقية", en: "Tested on real data" },
+      { ar: "فيديو شرح للإدارة الذاتية", en: "Self-management video guide" },
+    ],
+    deliveryDays: 4,
+    rating: 4.9,
+    reviewCount: 38,
+    monthlyOrders: 16,
+    views: 860,
+    inStock: true,
+    order: 11,
+  },
+
+  /* ═══ 12 — تصميم بوثات ═══ */
+  {
+    id: "booth-design",
+    slug: "booth-design",
+    category: "marketing",
+    nameAr: "تصميم بوثات المعارض",
+    nameEn: "Exhibition Booth Design",
+    shortDescAr: "بوث يوقف الزائر ويحوّل المعرض إلى عملاء حقيقيين",
+    shortDescEn: "A booth that stops visitors and converts exhibitions into clients",
+    descriptionAr: `في معرض فيه مئات الأجنحة، أمامك 3 ثوانٍ لتوقف الزائر. البوث المصمم باحتراف يجذب ضعف الزوار ويترك انطباعاً يبقى بعد المعرض.
+
+ماذا ستستلم بالضبط؟
+1. تصميم ثلاثي الأبعاد كامل للبوث من عدة زوايا قبل التنفيذ.
+2. توزيع ذكي للمساحة: منطقة عرض، منطقة حوار، ونقطة جذب بصرية.
+3. تصاميم جميع المطبوعات: خلفيات، رول أب، كاونتر، بروشورات.
+4. ملفات طباعة جاهزة بالمقاسات والدقة المطلوبة لأي مطبعة.
+5. تعديلات حتى الاعتماد النهائي من إدارة المعرض.
+
+متوسط السوق 3,500+ ر.س — سعرنا 1,199 ر.س.`,
+    descriptionEn: `In a hall of hundreds of booths, you have 3 seconds to stop a visitor. A professionally designed booth doubles foot traffic and outlasts the event.
+
+You get: a full 3D booth design from multiple angles before production, smart space planning (display, conversation, and visual-anchor zones), all print designs (backdrops, roll-ups, counter, brochures), print-ready files at required specs for any printer, and revisions until exhibition-management approval.`,
+    keywordsAr: [
+      "تصميم بوث معرض",
+      "تصميم أجنحة المعارض",
+      "بوث ثلاثي الأبعاد",
+      "تصميم جناح معرض الرياض",
+      "مطبوعات المعارض",
+    ],
+    keywordsEn: ["exhibition booth design", "3D booth design", "trade show booth Saudi"],
+    price: 1199,
+    originalPrice: 3500,
     currency: "SAR",
     badge: "featured",
     badgeLabelAr: "مميز",
     badgeLabelEn: "Featured",
     features: [
-      { ar: "تصميم UX/UI مخصص", en: "Custom UX/UI design" },
-      { ar: "تطوير Next.js / React", en: "Next.js / React development" },
-      { ar: "لوحة تحكم سهلة", en: "Easy admin panel" },
-      { ar: "SEO أساسي محسّن", en: "Basic SEO optimized" },
-      { ar: "متوافق مع الجوال 100%", en: "100% mobile compatible" },
-      { ar: "صيانة مجانية شهر", en: "One month free maintenance" },
+      { ar: "تصميم 3D من عدة زوايا", en: "Multi-angle 3D design" },
+      { ar: "تخطيط ذكي للمساحة", en: "Smart space planning" },
+      { ar: "تصاميم كل المطبوعات", en: "All print designs" },
+      { ar: "ملفات طباعة جاهزة", en: "Print-ready files" },
+      { ar: "تعديلات حتى الاعتماد", en: "Revisions until approval" },
     ],
-    deliveryDays: 14,
-    rating: 4.8,
-    reviewCount: 67,
+    deliveryDays: 7,
+    rating: 4.9,
+    reviewCount: 22,
+    monthlyOrders: 9,
+    views: 620,
     inStock: true,
-    order: 10,
+    order: 12,
   },
 
-  // ═══════════════════ SEO SERVICES ═══════════════════
+  /* ═══ 13 — تجهيز المعارض ═══ */
   {
-    id: "seo-package",
-    slug: "seo-optimization-package",
-    category: "seo",
-    nameAr: "خدمة SEO متكاملة",
-    nameEn: "Complete SEO Service",
-    shortDescAr: "ظهر في نتائج البحث الأولى",
-    shortDescEn: "Appear in top search results",
-    descriptionAr: `تحسين موقعك أو متجرك للظهور في نتائج البحث الأولى على جوجل.`,
-    descriptionEn: `Optimize your website or store to appear in top Google search results.`,
-    price: 699,
-    originalPrice: 2500,
-    currency: "SAR",
-    isMonthly: true,
-    features: [
-      { ar: "تحليل الكلمات المفتاحية", en: "Keyword analysis" },
-      { ar: "تحسين On-Page SEO", en: "On-Page SEO optimization" },
-      { ar: "بناء روابط خارجية", en: "Link building" },
-      { ar: "تحسين سرعة الموقع", en: "Site speed optimization" },
-      { ar: "تقرير ترتيب شهري", en: "Monthly ranking report" },
+    id: "exhibition-setup",
+    slug: "exhibition-setup",
+    category: "marketing",
+    nameAr: "تجهيز المعارض المتكامل",
+    nameEn: "Full Exhibition Production",
+    shortDescAr: "من التصميم إلى يوم الافتتاح — تجربة زوار متكاملة",
+    shortDescEn: "From design to opening day — a complete visitor experience",
+    descriptionAr: `مشاركتك في المعرض استثمار كبير — لا تتركه لتنسيق عشوائي بين مصمم ومطبعة ومقاول لا يتواصلون.
+
+ماذا ستستلم بالضبط؟
+1. تصميم البوث ثلاثي الأبعاد واعتماده من إدارة المعرض.
+2. إنتاج وتركيب كامل: هيكل، إضاءة، شاشات عرض، ومطبوعات.
+3. محتوى الشاشات: فيديو تعريفي وعروض متحركة لمنتجاتك.
+4. تجربة زوار مدروسة: مسار الحركة، نقاط التفاعل، ومنطقة تسجيل بيانات العملاء المهتمين.
+5. إشراف يوم التركيب وتسليم البوث جاهزاً قبل الافتتاح.
+6. تفكيك البوث بعد انتهاء المعرض.
+
+متوسط السوق 6,000+ ر.س — سعرنا 2,499 ر.س.`,
+    descriptionEn: `Exhibiting is a serious investment — don't leave it to uncoordinated designers, printers and contractors.
+
+You get: 3D booth design with exhibition-management approval, full production and installation (structure, lighting, screens, prints), screen content (intro video + product motion graphics), a designed visitor journey (flow, interaction points, lead-capture zone), installation-day supervision with handover before opening, and post-event dismantling.`,
+    keywordsAr: [
+      "تجهيز معارض",
+      "تنفيذ أجنحة معارض",
+      "شركة تجهيز معارض الرياض",
+      "تركيب بوثات",
+      "معارض السعودية",
     ],
-    deliveryDays: 30,
-    rating: 4.7,
-    reviewCount: 89,
+    keywordsEn: ["exhibition setup", "booth production Saudi", "trade show production"],
+    price: 2499,
+    originalPrice: 6000,
+    currency: "SAR",
+    badge: "limited",
+    badgeLabelAr: "باقة متكاملة",
+    badgeLabelEn: "Full Package",
+    features: [
+      { ar: "تصميم واعتماد 3D", en: "3D design + approval" },
+      { ar: "إنتاج وتركيب كامل", en: "Full production & install" },
+      { ar: "محتوى شاشات وفيديو", en: "Screen content & video" },
+      { ar: "منطقة تسجيل عملاء مهتمين", en: "Lead-capture zone" },
+      { ar: "إشراف يوم التركيب", en: "Install-day supervision" },
+      { ar: "تفكيك بعد المعرض", en: "Post-event dismantling" },
+    ],
+    deliveryDays: 10,
+    rating: 4.8,
+    reviewCount: 18,
+    monthlyOrders: 6,
+    views: 510,
     inStock: true,
-    order: 11,
+    order: 13,
+  },
+
+  /* ═══ 14 — تطبيقات حسب الطلب ═══ */
+  {
+    id: "custom-app-development",
+    slug: "custom-app-development",
+    category: "development",
+    nameAr: "برمجة تطبيقات حسب الطلب",
+    nameEn: "Custom App Development",
+    shortDescAr: "من الفكرة إلى تطبيق يعمل بأيدي عملائك — بلوحة تحكم كاملة",
+    shortDescEn: "From idea to a live app in your customers' hands — with a full admin panel",
+    descriptionAr: `الفرق بين فكرة ناجحة ومشروع متعثر هو التنفيذ. نبني تطبيقك بمنهجية واضحة: نفهم، نصمم، نطور، نختبر، نسلّم — وأنت تشاهد التقدم أسبوعياً.
+
+ماذا ستستلم بالضبط؟
+1. جلسة تحليل متطلبات وتحويل فكرتك إلى خارطة شاشات ووظائف موثقة.
+2. تصميم UX/UI كامل لكل الشاشات تعتمده قبل كتابة أي سطر كود.
+3. تطوير التطبيق (iOS + Android من كود واحد) بأداء عالٍ.
+4. لوحة تحكم ويب كاملة لإدارة المحتوى والمستخدمين والطلبات.
+5. ربط الخدمات الخارجية: دفع، إشعارات، خرائط، تسجيل دخول اجتماعي.
+6. اختبار شامل ونشر على متجري آبل وجوجل.
+7. الكود المصدري كاملاً ملكك + شهر دعم مجاني بعد الإطلاق.
+
+متوسط السوق 10,000+ ر.س — سعرنا يبدأ من 3,499 ر.س.`,
+    descriptionEn: `The difference between a successful idea and a stalled project is execution. We build with a clear methodology — analyze, design, develop, test, ship — with weekly progress visibility.
+
+You get: a requirements session turning your idea into a documented screen/feature map, complete UX/UI design approved before any code, iOS + Android development from a single codebase, a full web admin panel, third-party integrations (payments, notifications, maps, social login), full testing plus App Store and Google Play publishing, complete source-code ownership, and one month of free post-launch support.`,
+    keywordsAr: [
+      "برمجة تطبيقات جوال",
+      "تطوير تطبيق ايفون واندرويد",
+      "شركة برمجة تطبيقات سعودية",
+      "تكلفة برمجة تطبيق",
+      "برمجة تطبيق متجر",
+      "تطبيق حسب الطلب",
+    ],
+    keywordsEn: ["custom app development", "iOS Android app Saudi", "app development cost KSA", "mobile app agency"],
+    price: 3499,
+    originalPrice: 10000,
+    currency: "SAR",
+    badge: "featured",
+    badgeLabelAr: "حسب الطلب",
+    badgeLabelEn: "Custom",
+    features: [
+      { ar: "تحليل متطلبات موثق", en: "Documented requirements analysis" },
+      { ar: "تصميم UX/UI تعتمده أولاً", en: "UX/UI approved before coding" },
+      { ar: "iOS + Android من كود واحد", en: "iOS + Android, one codebase" },
+      { ar: "لوحة تحكم ويب كاملة", en: "Full web admin panel" },
+      { ar: "نشر على متجري التطبيقات", en: "App Store + Play publishing" },
+      { ar: "الكود المصدري ملكك", en: "You own the source code" },
+      { ar: "شهر دعم مجاني", en: "1 month free support" },
+    ],
+    deliveryDays: 21,
+    rating: 4.9,
+    reviewCount: 34,
+    monthlyOrders: 8,
+    views: 920,
+    inStock: true,
+    order: 14,
+  },
+
+  /* ═══ 15 — MVP سريع ═══ */
+  {
+    id: "vibe-coding",
+    slug: "vibe-coding-services",
+    category: "development",
+    nameAr: "إطلاق MVP سريع",
+    nameEn: "Rapid MVP Launch",
+    shortDescAr: "اختبر فكرتك بمنتج حقيقي خلال 7 أيام بدل 6 أشهر",
+    shortDescEn: "Test your idea with a real product in 7 days, not 6 months",
+    descriptionAr: `أخطر قرار في أي مشروع ناشئ هو بناء منتج كامل قبل التأكد أن أحداً يريده. الـ MVP يجاوبك على السؤال الأهم بأقل تكلفة: هل يدفع الناس مقابل فكرتي؟
+
+ماذا ستستلم بالضبط؟
+1. جلسة تحديد النطاق: نستخرج معك أصغر نسخة قابلة للاختبار من فكرتك.
+2. تطوير المنتج خلال 7 أيام عمل بكود نظيف قابل للتوسع لاحقاً.
+3. واجهة استخدام بسيطة وأنيقة تعطي انطباعاً احترافياً للمستخدمين الأوائل.
+4. نشر المنتج على نطاقك ليصبح متاحاً للاستخدام الحقيقي فوراً.
+5. أدوات قياس مدمجة: من سجّل، من استخدم، وأين توقف.
+6. جلسة تسليم مع توصيات المرحلة القادمة بناءً على ما نراه.
+
+متوسط السوق 3,000+ ر.س — سعرنا 999 ر.س.`,
+    descriptionEn: `The riskiest startup decision is building a full product before proving anyone wants it. An MVP answers the crucial question at minimal cost: will people pay for this?
+
+You get: a scoping session extracting the smallest testable version of your idea, development in 7 working days with clean scalable code, a simple polished UI that impresses early users, deployment on your domain for immediate real use, built-in analytics (signups, usage, drop-off), and a handover session with next-phase recommendations.`,
+    keywordsAr: [
+      "بناء MVP",
+      "تطوير منتج أولي",
+      "اختبار فكرة مشروع",
+      "تطوير سريع للمشاريع",
+      "برمجة مشروع ناشئ",
+    ],
+    keywordsEn: ["MVP development", "rapid prototyping", "startup MVP Saudi", "validate startup idea"],
+    price: 999,
+    originalPrice: 3000,
+    currency: "SAR",
+    badge: "new",
+    badgeLabelAr: "خلال 7 أيام",
+    badgeLabelEn: "7-Day Build",
+    features: [
+      { ar: "جلسة تحديد نطاق الفكرة", en: "Idea scoping session" },
+      { ar: "تطوير خلال 7 أيام عمل", en: "Built in 7 working days" },
+      { ar: "كود نظيف قابل للتوسع", en: "Clean scalable code" },
+      { ar: "نشر على نطاقك فوراً", en: "Deployed on your domain" },
+      { ar: "أدوات قياس مدمجة", en: "Built-in analytics" },
+      { ar: "توصيات المرحلة القادمة", en: "Next-phase recommendations" },
+    ],
+    deliveryDays: 7,
+    rating: 4.8,
+    reviewCount: 19,
+    monthlyOrders: 11,
+    views: 780,
+    inStock: true,
+    order: 15,
+  },
+
+  /* ═══ 16 — تطوير مواقع ولوحات تحكم ═══ */
+  {
+    id: "general-programming",
+    slug: "general-programming",
+    category: "development",
+    nameAr: "تطوير مواقع ولوحات تحكم",
+    nameEn: "Websites & Dashboards Development",
+    shortDescAr: "موقع مؤسسي سريع ومحسّن للسيو مع لوحة تحكم تديره بنفسك",
+    shortDescEn: "A fast, SEO-optimized corporate site with a self-service admin panel",
+    descriptionAr: `موقعك هو مقرّك الرسمي على الإنترنت — العميل والشريك والممول كلهم يحكمون عليك منه قبل أول اجتماع.
+
+ماذا ستستلم بالضبط؟
+1. موقع مؤسسي حتى 8 صفحات (رئيسية، من نحن، خدمات، أعمال، مدونة، تواصل...).
+2. تصميم متجاوب بالكامل مع الجوال والتابلت والشاشات الكبيرة.
+3. لوحة تحكم لتعديل المحتوى والصور والمقالات بنفسك دون مبرمج.
+4. تحسين SEO أساسي: عناوين، أوصاف، Schema، Sitemap، وسرعة تحميل عالية.
+5. نماذج تواصل مربوطة ببريدك وواتساب مع حماية من الرسائل المزعجة.
+6. استضافة سنة أولى مجاناً + شهادة SSL.
+7. تدريب مسجل على إدارة الموقع.
+
+متوسط السوق 3,500+ ر.س — سعرنا 1,199 ر.س.`,
+    descriptionEn: `Your website is your official headquarters online — clients, partners and investors all judge you by it before the first meeting.
+
+You get: a corporate site up to 8 pages, fully responsive design, an admin panel to edit content/images/articles yourself, essential SEO (titles, descriptions, Schema, sitemap, fast loading), contact forms wired to email and WhatsApp with spam protection, first-year hosting free with SSL, and recorded management training.`,
+    keywordsAr: [
+      "تصميم مواقع سعودية",
+      "تطوير موقع شركة",
+      "موقع مؤسسي احترافي",
+      "تصميم موقع مع لوحة تحكم",
+      "أسعار تصميم المواقع",
+      "شركة برمجة مواقع",
+    ],
+    keywordsEn: ["corporate website Saudi", "website with admin panel", "web development KSA", "business website design"],
+    price: 1199,
+    originalPrice: 3500,
+    currency: "SAR",
+    badge: "sale",
+    badgeLabelAr: "شامل الاستضافة",
+    badgeLabelEn: "Hosting Included",
+    features: [
+      { ar: "حتى 8 صفحات مؤسسية", en: "Up to 8 corporate pages" },
+      { ar: "متجاوب مع كل الأجهزة", en: "Fully responsive" },
+      { ar: "لوحة تحكم للمحتوى", en: "Content admin panel" },
+      { ar: "SEO أساسي + Schema", en: "Essential SEO + Schema" },
+      { ar: "نماذج مربوطة بواتساب", en: "WhatsApp-wired forms" },
+      { ar: "استضافة سنة + SSL مجاناً", en: "1-year hosting + SSL free" },
+    ],
+    deliveryDays: 10,
+    rating: 4.7,
+    reviewCount: 28,
+    monthlyOrders: 12,
+    views: 840,
+    inStock: true,
+    order: 16,
   },
 ];
 
@@ -471,12 +1008,14 @@ export function calculateSavings(product: Product): number {
   return Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
 }
 
-/* ─── Competitor Comparison Data ───────────────────────────────────────────── */
+/* ─── Competitor Comparison Data — أسعار السوق مقابل أسعارنا ────────────────── */
 export const COMPETITOR_COMPARISON = [
-  { service: "الباقة الأساسية سلة", competitor: "2,500+", ours: "899" },
-  { service: "الباقة الاحترافية سلة", competitor: "5,000+", ours: "1,499" },
-  { service: "ثيم سلة مخصص", competitor: "4,000+", ours: "1,199" },
-  { service: "هوية بصرية كاملة", competitor: "4,000+", ours: "999" },
-  { service: "إدارة سوشيال / شهر", competitor: "3,000+", ours: "799" },
-  { service: "موقع ويب احترافي", competitor: "8,000+", ours: "2,499" },
+  { service: "تجهيز متجر سلة كامل", competitor: "4,000+", ours: "1,099" },
+  { service: "تصميم ثيم سلة خاص", competitor: "1,500+", ours: "399" },
+  { service: "سيو المتاجر الإلكترونية", competitor: "2,500+", ours: "699" },
+  { service: "تصوير منتجات (10 صور)", competitor: "1,500+", ours: "249" },
+  { service: "هوية بصرية متكاملة", competitor: "3,000+", ours: "799" },
+  { service: "التسويق الإلكتروني / شهر", competitor: "3,000+", ours: "999" },
+  { service: "إدارة السوشيال / شهر", competitor: "2,000+", ours: "749" },
+  { service: "برمجة تطبيق حسب الطلب", competitor: "10,000+", ours: "3,499" },
 ];

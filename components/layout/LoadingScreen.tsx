@@ -34,15 +34,15 @@ export default function LoadingScreen() {
       {/* Radial glow */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "radial-gradient(ellipse 50% 40% at 50% 50%, rgba(200,169,98,0.06) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse 50% 40% at 50% 50%, rgba(240,177,0,0.06) 0%, transparent 70%)",
       }} />
 
       {/* Corner marks */}
       {[
-        { top: 0, left: 0, borderTop: "1px solid rgba(200,169,98,0.18)", borderLeft: "1px solid rgba(200,169,98,0.18)" },
-        { top: 0, right: 0, borderTop: "1px solid rgba(200,169,98,0.18)", borderRight: "1px solid rgba(200,169,98,0.18)" },
-        { bottom: 0, left: 0, borderBottom: "1px solid rgba(200,169,98,0.18)", borderLeft: "1px solid rgba(200,169,98,0.18)" },
-        { bottom: 0, right: 0, borderBottom: "1px solid rgba(200,169,98,0.18)", borderRight: "1px solid rgba(200,169,98,0.18)" },
+        { top: 0, left: 0, borderTop: "1px solid rgba(240,177,0,0.18)", borderLeft: "1px solid rgba(240,177,0,0.18)" },
+        { top: 0, right: 0, borderTop: "1px solid rgba(240,177,0,0.18)", borderRight: "1px solid rgba(240,177,0,0.18)" },
+        { bottom: 0, left: 0, borderBottom: "1px solid rgba(240,177,0,0.18)", borderLeft: "1px solid rgba(240,177,0,0.18)" },
+        { bottom: 0, right: 0, borderBottom: "1px solid rgba(240,177,0,0.18)", borderRight: "1px solid rgba(240,177,0,0.18)" },
       ].map((s, i) => (
         <div key={i} style={{ position: "absolute", width: 60, height: 60, ...s }} />
       ))}
@@ -57,7 +57,7 @@ export default function LoadingScreen() {
           alt="logo"
           width={180}
           height={72}
-          style={{ width: 180, height: "auto", objectFit: "contain", filter: "drop-shadow(0 0 24px rgba(200,169,98,0.25))" }}
+          style={{ width: 180, height: "auto", objectFit: "contain", filter: "drop-shadow(0 0 24px rgba(240,177,0,0.25))" }}
           priority
         />
 
@@ -66,7 +66,7 @@ export default function LoadingScreen() {
           {[0, 1, 2].map(i => (
             <span key={i} style={{
               display: "block", width: 4, height: 4, borderRadius: "50%",
-              background: "#C8A962",
+              background: "#F0B100",
               animation: `dot 1.2s ease-in-out ${i * 0.15}s infinite`,
               opacity: 0.3,
             }} />

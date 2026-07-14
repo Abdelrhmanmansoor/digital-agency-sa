@@ -117,7 +117,7 @@ export default function DashboardSidebar({ user, locale }: Props) {
       {/* Mobile topbar */}
       {isMobile && (
         <div style={{ position: "fixed", top: 0, left: 0, right: 0, height: "56px", background: "#111318", borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 16px", zIndex: 100, direction: isRTL ? "rtl" : "ltr" }}>
-          <a href={`/${locale}`} style={{ textDecoration: "none", fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#C8A962", letterSpacing: "0.15em" }}>DIGITAL AGENCY</a>
+          <a href={`/${locale}`} style={{ textDecoration: "none", fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#F0B100", letterSpacing: "0.15em" }}>DIGITAL AGENCY</a>
           <button onClick={() => setMobileOpen(true)} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "8px 12px", cursor: "pointer", color: "rgba(255,255,255,0.8)", display: "flex", alignItems: "center", gap: "6px", fontFamily: "Space Mono, monospace", fontSize: "10px" }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
             MENU
@@ -145,10 +145,10 @@ export default function DashboardSidebar({ user, locale }: Props) {
       {/* Logo */}
       <div style={{ padding: "20px", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <a href={`/${locale}`} style={{ textDecoration: "none" }}>
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#C8A962", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", color: "#F0B100", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             DIGITAL AGENCY
           </div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.3)", marginTop: "3px" }}>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.3)", marginTop: "3px" }}>
             {isRTL ? "بوابة العملاء" : "Client Portal"}
           </div>
         </a>
@@ -174,15 +174,15 @@ export default function DashboardSidebar({ user, locale }: Props) {
                 padding: "11px 14px",
                 borderRadius: "10px",
                 marginBottom: "4px",
-                background: active ? "rgba(200,169,98,0.1)" : "transparent",
-                color: active ? "#C8A962" : "rgba(255,255,255,0.45)",
+                background: active ? "rgba(240,177,0,0.1)" : "transparent",
+                color: active ? "#F0B100" : "rgba(255,255,255,0.45)",
                 textDecoration: "none",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "15px",
                 fontWeight: active ? 700 : 400,
                 transition: "all 0.2s",
-                borderLeft: active && !isRTL ? "3px solid #C8A962" : "3px solid transparent",
-                borderRight: active && isRTL ? "3px solid #C8A962" : "3px solid transparent",
+                borderLeft: active && !isRTL ? "3px solid #F0B100" : "3px solid transparent",
+                borderRight: active && isRTL ? "3px solid #F0B100" : "3px solid transparent",
               }}
             >
               {item.icon}
@@ -202,11 +202,11 @@ export default function DashboardSidebar({ user, locale }: Props) {
               gap: "8px",
               padding: "12px",
               borderRadius: "10px",
-              background: "rgba(200,169,98,0.08)",
-              border: "1px solid rgba(200,169,98,0.2)",
-              color: "#C8A962",
+              background: "rgba(240,177,0,0.08)",
+              border: "1px solid rgba(240,177,0,0.2)",
+              color: "#F0B100",
               textDecoration: "none",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "14px",
               fontWeight: 700,
               transition: "all 0.2s",
@@ -233,21 +233,21 @@ export default function DashboardSidebar({ user, locale }: Props) {
               width: "36px",
               height: "36px",
               borderRadius: "50%",
-              background: "rgba(200,169,98,0.15)",
-              border: "1px solid rgba(200,169,98,0.3)",
+              background: "rgba(240,177,0,0.15)",
+              border: "1px solid rgba(240,177,0,0.3)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontFamily: "Space Mono, monospace",
               fontSize: "14px",
-              color: "#C8A962",
+              color: "#F0B100",
               flexShrink: 0,
             }}
           >
             {user.name.charAt(0).toUpperCase()}
           </div>
           <div style={{ overflow: "hidden" }}>
-            <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#FAFAF7", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+            <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#FAFAF7", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               {user.name}
             </div>
             <div style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", color: "rgba(255,255,255,0.3)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
@@ -265,7 +265,7 @@ export default function DashboardSidebar({ user, locale }: Props) {
             borderRadius: "8px",
             padding: "9px",
             color: "rgba(255,255,255,0.35)",
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             fontSize: "13px",
             cursor: "pointer",
             display: "flex",

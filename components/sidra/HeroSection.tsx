@@ -26,17 +26,17 @@ export default function HeroSection({
 
   return (
     <section className="relative overflow-hidden border-b border-[#eadfd4] bg-[linear-gradient(180deg,#fbf7f2_0%,#f3e8df_100%)]">
-      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-l from-[#a51218] via-[#C9A227] to-[#a51218]" aria-hidden />
+      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-l from-[#a51218] via-[#F0B100] to-[#a51218]" aria-hidden />
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 start-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-[#C9A227]/10 blur-3xl"
+        className="pointer-events-none absolute -top-32 start-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-[#F0B100]/10 blur-3xl"
       />
 
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-14 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-10 lg:py-20">
         {/* النص */}
         <div>
           <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#a51218]/15 bg-white px-4 py-2 text-sm font-black text-[#a51218]">
-            <span className="h-2 w-2 rounded-full bg-[#C9A227]" aria-hidden />
+            <span className="h-2 w-2 rounded-full bg-[#F0B100]" aria-hidden />
             ثيم سلة سعودي فاخر — {SIDRA_INFO.stats.components} مكونًا و{SIDRA_INFO.stats.settings} خيار تخصيص
           </p>
 
@@ -93,7 +93,7 @@ export default function HeroSection({
             </a>
             <a
               href="#quick-start"
-              className="inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#6d5f55] underline decoration-[#C9A227] decoration-2 underline-offset-8 transition hover:text-[#a51218]"
+              className="inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#6d5f55] underline decoration-[#F0B100] decoration-2 underline-offset-8 transition hover:text-[#a51218]"
             >
               استكشف التوثيق ↓
             </a>
@@ -105,7 +105,7 @@ export default function HeroSection({
                 key={b.label}
                 className="inline-flex items-center gap-2 rounded-full border border-[#eadfd4] bg-white/80 px-4 py-2 text-sm font-bold text-[#5f5148]"
               >
-                <span className="text-[#C9A227]" aria-hidden>{b.icon}</span>
+                <span className="text-[#F0B100]" aria-hidden>{b.icon}</span>
                 {b.label}
               </li>
             ))}
@@ -119,7 +119,7 @@ export default function HeroSection({
             <div className="mb-3 flex items-center gap-1.5 px-2" aria-hidden>
               <span className="h-2.5 w-2.5 rounded-full bg-[#eadfd4]" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#eadfd4]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#C9A227]/50" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#F0B100]/50" />
               <span className="ms-3 h-5 flex-1 rounded-full bg-[#f4ece5]" />
             </div>
 
@@ -131,7 +131,7 @@ export default function HeroSection({
                   <span className="h-3 w-10 rounded-full bg-[#eadfd4]" />
                   <Image src={SIDRA_INFO.logoSrc} alt="" width={64} height={64} className="h-8 w-8 rounded-lg object-cover" priority />
                   <span className="flex gap-1.5">
-                    <span className="h-3 w-3 rounded-full bg-[#C9A227]/60" />
+                    <span className="h-3 w-3 rounded-full bg-[#F0B100]/60" />
                     <span className="h-3 w-3 rounded-full bg-[#eadfd4]" />
                   </span>
                 </div>
@@ -139,7 +139,7 @@ export default function HeroSection({
                 <div className="relative m-3 flex h-28 items-end rounded-xl bg-[linear-gradient(135deg,#a51218_0%,#6e0c10_60%,#211711_100%)] p-3">
                   <div>
                     <span className="block h-2.5 w-24 rounded-full bg-white/80" />
-                    <span className="mt-1.5 block h-2 w-16 rounded-full bg-[#C9A227]" />
+                    <span className="mt-1.5 block h-2 w-16 rounded-full bg-[#F0B100]" />
                   </div>
                 </div>
                 {/* بطاقات المنتجات */}
@@ -154,12 +154,12 @@ export default function HeroSection({
                 </div>
                 {/* آراء + شريط الجوال + الفوتر */}
                 <div className="m-3 flex items-center gap-2 rounded-xl border border-[#eadfd4] bg-white p-2.5">
-                  <span className="h-6 w-6 shrink-0 rounded-full bg-[#C9A227]/40" />
+                  <span className="h-6 w-6 shrink-0 rounded-full bg-[#F0B100]/40" />
                   <span className="block h-2 w-2/3 rounded-full bg-[#eadfd4]" />
                 </div>
                 <div className="flex items-center justify-between bg-[#211711] px-5 py-3.5">
                   {[0, 1, 2, 3].map((i) => (
-                    <span key={i} className={`h-2.5 w-2.5 rounded-full ${i === 0 ? "bg-[#C9A227]" : "bg-white/30"}`} />
+                    <span key={i} className={`h-2.5 w-2.5 rounded-full ${i === 0 ? "bg-[#F0B100]" : "bg-white/30"}`} />
                   ))}
                 </div>
               </div>

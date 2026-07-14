@@ -128,7 +128,7 @@ export default function ContentPlanner({ onClose }: { onClose: () => void }) {
             max={7}
             value={postsPerWeek}
             onChange={(e) => setPostsPerWeek(parseInt(e.target.value))}
-            style={{ width: "100%", accentColor: "#C8A962", marginTop: "12px" }}
+            style={{ width: "100%", accentColor: "#F0B100", marginTop: "12px" }}
           />
           <div style={{ display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#8C8C7A", fontFamily: "Space Mono", marginTop: "4px" }}>
             <span>1</span><span>7</span>
@@ -168,8 +168,8 @@ export default function ContentPlanner({ onClose }: { onClose: () => void }) {
           <div
             style={{
               padding: "16px 20px",
-              background: "rgba(200,169,98,0.08)",
-              border: "1px solid rgba(200,169,98,0.2)",
+              background: "rgba(240,177,0,0.08)",
+              border: "1px solid rgba(240,177,0,0.2)",
               marginBottom: "24px",
               display: "flex",
               gap: "16px",
@@ -178,10 +178,10 @@ export default function ContentPlanner({ onClose }: { onClose: () => void }) {
           >
             <span style={{ fontSize: "20px" }}>⏰</span>
             <div>
-              <div style={{ fontFamily: "Space Mono", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#C8A962", marginBottom: "4px" }}>
+              <div style={{ fontFamily: "Space Mono", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#F0B100", marginBottom: "4px" }}>
                 {isRTL ? "أفضل أوقات النشر" : "Best Posting Times"}
               </div>
-              <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>
+              <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                 {BEST_TIMES_AR[platform]}
               </div>
             </div>
@@ -198,28 +198,28 @@ export default function ContentPlanner({ onClose }: { onClose: () => void }) {
                   border: "1px solid #E8E6E1",
                   transition: "border-color 0.2s",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#C8A962"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#F0B100"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E8E6E1"; }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
-                  <span style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700, color: "#C8A962" }}>
+                  <span style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700, color: "#F0B100" }}>
                     {isRTL ? `اليوم ${item.day}` : `Day ${item.day}`}
                   </span>
                   <span
                     style={{
                       padding: "2px 8px",
-                      background: "rgba(200,169,98,0.1)",
-                      border: "1px solid rgba(200,169,98,0.2)",
+                      background: "rgba(240,177,0,0.1)",
+                      border: "1px solid rgba(240,177,0,0.2)",
                       fontSize: "10px",
                       fontFamily: "Space Mono",
-                      color: "#C8A962",
+                      color: "#F0B100",
                       letterSpacing: "0.08em",
                     }}
                   >
                     {isRTL ? item.type : item.typeEn}
                   </span>
                 </div>
-                <div style={{ fontSize: "14px", color: "#2D2D2D", lineHeight: 1.6, fontFamily: "'Zain', sans-serif" }}>
+                <div style={{ fontSize: "14px", color: "#2D2D2D", lineHeight: 1.6, fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                   {item.idea}
                 </div>
               </div>

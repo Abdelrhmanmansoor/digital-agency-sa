@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import LoadingScreen from "@/components/layout/LoadingScreen";
 import Header from "@/components/layout/Header";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import Hero from "@/components/home/Hero";
@@ -148,7 +147,7 @@ export async function generateMetadata({
     openGraph: {
       title: metaOgTitle,
       description: metaDesc,
-      url: `https://www.solimanx.com/${locale}`,
+      url: `https://tf1one.com/${locale}`,
       siteName:
         locale === "ar" ? "تصميم متجر سلة احترافي" : locale === "fr" ? "Conception Boutique Salla" : "Salla Store Design",
       locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
@@ -168,11 +167,11 @@ export default function HomePage() {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://www.solimanx.com/#business",
-        "name": "وكالة رقمية — AM Design",
-        "alternateName": "AM Design KSA",
+        "@id": "https://tf1one.com/#business",
+        "name": "AM Design",
+        "alternateName": "TF1ONE",
         "description": "وكالة رقمية متخصصة في تصميم متاجر سلة وزد، تصوير منتجات بالذكاء الاصطناعي، وتسويق رقمي في السعودية",
-        "url": "https://www.solimanx.com",
+        "url": "https://tf1one.com",
         "telephone": "+201007835547",
         "priceRange": "1499 SAR - 5999 SAR",
         "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
@@ -192,10 +191,10 @@ export default function HomePage() {
       },
       {
         "@type": "Service",
-        "@id": "https://www.solimanx.com/#salla-design",
+        "@id": "https://tf1one.com/#salla-design",
         "name": "تصميم متجر سلة احترافي",
         "description": "تصميم وتخصيص متجر سلة احترافي يزيد المبيعات — ثيم مخصص، ربط بوابات دفع، تجهيز كامل",
-        "provider": { "@id": "https://www.solimanx.com/#business" },
+        "provider": { "@id": "https://tf1one.com/#business" },
         "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
         "offers": {
           "@type": "Offer",
@@ -205,21 +204,21 @@ export default function HomePage() {
       },
       {
         "@type": "Service",
-        "@id": "https://www.solimanx.com/#ai-photography",
+        "@id": "https://tf1one.com/#ai-photography",
         "name": "تصوير منتجات بالذكاء الاصطناعي",
         "description": "تصوير منتجات احترافي بالذكاء الاصطناعي بجودة إعلانية — بدون تكلفة استوديو",
-        "provider": { "@id": "https://www.solimanx.com/#business" },
+        "provider": { "@id": "https://tf1one.com/#business" },
         "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
       },
       {
         "@type": "WebSite",
-        "@id": "https://www.solimanx.com/#website",
-        "url": "https://www.solimanx.com",
+        "@id": "https://tf1one.com/#website",
+        "url": "https://tf1one.com",
         "name": "AM Design — تصميم متجر سلة وزد",
         "inLanguage": ["ar", "en", "fr"],
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://www.solimanx.com/ar?q={search_term_string}",
+          "target": "https://tf1one.com/ar?q={search_term_string}",
           "query-input": "required name=search_term_string",
         },
       },
@@ -232,7 +231,6 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <LoadingScreen />
       <ScrollProgress />
       <Header />
       <main>

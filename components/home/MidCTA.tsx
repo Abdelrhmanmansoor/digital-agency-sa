@@ -10,9 +10,9 @@ export default function MidCTA() {
   return (
     <section
       style={{
-        background: "linear-gradient(135deg, #C8A962 0%, #a8893e 100%)",
+        background: "linear-gradient(135deg, #F0B100 0%, #a8893e 100%)",
         padding: "40px 24px",
-        fontFamily: "'Zain', sans-serif",
+        fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
       }}
     >
       <div
@@ -51,7 +51,7 @@ export default function MidCTA() {
             alignItems: "center",
             gap: "10px",
             background: "#0A0A0A",
-            color: "#C8A962",
+            color: "#F0B100",
             padding: "14px 28px",
             borderRadius: "10px",
             fontFamily: "Space Mono, monospace",

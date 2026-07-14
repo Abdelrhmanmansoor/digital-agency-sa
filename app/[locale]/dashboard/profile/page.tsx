@@ -70,22 +70,22 @@ export default function ProfilePage() {
   };
 
   const S = {
-    inputStyle: { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: "10px", padding: "12px 16px", color: "#FAFAF7", fontSize: "15px", fontFamily: "'Zain', sans-serif", outline: "none", boxSizing: "border-box" as const, marginBottom: "20px" },
+    inputStyle: { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: "10px", padding: "12px 16px", color: "#FAFAF7", fontSize: "15px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", outline: "none", boxSizing: "border-box" as const, marginBottom: "20px" },
     labelStyle: { display: "block", fontFamily: "Space Mono, monospace", fontSize: "10px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: "8px" },
-    btn: { background: "#C8A962", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 28px", cursor: "pointer", fontFamily: "Space Mono, monospace", fontSize: "12px", fontWeight: 700 } as React.CSSProperties,
+    btn: { background: "#F0B100", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 28px", cursor: "pointer", fontFamily: "Space Mono, monospace", fontSize: "12px", fontWeight: 700 } as React.CSSProperties,
     card: { background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "16px", padding: "28px 32px", marginBottom: "24px" } as React.CSSProperties,
   };
 
   if (loading) return (
     <div style={{ padding: "40px", direction: isRTL ? "rtl" : "ltr" }}>
-      <div style={{ fontFamily: "'Zain', sans-serif", color: "rgba(255,255,255,0.3)" }}>{isRTL ? "جاري التحميل..." : "Loading..."}</div>
+      <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", color: "rgba(255,255,255,0.3)" }}>{isRTL ? "جاري التحميل..." : "Loading..."}</div>
     </div>
   );
 
   return (
     <div style={{ padding: "40px", direction: isRTL ? "rtl" : "ltr", maxWidth: "640px" }}>
       <div style={{ marginBottom: "36px" }}>
-        <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
+        <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
           {isRTL ? "حسابي" : "My Profile"}
         </h1>
       </div>
@@ -101,7 +101,7 @@ export default function ProfilePage() {
 
           <label style={S.labelStyle}>{isRTL ? "البريد الإلكتروني" : "Email"}</label>
           <input style={{ ...S.inputStyle, opacity: 0.5, cursor: "not-allowed" }} type="email" value={email} disabled />
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.25)", marginTop: "-16px", marginBottom: "20px" }}>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.25)", marginTop: "-16px", marginBottom: "20px" }}>
             {isRTL ? "لا يمكن تغيير البريد الإلكتروني" : "Email cannot be changed"}
           </div>
 
@@ -111,8 +111,8 @@ export default function ProfilePage() {
           <label style={S.labelStyle}>{isRTL ? "اسم الشركة" : "Company"}</label>
           <input style={S.inputStyle} type="text" value={company} onChange={e => setCompany(e.target.value)} placeholder={isRTL ? "اسم علامتك التجارية" : "Your brand name"} />
 
-          {error && <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: "8px", padding: "10px 14px", color: "#FCA5A5", fontFamily: "'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>{error}</div>}
-          {success && <div style={{ background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)", borderRadius: "8px", padding: "10px 14px", color: "#86EFAC", fontFamily: "'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>{success}</div>}
+          {error && <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: "8px", padding: "10px 14px", color: "#FCA5A5", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>{error}</div>}
+          {success && <div style={{ background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)", borderRadius: "8px", padding: "10px 14px", color: "#86EFAC", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>{success}</div>}
 
           <button type="submit" disabled={saving} style={S.btn}>
             {saving ? (isRTL ? "جاري الحفظ..." : "Saving...") : (isRTL ? "حفظ التغييرات" : "Save Changes")}
@@ -135,8 +135,8 @@ export default function ProfilePage() {
           <label style={S.labelStyle}>{isRTL ? "تأكيد كلمة المرور" : "Confirm password"}</label>
           <input style={S.inputStyle} type="password" required value={confirmPass} onChange={e => setConfirmPass(e.target.value)} />
 
-          {passError && <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: "8px", padding: "10px 14px", color: "#FCA5A5", fontFamily: "'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>{passError}</div>}
-          {passSuccess && <div style={{ background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)", borderRadius: "8px", padding: "10px 14px", color: "#86EFAC", fontFamily: "'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>{passSuccess}</div>}
+          {passError && <div style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.2)", borderRadius: "8px", padding: "10px 14px", color: "#FCA5A5", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>{passError}</div>}
+          {passSuccess && <div style={{ background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)", borderRadius: "8px", padding: "10px 14px", color: "#86EFAC", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", marginBottom: "16px" }}>{passSuccess}</div>}
 
           <button type="submit" disabled={passSaving} style={S.btn}>
             {passSaving ? (isRTL ? "جاري التغيير..." : "Changing...") : (isRTL ? "تغيير كلمة المرور" : "Change Password")}
@@ -150,7 +150,7 @@ export default function ProfilePage() {
           await fetch("/api/client/auth/logout", { method: "POST" });
           router.push(`/${locale}/dashboard/login`);
         }}
-        style={{ background: "transparent", border: "1px solid rgba(239,68,68,0.2)", color: "rgba(239,68,68,0.6)", borderRadius: "10px", padding: "11px 24px", cursor: "pointer", fontFamily: "'Zain', sans-serif", fontSize: "14px" }}
+        style={{ background: "transparent", border: "1px solid rgba(239,68,68,0.2)", color: "rgba(239,68,68,0.6)", borderRadius: "10px", padding: "11px 24px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px" }}
       >
         {isRTL ? "تسجيل الخروج" : "Sign out"}
       </button>

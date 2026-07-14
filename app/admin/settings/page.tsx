@@ -31,11 +31,11 @@ export default function AdminSettingsPage() {
   const inputStyle = {
     width: "100%",
     background: "#0A0A0A",
-    border: "1px solid rgba(200,169,98,0.2)",
+    border: "1px solid rgba(240,177,0,0.2)",
     color: "#FAFAF7",
     padding: "12px 16px",
     fontSize: "14px",
-    fontFamily: "'Zain', sans-serif",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
     outline: "none",
     boxSizing: "border-box" as const,
   };
@@ -52,7 +52,7 @@ export default function AdminSettingsPage() {
 
   const sectionStyle = {
     background: "#141414",
-    border: "1px solid rgba(200,169,98,0.1)",
+    border: "1px solid rgba(240,177,0,0.1)",
     padding: "32px",
     marginBottom: "24px",
   };
@@ -64,7 +64,7 @@ export default function AdminSettingsPage() {
       <main style={{ flex: 1, padding: "40px", marginRight: "260px" }}>
         {/* Header */}
         <div style={{ marginBottom: "40px" }}>
-          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#FAFAF7", marginBottom: "4px" }}>
+          <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "28px", fontWeight: 700, color: "#FAFAF7", marginBottom: "4px" }}>
             الإعدادات
           </h1>
           <p style={{ color: "#8C8C7A", fontFamily: "Space Mono", fontSize: "12px" }}>
@@ -80,7 +80,7 @@ export default function AdminSettingsPage() {
               color: "#22c55e",
               padding: "12px 16px",
               marginBottom: "24px",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "14px",
             }}
           >
@@ -91,7 +91,7 @@ export default function AdminSettingsPage() {
         <form onSubmit={handleSave}>
           {/* Site Info */}
           <div style={sectionStyle}>
-            <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
+            <h2 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(240,177,0,0.1)" }}>
               معلومات الموقع
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
@@ -108,7 +108,7 @@ export default function AdminSettingsPage() {
 
           {/* Contact Info */}
           <div style={sectionStyle}>
-            <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
+            <h2 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(240,177,0,0.1)" }}>
               معلومات التواصل
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
@@ -133,7 +133,7 @@ export default function AdminSettingsPage() {
 
           {/* Social Media */}
           <div style={sectionStyle}>
-            <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
+            <h2 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(240,177,0,0.1)" }}>
               وسائل التواصل الاجتماعي
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
@@ -159,13 +159,13 @@ export default function AdminSettingsPage() {
 
           {/* Admin Account */}
           <div style={sectionStyle}>
-            <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(200,169,98,0.1)" }}>
+            <h2 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "24px", paddingBottom: "16px", borderBottom: "1px solid rgba(240,177,0,0.1)" }}>
               حساب المدير
             </h2>
             <div
               style={{
-                background: "rgba(200,169,98,0.05)",
-                border: "1px solid rgba(200,169,98,0.15)",
+                background: "rgba(240,177,0,0.05)",
+                border: "1px solid rgba(240,177,0,0.15)",
                 padding: "16px",
                 color: "#8C8C7A",
                 fontFamily: "Space Mono",
@@ -174,7 +174,7 @@ export default function AdminSettingsPage() {
               }}
             >
               <div>EMAIL: admin@digitalagency.sa</div>
-              <div style={{ marginTop: "8px", color: "#C8A962" }}>
+              <div style={{ marginTop: "8px", color: "#F0B100" }}>
                 لتغيير كلمة المرور، قم بتحديث متغيرات البيئة في ملف .env.local
               </div>
             </div>

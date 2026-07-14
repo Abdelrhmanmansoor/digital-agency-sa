@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import type { ServiceOrder, OrderStatus } from "@/lib/client-db";
 
 const STATUS_LABELS: Record<OrderStatus, { ar: string; color: string; bg: string }> = {
-  pending:     { ar: "قيد الانتظار", color: "#C8A962", bg: "rgba(200,169,98,0.12)" },
+  pending:     { ar: "قيد الانتظار", color: "#F0B100", bg: "rgba(240,177,0,0.12)" },
   in_progress: { ar: "جاري التنفيذ", color: "#3B82F6", bg: "rgba(59,130,246,0.12)" },
   review:      { ar: "مراجعة",       color: "#A855F7", bg: "rgba(168,85,247,0.12)" },
-  delivered:   { ar: "تم التسليم",   color: "#BDEE63", bg: "rgba(189,238,99,0.12)" },
+  delivered:   { ar: "تم التسليم",   color: "#F0B100", bg: "rgba(240,177,0,0.12)" },
   completed:   { ar: "مكتمل",        color: "#22C55E", bg: "rgba(34,197,94,0.12)" },
   cancelled:   { ar: "ملغى",         color: "#EF4444", bg: "rgba(239,68,68,0.12)" },
 };
@@ -71,21 +71,21 @@ export default function AdminOrdersPage() {
   const filtered = filterStatus === "all" ? orders : orders.filter(o => o.status === filterStatus);
 
   const S = {
-    page: { background: "#0A0A0A", minHeight: "100vh", color: "#FAFAF7", fontFamily: "'Zain', sans-serif", padding: "40px" } as React.CSSProperties,
+    page: { background: "#0A0A0A", minHeight: "100vh", color: "#FAFAF7", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", padding: "40px" } as React.CSSProperties,
     header: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "32px", flexWrap: "wrap" as const, gap: "16px" },
-    title: { fontFamily: "Space Mono, monospace", fontSize: "20px", color: "#C8A962", letterSpacing: "0.1em" },
-    backBtn: { background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "8px", color: "#FAFAF7", padding: "8px 16px", cursor: "pointer", fontSize: "14px", fontFamily: "'Zain', sans-serif" },
+    title: { fontFamily: "Space Mono, monospace", fontSize: "20px", color: "#F0B100", letterSpacing: "0.1em" },
+    backBtn: { background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "8px", color: "#FAFAF7", padding: "8px 16px", cursor: "pointer", fontSize: "14px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" },
     filters: { display: "flex", gap: "8px", marginBottom: "24px", flexWrap: "wrap" as const },
-    filterBtn: (active: boolean) => ({ padding: "6px 14px", borderRadius: "20px", border: "1px solid", cursor: "pointer", fontSize: "13px", fontFamily: "Space Mono, monospace", transition: "all 0.2s", background: active ? "#C8A962" : "transparent", color: active ? "#0A0A0A" : "rgba(255,255,255,0.5)", borderColor: active ? "#C8A962" : "rgba(255,255,255,0.15)" }),
+    filterBtn: (active: boolean) => ({ padding: "6px 14px", borderRadius: "20px", border: "1px solid", cursor: "pointer", fontSize: "13px", fontFamily: "Space Mono, monospace", transition: "all 0.2s", background: active ? "#F0B100" : "transparent", color: active ? "#0A0A0A" : "rgba(255,255,255,0.5)", borderColor: active ? "#F0B100" : "rgba(255,255,255,0.15)" }),
     card: { background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "12px", padding: "20px 24px", marginBottom: "12px", cursor: "pointer", transition: "all 0.2s", display: "grid", gridTemplateColumns: "1fr auto", alignItems: "center", gap: "16px" },
     badge: (s: OrderStatus) => ({ display: "inline-block", padding: "4px 12px", borderRadius: "20px", fontSize: "12px", fontFamily: "Space Mono, monospace", color: STATUS_LABELS[s].color, background: STATUS_LABELS[s].bg }),
     overlay: { position: "fixed" as const, inset: 0, background: "rgba(0,0,0,0.75)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000, padding: "20px" },
-    modal: { background: "#111318", border: "1px solid rgba(200,169,98,0.2)", borderRadius: "16px", padding: "32px", width: "100%", maxWidth: "640px", maxHeight: "90vh", overflowY: "auto" as const },
+    modal: { background: "#111318", border: "1px solid rgba(240,177,0,0.2)", borderRadius: "16px", padding: "32px", width: "100%", maxWidth: "640px", maxHeight: "90vh", overflowY: "auto" as const },
     label: { display: "block", fontSize: "11px", fontFamily: "Space Mono, monospace", color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", textTransform: "uppercase" as const, marginBottom: "8px" },
-    input: { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "10px 14px", color: "#FAFAF7", fontSize: "14px", fontFamily: "'Zain', sans-serif", boxSizing: "border-box" as const },
-    select: { width: "100%", background: "#1A1D26", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "10px 14px", color: "#FAFAF7", fontSize: "14px", fontFamily: "'Zain', sans-serif", boxSizing: "border-box" as const },
-    saveBtn: { background: "#C8A962", color: "#0A0A0A", border: "none", borderRadius: "8px", padding: "12px 28px", cursor: "pointer", fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700 },
-    cancelBtn: { background: "transparent", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "8px", padding: "12px 28px", cursor: "pointer", fontFamily: "'Zain', sans-serif", fontSize: "14px" },
+    input: { width: "100%", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "10px 14px", color: "#FAFAF7", fontSize: "14px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", boxSizing: "border-box" as const },
+    select: { width: "100%", background: "#1A1D26", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "10px 14px", color: "#FAFAF7", fontSize: "14px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", boxSizing: "border-box" as const },
+    saveBtn: { background: "#F0B100", color: "#0A0A0A", border: "none", borderRadius: "8px", padding: "12px 28px", cursor: "pointer", fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700 },
+    cancelBtn: { background: "transparent", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "8px", padding: "12px 28px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px" },
   };
 
   return (
@@ -120,7 +120,7 @@ export default function AdminOrdersPage() {
       ) : (
         filtered.map(o => (
           <div key={o.id} style={S.card} onClick={() => openOrder(o)}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.055)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(200,169,98,0.2)"; }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.055)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(240,177,0,0.2)"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; }}
           >
             <div>
@@ -135,7 +135,7 @@ export default function AdminOrdersPage() {
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
               <span style={S.badge(o.status)}>{STATUS_LABELS[o.status].ar}</span>
               {o.deliveredFiles?.length > 0 && (
-                <span style={{ fontSize: "11px", fontFamily: "Space Mono, monospace", color: "#BDEE63" }}>
+                <span style={{ fontSize: "11px", fontFamily: "Space Mono, monospace", color: "#F0B100" }}>
                   {o.deliveredFiles.length} ملف
                 </span>
               )}
@@ -173,7 +173,7 @@ export default function AdminOrdersPage() {
                 </>
               )}
               {selected.budget && (
-                <div style={{ marginTop: "12px", fontSize: "13px", color: "#C8A962" }}>الميزانية: {selected.budget}</div>
+                <div style={{ marginTop: "12px", fontSize: "13px", color: "#F0B100" }}>الميزانية: {selected.budget}</div>
               )}
             </div>
 
@@ -203,8 +203,8 @@ export default function AdminOrdersPage() {
               <div style={{ marginBottom: "20px" }}>
                 <label style={S.label}>الملفات المُسلَّمة</label>
                 {selected.deliveredFiles.map(f => (
-                  <div key={f.id} style={{ background: "rgba(189,238,99,0.06)", border: "1px solid rgba(189,238,99,0.15)", borderRadius: "8px", padding: "10px 14px", marginBottom: "8px" }}>
-                    <div style={{ fontSize: "13px", fontWeight: 700, color: "#BDEE63" }}>{f.name}</div>
+                  <div key={f.id} style={{ background: "rgba(240,177,0,0.06)", border: "1px solid rgba(240,177,0,0.15)", borderRadius: "8px", padding: "10px 14px", marginBottom: "8px" }}>
+                    <div style={{ fontSize: "13px", fontWeight: 700, color: "#F0B100" }}>{f.name}</div>
                     <div style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", wordBreak: "break-all" }}>{f.url}</div>
                   </div>
                 ))}

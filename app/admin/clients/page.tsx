@@ -23,10 +23,10 @@ interface ClientGroup {
 }
 
 const STATUS_COLOR: Record<string, string> = {
-  paid: "#28CA41", draft: "#AAA", sent: "#C8A962", cancelled: "#C94040",
+  paid: "#28CA41", draft: "#AAA", sent: "#F0B100", cancelled: "#C94040",
   active: "#28CA41", completed: "#4A9EFF", terminated: "#C94040",
-  "service-agreement": "#C8A962", maintenance: "#4A9EFF",
-  marketing: "#BDEE63", custom: "#AAA",
+  "service-agreement": "#F0B100", maintenance: "#4A9EFF",
+  marketing: "#F0B100", custom: "#AAA",
 };
 const STATUS_LABEL: Record<string, string> = {
   paid: "مدفوعة", draft: "مسودة", sent: "مرسلة", cancelled: "ملغاة",
@@ -201,7 +201,7 @@ export default function ClientsPage() {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
             color: #FAFAF7;
-            font-family: 'Zain', sans-serif;
+            font-family: 'ThmanyahSans', 'Zain', sans-serif;
             font-size: 14px;
             padding: 8px 16px;
             border-radius: 8px;
@@ -238,7 +238,7 @@ export default function ClientsPage() {
       <AdminSidebar />
       <main className="admin-main" dir="rtl">
         <div className="clients-header">
-          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "24px", fontWeight: 800, color: "#FAFAF7", marginBottom: "2px" }}>
+          <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "24px", fontWeight: 800, color: "#FAFAF7", marginBottom: "2px" }}>
             داشبورد العملاء
           </h1>
           <p style={{ color: "#8C8C7A", fontSize: "13px" }}>
@@ -260,7 +260,7 @@ export default function ClientsPage() {
                 style={{
                   width: "100%", padding: "9px 14px", background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.08)", borderRadius: "8px",
-                  color: "#FAFAF7", fontSize: "14px", fontFamily: "'Zain', sans-serif",
+                  color: "#FAFAF7", fontSize: "14px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                   outline: "none", boxSizing: "border-box",
                 }}
               />
@@ -273,8 +273,8 @@ export default function ClientsPage() {
                 { label: "الفواتير", value: clients.reduce((s, c) => s + c.invoices.length, 0) },
                 { label: "العقود", value: clients.reduce((s, c) => s + c.contracts.length, 0) },
               ].map(({ label, value }) => (
-                <div key={label} style={{ flex: 1, textAlign: "center", background: "rgba(200,169,98,0.06)", borderRadius: "8px", padding: "7px 4px" }}>
-                  <div style={{ fontFamily: "Space Mono, monospace", fontSize: "16px", fontWeight: 700, color: "#C8A962" }}>{value}</div>
+                <div key={label} style={{ flex: 1, textAlign: "center", background: "rgba(240,177,0,0.06)", borderRadius: "8px", padding: "7px 4px" }}>
+                  <div style={{ fontFamily: "Space Mono, monospace", fontSize: "16px", fontWeight: 700, color: "#F0B100" }}>{value}</div>
                   <div style={{ fontSize: "11px", color: "#8C8C7A" }}>{label}</div>
                 </div>
               ))}
@@ -283,9 +283,9 @@ export default function ClientsPage() {
             {/* List */}
             <div style={{ flex: 1, overflowY: "auto" }}>
               {loading ? (
-                <div style={{ padding: "40px 20px", textAlign: "center", color: "#8C8C7A", fontFamily: "'Zain', sans-serif" }}>جاري التحميل...</div>
+                <div style={{ padding: "40px 20px", textAlign: "center", color: "#8C8C7A", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>جاري التحميل...</div>
               ) : filtered.length === 0 ? (
-                <div style={{ padding: "40px 20px", textAlign: "center", color: "#8C8C7A", fontFamily: "'Zain', sans-serif" }}>لا يوجد عملاء</div>
+                <div style={{ padding: "40px 20px", textAlign: "center", color: "#8C8C7A", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>لا يوجد عملاء</div>
               ) : (
                 filtered.map(client => {
                   const isSelected = selected?.key === client.key;
@@ -296,8 +296,8 @@ export default function ClientsPage() {
                       style={{
                         padding: "12px 16px",
                         cursor: "pointer",
-                        background: isSelected ? "rgba(200,169,98,0.08)" : "transparent",
-                        borderRight: isSelected ? "3px solid #C8A962" : "3px solid transparent",
+                        background: isSelected ? "rgba(240,177,0,0.08)" : "transparent",
+                        borderRight: isSelected ? "3px solid #F0B100" : "3px solid transparent",
                         borderBottom: "1px solid rgba(255,255,255,0.03)",
                         transition: "all 0.15s",
                       }}
@@ -307,16 +307,16 @@ export default function ClientsPage() {
                       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                         <div style={{
                           width: "38px", height: "38px", borderRadius: "50%", flexShrink: 0,
-                          background: isSelected ? "rgba(200,169,98,0.15)" : "rgba(255,255,255,0.06)",
-                          border: `1px solid ${isSelected ? "rgba(200,169,98,0.3)" : "rgba(255,255,255,0.08)"}`,
+                          background: isSelected ? "rgba(240,177,0,0.15)" : "rgba(255,255,255,0.06)",
+                          border: `1px solid ${isSelected ? "rgba(240,177,0,0.3)" : "rgba(255,255,255,0.08)"}`,
                           display: "flex", alignItems: "center", justifyContent: "center",
-                          fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 700,
-                          color: isSelected ? "#C8A962" : "#8C8C7A",
+                          fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 700,
+                          color: isSelected ? "#F0B100" : "#8C8C7A",
                         }}>
                           {(client.name || "?")[0]}
                         </div>
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 600, color: isSelected ? "#FAFAF7" : "#CCC", marginBottom: "2px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 600, color: isSelected ? "#FAFAF7" : "#CCC", marginBottom: "2px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             {client.name}
                           </div>
                           <div style={{ fontSize: "11px", color: "#8C8C7A", fontFamily: "Space Mono, monospace", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
@@ -326,7 +326,7 @@ export default function ClientsPage() {
                       </div>
                       <div style={{ display: "flex", gap: "6px", marginTop: "7px", flexWrap: "wrap" }}>
                         {client.invoices.length > 0 && (
-                          <span style={{ padding: "2px 8px", borderRadius: "100px", background: "rgba(200,169,98,0.1)", color: "#C8A962", fontSize: "10px", fontFamily: "Space Mono, monospace" }}>
+                          <span style={{ padding: "2px 8px", borderRadius: "100px", background: "rgba(240,177,0,0.1)", color: "#F0B100", fontSize: "10px", fontFamily: "Space Mono, monospace" }}>
                             {client.invoices.length} فاتورة
                           </span>
                         )}
@@ -355,7 +355,7 @@ export default function ClientsPage() {
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" style={{ marginBottom: "16px", opacity: 0.3 }}>
                   <circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
                 </svg>
-                <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px" }}>اختر عميلاً لعرض تفاصيله</p>
+                <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px" }}>اختر عميلاً لعرض تفاصيله</p>
               </div>
             ) : (
               <>
@@ -375,17 +375,17 @@ export default function ClientsPage() {
                   <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
                     <div style={{
                       width: "50px", height: "50px", borderRadius: "50%", flexShrink: 0,
-                      background: "rgba(200,169,98,0.12)", border: "1px solid rgba(200,169,98,0.25)",
+                      background: "rgba(240,177,0,0.12)", border: "1px solid rgba(240,177,0,0.25)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      fontFamily: "'Zain', sans-serif", fontSize: "20px", fontWeight: 800, color: "#C8A962",
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "20px", fontWeight: 800, color: "#F0B100",
                     }}>
                       {(selected.name || "?")[0]}
                     </div>
                     <div>
-                      <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "20px", fontWeight: 800, color: "#FAFAF7", marginBottom: "3px" }}>
+                      <h2 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "20px", fontWeight: 800, color: "#FAFAF7", marginBottom: "3px" }}>
                         {selected.name}
                       </h2>
-                      {selected.company && <div style={{ color: "#C8A962", fontSize: "13px", marginBottom: "2px", fontFamily: "'Zain', sans-serif" }}>{selected.company}</div>}
+                      {selected.company && <div style={{ color: "#F0B100", fontSize: "13px", marginBottom: "2px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>{selected.company}</div>}
                       <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
                         <span style={{ color: "#8C8C7A", fontSize: "11px", fontFamily: "Space Mono, monospace" }}>{selected.email}</span>
                         <span style={{ color: "#8C8C7A", fontSize: "11px", fontFamily: "Space Mono, monospace" }}>{selected.phone}</span>
@@ -399,8 +399,8 @@ export default function ClientsPage() {
                       href={`/admin/invoices/new?client=${encodeURIComponent(selected.name)}&email=${encodeURIComponent(selected.email || "")}&phone=${encodeURIComponent(selected.phone || "")}`}
                       style={{
                         padding: "8px 16px", borderRadius: "8px", textDecoration: "none",
-                        background: "rgba(200,169,98,0.1)", border: "1px solid rgba(200,169,98,0.25)",
-                        color: "#C8A962", fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
+                        background: "rgba(240,177,0,0.1)", border: "1px solid rgba(240,177,0,0.25)",
+                        color: "#F0B100", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
                         display: "inline-block", whiteSpace: "nowrap",
                       }}
                     >
@@ -411,7 +411,7 @@ export default function ClientsPage() {
                       style={{
                         padding: "8px 16px", borderRadius: "8px", textDecoration: "none",
                         background: "rgba(74,158,255,0.1)", border: "1px solid rgba(74,158,255,0.2)",
-                        color: "#4A9EFF", fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
+                        color: "#4A9EFF", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
                         display: "inline-block", whiteSpace: "nowrap",
                       }}
                     >
@@ -424,7 +424,7 @@ export default function ClientsPage() {
                         style={{
                           padding: "8px 16px", borderRadius: "8px", textDecoration: "none",
                           background: "rgba(37,211,102,0.08)", border: "1px solid rgba(37,211,102,0.2)",
-                          color: "#25D366", fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
+                          color: "#25D366", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
                           display: "inline-block", whiteSpace: "nowrap",
                         }}
                       >
@@ -437,7 +437,7 @@ export default function ClientsPage() {
                 {/* Summary cards */}
                 <div className="clients-summary-grid">
                   {[
-                    { label: "الفواتير", value: selected.invoices.length, color: "#C8A962" },
+                    { label: "الفواتير", value: selected.invoices.length, color: "#F0B100" },
                     { label: "العقود", value: selected.contracts.length, color: "#4A9EFF" },
                     { label: "مدفوع", value: `${fmtAmt(selected.totalPaid)} ﷼`, color: "#28CA41" },
                     { label: "آخر نشاط", value: fmtDate(selected.lastActivity), color: "#8C8C7A" },
@@ -455,7 +455,7 @@ export default function ClientsPage() {
                 {/* Invoices */}
                 {selected.invoices.length > 0 && (
                   <div style={{ marginBottom: "28px" }}>
-                    <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "17px", fontWeight: 700, color: "#C8A962", marginBottom: "12px" }}>
+                    <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "17px", fontWeight: 700, color: "#F0B100", marginBottom: "12px" }}>
                       الفواتير ({selected.invoices.length})
                     </h3>
                     <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
@@ -463,12 +463,12 @@ export default function ClientsPage() {
                         <Link key={inv.id} href={`/admin/invoices/${inv.id}`} style={{ textDecoration: "none" }}>
                           <div
                             className="inv-row"
-                            onMouseEnter={e => { e.currentTarget.style.background = "rgba(200,169,98,0.06)"; e.currentTarget.style.borderColor = "rgba(200,169,98,0.2)"; }}
+                            onMouseEnter={e => { e.currentTarget.style.background = "rgba(240,177,0,0.06)"; e.currentTarget.style.borderColor = "rgba(240,177,0,0.2)"; }}
                             onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)"; }}
                           >
                             <div className="inv-row-left">
-                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#C8A962", fontWeight: 700, flexShrink: 0 }}>{inv.number}</div>
-                              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "#AAA" }}>{fmtDate(inv.issueDate)}</div>
+                              <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#F0B100", fontWeight: 700, flexShrink: 0 }}>{inv.number}</div>
+                              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "#AAA" }}>{fmtDate(inv.issueDate)}</div>
                             </div>
                             <div className="inv-row-right">
                               <div style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700, color: "#FAFAF7" }}>
@@ -478,7 +478,7 @@ export default function ClientsPage() {
                                 padding: "3px 10px", borderRadius: "100px", fontSize: "11px",
                                 background: `${STATUS_COLOR[inv.status] || "#AAA"}18`,
                                 color: STATUS_COLOR[inv.status] || "#AAA",
-                                fontFamily: "'Zain', sans-serif", whiteSpace: "nowrap",
+                                fontFamily: "'ThmanyahSans', 'Zain', sans-serif", whiteSpace: "nowrap",
                               }}>
                                 {STATUS_LABEL[inv.status] || inv.status}
                               </span>
@@ -493,7 +493,7 @@ export default function ClientsPage() {
                 {/* Contracts */}
                 {selected.contracts.length > 0 && (
                   <div style={{ marginBottom: "16px" }}>
-                    <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "17px", fontWeight: 700, color: "#4A9EFF", marginBottom: "12px" }}>
+                    <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "17px", fontWeight: 700, color: "#4A9EFF", marginBottom: "12px" }}>
                       العقود ({selected.contracts.length})
                     </h3>
                     <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
@@ -506,7 +506,7 @@ export default function ClientsPage() {
                           >
                             <div className="inv-row-left">
                               <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#4A9EFF", fontWeight: 700, flexShrink: 0 }}>{ctr.number}</div>
-                              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "#C8A962" }}>
+                              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "#F0B100" }}>
                                 {STATUS_LABEL[ctr.type] || ctr.type}
                               </div>
                             </div>
@@ -518,7 +518,7 @@ export default function ClientsPage() {
                                 padding: "3px 10px", borderRadius: "100px", fontSize: "11px",
                                 background: `${STATUS_COLOR[ctr.status] || "#AAA"}18`,
                                 color: STATUS_COLOR[ctr.status] || "#AAA",
-                                fontFamily: "'Zain', sans-serif", whiteSpace: "nowrap",
+                                fontFamily: "'ThmanyahSans', 'Zain', sans-serif", whiteSpace: "nowrap",
                               }}>
                                 {STATUS_LABEL[ctr.status] || ctr.status}
                               </span>
@@ -531,7 +531,7 @@ export default function ClientsPage() {
                 )}
 
                 {selected.invoices.length === 0 && selected.contracts.length === 0 && (
-                  <div style={{ textAlign: "center", padding: "50px 20px", color: "#8C8C7A", fontFamily: "'Zain', sans-serif", fontSize: "16px" }}>
+                  <div style={{ textAlign: "center", padding: "50px 20px", color: "#8C8C7A", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px" }}>
                     لا يوجد فواتير أو عقود لهذا العميل بعد
                   </div>
                 )}

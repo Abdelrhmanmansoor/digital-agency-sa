@@ -99,7 +99,7 @@ export function FeaturesSection() {
                 : "border border-[#eadfd4] bg-white text-[#6d5f55] hover:border-[#a51218]/30"
             }`}
           >
-            <span className="me-1.5 text-[#C9A227]" aria-hidden>{g.icon}</span>
+            <span className="me-1.5 text-[#F0B100]" aria-hidden>{g.icon}</span>
             {g.title}
           </button>
         ))}

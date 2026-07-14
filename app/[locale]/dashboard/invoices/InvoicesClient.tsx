@@ -11,7 +11,7 @@ interface Props {
 const STATUS_LABELS: Record<string, { ar: string; en: string; color: string; bg: string }> = {
   draft:     { ar: "مسودة",    en: "Draft",     color: "#94A3B8", bg: "rgba(148,163,184,0.1)" },
   sent:      { ar: "مُرسلة",   en: "Sent",      color: "#3B82F6", bg: "rgba(59,130,246,0.1)" },
-  paid:      { ar: "مدفوعة",   en: "Paid",      color: "#BDEE63", bg: "rgba(189,238,99,0.1)" },
+  paid:      { ar: "مدفوعة",   en: "Paid",      color: "#F0B100", bg: "rgba(240,177,0,0.1)" },
   cancelled: { ar: "ملغاة",    en: "Cancelled", color: "#EF4444", bg: "rgba(239,68,68,0.1)" },
 };
 
@@ -23,10 +23,10 @@ export default function InvoicesClient({ invoices, locale }: Props) {
       {/* Header */}
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: "14px", marginBottom: "36px" }}>
         <div>
-          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
+          <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "28px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
             {isRTL ? "فواتيري" : "My Invoices"}
           </h1>
-          <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)", marginTop: "8px" }}>
+          <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)", marginTop: "8px" }}>
             {invoices.length} {isRTL ? "فاتورة" : "invoice(s)"}
           </p>
         </div>
@@ -35,8 +35,8 @@ export default function InvoicesClient({ invoices, locale }: Props) {
           style={{
             display: "inline-flex", alignItems: "center", gap: "8px",
             padding: "10px 20px", borderRadius: "10px",
-            background: "rgba(200,169,98,0.12)", border: "1px solid rgba(200,169,98,0.3)",
-            color: "#C8A962", fontFamily: "'Zain', sans-serif",
+            background: "rgba(240,177,0,0.12)", border: "1px solid rgba(240,177,0,0.3)",
+            color: "#F0B100", fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             fontSize: "15px", fontWeight: 700, textDecoration: "none",
             whiteSpace: "nowrap",
           }}
@@ -66,10 +66,10 @@ export default function InvoicesClient({ invoices, locale }: Props) {
               <polyline points="10 9 9 9 8 9" />
             </svg>
           </div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "8px" }}>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 700, color: "#FAFAF7", marginBottom: "8px" }}>
             {isRTL ? "لا توجد فواتير بعد" : "No invoices yet"}
           </div>
-          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)" }}>
+          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.35)" }}>
             {isRTL ? "ستظهر فواتيرك هنا بعد إصدارها من فريقنا" : "Your invoices will appear here once issued by our team"}
           </div>
         </div>
@@ -96,10 +96,10 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                     {/* Icon */}
                     <div style={{
                       width: "44px", height: "44px", borderRadius: "10px",
-                      background: "rgba(200,169,98,0.08)", border: "1px solid rgba(200,169,98,0.15)",
+                      background: "rgba(240,177,0,0.08)", border: "1px solid rgba(240,177,0,0.15)",
                       display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
                     }}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8A962" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0B100" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
                         <polyline points="14 2 14 8 20 8" />
                         <line x1="16" y1="13" x2="8" y2="13" />
@@ -107,10 +107,10 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                       </svg>
                     </div>
                     <div>
-                      <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#C8A962", letterSpacing: "0.05em" }}>
+                      <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#F0B100", letterSpacing: "0.05em" }}>
                         {inv.number}
                       </div>
-                      <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#FAFAF7", marginTop: "2px" }}>
+                      <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", fontWeight: 700, color: "#FAFAF7", marginTop: "2px" }}>
                         {isRTL ? inv.clientName : inv.clientName}
                       </div>
                     </div>
@@ -121,7 +121,7 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                     <span style={{
                       padding: "4px 12px", borderRadius: "6px",
                       background: status.bg, color: status.color,
-                      fontFamily: "'Zain', sans-serif", fontSize: "12px", fontWeight: 700,
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", fontWeight: 700,
                     }}>
                       {isRTL ? status.ar : status.en}
                     </span>
@@ -142,7 +142,7 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                 {/* Bottom row — dates + items */}
                 <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
                   <div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
                       {isRTL ? "تاريخ الإصدار" : "Issue Date"}
                     </div>
                     <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
@@ -150,7 +150,7 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
                       {isRTL ? "تاريخ الاستحقاق" : "Due Date"}
                     </div>
                     <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
@@ -158,7 +158,7 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                     </div>
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
                       {isRTL ? "البنود" : "Items"}
                     </div>
                     <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
@@ -167,7 +167,7 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                   </div>
                   {inv.vatRate > 0 && (
                     <div>
-                      <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
+                      <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "3px" }}>
                         {isRTL ? "الضريبة" : "VAT"}
                       </div>
                       <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.7)" }}>
@@ -193,7 +193,7 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                         }}
                       >
                         <div style={{ flex: 1 }}>
-                          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "#FAFAF7" }}>
+                          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "#FAFAF7" }}>
                             {isRTL ? item.descAr : item.descEn}
                           </div>
                           {item.qty > 1 && (
@@ -202,7 +202,7 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                             </div>
                           )}
                         </div>
-                        <div style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#C8A962", whiteSpace: "nowrap" }}>
+                        <div style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#F0B100", whiteSpace: "nowrap" }}>
                           {item.total.toLocaleString(isRTL ? "ar-SA" : "en-US")} {inv.currency}
                         </div>
                       </div>
@@ -210,7 +210,7 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                     {/* Totals */}
                     <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", padding: "10px 16px" }}>
                       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                        <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
+                        <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
                           {isRTL ? "المجموع قبل الضريبة" : "Subtotal"}
                         </span>
                         <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.6)" }}>
@@ -219,7 +219,7 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                       </div>
                       {inv.vat > 0 && (
                         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                          <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
+                          <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
                             {isRTL ? `ضريبة القيمة المضافة (${inv.vatRate}%)` : `VAT (${inv.vatRate}%)`}
                           </span>
                           <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "rgba(255,255,255,0.6)" }}>
@@ -228,10 +228,10 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                         </div>
                       )}
                       <div style={{ display: "flex", justifyContent: "space-between", marginTop: "8px", paddingTop: "8px", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                        <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#FAFAF7" }}>
+                        <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700, color: "#FAFAF7" }}>
                           {isRTL ? "الإجمالي" : "Total"}
                         </span>
-                        <span style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#C8A962" }}>
+                        <span style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", fontWeight: 700, color: "#F0B100" }}>
                           {inv.total.toLocaleString(isRTL ? "ar-SA" : "en-US")} {inv.currency}
                         </span>
                       </div>
@@ -241,11 +241,11 @@ export default function InvoicesClient({ invoices, locale }: Props) {
 
                 {/* Notes */}
                 {(inv.notesAr || inv.notes) && (
-                  <div style={{ marginTop: "14px", padding: "12px 14px", background: "rgba(200,169,98,0.05)", borderRadius: "8px", borderInlineStart: "3px solid rgba(200,169,98,0.3)" }}>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.4)", marginBottom: "4px" }}>
+                  <div style={{ marginTop: "14px", padding: "12px 14px", background: "rgba(240,177,0,0.05)", borderRadius: "8px", borderInlineStart: "3px solid rgba(240,177,0,0.3)" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.4)", marginBottom: "4px" }}>
                       {isRTL ? "ملاحظات" : "Notes"}
                     </div>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.7)" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.7)" }}>
                       {isRTL ? (inv.notesAr || inv.notes) : (inv.notes || inv.notesAr)}
                     </div>
                   </div>
@@ -254,25 +254,25 @@ export default function InvoicesClient({ invoices, locale }: Props) {
                 {/* Bank info */}
                 {inv.iban && (
                   <div style={{ marginTop: "14px", padding: "12px 14px", background: "rgba(255,255,255,0.02)", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.05)" }}>
-                    <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "8px" }}>
+                    <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)", marginBottom: "8px" }}>
                       {isRTL ? "بيانات الدفع" : "Payment Details"}
                     </div>
                     <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
                       {inv.bankName && (
                         <div>
-                          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.3)" }}>{isRTL ? "البنك" : "Bank"}</div>
-                          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "#FAFAF7" }}>{inv.bankName}</div>
+                          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.3)" }}>{isRTL ? "البنك" : "Bank"}</div>
+                          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "#FAFAF7" }}>{inv.bankName}</div>
                         </div>
                       )}
                       {inv.accountHolder && (
                         <div>
-                          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.3)" }}>{isRTL ? "اسم الحساب" : "Account Name"}</div>
-                          <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "#FAFAF7" }}>{inv.accountHolder}</div>
+                          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.3)" }}>{isRTL ? "اسم الحساب" : "Account Name"}</div>
+                          <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "#FAFAF7" }}>{inv.accountHolder}</div>
                         </div>
                       )}
                       <div>
-                        <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.3)" }}>IBAN</div>
-                        <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#C8A962", letterSpacing: "0.05em" }}>{inv.iban}</div>
+                        <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "10px", color: "rgba(255,255,255,0.3)" }}>IBAN</div>
+                        <div style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#F0B100", letterSpacing: "0.05em" }}>{inv.iban}</div>
                       </div>
                     </div>
                   </div>

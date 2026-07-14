@@ -84,15 +84,15 @@ export default function PolicyClient({ locale }: { locale: string }) {
 
         {/* Page Header */}
         <div style={{ marginBottom: "64px", textAlign: "center" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(200,169,98,0.08)", border: "1px solid rgba(200,169,98,0.2)", borderRadius: "20px", padding: "6px 18px", marginBottom: "20px" }}>
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#C8A962" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(240,177,0,0.08)", border: "1px solid rgba(240,177,0,0.2)", borderRadius: "20px", padding: "6px 18px", marginBottom: "20px" }}>
+            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#F0B100" }}>
               {isRTL ? "الشروط والأحكام" : "Terms & Policies"}
             </span>
           </div>
-          <h1 style={{ fontFamily: "'Zain', sans-serif", fontSize: "clamp(28px, 5vw, 52px)", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.2, marginBottom: "16px" }}>
+          <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "clamp(28px, 5vw, 52px)", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.2, marginBottom: "16px" }}>
             {isRTL ? "سياسة الخصوصية والدفع والاسترجاع" : "Privacy, Payment & Return Policy"}
           </h1>
-          <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.4)", maxWidth: "600px", margin: "0 auto", lineHeight: 1.8 }}>
+          <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.4)", maxWidth: "600px", margin: "0 auto", lineHeight: 1.8 }}>
             {isRTL
               ? "نلتزم بالشفافية الكاملة — اقرأ سياساتنا وتعرّف على حقوقك وضماناتك معنا."
               : "We are committed to full transparency — read our policies and know your rights and guarantees with us."}
@@ -103,12 +103,12 @@ export default function PolicyClient({ locale }: { locale: string }) {
         </div>
 
         {/* TOC */}
-        <nav style={{ background: "rgba(200,169,98,0.05)", border: "1px solid rgba(200,169,98,0.12)", borderRadius: "14px", padding: "20px 24px", marginBottom: "48px", display: "flex", gap: "24px", flexWrap: "wrap", justifyContent: "center" }}>
+        <nav style={{ background: "rgba(240,177,0,0.05)", border: "1px solid rgba(240,177,0,0.12)", borderRadius: "14px", padding: "20px 24px", marginBottom: "48px", display: "flex", gap: "24px", flexWrap: "wrap", justifyContent: "center" }}>
           {SECTIONS.map((s) => (
             <a
               key={s.id}
               href={`#${s.id}`}
-              style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", color: "#C8A962", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }}
+              style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", color: "#F0B100", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }}
             >
               {s.icon} {isRTL ? s.titleAr : s.titleEn}
             </a>
@@ -129,28 +129,28 @@ export default function PolicyClient({ locale }: { locale: string }) {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "24px" }}>
-              <div style={{ width: "48px", height: "48px", borderRadius: "12px", background: "rgba(200,169,98,0.1)", border: "1px solid rgba(200,169,98,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", flexShrink: 0 }}>
+              <div style={{ width: "48px", height: "48px", borderRadius: "12px", background: "rgba(240,177,0,0.1)", border: "1px solid rgba(240,177,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", flexShrink: 0 }}>
                 {section.icon}
               </div>
               <div>
-                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", color: "rgba(200,169,98,0.6)", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "4px" }}>
+                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", color: "rgba(240,177,0,0.6)", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "4px" }}>
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
+                <h2 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
                   {isRTL ? section.titleAr : section.titleEn}
                 </h2>
               </div>
             </div>
 
-            <div style={{ width: "40px", height: "2px", background: "#C8A962", marginBottom: "24px" }} />
+            <div style={{ width: "40px", height: "2px", background: "#F0B100", marginBottom: "24px" }} />
 
             <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
               {(isRTL ? section.contentAr : section.contentEn).map((point, j) => (
                 <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#C8A962" style={{ marginTop: "5px", flexShrink: 0 }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#F0B100" style={{ marginTop: "5px", flexShrink: 0 }}>
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
                   </svg>
-                  <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, margin: 0 }}>
+                  <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, margin: 0 }}>
                     {point}
                   </p>
                 </li>
@@ -173,18 +173,18 @@ export default function PolicyClient({ locale }: { locale: string }) {
         </div>
 
         {/* Contact CTA */}
-        <div style={{ textAlign: "center", padding: "40px", background: "rgba(200,169,98,0.05)", border: "1px solid rgba(200,169,98,0.12)", borderRadius: "16px" }}>
-          <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "22px", fontWeight: 800, color: "#FAFAF7", marginBottom: "12px" }}>
+        <div style={{ textAlign: "center", padding: "40px", background: "rgba(240,177,0,0.05)", border: "1px solid rgba(240,177,0,0.12)", borderRadius: "16px" }}>
+          <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "22px", fontWeight: 800, color: "#FAFAF7", marginBottom: "12px" }}>
             {isRTL ? "هل لديك استفسار حول سياساتنا؟" : "Questions about our policies?"}
           </h3>
-          <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.45)", marginBottom: "20px" }}>
+          <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.45)", marginBottom: "20px" }}>
             {isRTL ? "تواصل معنا مباشرة عبر واتساب وسنرد خلال ساعة." : "Contact us directly on WhatsApp and we'll reply within an hour."}
           </p>
           <a
             href="https://wa.me/201007835547"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "13px 28px", background: "#C8A962", color: "#0A0A0A", borderRadius: "10px", textDecoration: "none", fontFamily: "'Zain', sans-serif", fontSize: "15px", fontWeight: 700 }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "13px 28px", background: "#F0B100", color: "#0A0A0A", borderRadius: "10px", textDecoration: "none", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 700 }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>

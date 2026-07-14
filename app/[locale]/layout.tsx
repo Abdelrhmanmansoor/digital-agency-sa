@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { CartProvider } from "@/components/store/CartContext";
 
 export const metadata: Metadata = {
   title: {
@@ -38,15 +39,17 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
-      {/* Wrapper div carries dir + lang — CSS [dir="rtl"] selectors work from here down */}
-      <div
-        dir={dir}
-        lang={locale}
-        id="locale-root"
-        style={{ minHeight: "100vh", overflowX: "hidden" }}
-      >
-        {children}
-      </div>
+      <CartProvider>
+        {/* Wrapper div carries dir + lang — CSS [dir="rtl"] selectors work from here down */}
+        <div
+          dir={dir}
+          lang={locale}
+          id="locale-root"
+          style={{ minHeight: "100vh", overflowX: "hidden" }}
+        >
+          {children}
+        </div>
+      </CartProvider>
     </NextIntlClientProvider>
   );
 }

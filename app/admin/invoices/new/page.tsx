@@ -53,7 +53,7 @@ const FIELD = {
         borderRadius: "8px",
         padding: "10px 14px",
         color: "#FAFAF7",
-        fontFamily: dir === "ltr" ? "Space Mono, monospace" : "'Zain', sans-serif",
+        fontFamily: dir === "ltr" ? "Space Mono, monospace" : "'ThmanyahSans', 'Zain', sans-serif",
         fontSize: "14px",
         boxSizing: "border-box",
         outline: "none",
@@ -280,9 +280,9 @@ export default function NewInvoicePage() {
       style={{
         fontSize: "16px",
         fontWeight: 700,
-        color: "#C8A962",
+        color: "#F0B100",
         marginBottom: "20px",
-        fontFamily: "'Zain', sans-serif",
+        fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
         display: "flex",
         alignItems: "center",
         gap: "8px",
@@ -300,7 +300,7 @@ export default function NewInvoicePage() {
     borderRadius: "8px",
     padding: "10px 14px",
     color: "#FAFAF7",
-    fontFamily: "'Zain', sans-serif",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
     fontSize: "14px",
     boxSizing: "border-box",
     outline: "none",
@@ -309,7 +309,7 @@ export default function NewInvoicePage() {
   return (
     <div>
       <AdminSidebar />
-      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'Zain', sans-serif", direction: "rtl" }}>
+      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", direction: "rtl" }}>
 
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
@@ -332,7 +332,7 @@ export default function NewInvoicePage() {
                 padding: "11px 22px",
                 fontSize: "14px",
                 cursor: "pointer",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               }}
             >
               إلغاء
@@ -341,7 +341,7 @@ export default function NewInvoicePage() {
               onClick={handleSubmit}
               disabled={saving}
               style={{
-                background: "#C8A962",
+                background: "#F0B100",
                 color: "#0A0A0A",
                 border: "none",
                 borderRadius: "10px",
@@ -349,7 +349,7 @@ export default function NewInvoicePage() {
                 fontSize: "15px",
                 fontWeight: 700,
                 cursor: saving ? "not-allowed" : "pointer",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 opacity: saving ? 0.7 : 1,
               }}
             >
@@ -377,16 +377,16 @@ export default function NewInvoicePage() {
                     flex: 1,
                     padding: "16px",
                     borderRadius: "10px",
-                    border: `2px solid ${template === t ? "#C8A962" : "rgba(255,255,255,0.08)"}`,
-                    background: template === t ? "rgba(200,169,98,0.1)" : "rgba(255,255,255,0.03)",
+                    border: `2px solid ${template === t ? "#F0B100" : "rgba(255,255,255,0.08)"}`,
+                    background: template === t ? "rgba(240,177,0,0.1)" : "rgba(255,255,255,0.03)",
                     cursor: "pointer",
                     textAlign: "right",
                   }}
                 >
-                  <div style={{ fontSize: "15px", fontWeight: 700, color: template === t ? "#C8A962" : "#FAFAF7", fontFamily: "'Zain', sans-serif" }}>
+                  <div style={{ fontSize: "15px", fontWeight: 700, color: template === t ? "#F0B100" : "#FAFAF7", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                     {labels[t]}
                   </div>
-                  <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", marginTop: "4px", fontFamily: "'Zain', sans-serif" }}>
+                  <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", marginTop: "4px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                     {descs[t]}
                   </div>
                 </button>
@@ -459,7 +459,7 @@ export default function NewInvoicePage() {
           </div>
 
           {/* VAT Toggle */}
-          <div style={{ marginTop: "20px", padding: "16px", background: "rgba(200,169,98,0.05)", borderRadius: "10px", border: "1px solid rgba(200,169,98,0.15)" }}>
+          <div style={{ marginTop: "20px", padding: "16px", background: "rgba(240,177,0,0.05)", borderRadius: "10px", border: "1px solid rgba(240,177,0,0.15)" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                 <button
@@ -469,7 +469,7 @@ export default function NewInvoicePage() {
                     height: "28px",
                     borderRadius: "14px",
                     border: "none",
-                    background: vatEnabled ? "#C8A962" : "rgba(255,255,255,0.15)",
+                    background: vatEnabled ? "#F0B100" : "rgba(255,255,255,0.15)",
                     cursor: "pointer",
                     position: "relative",
                     transition: "background 0.3s",
@@ -511,13 +511,13 @@ export default function NewInvoicePage() {
                       border: "1px solid rgba(255,255,255,0.15)",
                       borderRadius: "6px",
                       padding: "6px 10px",
-                      color: "#C8A962",
+                      color: "#F0B100",
                       fontFamily: "Space Mono, monospace",
                       fontSize: "14px",
                       textAlign: "center",
                     }}
                   />
-                  <span style={{ fontSize: "14px", color: "#C8A962" }}>%</span>
+                  <span style={{ fontSize: "14px", color: "#F0B100" }}>%</span>
                 </div>
               )}
             </div>
@@ -584,14 +584,14 @@ export default function NewInvoicePage() {
               />
               <div
                 style={{
-                  background: "rgba(200,169,98,0.06)",
-                  border: "1px solid rgba(200,169,98,0.15)",
+                  background: "rgba(240,177,0,0.06)",
+                  border: "1px solid rgba(240,177,0,0.15)",
                   borderRadius: "8px",
                   padding: "10px",
                   textAlign: "center",
                   fontFamily: "Space Mono, monospace",
                   fontSize: "13px",
-                  color: "#C8A962",
+                  color: "#F0B100",
                 }}
               >
                 {item.total.toFixed(2)}
@@ -624,7 +624,7 @@ export default function NewInvoicePage() {
               padding: "10px 20px",
               fontSize: "14px",
               cursor: "pointer",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               width: "100%",
               marginTop: "8px",
             }}
@@ -698,7 +698,7 @@ export default function NewInvoicePage() {
               padding: "10px 20px",
               fontSize: "14px",
               cursor: "pointer",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               width: "100%",
             }}
           >
@@ -724,13 +724,13 @@ export default function NewInvoicePage() {
                 ...(vatEnabled ? [{ label: `ضريبة (${vatRate}%)`, value: `${vat.toFixed(2)} ${currencySymbol}`, color: "rgba(255,255,255,0.7)" }] : []),
               ].map(({ label, value, color }) => (
                 <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                  <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", fontFamily: "'Zain', sans-serif" }}>{label}</span>
+                  <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>{label}</span>
                   <span style={{ fontSize: "14px", fontFamily: "Space Mono, monospace", color }}>{value}</span>
                 </div>
               ))}
-              <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "rgba(200,169,98,0.15)", borderRadius: "10px", marginTop: "12px" }}>
-                <span style={{ fontSize: "18px", fontWeight: 800, color: "#FAFAF7", fontFamily: "'Zain', sans-serif" }}>الإجمالي</span>
-                <span style={{ fontSize: "18px", fontWeight: 700, color: "#C8A962", fontFamily: "Space Mono, monospace" }}>{total.toFixed(2)} {currencySymbol}</span>
+              <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "rgba(240,177,0,0.15)", borderRadius: "10px", marginTop: "12px" }}>
+                <span style={{ fontSize: "18px", fontWeight: 800, color: "#FAFAF7", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>الإجمالي</span>
+                <span style={{ fontSize: "18px", fontWeight: 700, color: "#F0B100", fontFamily: "Space Mono, monospace" }}>{total.toFixed(2)} {currencySymbol}</span>
               </div>
             </div>
           </div>
@@ -752,8 +752,8 @@ export default function NewInvoicePage() {
                 style={{
                   padding: "12px 20px",
                   borderRadius: "10px",
-                  border: `2px solid ${selectedPaymentMethod === m.type ? "#C8A962" : "rgba(255,255,255,0.1)"}`,
-                  background: selectedPaymentMethod === m.type ? "rgba(200,169,98,0.15)" : "rgba(255,255,255,0.03)",
+                  border: `2px solid ${selectedPaymentMethod === m.type ? "#F0B100" : "rgba(255,255,255,0.1)"}`,
+                  background: selectedPaymentMethod === m.type ? "rgba(240,177,0,0.15)" : "rgba(255,255,255,0.03)",
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
@@ -764,8 +764,8 @@ export default function NewInvoicePage() {
                 <span style={{ 
                   fontSize: "14px", 
                   fontWeight: 600, 
-                  color: selectedPaymentMethod === m.type ? "#C8A962" : "#FAFAF7",
-                  fontFamily: "'Zain', sans-serif",
+                  color: selectedPaymentMethod === m.type ? "#F0B100" : "#FAFAF7",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 }}>
                   {m.labelAr}
                 </span>
@@ -929,7 +929,7 @@ export default function NewInvoicePage() {
               padding: "10px 20px",
               fontSize: "14px",
               cursor: "pointer",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               width: "100%",
             }}
           >
@@ -977,7 +977,7 @@ export default function NewInvoicePage() {
                   borderRadius: "8px",
                   padding: "10px 14px",
                   color: "#FAFAF7",
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                   fontSize: "14px",
                   boxSizing: "border-box",
                   outline: "none",
@@ -1023,7 +1023,7 @@ export default function NewInvoicePage() {
               padding: "12px 24px",
               fontSize: "14px",
               cursor: "pointer",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             }}
           >
             إلغاء
@@ -1032,7 +1032,7 @@ export default function NewInvoicePage() {
             onClick={handleSubmit}
             disabled={saving}
             style={{
-              background: "#C8A962",
+              background: "#F0B100",
               color: "#0A0A0A",
               border: "none",
               borderRadius: "10px",
@@ -1040,7 +1040,7 @@ export default function NewInvoicePage() {
               fontSize: "16px",
               fontWeight: 700,
               cursor: saving ? "not-allowed" : "pointer",
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               opacity: saving ? 0.7 : 1,
             }}
           >

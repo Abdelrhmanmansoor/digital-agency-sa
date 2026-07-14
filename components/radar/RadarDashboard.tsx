@@ -150,9 +150,9 @@ export default function RadarDashboard({ user, locale }: Props) {
 
   const inputSt: React.CSSProperties = {
     width: "100%", background: "rgba(255,255,255,0.04)",
-    border: "1px solid rgba(200,169,98,0.2)", borderRadius: "2px",
+    border: "1px solid rgba(240,177,0,0.2)", borderRadius: "2px",
     padding: "12px 14px", color: "#FAFAF7", fontSize: "14px",
-    fontFamily: "'Zain', sans-serif", outline: "none", direction: "rtl",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif", outline: "none", direction: "rtl",
   };
 
   const verdictColor = {
@@ -184,7 +184,7 @@ export default function RadarDashboard({ user, locale }: Props) {
 
       {/* Top Bar */}
       <div style={{
-        borderBottom: "1px solid rgba(200,169,98,0.1)",
+        borderBottom: "1px solid rgba(240,177,0,0.1)",
         padding: "0 24px",
         height: "64px",
         display: "flex",
@@ -197,7 +197,7 @@ export default function RadarDashboard({ user, locale }: Props) {
         zIndex: 100,
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ fontFamily: "Space Mono, monospace", fontSize: "16px", color: "#C8A962", fontWeight: 700, letterSpacing: "0.1em" }}>
+          <span style={{ fontFamily: "Space Mono, monospace", fontSize: "16px", color: "#F0B100", fontWeight: 700, letterSpacing: "0.1em" }}>
             RADAR
           </span>
           <span style={{
@@ -208,13 +208,13 @@ export default function RadarDashboard({ user, locale }: Props) {
           }} />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.5)" }}>
+          <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.5)" }}>
             {user.storeName || user.name}
           </span>
           <button
             onClick={logout}
             style={{
-              background: "none", border: "1px solid rgba(200,169,98,0.2)",
+              background: "none", border: "1px solid rgba(240,177,0,0.2)",
               color: "rgba(255,255,255,0.4)", padding: "6px 14px",
               fontSize: "12px", fontFamily: "Space Mono, monospace",
               cursor: "pointer", borderRadius: "2px",
@@ -239,21 +239,21 @@ export default function RadarDashboard({ user, locale }: Props) {
               key={stat.label}
               style={{
                 background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(200,169,98,0.1)",
+                border: "1px solid rgba(240,177,0,0.1)",
                 borderRadius: "2px",
                 padding: "20px 24px",
               }}
             >
               <div style={{
                 fontSize: stat.mono ? "32px" : "16px",
-                fontFamily: stat.mono ? "Space Mono, monospace" : "'Zain', sans-serif",
-                color: "#C8A962",
+                fontFamily: stat.mono ? "Space Mono, monospace" : "'ThmanyahSans', 'Zain', sans-serif",
+                color: "#F0B100",
                 fontWeight: 700,
                 marginBottom: "4px",
               }}>
                 {stat.value}
               </div>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
                 {stat.label}
               </div>
             </div>
@@ -265,11 +265,11 @@ export default function RadarDashboard({ user, locale }: Props) {
           <button
             onClick={() => { setShowAddForm(!showAddForm); setShowQuickAnalyze(false); }}
             style={{
-              background: showAddForm ? "#C8A962" : "rgba(200,169,98,0.1)",
-              color: showAddForm ? "#0A0A0A" : "#C8A962",
-              border: "1px solid rgba(200,169,98,0.3)",
+              background: showAddForm ? "#F0B100" : "rgba(240,177,0,0.1)",
+              color: showAddForm ? "#0A0A0A" : "#F0B100",
+              border: "1px solid rgba(240,177,0,0.3)",
               padding: "10px 20px", borderRadius: "2px",
-              fontFamily: "'Zain', sans-serif", fontSize: "14px",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px",
               cursor: "pointer", fontWeight: 600,
               transition: "all 0.2s",
             }}
@@ -283,7 +283,7 @@ export default function RadarDashboard({ user, locale }: Props) {
               color: "rgba(255,255,255,0.6)",
               border: "1px solid rgba(255,255,255,0.1)",
               padding: "10px 20px", borderRadius: "2px",
-              fontFamily: "'Zain', sans-serif", fontSize: "14px",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px",
               cursor: "pointer",
               transition: "all 0.2s",
             }}
@@ -295,13 +295,13 @@ export default function RadarDashboard({ user, locale }: Props) {
         {/* Add Product Form */}
         {showAddForm && (
           <div style={{
-            background: "rgba(200,169,98,0.04)",
-            border: "1px solid rgba(200,169,98,0.2)",
+            background: "rgba(240,177,0,0.04)",
+            border: "1px solid rgba(240,177,0,0.2)",
             borderRadius: "4px",
             padding: "28px",
             marginBottom: "24px",
           }}>
-            <h3 style={{ fontFamily: "'Zain', sans-serif", color: "#FAFAF7", fontSize: "18px", marginBottom: "20px" }}>
+            <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", color: "#FAFAF7", fontSize: "18px", marginBottom: "20px" }}>
               إضافة منتج للمتابعة
             </h3>
             <form onSubmit={addProduct}>
@@ -323,12 +323,12 @@ export default function RadarDashboard({ user, locale }: Props) {
                 <input placeholder="نسبة الإرجاع %" type="number" min="0" max="100" style={{ ...inputSt, direction: "ltr" }}
                   value={addForm.returnRate} onChange={(e) => setAddForm(f => ({ ...f, returnRate: e.target.value }))} />
               </div>
-              {addError && <div style={{ color: "#f87171", fontSize: "13px", marginBottom: "12px", fontFamily: "'Zain', sans-serif" }}>{addError}</div>}
+              {addError && <div style={{ color: "#f87171", fontSize: "13px", marginBottom: "12px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>{addError}</div>}
               <div style={{ display: "flex", gap: "10px" }}>
                 <button type="submit" disabled={addLoading} style={{
-                  background: "#C8A962", color: "#0A0A0A",
+                  background: "#F0B100", color: "#0A0A0A",
                   border: "none", padding: "10px 24px", borderRadius: "2px",
-                  fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700,
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700,
                   cursor: addLoading ? "not-allowed" : "pointer", opacity: addLoading ? 0.6 : 1,
                 }}>
                   {addLoading ? "جاري الحفظ..." : "حفظ وإضافة"}
@@ -336,7 +336,7 @@ export default function RadarDashboard({ user, locale }: Props) {
                 <button type="button" onClick={() => setShowAddForm(false)} style={{
                   background: "none", color: "rgba(255,255,255,0.4)",
                   border: "1px solid rgba(255,255,255,0.1)", padding: "10px 20px", borderRadius: "2px",
-                  fontFamily: "'Zain', sans-serif", fontSize: "14px", cursor: "pointer",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", cursor: "pointer",
                 }}>
                   إلغاء
                 </button>
@@ -354,7 +354,7 @@ export default function RadarDashboard({ user, locale }: Props) {
             padding: "28px",
             marginBottom: "24px",
           }}>
-            <h3 style={{ fontFamily: "'Zain', sans-serif", color: "#FAFAF7", fontSize: "18px", marginBottom: "20px" }}>
+            <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", color: "#FAFAF7", fontSize: "18px", marginBottom: "20px" }}>
               تحليل سريع
             </h3>
             <form onSubmit={quickAnalyze}>
@@ -377,9 +377,9 @@ export default function RadarDashboard({ user, locale }: Props) {
                   value={quickForm.returnRate} onChange={(e) => setQuickForm(f => ({ ...f, returnRate: e.target.value }))} />
               </div>
               <button type="submit" disabled={quickLoading} style={{
-                background: quickLoading ? "rgba(200,169,98,0.4)" : "#C8A962",
+                background: quickLoading ? "rgba(240,177,0,0.4)" : "#F0B100",
                 color: "#0A0A0A", border: "none", padding: "10px 28px", borderRadius: "2px",
-                fontFamily: "'Zain', sans-serif", fontSize: "14px", fontWeight: 700,
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", fontWeight: 700,
                 cursor: quickLoading ? "not-allowed" : "pointer",
               }}>
                 {quickLoading ? (
@@ -406,19 +406,19 @@ export default function RadarDashboard({ user, locale }: Props) {
             </div>
 
             {loadingProducts ? (
-              <div style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Zain', sans-serif", padding: "20px 0" }}>
+              <div style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", padding: "20px 0" }}>
                 جاري التحميل...
               </div>
             ) : products.length === 0 ? (
               <div style={{
-                border: "1px dashed rgba(200,169,98,0.2)", borderRadius: "4px",
+                border: "1px dashed rgba(240,177,0,0.2)", borderRadius: "4px",
                 padding: "40px 24px", textAlign: "center",
               }}>
-                <div style={{ color: "rgba(200,169,98,0.4)", fontSize: "32px", marginBottom: "12px" }}>◎</div>
-                <div style={{ fontFamily: "'Zain', sans-serif", color: "rgba(255,255,255,0.3)", fontSize: "15px" }}>
+                <div style={{ color: "rgba(240,177,0,0.4)", fontSize: "32px", marginBottom: "12px" }}>◎</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", color: "rgba(255,255,255,0.3)", fontSize: "15px" }}>
                   لا توجد منتجات بعد
                 </div>
-                <div style={{ fontFamily: "'Zain', sans-serif", color: "rgba(255,255,255,0.2)", fontSize: "13px", marginTop: "6px" }}>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", color: "rgba(255,255,255,0.2)", fontSize: "13px", marginTop: "6px" }}>
                   أضف منتجاتك للبدء في المراقبة
                 </div>
               </div>
@@ -429,9 +429,9 @@ export default function RadarDashboard({ user, locale }: Props) {
                     key={p.id}
                     style={{
                       background: activeResult?.productId === p.id
-                        ? "rgba(200,169,98,0.06)"
+                        ? "rgba(240,177,0,0.06)"
                         : "rgba(255,255,255,0.02)",
-                      border: `1px solid ${activeResult?.productId === p.id ? "rgba(200,169,98,0.3)" : "rgba(255,255,255,0.06)"}`,
+                      border: `1px solid ${activeResult?.productId === p.id ? "rgba(240,177,0,0.3)" : "rgba(255,255,255,0.06)"}`,
                       borderRadius: "2px",
                       padding: "16px",
                       transition: "all 0.2s",
@@ -440,21 +440,21 @@ export default function RadarDashboard({ user, locale }: Props) {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{
-                          fontFamily: "'Zain', sans-serif", fontSize: "15px",
+                          fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px",
                           color: "#FAFAF7", fontWeight: 600,
                           whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                         }}>
                           {p.name}
                         </div>
                         <div style={{ display: "flex", gap: "12px", marginTop: "4px", flexWrap: "wrap" }}>
-                          <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#C8A962" }}>
+                          <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#F0B100" }}>
                             {p.userPrice}ر
                           </span>
-                          <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.3)" }}>
+                          <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.3)" }}>
                             {p.category}
                           </span>
                           {p.lastAnalyzedAt && (
-                            <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.2)" }}>
+                            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.2)" }}>
                               آخر تحليل: {new Date(p.lastAnalyzedAt).toLocaleDateString("ar-SA")}
                             </span>
                           )}
@@ -465,11 +465,11 @@ export default function RadarDashboard({ user, locale }: Props) {
                           onClick={() => analyzeProduct(p)}
                           disabled={analyzing === p.id}
                           style={{
-                            background: analyzing === p.id ? "rgba(200,169,98,0.2)" : "rgba(200,169,98,0.15)",
-                            color: "#C8A962",
-                            border: "1px solid rgba(200,169,98,0.3)",
+                            background: analyzing === p.id ? "rgba(240,177,0,0.2)" : "rgba(240,177,0,0.15)",
+                            color: "#F0B100",
+                            border: "1px solid rgba(240,177,0,0.3)",
                             padding: "6px 12px", borderRadius: "2px",
-                            fontFamily: "'Zain', sans-serif", fontSize: "12px",
+                            fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px",
                             cursor: analyzing === p.id ? "not-allowed" : "pointer",
                             transition: "all 0.2s",
                             whiteSpace: "nowrap",
@@ -513,15 +513,15 @@ export default function RadarDashboard({ user, locale }: Props) {
 
             {(analyzing || quickLoading) ? (
               <div style={{
-                background: "rgba(200,169,98,0.03)",
-                border: "1px solid rgba(200,169,98,0.15)",
+                background: "rgba(240,177,0,0.03)",
+                border: "1px solid rgba(240,177,0,0.15)",
                 borderRadius: "4px", padding: "40px 24px", textAlign: "center",
               }}>
                 <div className="radar-scan" style={{ margin: "0 auto 16px" }} />
-                <div style={{ fontFamily: "'Zain', sans-serif", color: "rgba(255,255,255,0.5)", fontSize: "15px", marginBottom: "8px" }}>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", color: "rgba(255,255,255,0.5)", fontSize: "15px", marginBottom: "8px" }}>
                   رادار يفحص السوق...
                 </div>
-                <div style={{ fontFamily: "'Zain', sans-serif", color: "rgba(255,255,255,0.3)", fontSize: "13px" }}>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", color: "rgba(255,255,255,0.3)", fontSize: "13px" }}>
                   يجمع أسعار Amazon · Noon · سلة · زد
                 </div>
               </div>
@@ -530,21 +530,21 @@ export default function RadarDashboard({ user, locale }: Props) {
                 border: "1px dashed rgba(255,255,255,0.06)", borderRadius: "4px",
                 padding: "40px 24px", textAlign: "center",
               }}>
-                <div style={{ color: "rgba(200,169,98,0.2)", fontSize: "48px", marginBottom: "12px", fontFamily: "Space Mono, monospace" }}>◎</div>
-                <div style={{ fontFamily: "'Zain', sans-serif", color: "rgba(255,255,255,0.2)", fontSize: "15px" }}>
+                <div style={{ color: "rgba(240,177,0,0.2)", fontSize: "48px", marginBottom: "12px", fontFamily: "Space Mono, monospace" }}>◎</div>
+                <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", color: "rgba(255,255,255,0.2)", fontSize: "15px" }}>
                   اختر منتجاً وانقر تحليل
                 </div>
               </div>
             ) : (
               <div style={{
                 background: "rgba(255,255,255,0.02)",
-                border: "1px solid rgba(200,169,98,0.15)",
+                border: "1px solid rgba(240,177,0,0.15)",
                 borderRadius: "4px", overflow: "hidden",
               }}>
                 {/* Header */}
                 <div style={{
                   padding: "16px 20px",
-                  borderBottom: "1px solid rgba(200,169,98,0.1)",
+                  borderBottom: "1px solid rgba(240,177,0,0.1)",
                   display: "flex", justifyContent: "space-between", alignItems: "center",
                 }}>
                   <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.1em" }}>
@@ -556,7 +556,7 @@ export default function RadarDashboard({ user, locale }: Props) {
                     border: `1px solid ${verdictColor[activeResult.profitMetrics.verdict]}40`,
                     borderRadius: "2px",
                     color: verdictColor[activeResult.profitMetrics.verdict],
-                    fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 700,
+                    fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 700,
                   }}>
                     {verdictLabel[activeResult.profitMetrics.verdict]}
                   </div>
@@ -566,25 +566,25 @@ export default function RadarDashboard({ user, locale }: Props) {
                 <div style={{
                   display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
                   gap: "0",
-                  borderBottom: "1px solid rgba(200,169,98,0.08)",
+                  borderBottom: "1px solid rgba(240,177,0,0.08)",
                 }}>
                   {[
                     { label: "الهامش الحقيقي", value: `${activeResult.profitMetrics.trueMargin}ر`, color: activeResult.profitMetrics.trueMargin > 0 ? "#4ade80" : "#f87171" },
                     { label: "ROAS المطلوب", value: `${activeResult.profitMetrics.breakevenRoas}x`, color: activeResult.profitMetrics.breakevenRoas < 4 ? "#4ade80" : activeResult.profitMetrics.breakevenRoas < 7 ? "#facc15" : "#f87171" },
-                    { label: "أقصى CPA", value: `${activeResult.profitMetrics.maxCpa}ر`, color: "#C8A962" },
+                    { label: "أقصى CPA", value: `${activeResult.profitMetrics.maxCpa}ر`, color: "#F0B100" },
                   ].map((m, i) => (
                     <div
                       key={m.label}
                       style={{
                         padding: "16px",
-                        borderRight: i < 2 ? "1px solid rgba(200,169,98,0.08)" : "none",
+                        borderRight: i < 2 ? "1px solid rgba(240,177,0,0.08)" : "none",
                         textAlign: "center",
                       }}
                     >
                       <div style={{ fontFamily: "Space Mono, monospace", fontSize: "20px", color: m.color, fontWeight: 700, marginBottom: "4px" }}>
                         {m.value}
                       </div>
-                      <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)" }}>
+                      <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "11px", color: "rgba(255,255,255,0.3)" }}>
                         {m.label}
                       </div>
                     </div>
@@ -592,13 +592,13 @@ export default function RadarDashboard({ user, locale }: Props) {
                 </div>
 
                 {/* Market Position */}
-                <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(200,169,98,0.08)" }}>
+                <div style={{ padding: "16px 20px", borderBottom: "1px solid rgba(240,177,0,0.08)" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "12px" }}>
-                    <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
+                    <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
                       موقعك في السوق
                     </span>
                     <span style={{
-                      fontFamily: "'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", fontWeight: 600,
                       color: positionColor[activeResult.userPricePosition],
                     }}>
                       {positionLabel[activeResult.userPricePosition]}
@@ -614,7 +614,7 @@ export default function RadarDashboard({ user, locale }: Props) {
 
                 {/* Competitors Table */}
                 {activeResult.competitors.length > 0 && (
-                  <div style={{ borderBottom: "1px solid rgba(200,169,98,0.08)" }}>
+                  <div style={{ borderBottom: "1px solid rgba(240,177,0,0.08)" }}>
                     <div style={{ padding: "12px 20px 8px", fontFamily: "Space Mono, monospace", fontSize: "10px", color: "rgba(255,255,255,0.2)", letterSpacing: "0.1em" }}>
                       COMPETITORS
                     </div>
@@ -624,7 +624,7 @@ export default function RadarDashboard({ user, locale }: Props) {
                           {["المتجر", "السعر", "الفرق", "رابط"].map((h) => (
                             <th key={h} style={{
                               padding: "8px 20px", textAlign: "right",
-                              fontFamily: "'Zain', sans-serif", fontSize: "12px",
+                              fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px",
                               color: "rgba(255,255,255,0.25)", fontWeight: 400,
                             }}>
                               {h}
@@ -635,10 +635,10 @@ export default function RadarDashboard({ user, locale }: Props) {
                       <tbody>
                         {activeResult.competitors.slice(0, 6).map((c, i) => (
                           <tr key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.03)" }}>
-                            <td style={{ padding: "10px 20px", fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "#FAFAF7" }}>
+                            <td style={{ padding: "10px 20px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "#FAFAF7" }}>
                               {c.store}
                             </td>
-                            <td style={{ padding: "10px 20px", fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#C8A962" }}>
+                            <td style={{ padding: "10px 20px", fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#F0B100" }}>
                               {c.price}ر
                             </td>
                             <td style={{ padding: "10px 20px", fontFamily: "Space Mono, monospace", fontSize: "12px", color: c.diff < 0 ? "#4ade80" : c.diff > 0 ? "#f87171" : "rgba(255,255,255,0.4)" }}>
@@ -652,9 +652,9 @@ export default function RadarDashboard({ user, locale }: Props) {
                                 style={{
                                   fontFamily: "Space Mono, monospace",
                                   fontSize: "11px",
-                                  color: "rgba(200,169,98,0.5)",
+                                  color: "rgba(240,177,0,0.5)",
                                   textDecoration: "none",
-                                  border: "1px solid rgba(200,169,98,0.2)",
+                                  border: "1px solid rgba(240,177,0,0.2)",
                                   padding: "3px 8px",
                                   borderRadius: "2px",
                                   transition: "all 0.2s",
@@ -669,7 +669,7 @@ export default function RadarDashboard({ user, locale }: Props) {
                     </table>
 
                     {activeResult.competitors.length === 0 && (
-                      <div style={{ padding: "16px 20px", fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.3)" }}>
+                      <div style={{ padding: "16px 20px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.3)" }}>
                         لم يتم العثور على منافسين — يحتاج SERPER_API_KEY في الـ env
                       </div>
                     )}
@@ -680,13 +680,13 @@ export default function RadarDashboard({ user, locale }: Props) {
                 <div style={{ padding: "20px" }}>
                   <div style={{
                     fontFamily: "Space Mono, monospace", fontSize: "10px",
-                    letterSpacing: "0.15em", color: "#C8A962",
+                    letterSpacing: "0.15em", color: "#F0B100",
                     marginBottom: "10px",
                   }}>
                     AI INSIGHT
                   </div>
                   <p style={{
-                    fontFamily: "'Zain', sans-serif", fontSize: "15px",
+                    fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px",
                     color: "rgba(250,250,247,0.7)", lineHeight: 1.8,
                     margin: 0,
                   }}>
@@ -709,14 +709,14 @@ export default function RadarDashboard({ user, locale }: Props) {
         .spin-dot {
           display: inline-block;
           width: 10px; height: 10px;
-          border: 2px solid rgba(200,169,98,0.3);
-          border-top-color: #C8A962;
+          border: 2px solid rgba(240,177,0,0.3);
+          border-top-color: #F0B100;
           border-radius: 50%;
           animation: spin 0.8s linear infinite;
         }
         .radar-scan {
           width: 80px; height: 80px;
-          border: 2px solid rgba(200,169,98,0.2);
+          border: 2px solid rgba(240,177,0,0.2);
           border-radius: 50%;
           position: relative;
           overflow: hidden;
@@ -726,7 +726,7 @@ export default function RadarDashboard({ user, locale }: Props) {
           position: absolute;
           top: 50%; left: 50%;
           width: 50%; height: 2px;
-          background: linear-gradient(90deg, #C8A962, transparent);
+          background: linear-gradient(90deg, #F0B100, transparent);
           transform-origin: left center;
           animation: radar-sweep 1.5s linear infinite;
         }
@@ -736,7 +736,7 @@ export default function RadarDashboard({ user, locale }: Props) {
           top: 50%; left: 50%;
           transform: translate(-50%, -50%);
           width: 6px; height: 6px;
-          background: #C8A962;
+          background: #F0B100;
           border-radius: 50%;
         }
         @media (max-width: 900px) {

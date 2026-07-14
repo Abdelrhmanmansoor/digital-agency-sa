@@ -26,7 +26,7 @@ export default function CSSGenerator({ onClose }: { onClose: () => void }) {
   const locale = useLocale();
   const isRTL = locale === "ar";
   const [config, setConfig] = useState<ThemeConfig>({
-    primaryColor: "#C8A962",
+    primaryColor: "#F0B100",
     secondaryColor: "#0A0A0A",
     bgColor: "#FFFFFF",
     textColor: "#1A1A1A",
@@ -261,7 +261,7 @@ h1, h2, h3 {
               max={20}
               value={config.fontSize}
               onChange={(e) => setConfig((p) => ({ ...p, fontSize: parseInt(e.target.value) }))}
-              style={{ width: "100%", accentColor: "#C8A962" }}
+              style={{ width: "100%", accentColor: "#F0B100" }}
             />
             <div style={{ display: "flex", justifyContent: "space-between", fontSize: "11px", color: "#8C8C7A", fontFamily: "Space Mono" }}>
               <span>13px</span>
@@ -281,7 +281,7 @@ h1, h2, h3 {
                 max={50}
                 value={config.buttonRadius}
                 onChange={(e) => setConfig((p) => ({ ...p, buttonRadius: e.target.value }))}
-                style={{ width: "100%", accentColor: "#C8A962" }}
+                style={{ width: "100%", accentColor: "#F0B100" }}
               />
             </div>
             <div>
@@ -294,7 +294,7 @@ h1, h2, h3 {
                 max={20}
                 value={config.cardRadius}
                 onChange={(e) => setConfig((p) => ({ ...p, cardRadius: e.target.value }))}
-                style={{ width: "100%", accentColor: "#C8A962" }}
+                style={{ width: "100%", accentColor: "#F0B100" }}
               />
             </div>
           </div>
@@ -381,8 +381,8 @@ h1, h2, h3 {
             style={{
               marginTop: "16px",
               padding: "16px",
-              background: "rgba(200,169,98,0.08)",
-              border: "1px solid rgba(200,169,98,0.2)",
+              background: "rgba(240,177,0,0.08)",
+              border: "1px solid rgba(240,177,0,0.2)",
               fontSize: "13px",
               color: "#8C8C7A",
               fontFamily: isRTL ? "Noto Sans Arabic" : "sans-serif",

@@ -96,7 +96,7 @@ export default function InvoiceDetailPage() {
       <AdminSidebar />
 
       {/* Main */}
-      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'Zain', sans-serif", direction: "rtl" }}>
+      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", direction: "rtl" }}>
 
         {/* Action bar — hidden on print */}
         <div
@@ -114,7 +114,7 @@ export default function InvoiceDetailPage() {
                 ← الفواتير
               </Link>
               <span style={{ color: "rgba(255,255,255,0.15)" }}>/</span>
-              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#C8A962" }}>
+              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12px", color: "#F0B100" }}>
                 {invoice.number}
               </span>
             </div>
@@ -135,7 +135,7 @@ export default function InvoiceDetailPage() {
                 color: "#FAFAF7",
                 borderRadius: "8px",
                 padding: "9px 14px",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "13px",
                 cursor: "pointer",
                 outline: "none",
@@ -157,7 +157,7 @@ export default function InvoiceDetailPage() {
                 padding: "9px 16px",
                 fontSize: "13px",
                 cursor: "pointer",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               }}
             >
               واتساب
@@ -173,7 +173,7 @@ export default function InvoiceDetailPage() {
                 padding: "9px 16px",
                 fontSize: "13px",
                 cursor: "pointer",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               }}
             >
               إيميل
@@ -189,7 +189,7 @@ export default function InvoiceDetailPage() {
                   padding: "9px 16px",
                   fontSize: "13px",
                   cursor: "pointer",
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 }}
               >
                 تعديل
@@ -199,7 +199,7 @@ export default function InvoiceDetailPage() {
             <button
               onClick={handlePrint}
               style={{
-                background: "#C8A962",
+                background: "#F0B100",
                 border: "none",
                 color: "#0A0A0A",
                 borderRadius: "8px",
@@ -207,7 +207,7 @@ export default function InvoiceDetailPage() {
                 fontSize: "14px",
                 fontWeight: 700,
                 cursor: "pointer",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               }}
             >
               طباعة / PDF
@@ -223,7 +223,7 @@ export default function InvoiceDetailPage() {
                 padding: "9px 16px",
                 fontSize: "13px",
                 cursor: "pointer",
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               }}
             >
               حذف
@@ -262,7 +262,7 @@ export default function InvoiceDetailPage() {
             fontFamily: "Space Mono, monospace",
           }}
         >
-          <span>الحالة: <strong style={{ color: "#C8A962" }}>{STATUS_LABELS[invoice.status]}</strong></span>
+          <span>الحالة: <strong style={{ color: "#F0B100" }}>{STATUS_LABELS[invoice.status]}</strong></span>
           <span>النموذج: <strong style={{ color: "#FAFAF7" }}>{invoice.template}</strong></span>
           <span>أُنشئت: {new Date(invoice.createdAt).toLocaleDateString("ar-SA")}</span>
           <span>آخر تعديل: {new Date(invoice.updatedAt).toLocaleDateString("ar-SA")}</span>

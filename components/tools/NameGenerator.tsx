@@ -107,7 +107,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Settings */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'Zain', sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
             {isRTL ? "إعدادات المتجر" : "Store Settings"}
           </h3>
 
@@ -121,15 +121,15 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
                     onClick={() => setCategory(cat.value)}
                     style={{
                       padding: "12px",
-                      background: category === cat.value ? "rgba(200,169,98,0.15)" : "#FAFAF7",
+                      background: category === cat.value ? "rgba(240,177,0,0.15)" : "#FAFAF7",
                       border: "1px solid",
-                      borderColor: category === cat.value ? "#C8A962" : "#E8E6E1",
+                      borderColor: category === cat.value ? "#F0B100" : "#E8E6E1",
                       cursor: "pointer",
                       textAlign: "center",
                       transition: "all 0.2s",
                       fontSize: "13px",
-                      fontFamily: "'Zain', sans-serif",
-                      color: category === cat.value ? "#C8A962" : "#2D2D2D",
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
+                      color: category === cat.value ? "#F0B100" : "#2D2D2D",
                     }}
                   >
                     <div style={{ fontSize: "24px", marginBottom: "4px" }}>{cat.icon}</div>
@@ -153,11 +153,11 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
                     style={{
                       flex: 1,
                       padding: "10px",
-                      background: nameLanguage === lang.value ? "#C8A962" : "transparent",
+                      background: nameLanguage === lang.value ? "#F0B100" : "transparent",
                       border: "1px solid",
-                      borderColor: nameLanguage === lang.value ? "#C8A962" : "#E8E6E1",
+                      borderColor: nameLanguage === lang.value ? "#F0B100" : "#E8E6E1",
                       color: nameLanguage === lang.value ? "#0A0A0A" : "#8C8C7A",
-                      fontFamily: "'Zain', sans-serif",
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                       fontSize: "13px",
                       cursor: "pointer",
                       transition: "all 0.2s",
@@ -177,7 +177,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
 
         {/* Results */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'Zain', sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
             {isRTL ? "20 اقتراح اسم" : "20 Name Suggestions"}
           </h3>
 
@@ -195,14 +195,14 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
                     border: "1px solid #E8E6E1",
                     transition: "all 0.2s",
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#C8A962"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#F0B100"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E8E6E1"; }}
                 >
                   <span
                     style={{
                       fontFamily: "Space Mono, monospace",
                       fontSize: "11px",
-                      color: "#C8A962",
+                      color: "#F0B100",
                       minWidth: "24px",
                     }}
                   >
@@ -211,7 +211,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
                   <span
                     style={{
                       flex: 1,
-                      fontFamily: "'Zain', sans-serif",
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                       fontSize: "16px",
                       fontWeight: 600,
                       color: "#0A0A0A",
@@ -253,7 +253,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
                         letterSpacing: "0.08em",
                         transition: "all 0.2s",
                       }}
-                      onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#C8A962"; e.currentTarget.style.color = "#C8A962"; }}
+                      onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#F0B100"; e.currentTarget.style.color = "#F0B100"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E8E6E1"; e.currentTarget.style.color = "#8C8C7A"; }}
                     >
                       .COM
@@ -265,7 +265,7 @@ export default function NameGenerator({ onClose }: { onClose: () => void }) {
           ) : (
             <div style={{ padding: "60px 20px", textAlign: "center", border: "1px dashed #E8E6E1", color: "#8C8C7A" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>🏷</div>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px" }}>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px" }}>
                 {isRTL ? "اختر نوع المتجر واضغط 'أنشئ أسماء'" : "Select store type and press 'Generate Names'"}
               </div>
             </div>

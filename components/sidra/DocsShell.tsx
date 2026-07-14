@@ -80,7 +80,7 @@ function highlight(text: string, q: string) {
   return (
     <>
       {text.slice(0, idx)}
-      <mark className="rounded bg-[#C9A227]/30 px-0.5">{text.slice(idx, idx + word.length)}</mark>
+      <mark className="rounded bg-[#F0B100]/30 px-0.5">{text.slice(idx, idx + word.length)}</mark>
       {text.slice(idx + word.length)}
     </>
   );
@@ -195,7 +195,7 @@ export default function DocsShell({ children, supportHref }: { children: ReactNo
                       : "font-bold text-[#6d5f55] hover:bg-[#f4ece5] hover:text-[#211711]"
                   }`}
                 >
-                  <span aria-hidden className={`text-xs ${active === n.id ? "text-[#e5c38f]" : "text-[#C9A227]"}`}>
+                  <span aria-hidden className={`text-xs ${active === n.id ? "text-[#e5c38f]" : "text-[#F0B100]"}`}>
                     {n.icon}
                   </span>
                   {n.label}

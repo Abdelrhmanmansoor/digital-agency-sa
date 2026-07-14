@@ -73,7 +73,7 @@ export default function AdminLoginPage() {
               marginBottom: "4px",
             }}
           />
-          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", letterSpacing: "0.3em", color: "rgba(200,169,98,0.5)", textTransform: "uppercase" }}>
+          <div style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", letterSpacing: "0.3em", color: "rgba(240,177,0,0.5)", textTransform: "uppercase" }}>
             ADMIN PANEL
           </div>
         </div>
@@ -81,7 +81,7 @@ export default function AdminLoginPage() {
         <div className="relative z-10">
           <h1
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "48px",
               fontWeight: 700,
               color: "#FAFAF7",
@@ -91,7 +91,7 @@ export default function AdminLoginPage() {
           >
             لوحة التحكم
             <br />
-            <span style={{ color: "#C8A962" }}>الاحترافية</span>
+            <span style={{ color: "#F0B100" }}>الاحترافية</span>
           </h1>
           <p style={{ color: "#8C8C7A", fontSize: "16px", lineHeight: 1.7 }}>
             أدر مقالاتك، أعمالك، خدماتك، ورسائل عملائك من مكان واحد.
@@ -114,7 +114,7 @@ export default function AdminLoginPage() {
           <div className="mb-12">
             <h2
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "28px",
                 fontWeight: 700,
                 color: "#0A0A0A",
@@ -187,7 +187,7 @@ export default function AdminLoginPage() {
                   border: "1px solid rgba(201,64,64,0.2)",
                   color: "#C94040",
                   fontSize: "14px",
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 }}
               >
                 ✗ {error}

@@ -17,7 +17,7 @@ const STEPS = [
       { ar: "30 دقيقة مجاناً", en: "30 min free", fr: "30 min gratuits" },
       { ar: "واتساب أو زووم", en: "WhatsApp or Zoom", fr: "WhatsApp ou Zoom" },
     ],
-    accentColor: "#C8A962",
+    accentColor: "#F0B100",
   },
   {
     num: "02",
@@ -32,7 +32,7 @@ const STEPS = [
       { ar: "نموذج Figma تفاعلي", en: "Interactive Figma prototype", fr: "Prototype Figma interactif" },
       { ar: "تعديلات غير محدودة", en: "Unlimited revisions", fr: "Révisions illimitées" },
     ],
-    accentColor: "#BDEE63",
+    accentColor: "#F0B100",
   },
   {
     num: "03",
@@ -47,7 +47,7 @@ const STEPS = [
       { ar: "تحديثات يومية", en: "Daily updates", fr: "Mises à jour quotidiennes" },
       { ar: "جاهز للجوال 100%", en: "100% mobile ready", fr: "100% compatible mobile" },
     ],
-    accentColor: "#C8A962",
+    accentColor: "#F0B100",
   },
   {
     num: "04",
@@ -88,7 +88,7 @@ export default function WorkProcess() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(200,169,98,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,98,0.012) 1px, transparent 1px)",
+            "linear-gradient(rgba(240,177,0,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(240,177,0,0.012) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
           pointerEvents: "none",
         }}
@@ -103,8 +103,8 @@ export default function WorkProcess() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              background: "rgba(200,169,98,0.08)",
-              border: "1px solid rgba(200,169,98,0.2)",
+              background: "rgba(240,177,0,0.08)",
+              border: "1px solid rgba(240,177,0,0.2)",
               borderRadius: "20px",
               padding: "6px 18px",
               marginBottom: "20px",
@@ -116,7 +116,7 @@ export default function WorkProcess() {
                 fontSize: "9px",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                color: "#C8A962",
+                color: "#F0B100",
               }}
             >
               {locale === "ar" ? "كيف نعمل" : locale === "fr" ? "COMMENT NOUS TRAVAILLONS" : "HOW WE WORK"}
@@ -124,7 +124,7 @@ export default function WorkProcess() {
           </div>
           <h2
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "clamp(28px, 4vw, 48px)",
               fontWeight: 800,
               color: "#FAFAF7",
@@ -158,7 +158,7 @@ export default function WorkProcess() {
                 onClick={() => setActiveStep(i)}
                 style={{
                   background: activeStep === i ? "rgba(255,255,255,0.06)" : "transparent",
-                  border: `1px solid ${activeStep === i ? "rgba(200,169,98,0.3)" : "rgba(255,255,255,0.07)"}`,
+                  border: `1px solid ${activeStep === i ? "rgba(240,177,0,0.3)" : "rgba(255,255,255,0.07)"}`,
                   borderRadius: "10px",
                   padding: "20px 22px",
                   display: "flex",
@@ -236,7 +236,7 @@ export default function WorkProcess() {
                 <div style={{ flex: 1 }}>
                   <div
                     style={{
-                      fontFamily: "'Zain', sans-serif",
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                       fontSize: "16px",
                       fontWeight: 700,
                       color: activeStep === i ? "#FAFAF7" : "rgba(255,255,255,0.45)",
@@ -299,7 +299,7 @@ export default function WorkProcess() {
             {/* Title */}
             <h3
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "clamp(22px, 3vw, 32px)",
                 fontWeight: 800,
                 color: "#FAFAF7",
@@ -316,7 +316,7 @@ export default function WorkProcess() {
             {/* Description */}
             <p
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "16px",
                 color: "rgba(255,255,255,0.55)",
                 lineHeight: 1.9,
@@ -344,7 +344,7 @@ export default function WorkProcess() {
                   <svg width="9" height="9" viewBox="0 0 24 24" fill={active.accentColor}>
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
                   </svg>
-                  <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: active.accentColor, fontWeight: 600 }}>
+                  <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: active.accentColor, fontWeight: 600 }}>
                     {locale === "ar" ? tag.ar : locale === "fr" ? tag.fr : tag.en}
                   </span>
                 </div>

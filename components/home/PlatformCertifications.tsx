@@ -106,7 +106,7 @@ function PartnerCard({ logoKey, badgeAr, badgeEn, badgeFr, accentColor, accentRG
             <svg width="13" height="13" viewBox="0 0 24 24" fill={accentColor} style={{ marginTop: "3px", flexShrink: 0 }}>
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
             </svg>
-            <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.55)", lineHeight: 1.55 }}>
+            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.55)", lineHeight: 1.55 }}>
               {locale === "ar" ? f.ar : locale === "fr" ? f.fr : f.en}
             </span>
           </li>
@@ -191,8 +191,8 @@ export default function PlatformCertifications() {
         overflow: "hidden",
       }}
     >
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,98,0.35), transparent)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(to right, transparent, rgba(200,169,98,0.15), transparent)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(to right, transparent, rgba(240,177,0,0.35), transparent)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", background: "linear-gradient(to right, transparent, rgba(240,177,0,0.15), transparent)", pointerEvents: "none" }} />
 
       <div className="max-w-[1400px] mx-auto px-8 relative z-10">
 
@@ -203,29 +203,29 @@ export default function PlatformCertifications() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              background: "rgba(200,169,98,0.08)",
-              border: "1px solid rgba(200,169,98,0.2)",
+              background: "rgba(240,177,0,0.08)",
+              border: "1px solid rgba(240,177,0,0.2)",
               borderRadius: "20px",
               padding: "6px 18px",
               marginBottom: "20px",
             }}
           >
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="#C8A962">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="#F0B100">
               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
             </svg>
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#C8A962" }}>
+            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#F0B100" }}>
               {locale === "ar" ? "شراكات رسمية معتمدة" : locale === "fr" ? "Partenariats Officiels Certifiés" : "Official Certified Partnerships"}
             </span>
           </div>
 
-          <h2 style={{ fontFamily: "'Zain', sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.2, marginBottom: "16px" }}>
+          <h2 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.2, marginBottom: "16px" }}>
             {locale === "ar"
               ? "شركاء رسميون مع أبرز منصات التجارة الإلكترونية"
               : locale === "fr"
               ? "Partenaires Officiels des Principales Plateformes E-Commerce"
               : "Official Partners with Leading E-Commerce Platforms"}
           </h2>
-          <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "17px", color: "rgba(255,255,255,0.42)", maxWidth: "580px", margin: "0 auto", lineHeight: 1.8 }}>
+          <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "17px", color: "rgba(255,255,255,0.42)", maxWidth: "580px", margin: "0 auto", lineHeight: 1.8 }}>
             {locale === "ar"
               ? "نحن شركاء معتمدون مع سلة وزد ومنصات الإعلان العالمية — مما يعني أنك تحصل على الأفضل في كل منصة"
               : locale === "fr"
@@ -248,8 +248,8 @@ export default function PlatformCertifications() {
         <div
           style={{
             marginTop: "44px",
-            background: "rgba(200,169,98,0.04)",
-            border: "1px solid rgba(200,169,98,0.12)",
+            background: "rgba(240,177,0,0.04)",
+            border: "1px solid rgba(240,177,0,0.12)",
             borderRadius: "12px",
             padding: "22px 32px",
             display: "flex",
@@ -267,10 +267,10 @@ export default function PlatformCertifications() {
             { num: "2×",   ar: "مراجعات مجانية على كل مشروع",  en: "Free revisions per project",      fr: "Révisions gratuites par projet" },
           ].map((item) => (
             <div key={item.num} style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "22px", fontWeight: 700, color: "#C8A962", lineHeight: 1 }}>
+              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "22px", fontWeight: 700, color: "#F0B100", lineHeight: 1 }}>
                 {item.num}
               </span>
-              <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.48)", lineHeight: 1.4 }}>
+              <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.48)", lineHeight: 1.4 }}>
                 {locale === "ar" ? item.ar : locale === "fr" ? item.fr : item.en}
               </span>
             </div>

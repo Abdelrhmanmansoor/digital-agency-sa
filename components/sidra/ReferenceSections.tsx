@@ -107,7 +107,7 @@ export function ComponentsSection() {
                       <ul className="space-y-1.5 text-sm leading-7 text-[#5f5148]">
                         {c.keySettings.map((s) => (
                           <li key={s} className="flex gap-2">
-                            <span className="text-[#C9A227]" aria-hidden>◆</span>
+                            <span className="text-[#F0B100]" aria-hidden>◆</span>
                             {s}
                           </li>
                         ))}
@@ -182,7 +182,7 @@ export function ProductCardsSection() {
             <div
               key={c.key}
               className={`rounded-2xl border-2 bg-white p-5 transition ${
-                isRec ? "border-[#C9A227] shadow-[0_16px_45px_rgba(201,162,39,0.15)]" : scenario ? "border-[#eadfd4] opacity-55" : "border-[#eadfd4]"
+                isRec ? "border-[#F0B100] shadow-[0_16px_45px_rgba(240,177,0,0.15)]" : scenario ? "border-[#eadfd4] opacity-55" : "border-[#eadfd4]"
               }`}
             >
               {/* رسم توضيحي للبطاقة */}
@@ -216,7 +216,7 @@ export function ProductCardsSection() {
       <ul className="grid gap-2.5 sm:grid-cols-2">
         {CARD_OPTIONS.map((o) => (
           <li key={o} className="flex gap-2.5 rounded-xl bg-white p-3.5 text-sm leading-7 text-[#5f5148]">
-            <span className="text-[#C9A227]" aria-hidden>◆</span>
+            <span className="text-[#F0B100]" aria-hidden>◆</span>
             {o}
           </li>
         ))}
@@ -295,7 +295,7 @@ export function HomeLayoutSection() {
       <ol className="relative space-y-2 before:absolute before:inset-y-3 before:start-[15px] before:w-0.5 before:bg-[#eadfd4]">
         {layout.order.map((sec, i) => (
           <li key={sec} className="relative flex items-center gap-4">
-            <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#C9A227] bg-white text-xs font-black text-[#7a5d10]">
+            <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#F0B100] bg-white text-xs font-black text-[#7a5d10]">
               {i + 1}
             </span>
             <span className="flex-1 rounded-xl border border-[#eadfd4] bg-white px-4 py-2.5 text-sm font-bold text-[#3c2a20]">{sec}</span>

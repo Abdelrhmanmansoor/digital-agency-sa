@@ -20,7 +20,7 @@ export default async function AdminPortfolioPage() {
           <div>
             <h1
               style={{
-                fontFamily: "'Zain', sans-serif",
+                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                 fontSize: "28px",
                 fontWeight: 700,
                 color: "#FAFAF7",
@@ -53,13 +53,13 @@ export default async function AdminPortfolioPage() {
             }}
           >
             <div style={{ fontSize: "48px", marginBottom: "16px" }}>📂</div>
-            <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "16px" }}>لا توجد مشاريع بعد</p>
+            <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px" }}>لا توجد مشاريع بعد</p>
             <Link
               href="/admin/portfolio/new"
               style={{
                 display: "inline-block",
                 marginTop: "16px",
-                color: "#C8A962",
+                color: "#F0B100",
                 fontFamily: "Space Mono",
                 fontSize: "13px",
                 textDecoration: "none",
@@ -76,7 +76,7 @@ export default async function AdminPortfolioPage() {
                 className="admin-project-card"
                 style={{
                   background: "#141414",
-                  border: "1px solid rgba(200,169,98,0.1)",
+                  border: "1px solid rgba(240,177,0,0.1)",
                   overflow: "hidden",
                   transition: "border-color 0.3s",
                 }}
@@ -95,7 +95,7 @@ export default async function AdminPortfolioPage() {
                         position: "absolute",
                         top: "12px",
                         right: "12px",
-                        background: "#C8A962",
+                        background: "#F0B100",
                         color: "#0A0A0A",
                         padding: "4px 10px",
                         fontSize: "10px",
@@ -118,7 +118,7 @@ export default async function AdminPortfolioPage() {
                       fontSize: "10px",
                       letterSpacing: "0.15em",
                       textTransform: "uppercase",
-                      color: "#C8A962",
+                      color: "#F0B100",
                       marginBottom: "6px",
                     }}
                   >
@@ -126,7 +126,7 @@ export default async function AdminPortfolioPage() {
                   </div>
                   <h3
                     style={{
-                      fontFamily: "'Zain', sans-serif",
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                       fontSize: "17px",
                       fontWeight: 700,
                       color: "#FAFAF7",
@@ -148,8 +148,8 @@ export default async function AdminPortfolioPage() {
                         textAlign: "center",
                         padding: "8px",
                         background: "transparent",
-                        border: "1px solid rgba(200,169,98,0.3)",
-                        color: "#C8A962",
+                        border: "1px solid rgba(240,177,0,0.3)",
+                        color: "#F0B100",
                         fontSize: "12px",
                         fontFamily: "Space Mono",
                         textDecoration: "none",
@@ -192,7 +192,7 @@ export default async function AdminPortfolioPage() {
 
       <style>{`
         .admin-project-card:hover {
-          border-color: rgba(200,169,98,0.3) !important;
+          border-color: rgba(240,177,0,0.3) !important;
         }
       `}</style>
     </div>

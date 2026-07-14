@@ -44,9 +44,9 @@ export default function FloatingActions() {
           width: "44px",
           height: "44px",
           borderRadius: "12px",
-          background: "rgba(10,10,10,0.92)",
-          border: "1px solid rgba(200,169,98,0.35)",
-          color: "#C8A962",
+          background: "#FFFFFF",
+          border: "1px solid rgba(0,0,0,0.12)",
+          color: "#F0B100",
           cursor: "pointer",
           display: "flex",
           alignItems: "center",
@@ -56,15 +56,15 @@ export default function FloatingActions() {
           transition: "opacity 0.3s ease, transform 0.3s ease",
           pointerEvents: showTop ? "auto" : "none",
           backdropFilter: "blur(16px)",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = "#C8A962";
-          e.currentTarget.style.background = "rgba(200,169,98,0.12)";
+          e.currentTarget.style.borderColor = "#F0B100";
+          e.currentTarget.style.background = "rgba(240,177,0,0.12)";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = "rgba(200,169,98,0.35)";
-          e.currentTarget.style.background = "rgba(10,10,10,0.92)";
+          e.currentTarget.style.borderColor = "rgba(0,0,0,0.12)";
+          e.currentTarget.style.background = "#FFFFFF";
         }}
       >
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none">

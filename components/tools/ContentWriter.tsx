@@ -132,7 +132,7 @@ export default function ContentWriter({ onClose }: { onClose: () => void }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Inputs */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'Zain', sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
             {isRTL ? "تفاصيل المنتج" : "Product Details"}
           </h3>
 
@@ -213,16 +213,16 @@ export default function ContentWriter({ onClose }: { onClose: () => void }) {
                   onClick={() => navigator.clipboard.writeText(tag)}
                   style={{
                     padding: "4px 10px",
-                    background: "rgba(200,169,98,0.1)",
-                    border: "1px solid rgba(200,169,98,0.2)",
-                    color: "#C8A962",
+                    background: "rgba(240,177,0,0.1)",
+                    border: "1px solid rgba(240,177,0,0.2)",
+                    color: "#F0B100",
                     fontSize: "12px",
                     fontFamily: "Space Mono",
                     cursor: "pointer",
                     transition: "all 0.2s",
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(200,169,98,0.2)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(200,169,98,0.1)"; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(240,177,0,0.2)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(240,177,0,0.1)"; }}
                 >
                   {tag}
                 </span>
@@ -233,7 +233,7 @@ export default function ContentWriter({ onClose }: { onClose: () => void }) {
 
         {/* Results */}
         <div>
-          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'Zain', sans-serif" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: 600, color: "#0A0A0A", marginBottom: "20px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
             {isRTL ? "النسخ المُنشأة (3 نسخ)" : "Generated Versions (3 Copies)"}
           </h3>
 
@@ -295,7 +295,7 @@ export default function ContentWriter({ onClose }: { onClose: () => void }) {
                       fontSize: "14px",
                       lineHeight: 1.8,
                       color: "#2D2D2D",
-                      fontFamily: "'Zain', sans-serif",
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                     }}
                   >
                     {text}
@@ -306,7 +306,7 @@ export default function ContentWriter({ onClose }: { onClose: () => void }) {
           ) : (
             <div style={{ padding: "60px 20px", textAlign: "center", border: "1px dashed #E8E6E1", color: "#8C8C7A" }}>
               <div style={{ fontSize: "48px", marginBottom: "16px" }}>✍️</div>
-              <div style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px" }}>
+              <div style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px" }}>
                 {isRTL ? "أدخل تفاصيل منتجك واضغط 'أنشئ المحتوى'" : "Enter your product details and press 'Generate Content'"}
               </div>
             </div>

@@ -76,7 +76,7 @@ function CompetitorAnalyzer({ onClose }: { onClose: () => void }) {
             <span>{analyzing ? (isRTL ? "⏳ تحليل..." : "⏳ Analyzing...") : `📊 ${isRTL ? "حلّل" : "Analyze"}`}</span>
           </button>
         </div>
-        <div style={{ fontSize: "12px", color: "#8C8C7A", marginTop: "8px", fontFamily: "'Zain', sans-serif" }}>
+        <div style={{ fontSize: "12px", color: "#8C8C7A", marginTop: "8px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
           {isRTL ? "* هذا التحليل تقديري بناءً على المعلومات المتاحة للعموم" : "* This analysis is estimated based on publicly available information"}
         </div>
       </div>
@@ -92,10 +92,10 @@ function CompetitorAnalyzer({ onClose }: { onClose: () => void }) {
               <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
                 <span style={{ fontSize: "20px" }}>{item.icon}</span>
                 <div>
-                  <div style={{ fontSize: "11px", fontFamily: "Space Mono", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#C8A962", marginBottom: "4px" }}>
+                  <div style={{ fontSize: "11px", fontFamily: "Space Mono", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#F0B100", marginBottom: "4px" }}>
                     {isRTL ? item.labelAr : item.labelEn}
                   </div>
-                  <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>
+                  <div style={{ fontSize: "14px", color: "#2D2D2D", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                     {item.value as string}
                   </div>
                 </div>
@@ -110,7 +110,7 @@ function CompetitorAnalyzer({ onClose }: { onClose: () => void }) {
               </div>
               <ul className="space-y-2">
                 {(res.strengths as string[]).map((s: string) => (
-                  <li key={s} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>• {s}</li>
+                  <li key={s} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>• {s}</li>
                 ))}
               </ul>
             </div>
@@ -120,19 +120,19 @@ function CompetitorAnalyzer({ onClose }: { onClose: () => void }) {
               </div>
               <ul className="space-y-2">
                 {(res.weaknesses as string[]).map((w: string) => (
-                  <li key={w} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>• {w}</li>
+                  <li key={w} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>• {w}</li>
                 ))}
               </ul>
             </div>
           </div>
 
-          <div style={{ padding: "20px", background: "rgba(200,169,98,0.08)", border: "1px solid rgba(200,169,98,0.2)" }}>
-            <div style={{ fontSize: "11px", fontFamily: "Space Mono", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#C8A962", marginBottom: "12px" }}>
+          <div style={{ padding: "20px", background: "rgba(240,177,0,0.08)", border: "1px solid rgba(240,177,0,0.2)" }}>
+            <div style={{ fontSize: "11px", fontFamily: "Space Mono", letterSpacing: "0.1em", textTransform: "uppercase" as const, color: "#F0B100", marginBottom: "12px" }}>
               🎯 {isRTL ? "كيف تتفوق عليهم؟" : "How to Outperform Them?"}
             </div>
             <ul className="space-y-2">
               {(res.recommendations as string[]).map((r: string) => (
-                <li key={r} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: "'Zain', sans-serif" }}>✓ {r}</li>
+                <li key={r} style={{ fontSize: "13px", color: "#2D2D2D", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>✓ {r}</li>
               ))}
             </ul>
           </div>
@@ -207,7 +207,7 @@ export default function SallaTools() {
             </div>
             <h2
               style={{
-                fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
+                fontFamily: isRTL ? "'ThmanyahSans', 'Zain', sans-serif" : "sans-serif",
                 fontSize: "clamp(32px, 4vw, 52px)",
                 fontWeight: 700,
                 color: "#FAFAF7",
@@ -252,7 +252,7 @@ export default function SallaTools() {
                 <div className="tool-icon">{tool.icon}</div>
                 <h3
                   style={{
-                    fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
+                    fontFamily: isRTL ? "'ThmanyahSans', 'Zain', sans-serif" : "sans-serif",
                     fontSize: "16px",
                     fontWeight: 600,
                     color: "#FAFAF7",
@@ -270,7 +270,7 @@ export default function SallaTools() {
                     fontFamily: "Space Mono, monospace",
                     fontSize: "11px",
                     letterSpacing: "0.1em",
-                    color: "#C8A962",
+                    color: "#F0B100",
                     textTransform: "uppercase",
                   }}
                 >
@@ -300,7 +300,7 @@ export default function SallaTools() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              borderBottom: "1px solid rgba(200,169,98,0.1)",
+              borderBottom: "1px solid rgba(240,177,0,0.1)",
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
@@ -308,7 +308,7 @@ export default function SallaTools() {
               <div>
                 <h2
                   style={{
-                    fontFamily: isRTL ? "'Zain', sans-serif" : "sans-serif",
+                    fontFamily: isRTL ? "'ThmanyahSans', 'Zain', sans-serif" : "sans-serif",
                     fontSize: "22px",
                     fontWeight: 700,
                     color: "#FAFAF7",
@@ -335,7 +335,7 @@ export default function SallaTools() {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = "#C8A962"; }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "#F0B100"; }}
               onMouseLeave={(e) => { e.currentTarget.style.color = "#8C8C7A"; }}
             >
               ×

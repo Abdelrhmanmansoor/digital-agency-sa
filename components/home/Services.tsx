@@ -28,224 +28,231 @@ interface Service {
 }
 
 const SERVICES: Service[] = [
-  /* ── 1. Salla / Zid store design ── */
   {
-    id: "salla-design",
+    id: "salla-theme",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <rect x="2" y="3" width="20" height="14" rx="2"/>
-        <path d="M8 21h8M12 17v4"/><path d="M7 8h3M7 11h5"/><rect x="13" y="7" width="5" height="5" rx="1"/>
+        <rect x="3" y="4" width="18" height="12" rx="2"/>
+        <path d="M7 20h10M12 16v4"/><path d="M7 8h4M7 11h6"/>
       </svg>
     ),
-    nameAr: "تصميم متجر سلة / زد احترافي",
-    nameEn: "Salla & Zid Store Design",
-    problemAr: "متجرك لا يبيع لأن التصميم لا يثق به العميل",
-    problemEn: "Your store doesn't sell because it lacks trust",
-    solutionAr: "متجر جاهز للبيع خلال 5 أيام — ثيم مخصص + صفحات منتجات + تجربة جوال مثالية",
-    solutionEn: "Store ready to sell in 5 days — custom theme, product pages & mobile UX",
-    resultAr: "متوسط زيادة التحويل لدى عملائنا",
-    resultEn: "Avg conversion increase for our clients",
-    resultMetric: "+40%",
-    ctaAr: "اطلب تصميم متجرك",
-    ctaEn: "Request Store Design",
-    waAr: "مرحباً! أريد الاستفسار عن تصميم متجر سلة / زد احترافي",
-    waEn: "Hello! I want to inquire about professional Salla/Zid store design",
-    accentColor: "#A3FF12",
+    nameAr: "تصميم ثيم سلة خاص",
+    nameEn: "Custom Salla Theme Design",
+    problemAr: "ثيم المتجر لا يعكس هويتك ويضعف الثقة",
+    problemEn: "Your store theme doesn't reflect your brand or build trust",
+    solutionAr: "ثيم مخصص بالكامل يعكس هويتك، متوافق مع الجوال وسريع التحميل",
+    solutionEn: "Fully custom theme reflecting your brand, mobile-ready and fast",
+    resultAr: "تحسين تجربة المستخدم وزيادة الطلبات",
+    resultEn: "Better UX and higher orders",
+    resultMetric: "+32%",
+    ctaAr: "اطلب الثيم الآن",
+    ctaEn: "Order Your Theme",
+    waAr: "مرحباً! أريد خدمة تصميم ثيم سلة خاص",
+    waEn: "Hello! I want a custom Salla theme",
+    accentColor: "#F0B100",
     featured: true,
     badge: "الأكثر طلباً",
     badgeEn: "Most Popular",
   },
-  /* ── 2. AI Product Photography ── */
   {
-    id: "ai-photography",
+    id: "store-scrape",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-        <circle cx="12" cy="13" r="4"/>
-        <path d="m15 10 1-1.5"/>
+        <path d="M3 3h18v4H3z"/><path d="M3 11h18v10H3z"/><path d="M7 7h10M7 15h10"/>
       </svg>
     ),
-    nameAr: "تصوير منتجات بالذكاء الاصطناعي",
-    nameEn: "AI Product Photography",
-    problemAr: "صور منتجاتك رديئة تجعل العميل يتراجع عن الشراء",
-    problemEn: "Poor product images make customers hesitate to buy",
-    solutionAr: "جلسات تصوير منتجات سينمائية فاخرة بالذكاء الاصطناعي — بدون استوديو وبنصف التكلفة",
-    solutionEn: "Cinematic luxury product shoots using AI — no studio, half the cost",
-    resultAr: "زيادة في معدل إضافة المنتج للسلة",
-    resultEn: "Increase in add-to-cart rate",
-    resultMetric: "+65%",
-    ctaAr: "اطلب جلسة تصوير",
-    ctaEn: "Request Photo Session",
-    waAr: "مرحباً! أريد الاستفسار عن خدمة تصوير المنتجات بالذكاء الاصطناعي",
-    waEn: "Hello! I'd like to inquire about AI Product Photography",
-    accentColor: "#C8A962",
+    nameAr: "سحب منتجات المتاجر وتحليلها",
+    nameEn: "Store Products Scraping & Analysis",
+    problemAr: "تسعيرك وتسويقك عشوائي بدون بيانات منافسين",
+    problemEn: "You price and market blindly without competitor data",
+    solutionAr: "سحب المنتجات + تحليل المنافسين + توصيات سعرية ونقاط قوة",
+    solutionEn: "Product scraping + competitor analysis + pricing insights",
+    resultAr: "قرارات تسعير أدق وأسرع",
+    resultEn: "Faster, data-driven pricing decisions",
+    resultMetric: "+55%",
+    ctaAr: "ابدأ التحليل",
+    ctaEn: "Start Analysis",
+    waAr: "مرحباً! أريد سحب منتجات متجر وتحليلها",
+    waEn: "Hello! I want store products scraping and analysis",
+    accentColor: "#2E6BFF",
     badge: "جديد",
     badgeEn: "New",
   },
-  /* ── 3. Website & App Development ── */
   {
-    id: "web-dev",
+    id: "custom-apps",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-        <line x1="12" y1="2" x2="12" y2="22"/>
+        <rect x="7" y="2" width="10" height="20" rx="2"/><path d="M12 18h.01"/>
       </svg>
     ),
-    nameAr: "تطوير مواقع وتطبيقات",
-    nameEn: "Website & App Development",
-    problemAr: "مشروعك يحتاج منصة رقمية تعكس احترافيتك وتبيع تلقائياً",
-    problemEn: "Your project needs a digital platform that sells automatically",
-    solutionAr: "موقع أو تطبيق مخصص بالكامل — Next.js سريع، SEO قوي، واجهة فاخرة",
-    solutionEn: "Fully custom website or app — fast Next.js, strong SEO, luxury UI",
-    resultAr: "سرعة تحميل مقارنة بالمنافسين",
-    resultEn: "Load speed vs competitors",
-    resultMetric: "3×",
-    ctaAr: "استشارة مجانية",
-    ctaEn: "Free Consultation",
-    waAr: "مرحباً! أريد الاستفسار عن تطوير موقع أو تطبيق لمشروعي",
-    waEn: "Hello! I'd like to discuss website/app development for my project",
-    accentColor: "#A3FF12",
+    nameAr: "برمجة تطبيقات حسب الطلب",
+    nameEn: "Custom App Development",
+    problemAr: "تطبيقك يحتاج تجربة خاصة تناسب عملاءك",
+    problemEn: "Your app needs a tailored experience for your users",
+    solutionAr: "تصميم وبرمجة تطبيق من الفكرة للمنتج النهائي مع لوحات تحكم",
+    solutionEn: "Full app design & development with admin dashboards",
+    resultAr: "إطلاق أسرع مع جودة عالية",
+    resultEn: "Faster launch with premium quality",
+    resultMetric: "4–8 أسابيع",
+    ctaAr: "ناقش فكرتك",
+    ctaEn: "Discuss Your Idea",
+    waAr: "مرحباً! أريد برمجة تطبيق حسب الطلب",
+    waEn: "Hello! I want a custom app developed",
+    accentColor: "#F0B100",
   },
-  /* ── 4. Conversion Optimization ── */
   {
-    id: "conversion",
+    id: "vibe-coding",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+        <path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/><path d="M10 21l4-18"/>
       </svg>
     ),
-    nameAr: "تحسين معدل التحويل CRO",
-    nameEn: "Conversion Rate Optimization",
-    problemAr: "زوار كثيرون لكن مبيعات قليلة — مشكلتك في التحويل لا في الإعلانات",
-    problemEn: "Lots of traffic but few sales — your issue is conversion not ads",
-    solutionAr: "تحليل كامل للمتجر + تحسين صفحات المنتج والسلة والدفع لمضاعفة المبيعات",
-    solutionEn: "Full store audit + product/cart/checkout optimization to multiply sales",
-    resultAr: "زيادة المبيعات بدون زيادة ميزانية الإعلانات",
-    resultEn: "Sales increase without extra ad spend",
-    resultMetric: "+120%",
-    ctaAr: "حلل متجري الآن",
-    ctaEn: "Analyze My Store",
-    waAr: "مرحباً! أريد تحليل متجري وتحسين معدل التحويل",
-    waEn: "Hello! I want to analyze my store and improve conversion rate",
-    accentColor: "#C8A962",
+    nameAr: "Vibe Coding Services",
+    nameEn: "Vibe Coding Services",
+    problemAr: "تحتاج تطوير سريع لفكرة رقمية بمرونة عالية",
+    problemEn: "You need fast, flexible development for a digital idea",
+    solutionAr: "تنفيذ سريع للمنتجات الرقمية والتجارب التفاعلية بأسلوب إبداعي",
+    solutionEn: "Rapid builds for digital products and interactive experiments",
+    resultAr: "سرعة تنفيذ وتكرار أعلى",
+    resultEn: "Faster delivery cycles",
+    resultMetric: "72h MVP",
+    ctaAr: "ابدأ الآن",
+    ctaEn: "Start Now",
+    waAr: "مرحباً! أريد خدمة Vibe Coding",
+    waEn: "Hello! I want Vibe Coding services",
+    accentColor: "#2E6BFF",
   },
-  /* ── 5. Funnel Building ── */
   {
-    id: "funnel",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
-      </svg>
-    ),
-    nameAr: "بناء فنل مبيعات",
-    nameEn: "Sales Funnel Building",
-    problemAr: "عميلك يصل لمتجرك ثم يغادر بدون شراء — لأنك لا تملك فنل يحوّله",
-    problemEn: "Visitors arrive then leave without buying — you have no funnel to convert them",
-    solutionAr: "فنل مبيعات كامل: صفحة هبوط + عرض خاص + متابعة تلقائية + upsell",
-    solutionEn: "Complete sales funnel: landing page + special offer + auto-follow-up + upsell",
-    resultAr: "زيادة متوسط قيمة الطلب",
-    resultEn: "Average order value increase",
-    resultMetric: "+85%",
-    ctaAr: "ابنِ فنلي الآن",
-    ctaEn: "Build My Funnel",
-    waAr: "مرحباً! أريد بناء فنل مبيعات لمتجري أو منتجي",
-    waEn: "Hello! I want to build a sales funnel for my store/product",
-    accentColor: "#A3FF12",
-  },
-  /* ── 6. Digital Marketing ── */
-  {
-    id: "marketing",
+    id: "digital-marketing",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
       </svg>
     ),
-    nameAr: "تسويق رقمي وإعلانات ممولة",
-    nameEn: "Digital Marketing & Paid Ads",
-    problemAr: "إعلاناتك تستنزف الميزانية بلا نتائج حقيقية",
-    problemEn: "Your ads drain the budget with no real results",
-    solutionAr: "حملات إعلانية محترفة على سناب، انستغرام، تيك توك وجوجل — نستهدف المشتري الجاهز",
-    solutionEn: "Pro campaigns on Snap, Instagram, TikTok & Google — targeting ready-to-buy audience",
-    resultAr: "متوسط عائد على الإنفاق الإعلاني",
-    resultEn: "Average Return on Ad Spend",
-    resultMetric: "4.5× ROAS",
-    ctaAr: "ابدأ حملتك الآن",
-    ctaEn: "Launch Your Campaign",
-    waAr: "مرحباً! أريد إطلاق حملات إعلانية ممولة لمتجري",
-    waEn: "Hello! I want to launch paid ad campaigns for my store",
-    accentColor: "#C8A962",
+    nameAr: "التسويق الإلكتروني",
+    nameEn: "Digital Marketing",
+    problemAr: "الإعلانات لا تحقق نتائج واضحة",
+    problemEn: "Your ads don't deliver measurable results",
+    solutionAr: "حملات Meta وTikTok وSnapchat بخطة محتوى وأهداف واضحة",
+    solutionEn: "Meta, TikTok & Snapchat campaigns with clear goals",
+    resultAr: "تحسين العائد على الإنفاق",
+    resultEn: "Higher ROAS",
+    resultMetric: "3.8×",
+    ctaAr: "ابدأ التسويق",
+    ctaEn: "Start Marketing",
+    waAr: "مرحباً! أريد خدمة التسويق الإلكتروني",
+    waEn: "Hello! I want digital marketing services",
+    accentColor: "#F0B100",
   },
-  /* ── 7. SEO ── */
   {
-    id: "seo",
+    id: "social-media",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        <path d="M11 8v6M8 11h6"/>
+        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h10M7 12h6M7 17h8"/>
       </svg>
     ),
-    nameAr: "تحسين محركات البحث SEO",
-    nameEn: "Search Engine Optimization",
-    problemAr: "متجرك غير مرئي على جوجل — عملاؤك يجدون المنافسين أولاً",
-    problemEn: "Your store is invisible on Google — customers find competitors first",
-    solutionAr: "SEO متكامل للمتاجر السعودية — كلمات مفتاحية، محتوى، روابط، وتقارير شهرية",
-    solutionEn: "Full SEO for Saudi stores — keywords, content, links & monthly reports",
-    resultAr: "تصدر جوجل خلال 90 يوم",
-    resultEn: "Google rank #1 within 90 days",
-    resultMetric: "#1",
-    ctaAr: "تصدّر جوجل",
-    ctaEn: "Rank on Google",
-    waAr: "مرحباً! أريد تحسين ظهور متجري في محركات البحث SEO",
-    waEn: "Hello! I want to improve my store's search engine visibility",
-    accentColor: "#A3FF12",
+    nameAr: "إدارة السوشيال ميديا",
+    nameEn: "Social Media Management",
+    problemAr: "المنشورات غير منتظمة ولا تبني ثقة",
+    problemEn: "Inconsistent posting doesn't build trust",
+    solutionAr: "محتوى + تصميم + تفاعل يومي لزيادة المتابعين والمبيعات",
+    solutionEn: "Content, design, and daily engagement to grow sales",
+    resultAr: "نمو تفاعل الحسابات",
+    resultEn: "Higher engagement",
+    resultMetric: "+120%",
+    ctaAr: "ابدأ إدارة حسابي",
+    ctaEn: "Manage My Accounts",
+    waAr: "مرحباً! أريد خدمة إدارة السوشيال ميديا",
+    waEn: "Hello! I want social media management",
+    accentColor: "#2E6BFF",
   },
-  /* ── 8. Brand Identity ── */
   {
-    id: "branding",
+    id: "automation",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
+        <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06-1.5 2.6-0.08-.03a1.65 1.65 0 0 0-1.87.33l-.06.06-2.6-1.5.03-.08A1.65 1.65 0 0 0 12 17.6a1.65 1.65 0 0 0-1.82.33l-.06.06-2.6-1.5.03-.08a1.65 1.65 0 0 0-.33-1.87l-.06-.06 1.5-2.6.08.03A1.65 1.65 0 0 0 10.4 12c0-.47-.18-.92-.5-1.24l-.06-.06 1.5-2.6.08.03A1.65 1.65 0 0 0 12 6.4c.47 0 .92.18 1.24.5l.06.06 2.6-1.5-.03-.08a1.65 1.65 0 0 0 .33-1.87l-.06-.06 2.6-1.5.08.03a1.65 1.65 0 0 0 1.87-.33l.06-.06"/>
       </svg>
     ),
-    nameAr: "هوية بصرية وجرافيك",
-    nameEn: "Brand Identity & Graphic Design",
-    problemAr: "علامتك التجارية لا تُميزك عن المنافسين — العميل لا يتذكرك",
-    problemEn: "Your brand doesn't differentiate you — customers don't remember you",
-    solutionAr: "هوية بصرية كاملة — لوجو، ألوان، خطوط، موشن جرافيك، وقالب سوشيال ميديا",
-    solutionEn: "Full brand identity — logo, colors, fonts, motion graphics & social templates",
-    resultAr: "علامة تجارية يثق بها العميل للشراء",
-    resultEn: "Brand identity that builds purchase trust",
+    nameAr: "الأتمتة (Automation)",
+    nameEn: "Automation",
+    problemAr: "العمليات اليدوية تستهلك وقتك",
+    problemEn: "Manual tasks waste your time",
+    solutionAr: "نربط أدواتك في سير عمل واحد لتقليل الأخطاء وزيادة السرعة",
+    solutionEn: "Connect your tools into one workflow for speed and accuracy",
+    resultAr: "توفير وقت التشغيل",
+    resultEn: "Operational time saved",
+    resultMetric: "-60%",
+    ctaAr: "أتمت عملي",
+    ctaEn: "Automate My Work",
+    waAr: "مرحباً! أريد خدمة الأتمتة وربط الأدوات",
+    waEn: "Hello! I want automation and integrations",
+    accentColor: "#F0B100",
+  },
+  {
+    id: "booth-design",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 18v4M17 18v4"/>
+      </svg>
+    ),
+    nameAr: "تصميم بوثات",
+    nameEn: "Booth Design",
+    problemAr: "بوث غير منظم يقلل الإقبال",
+    problemEn: "An unstructured booth reduces engagement",
+    solutionAr: "تصميم بوث احترافي يعكس الهوية ويجذب الزوار",
+    solutionEn: "Professional booth design that attracts visitors",
+    resultAr: "زيادة التفاعل في المعارض",
+    resultEn: "Higher booth engagement",
+    resultMetric: "+45%",
+    ctaAr: "صمّم بوثي",
+    ctaEn: "Design My Booth",
+    waAr: "مرحباً! أريد تصميم بوث احترافي",
+    waEn: "Hello! I want a professional booth design",
+    accentColor: "#2E6BFF",
+  },
+  {
+    id: "exhibitions",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <path d="M3 20h18"/><path d="M4 20V8l8-4 8 4v12"/><path d="M9 12h6"/>
+      </svg>
+    ),
+    nameAr: "تجهيز المعارض",
+    nameEn: "Exhibition Setup",
+    problemAr: "المعرض يحتاج تجهيز متكامل يظهر احترافك",
+    problemEn: "Exhibitions need a complete professional setup",
+    solutionAr: "تجهيز كامل من التصميم إلى الشاشات والتجربة البصرية",
+    solutionEn: "Full setup from design to screens and visuals",
+    resultAr: "تحسين حضور العلامة في المعرض",
+    resultEn: "Stronger brand presence",
+    resultMetric: "+70%",
+    ctaAr: "جهّز معرضي",
+    ctaEn: "Set Up My Exhibition",
+    waAr: "مرحباً! أريد تجهيز معرض بشكل احترافي",
+    waEn: "Hello! I want a professional exhibition setup",
+    accentColor: "#F0B100",
+  },
+  {
+    id: "general-dev",
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <path d="M4 19h16"/><path d="M8 5h8l2 6H6l2-6z"/><path d="M6 11v4h12v-4"/>
+      </svg>
+    ),
+    nameAr: "البرمجة العامة",
+    nameEn: "General Development",
+    problemAr: "تحتاج تطوير مواقع ولوحات تحكم وواجهات",
+    problemEn: "You need websites, dashboards, and APIs",
+    solutionAr: "مواقع، لوحات تحكم، API وتكاملات حسب الطلب",
+    solutionEn: "Websites, dashboards, APIs, and integrations on demand",
+    resultAr: "حلول مرنة وقابلة للتوسع",
+    resultEn: "Scalable and flexible solutions",
     resultMetric: "100%",
-    ctaAr: "صمّم هويتي",
-    ctaEn: "Design My Brand",
-    waAr: "مرحباً! أريد تصميم هوية بصرية كاملة لمشروعي",
-    waEn: "Hello! I want a complete brand identity designed for my project",
-    accentColor: "#C8A962",
-  },
-  /* ── 9. Content Production ── */
-  {
-    id: "content",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
-        <path d="m15 5 3 3"/>
-      </svg>
-    ),
-    nameAr: "إنتاج محتوى رقمي بالذكاء الاصطناعي",
-    nameEn: "AI-Powered Digital Content",
-    problemAr: "إنتاج المحتوى اليومي مكلف ومستنزف للوقت والموارد",
-    problemEn: "Daily content production is costly and time-consuming",
-    solutionAr: "30 تصميم شهرياً + ريلز + قصص + كابشن + هاشتاقات — كل شيء بالذكاء الاصطناعي",
-    solutionEn: "30 monthly designs + reels + stories + captions — all AI-powered",
-    resultAr: "توفير في تكلفة إنتاج المحتوى",
-    resultEn: "Content production cost savings",
-    resultMetric: "-70%",
-    ctaAr: "ابدأ إنتاج محتواك",
-    ctaEn: "Start Content Production",
-    waAr: "مرحباً! أريد خدمة إنتاج محتوى رقمي بالذكاء الاصطناعي",
-    waEn: "Hello! I'd like AI-powered digital content production",
-    accentColor: "#A3FF12",
+    ctaAr: "اطلب البرمجة",
+    ctaEn: "Request Development",
+    waAr: "مرحباً! أريد خدمة البرمجة العامة",
+    waEn: "Hello! I want general development services",
+    accentColor: "#2E6BFF",
   },
 ];
 
@@ -263,7 +270,7 @@ export default function Services() {
     <section
       id="services"
       style={{
-        background: "#0D0D0D", padding: "80px 0 88px",
+        background: "#FFFFFF", padding: "80px 0 88px",
         position: "relative", overflow: "hidden",
       }}
     >
@@ -272,7 +279,7 @@ export default function Services() {
         aria-hidden
         style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          backgroundImage: "linear-gradient(rgba(163,255,18,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(163,255,18,0.025) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
@@ -283,26 +290,26 @@ export default function Services() {
         <div className="text-center mb-16" dir={isRTL ? "rtl" : "ltr"}>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: "8px",
-            background: "rgba(163,255,18,0.08)", border: "1px solid rgba(163,255,18,0.2)",
+            background: "rgba(240,177,0,0.1)", border: "1px solid rgba(240,177,0,0.25)",
             borderRadius: "100px", padding: "6px 18px", marginBottom: "20px",
           }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#A3FF12", display: "inline-block", animation: "svcPulse 2s ease-in-out infinite" }} />
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#A3FF12" }}>
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#F0B100", display: "inline-block", animation: "svcPulse 2s ease-in-out infinite" }} />
+            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#F0B100" }}>
               {isRTL ? "مشكلة → حل → نتيجة" : "Problem → Solution → Result"}
             </span>
           </div>
 
           <h2 style={{
-            fontFamily: "'Zain', sans-serif", fontSize: "clamp(30px, 4.5vw, 58px)",
-            fontWeight: 800, color: "#FFFFFF", lineHeight: 1.05,
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "clamp(30px, 4.5vw, 58px)",
+            fontWeight: 800, color: "#1A1A1A", lineHeight: 1.05,
             marginBottom: "14px", letterSpacing: isRTL ? "0" : "-0.03em",
           }}>
             {title}
           </h2>
           <p style={{
-            color: "rgba(255,255,255,0.42)", fontSize: "clamp(15px, 2vw, 17px)",
+            color: "rgba(26,26,26,0.65)", fontSize: "clamp(15px, 2vw, 17px)",
             maxWidth: "560px", margin: "0 auto", lineHeight: 1.75,
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
           }}>
             {subtitle}
           </p>
@@ -331,14 +338,12 @@ export default function Services() {
                 onMouseEnter={() => setHoveredId(svc.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 style={{
-                  background: svc.featured
-                    ? `linear-gradient(160deg, ${ac}08 0%, rgba(10,10,10,0) 70%)`
-                    : "rgba(255,255,255,0.02)",
-                  border: `1px solid ${isHovered || svc.featured ? ac + "45" : "rgba(255,255,255,0.07)"}`,
+                  background: "#FFFFFF",
+                  border: `1px solid ${isHovered || svc.featured ? ac + "55" : "rgba(0,0,0,0.08)"}`,
                   borderRadius: "20px", padding: "28px",
                   transition: "all 0.32s cubic-bezier(0.19,1,0.22,1)",
                   transform: isHovered ? "translateY(-6px)" : "none",
-                  boxShadow: isHovered ? `0 24px 64px ${ac}12, 0 0 0 1px ${ac}20` : "none",
+                  boxShadow: isHovered ? `0 24px 64px ${ac}18, 0 0 0 1px ${ac}20` : "0 6px 20px rgba(0,0,0,0.05)",
                   position: "relative", overflow: "hidden",
                   display: "flex", flexDirection: "column", gap: "20px",
                 }}
@@ -354,7 +359,7 @@ export default function Services() {
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                   <div style={{
                     width: "52px", height: "52px", borderRadius: "14px",
-                    background: `${ac}12`, border: `1px solid ${ac}28`,
+                    background: `${ac}14`, border: `1px solid ${ac}30`,
                     display: "flex", alignItems: "center", justifyContent: "center",
                     color: ac, flexShrink: 0,
                   }}>
@@ -364,9 +369,9 @@ export default function Services() {
                     <span style={{
                       padding: "4px 11px", borderRadius: "100px",
                       background: svc.featured ? ac : `${ac}20`,
-                      color: svc.featured ? "#0D0D0D" : ac,
+                      color: svc.featured ? "#1A1A1A" : ac,
                       fontSize: "11px", fontWeight: 700,
-                      fontFamily: isRTL ? "'Zain', sans-serif" : "Space Mono, monospace",
+                      fontFamily: isRTL ? "'ThmanyahSans', 'Zain', sans-serif" : "Space Mono, monospace",
                     }}>
                       {badge}
                     </span>
@@ -375,13 +380,13 @@ export default function Services() {
 
                 {/* Title */}
                 <h3 style={{
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                   fontSize: isRTL ? "20px" : "16px",
-                  fontWeight: 700, color: "#FFFFFF",
-                  lineHeight: 1.2, margin: 0,
-                }}>
-                  {name}
-                </h3>
+                    fontWeight: 700, color: "#1A1A1A",
+                    lineHeight: 1.2, margin: 0,
+                  }}>
+                    {name}
+                  </h3>
 
                 {/* Problem → Solution → Result */}
                 <div style={{ display: "flex", flexDirection: "column", gap: "12px", flex: 1 }}>
@@ -389,13 +394,13 @@ export default function Services() {
                   <div style={{
                     display: "flex", gap: "10px", alignItems: "flex-start",
                     padding: "10px 12px", borderRadius: "10px",
-                    background: "rgba(255,80,80,0.06)", border: "1px solid rgba(255,80,80,0.12)",
+                    background: "rgba(255,80,80,0.08)", border: "1px solid rgba(255,80,80,0.18)",
                   }}>
                     <span style={{ fontSize: "13px", flexShrink: 0, marginTop: "1px" }}>⚠️</span>
                     <p style={{
                       margin: 0, fontSize: isRTL ? "13px" : "12px",
-                      color: "rgba(255,180,180,0.8)", lineHeight: 1.55,
-                      fontFamily: "'Zain', sans-serif",
+                      color: "#8B2C2C", lineHeight: 1.55,
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                     }}>
                       {problem}
                     </p>
@@ -405,13 +410,13 @@ export default function Services() {
                   <div style={{
                     display: "flex", gap: "10px", alignItems: "flex-start",
                     padding: "10px 12px", borderRadius: "10px",
-                    background: `${ac}07`, border: `1px solid ${ac}18`,
+                    background: `${ac}10`, border: `1px solid ${ac}22`,
                   }}>
                     <span style={{ fontSize: "13px", flexShrink: 0, marginTop: "1px" }}>✅</span>
                     <p style={{
                       margin: 0, fontSize: isRTL ? "13px" : "12px",
-                      color: "rgba(255,255,255,0.65)", lineHeight: 1.55,
-                      fontFamily: "'Zain', sans-serif",
+                      color: "rgba(26,26,26,0.75)", lineHeight: 1.55,
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                     }}>
                       {solution}
                     </p>
@@ -421,7 +426,7 @@ export default function Services() {
                   <div style={{
                     display: "flex", alignItems: "center", gap: "12px",
                     padding: "10px 14px", borderRadius: "10px",
-                    background: `${ac}10`, border: `1px solid ${ac}25`,
+                    background: `${ac}12`, border: `1px solid ${ac}25`,
                   }}>
                     <span style={{
                       fontFamily: "Space Mono, monospace", fontSize: "22px",
@@ -431,8 +436,8 @@ export default function Services() {
                     </span>
                     <p style={{
                       margin: 0, fontSize: isRTL ? "12px" : "11px",
-                      color: "rgba(255,255,255,0.45)", lineHeight: 1.4,
-                      fontFamily: "'Zain', sans-serif",
+                      color: "rgba(26,26,26,0.65)", lineHeight: 1.4,
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                     }}>
                       {result}
                     </p>
@@ -443,13 +448,11 @@ export default function Services() {
                 <a href={whatsapp} target="_blank" rel="noopener noreferrer">
                   <button style={{
                     width: "100%", padding: "13px 20px", borderRadius: "10px",
-                    background: isHovered || svc.featured
-                      ? ac
-                      : "transparent",
-                    border: `1px solid ${isHovered || svc.featured ? ac : "rgba(255,255,255,0.14)"}`,
-                    color: isHovered || svc.featured ? "#0D0D0D" : "rgba(255,255,255,0.7)",
+                    background: isHovered || svc.featured ? ac : "transparent",
+                    border: `1px solid ${isHovered || svc.featured ? ac : "rgba(0,0,0,0.12)"}`,
+                    color: isHovered || svc.featured ? "#1A1A1A" : "#1A1A1A",
                     fontWeight: 700,
-                    fontFamily: "'Zain', sans-serif",
+                    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                     fontSize: "14px",
                     cursor: "pointer",
                     transition: "all 0.25s",
@@ -469,7 +472,7 @@ export default function Services() {
         {/* Guarantee bar */}
         <p dir={isRTL ? "rtl" : "ltr"} style={{
           textAlign: "center", marginTop: "48px",
-          color: "rgba(255,255,255,0.2)", fontSize: "12px",
+          color: "rgba(26,26,26,0.4)", fontSize: "12px",
           fontFamily: "Space Mono, monospace", letterSpacing: "0.12em",
         }}>
           {isRTL

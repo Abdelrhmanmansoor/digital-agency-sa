@@ -11,16 +11,16 @@ export function getWhatsAppLink(message?: string) {
 }
 
 export const AGENCY_INFO = {
-  name: "",
-  nameEn: "",
+  name: "AM Design",
+  nameEn: "AM Design",
   whatsapp: WHATSAPP_NUMBER,
-  email: "info@digitalagency.sa",
-  phone: "+201007835547",
+  email: "mansoor77soliman@gmail.com",
+  phone: WHATSAPP_NUMBER,
   address: "المملكة العربية السعودية",
   social: {
-    instagram: "",
-    twitter: "",
-    tiktok: "",
+    instagram: "https://www.instagram.com/amdesign.ksa/",
+    twitter: "https://x.com/am_designing",
+    tiktok: "https://www.tiktok.com/@amdesigne.sa",
     snapchat: "",
   },
 };

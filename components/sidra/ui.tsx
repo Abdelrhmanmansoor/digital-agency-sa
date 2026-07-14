@@ -11,7 +11,7 @@ export const S = {
   soft: "#76685d",
   red: "#a51218",
   redDark: "#8f0f14",
-  gold: "#C9A227",
+  gold: "#F0B100",
   border: "#eadfd4",
   borderSoft: "#f0e6dc",
   bg: "#f8f2ec",
@@ -45,7 +45,7 @@ export function SectionHeading({
   return (
     <div className="mb-8 max-w-3xl">
       <p className="flex items-center gap-2 text-sm font-black text-[#a51218]">
-        <span className="inline-block h-2 w-2 rounded-full bg-[#C9A227]" aria-hidden />
+        <span className="inline-block h-2 w-2 rounded-full bg-[#F0B100]" aria-hidden />
         {kicker}
       </p>
       <div className="mt-3 flex flex-wrap items-center gap-3">
@@ -155,7 +155,7 @@ export function Pill({ children, tone = "neutral" }: { children: ReactNode; tone
     tone === "red"
       ? "border-[#a51218]/20 bg-[#a51218]/[0.06] text-[#a51218]"
       : tone === "gold"
-      ? "border-[#C9A227]/35 bg-[#C9A227]/10 text-[#7a5d10]"
+      ? "border-[#F0B100]/35 bg-[#F0B100]/10 text-[#7a5d10]"
       : "border-[#eadfd4] bg-[#fbf7f2] text-[#6d5f55]";
   return (
     <span className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-bold ${styles}`}>

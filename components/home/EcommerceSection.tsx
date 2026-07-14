@@ -25,7 +25,7 @@ const SERVICES_AR = [
     title: "تصميم متجر سلة احترافي",
     desc: "ثيم مخصص بالكامل يعكس هويتك، صفحات منتجات تقنع العميل بالشراء، وتجربة جوال مثالية",
     result: "+40% تحويل",
-    resultColor: "#A3FF12",
+    resultColor: "#F0B100",
     time: "5 أيام",
   },
   {
@@ -33,7 +33,7 @@ const SERVICES_AR = [
     title: "إنشاء متجر زد من الصفر",
     desc: "من إنشاء الحساب حتى رفع المنتجات وربط الدفع والشحن — متجر كامل جاهز للبيع",
     result: "يوم واحد تأسيس",
-    resultColor: "#C8A962",
+    resultColor: "#F0B100",
     time: "3 أيام",
   },
   {
@@ -41,7 +41,7 @@ const SERVICES_AR = [
     title: "برمجة مواقع وتطبيقات",
     desc: "مواقع Next.js سريعة بـ SEO قوي وواجهة فاخرة — مشاريع مخصصة تناسب علامتك التجارية",
     result: "3× سرعة تحميل",
-    resultColor: "#A3FF12",
+    resultColor: "#F0B100",
     time: "10-14 يوم",
   },
   {
@@ -49,7 +49,7 @@ const SERVICES_AR = [
     title: "ربط الخدمات والتكاملات",
     desc: "تابي، تمارا، STC Pay، مدى، شحن، Google Analytics وجوجل ميرشنت — كل شيء مربوط",
     result: "100% ربط",
-    resultColor: "#C8A962",
+    resultColor: "#F0B100",
     time: "يومان",
   },
 ];
@@ -59,7 +59,7 @@ const SERVICES_EN = [
     title: "Professional Salla Store Design",
     desc: "Fully custom theme reflecting your brand, product pages that convert, and perfect mobile UX",
     result: "+40% conversion",
-    resultColor: "#A3FF12",
+    resultColor: "#F0B100",
     time: "5 days",
   },
   {
@@ -67,7 +67,7 @@ const SERVICES_EN = [
     title: "Zid Store from Scratch",
     desc: "From account setup to products, payment & shipping — complete store ready to sell",
     result: "1-day foundation",
-    resultColor: "#C8A962",
+    resultColor: "#F0B100",
     time: "3 days",
   },
   {
@@ -75,7 +75,7 @@ const SERVICES_EN = [
     title: "Website & App Development",
     desc: "Fast Next.js sites with strong SEO and luxury UI — custom projects for your brand",
     result: "3× load speed",
-    resultColor: "#A3FF12",
+    resultColor: "#F0B100",
     time: "10-14 days",
   },
   {
@@ -83,7 +83,7 @@ const SERVICES_EN = [
     title: "Integrations & Connections",
     desc: "Tabby, Tamara, STC Pay, Mada, shipping, Google Analytics & Merchant — all connected",
     result: "100% connected",
-    resultColor: "#C8A962",
+    resultColor: "#F0B100",
     time: "2 days",
   },
 ];
@@ -117,19 +117,19 @@ export default function EcommerceSection() {
       ref={ref}
       id="ecommerce"
       aria-label={isRTL ? "تصميم وتطوير المتاجر الإلكترونية" : "E-commerce Design & Development"}
-      style={{ background: "#0D0D0D", padding: "88px 0 96px", position: "relative", overflow: "hidden" }}
+      style={{ background: "#FFFFFF", padding: "88px 0 96px", position: "relative", overflow: "hidden" }}
     >
       {/* Neon grid bg */}
       <div aria-hidden style={{
         position: "absolute", inset: 0, pointerEvents: "none",
-        backgroundImage: "linear-gradient(rgba(163,255,18,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(163,255,18,0.018) 1px, transparent 1px)",
+        backgroundImage: "linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)",
         backgroundSize: "80px 80px",
       }} />
       {/* Glow */}
       <div aria-hidden style={{
         position: "absolute", bottom: "-10%", left: "50%", transform: "translateX(-50%)",
         width: "900px", height: "400px", borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(163,255,18,0.04) 0%, transparent 65%)",
+        background: "radial-gradient(ellipse, rgba(240,177,0,0.12) 0%, transparent 65%)",
         pointerEvents: "none",
       }} />
 
@@ -144,29 +144,29 @@ export default function EcommerceSection() {
         }}>
           <div style={{
             display: "inline-flex", alignItems: "center", gap: "8px",
-            background: "rgba(163,255,18,0.08)", border: "1px solid rgba(163,255,18,0.2)",
+            background: "rgba(240,177,0,0.12)", border: "1px solid rgba(240,177,0,0.3)",
             borderRadius: "100px", padding: "5px 18px", marginBottom: "18px",
           }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#A3FF12", animation: "ecPulse 2s infinite" }} />
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#A3FF12" }}>
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#F0B100", animation: "ecPulse 2s infinite" }} />
+            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#F0B100" }}>
               {isRTL ? "متاجر جاهزة للبيع من أول يوم" : "Stores Ready to Sell From Day One"}
             </span>
           </div>
 
           {/* H1 — SEO */}
           <h1 style={{
-            fontFamily: "'Zain', sans-serif",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
             fontSize: "clamp(26px, 4vw, 56px)",
-            fontWeight: 800, color: "#FFFFFF",
+            fontWeight: 800, color: "#1A1A1A",
             lineHeight: 1.1, marginBottom: "16px",
           }}>
             {isRTL
-              ? <>تصميم وتطوير <span style={{ color: "#A3FF12" }}>متاجر إلكترونية</span><br />وبرمجة مواقع وتطبيقات</>
-              : <>E-Commerce Store Design &<br /><span style={{ color: "#A3FF12" }}>Website & App Development</span></>}
+              ? <>تصميم وتطوير <span style={{ color: "#F0B100" }}>متاجر إلكترونية</span><br />وبرمجة مواقع وتطبيقات</>
+              : <>E-Commerce Store Design &<br /><span style={{ color: "#F0B100" }}>Website & App Development</span></>}
           </h1>
           <p style={{
-            fontFamily: "'Zain', sans-serif", fontSize: "clamp(15px, 2vw, 18px)",
-            color: "rgba(255,255,255,0.42)", maxWidth: "620px", margin: "0 auto",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "clamp(15px, 2vw, 18px)",
+            color: "rgba(26,26,26,0.65)", maxWidth: "620px", margin: "0 auto",
             lineHeight: 1.75,
           }}>
             {isRTL
@@ -188,13 +188,13 @@ export default function EcommerceSection() {
                 onMouseEnter={() => setActive(i)}
                 onMouseLeave={() => setActive(0)}
                 style={{
-                  background: isH ? "rgba(163,255,18,0.04)" : "rgba(255,255,255,0.025)",
-                  border: `1px solid ${isH ? "rgba(163,255,18,0.3)" : "rgba(255,255,255,0.07)"}`,
+                  background: "#FFFFFF",
+                  border: `1px solid ${isH ? "rgba(240,177,0,0.4)" : "rgba(0,0,0,0.08)"}`,
                   borderRadius: "18px", padding: "24px 20px",
                   display: "flex", flexDirection: "column", gap: "14px",
                   transition: "all 0.3s cubic-bezier(0.19,1,0.22,1)",
                   transform: isH ? "translateY(-5px)" : "none",
-                  boxShadow: isH ? "0 20px 60px rgba(163,255,18,0.08)" : "none",
+                  boxShadow: isH ? "0 20px 60px rgba(0,0,0,0.12)" : "0 6px 20px rgba(0,0,0,0.05)",
                   opacity: visible ? 1 : 0,
                   transitionDelay: `${i * 0.08}s`,
                   cursor: "default",
@@ -204,21 +204,21 @@ export default function EcommerceSection() {
                 {/* Top line */}
                 <div style={{
                   position: "absolute", top: 0, left: 0, right: 0, height: "1px",
-                  background: "linear-gradient(to right, transparent, rgba(163,255,18,0.5), transparent)",
+                  background: "linear-gradient(to right, transparent, rgba(240,177,0,0.5), transparent)",
                   opacity: isH ? 1 : 0, transition: "opacity 0.3s",
                 }} />
                 <div style={{ fontSize: "28px" }}>{svc.icon}</div>
-                <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "17px", fontWeight: 700, color: "#FFFFFF", margin: 0, lineHeight: 1.25 }}>
+                <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "17px", fontWeight: 700, color: "#1A1A1A", margin: 0, lineHeight: 1.25 }}>
                   {svc.title}
                 </h3>
-                <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "13px", color: "rgba(255,255,255,0.48)", lineHeight: 1.6, margin: 0, flex: 1 }}>
+                <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "rgba(26,26,26,0.65)", lineHeight: 1.6, margin: 0, flex: 1 }}>
                   {svc.desc}
                 </p>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "12px", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "12px", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
                   <span style={{ fontFamily: "Space Mono, monospace", fontSize: "13px", fontWeight: 700, color: svc.resultColor }}>
                     {svc.result}
                   </span>
-                  <span style={{ fontFamily: "'Zain', sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.3)" }}>
+                  <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "12px", color: "rgba(26,26,26,0.55)" }}>
                     {isRTL ? `تسليم: ${svc.time}` : `Delivery: ${svc.time}`}
                   </span>
                 </div>
@@ -234,8 +234,8 @@ export default function EcommerceSection() {
           transition: "all 0.8s 0.3s ease",
         }}>
           <h2 style={{
-            fontFamily: "'Zain', sans-serif", fontSize: "18px",
-            fontWeight: 700, color: "rgba(255,255,255,0.6)",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px",
+            fontWeight: 700, color: "rgba(26,26,26,0.7)",
             marginBottom: "20px", textAlign: "center",
           }}>
             {isRTL ? "خدماتنا تشمل" : "Our services include"}
@@ -243,24 +243,24 @@ export default function EcommerceSection() {
           <div className="cluster-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "16px", marginBottom: "48px" }}>
             {clusters.map((c) => (
               <div key={c.cluster} style={{
-                background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)",
+                background: "#FFFFFF", border: "1px solid rgba(0,0,0,0.08)",
                 borderRadius: "14px", padding: "20px",
               }}>
                 <div style={{
                   fontFamily: "Space Mono, monospace", fontSize: "9px",
                   letterSpacing: "0.18em", textTransform: "uppercase",
-                  color: "#A3FF12", marginBottom: "14px",
+                  color: "#F0B100", marginBottom: "14px",
                 }}>
                   {c.cluster}
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "7px" }}>
                   {c.keywords.map((kw) => (
                     <span key={kw} style={{
-                      fontFamily: "'Zain', sans-serif", fontSize: "13px",
-                      color: "rgba(255,255,255,0.5)", lineHeight: 1.4,
+                      fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px",
+                      color: "rgba(26,26,26,0.65)", lineHeight: 1.4,
                       display: "flex", alignItems: "center", gap: "8px",
                     }}>
-                      <span style={{ width: "4px", height: "4px", borderRadius: "50%", background: "rgba(163,255,18,0.5)", flexShrink: 0 }} />
+                      <span style={{ width: "4px", height: "4px", borderRadius: "50%", background: "rgba(240,177,0,0.6)", flexShrink: 0 }} />
                       {kw}
                     </span>
                   ))}
@@ -274,29 +274,29 @@ export default function EcommerceSection() {
         <div style={{
           display: "flex", flexWrap: "wrap", alignItems: "center",
           justifyContent: "space-between", gap: "24px",
-          background: "rgba(163,255,18,0.04)", border: "1px solid rgba(163,255,18,0.15)",
+          background: "rgba(240,177,0,0.08)", border: "1px solid rgba(240,177,0,0.25)",
           borderRadius: "20px", padding: "32px 40px",
           opacity: visible ? 1 : 0, transition: "all 0.8s 0.4s ease",
         }}>
           <div>
-            <h3 style={{ fontFamily: "'Zain', sans-serif", fontSize: "22px", fontWeight: 800, color: "#FFFFFF", margin: "0 0 6px" }}>
+            <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "22px", fontWeight: 800, color: "#1A1A1A", margin: "0 0 6px" }}>
               {isRTL ? "خلّي متجرك يبدأ يبيع من أول يوم" : "Let your store sell from day one"}
             </h3>
-            <p style={{ fontFamily: "'Zain', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.42)", margin: 0 }}>
+            <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", color: "rgba(26,26,26,0.65)", margin: 0 }}>
               {isRTL ? "نبني لك متجراً جاهزاً للبيع — من التصميم حتى ربط الدفع والشحن والـ SEO" : "We build you a sale-ready store — from design to payments, shipping & SEO"}
             </p>
           </div>
           <a href={wa} target="_blank" rel="noopener noreferrer">
             <button style={{
               padding: "15px 32px", borderRadius: "12px",
-              background: "#A3FF12", color: "#0A0A0A",
-              fontFamily: "'Zain', sans-serif", fontSize: "15px",
+              background: "#F0B100", color: "#1A1A1A",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px",
               fontWeight: 800, border: "none", cursor: "pointer",
-              whiteSpace: "nowrap", boxShadow: "0 0 28px rgba(163,255,18,0.3)",
+              whiteSpace: "nowrap", boxShadow: "0 0 28px rgba(240,177,0,0.25)",
               transition: "all 0.25s",
             }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 0 44px rgba(163,255,18,0.5)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 0 28px rgba(163,255,18,0.3)"; }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 0 44px rgba(240,177,0,0.45)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 0 28px rgba(240,177,0,0.25)"; }}
             >
               {isRTL ? "ابدأ مشروعك الآن" : "Start Your Project Now"}
             </button>

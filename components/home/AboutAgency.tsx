@@ -63,10 +63,10 @@ const VALUES = [
 ];
 
 const STATS = [
-  { numAr: "250+", numEn: "250+", labelAr: "مشروع منجز", labelEn: "Projects Done",  labelFr: "Projets Réalisés", accent: "#BDEE63" },
-  { numAr: "86+",  numEn: "86+",  labelAr: "متجر مُطوَّر", labelEn: "Stores Built",  labelFr: "Boutiques Créées", accent: "#C8A962" },
-  { numAr: "5",    numEn: "5",    labelAr: "سنوات خبرة",   labelEn: "Years Exp.",    labelFr: "Ans d'Expérience", accent: "#C8A962" },
-  { numAr: "98%",  numEn: "98%",  labelAr: "رضا العملاء",  labelEn: "Satisfaction",  labelFr: "Satisfaction",     accent: "#BDEE63" },
+  { numAr: "250+", numEn: "250+", labelAr: "مشروع منجز", labelEn: "Projects Done",  labelFr: "Projets Réalisés", accent: "#F0B100" },
+  { numAr: "86+",  numEn: "86+",  labelAr: "متجر مُطوَّر", labelEn: "Stores Built",  labelFr: "Boutiques Créées", accent: "#F0B100" },
+  { numAr: "5",    numEn: "5",    labelAr: "سنوات خبرة",   labelEn: "Years Exp.",    labelFr: "Ans d'Expérience", accent: "#F0B100" },
+  { numAr: "98%",  numEn: "98%",  labelAr: "رضا العملاء",  labelEn: "Satisfaction",  labelFr: "Satisfaction",     accent: "#F0B100" },
 ];
 
 export default function AboutAgency() {
@@ -107,7 +107,7 @@ export default function AboutAgency() {
           width: "700px",
           height: "700px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(189,238,99,0.04) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(240,177,0,0.04) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
       />
@@ -121,7 +121,7 @@ export default function AboutAgency() {
           width: "500px",
           height: "500px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(200,169,98,0.04) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(240,177,0,0.04) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
       />
@@ -144,14 +144,14 @@ export default function AboutAgency() {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              background: "rgba(200,169,98,0.08)",
-              border: "1px solid rgba(200,169,98,0.22)",
+              background: "rgba(240,177,0,0.08)",
+              border: "1px solid rgba(240,177,0,0.22)",
               borderRadius: "100px",
               padding: "6px 18px",
               fontSize: "11px",
               fontFamily: "Space Mono, monospace",
               letterSpacing: "0.2em",
-              color: "#C8A962",
+              color: "#F0B100",
               textTransform: "uppercase",
               marginBottom: "28px",
             }}
@@ -162,7 +162,7 @@ export default function AboutAgency() {
           {/* Heading */}
           <h2
             style={{
-              fontFamily: "'Zain', sans-serif",
+              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
               fontSize: "clamp(34px, 5vw, 68px)",
               fontWeight: 800,
               color: "#FFFFFF",
@@ -175,19 +175,19 @@ export default function AboutAgency() {
               <>
                 وكالة بُنيت على
                 <br />
-                <span style={{ color: "#BDEE63" }}>نجاح عملائها</span>
+                <span style={{ color: "#F0B100" }}>نجاح عملائها</span>
               </>
             ) : locale === "fr" ? (
               <>
                 Une agence bâtie sur le
                 <br />
-                <span style={{ color: "#BDEE63" }}>succès de ses clients</span>
+                <span style={{ color: "#F0B100" }}>succès de ses clients</span>
               </>
             ) : (
               <>
                 An agency built on
                 <br />
-                <span style={{ color: "#BDEE63" }}>its clients&apos; success</span>
+                <span style={{ color: "#F0B100" }}>its clients&apos; success</span>
               </>
             )}
           </h2>
@@ -288,7 +288,7 @@ export default function AboutAgency() {
                 overflow: "hidden",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(200,169,98,0.28)";
+                e.currentTarget.style.borderColor = "rgba(240,177,0,0.28)";
                 e.currentTarget.style.background = "rgba(255,255,255,0.04)";
               }}
               onMouseLeave={(e) => {
@@ -305,15 +305,15 @@ export default function AboutAgency() {
                   right: 0,
                   height: "1px",
                   background: i < 2
-                    ? "linear-gradient(to right, transparent, rgba(189,238,99,0.3), transparent)"
-                    : "linear-gradient(to right, transparent, rgba(200,169,98,0.3), transparent)",
+                    ? "linear-gradient(to right, transparent, rgba(240,177,0,0.3), transparent)"
+                    : "linear-gradient(to right, transparent, rgba(240,177,0,0.3), transparent)",
                 }}
               />
 
               {/* Icon */}
               <div
                 style={{
-                  color: i < 2 ? "#BDEE63" : "#C8A962",
+                  color: i < 2 ? "#F0B100" : "#F0B100",
                   marginBottom: "16px",
                   opacity: 0.9,
                 }}
@@ -324,7 +324,7 @@ export default function AboutAgency() {
               {/* Title */}
               <div
                 style={{
-                  fontFamily: "'Zain', sans-serif",
+                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
                   fontSize: "20px",
                   fontWeight: 700,
                   color: "#FAFAF7",

@@ -284,7 +284,7 @@ export default function EditInvoicePage() {
     borderRadius: "8px",
     padding: "10px 14px",
     color: "#FAFAF7",
-    fontFamily: "'Zain', sans-serif",
+    fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
     fontSize: "14px",
     boxSizing: "border-box",
     outline: "none",
@@ -313,7 +313,7 @@ export default function EditInvoicePage() {
   };
 
   const sectionTitle = (title: string, icon?: string) => (
-    <div style={{ fontSize: "16px", fontWeight: 700, color: "#C8A962", marginBottom: "20px", fontFamily: "'Zain', sans-serif", display: "flex", alignItems: "center", gap: "8px" }}>
+    <div style={{ fontSize: "16px", fontWeight: 700, color: "#F0B100", marginBottom: "20px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", display: "flex", alignItems: "center", gap: "8px" }}>
       {icon && <span style={{ fontSize: "20px" }}>{icon}</span>}
       {title}
     </div>
@@ -333,16 +333,16 @@ export default function EditInvoicePage() {
   return (
     <div>
       <AdminSidebar />
-      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'Zain', sans-serif", direction: "rtl" }}>
+      <div className="admin-main" style={{ background: "#0A0A0A", padding: "40px 48px", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", direction: "rtl" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px" }}>
           <h1 style={{ fontSize: "26px", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
             تعديل الفاتورة
           </h1>
           <div style={{ display: "flex", gap: "12px" }}>
-            <button onClick={() => router.back()} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.5)", borderRadius: "10px", padding: "11px 22px", fontSize: "14px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>
+            <button onClick={() => router.back()} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.5)", borderRadius: "10px", padding: "11px 22px", fontSize: "14px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
               إلغاء
             </button>
-            <button onClick={handleSave} disabled={saving} style={{ background: "#C8A962", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "11px 28px", fontSize: "15px", fontWeight: 700, cursor: saving ? "not-allowed" : "pointer", fontFamily: "'Zain', sans-serif", opacity: saving ? 0.7 : 1 }}>
+            <button onClick={handleSave} disabled={saving} style={{ background: "#F0B100", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "11px 28px", fontSize: "15px", fontWeight: 700, cursor: saving ? "not-allowed" : "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", opacity: saving ? 0.7 : 1 }}>
               {saving ? "جارٍ الحفظ..." : "حفظ التعديلات"}
             </button>
           </div>
@@ -355,8 +355,8 @@ export default function EditInvoicePage() {
             {(["classic", "modern", "minimal"] as const).map((t) => {
               const labels = { classic: "كلاسيك", modern: "عصري", minimal: "مبسط" };
               return (
-                <button key={t} onClick={() => setTemplate(t)} style={{ flex: 1, padding: "14px", borderRadius: "10px", border: `2px solid ${template === t ? "#C8A962" : "rgba(255,255,255,0.08)"}`, background: template === t ? "rgba(200,169,98,0.1)" : "rgba(255,255,255,0.03)", cursor: "pointer", textAlign: "right" }}>
-                  <div style={{ fontSize: "14px", fontWeight: 700, color: template === t ? "#C8A962" : "#FAFAF7", fontFamily: "'Zain', sans-serif" }}>{labels[t]}</div>
+                <button key={t} onClick={() => setTemplate(t)} style={{ flex: 1, padding: "14px", borderRadius: "10px", border: `2px solid ${template === t ? "#F0B100" : "rgba(255,255,255,0.08)"}`, background: template === t ? "rgba(240,177,0,0.1)" : "rgba(255,255,255,0.03)", cursor: "pointer", textAlign: "right" }}>
+                  <div style={{ fontSize: "14px", fontWeight: 700, color: template === t ? "#F0B100" : "#FAFAF7", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>{labels[t]}</div>
                 </button>
               );
             })}
@@ -401,7 +401,7 @@ export default function EditInvoicePage() {
           </div>
 
           {/* VAT Toggle */}
-          <div style={{ marginTop: "20px", padding: "16px", background: "rgba(200,169,98,0.05)", borderRadius: "10px", border: "1px solid rgba(200,169,98,0.15)" }}>
+          <div style={{ marginTop: "20px", padding: "16px", background: "rgba(240,177,0,0.05)", borderRadius: "10px", border: "1px solid rgba(240,177,0,0.15)" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                 <button
@@ -411,7 +411,7 @@ export default function EditInvoicePage() {
                     height: "28px",
                     borderRadius: "14px",
                     border: "none",
-                    background: vatEnabled ? "#C8A962" : "rgba(255,255,255,0.15)",
+                    background: vatEnabled ? "#F0B100" : "rgba(255,255,255,0.15)",
                     cursor: "pointer",
                     position: "relative",
                     transition: "background 0.3s",
@@ -453,13 +453,13 @@ export default function EditInvoicePage() {
                       border: "1px solid rgba(255,255,255,0.15)",
                       borderRadius: "6px",
                       padding: "6px 10px",
-                      color: "#C8A962",
+                      color: "#F0B100",
                       fontFamily: "Space Mono, monospace",
                       fontSize: "14px",
                       textAlign: "center",
                     }}
                   />
-                  <span style={{ fontSize: "14px", color: "#C8A962" }}>%</span>
+                  <span style={{ fontSize: "14px", color: "#F0B100" }}>%</span>
                 </div>
               )}
             </div>
@@ -479,13 +479,13 @@ export default function EditInvoicePage() {
               </div>
               <input type="number" min={1} value={item.qty} onChange={(e) => updateItem(i, "qty", parseFloat(e.target.value) || 0)} style={{ ...inputStyle, textAlign: "center", fontFamily: "Space Mono, monospace" }} />
               <input type="number" min={0} value={item.unitPrice} onChange={(e) => updateItem(i, "unitPrice", parseFloat(e.target.value) || 0)} style={{ ...inputStyle, textAlign: "center", fontFamily: "Space Mono, monospace" }} />
-              <div style={{ background: "rgba(200,169,98,0.06)", border: "1px solid rgba(200,169,98,0.15)", borderRadius: "8px", padding: "10px", textAlign: "center", fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#C8A962" }}>
+              <div style={{ background: "rgba(240,177,0,0.06)", border: "1px solid rgba(240,177,0,0.15)", borderRadius: "8px", padding: "10px", textAlign: "center", fontFamily: "Space Mono, monospace", fontSize: "13px", color: "#F0B100" }}>
                 {item.total.toFixed(2)}
               </div>
               <button onClick={() => removeItem(i)} disabled={items.length === 1} style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.15)", color: "#EF4444", borderRadius: "8px", cursor: items.length === 1 ? "not-allowed" : "pointer", opacity: items.length === 1 ? 0.3 : 1, fontSize: "16px" }}>×</button>
             </div>
           ))}
-          <button onClick={addItem} style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.5)", borderRadius: "8px", padding: "10px 20px", fontSize: "14px", cursor: "pointer", fontFamily: "'Zain', sans-serif", width: "100%", marginTop: "8px" }}>
+          <button onClick={addItem} style={{ background: "rgba(255,255,255,0.04)", border: "1px dashed rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.5)", borderRadius: "8px", padding: "10px 20px", fontSize: "14px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", width: "100%", marginTop: "8px" }}>
             + إضافة بند
           </button>
         </div>
@@ -515,7 +515,7 @@ export default function EditInvoicePage() {
             </div>
           ))}
 
-          <button onClick={addCost} style={{ background: "rgba(245,158,11,0.08)", border: "1px dashed rgba(245,158,11,0.3)", color: "#F59E0B", borderRadius: "8px", padding: "10px 20px", fontSize: "14px", cursor: "pointer", fontFamily: "'Zain', sans-serif", width: "100%" }}>
+          <button onClick={addCost} style={{ background: "rgba(245,158,11,0.08)", border: "1px dashed rgba(245,158,11,0.3)", color: "#F59E0B", borderRadius: "8px", padding: "10px 20px", fontSize: "14px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", width: "100%" }}>
             + إضافة مصروف
           </button>
 
@@ -538,13 +538,13 @@ export default function EditInvoicePage() {
                 ...(vatEnabled ? [{ label: `ضريبة (${vatRate}%)`, value: `${vat.toFixed(2)} ${currencySymbol}`, color: "rgba(255,255,255,0.7)" }] : []),
               ].map(({ label, value, color }) => (
                 <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-                  <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", fontFamily: "'Zain', sans-serif" }}>{label}</span>
+                  <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>{label}</span>
                   <span style={{ fontSize: "14px", fontFamily: "Space Mono, monospace", color }}>{value}</span>
                 </div>
               ))}
-              <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "rgba(200,169,98,0.15)", borderRadius: "10px", marginTop: "12px" }}>
-                <span style={{ fontSize: "18px", fontWeight: 800, color: "#FAFAF7", fontFamily: "'Zain', sans-serif" }}>الإجمالي</span>
-                <span style={{ fontSize: "18px", fontWeight: 700, color: "#C8A962", fontFamily: "Space Mono, monospace" }}>{total.toFixed(2)} {currencySymbol}</span>
+              <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 16px", background: "rgba(240,177,0,0.15)", borderRadius: "10px", marginTop: "12px" }}>
+                <span style={{ fontSize: "18px", fontWeight: 800, color: "#FAFAF7", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>الإجمالي</span>
+                <span style={{ fontSize: "18px", fontWeight: 700, color: "#F0B100", fontFamily: "Space Mono, monospace" }}>{total.toFixed(2)} {currencySymbol}</span>
               </div>
             </div>
           </div>
@@ -566,8 +566,8 @@ export default function EditInvoicePage() {
                 style={{
                   padding: "12px 20px",
                   borderRadius: "10px",
-                  border: `2px solid ${selectedPaymentMethod === m.type ? "#C8A962" : "rgba(255,255,255,0.1)"}`,
-                  background: selectedPaymentMethod === m.type ? "rgba(200,169,98,0.15)" : "rgba(255,255,255,0.03)",
+                  border: `2px solid ${selectedPaymentMethod === m.type ? "#F0B100" : "rgba(255,255,255,0.1)"}`,
+                  background: selectedPaymentMethod === m.type ? "rgba(240,177,0,0.15)" : "rgba(255,255,255,0.03)",
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
@@ -575,7 +575,7 @@ export default function EditInvoicePage() {
                 }}
               >
                 <span style={{ fontSize: "20px" }}>{m.icon}</span>
-                <span style={{ fontSize: "14px", fontWeight: 600, color: selectedPaymentMethod === m.type ? "#C8A962" : "#FAFAF7", fontFamily: "'Zain', sans-serif" }}>
+                <span style={{ fontSize: "14px", fontWeight: 600, color: selectedPaymentMethod === m.type ? "#F0B100" : "#FAFAF7", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
                   {m.labelAr}
                 </span>
               </button>
@@ -645,7 +645,7 @@ export default function EditInvoicePage() {
             </div>
           )}
 
-          <button onClick={addPayment} style={{ background: "rgba(34,197,94,0.08)", border: "1px dashed rgba(34,197,94,0.3)", color: "#22C55E", borderRadius: "8px", padding: "10px 20px", fontSize: "14px", cursor: "pointer", fontFamily: "'Zain', sans-serif", width: "100%" }}>
+          <button onClick={addPayment} style={{ background: "rgba(34,197,94,0.08)", border: "1px dashed rgba(34,197,94,0.3)", color: "#22C55E", borderRadius: "8px", padding: "10px 20px", fontSize: "14px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", width: "100%" }}>
             + إضافة دفعة سابقة
           </button>
 
@@ -688,8 +688,8 @@ export default function EditInvoicePage() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", paddingBottom: "40px" }}>
-          <button onClick={() => router.back()} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.5)", borderRadius: "10px", padding: "12px 24px", fontSize: "14px", cursor: "pointer", fontFamily: "'Zain', sans-serif" }}>إلغاء</button>
-          <button onClick={handleSave} disabled={saving} style={{ background: "#C8A962", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 32px", fontSize: "16px", fontWeight: 700, cursor: saving ? "not-allowed" : "pointer", fontFamily: "'Zain', sans-serif", opacity: saving ? 0.7 : 1 }}>
+          <button onClick={() => router.back()} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.5)", borderRadius: "10px", padding: "12px 24px", fontSize: "14px", cursor: "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>إلغاء</button>
+          <button onClick={handleSave} disabled={saving} style={{ background: "#F0B100", color: "#0A0A0A", border: "none", borderRadius: "10px", padding: "12px 32px", fontSize: "16px", fontWeight: 700, cursor: saving ? "not-allowed" : "pointer", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", opacity: saving ? 0.7 : 1 }}>
             {saving ? "جارٍ الحفظ..." : "حفظ التعديلات"}
           </button>
         </div>
