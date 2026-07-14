@@ -1,163 +1,38 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import Header from "@/components/layout/Header";
-import ScrollProgress from "@/components/layout/ScrollProgress";
-import Hero from "@/components/home/Hero";
-import PartnersMarquee from "@/components/home/PartnersMarquee";
-import Services from "@/components/home/Services";
-import Portfolio from "@/components/home/Portfolio";
-import MidCTA from "@/components/home/MidCTA";
-import Pricing from "@/components/home/Pricing";
-import Testimonials from "@/components/home/Testimonials";
-import FAQ from "@/components/home/FAQ";
-import CTASection from "@/components/home/CTASection";
-import Footer from "@/components/layout/Footer";
-import FloatingActions from "@/components/home/FloatingActions";
-import AIPhotography from "@/components/home/AIPhotography";
-import EcommerceSection from "@/components/home/EcommerceSection";
-import SocialMediaSection from "@/components/home/SocialMediaSection";
-import GoldGuarantee from "@/components/home/GoldGuarantee";
+import HomeExperience from "@/components/home/HomeExperience";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://tf1one.com";
+
+const seo = {
+  ar: {
+    title: "تصميم متاجر سلة وزد في السعودية | AM Design",
+    description: "تصميم وتطوير متاجر سلة وزد، تحسين التحويل وSEO، الهوية البصرية والتسويق الرقمي للمتاجر الإلكترونية في السعودية.",
+    keywords: ["تصميم متجر سلة", "تصميم متجر زد", "تطوير متجر إلكتروني", "تحسين متاجر سلة", "SEO للمتاجر الإلكترونية", "تصميم هوية تجارية", "تسويق المتاجر الإلكترونية", "شركة تصميم متاجر في السعودية"],
+  },
+  en: {
+    title: "Salla & Zid Store Design Saudi Arabia | AM Design",
+    description: "Salla and Zid e-commerce design, development, conversion optimization, SEO, branding and digital marketing in Saudi Arabia.",
+    keywords: ["Salla store design", "Zid store design", "ecommerce agency Saudi Arabia", "ecommerce SEO Saudi Arabia", "conversion rate optimization", "digital marketing agency Saudi Arabia"],
+  },
+  fr: {
+    title: "Design de boutiques Salla & Zid en Arabie saoudite | AM Design",
+    description: "Design et développement e-commerce Salla et Zid, optimisation de conversion, SEO, identité et marketing digital.",
+    keywords: ["design boutique Salla", "design boutique Zid", "agence e-commerce Arabie saoudite", "SEO e-commerce", "marketing digital Arabie saoudite"],
+  },
+} as const;
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-
-  /* ── Titles — SEO keyword pattern: [primary keyword] + [geo] + [year] | [brand] ── */
-  const metaTitle =
-    locale === "ar"
-      ? "تصميم متجر سلة وزد احترافي يبيع يومياً 2026 | أفضل وكالة رقمية السعودية"
-      : locale === "fr"
-      ? "Conception Boutique Salla & Zid Pro en Arabie 2026 | Agence Marketing Digital"
-      : "Salla & Zid Store Design That Sells Daily 2026 | Top Saudi Digital Agency";
-
-  /* ── Descriptions — keyword-dense but readable ── */
-  const metaDesc =
-    locale === "ar"
-      ? "نحوّل فكرتك إلى متجر إلكتروني يبيع يومياً — تصميم متجر سلة وزد احترافي، تصوير منتجات بالذكاء الاصطناعي، تحسين معدل التحويل CRO، بناء فنل مبيعات، SEO، إعلانات سناب وجوجل. نخدم الرياض وجدة وكامل السعودية. رد خلال أقل من ساعة."
-      : locale === "fr"
-      ? "Experts Salla & Zid en Arabie Saoudite — thème personnalisé, photographie IA, CRO, entonnoir de vente, SEO, publicités. Réponse en moins d'1 heure."
-      : "We turn your idea into a daily-selling e-commerce store — Salla & Zid design, AI product photography, conversion optimization, sales funnels, SEO & ads. Serving all KSA. Reply in under 1 hour.";
-
-  /* ── Keywords per locale ── */
-  const metaKeywords =
-    locale === "ar"
-      ? [
-          // سلة — primary cluster
-          "تصميم متجر سلة احترافي",
-          "تصميم متجر سلة في الرياض",
-          "تصميم متجر سلة في السعودية",
-          "تخصيص ثيم سلة",
-          "تصميم ثيم سلة احترافي",
-          "تجهيز متجر سلة كامل",
-          "تصميم متجر سلة يزيد المبيعات",
-          "أفضل شركة تصميم متجر سلة",
-          "شركة تصميم متجر سلة الرياض",
-          "تصميم صفحات منتجات سلة",
-          "ربط بوابة دفع سلة",
-          "إطلاق متجر سلة جاهز",
-          "تعديل CSS سلة",
-          "تعديلات سلة",
-          "خبراء منصة سلة",
-          // زد — secondary cluster
-          "تصميم متجر زد",
-          "تصميم متجر زد في السعودية",
-          "تجهيز متجر زد من الصفر",
-          "تصميم متجر سلة وزد",
-          "متجر سلة زد",
-          "متاجر السعودية",
-          // شركة تسويق
-          "افضل شركة تسويق سعودية",
-          "وكالة تسويق رقمي في السعودية",
-          "أفضل وكالة تسويق رقمي بالرياض",
-          "شركة تسويق سعودية",
-          "شركة برمجة سعودية",
-          "أفضل شركة تسويق",
-          // كيفية الإنشاء
-          "كيف اصمم متجر سعودي",
-          "إنشاء متجر الكتروني",
-          "تصميم متجر الكتروني بالسعودية",
-          // ادفاز
-          "ادفاز",
-          "خبراء المنصات",
-          // خدمات تخصصية
-          "تصوير منتجات بالذكاء الاصطناعي",
-          "تحسين معدل التحويل",
-          "بناء فنل مبيعات",
-          "تصميم هوية بصرية احترافية",
-          "موشن جرافيك",
-          "إعلانات سناب شات السعودية",
-          "إعلانات جوجل بالسعودية",
-          "إدارة حسابات سوشيال ميديا",
-          "تحسين محركات البحث SEO",
-          "سيو للمتاجر الالكترونية",
-          "ربط تابي وتمارا",
-        ]
-      : locale === "fr"
-      ? [
-          "conception boutique Salla",
-          "conception boutique Zid",
-          "agence marketing digital Arabie Saoudite",
-          "design identité visuelle",
-          "photographie produits IA",
-          "SEO boutique en ligne",
-          "entonnoir de vente",
-        ]
-      : [
-          "Salla store design Saudi Arabia",
-          "Zid store design Saudi Arabia",
-          "custom Salla theme design",
-          "Salla store setup",
-          "digital marketing agency Riyadh",
-          "AI product photography Saudi",
-          "conversion rate optimization Saudi Arabia",
-          "sales funnel building",
-          "brand identity design Saudi",
-          "SEO for online stores Saudi Arabia",
-          "Snapchat ads Saudi",
-          "social media management Saudi Arabia",
-          "best digital agency Saudi Arabia",
-        ];
-
-  /* ── OG title (shorter, for social sharing) ── */
-  const metaOgTitle =
-    locale === "ar"
-      ? "نحوّل فكرتك لمتجر يبيع يومياً — سلة + زد + تصوير AI + تسويق رقمي"
-      : locale === "fr"
-      ? "Transformez Votre Idée en Boutique Qui Vend Chaque Jour"
-      : "Turn Your Idea Into a Store That Sells Daily — Salla, Zid, AI & Marketing";
-
-  const metaTwitterTitle =
-    locale === "ar"
-      ? "أفضل وكالة تصميم متجر سلة وزد + تصوير AI في السعودية 2026"
-      : locale === "fr"
-      ? "Meilleure agence Salla & Zid + Photographie IA en Arabie Saoudite"
-      : "Best Salla & Zid Store Design + AI Photography Agency in Saudi Arabia 2026";
-
+  const lang = locale in seo ? (locale as keyof typeof seo) : "en";
+  const data = seo[lang];
+  const canonical = `${SITE_URL}/${lang}`;
   return {
-    title: metaTitle,
-    description: metaDesc,
-    keywords: metaKeywords,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: { ar: "/ar", en: "/en", fr: "/fr" },
-    },
-    openGraph: {
-      title: metaOgTitle,
-      description: metaDesc,
-      url: `https://tf1one.com/${locale}`,
-      siteName:
-        locale === "ar" ? "تصميم متجر سلة احترافي" : locale === "fr" ? "Conception Boutique Salla" : "Salla Store Design",
-      locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: metaTwitterTitle,
-      description: metaDesc,
-    },
+    title: data.title,
+    description: data.description,
+    keywords: [...data.keywords],
+    alternates: { canonical, languages: { "ar-SA": `${SITE_URL}/ar`, "en": `${SITE_URL}/en`, "fr": `${SITE_URL}/fr`, "x-default": `${SITE_URL}/ar` } },
+    openGraph: { title: data.title, description: data.description, url: canonical, siteName: "AM Design", type: "website", locale: lang === "ar" ? "ar_SA" : lang === "fr" ? "fr_FR" : "en_US", images: [{ url: `${SITE_URL}/og.png`, width: 1792, height: 936, alt: "AM Design — E-commerce built to grow" }] },
+    twitter: { card: "summary_large_image", title: data.title, description: data.description, images: [`${SITE_URL}/og.png`] },
   };
 }
 
@@ -165,91 +40,10 @@ export default function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "LocalBusiness",
-        "@id": "https://tf1one.com/#business",
-        "name": "AM Design",
-        "alternateName": "TF1ONE",
-        "description": "وكالة رقمية متخصصة في تصميم متاجر سلة وزد، تصوير منتجات بالذكاء الاصطناعي، وتسويق رقمي في السعودية",
-        "url": "https://tf1one.com",
-        "telephone": "+201007835547",
-        "priceRange": "1499 SAR - 5999 SAR",
-        "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
-        "address": { "@type": "PostalAddress", "addressCountry": "SA" },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "300",
-          "bestRating": "5",
-          "worstRating": "1",
-        },
-        "sameAs": [
-          "https://www.instagram.com/amdesign.ksa/",
-          "https://x.com/am_designing",
-          "https://www.tiktok.com/@amdesigne.sa",
-        ],
-      },
-      {
-        "@type": "Service",
-        "@id": "https://tf1one.com/#salla-design",
-        "name": "تصميم متجر سلة احترافي",
-        "description": "تصميم وتخصيص متجر سلة احترافي يزيد المبيعات — ثيم مخصص، ربط بوابات دفع، تجهيز كامل",
-        "provider": { "@id": "https://tf1one.com/#business" },
-        "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
-        "offers": {
-          "@type": "Offer",
-          "price": "1499",
-          "priceCurrency": "SAR",
-        },
-      },
-      {
-        "@type": "Service",
-        "@id": "https://tf1one.com/#ai-photography",
-        "name": "تصوير منتجات بالذكاء الاصطناعي",
-        "description": "تصوير منتجات احترافي بالذكاء الاصطناعي بجودة إعلانية — بدون تكلفة استوديو",
-        "provider": { "@id": "https://tf1one.com/#business" },
-        "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://tf1one.com/#website",
-        "url": "https://tf1one.com",
-        "name": "AM Design — تصميم متجر سلة وزد",
-        "inLanguage": ["ar", "en", "fr"],
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://tf1one.com/ar?q={search_term_string}",
-          "query-input": "required name=search_term_string",
-        },
-      },
+      { "@type": "ProfessionalService", "@id": `${SITE_URL}/#agency`, name: "AM Design", url: SITE_URL, image: `${SITE_URL}/og.png`, telephone: "+201007835547", email: "mansoor77soliman@gmail.com", priceRange: "$$", areaServed: { "@type": "Country", name: "Saudi Arabia" }, sameAs: ["https://www.instagram.com/amdesign.ksa/", "https://x.com/am_designing", "https://www.tiktok.com/@amdesigne.sa"] },
+      { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: "AM Design", publisher: { "@id": `${SITE_URL}/#agency` }, inLanguage: ["ar", "en", "fr"] },
+      { "@type": "ItemList", name: "AM Design Services", itemListElement: ["Salla and Zid Store Design", "Brand Identity Design", "E-commerce SEO and Conversion Optimization", "Digital Marketing Campaigns"].map((name, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "Service", name, provider: { "@id": `${SITE_URL}/#agency` }, areaServed: { "@type": "Country", name: "Saudi Arabia" } } })) },
     ],
   };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <ScrollProgress />
-      <Header />
-      <main>
-        <Hero />
-        <PartnersMarquee />
-        <Services />
-        <AIPhotography />
-        <EcommerceSection />
-        <Portfolio />
-        <SocialMediaSection />
-        <GoldGuarantee />
-        <MidCTA />
-        <Pricing />
-        <Testimonials />
-        <FAQ />
-        <CTASection />
-      </main>
-      <Footer />
-      <FloatingActions />
-    </>
-  );
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><HomeExperience /></>;
 }
