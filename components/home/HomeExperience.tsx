@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
@@ -539,12 +539,74 @@ const copy = {
   },
 } as const;
 
+const auditCopy = {
+  ar: {
+    kicker: "ابدأ بخطوة ذكية",
+    title: "تحليل مجاني لمتجرك يكشف فرص النمو قبل أن تنفق.",
+    body: "نراجع متجرك من منظور العميل ومحركات البحث، ثم نرسل لك ملاحظات عملية مرتبة حسب الأولوية — بلا التزام.",
+    points: [
+      "سرعة وتجربة الجوال",
+      "وضوح رحلة الشراء",
+      "SEO وبنية الصفحات",
+      "فرص رفع معدل التحويل",
+    ],
+    action: "اطلب تحليل متجرك مجانًا",
+    note: "تقرير مختصر ومفيد · بدون مكالمات بيع مزعجة",
+  },
+  en: {
+    kicker: "Start smart",
+    title:
+      "A free store audit that finds growth opportunities before you spend.",
+    body: "We review your store through the eyes of customers and search engines, then send practical recommendations ranked by priority — no obligation.",
+    points: [
+      "Mobile speed & usability",
+      "Purchase journey clarity",
+      "SEO & page structure",
+      "Conversion opportunities",
+    ],
+    action: "Request your free store audit",
+    note: "A concise, useful report · No pushy sales calls",
+  },
+  fr: {
+    kicker: "Commencez intelligemment",
+    title: "Un audit gratuit qui révèle les opportunités avant de dépenser.",
+    body: "Nous analysons votre boutique côté client et moteurs de recherche, puis envoyons des recommandations classées par priorité, sans engagement.",
+    points: [
+      "Vitesse et expérience mobile",
+      "Clarté du parcours d’achat",
+      "SEO et structure des pages",
+      "Opportunités de conversion",
+    ],
+    action: "Demander l’audit gratuit",
+    note: "Un rapport concis · Aucun appel commercial insistant",
+  },
+} as const;
+
 export default function HomeExperience() {
   const locale = useLocale() as keyof typeof copy;
   const t = copy[locale] ?? copy.en;
+  const audit = auditCopy[locale] ?? auditCopy.en;
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const whatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد استشارة بخصوص مشروعي الرقمي." : "Hello, I would like a consultation about my digital project.")}`;
+  const auditWhatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد التحليل المجاني لمتجري. رابط المتجر: " : "Hello, I would like the free store audit. Store URL: ")}`;
+
+  useEffect(() => {
+    const items = document.querySelectorAll<HTMLElement>("[data-reveal]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.revealVisible);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -50px" },
+    );
+    items.forEach((item) => observer.observe(item));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className={styles.site}>
@@ -690,7 +752,10 @@ export default function HomeExperience() {
 
         <section id="services" className={styles.section}>
           <div className={styles.shell}>
-            <div className={styles.sectionHead}>
+            <div
+              className={`${styles.sectionHead} ${styles.reveal}`}
+              data-reveal
+            >
               <div>
                 <p className={styles.kicker}>{t.servicesKicker}</p>
                 <h2>{t.servicesTitle}</h2>
@@ -699,7 +764,11 @@ export default function HomeExperience() {
             </div>
             <div className={styles.serviceGrid}>
               {t.services.map(([number, title, body]) => (
-                <article key={number} className={styles.serviceCard}>
+                <article
+                  key={number}
+                  className={`${styles.serviceCard} ${styles.reveal}`}
+                  data-reveal
+                >
                   <span>{number}</span>
                   <h3>{title}</h3>
                   <p>{body}</p>
@@ -713,7 +782,10 @@ export default function HomeExperience() {
         </section>
 
         <section id="sidra" className={styles.sidraSection}>
-          <div className={`${styles.shell} ${styles.sidraGrid}`}>
+          <div
+            className={`${styles.shell} ${styles.sidraGrid} ${styles.reveal}`}
+            data-reveal
+          >
             <div className={styles.sidraVisual}>
               <div className={styles.sidraTop}>
                 <span>SIDRA / SALLA THEME</span>
@@ -769,7 +841,10 @@ export default function HomeExperience() {
           className={`${styles.section} ${styles.workSection}`}
         >
           <div className={styles.shell}>
-            <div className={styles.sectionHead}>
+            <div
+              className={`${styles.sectionHead} ${styles.reveal}`}
+              data-reveal
+            >
               <div>
                 <p className={styles.kicker}>{t.workKicker}</p>
                 <h2>{t.workTitle}</h2>
@@ -777,7 +852,11 @@ export default function HomeExperience() {
             </div>
             <div className={styles.workGrid}>
               {t.projects.map(([name, category, body, image], index) => (
-                <article key={name} className={styles.projectCard}>
+                <article
+                  key={name}
+                  className={`${styles.projectCard} ${styles.reveal}`}
+                  data-reveal
+                >
                   <div
                     className={`${styles.projectVisual} ${styles[`visual${index + 1}`]}`}
                   >
@@ -798,8 +877,63 @@ export default function HomeExperience() {
           </div>
         </section>
 
+        <section className={styles.auditSection}>
+          <div
+            className={`${styles.shell} ${styles.auditGrid} ${styles.reveal}`}
+            data-reveal
+          >
+            <div className={styles.auditCopy}>
+              <p className={styles.kicker}>{audit.kicker}</p>
+              <h2>{audit.title}</h2>
+              <p>{audit.body}</p>
+              <ul>
+                {audit.points.map((point) => (
+                  <li key={point}>
+                    <span>✓</span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+              <a href={auditWhatsapp} target="_blank" rel="noreferrer">
+                {audit.action}
+                <b>↗</b>
+              </a>
+              <small>{audit.note}</small>
+            </div>
+            <div className={styles.auditReport} aria-hidden="true">
+              <div className={styles.reportHead}>
+                <span>STORE / GROWTH AUDIT</span>
+                <b>FREE</b>
+              </div>
+              <div className={styles.reportScore}>
+                <strong>84</strong>
+                <span>/ 100</span>
+              </div>
+              <div className={styles.reportBars}>
+                <i style={{ width: "88%" }} />
+                <i style={{ width: "72%" }} />
+                <i style={{ width: "81%" }} />
+                <i style={{ width: "64%" }} />
+              </div>
+              <div className={styles.reportLabels}>
+                <span>UX</span>
+                <span>SPEED</span>
+                <span>SEO</span>
+                <span>CRO</span>
+              </div>
+              <div className={styles.reportFoot}>
+                <span>4 PRIORITY ACTIONS</span>
+                <b>READY</b>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="process" className={styles.processSection}>
-          <div className={`${styles.shell} ${styles.processGrid}`}>
+          <div
+            className={`${styles.shell} ${styles.processGrid} ${styles.reveal}`}
+            data-reveal
+          >
             <div>
               <p className={styles.kicker}>{t.processKicker}</p>
               <h2>{t.processTitle}</h2>
@@ -819,7 +953,10 @@ export default function HomeExperience() {
         </section>
 
         <section id="faq" className={styles.section}>
-          <div className={`${styles.shell} ${styles.faqGrid}`}>
+          <div
+            className={`${styles.shell} ${styles.faqGrid} ${styles.reveal}`}
+            data-reveal
+          >
             <div>
               <p className={styles.kicker}>{t.faqKicker}</p>
               <h2>{t.faqTitle}</h2>
@@ -842,7 +979,10 @@ export default function HomeExperience() {
         </section>
 
         <section id="contact" className={styles.ctaSection}>
-          <div className={`${styles.shell} ${styles.ctaInner}`}>
+          <div
+            className={`${styles.shell} ${styles.ctaInner} ${styles.reveal}`}
+            data-reveal
+          >
             <div>
               <p>{t.ctaKicker}</p>
               <h2>{t.ctaTitle}</h2>
