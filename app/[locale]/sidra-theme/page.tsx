@@ -37,7 +37,7 @@ type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
-const siteUrl = "https://www.solimanx.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tf1one.com";
 const pageTitle = "ثيم سِدرة | SIDRA — مركز التوثيق الرسمي لثيم سلة الفاخر";
 const pageDescription =
   "المركز الرسمي لثيم سِدرة على منصة سلة: 46 مكونًا للصفحة الرئيسية، دليل التثبيت والهوية والمقاسات والجوال والسرعة، الأسئلة الشائعة، حل المشكلات، وسجل التحديثات والدعم الفني — في مكان واحد.";
