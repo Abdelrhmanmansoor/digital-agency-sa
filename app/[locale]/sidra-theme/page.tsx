@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getWhatsAppLink, AGENCY_INFO } from "@/lib/utils";
 import { SIDRA_INFO, SIDRA_MESSAGES, SIDRA_FAQ } from "@/lib/sidra-data";
 import DocsShell from "@/components/sidra/DocsShell";
+import AssistantSection from "@/components/sidra/assistant/AssistantSection";
 import HeroSection from "@/components/sidra/HeroSection";
 import { OverviewSection, FeaturesSection, ComparisonSection } from "@/components/sidra/OverviewSections";
 import {
@@ -152,6 +153,7 @@ export default async function SidraThemePage({ params }: PageProps) {
         <MobileSection />
         <NoCodeSection />
         <AdvancedSection />
+        <AssistantSection />
 
         {/* المرجع */}
         <ComponentsSection />

@@ -73,6 +73,7 @@ export const SIDRA_NAV: NavSection[] = [
   { id: "mobile", label: "إعداد الجوال", icon: "▯", group: "الإعداد والتخصيص" },
   { id: "no-code", label: "تخصيص بدون كود", icon: "✎", group: "الإعداد والتخصيص" },
   { id: "advanced", label: "تخصيص متقدم", icon: "⚙", group: "الإعداد والتخصيص" },
+  { id: "assistant", label: "مساعد التخصيص", icon: "✧", group: "الإعداد والتخصيص" },
   { id: "components", label: "مكونات الصفحة الرئيسية", icon: "❖", group: "المرجع" },
   { id: "product-sources", label: "مصادر المنتجات", icon: "⌘", group: "المرجع" },
   { id: "image-sizes", label: "مقاسات الصور", icon: "▤", group: "المرجع" },
