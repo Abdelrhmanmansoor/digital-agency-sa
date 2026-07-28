@@ -26,12 +26,14 @@ const config: Config = {
         "dark-gray": "#333333",
         "light-border": "#EAEAE6",
       },
+      /* لا بد أن تطابق متغيّرات globals.css: أي فرق هنا يجعل عنصرًا يحمل
+         className="font-display" يتجاوز خط العناوين بصمت. */
       fontFamily: {
-        display: ["ThmanyahSans", "Zain", "sans-serif"],
+        display: ["ThmanyahDisplay", "ThmanyahSans", "Zain", "serif"],
         body: ["ThmanyahSans", "Zain", "sans-serif"],
         mono: ["Space Mono", "monospace"],
         arabic: ["ThmanyahSans", "Zain", "sans-serif"],
-        "arabic-display": ["ThmanyahSans", "Zain", "sans-serif"],
+        "arabic-display": ["ThmanyahDisplay", "ThmanyahSans", "Zain", "serif"],
       },
       borderRadius: {
         DEFAULT: "10px",

@@ -41,6 +41,24 @@
   font-display: swap;
 }
 
+/* ═══════ DISPLAY FACE — Thmanyah Serif Display (self-hosted) ═══════
+   وزنان فقط متاحان: Regular و Bold. لا نصرّح بأوزان لا نملكها حتى لا
+   يصطنع المتصفح وزنًا صناعيًا (faux bold) يفسد شكل الحروف العربية. */
+@font-face {
+  font-family: 'ThmanyahDisplay';
+  src: url('/fonts/thmanyahserifdisplay-Regular.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ThmanyahDisplay';
+  src: url('/fonts/thmanyahserifdisplay-Bold.woff2') format('woff2');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    DESIGN SYSTEM — الهوية المؤسسية: أبيض / أسود / أصفر
    ═══════════════════════════════════════════════════════════════ */
@@ -88,12 +106,16 @@
   --success: #2F855A;
   --info:    #2B6CB0;
 
-  /* Typography — Thmanyah Sans is the brand font, Zain as fallback */
-  --font-display:        'ThmanyahSans','Zain',sans-serif;
+  /* Typography — Thmanyah: Serif Display للعناوين، Sans للنص.
+     العناوين تأخذ خط الديسبلاي (وهو الغرض الذي صُمم له)، والمتن يبقى
+     على Sans لأن الخط المشرشر يفقد وضوحه في الأحجام الصغيرة والفقرات
+     الطويلة. Sans مذكور بعده كاحتياطي حتى لا يسقط النص على Zain لو
+     تأخّر تحميل ملف الديسبلاي. */
+  --font-display:        'ThmanyahDisplay','ThmanyahSans','Zain',serif;
   --font-body:           'ThmanyahSans','Zain',sans-serif;
   --font-mono:           'Space Mono','JetBrains Mono',monospace;
   --font-arabic:         'ThmanyahSans','Zain',sans-serif;
-  --font-arabic-display: 'ThmanyahSans','Zain',sans-serif;
+  --font-arabic-display: 'ThmanyahDisplay','ThmanyahSans','Zain',serif;
 
   /* Radii — institutional: restrained corners */
   --radius-sm: 6px;
