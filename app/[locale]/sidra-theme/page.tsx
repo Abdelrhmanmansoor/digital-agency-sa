@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getWhatsAppLink, AGENCY_INFO } from "@/lib/utils";
 import { SIDRA_INFO, SIDRA_MESSAGES, SIDRA_FAQ } from "@/lib/sidra-data";
 import DocsShell from "@/components/sidra/DocsShell";
+import ServiceCenter from "@/components/sidra/ServiceCenter";
 import AssistantSection from "@/components/sidra/assistant/AssistantSection";
 import HeroSection from "@/components/sidra/HeroSection";
 import { OverviewSection, FeaturesSection, ComparisonSection } from "@/components/sidra/OverviewSections";
@@ -136,6 +137,8 @@ export default async function SidraThemePage({ params }: PageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <HeroSection orderHref={orderHref} demoHref={demoHref} />
+
+      <ServiceCenter />
 
       <DocsShell supportHref={supportHref}>
         {/* تعرف على الثيم */}

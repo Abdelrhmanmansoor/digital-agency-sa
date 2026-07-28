@@ -231,6 +231,25 @@ export default function DocsShell({ children, supportHref }: { children: ReactNo
             </kbd>
           </button>
 
+          {/* مدخل دائم للمساعد — يبقى في متناول اليد مهما نزل الزائر في الصفحة.
+              على الجوال تظهر الأيقونة وحدها حتى لا يزدحم الشريط. */}
+          <a
+            href="#assistant"
+            onClick={(e) => {
+              e.preventDefault();
+              history.replaceState(null, "", "#assistant");
+              goTo("assistant");
+            }}
+            aria-label="مساعد تخصيص سِدرة"
+            title="مساعد تخصيص سِدرة"
+            className="flex items-center gap-2 rounded-full px-3 py-2 text-sm font-black text-white transition hover:opacity-90"
+            style={{ background: "#211711" }}
+          >
+            <span aria-hidden className="flex h-5 w-5 items-center justify-center rounded-full text-[11px]"
+                  style={{ background: "#F0B100", color: "#211711" }}>✧</span>
+            <span className="hidden sm:inline">المساعد</span>
+          </a>
+
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
