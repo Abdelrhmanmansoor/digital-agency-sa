@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { AGENCY_INFO } from "@/lib/utils";
-import PaymentLogos from "@/components/shared/PaymentLogos";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -184,11 +183,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Payment methods */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-8 pb-10">
-        <PaymentLogos variant="footer" showTitle={true} />
       </div>
 
       {/* Bottom bar */}

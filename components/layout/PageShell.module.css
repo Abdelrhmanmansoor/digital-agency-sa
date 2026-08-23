@@ -1,0 +1,199 @@
+/* ═══════════════════════════════════════════════════════════════
+   INNER PAGE SHELL — رسمي، فخم، هادئ
+   ───────────────────────────────────────────────────────────────
+   Every inner page used to invent its own palette: the store was
+   white, Radar and the policy page opened on near-black heroes, and
+   the SIDRA docs on warm brown. Four visual languages for one brand.
+
+   This shell extends the language the homepage already speaks —
+   warm ivory paper, hairline rules, an editorial display face, sharp
+   corners — and keeps the yellow as a mark rather than a surface.
+   Restraint is what reads as expensive; large yellow blocks do not.
+   ═══════════════════════════════════════════════════════════════ */
+
+.shell {
+  --ink: #14140f;
+  --ink-soft: #2a2922;
+  --paper: #fbfaf7;
+  --paper-deep: #f4f2ec;
+  --surface: #ffffff;
+  --line: #e6e2d8;
+  --line-strong: #d4cfc2;
+  --muted: #6e6a61;
+  --muted-soft: #8d8a82;
+  --accent: #f0b100;
+  --accent-ink: #8b6900;
+
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.container {
+  width: min(1240px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+/* ───────── Micro label ───────── */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.kicker::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* ───────── Page hero ───────── */
+.hero {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.heroInner {
+  padding-block: 52px 60px;
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 72px;
+  align-items: end;
+}
+.heroLead {
+  max-width: 60ch;
+}
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 26px;
+}
+.crumbs a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.crumbs a:hover {
+  color: var(--ink);
+}
+.crumbs span[aria-hidden] {
+  color: var(--line-strong);
+}
+.crumbs strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-family: var(--font-arabic-display);
+  font-size: clamp(34px, 4.6vw, 60px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin: 18px 0 0;
+  max-width: 19ch;
+  text-wrap: balance;
+}
+.heroText {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.9;
+  margin-top: 20px;
+  max-width: 62ch;
+}
+.heroAside {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 6px;
+}
+
+/* ───────── Sections ───────── */
+.section {
+  padding-block: 96px;
+}
+.sectionTight {
+  padding-block: 64px;
+}
+.onPaper {
+  background: var(--paper);
+}
+.onSurface {
+  background: var(--surface);
+  border-block: 1px solid var(--line);
+}
+.onInk {
+  background: var(--ink);
+  color: #fff;
+}
+.onInk .sectionTitle,
+.onInk h2,
+.onInk h3 {
+  color: #fff;
+}
+.onInk .sectionLead,
+.onInk p {
+  color: #a9a59b;
+}
+.onInk .kicker {
+  color: #e0b53c;
+}
+
+.sectionHead {
+  display: grid;
+  grid-template-columns: 1.15fr 0.75fr;
+  align-items: end;
+  gap: 72px;
+  margin-bottom: 52px;
+}
+.sectionHeadCentered {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  gap: 18px;
+}
+.sectionTitle {
+  font-family: var(--font-arabic-display);
+  font-size: clamp(28px, 3.4vw, 46px);
+  line-height: 1.16;
+  letter-spacing: -0.03em;
+  margin: 16px 0 0;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.sectionHeadCentered .sectionTitle {
+  max-width: 24ch;
+}
+.sectionLead {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.9;
+  max-width: 58ch;
+}
+
+/* ───────── Responsive ───────── */
+@media (max-width: 900px) {
+  .heroInner,
+  .sectionHead {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .heroInner {
+    padding-block: 36px 44px;
+  }
+  .section {
+    padding-block: 64px;
+  }
+  .sectionTight {
+    padding-block: 48px;
+  }
+  .sectionHead {
+    margin-bottom: 36px;
+  }
+}

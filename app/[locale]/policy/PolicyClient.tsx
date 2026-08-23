@@ -1,10 +1,10 @@
 "use client";
 
 import PaymentLogos from "@/components/shared/PaymentLogos";
+import { PageShell, PageHero, Section } from "@/components/layout/PageShell";
 
 const SECTIONS = [
   {
-    icon: "🔒",
     id: "privacy",
     titleAr: "سياسة الخصوصية",
     titleEn: "Privacy Policy",
@@ -24,7 +24,6 @@ const SECTIONS = [
     ],
   },
   {
-    icon: "💳",
     id: "payment",
     titleAr: "سياسة الدفع",
     titleEn: "Payment Policy",
@@ -44,7 +43,6 @@ const SECTIONS = [
     ],
   },
   {
-    icon: "🔄",
     id: "returns",
     titleAr: "سياسة الاسترجاع والضمان",
     titleEn: "Return & Guarantee Policy",
@@ -70,131 +68,244 @@ const SECTIONS = [
 export default function PolicyClient({ locale }: { locale: string }) {
   const isRTL = locale === "ar";
 
+  /* Rebuilt on the shared page shell. This used to open on a near-black hero
+     with emoji section icons and rounded translucent cards — a different
+     product from every other page, and too informal for a legal document. */
+  const t = {
+    home: isRTL ? "الرئيسية" : locale === "fr" ? "Accueil" : "Home",
+    kicker: isRTL ? "الشروط والسياسات" : locale === "fr" ? "Conditions" : "Terms & policies",
+    title: isRTL
+      ? "سياسة الخصوصية والدفع والاسترجاع"
+      : locale === "fr"
+        ? "Confidentialité, paiement et retours"
+        : "Privacy, Payment & Return Policy",
+    lead: isRTL
+      ? "نلتزم بالشفافية الكاملة. هذه الصفحة تشرح كيف نتعامل مع بياناتك، وكيف تُدفع المشاريع، ومتى يحق لك الاسترجاع."
+      : locale === "fr"
+        ? "Transparence totale : cette page explique le traitement de vos données, les modalités de paiement et vos droits au remboursement."
+        : "We are committed to full transparency. This page covers how we handle your data, how projects are paid for, and when a refund applies.",
+    updated: isRTL
+      ? "آخر تحديث: فبراير 2026"
+      : locale === "fr"
+        ? "Mis à jour : février 2026"
+        : "Last updated: February 2026",
+    toc: isRTL ? "محتويات الصفحة" : locale === "fr" ? "Sommaire" : "On this page",
+    ctaTitle: isRTL
+      ? "هل لديك استفسار حول سياساتنا؟"
+      : locale === "fr"
+        ? "Une question sur nos conditions ?"
+        : "Questions about our policies?",
+    ctaBody: isRTL
+      ? "تواصل معنا مباشرة عبر واتساب وسنرد خلال ساعة."
+      : locale === "fr"
+        ? "Écrivez-nous sur WhatsApp, nous répondons en moins d’une heure."
+        : "Contact us directly on WhatsApp and we’ll reply within an hour.",
+    ctaAction: isRTL
+      ? "تواصل عبر واتساب"
+      : locale === "fr"
+        ? "Écrire sur WhatsApp"
+        : "Contact via WhatsApp",
+  };
+
   return (
-    <div
-      style={{
-        background: "#0A0A0A",
-        minHeight: "100vh",
-        direction: isRTL ? "rtl" : "ltr",
-        paddingTop: "120px",
-        paddingBottom: "100px",
-      }}
-    >
-      <div className="max-w-[1000px] mx-auto px-8">
-
-        {/* Page Header */}
-        <div style={{ marginBottom: "64px", textAlign: "center" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "rgba(240,177,0,0.08)", border: "1px solid rgba(240,177,0,0.2)", borderRadius: "20px", padding: "6px 18px", marginBottom: "20px" }}>
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#F0B100" }}>
-              {isRTL ? "الشروط والأحكام" : "Terms & Policies"}
-            </span>
-          </div>
-          <h1 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "clamp(28px, 5vw, 52px)", fontWeight: 800, color: "#FAFAF7", lineHeight: 1.2, marginBottom: "16px" }}>
-            {isRTL ? "سياسة الخصوصية والدفع والاسترجاع" : "Privacy, Payment & Return Policy"}
-          </h1>
-          <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.4)", maxWidth: "600px", margin: "0 auto", lineHeight: 1.8 }}>
-            {isRTL
-              ? "نلتزم بالشفافية الكاملة — اقرأ سياساتنا وتعرّف على حقوقك وضماناتك معنا."
-              : "We are committed to full transparency — read our policies and know your rights and guarantees with us."}
-          </p>
-          <div style={{ marginTop: "16px", fontFamily: "Space Mono, monospace", fontSize: "10px", color: "rgba(255,255,255,0.2)" }}>
-            {isRTL ? "آخر تحديث: فبراير 2026" : "Last updated: February 2026"}
-          </div>
-        </div>
-
-        {/* TOC */}
-        <nav style={{ background: "rgba(240,177,0,0.05)", border: "1px solid rgba(240,177,0,0.12)", borderRadius: "14px", padding: "20px 24px", marginBottom: "48px", display: "flex", gap: "24px", flexWrap: "wrap", justifyContent: "center" }}>
-          {SECTIONS.map((s) => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", color: "#F0B100", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }}
+    <PageShell>
+      <main>
+        <PageHero
+          kicker={t.kicker}
+          title={t.title}
+          lead={t.lead}
+          crumbs={[{ label: t.home, href: `/${locale}` }, { label: t.kicker }]}
+          crumbsLabel={t.kicker}
+          aside={
+            <span
+              style={{
+                alignSelf: "start",
+                fontFamily: "Space Mono, monospace",
+                fontSize: "11px",
+                letterSpacing: "0.1em",
+                color: "#8d8a82",
+                borderTop: "2px solid #f0b100",
+                paddingTop: "12px",
+              }}
             >
-              {s.icon} {isRTL ? s.titleAr : s.titleEn}
-            </a>
-          ))}
-        </nav>
+              {t.updated}
+            </span>
+          }
+        />
 
-        {/* Sections */}
-        {SECTIONS.map((section, i) => (
-          <div
-            key={section.id}
-            id={section.id}
-            style={{
-              background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.07)",
-              borderRadius: "16px",
-              padding: "36px 40px",
-              marginBottom: "24px",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "24px" }}>
-              <div style={{ width: "48px", height: "48px", borderRadius: "12px", background: "rgba(240,177,0,0.1)", border: "1px solid rgba(240,177,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", flexShrink: 0 }}>
-                {section.icon}
-              </div>
-              <div>
-                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "9px", color: "rgba(240,177,0,0.6)", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "4px" }}>
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <h2 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "clamp(20px, 3vw, 28px)", fontWeight: 800, color: "#FAFAF7", margin: 0 }}>
-                  {isRTL ? section.titleAr : section.titleEn}
-                </h2>
-              </div>
-            </div>
+        <Section tone="paper">
+          <div className="policy-layout">
+            <nav className="policy-toc" aria-label={t.toc}>
+              <p className="policy-toc-title">{t.toc}</p>
+              <ol>
+                {SECTIONS.map((section, i) => (
+                  <li key={section.id}>
+                    <a href={`#${section.id}`}>
+                      <span aria-hidden>{String(i + 1).padStart(2, "0")}</span>
+                      {isRTL ? section.titleAr : section.titleEn}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
 
-            <div style={{ width: "40px", height: "2px", background: "#F0B100", marginBottom: "24px" }} />
-
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
-              {(isRTL ? section.contentAr : section.contentEn).map((point, j) => (
-                <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#F0B100" style={{ marginTop: "5px", flexShrink: 0 }}>
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
-                  </svg>
-                  <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.6)", lineHeight: 1.8, margin: 0 }}>
-                    {point}
-                  </p>
-                </li>
+            <div className="policy-body">
+              {SECTIONS.map((section, i) => (
+                <article key={section.id} id={section.id} className="policy-section">
+                  <span className="policy-index">{String(i + 1).padStart(2, "0")}</span>
+                  <h2>{isRTL ? section.titleAr : section.titleEn}</h2>
+                  <ul>
+                    {(isRTL ? section.contentAr : section.contentEn).map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                </article>
               ))}
-            </ul>
+
+              <div className="policy-payments">
+                <PaymentLogos variant="section" showTitle={true} />
+              </div>
+
+              <aside className="policy-cta">
+                <div>
+                  <h3>{t.ctaTitle}</h3>
+                  <p>{t.ctaBody}</p>
+                </div>
+                <a href="https://wa.me/201007835547" target="_blank" rel="noopener noreferrer">
+                  {t.ctaAction}
+                  <span aria-hidden>{isRTL ? "←" : "→"}</span>
+                </a>
+              </aside>
+            </div>
           </div>
-        ))}
+        </Section>
+      </main>
 
-        {/* Payment Methods Full Section */}
-        <div
-          style={{
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.07)",
-            borderRadius: "16px",
-            padding: "36px 40px",
-            marginBottom: "40px",
-          }}
-        >
-          <PaymentLogos variant="section" showTitle={true} />
-        </div>
+      <style>{`
+        .policy-layout {
+          display: grid;
+          grid-template-columns: 260px 1fr;
+          gap: 64px;
+          align-items: start;
+        }
+        .policy-toc { position: sticky; top: 130px; }
+        .policy-toc-title {
+          font-family: 'Space Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #8b6900;
+          margin: 0 0 16px;
+        }
+        .policy-toc ol {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          border-top: 1px solid #e6e2d8;
+        }
+        .policy-toc li { border-bottom: 1px solid #e6e2d8; }
+        .policy-toc a {
+          display: flex;
+          gap: 12px;
+          padding: 14px 0;
+          font-size: 15px;
+          color: #56534b;
+          text-decoration: none;
+          transition: color .2s;
+        }
+        .policy-toc a span {
+          font-family: 'Space Mono', monospace;
+          font-size: 11px;
+          color: #a9a498;
+        }
+        .policy-toc a:hover { color: #14140f; }
 
-        {/* Contact CTA */}
-        <div style={{ textAlign: "center", padding: "40px", background: "rgba(240,177,0,0.05)", border: "1px solid rgba(240,177,0,0.12)", borderRadius: "16px" }}>
-          <h3 style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "22px", fontWeight: 800, color: "#FAFAF7", marginBottom: "12px" }}>
-            {isRTL ? "هل لديك استفسار حول سياساتنا؟" : "Questions about our policies?"}
-          </h3>
-          <p style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.45)", marginBottom: "20px" }}>
-            {isRTL ? "تواصل معنا مباشرة عبر واتساب وسنرد خلال ساعة." : "Contact us directly on WhatsApp and we'll reply within an hour."}
-          </p>
-          <a
-            href="https://wa.me/201007835547"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "13px 28px", background: "#F0B100", color: "#0A0A0A", borderRadius: "10px", textDecoration: "none", fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "15px", fontWeight: 700 }}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-              <path d="M11.99 0C5.364 0 0 5.364 0 11.99c0 2.11.553 4.09 1.517 5.806L0 24l6.396-1.487A11.954 11.954 0 0011.99 24C18.616 24 24 18.636 24 12.01 24 5.385 18.616 0 11.99 0zm.01 21.818a9.848 9.848 0 01-4.998-1.362l-.36-.214-3.718.863.929-3.628-.234-.373A9.846 9.846 0 012.182 12c0-5.424 4.4-9.818 9.818-9.818 5.418 0 9.818 4.394 9.818 9.818 0 5.425-4.4 9.818-9.818 9.818z"/>
-            </svg>
-            {isRTL ? "تواصل عبر واتساب" : "Contact via WhatsApp"}
-          </a>
-        </div>
-
-      </div>
-    </div>
+        .policy-body {
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+          background: #e6e2d8;
+          border: 1px solid #e6e2d8;
+        }
+        .policy-section { background: #fff; padding: 40px 42px; scroll-margin-top: 130px; }
+        .policy-index {
+          font-family: 'Space Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.16em;
+          color: #8b6900;
+        }
+        .policy-section h2 {
+          font-family: var(--font-arabic-display);
+          font-size: clamp(22px, 2.6vw, 30px);
+          letter-spacing: -0.02em;
+          color: #14140f;
+          margin: 14px 0 0;
+          padding-bottom: 22px;
+          border-bottom: 2px solid #f0b100;
+          display: inline-block;
+        }
+        .policy-section ul {
+          list-style: none;
+          padding: 0;
+          margin: 26px 0 0;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .policy-section li {
+          display: grid;
+          grid-template-columns: 14px 1fr;
+          gap: 14px;
+          font-size: 15.5px;
+          line-height: 1.9;
+          color: #56534b;
+        }
+        .policy-section li::before {
+          content: "";
+          width: 6px;
+          height: 6px;
+          margin-top: 11px;
+          background: #f0b100;
+          transform: rotate(45deg);
+        }
+        .policy-payments { background: #fff; padding: 40px 42px; }
+        .policy-cta {
+          background: #14140f;
+          padding: 36px 42px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+        .policy-cta h3 {
+          font-family: var(--font-arabic-display);
+          font-size: 22px;
+          color: #fff;
+          margin: 0 0 8px;
+          letter-spacing: -0.02em;
+        }
+        .policy-cta p { color: #a9a59b; font-size: 15px; margin: 0; }
+        .policy-cta a {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          min-height: 50px;
+          padding-inline: 26px;
+          background: #f0b100;
+          color: #14140f;
+          font-weight: 800;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+        @media (max-width: 1000px) {
+          .policy-layout { grid-template-columns: 1fr; gap: 36px; }
+          .policy-toc { position: static; }
+        }
+        @media (max-width: 640px) {
+          .policy-section, .policy-payments, .policy-cta { padding: 28px 22px; }
+        }
+      `}</style>
+    </PageShell>
   );
 }

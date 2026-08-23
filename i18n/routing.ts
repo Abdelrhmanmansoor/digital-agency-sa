@@ -11,7 +11,6 @@ export const routing = defineRouting({
     "/blog": "/blog",
     "/store": "/store",
     "/sidra-theme": "/sidra-theme",
-    "/radar": "/radar",
     "/policy": "/policy",
   },
 });

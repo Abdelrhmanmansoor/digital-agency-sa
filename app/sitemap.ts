@@ -4,14 +4,13 @@ import { ARTICLES } from "@/lib/articles";
 import { SITE_URL, LOCALES } from "@/lib/site";
 
 
-/* One entry per indexable route. `/tools` used to be listed here even though
-   it only redirects to `/radar`, while `/radar`, `/sidra-theme`, `/policy`
-   and every blog article were missing entirely. */
+/* One entry per indexable route. `/tools` is intentionally absent: it only
+   redirects. `/sidra-theme`, `/policy` and the blog articles used to be
+   missing entirely. */
 const ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
   { path: "/store", priority: 0.9, changeFrequency: "weekly" },
   { path: "/sidra-theme", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/radar", priority: 0.8, changeFrequency: "monthly" },
   { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
   { path: "/policy", priority: 0.3, changeFrequency: "yearly" },
 ];

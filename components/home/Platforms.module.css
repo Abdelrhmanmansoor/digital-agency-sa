@@ -1,0 +1,285 @@
+/* منصات المتاجر — سلة / زد / شوبيفاي
+   The e-commerce build is the core of the business but the homepage gave it
+   one line inside a generic eight-card service grid. This section gives each
+   platform its own panel and states the scope of work plainly. */
+
+.section {
+  background: #fbfaf7;
+  border-top: 1px solid #e6e2d8;
+  padding-block: 120px;
+}
+.shell {
+  width: min(1240px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: 1.15fr 0.75fr;
+  align-items: end;
+  gap: 72px;
+  margin-bottom: 56px;
+}
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8b6900;
+}
+.kicker::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: #f0b100;
+}
+.head h2 {
+  font-family: var(--font-arabic-display);
+  font-size: clamp(30px, 3.6vw, 52px);
+  line-height: 1.14;
+  letter-spacing: -0.032em;
+  margin: 16px 0 0;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.head p {
+  color: #6e6a61;
+  font-size: 16px;
+  line-height: 1.9;
+  max-width: 56ch;
+}
+
+/* ───────── Platform panels ───────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #e6e2d8;
+  border: 1px solid #e6e2d8;
+}
+.panel {
+  background: #fff;
+  padding: 38px 34px 34px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+/* The top rule is the only moving part — a quiet hover, not a bounce. */
+.panel::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline: -1px;
+  height: 3px;
+  background: #f0b100;
+  transform: scaleX(0);
+  transform-origin: var(--edge, left);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.panel:hover::before,
+.panel:focus-within::before {
+  transform: scaleX(1);
+}
+.panel:hover {
+  background: #fffdf6;
+}
+
+.panelTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #eeeae0;
+}
+.index {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #a9a498;
+}
+.market {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b6900;
+}
+.wordmark {
+  font-family: var(--font-arabic-display);
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: #14140f;
+}
+.latin {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a9a498;
+  margin-top: 10px;
+  display: block;
+}
+.pitch {
+  color: #4a4740;
+  font-size: 15.5px;
+  line-height: 1.85;
+  margin: 22px 0 24px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.list li {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #56534b;
+}
+.list li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-top: 8px;
+  background: #f0b100;
+  transform: rotate(45deg);
+}
+
+.panelFoot {
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px solid #eeeae0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.meta {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #8d8a82;
+}
+.meta b {
+  display: block;
+  color: #14140f;
+  font-size: 13px;
+  letter-spacing: 0;
+  margin-top: 4px;
+}
+.panelLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding-inline: 18px;
+  border: 1px solid #d4cfc2;
+  color: #14140f;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.panelLink:hover {
+  background: #14140f;
+  border-color: #14140f;
+  color: #fff;
+}
+
+/* ───────── Shared baseline strip ───────── */
+.baseline {
+  margin-top: 1px;
+  background: #14140f;
+  color: #fff;
+  padding: 40px 34px;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 48px;
+  align-items: center;
+}
+.baseline h3 {
+  font-family: var(--font-arabic-display);
+  font-size: 24px;
+  line-height: 1.3;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+.baseline > div:first-child p {
+  color: #9d9a91;
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 12px 0 0;
+}
+.baseItems {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #35342e;
+  border: 1px solid #35342e;
+}
+.baseItems span {
+  background: #14140f;
+  padding: 16px 18px;
+  font-size: 13.5px;
+  color: #cbc7bd;
+  line-height: 1.5;
+}
+
+/* ───────── Responsive ───────── */
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .head,
+  .baseline {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .baseItems {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .section {
+    padding-block: 64px;
+  }
+  .panel {
+    padding: 30px 24px 26px;
+  }
+  .wordmark {
+    font-size: 34px;
+  }
+  .baseline {
+    padding: 30px 24px;
+  }
+  .baseItems {
+    grid-template-columns: 1fr;
+  }
+  .panelFoot {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .panelLink {
+    justify-content: center;
+  }
+}

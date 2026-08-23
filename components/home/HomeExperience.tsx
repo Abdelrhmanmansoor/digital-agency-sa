@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import { HOME_FAQ } from "@/lib/home-faq";
+import Platforms from "./Platforms";
 import styles from "./HomeExperience.module.css";
 
 const WHATSAPP = "201007835547";
@@ -16,12 +17,12 @@ const copy = {
        (or, for SIDRA, one mid-page button) — nothing linked them from the
        top of the site. */
     nav: [
+      ["المنصات", "#platforms"],
       ["الخدمات", "#services"],
       ["ثيم سِدرة", "/sidra-theme"],
       ["أعمالنا", "#work"],
       ["متجر الخدمات", "/store"],
       ["المدونة", "/blog"],
-      ["الأسئلة", "#faq"],
     ],
     start: "ابدأ مشروعك",
     eyebrow: "شريكك الرقمي لنمو التجارة الإلكترونية",
@@ -174,12 +175,12 @@ const copy = {
   },
   en: {
     nav: [
+      ["Platforms", "#platforms"],
       ["Services", "#services"],
       ["SIDRA theme", "/sidra-theme"],
       ["Work", "#work"],
       ["Store", "/store"],
       ["Blog", "/blog"],
-      ["FAQ", "#faq"],
     ],
     start: "Start a project",
     eyebrow: "Your e-commerce growth partner",
@@ -332,12 +333,12 @@ const copy = {
   },
   fr: {
     nav: [
+      ["Plateformes", "#platforms"],
       ["Services", "#services"],
       ["Thème SIDRA", "/sidra-theme"],
       ["Projets", "#work"],
       ["Boutique", "/store"],
       ["Blog", "/blog"],
-      ["FAQ", "#faq"],
     ],
     start: "Démarrer",
     eyebrow: "Votre partenaire croissance e-commerce",
@@ -724,17 +725,10 @@ export default function HomeExperience() {
           </div>
         </section>
 
-        <section className={styles.platforms} data-own-spacing>
-          <div className={`${styles.shell} ${styles.platformRow}`}>
-            <p>{t.trusted}</p>
-            <div>
-              <span>SALLA</span>
-              <span>ZID</span>
-              <span>GOOGLE</span>
-              <span>META</span>
-            </div>
-          </div>
-        </section>
+        {/* Replaced a filler strip that read "SALLA ZID GOOGLE META" as four
+            plain words claiming nothing, with the section that carries the
+            core offer. */}
+        <Platforms />
 
         <section id="services" className={styles.section} data-own-spacing>
           <div className={styles.shell}>
@@ -1013,9 +1007,6 @@ export default function HomeExperience() {
                 </Link>
               ),
             )}
-            <Link href={`/${locale}/radar`}>
-              {locale === "ar" ? "رادار المنتجات" : locale === "fr" ? "Radar produits" : "Product Radar"}
-            </Link>
             <Link href={`/${locale}/policy`}>
               {locale === "ar" ? "الشروط والخصوصية" : locale === "fr" ? "Conditions & confidentialité" : "Terms & Privacy"}
             </Link>

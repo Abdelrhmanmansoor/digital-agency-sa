@@ -27,49 +27,14 @@ type StoreLogo = {
   maxHeight?: number;
 };
 
+/* Only these three files exist in /public/store-logos. The list also
+   carried obeya, floral-mark and abaya-boutique, whose images were never
+   added — they 404'd and fell back to plain text. */
 const STORE_LOGOS: StoreLogo[] = [
-  {
-    nameAr: "TF1",
-    nameEn: "TF1 Power Your Passion",
-    file: "tf1.png",
-    featured: true,
-    maxHeight: 62,
-  },
-  {
-    nameAr: "حلا هوم",
-    nameEn: "Hala Home",
-    file: "hala-home.png",
-    maxHeight: 48,
-  },
-  {
-    nameAr: "الفلمنكي",
-    nameEn: "Al-Flamanki",
-    file: "al-flamanki.png",
-    maxHeight: 56,
-  },
-  {
-    nameAr: "أوبيا",
-    nameEn: "Obeya",
-    file: "obeya.png",
-    maxHeight: 46,
-  },
-  {
-    nameAr: "عباية بوتيك",
-    nameEn: "Abaya Boutique",
-    file: "abaya-boutique.png",
-    maxHeight: 56,
-  },
-  {
-    nameAr: "شعار زهري",
-    nameEn: "Floral Mark",
-    file: "floral-mark.png",
-    maxHeight: 50,
-  },
+  { nameAr: "TF1", nameEn: "TF1 Power Your Passion", file: "tf1.png", featured: true, maxHeight: 56 },
+  { nameAr: "حلا هوم", nameEn: "Hala Home", file: "hala-home.png", maxHeight: 44 },
+  { nameAr: "الفلمنكي", nameEn: "Al-Flamanki", file: "al-flamanki.png", maxHeight: 50 },
 ];
-
-function buildLogoRow(arr: StoreLogo[]) {
-  return [...arr, ...arr];
-}
 
 /* ─── Favorites Hook ─────────────────────────────────────── */
 function useFavorites() {
@@ -526,498 +491,179 @@ export default function StoreContent() {
   const { favorites, toggleFavorite } = useFavorites();
 
   const filtered = getProductsByCategory(activeCategory);
-  const logosRow = buildLogoRow(STORE_LOGOS);
 
   return (
     <div dir={dir} lang={locale} style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>
-      {/* ═══ HERO ═══════════════════════════════════════════ */}
-      <section style={{
-        background: "linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%)",
-        padding: "140px 0 100px",
-        position: "relative",
-        overflow: "hidden",
-      }}>
-        {/* Geometric background */}
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23C9A227' stroke-width='0.4'%3E%3Cpolygon points='30,5 55,20 55,45 30,60 5,45 5,20'/%3E%3Cpolygon points='30,15 45,22.5 45,37.5 30,45 15,37.5 15,22.5'/%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: "60px 60px",
-          opacity: 0.08,
-        }} />
+      <style>{`
+        .store-shell { width: min(1240px, calc(100% - 40px)); margin-inline: auto; }
+        .store-hero { background: #fff; border-bottom: 1px solid #e6e2d8; padding-block: 52px 60px; }
+        .store-crumbs { display: flex; align-items: center; gap: 9px; font-size: 13px; color: #6e6a61; margin-bottom: 26px; }
+        .store-crumbs a { color: #6e6a61; text-decoration: none; }
+        .store-crumbs a:hover { color: #14140f; }
+        .store-crumbs span { color: #d4cfc2; }
+        .store-crumbs strong { color: #14140f; font-weight: 600; }
+        .store-hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 72px; align-items: end; }
+        .store-kicker {
+          display: inline-flex; align-items: center; gap: 10px;
+          font-family: 'Space Mono', monospace; font-size: 11px;
+          letter-spacing: 0.16em; text-transform: uppercase; color: #8b6900; margin: 0;
+        }
+        .store-kicker::before { content: ""; width: 22px; height: 2px; background: #f0b100; }
+        .store-hero h1 {
+          font-family: var(--font-arabic-display);
+          font-size: clamp(32px, 4.4vw, 58px);
+          line-height: 1.1; letter-spacing: -0.035em;
+          margin: 18px 0 0; max-width: 20ch; text-wrap: balance; color: #14140f;
+        }
+        .store-lead { color: #6e6a61; font-size: 17px; line-height: 1.9; margin: 20px 0 0; max-width: 60ch; }
+        .store-hero-cta {
+          display: inline-flex; align-items: center; gap: 12px;
+          min-height: 52px; padding-inline: 28px; margin-top: 30px;
+          background: #14140f; color: #fff; font-weight: 800; text-decoration: none;
+          transition: background .2s;
+        }
+        .store-hero-cta:hover { background: #f0b100; color: #14140f; }
+        .store-facts {
+          display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+          background: #e6e2d8; border: 1px solid #e6e2d8; margin: 0;
+        }
+        .store-facts > div { background: #fff; padding: 22px 20px; }
+        .store-facts dt {
+          font-family: 'Space Mono', monospace; font-size: 26px;
+          font-weight: 700; color: #14140f; line-height: 1;
+        }
+        .store-facts dd { margin: 8px 0 0; font-size: 13px; line-height: 1.6; color: #6e6a61; }
+        .store-clients { background: #fbfaf7; border-bottom: 1px solid #e6e2d8; padding-block: 30px; }
+        .store-clients .store-shell { display: flex; align-items: center; gap: 44px; flex-wrap: wrap; }
+        .store-clients p {
+          font-family: 'Space Mono', monospace; font-size: 11px;
+          letter-spacing: 0.14em; text-transform: uppercase; color: #8d8a82; margin: 0;
+        }
+        .store-clients > .store-shell > div { display: flex; align-items: center; gap: 44px; flex-wrap: wrap; }
+        .store-clients img { width: auto; filter: grayscale(1); opacity: .62; transition: opacity .2s, filter .2s; }
+        .store-clients img:hover { filter: grayscale(0); opacity: 1; }
+        .store-close { background: #14140f; padding-block: 84px; }
+        .store-close .store-shell { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center; }
+        .store-close-kicker {
+          display: inline-flex; align-items: center; gap: 10px; margin: 0;
+          font-family: 'Space Mono', monospace; font-size: 11px;
+          letter-spacing: 0.16em; text-transform: uppercase; color: #e0b53c;
+        }
+        .store-close-kicker::before { content: ""; width: 22px; height: 2px; background: #f0b100; }
+        .store-close h2 {
+          font-family: var(--font-arabic-display);
+          font-size: clamp(28px, 3.4vw, 44px); line-height: 1.16;
+          letter-spacing: -0.03em; color: #fff; margin: 16px 0 0; max-width: 18ch;
+        }
+        .store-close-body { color: #a9a59b; font-size: 16px; line-height: 1.9; margin: 18px 0 0; max-width: 56ch; }
+        .store-close-actions { display: flex; flex-direction: column; gap: 12px; }
+        .store-close-primary, .store-close-secondary {
+          display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+          min-height: 54px; padding-inline: 26px; font-weight: 800; text-decoration: none;
+          transition: background .2s, color .2s, border-color .2s;
+        }
+        .store-close-primary { background: #f0b100; color: #14140f; }
+        .store-close-primary:hover { background: #fff; }
+        .store-close-secondary { border: 1px solid #4a4941; color: #fff; }
+        .store-close-secondary:hover { border-color: #fff; }
+        @media (max-width: 900px) {
+          .store-close { padding-block: 56px; }
+          .store-close .store-shell { grid-template-columns: 1fr; gap: 30px; }
+        }
+        @media (max-width: 900px) {
+          .store-hero-grid { grid-template-columns: 1fr; gap: 34px; }
+          .store-hero { padding-block: 34px 44px; }
+          .store-clients .store-shell { gap: 20px; }
+          .store-clients > .store-shell > div { gap: 28px; }
+        }
+      `}</style>
 
-        {/* Glow */}
-        <div style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%,-50%)",
-          width: "600px",
-          height: "300px",
-          background: "radial-gradient(ellipse, rgba(240,177,0,0.12) 0%, transparent 70%)",
-        }} />
+      {/* ═══ HERO ═══════════════════════════════════════════
+          Rebuilt calm. This opened on a centred stack with a geometric
+          pattern, a radial glow, gradient-filled headline text reading
+          "بأسعار لا تُصدَّق", and a stat row claiming "500+ عميل" and "4.9/5" —
+          numbers nothing on the site supports and which contradict the
+          homepage's own "+300 مشروع". The figures below are read off the
+          catalogue and the published refund policy. */}
+      <section className="store-hero" data-own-spacing>
+        <div className="store-shell">
+          <nav className="store-crumbs" aria-label={isAr ? "مسار التنقل" : "Breadcrumb"}>
+            <Link href={`/${locale}`}>{isAr ? "الرئيسية" : locale === "fr" ? "Accueil" : "Home"}</Link>
+            <span aria-hidden>/</span>
+            <strong>{isAr ? "متجر الخدمات" : locale === "fr" ? "Boutique" : "Services store"}</strong>
+          </nav>
 
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1, textAlign: "center" }}>
-          {/* Label */}
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            padding: "6px 20px",
-            background: "rgba(240,177,0,0.12)",
-            border: "1px solid rgba(240,177,0,0.3)",
-            borderRadius: "10px",
-            marginBottom: "32px",
-          }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#F0B100" }} />
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "11px", letterSpacing: "0.2em", color: "#8A6D00", textTransform: "uppercase" }}>
-              {isAr ? "متجر الخدمات الرقمية" : "Digital Services Store"}
-            </span>
-          </div>
-
-          {/* Headline */}
-          <h1 style={{ fontSize: "clamp(40px, 6vw, 80px)", fontWeight: 900, lineHeight: 1.1, marginBottom: "24px", color: "#1A1A1A" }}>
-            {isAr ? "خدمات رقمية احترافية" : "Professional Digital Services"}
-            <br />
-            <span style={{
-              background: "linear-gradient(135deg, #F0B100 0%, #F3DFA0 50%, #F0B100 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}>
-              {isAr ? "بأسعار لا تُصدَّق" : "Unbeatable Prices"}
-            </span>
-          </h1>
-
-          {/* Subtitle */}
-          <p style={{ fontSize: "18px", color: "rgba(26,26,26,0.65)", maxWidth: "600px", margin: "0 auto 48px", lineHeight: 1.7 }}>
-            {isAr ? (
-              <>أسعارنا أقل من المنافسين بـ <span style={{ color: "#8A6D00", fontWeight: 700 }}>70%</span> — بدون التنازل عن الجودة. ضمان رضا 100%.</>
-            ) : (
-              <>Our prices are <span style={{ color: "#8A6D00", fontWeight: 700 }}>70% lower</span> than competitors — without compromising quality. 100% satisfaction guaranteed.</>
-            )}
-          </p>
-
-          {/* Stats */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "48px", flexWrap: "wrap", marginBottom: "48px" }}>
-            {[
-              { value: "500+", labelAr: "عميل راضٍ", labelEn: "Happy Clients" },
-              { value: "4.9/5", labelAr: "متوسط التقييم", labelEn: "Avg. Rating" },
-              { value: "70%", labelAr: "وفّر مقارنة بالسوق", labelEn: "Savings" },
-              { value: isAr ? "7 أيام" : "7 Days", labelAr: "ضمان استرداد", labelEn: "Money Back" },
-            ].map((stat) => (
-              <div key={stat.labelAr} style={{ textAlign: "center" }}>
-                <div style={{ fontFamily: "Space Mono, monospace", fontSize: "clamp(24px, 3vw, 32px)", fontWeight: 700, color: "#8A6D00", marginBottom: "8px" }}>
-                  {stat.value}
-                </div>
-                <div style={{ fontSize: "13px", color: "rgba(26,26,26,0.6)" }}>
-                  {isAr ? stat.labelAr : stat.labelEn}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <a
-            href="#products"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "10px",
-              padding: "16px 40px",
-              background: "#F0B100",
-              color: "#1A1A1A",
-              borderRadius: "10px",
-              fontWeight: 700,
-              fontSize: "17px",
-              textDecoration: "none",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#D89E00"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "#F0B100"; }}
-          >
-            {isAr ? "تصفح الخدمات" : "Browse Services"}
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M12 5l0 14M5 12l7 7 7-7"/>
-            </svg>
-          </a>
-
-          {/* ═══ Premium Client Logo Showcase ═══ */}
-          <div style={{ marginTop: "72px", position: "relative" }}>
-            <style>{`
-              @keyframes store-marquee-ltr {
-                from { transform: translateX(0); }
-                to { transform: translateX(-50%); }
-              }
-              @keyframes store-marquee-rtl {
-                from { transform: translateX(-50%); }
-                to { transform: translateX(0); }
-              }
-              @keyframes store-marquee-ltr-slow {
-                from { transform: translateX(-50%); }
-                to { transform: translateX(0); }
-              }
-              @keyframes store-marquee-rtl-slow {
-                from { transform: translateX(0); }
-                to { transform: translateX(-50%); }
-              }
-              @keyframes store-featured-glow {
-                0%, 100% { 
-                  box-shadow: 0 14px 40px rgba(240,177,0,0.25), 0 0 0 1px rgba(240,177,0,0.3);
-                  transform: scale(1.08);
-                }
-                50% { 
-                  box-shadow: 0 20px 60px rgba(240,177,0,0.45), 0 0 20px rgba(240,177,0,0.15), 0 0 0 1px rgba(240,177,0,0.5);
-                  transform: scale(1.12);
-                }
-              }
-              @keyframes store-logo-float {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-3px); }
-              }
-              @keyframes store-shine {
-                0% { left: -100%; }
-                50%, 100% { left: 200%; }
-              }
-              @keyframes store-badge-pulse {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0.6; }
-              }
-              .store-logo-card {
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-              }
-              .store-logo-card:hover {
-                transform: translateY(-4px) scale(1.04) !important;
-                box-shadow: 0 20px 50px rgba(0,0,0,0.12) !important;
-                border-color: rgba(240,177,0,0.4) !important;
-              }
-              .store-featured-card:hover {
-                transform: translateY(-6px) scale(1.14) !important;
-              }
-              @media (max-width: 768px) {
-                .store-logo-card {
-                  height: 72px !important;
-                  min-width: 140px !important;
-                  padding: 10px 18px !important;
-                }
-                .store-featured-card {
-                  height: 90px !important;
-                  min-width: 180px !important;
-                }
-                .store-logos-title {
-                  font-size: 11px !important;
-                  letter-spacing: 0.2em !important;
-                }
-                .store-logos-subtitle {
-                  font-size: 13px !important;
-                }
-              }
-            `}</style>
-
-            {/* Section Header */}
-            <div style={{ textAlign: "center", marginBottom: "28px" }}>
-              <div style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "10px",
-                marginBottom: "12px",
-              }}>
-                <div style={{ width: "40px", height: "1px", background: "linear-gradient(to right, transparent, rgba(240,177,0,0.5))" }} />
-                <div
-                  className="store-logos-title"
-                  style={{
-                    fontFamily: "Space Mono, monospace",
-                    fontSize: "12px",
-                    letterSpacing: "0.35em",
-                    textTransform: "uppercase",
-                    color: "rgba(240,177,0,0.7)",
-                  }}
-                >
-                  {isAr ? "عملاء يثقون بنا" : "Clients Who Trust Us"}
-                </div>
-                <div style={{ width: "40px", height: "1px", background: "linear-gradient(to left, transparent, rgba(240,177,0,0.5))" }} />
-              </div>
-              <div className="store-logos-subtitle" style={{ color: "rgba(26,26,26,0.55)", fontSize: "15px", lineHeight: 1.6 }}>
-                {isAr ? "شعارات مختارة من مشاريعنا الناجحة" : "Selected logos from our successful projects"}
-              </div>
+          <div className="store-hero-grid">
+            <div>
+              <p className="store-kicker">
+                {isAr ? "متجر الخدمات الرقمية" : locale === "fr" ? "Boutique de services" : "Digital services store"}
+              </p>
+              <h1>
+                {isAr
+                  ? "خدمات المتاجر الإلكترونية، بسعر ومدة معلنين."
+                  : locale === "fr"
+                    ? "Services e-commerce, prix et délais affichés."
+                    : "E-commerce services, with the price and the timeline published."}
+              </h1>
+              <p className="store-lead">
+                {isAr
+                  ? "كل خدمة هنا معروضة بنطاق عملها وسعرها ومدة تنفيذها قبل أن تطلب — لا عروض مبهمة ولا تسعير بعد المكالمة."
+                  : locale === "fr"
+                    ? "Chaque prestation affiche son périmètre, son prix et son délai avant la commande — sans devis opaque."
+                    : "Every service lists its scope, price and delivery window before you order — no opaque quotes, no pricing after the call."}
+              </p>
+              <a href="#products" className="store-hero-cta">
+                {isAr ? "تصفح الخدمات" : locale === "fr" ? "Voir les prestations" : "Browse services"}
+                <span aria-hidden>{isAr ? "←" : "→"}</span>
+              </a>
             </div>
 
-            {/* Marquee Container */}
-            <div
-              style={{
-                position: "relative",
-                padding: "24px 0",
-                borderRadius: "24px",
-                border: "1px solid rgba(240,177,0,0.15)",
-                background: "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%)",
-                backdropFilter: "blur(12px)",
-                overflow: "hidden",
-              }}
-            >
-              {/* Gradient fade edges */}
-              {(["left", "right"] as const).map((side) => (
-                <div
-                  key={side}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    bottom: 0,
-                    [side]: 0,
-                    width: "140px",
-                    background: `linear-gradient(to ${side === "left" ? "right" : "left"}, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 30%, transparent 100%)`,
-                    zIndex: 3,
-                    pointerEvents: "none",
-                  }}
-                />
+            <dl className="store-facts">
+              {[
+                {
+                  v: String(PRODUCTS.length),
+                  l: isAr ? "خدمة معروضة بسعر ثابت" : locale === "fr" ? "prestations à prix fixe" : "services at a fixed price",
+                },
+                {
+                  v: `${Math.min(...PRODUCTS.map((x) => x.price))}`,
+                  l: isAr ? "ر.س نقطة البداية" : locale === "fr" ? "SAR prix d’entrée" : "SAR entry price",
+                },
+                {
+                  v: `${Math.min(...PRODUCTS.map((x) => x.deliveryDays))}–${Math.max(...PRODUCTS.map((x) => x.deliveryDays))}`,
+                  l: isAr ? "يوم مدى التسليم" : locale === "fr" ? "jours de délai" : "day delivery range",
+                },
+                {
+                  v: "15%",
+                  l: isAr ? "ضريبة مشمولة في السعر" : locale === "fr" ? "TVA incluse" : "VAT included in price",
+                },
+              ].map((f) => (
+                <div key={f.l}>
+                  <dt>{f.v}</dt>
+                  <dd>{f.l}</dd>
+                </div>
               ))}
+            </dl>
+          </div>
+        </div>
+      </section>
 
-              {/* Row 1 — Primary direction */}
-              <div style={{ overflow: "hidden", marginBottom: "14px" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "20px",
-                    width: "max-content",
-                    animation: `${isAr ? "store-marquee-rtl" : "store-marquee-ltr"} 28s linear infinite`,
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.animationPlayState = "paused";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.animationPlayState = "running";
-                  }}
-                >
-                  {logosRow.map((logo, index) => (
-                    <div
-                      key={`row1-${logo.file}-${index}`}
-                      className={`store-logo-card ${logo.featured ? "store-featured-card" : ""}`}
-                      style={{
-                        height: logo.featured ? "100px" : "82px",
-                        minWidth: logo.featured ? "220px" : "160px",
-                        padding: logo.featured ? "14px 32px" : "12px 24px",
-                        borderRadius: "14px",
-                        border: logo.featured 
-                          ? "2px solid rgba(240,177,0,0.5)" 
-                          : "1px solid rgba(0,0,0,0.06)",
-                        background: logo.featured
-                          ? "linear-gradient(135deg, rgba(240,177,0,0.12) 0%, #FFFFFF 50%, rgba(240,177,0,0.08) 100%)"
-                          : "#FFFFFF",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        position: "relative",
-                        overflow: "hidden",
-                        boxShadow: logo.featured
-                          ? "0 14px 40px rgba(240,177,0,0.25), 0 0 0 1px rgba(240,177,0,0.3)"
-                          : "0 8px 20px rgba(0,0,0,0.04)",
-                        transform: logo.featured ? "scale(1.08)" : "none",
-                        animation: logo.featured ? "store-featured-glow 3.5s ease-in-out infinite" : "store-logo-float 6s ease-in-out infinite",
-                        animationDelay: logo.featured ? "0s" : `${index * 0.5}s`,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {/* Shine effect on featured */}
-                      {logo.featured && (
-                        <div style={{
-                          position: "absolute",
-                          top: 0,
-                          left: "-100%",
-                          width: "60%",
-                          height: "100%",
-                          background: "linear-gradient(90deg, transparent 0%, rgba(240,177,0,0.12) 50%, transparent 100%)",
-                          animation: "store-shine 4s ease-in-out infinite",
-                          pointerEvents: "none",
-                        }} />
-                      )}
-                      
-                      {/* Featured badge */}
-                      {logo.featured && (
-                        <div style={{
-                          position: "absolute",
-                          top: "6px",
-                          [isAr ? "left" : "right"]: "8px",
-                          background: "linear-gradient(135deg, #F0B100, #F3DFA0)",
-                          color: "#1A1A1A",
-                          fontSize: "7px",
-                          fontWeight: 800,
-                          padding: "2px 8px",
-                          borderRadius: "10px",
-                          fontFamily: "Space Mono, monospace",
-                          letterSpacing: "0.1em",
-                          textTransform: "uppercase",
-                          animation: "store-badge-pulse 2.5s ease-in-out infinite",
-                        }}>
-                          ★ {isAr ? "مميز" : "FEATURED"}
-                        </div>
-                      )}
-
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={`/store-logos/${logo.file}`}
-                        alt={isAr ? logo.nameAr : logo.nameEn}
-                        style={{
-                          height: `${logo.featured ? (logo.maxHeight ?? 46) + 10 : logo.maxHeight ?? 46}px`,
-                          width: "auto",
-                          maxWidth: logo.featured ? "200px" : "140px",
-                          objectFit: "contain",
-                          display: "block",
-                          filter: logo.featured ? "none" : "grayscale(0.15)",
-                          transition: "filter 0.4s ease",
-                        }}
-                        loading="lazy"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).style.display = "none";
-                          const parent = (e.currentTarget as HTMLImageElement).parentElement;
-                          if (parent) {
-                            const fallback = document.createElement("span");
-                            fallback.textContent = isAr ? logo.nameAr : logo.nameEn;
-                            fallback.style.cssText = "font-family: 'ThmanyahSans', 'Zain', sans-serif; font-size: 16px; font-weight: 700; color: rgba(26,26,26,0.7); white-space: nowrap;";
-                            parent.appendChild(fallback);
-                          }
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Row 2 — Reverse direction, slower */}
-              <div style={{ overflow: "hidden" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "20px",
-                    width: "max-content",
-                    animation: `${isAr ? "store-marquee-rtl-slow" : "store-marquee-ltr-slow"} 35s linear infinite`,
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.animationPlayState = "paused";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.animationPlayState = "running";
-                  }}
-                >
-                  {[...logosRow].reverse().map((logo, index) => (
-                    <div
-                      key={`row2-${logo.file}-${index}`}
-                      className={`store-logo-card ${logo.featured ? "store-featured-card" : ""}`}
-                      style={{
-                        height: logo.featured ? "100px" : "82px",
-                        minWidth: logo.featured ? "220px" : "160px",
-                        padding: logo.featured ? "14px 32px" : "12px 24px",
-                        borderRadius: "14px",
-                        border: logo.featured 
-                          ? "2px solid rgba(240,177,0,0.5)" 
-                          : "1px solid rgba(0,0,0,0.06)",
-                        background: logo.featured
-                          ? "linear-gradient(135deg, rgba(240,177,0,0.12) 0%, #FFFFFF 50%, rgba(240,177,0,0.08) 100%)"
-                          : "#FFFFFF",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        position: "relative",
-                        overflow: "hidden",
-                        boxShadow: logo.featured
-                          ? "0 14px 40px rgba(240,177,0,0.25), 0 0 0 1px rgba(240,177,0,0.3)"
-                          : "0 8px 20px rgba(0,0,0,0.04)",
-                        transform: logo.featured ? "scale(1.08)" : "none",
-                        animation: logo.featured ? "store-featured-glow 3.5s ease-in-out infinite" : "store-logo-float 6s ease-in-out infinite",
-                        animationDelay: logo.featured ? "0s" : `${index * 0.7}s`,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {/* Shine effect on featured */}
-                      {logo.featured && (
-                        <div style={{
-                          position: "absolute",
-                          top: 0,
-                          left: "-100%",
-                          width: "60%",
-                          height: "100%",
-                          background: "linear-gradient(90deg, transparent 0%, rgba(240,177,0,0.12) 50%, transparent 100%)",
-                          animation: "store-shine 4s ease-in-out infinite",
-                          animationDelay: "2s",
-                          pointerEvents: "none",
-                        }} />
-                      )}
-                      
-                      {/* Featured badge */}
-                      {logo.featured && (
-                        <div style={{
-                          position: "absolute",
-                          top: "6px",
-                          [isAr ? "left" : "right"]: "8px",
-                          background: "linear-gradient(135deg, #F0B100, #F3DFA0)",
-                          color: "#1A1A1A",
-                          fontSize: "7px",
-                          fontWeight: 800,
-                          padding: "2px 8px",
-                          borderRadius: "10px",
-                          fontFamily: "Space Mono, monospace",
-                          letterSpacing: "0.1em",
-                          textTransform: "uppercase",
-                          animation: "store-badge-pulse 2.5s ease-in-out infinite",
-                        }}>
-                          ★ {isAr ? "مميز" : "FEATURED"}
-                        </div>
-                      )}
-
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={`/store-logos/${logo.file}`}
-                        alt={isAr ? logo.nameAr : logo.nameEn}
-                        style={{
-                          height: `${logo.featured ? (logo.maxHeight ?? 46) + 10 : logo.maxHeight ?? 46}px`,
-                          width: "auto",
-                          maxWidth: logo.featured ? "200px" : "140px",
-                          objectFit: "contain",
-                          display: "block",
-                          filter: logo.featured ? "none" : "grayscale(0.15)",
-                          transition: "filter 0.4s ease",
-                        }}
-                        loading="lazy"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).style.display = "none";
-                          const parent = (e.currentTarget as HTMLImageElement).parentElement;
-                          if (parent) {
-                            const fallback = document.createElement("span");
-                            fallback.textContent = isAr ? logo.nameAr : logo.nameEn;
-                            fallback.style.cssText = "font-family: 'ThmanyahSans', 'Zain', sans-serif; font-size: 16px; font-weight: 700; color: rgba(26,26,26,0.7); white-space: nowrap;";
-                            parent.appendChild(fallback);
-                          }
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Client count indicator */}
-            <div style={{
-              textAlign: "center",
-              marginTop: "16px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "8px",
-            }}>
-              <div style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "50%",
-                background: "#22C55E",
-                animation: "store-badge-pulse 2s ease-in-out infinite",
-              }} />
-              <span style={{
-                fontFamily: "Space Mono, monospace",
-                fontSize: "11px",
-                color: "rgba(26,26,26,0.5)",
-                letterSpacing: "0.05em",
-              }}>
-                {isAr ? "وأكثر من ١٠٠ عميل آخر..." : "And 100+ more clients..."}
-              </span>
-            </div>
+      {/* Client strip — only the logos whose files actually exist. The old
+          marquee looped six entries, three of which pointed at images that
+          were never added and fell back to plain text mid-scroll. */}
+      <section className="store-clients" data-own-spacing>
+        <div className="store-shell">
+          <p>{isAr ? "من عملائنا" : locale === "fr" ? "Nos clients" : "Selected clients"}</p>
+          <div>
+            {STORE_LOGOS.map((logo) => (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                key={logo.file}
+                src={`/store-logos/${logo.file}`}
+                alt={isAr ? logo.nameAr : logo.nameEn}
+                loading="lazy"
+                style={{ maxHeight: `${logo.maxHeight ?? 48}px` }}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -1027,9 +673,9 @@ export default function StoreContent() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
           <div style={{ display: "flex", gap: "32px", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}>
             {(isAr ? [
-              "ضمان رضا 100%", "دفع بعد الرضا", "تسليم في الموعد", "دعم واتساب 24/7", "مراجعات غير محدودة"
+              "سعر ومدة معلنان قبل الطلب", "مراجعتان مجانيتان", "تسليم في الموعد المتفق", "ضمان تقني 30 يومًا بعد الإطلاق", "الضريبة مشمولة"
             ] : [
-              "100% Satisfaction", "Pay After Approval", "On-Time Delivery", "24/7 Support", "Unlimited Revisions"
+              "Price and timeline published", "Two free revisions", "Delivered on the agreed date", "30-day technical warranty", "VAT included"
             ]).map((item) => (
               <div key={item} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <span style={{ color: "#8A6D00", fontSize: "14px" }}>✓</span>
@@ -1302,59 +948,47 @@ export default function StoreContent() {
         </div>
       </section>
 
-      {/* ═══ FINAL CTA ═══════════════════════════════════════ */}
-      <section style={{
-        background: "linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 100%)",
-        padding: "100px 0",
-        borderTop: "1px solid rgba(0,0,0,0.08)",
-        textAlign: "center",
-      }}>
-        <div style={{ maxWidth: "700px", margin: "0 auto", padding: "0 24px" }}>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 900, color: "#1A1A1A", marginBottom: "20px", lineHeight: 1.2 }}>
-            {isAr ? "جاهز تبدأ مشروعك" : "Ready To Start"}
-            <br />
-            <span style={{ color: "#8A6D00" }}>{isAr ? "بأسعار تنافسية؟" : "With Competitive Prices?"}</span>
-          </h2>
-          <p style={{ color: "rgba(26,26,26,0.65)", fontSize: "16px", marginBottom: "40px" }}>
-            {isAr ? "تواصل معنا الآن واحصل على استشارة مجانية" : "Contact us now for a free consultation"}
-          </p>
-          <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+      {/* ═══ FINAL CTA ═══════════════════════════════════════
+          Replaced a generic "جاهز تبدأ مشروعك بأسعار تنافسية؟ / تواصل معنا
+          الآن" block. A closing CTA on a catalogue page should tell the
+          reader what happens after they write, not repeat the offer. */}
+      <section className="store-close" data-own-spacing>
+        <div className="store-shell">
+          <div>
+            <p className="store-close-kicker">
+              {isAr ? "الخطوة التالية" : locale === "fr" ? "Étape suivante" : "Next step"}
+            </p>
+            <h2>
+              {isAr
+                ? "لست متأكدًا أي خدمة تناسبك؟"
+                : locale === "fr"
+                  ? "Vous hésitez sur la prestation ?"
+                  : "Not sure which service fits?"}
+            </h2>
+            <p className="store-close-body">
+              {isAr
+                ? "أرسل لنا رابط متجرك ونبذة قصيرة عن وضعك الحالي. نرد عادة خلال أقل من ساعة بترتيب مقترح للأولويات — دون التزام بالشراء."
+                : locale === "fr"
+                  ? "Envoyez le lien de votre boutique et un court descriptif. Nous répondons généralement en moins d’une heure avec un ordre de priorités — sans engagement."
+                  : "Send us your store link and a short note on where things stand. We usually reply within an hour with a suggested order of priorities — no obligation to buy."}
+            </p>
+          </div>
+          <div className="store-close-actions">
             <a
-              href={getWhatsAppLink(isAr ? "مرحباً، أريد استشارة مجانية" : "Hello, I want a free consultation")}
+              href={getWhatsAppLink(
+                isAr
+                  ? "مرحبًا، أريد ترتيب أولويات متجري. رابط المتجر: "
+                  : "Hello, I would like help prioritising work on my store. Store URL: ",
+              )}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "16px 32px",
-                background: "#F0B100",
-                color: "#1A1A1A",
-                borderRadius: "10px",
-                fontWeight: 700,
-                fontSize: "17px",
-                textDecoration: "none",
-              }}
+              className="store-close-primary"
             >
-              {isAr ? "استشارة مجانية" : "Free Consultation"}
+              {isAr ? "أرسل رابط متجرك" : locale === "fr" ? "Envoyer votre lien" : "Send your store link"}
+              <span aria-hidden>{isAr ? "←" : "→"}</span>
             </a>
-            <a
-              href="#products"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "16px 32px",
-                background: "#FFFFFF",
-                border: "1px solid rgba(240,177,0,0.4)",
-                color: "#8A6D00",
-                borderRadius: "10px",
-                fontWeight: 700,
-                fontSize: "17px",
-                textDecoration: "none",
-              }}
-            >
-              {isAr ? "تصفح الخدمات" : "Browse Services"}
+            <a href="#products" className="store-close-secondary">
+              {isAr ? "تصفح الخدمات" : locale === "fr" ? "Voir les prestations" : "Browse services"}
             </a>
           </div>
         </div>
