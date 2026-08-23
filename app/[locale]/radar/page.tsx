@@ -4,11 +4,37 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import RadarAuth from "@/components/radar/RadarAuth";
 import type { Metadata } from "next";
+import { SITE_URL, hreflangMap } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "رادار — محلل المتجر الذكي | مجاني",
-  description: "حلل منتجاتك، قارن أسعار المنافسين في السوق السعودي، واعرف هامش ربحك الحقيقي.",
-};
+/* Was a static Arabic title and description served to /en and /fr as well,
+   with no canonical and no hreflang. */
+const seo = {
+  ar: {
+    title: "رادار — محلل المتجر الذكي | مجاني",
+    description: "حلل منتجاتك، قارن أسعار المنافسين في السوق السعودي، واعرف هامش ربحك الحقيقي.",
+  },
+  en: {
+    title: "Radar — Free Store & Competitor Analyzer",
+    description: "Analyze your products, compare competitor pricing in the Saudi market, and see your real profit margin.",
+  },
+  fr: {
+    title: "Radar — Analyseur de boutique et de concurrence",
+    description: "Analysez vos produits, comparez les prix des concurrents sur le marché saoudien et calculez votre marge réelle.",
+  },
+} as const;
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const lang = (locale in seo ? locale : "en") as keyof typeof seo;
+  const data = seo[lang];
+  const canonical = `${SITE_URL}/${lang}/radar`;
+  return {
+    title: data.title,
+    description: data.description,
+    alternates: { canonical, languages: hreflangMap("/radar") },
+    openGraph: { title: data.title, description: data.description, url: canonical, siteName: "AM Design", type: "website" },
+  };
+}
 
 const FEATURES = [
   {

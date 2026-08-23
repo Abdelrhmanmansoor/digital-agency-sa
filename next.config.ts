@@ -1,38 +1,42 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import path from "node:path";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
+/* These headers only ever shipped if this file is the config Next actually
+   loads. A second `next.config.mjs` used to sit beside it and win the
+   resolution order, so every header below was silently dropped in production. */
 const securityHeaders = [
-  // Prevent clickjacking
   { key: "X-Frame-Options", value: "DENY" },
-  // Prevent MIME-type sniffing
   { key: "X-Content-Type-Options", value: "nosniff" },
-  // Control referrer info
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  // Disable browser features not needed
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
-  // Force HTTPS (1 year, including subdomains)
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
-  // XSS Protection (legacy browsers)
-  { key: "X-XSS-Protection", value: "1; mode=block" },
-  // DNS prefetch control
   { key: "X-DNS-Prefetch-Control", value: "on" },
 ];
 
 const nextConfig: NextConfig = {
+  /* A stray lockfile in the user's home directory made Next infer the wrong
+     workspace root and trace the whole home folder. Pin it to this project. */
+  outputFileTracingRoot: path.join(process.cwd()),
   images: {
-    domains: ["images.unsplash.com", "cdn.salla.sa", "via.placeholder.com", "media.zid.store"],
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "cdn.salla.sa" },
+      { protocol: "https", hostname: "media.zid.store" },
+      { protocol: "https", hostname: "cdn.simpleicons.org" },
+    ],
     formats: ["image/webp", "image/avif"],
-  },
-  experimental: {
-    optimizePackageImports: ["gsap", "framer-motion"],
   },
   async headers() {
     return [
+      { source: "/(.*)", headers: securityHeaders },
+      /* Hashed font files never change under the same name — cache hard so a
+         repeat visit never re-downloads five woff2 faces. */
       {
-        source: "/(.*)",
-        headers: securityHeaders,
+        source: "/fonts/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
     ];
   },

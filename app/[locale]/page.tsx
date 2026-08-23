@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import HomeExperience from "@/components/home/HomeExperience";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://tf1one.com";
+import { HOME_FAQ } from "@/lib/home-faq";
+import { SITE_URL } from "@/lib/site";
 
 const seo = {
   ar: {
@@ -36,13 +36,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const lang = (locale in seo ? locale : "en") as keyof typeof seo;
+  const faq = HOME_FAQ[lang] ?? HOME_FAQ.en;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       { "@type": "ProfessionalService", "@id": `${SITE_URL}/#agency`, name: "AM Design", url: SITE_URL, image: `${SITE_URL}/og.png`, telephone: "+201007835547", email: "mansoor77soliman@gmail.com", priceRange: "$$", areaServed: { "@type": "Country", name: "Saudi Arabia" }, sameAs: ["https://www.instagram.com/amdesign.ksa/", "https://x.com/am_designing", "https://www.tiktok.com/@amdesigne.sa"] },
       { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: "AM Design", publisher: { "@id": `${SITE_URL}/#agency` }, inLanguage: ["ar", "en", "fr"] },
-      { "@type": "ItemList", name: "AM Design Services", itemListElement: ["Salla and Zid Store Design", "Brand Identity Design", "E-commerce SEO and Conversion Optimization", "Digital Marketing Campaigns"].map((name, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "Service", name, provider: { "@id": `${SITE_URL}/#agency` }, areaServed: { "@type": "Country", name: "Saudi Arabia" } } })) },
+      /* The service list now mirrors the eight tracks the page actually
+         renders; it used to name four, half of which were not on the page. */
+      { "@type": "ItemList", name: "AM Design Services", itemListElement: ["Salla and Zid Store Design & Development", "Brand Identity and Creative Design", "E-commerce SEO and Conversion Optimization", "Digital Marketing and Campaign Management", "Custom Apps and Dashboards", "Automation and Systems Integration", "AI Product Photography and Content", "Exhibition Booth Design"].map((name, index) => ({ "@type": "ListItem", position: index + 1, item: { "@type": "Service", name, provider: { "@id": `${SITE_URL}/#agency` }, areaServed: { "@type": "Country", name: "Saudi Arabia" } } })) },
+      /* The FAQ section was rendered but never described, so it could never
+         qualify for an FAQ rich result. */
+      { "@type": "FAQPage", "@id": `${SITE_URL}/${lang}#faq`, inLanguage: lang, mainEntity: faq.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
+      { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "AM Design", item: `${SITE_URL}/${lang}` }] },
     ],
   };
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><HomeExperience /></>;

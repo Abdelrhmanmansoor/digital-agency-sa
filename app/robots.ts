@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://tf1one.com";
+import { SITE_URL } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,9 +7,21 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        /* Everything below is either private, transactional or a
+           per-client document. None of it belongs in an index, and the
+           previous blanket allow left all of it crawlable. */
+        disallow: [
+          "/admin",
+          "/api/",
+          "/*/dashboard",
+          "/*/radar/dashboard",
+          "/*/proposal",
+          "/*/store/cart",
+          "/*/store/checkout",
+        ],
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
-    host: BASE_URL,
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

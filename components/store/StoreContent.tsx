@@ -16,6 +16,7 @@ import {
   type Product,
   type BadgeType
 } from "@/lib/store-data";
+import { STORE_FAQ } from "@/lib/store-faq";
 
 /* ─── Store Logos (Hero) ─────────────────────────────────── */
 type StoreLogo = {
@@ -1295,18 +1296,8 @@ export default function StoreContent() {
               {isAr ? "أسئلة شائعة" : "FAQ"}
             </h2>
           </div>
-          {(isAr ? [
-            { q: "كيف أطلب الخدمة؟", a: "اضغط على 'اشتري الآن' أو 'التفاصيل' في أي خدمة، وسيتواصل معك فريقنا فوراً." },
-            { q: "هل الجودة مضمونة؟", a: "نعم. نستطيع تقديم هذه الأسعار لأن تكاليفنا التشغيلية منخفضة مع الحفاظ على أعلى معايير الجودة." },
-            { q: "هل يمكنني رؤية العمل قبل الدفع؟", a: "بالطبع. نعمل على مرحلة البداية ونشاركك المخرجات الأولية قبل استكمال الدفع." },
-            { q: "كم يستغرق التسليم؟", a: "يختلف حسب الخدمة. تصميم الثيم 7 أيام، المتجر الكامل 10 أيام، الهوية البصرية 5 أيام." },
-          ] : [
-            { q: "How do I order?", a: "Click 'Buy Now' or 'Details' on any service, and our team will contact you immediately." },
-            { q: "Is quality guaranteed?", a: "Yes. We offer these prices because our operational costs are low while maintaining the highest quality standards." },
-            { q: "Can I see the work before paying?", a: "Of course. We work on the initial phase and share the outputs before completing payment." },
-            { q: "How long is delivery?", a: "Varies by service. Theme design 7 days, complete store 10 days, brand identity 5 days." },
-          ]).map((item, i) => (
-            <FAQItem key={i} question={item.q} answer={item.a} />
+          {STORE_FAQ[(isAr ? "ar" : locale === "fr" ? "fr" : "en") as "ar" | "en" | "fr"].map((item) => (
+            <FAQItem key={item.q} question={item.q} answer={item.a} />
           ))}
         </div>
       </section>

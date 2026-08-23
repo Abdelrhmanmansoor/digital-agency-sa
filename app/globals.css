@@ -162,8 +162,33 @@ code, pre, .font-mono, [style*="Space Mono"] { overflow-wrap: break-word; word-b
 
 h1,h2,h3,h4,h5,h6 { font-family:var(--font-arabic-display); font-weight:700; line-height:1.2; color:var(--ink); }
 
-/* ===== FOCUS VISIBILITY (accessibility) ===== */
-:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; border-radius: 4px; }
+/* ===== FOCUS VISIBILITY (accessibility) =====
+   A lone yellow ring sits at roughly 1.9:1 against the white surfaces this
+   site is built on — under the 3:1 WCAG 2.2 focus-appearance floor and
+   effectively invisible. Pair an ink outline (readable on light surfaces)
+   with a yellow halo (readable on the dark ones) so the ring survives both. */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--yellow-glow);
+  border-radius: 4px;
+}
+
+/* ===== SKIP LINK ===== */
+.skip-link {
+  position: absolute;
+  inset-inline-start: 16px;
+  top: -100px;
+  z-index: 2000;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 0 0 10px 10px;
+  text-decoration: none;
+  transition: top 0.18s ease;
+}
+.skip-link:focus-visible { top: 0; }
 
 /* ===== SELECTION ===== */
 ::selection { background:var(--yellow); color:#111111; }
@@ -551,7 +576,12 @@ h1,h2,h3,h4,h5,h6 { font-family:var(--font-arabic-display); font-weight:700; lin
   .pricing-card.featured { transform:scale(1); }
   .service-row-content { padding-bottom:24px; }
   .fullscreen-menu { flex-direction:column !important; overflow-y:auto; }
-  section { padding-top:64px !important; padding-bottom:64px !important; }
+  /* Blanket mobile padding for the pages that style their sections inline
+     with desktop values. It carries `!important`, so it also used to beat the
+     homepage CSS module and every inline `paddingBlock` on the site — any
+     section that deliberately sets its own rhythm now opts out with
+     `data-own-spacing`. */
+  section:not([data-own-spacing]) { padding-top:64px !important; padding-bottom:64px !important; }
   .section-px { padding-left:16px !important; padding-right:16px !important; }
   .modal-content { border-radius:14px 14px 0 0 !important; max-height:85vh; }
   .modal-overlay { align-items:flex-end !important; padding:0 !important; }

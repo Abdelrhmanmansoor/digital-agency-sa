@@ -4,172 +4,155 @@ import Footer from "@/components/layout/Footer";
 import StoreContent from "@/components/store/StoreContent";
 import FloatingActions from "@/components/home/FloatingActions";
 import ScrollProgress from "@/components/layout/ScrollProgress";
+import { PRODUCTS } from "@/lib/store-data";
+import { STORE_FAQ } from "@/lib/store-faq";
+import { SITE_URL, hreflangMap } from "@/lib/site";
 
 /* ─── SEO Metadata ───────────────────────────────────────── */
+/* Rewritten: the previous copy sold on "رخيص / cheap" and an unverifiable
+   "70% cheaper than competitors", which contradicts the positioning the rest
+   of the site builds and is a claim nothing on the site substantiates. The
+   price anchor and the phased-payment promise are real and stay. */
+const seo = {
+  ar: {
+    title: "متجر الخدمات الرقمية | باقات تصميم متاجر سلة وزد بأسعار معلنة",
+    description:
+      "خدمات المتاجر الإلكترونية بسعر ومدة معلنين: ثيم سلة مخصص من 399 ر.س، تجهيز متجر كامل من 1,099 ر.س، هوية بصرية، سيو، تصوير منتجات وتسويق.",
+    listName: "متجر الخدمات الرقمية",
+    listDescription: "باقات تصميم وتطوير وتسويق المتاجر الإلكترونية بأسعار ومدد معلنة.",
+  },
+  en: {
+    title: "Digital Services Store | Salla & Zid Packages with Public Pricing",
+    description:
+      "E-commerce services with published prices and timelines: custom Salla theme from 399 SAR, full store setup from 1,099 SAR, brand identity, SEO, product photography and marketing.",
+    listName: "Digital Services Store",
+    listDescription: "E-commerce design, development and marketing packages with published prices and timelines.",
+  },
+  fr: {
+    title: "Boutique de services | Offres Salla & Zid à prix affichés",
+    description:
+      "Services e-commerce à prix et délais affichés : thème Salla sur mesure dès 399 SAR, boutique complète dès 1 099 SAR, identité visuelle, SEO et marketing.",
+    listName: "Boutique de services numériques",
+    listDescription: "Offres de design, développement et marketing e-commerce à prix et délais affichés.",
+  },
+} as const;
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-
-  const titleAr =
-    "متجر الخدمات الرقمية | تصميم متجر سلة رخيص — أسعار لا تُقاوَم";
-  const descAr =
-    "خدمات تصميم متاجر سلة بأسعار تبدأ من 1,499 ر.س — أرخص من المنافسين بـ 70%. ثيمات سلة مخصصة، هوية بصرية احترافية، تسويق رقمي، SEO. ضمان رضا 100% + استرداد 7 أيام.";
-
-  const titleEn =
-    "Digital Services Store | Salla Store Design — Unbeatable Prices";
-  const descEn =
-    "Professional Salla store design from 1,499 SAR — 70% cheaper than competitors. Custom themes, brand identity, digital marketing, SEO. 100% satisfaction guarantee.";
+  const lang = (locale in seo ? locale : "en") as keyof typeof seo;
+  const data = seo[lang];
+  const canonical = `${SITE_URL}/${lang}/store`;
 
   return {
-    title: locale === "ar" ? titleAr : titleEn,
-    description: locale === "ar" ? descAr : descEn,
-    keywords: [
-      "تصميم متجر سلة رخيص",
-      "ثيم سلة مخصص بأسعار مناسبة",
-      "أفضل وكالة تصميم متاجر سلة",
-      "تصميم سلة الرياض جدة",
-      "متجر سلة جاهز بسعر منافس",
-      "تصميم ثيم سلة احترافي",
-      "شركة تصميم متاجر إلكترونية",
-      "خدمات رقمية بأسعار منافسة",
-      "هوية بصرية رخيصة",
-      "إدارة سوشيال ميديا بأسعار مناسبة",
-      "تصميم موقع سلة",
-      "وكالة تسويق رقمي",
-      "Salla store design cheap",
-      "affordable digital marketing Saudi Arabia",
-      "تجهيز متجر سلة كامل",
-      "سيو متجر الكتروني",
-      "تصوير منتجات بالذكاء الاصطناعي",
-      "ربط تابي وتمارا",
-      "صفحة هبوط احترافية",
-      "أتمتة المتاجر الالكترونية",
-      "تحليل المنافسين",
-      "برمجة تطبيقات سعودية",
-      "إدارة حملات إعلانية سناب تيك توك",
-      "خبير سيو سعودي",
-    ],
-    alternates: {
-      canonical: `/${locale}/store`,
-      languages: { ar: "/ar/store", en: "/en/store", fr: "/fr/store" },
-    },
+    title: data.title,
+    description: data.description,
+    /* Trimmed from 24 near-duplicate phrases to the intents this page can
+       actually answer. */
+    keywords:
+      lang === "ar"
+        ? [
+            "باقات تصميم متجر سلة",
+            "أسعار تصميم متجر سلة",
+            "تصميم ثيم سلة مخصص",
+            "تجهيز متجر سلة كامل",
+            "تصميم متجر زد",
+            "سيو المتاجر الإلكترونية",
+            "تصميم هوية بصرية لمتجر إلكتروني",
+          ]
+        : [
+            "Salla store design packages",
+            "Salla store design pricing",
+            "custom Salla theme",
+            "Zid store setup",
+            "ecommerce SEO Saudi Arabia",
+            "ecommerce brand identity",
+          ],
+    alternates: { canonical, languages: hreflangMap("/store") },
     openGraph: {
-      title: locale === "ar" ? titleAr : titleEn,
-      description: locale === "ar" ? descAr : descEn,
-      url: `https://digital-agency-sa.vercel.app/${locale}/store`,
-      siteName: "تصميم متجر سلة احترافي",
-      locale: locale === "ar" ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
+      title: data.title,
+      description: data.description,
+      url: canonical,
+      /* Was a keyword phrase rather than the publisher's name. */
+      siteName: "AM Design",
+      locale: lang === "ar" ? "ar_SA" : lang === "fr" ? "fr_FR" : "en_US",
       type: "website",
     },
-    twitter: {
-      card: "summary_large_image",
-      title: locale === "ar" ? titleAr : titleEn,
-      description: locale === "ar" ? descAr : descEn,
-    },
+    twitter: { card: "summary_large_image", title: data.title, description: data.description },
   };
 }
 
-/* ─── JSON-LD Schemas ────────────────────────────────────── */
-const ITEM_LIST_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "متجر الخدمات الرقمية",
-  description: "خدمات تصميم متاجر سلة وتسويق رقمي بأسعار منافسة",
-  numberOfItems: 8,
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      item: {
-        "@type": "Service",
-        name: "تصميم ثيم سلة مخصص",
-        description: "ثيم سلة احترافي مصمم من الصفر بسعر 1,499 ر.س",
-        offers: {
-          "@type": "Offer",
-          price: "1499",
-          priceCurrency: "SAR",
-          availability: "https://schema.org/InStock",
-        },
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      item: {
-        "@type": "Service",
-        name: "إنشاء متجر سلة كامل",
-        description: "متجر سلة جاهز للبيع بسعر 1,999 ر.س",
-        offers: {
-          "@type": "Offer",
-          price: "1999",
-          priceCurrency: "SAR",
-          availability: "https://schema.org/InStock",
-        },
-      },
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      item: {
-        "@type": "Service",
-        name: "هوية بصرية احترافية",
-        description: "شعار وهوية بصرية كاملة بسعر 1,299 ر.س",
-        offers: {
-          "@type": "Offer",
-          price: "1299",
-          priceCurrency: "SAR",
-          availability: "https://schema.org/InStock",
-        },
-      },
-    },
-  ],
-};
+/* ─── JSON-LD ────────────────────────────────────────────────
+   Both graphs are now derived from the same data the page renders. The
+   ItemList used to declare `numberOfItems: 8` while listing three hand-typed
+   services, and the FAQPage asked questions the visible FAQ never showed —
+   markup that does not match the page is a structured-data policy breach. */
+function buildJsonLd(lang: keyof typeof seo, locale: string) {
+  const isAr = lang === "ar";
+  const data = seo[lang];
 
-const FAQ_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "كم يكلف تصميم متجر سلة؟",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "تبدأ أسعار تصميم متجر سلة من 1,499 ر.س للثيم المخصص، و1,999 ر.س للمتجر الكامل — أرخص من المنافسين بـ 70%.",
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ItemList",
+        "@id": `${SITE_URL}/${locale}/store#catalog`,
+        name: data.listName,
+        description: data.listDescription,
+        numberOfItems: PRODUCTS.length,
+        itemListElement: PRODUCTS.map((product, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Service",
+            name: isAr ? product.nameAr : product.nameEn,
+            description: isAr ? product.shortDescAr : product.shortDescEn,
+            url: `${SITE_URL}/${locale}/store/${product.slug}`,
+            provider: { "@type": "Organization", name: "AM Design", url: SITE_URL },
+            offers: {
+              "@type": "Offer",
+              price: String(product.price),
+              priceCurrency: "SAR",
+              availability: product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+              url: `${SITE_URL}/${locale}/store/${product.slug}`,
+            },
+          },
+        })),
       },
-    },
-    {
-      "@type": "Question",
-      name: "هل الجودة مضمونة؟",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "نعم. نضمن رضاك الكامل أو نرجع لك المبلغ خلال 7 أيام. لدينا أكثر من 500 عميل راضٍ.",
+      {
+        "@type": "FAQPage",
+        "@id": `${SITE_URL}/${locale}/store#faq`,
+        inLanguage: lang,
+        mainEntity: STORE_FAQ[lang].map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
       },
-    },
-    {
-      "@type": "Question",
-      name: "كم يستغرق التسليم؟",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "تصميم الثيم 7 أيام، المتجر الكامل 10 أيام، الهوية البصرية 5 أيام. نلتزم بالمواعيد أو نعوضك.",
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: isAr ? "الرئيسية" : "Home", item: `${SITE_URL}/${locale}` },
+          { "@type": "ListItem", position: 2, name: data.listName, item: `${SITE_URL}/${locale}/store` },
+        ],
       },
-    },
-  ],
-};
+    ],
+  };
+}
 
 /* ─── Page Component ─────────────────────────────────────── */
-export default function StorePage() {
+export default async function StorePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const lang = (locale in seo ? locale : "en") as keyof typeof seo;
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ITEM_LIST_SCHEMA) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang, locale)) }}
       />
       <ScrollProgress />
       <Header />

@@ -3,13 +3,15 @@ import { defineRouting } from "next-intl/routing";
 export const routing = defineRouting({
   locales: ["ar", "en", "fr"],
   defaultLocale: "ar",
+  /* Only routes that exist. `/portfolio`, `/contact`, `/about` and
+     `/pricing` were declared here but no such pages were ever built, so any
+     typed navigation to them produced a 404. */
   pathnames: {
     "/": "/",
-    "/blog": { ar: "/blog", en: "/blog", fr: "/blog" },
-    "/portfolio": { ar: "/portfolio", en: "/portfolio", fr: "/portfolio" },
-    "/tools": { ar: "/tools", en: "/tools", fr: "/tools" },
-    "/contact": { ar: "/contact", en: "/contact", fr: "/contact" },
-    "/about": { ar: "/about", en: "/about", fr: "/about" },
-    "/pricing": { ar: "/pricing", en: "/pricing", fr: "/pricing" },
+    "/blog": "/blog",
+    "/store": "/store",
+    "/sidra-theme": "/sidra-theme",
+    "/radar": "/radar",
+    "/policy": "/policy",
   },
 });

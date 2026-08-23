@@ -1257,6 +1257,15 @@
     font-size: 38px;
   }
 }
+/* The reveal animation starts at opacity 0 and is switched on by an
+   IntersectionObserver. If scripting is unavailable the whole page would stay
+   blank, so opt out when there is no script to run. */
+@media (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .site * {
     scroll-behavior: auto !important;

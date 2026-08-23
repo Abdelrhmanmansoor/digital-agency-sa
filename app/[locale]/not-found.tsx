@@ -1,53 +1,133 @@
+"use client";
+
 import Link from "next/link";
+import { useLocale } from "next-intl";
+
+/* Previously this was a hard-coded Arabic dead end on a near-black
+   background — off-identity, wrong language for /en and /fr, and offering a
+   single link back to the homepage. */
+const copy = {
+  ar: {
+    kicker: "خطأ 404",
+    title: "الصفحة غير موجودة",
+    body: "الرابط الذي فتحته قد يكون قديمًا أو تغيّر. جرّب أحد المسارات التالية:",
+    home: "الصفحة الرئيسية",
+    links: [
+      ["الخدمات", "#services"],
+      ["ثيم سِدرة", "/sidra-theme"],
+      ["متجر الخدمات", "/store"],
+      ["المدونة", "/blog"],
+    ],
+  },
+  en: {
+    kicker: "Error 404",
+    title: "This page doesn’t exist",
+    body: "The link you opened may be outdated or have changed. Try one of these instead:",
+    home: "Homepage",
+    links: [
+      ["Services", "#services"],
+      ["SIDRA theme", "/sidra-theme"],
+      ["Store", "/store"],
+      ["Blog", "/blog"],
+    ],
+  },
+  fr: {
+    kicker: "Erreur 404",
+    title: "Cette page n’existe pas",
+    body: "Le lien que vous avez ouvert est peut-être obsolète. Essayez plutôt :",
+    home: "Accueil",
+    links: [
+      ["Services", "#services"],
+      ["Thème SIDRA", "/sidra-theme"],
+      ["Boutique", "/store"],
+      ["Blog", "/blog"],
+    ],
+  },
+} as const;
 
 export default function NotFound() {
+  const locale = useLocale();
+  const t = copy[locale as keyof typeof copy] ?? copy.en;
+
   return (
     <div
       style={{
-        minHeight: "100vh",
-        background: "#0A0A0A",
+        minHeight: "70vh",
+        background: "#FFFFFF",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        padding: "40px",
+        padding: "72px 24px",
       }}
     >
-      <div
+      <p
         style={{
           fontFamily: "Space Mono, monospace",
-          fontSize: "120px",
-          fontWeight: 700,
-          color: "rgba(240,177,0,0.2)",
-          lineHeight: 1,
-          marginBottom: "24px",
+          fontSize: "13px",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          color: "#8A6D00",
+          marginBottom: "18px",
         }}
       >
-        404
-      </div>
+        {t.kicker}
+      </p>
       <h1
         style={{
-          fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
-          fontSize: "32px",
+          fontFamily: "var(--font-display)",
+          fontSize: "clamp(30px, 5vw, 48px)",
           fontWeight: 700,
-          color: "#FAFAF7",
-          marginBottom: "16px",
+          color: "#111111",
+          marginBottom: "14px",
         }}
       >
-        الصفحة غير موجودة
+        {t.title}
       </h1>
-      <p style={{ color: "#8C8C7A", fontSize: "16px", marginBottom: "32px" }}>
-        عذراً، الصفحة التي تبحث عنها غير موجودة
+      <p style={{ color: "#6B6B6B", fontSize: "16px", lineHeight: 1.85, maxWidth: "46ch", marginBottom: "30px" }}>
+        {t.body}
       </p>
-      <Link href="/ar">
-        <button
-          className="btn-primary"
-          style={{ padding: "16px 40px" }}
-        >
-          <span>العودة للرئيسية</span>
-        </button>
+
+      <Link
+        href={`/${locale}`}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          minHeight: "48px",
+          padding: "0 30px",
+          background: "#F0B100",
+          color: "#111111",
+          fontWeight: 800,
+          borderRadius: "10px",
+          textDecoration: "none",
+        }}
+      >
+        {t.home}
       </Link>
+
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "center", marginTop: "26px" }}>
+        {t.links.map(([label, href]) => (
+          <Link
+            key={href}
+            href={href.startsWith("#") ? `/${locale}${href}` : `/${locale}${href}`}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              minHeight: "44px",
+              padding: "0 18px",
+              border: "1px solid #EAEAE6",
+              borderRadius: "999px",
+              color: "#111111",
+              fontSize: "14px",
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
+          >
+            {label}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

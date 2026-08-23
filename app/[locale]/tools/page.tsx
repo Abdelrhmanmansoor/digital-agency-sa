@@ -1,4 +1,9 @@
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
+
+/* /tools was folded into /radar. A temporary redirect kept the old URL in the
+   index and split whatever authority it had; 308 consolidates it. */
+export const metadata: Metadata = { robots: { index: false, follow: true } };
 
 export default async function ToolsPage({
   params,
@@ -6,5 +11,5 @@ export default async function ToolsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  redirect(`/${locale}/radar`);
+  permanentRedirect(`/${locale}/radar`);
 }

@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import FloatingActions from "@/components/home/FloatingActions";
 import ProductDetailClient from "./ProductDetailClient";
 import { getProductBySlug, PRODUCTS } from "@/lib/store-data";
+import { SITE_URL, hreflangMap } from "@/lib/site";
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>;
@@ -26,22 +27,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = getProductBySlug(slug);
 
   if (!product) {
-    return { title: "Not Found" };
+    return { title: "Not Found", robots: { index: false, follow: false } };
   }
 
   const isAr = locale === "ar";
   const title = isAr ? product.nameAr : product.nameEn;
   const description = isAr ? product.shortDescAr : product.shortDescEn;
+  /* The suffix was a hard-coded Arabic string appended to English and French
+     titles too, and the page carried neither canonical nor hreflang. */
+  const suffix = isAr ? "متجر الخدمات الرقمية" : locale === "fr" ? "Boutique de services" : "Digital Services Store";
+  const canonical = `${SITE_URL}/${locale}/store/${product.slug}`;
 
   return {
-    title: `${title} | متجر الخدمات الرقمية`,
+    title: `${title} | ${suffix}`,
     description,
+    alternates: {
+      canonical,
+      languages: hreflangMap(`/store/${product.slug}`),
+    },
     openGraph: {
       title,
       description,
+      url: canonical,
+      siteName: "AM Design",
       type: "website",
-      locale: isAr ? "ar_SA" : "en_US",
+      locale: isAr ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
     },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
@@ -76,14 +88,14 @@ export default async function ProductPage({ params }: Props) {
           availability: product.inStock
             ? "https://schema.org/InStock"
             : "https://schema.org/OutOfStock",
-          url: `https://tf1one.com/${locale}/store/${product.slug}`,
+          url: `${SITE_URL}/${locale}/store/${product.slug}`,
         },
       },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: isAr ? "الرئيسية" : "Home", item: `https://tf1one.com/${locale}` },
-          { "@type": "ListItem", position: 2, name: isAr ? "المتجر" : "Store", item: `https://tf1one.com/${locale}/store` },
+          { "@type": "ListItem", position: 1, name: isAr ? "الرئيسية" : "Home", item: `${SITE_URL}/${locale}` },
+          { "@type": "ListItem", position: 2, name: isAr ? "المتجر" : "Store", item: `${SITE_URL}/${locale}/store` },
           { "@type": "ListItem", position: 3, name: isAr ? product.nameAr : product.nameEn },
         ],
       },

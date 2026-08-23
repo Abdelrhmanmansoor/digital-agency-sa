@@ -10,7 +10,9 @@
     "contact": "Contact",
     "store": "Services Store",
     "client_portal": "Client Portal",
-    "my_account": "My Account"
+    "my_account": "My Account",
+    "sidra": "SIDRA Theme",
+    "work": "Our Work"
   },
   "hero": {
     "title1": "We Craft",
@@ -42,21 +44,36 @@
         "number": "01",
         "name": "Salla Store Design & Development",
         "description": "We transform your vision into a digital store that sells while you sleep. Professional custom design, exclusive themes, UX that converts visitors into loyal customers.",
-        "includes": ["UI/UX Design", "Custom Theme", "Speed Optimization", "Payment Gateways"],
+        "includes": [
+          "UI/UX Design",
+          "Custom Theme",
+          "Speed Optimization",
+          "Payment Gateways"
+        ],
         "price": "3,500"
       },
       "store_creation": {
         "number": "02",
         "name": "Complete E-commerce Store from Scratch",
         "description": "From idea to launch in less than two weeks. We build you a ready-to-sell store with everything you need: products, shipping, payment, and marketing.",
-        "includes": ["Platform Setup", "Product Upload", "Shipping & Payment", "Training"],
+        "includes": [
+          "Platform Setup",
+          "Product Upload",
+          "Shipping & Payment",
+          "Training"
+        ],
         "price": "2,000"
       },
       "digital_marketing": {
         "number": "03",
         "name": "Digital Marketing & Campaign Management",
         "description": "Data-driven campaigns. We know how to reach your ideal customer at the perfect time with the perfect message.",
-        "includes": ["Social Management", "Paid Ads", "SEO", "Analytics"],
+        "includes": [
+          "Social Management",
+          "Paid Ads",
+          "SEO",
+          "Analytics"
+        ],
         "price": "1,500",
         "monthly": true
       },
@@ -64,21 +81,36 @@
         "number": "04",
         "name": "Brand Identity & Visual Design",
         "description": "Your brand identity is the first thing your customer sees. We build it to tell your story and leave an unforgettable impression.",
-        "includes": ["Professional Logo", "Brand Guide", "Social Designs", "Marketing Materials"],
+        "includes": [
+          "Professional Logo",
+          "Brand Guide",
+          "Social Designs",
+          "Marketing Materials"
+        ],
         "price": "2,500"
       },
       "web_dev": {
         "number": "05",
         "name": "Website & App Development",
         "description": "Fast, secure websites and apps that reflect your brand's professionalism and achieve your digital goals.",
-        "includes": ["UX/UI Design", "Frontend Dev", "Admin Panel", "Maintenance"],
+        "includes": [
+          "UX/UI Design",
+          "Frontend Dev",
+          "Admin Panel",
+          "Maintenance"
+        ],
         "price": "5,000"
       },
       "content": {
         "number": "06",
         "name": "Creative Content Production",
         "description": "Content that attracts, convinces, and converts. Texts, designs, and videos that speak in your brand's voice.",
-        "includes": ["Product Photography", "Social Designs", "Copywriting", "Video Editing"],
+        "includes": [
+          "Product Photography",
+          "Social Designs",
+          "Copywriting",
+          "Video Editing"
+        ],
         "price": "1,200",
         "monthly": true
       },
@@ -87,7 +119,12 @@
         "name": "Salla Smart Tools",
         "badge": "★ Free",
         "description": "Smart free tools to help you manage and grow your store — no developer needed.",
-        "includes": ["Profit Calculator", "CSS Generator", "Policy Builder", "Content Writer"],
+        "includes": [
+          "Profit Calculator",
+          "CSS Generator",
+          "Policy Builder",
+          "Content Writer"
+        ],
         "price": "0",
         "free": true
       }

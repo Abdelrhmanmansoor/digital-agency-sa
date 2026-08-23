@@ -42,15 +42,38 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
+  /* The panel stays mounted when closed, so without Escape (and `inert`
+     below) a keyboard user could tab into an off-screen menu with no way
+     out. */
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isMenuOpen]);
+
+  /* `#portfolio` and `#pricing` pointed at section ids the homepage does not
+     have — two nav items that scrolled nowhere. The homepage exposes
+     #services, #sidra, #work, #process, #faq and #contact; pricing lives on
+     the store page. SIDRA and Radar were reachable from no menu at all. */
   const navItems = [
     { key: "home", href: `/${locale}` },
     { key: "services", href: `/${locale}#services` },
+    { key: "sidra", href: `/${locale}/sidra-theme` },
+    { key: "work", href: `/${locale}#work` },
     { key: "store", href: `/${locale}/store` },
-    { key: "portfolio", href: `/${locale}#portfolio` },
-    { key: "pricing", href: `/${locale}#pricing` },
     { key: "blog", href: `/${locale}/blog` },
     { key: "contact", href: `/${locale}#contact` },
   ];
+
+  /* Switching language used to throw the visitor back to the homepage of the
+     new locale. Keep them on the page they are reading. */
+  const localeHref = (code: string) => {
+    const rest = pathname.replace(/^\/(ar|en|fr)(?=\/|$)/, "");
+    return `/${code}${rest}`;
+  };
 
   const isActive = (href: string) => {
     if (href.includes("#")) return false;
@@ -92,7 +115,10 @@ export default function Header() {
           {locales.map((l, i) => (
             <span key={l.code} className="flex items-center gap-3">
               <Link
-                href={`/${l.code}`}
+                href={localeHref(l.code)}
+                lang={l.code}
+                hrefLang={l.code}
+                aria-current={locale === l.code ? "true" : undefined}
                 style={{
                   color: locale === l.code ? "#F0B100" : "inherit",
                   fontWeight: locale === l.code ? 700 : 400,
@@ -245,7 +271,7 @@ export default function Header() {
       <aside
         className={`mobile-nav-panel ${isMenuOpen ? "is-open" : ""}`}
         aria-label={isRTL ? "قائمة الجوال" : "Mobile menu"}
-        aria-hidden={!isMenuOpen}
+        inert={!isMenuOpen}
       >
         <div className="flex items-center justify-between" style={{ padding: "18px 20px", borderBottom: "1px solid #EAEAE6" }}>
           <Image src="/logo.png" alt="AM Design" width={92} height={36} style={{ width: "92px", height: "auto", objectFit: "contain" }} />
@@ -298,8 +324,14 @@ export default function Header() {
             {locales.map((l) => (
               <Link
                 key={l.code}
-                href={`/${l.code}`}
+                href={localeHref(l.code)}
+                lang={l.code}
+                hrefLang={l.code}
+                aria-current={locale === l.code ? "true" : undefined}
                 style={{
+                  minHeight: "44px",
+                  display: "inline-flex",
+                  alignItems: "center",
                   fontSize: "14px",
                   fontWeight: locale === l.code ? 800 : 500,
                   color: locale === l.code ? "#8A6D00" : "#6B6B6B",

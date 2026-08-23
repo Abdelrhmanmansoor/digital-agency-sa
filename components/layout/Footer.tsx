@@ -14,7 +14,16 @@ export default function Footer() {
 
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = ["home", "services", "portfolio", "blog", "about", "contact"] as const;
+  /* These were all rendered as `/{locale}#{key}`, so `#portfolio`, `#about`
+     and `#blog` scrolled nowhere — and the blog is a page, not a section. */
+  const quickLinks = [
+    { key: "home", href: `/${locale}` },
+    { key: "services", href: `/${locale}#services` },
+    { key: "work", href: `/${locale}#work` },
+    { key: "sidra", href: `/${locale}/sidra-theme` },
+    { key: "blog", href: `/${locale}/blog` },
+    { key: "contact", href: `/${locale}#contact` },
+  ] as const;
   const serviceLinks = [
     { key: "salla_design", label: tServices("salla_design.name") },
     { key: "digital_marketing", label: tServices("digital_marketing.name") },
@@ -112,14 +121,10 @@ export default function Footer() {
           <nav aria-label={isRTL ? "روابط سريعة" : "Quick links"}>
             <h4 style={colTitle}>{t("quick_links")}</h4>
             <ul className="space-y-3" style={{ listStyle: "none", padding: 0 }}>
-              {quickLinks.map((key) => (
-                <li key={key}>
-                  <Link
-                    href={`/${locale}${key === "home" ? "" : `#${key}`}`}
-                    className="hover:text-[#111] transition-colors"
-                    style={linkStyle}
-                  >
-                    {tNav(key)}
+              {quickLinks.map((item) => (
+                <li key={item.key}>
+                  <Link href={item.href} className="hover:text-[#111] transition-colors" style={linkStyle}>
+                    {tNav(item.key)}
                   </Link>
                 </li>
               ))}

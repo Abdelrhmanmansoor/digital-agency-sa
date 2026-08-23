@@ -3,6 +3,10 @@ import { headers } from "next/headers";
 import { getClientSession } from "@/lib/client-auth";
 import DashboardSidebar from "./DashboardSidebar";
 
+/* Client portal — private by definition. Nothing under /dashboard, the login
+   screen included, should ever reach an index. */
+export const metadata = { robots: { index: false, follow: false } };
+
 export default async function DashboardLayout({
   children,
   params,

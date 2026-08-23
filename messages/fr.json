@@ -10,7 +10,9 @@
     "contact": "Contact",
     "store": "Boutique",
     "client_portal": "Espace Client",
-    "my_account": "Mon Compte"
+    "my_account": "Mon Compte",
+    "sidra": "Thème SIDRA",
+    "work": "Réalisations"
   },
   "hero": {
     "title1": "Nous Créons",
@@ -42,21 +44,36 @@
         "number": "01",
         "name": "Conception & Développement Boutique Salla",
         "description": "Nous transformons votre vision en boutique digitale qui vend pendant que vous dormez.",
-        "includes": ["Design UI/UX", "Thème Personnalisé", "Optimisation Vitesse", "Passerelles de Paiement"],
+        "includes": [
+          "Design UI/UX",
+          "Thème Personnalisé",
+          "Optimisation Vitesse",
+          "Passerelles de Paiement"
+        ],
         "price": "3,500"
       },
       "store_creation": {
         "number": "02",
         "name": "Création de Boutique E-commerce Complète",
         "description": "De l'idée au lancement en moins de deux semaines.",
-        "includes": ["Configuration Plateforme", "Upload Produits", "Livraison & Paiement", "Formation"],
+        "includes": [
+          "Configuration Plateforme",
+          "Upload Produits",
+          "Livraison & Paiement",
+          "Formation"
+        ],
         "price": "2,000"
       },
       "digital_marketing": {
         "number": "03",
         "name": "Marketing Digital & Gestion de Campagnes",
         "description": "Des campagnes basées sur les données. Nous savons comment atteindre votre client idéal.",
-        "includes": ["Gestion Réseaux Sociaux", "Publicités Payantes", "SEO", "Analytiques"],
+        "includes": [
+          "Gestion Réseaux Sociaux",
+          "Publicités Payantes",
+          "SEO",
+          "Analytiques"
+        ],
         "price": "1,500",
         "monthly": true
       },
@@ -64,21 +81,36 @@
         "number": "04",
         "name": "Identité Visuelle & Branding",
         "description": "Votre identité de marque est la première chose que voit votre client.",
-        "includes": ["Logo Professionnel", "Charte Graphique", "Designs Sociaux", "Matériaux Marketing"],
+        "includes": [
+          "Logo Professionnel",
+          "Charte Graphique",
+          "Designs Sociaux",
+          "Matériaux Marketing"
+        ],
         "price": "2,500"
       },
       "web_dev": {
         "number": "05",
         "name": "Développement Web & Applications",
         "description": "Sites et applications rapides et sécurisés qui reflètent le professionnalisme de votre marque.",
-        "includes": ["Design UX/UI", "Développement Frontend", "Panel Admin", "Maintenance"],
+        "includes": [
+          "Design UX/UI",
+          "Développement Frontend",
+          "Panel Admin",
+          "Maintenance"
+        ],
         "price": "5,000"
       },
       "content": {
         "number": "06",
         "name": "Production de Contenu Créatif",
         "description": "Un contenu qui attire, convainc et convertit.",
-        "includes": ["Photographie Produit", "Designs Sociaux", "Rédaction", "Montage Vidéo"],
+        "includes": [
+          "Photographie Produit",
+          "Designs Sociaux",
+          "Rédaction",
+          "Montage Vidéo"
+        ],
         "price": "1,200",
         "monthly": true
       },
@@ -87,7 +119,12 @@
         "name": "Outils Intelligents Salla",
         "badge": "★ Gratuit",
         "description": "Outils gratuits pour gérer et développer votre boutique — sans développeur.",
-        "includes": ["Calculateur de Profits", "Générateur CSS", "Créateur de Politiques", "Rédacteur de Contenu"],
+        "includes": [
+          "Calculateur de Profits",
+          "Générateur CSS",
+          "Créateur de Politiques",
+          "Rédacteur de Contenu"
+        ],
         "price": "0",
         "free": true
       }

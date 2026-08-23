@@ -4,17 +4,23 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
+import { HOME_FAQ } from "@/lib/home-faq";
 import styles from "./HomeExperience.module.css";
 
 const WHATSAPP = "201007835547";
 
 const copy = {
   ar: {
+    /* Was five same-page anchors. /sidra-theme, /store and /blog are real
+       pages with their own content and were reachable only from the footer
+       (or, for SIDRA, one mid-page button) — nothing linked them from the
+       top of the site. */
     nav: [
       ["الخدمات", "#services"],
-      ["ثيم سِدرة", "#sidra"],
+      ["ثيم سِدرة", "/sidra-theme"],
       ["أعمالنا", "#work"],
-      ["منهجية العمل", "#process"],
+      ["متجر الخدمات", "/store"],
+      ["المدونة", "/blog"],
       ["الأسئلة", "#faq"],
     ],
     start: "ابدأ مشروعك",
@@ -157,24 +163,6 @@ const copy = {
     ],
     faqKicker: "الأسئلة الشائعة",
     faqTitle: "إجابات مباشرة قبل أن نبدأ.",
-    faq: [
-      [
-        "كم يستغرق تصميم المتجر؟",
-        "غالبًا من 10 إلى 20 يوم عمل، بحسب حجم المتجر والمحتوى والتخصيص المطلوب.",
-      ],
-      [
-        "هل تعملون على سلة وزد؟",
-        "نعم. نتخصص في تصميم وتطوير متاجر سلة وزد، إضافة إلى المواقع المخصصة عند الحاجة.",
-      ],
-      [
-        "هل تشمل الخدمة تحسين الظهور في Google؟",
-        "نهيئ البنية التقنية، العناوين، المحتوى، البيانات المنظمة، السرعة، وخريطة الموقع. التحسن العضوي يحتاج أيضًا إلى محتوى مستمر ووقت.",
-      ],
-      [
-        "هل يمكن البدء باستشارة فقط؟",
-        "نعم. نراجع وضع المشروع ونقترح الأولويات قبل اختيار الخدمة المناسبة.",
-      ],
-    ],
     ctaKicker: "لديك مشروع جاد؟",
     ctaTitle: "لنضع له أساسًا رقميًا يليق به.",
     ctaBody:
@@ -187,9 +175,10 @@ const copy = {
   en: {
     nav: [
       ["Services", "#services"],
-      ["SIDRA", "#sidra"],
+      ["SIDRA theme", "/sidra-theme"],
       ["Work", "#work"],
-      ["Process", "#process"],
+      ["Store", "/store"],
+      ["Blog", "/blog"],
       ["FAQ", "#faq"],
     ],
     start: "Start a project",
@@ -332,24 +321,6 @@ const copy = {
     ],
     faqKicker: "FAQ",
     faqTitle: "Straight answers before we begin.",
-    faq: [
-      [
-        "How long does a store take?",
-        "Most projects take 10–20 working days, depending on store size, content and customization.",
-      ],
-      [
-        "Do you work with Salla and Zid?",
-        "Yes. They are our core specialty, alongside custom websites when needed.",
-      ],
-      [
-        "Is Google visibility included?",
-        "We optimize structure, titles, content, structured data, speed and sitemap. Organic growth also requires consistent content and time.",
-      ],
-      [
-        "Can we start with consultation only?",
-        "Yes. We can review your current position and recommend priorities before selecting a service.",
-      ],
-    ],
     ctaKicker: "Building something serious?",
     ctaTitle: "Give it a digital foundation worthy of it.",
     ctaBody:
@@ -362,9 +333,10 @@ const copy = {
   fr: {
     nav: [
       ["Services", "#services"],
-      ["SIDRA", "#sidra"],
+      ["Thème SIDRA", "/sidra-theme"],
       ["Projets", "#work"],
-      ["Méthode", "#process"],
+      ["Boutique", "/store"],
+      ["Blog", "/blog"],
       ["FAQ", "#faq"],
     ],
     start: "Démarrer",
@@ -509,24 +481,6 @@ const copy = {
     ],
     faqKicker: "FAQ",
     faqTitle: "Des réponses claires avant de commencer.",
-    faq: [
-      [
-        "Combien de temps faut-il ?",
-        "La plupart des projets prennent 10 à 20 jours ouvrés.",
-      ],
-      [
-        "Travaillez-vous avec Salla et Zid ?",
-        "Oui, c’est notre spécialité principale.",
-      ],
-      [
-        "Le SEO est-il inclus ?",
-        "Nous optimisons la structure, le contenu, les données structurées, la vitesse et le sitemap.",
-      ],
-      [
-        "Peut-on commencer par une consultation ?",
-        "Oui. Nous pouvons d’abord auditer votre situation et définir les priorités.",
-      ],
-    ],
     ctaKicker: "Un projet sérieux ?",
     ctaTitle: "Donnons-lui une base digitale à sa hauteur.",
     ctaBody:
@@ -585,11 +539,26 @@ const auditCopy = {
 export default function HomeExperience() {
   const locale = useLocale() as keyof typeof copy;
   const t = copy[locale] ?? copy.en;
+  const faq = HOME_FAQ[locale] ?? HOME_FAQ.en;
   const audit = auditCopy[locale] ?? auditCopy.en;
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const whatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد استشارة بخصوص مشروعي الرقمي." : "Hello, I would like a consultation about my digital project.")}`;
   const auditWhatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد التحليل المجاني لمتجري. رابط المتجر: " : "Hello, I would like the free store audit. Store URL: ")}`;
+
+  /* Mobile menu: close on Escape and stop the page scrolling behind it. */
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const items = document.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -610,6 +579,9 @@ export default function HomeExperience() {
 
   return (
     <div className={styles.site}>
+      <a href="#main" className="skip-link">
+        {locale === "ar" ? "تخطَّ إلى المحتوى" : locale === "fr" ? "Aller au contenu" : "Skip to content"}
+      </a>
       <header className={styles.header}>
         <div className={styles.shell}>
           <nav className={styles.nav} aria-label={t.menu}>
@@ -627,11 +599,17 @@ export default function HomeExperience() {
               />
             </Link>
             <div className={styles.navLinks}>
-              {t.nav.map(([label, href]) => (
-                <a key={href} href={href}>
-                  {label}
-                </a>
-              ))}
+              {t.nav.map(([label, href]) =>
+                href.startsWith("#") ? (
+                  <a key={href} href={href}>
+                    {label}
+                  </a>
+                ) : (
+                  <Link key={href} href={`/${locale}${href}`}>
+                    {label}
+                  </Link>
+                ),
+              )}
             </div>
             <div className={styles.navActions}>
               <div className={styles.locales} aria-label="Language">
@@ -666,19 +644,27 @@ export default function HomeExperience() {
           </nav>
           {menuOpen && (
             <div className={styles.mobileMenu}>
-              {t.nav.map(([label, href]) => (
-                <a key={href} href={href} onClick={() => setMenuOpen(false)}>
-                  {label}
-                </a>
-              ))}
-              <a href={whatsapp}>{t.start}</a>
+              {t.nav.map(([label, href]) =>
+                href.startsWith("#") ? (
+                  <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+                    {label}
+                  </a>
+                ) : (
+                  <Link key={href} href={`/${locale}${href}`} onClick={() => setMenuOpen(false)}>
+                    {label}
+                  </Link>
+                ),
+              )}
+              <a href={whatsapp} target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>
+                {t.start}
+              </a>
             </div>
           )}
         </div>
       </header>
 
-      <main>
-        <section className={styles.hero}>
+      <main id="main">
+        <section className={styles.hero} data-own-spacing>
           <div className={`${styles.shell} ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}>
@@ -738,7 +724,7 @@ export default function HomeExperience() {
           </div>
         </section>
 
-        <section className={styles.platforms}>
+        <section className={styles.platforms} data-own-spacing>
           <div className={`${styles.shell} ${styles.platformRow}`}>
             <p>{t.trusted}</p>
             <div>
@@ -750,7 +736,7 @@ export default function HomeExperience() {
           </div>
         </section>
 
-        <section id="services" className={styles.section}>
+        <section id="services" className={styles.section} data-own-spacing>
           <div className={styles.shell}>
             <div
               className={`${styles.sectionHead} ${styles.reveal}`}
@@ -781,7 +767,7 @@ export default function HomeExperience() {
           </div>
         </section>
 
-        <section id="sidra" className={styles.sidraSection}>
+        <section id="sidra" className={styles.sidraSection} data-own-spacing>
           <div
             className={`${styles.shell} ${styles.sidraGrid} ${styles.reveal}`}
             data-reveal
@@ -839,6 +825,7 @@ export default function HomeExperience() {
         <section
           id="work"
           className={`${styles.section} ${styles.workSection}`}
+          data-own-spacing
         >
           <div className={styles.shell}>
             <div
@@ -877,7 +864,7 @@ export default function HomeExperience() {
           </div>
         </section>
 
-        <section className={styles.auditSection}>
+        <section className={styles.auditSection} data-own-spacing>
           <div
             className={`${styles.shell} ${styles.auditGrid} ${styles.reveal}`}
             data-reveal
@@ -929,7 +916,7 @@ export default function HomeExperience() {
           </div>
         </section>
 
-        <section id="process" className={styles.processSection}>
+        <section id="process" className={styles.processSection} data-own-spacing>
           <div
             className={`${styles.shell} ${styles.processGrid} ${styles.reveal}`}
             data-reveal
@@ -952,7 +939,7 @@ export default function HomeExperience() {
           </div>
         </section>
 
-        <section id="faq" className={styles.section}>
+        <section id="faq" className={styles.section} data-own-spacing>
           <div
             className={`${styles.shell} ${styles.faqGrid} ${styles.reveal}`}
             data-reveal
@@ -962,23 +949,35 @@ export default function HomeExperience() {
               <h2>{t.faqTitle}</h2>
             </div>
             <div className={styles.faqList}>
-              {t.faq.map(([question, answer], index) => (
-                <article key={question} className={styles.faqItem}>
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? -1 : index)}
-                    aria-expanded={openFaq === index}
-                  >
-                    <span>{question}</span>
-                    <b>{openFaq === index ? "−" : "+"}</b>
-                  </button>
-                  {openFaq === index && <p>{answer}</p>}
-                </article>
-              ))}
+              {faq.map(([question, answer], index) => {
+                const isOpen = openFaq === index;
+                return (
+                  /* The answer stays mounted and is hidden with `hidden`
+                     rather than unmounted: the button now has something real
+                     to point `aria-controls` at, and the copy ships in the
+                     server HTML instead of appearing only on click. */
+                  <article key={question} className={styles.faqItem}>
+                    <button
+                      type="button"
+                      id={`faq-q-${index}`}
+                      onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-a-${index}`}
+                    >
+                      <span>{question}</span>
+                      <b aria-hidden>{isOpen ? "−" : "+"}</b>
+                    </button>
+                    <p id={`faq-a-${index}`} role="region" aria-labelledby={`faq-q-${index}`} hidden={!isOpen}>
+                      {answer}
+                    </p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        <section id="contact" className={styles.ctaSection}>
+        <section id="contact" className={styles.ctaSection} data-own-spacing>
           <div
             className={`${styles.shell} ${styles.ctaInner} ${styles.reveal}`}
             data-reveal
@@ -1002,17 +1001,23 @@ export default function HomeExperience() {
             <Image src="/logo.png" alt="AM Design" width={160} height={63} />
             <p>{t.footerText}</p>
           </div>
-          <nav>
-            {t.nav.map(([label, href]) => (
-              <a key={href} href={href}>
-                {label}
-              </a>
-            ))}
-            <Link href={`/${locale}/blog`}>
-              {locale === "ar" ? "المدونة" : "Blog"}
+          <nav aria-label={t.menu}>
+            {t.nav.map(([label, href]) =>
+              href.startsWith("#") ? (
+                <a key={href} href={href}>
+                  {label}
+                </a>
+              ) : (
+                <Link key={href} href={`/${locale}${href}`}>
+                  {label}
+                </Link>
+              ),
+            )}
+            <Link href={`/${locale}/radar`}>
+              {locale === "ar" ? "رادار المنتجات" : locale === "fr" ? "Radar produits" : "Product Radar"}
             </Link>
-            <Link href={`/${locale}/store`}>
-              {locale === "ar" ? "متجر الخدمات" : "Store"}
+            <Link href={`/${locale}/policy`}>
+              {locale === "ar" ? "الشروط والخصوصية" : locale === "fr" ? "Conditions & confidentialité" : "Terms & Privacy"}
             </Link>
           </nav>
           <div className={styles.footerContact}>
