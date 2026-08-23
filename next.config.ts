@@ -29,6 +29,22 @@ const nextConfig: NextConfig = {
     ],
     formats: ["image/webp", "image/avif"],
   },
+  /* The blog moved from numeric ids to slugs when it went from three
+     articles to fifty. These three URLs existed publicly, so they get a
+     permanent redirect to their closest replacement rather than a 404. */
+  async redirects() {
+    const map: Record<string, string> = {
+      "1": "anatomy-of-product-page",
+      "2": "snapchat-tiktok-ads-saudi",
+      "3": "brand-identity-for-stores",
+    };
+    return Object.entries(map).map(([from, to]) => ({
+      source: `/:locale(ar|en|fr)/blog/${from}`,
+      destination: `/:locale/blog/${to}`,
+      permanent: true,
+    }));
+  },
+
   async headers() {
     return [
       { source: "/(.*)", headers: securityHeaders },

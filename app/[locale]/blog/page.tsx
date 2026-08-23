@@ -10,26 +10,26 @@ const seo = {
   ar: {
     title: "مدونة التجارة الإلكترونية | تصميم متاجر سلة وزد وSEO",
     description:
-      "مقالات عملية لأصحاب المتاجر: تصميم متجر سلة، تحسين التحويل، السيو للمتاجر الإلكترونية، والهوية البصرية في السوق السعودي.",
+      "دليل عملي لأصحاب متاجر سلة وزد وشوبيفاي: التأسيس، الكتالوج، الطلبات، الدفع والفوترة، الشحن، التصميم، التسويق، والظهور في البحث.",
     kicker: "المدونة",
     h1: "مقالات تساعد متجرك على البيع",
-    lead: "ما نتعلمه من مشاريع حقيقية على سلة وزد: قرارات تصميم، تحسين تحويل، وسيو عملي — بدون نظريات.",
+    lead: "خمسون مقالًا مرتبة في ثمانية محاور، مكتوبة من أسئلة تصل التجّار فعلًا — لا نظريات عامة.",
   },
   en: {
     title: "E-commerce Blog | Salla & Zid Store Design, CRO and SEO",
     description:
-      "Practical articles for store owners: Salla store design, conversion optimization, e-commerce SEO and brand identity in the Saudi market.",
+      "A practical guide for Salla, Zid and Shopify merchants: setup, catalogue, orders, payments, shipping, design, marketing and search visibility.",
     kicker: "Blog",
     h1: "Articles that help your store sell",
-    lead: "What we learn from real Salla and Zid projects: design decisions, conversion work and practical SEO — no theory.",
+    lead: "Fifty articles across eight topics, written from the questions merchants actually ask — not general theory.",
   },
   fr: {
     title: "Blog e-commerce | Design de boutiques Salla & Zid, CRO et SEO",
     description:
-      "Articles pratiques pour les marchands : design de boutique Salla, optimisation de conversion, SEO e-commerce et identité de marque.",
+      "Un guide pratique pour les marchands Salla, Zid et Shopify : création, catalogue, commandes, paiement, livraison, design, marketing et référencement.",
     kicker: "Blog",
     h1: "Des articles qui aident votre boutique à vendre",
-    lead: "Ce que nous apprenons de projets Salla et Zid réels : décisions de design, conversion et SEO concret.",
+    lead: "Cinquante articles en huit thèmes, écrits à partir des questions que les marchands posent réellement.",
   },
 } as const;
 
@@ -85,12 +85,13 @@ export default async function BlogPage({
         description: data.description,
         inLanguage: locale,
         publisher: { "@type": "Organization", name: "AM Design", url: SITE_URL },
+        /* Articles carry no hero image — the index is typographic — so no
+           `image` is declared rather than declaring one that does not exist. */
         blogPost: ARTICLES.map((a) => ({
           "@type": "BlogPosting",
           headline: isRTL ? a.titleAr : a.titleEn,
           url: `${SITE_URL}/${locale}/blog/${a.id}`,
           datePublished: a.date,
-          image: a.image,
         })),
       },
       {

@@ -3,11 +3,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ARTICLES, getArticle, relatedArticles } from "@/lib/articles";
+import { ARTICLES, getArticle, relatedArticles, clusterOf } from "@/lib/articles";
 import { SITE_URL, LOCALES, hreflangMap } from "@/lib/site";
+import { PageShell, PageHero, Section } from "@/components/layout/PageShell";
 
-/* Without this the article route stayed dynamic and every crawl paid for a
-   render. The set is small and known at build time. */
 export function generateStaticParams() {
   return LOCALES.flatMap((locale) => ARTICLES.map((a) => ({ locale, id: a.id })));
 }
@@ -29,10 +28,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: {
-      canonical,
-      languages: hreflangMap(`/blog/${article.id}`),
-    },
+    alternates: { canonical, languages: hreflangMap(`/blog/${article.id}`) },
     openGraph: {
       type: "article",
       title,
@@ -40,9 +36,8 @@ export async function generateMetadata({
       url: canonical,
       siteName: "AM Design",
       publishedTime: article.date,
-      images: [{ url: article.image, alt: title }],
     },
-    twitter: { card: "summary_large_image", title, description, images: [article.image] },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
@@ -57,30 +52,39 @@ export default async function BlogArticlePage({
 
   if (!article) notFound();
 
+  const cluster = clusterOf(article.cluster);
   const related = relatedArticles(id);
+  const lang = (locale === "ar" ? "ar" : locale === "fr" ? "fr" : "en") as "ar" | "en" | "fr";
   const canonical = `${SITE_URL}/${locale}/blog/${article.id}`;
+  const title = isRTL ? article.titleAr : article.titleEn;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "BlogPosting",
         "@id": `${canonical}#article`,
-        headline: isRTL ? article.titleAr : article.titleEn,
+        headline: title,
         description: isRTL ? article.excerptAr : article.excerptEn,
-        image: article.image,
         datePublished: article.date,
         dateModified: article.date,
         inLanguage: locale,
+        articleSection: cluster[lang],
         mainEntityOfPage: canonical,
         author: { "@type": "Organization", name: "AM Design", url: SITE_URL },
-        publisher: { "@type": "Organization", name: "AM Design", url: SITE_URL, logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` } },
+        publisher: {
+          "@type": "Organization",
+          name: "AM Design",
+          url: SITE_URL,
+          logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
+        },
       },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: isRTL ? "الرئيسية" : "Home", item: `${SITE_URL}/${locale}` },
           { "@type": "ListItem", position: 2, name: isRTL ? "المدونة" : "Blog", item: `${SITE_URL}/${locale}/blog` },
-          { "@type": "ListItem", position: 3, name: isRTL ? article.titleAr : article.titleEn, item: canonical },
+          { "@type": "ListItem", position: 3, name: title, item: canonical },
         ],
       },
     ],
@@ -90,235 +94,205 @@ export default async function BlogArticlePage({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
-      <main>
-        {/* Hero */}
-        <section
-          style={{
-            background: "#0A0A0A",
-            padding: "120px 0 0",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <div className="max-w-[900px] mx-auto px-8 pb-12 relative z-10">
-            {/* Breadcrumb */}
-            <div style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "32px" }}>
-              <Link href={`/${locale}`} style={{ color: "#8C8C7A", textDecoration: "none", fontSize: "13px", fontFamily: "Space Mono" }}>
-                {isRTL ? "الرئيسية" : "Home"}
-              </Link>
-              <span style={{ color: "#3A3A35" }}>/</span>
-              <Link href={`/${locale}/blog`} style={{ color: "#8C8C7A", textDecoration: "none", fontSize: "13px", fontFamily: "Space Mono" }}>
-                {isRTL ? "المدونة" : "Blog"}
-              </Link>
-              <span style={{ color: "#3A3A35" }}>/</span>
-              <span style={{ color: "#F0B100", fontSize: "13px", fontFamily: "Space Mono" }}>
-                {isRTL ? article.categoryAr : article.categoryEn}
+      <PageShell>
+        <main>
+          <PageHero
+            kicker={cluster[lang]}
+            title={title}
+            lead={isRTL ? article.excerptAr : article.excerptEn}
+            crumbs={[
+              { label: isRTL ? "الرئيسية" : locale === "fr" ? "Accueil" : "Home", href: `/${locale}` },
+              { label: isRTL ? "المدونة" : "Blog", href: `/${locale}/blog` },
+              { label: cluster[lang] },
+            ]}
+            crumbsLabel={isRTL ? "مسار التنقل" : "Breadcrumb"}
+            aside={
+              <span
+                style={{
+                  alignSelf: "start",
+                  fontFamily: "Space Mono, monospace",
+                  fontSize: "11px",
+                  letterSpacing: "0.1em",
+                  color: "#8d8a82",
+                  borderTop: "2px solid #f0b100",
+                  paddingTop: "12px",
+                  lineHeight: 2,
+                }}
+              >
+                <time dateTime={article.date}>{article.date}</time>
+                <br />
+                {article.readTime} {isRTL ? "دقيقة قراءة" : locale === "fr" ? "min de lecture" : "min read"}
               </span>
-            </div>
-
-            {/* Category */}
-            <div className="gold-badge mb-6">
-              {isRTL ? article.categoryAr : article.categoryEn}
-            </div>
-
-            {/* Title */}
-            <h1
-              style={{
-                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
-                fontSize: "clamp(28px, 4vw, 52px)",
-                fontWeight: 700,
-                color: "#FAFAF7",
-                lineHeight: 1.2,
-                marginBottom: "24px",
-              }}
-            >
-              {isRTL ? article.titleAr : article.titleEn}
-            </h1>
-
-            {/* Meta */}
-            <div style={{ display: "flex", gap: "24px", alignItems: "center", color: "#8C8C7A" }}>
-              <span style={{ fontFamily: "Space Mono", fontSize: "12px" }}>
-                {new Date(article.date).toLocaleDateString(isRTL ? "ar-SA" : "en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-              <span style={{ fontFamily: "Space Mono", fontSize: "12px" }}>
-                ⏱ {article.readTime} {isRTL ? "دقيقة قراءة" : "min read"}
-              </span>
-            </div>
-          </div>
-
-          {/* Hero Image */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={article.image}
-            alt={isRTL ? article.titleAr : article.titleEn}
-            style={{
-              width: "100%",
-              height: "480px",
-              objectFit: "cover",
-              display: "block",
-              opacity: 0.7,
-            }}
+            }
           />
-        </section>
 
-        {/* Article Content */}
-        <section style={{ background: "#FAFAF7", padding: "80px 0" }}>
-          <div className="max-w-[900px] mx-auto px-8">
-            <div
-              className="article-content"
-              style={{
-                fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
-                fontSize: "17px",
-                lineHeight: 1.9,
-                color: "#2A2A25",
-                direction: isRTL ? "rtl" : "ltr",
-              }}
-              dangerouslySetInnerHTML={{
-                __html: isRTL ? article.contentAr : article.contentEn,
-              }}
-            />
+          <Section tone="paper">
+            <div className="article-layout">
+              <div
+                className="article-content"
+                dangerouslySetInnerHTML={{ __html: isRTL ? article.contentAr : article.contentEn }}
+              />
 
-            {/* Share & Back */}
-            <div
-              style={{
-                marginTop: "64px",
-                paddingTop: "32px",
-                borderTop: "1px solid #E8E6E1",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                flexWrap: "wrap",
-                gap: "16px",
-              }}
-            >
-              <Link
-                href={`/${locale}/blog`}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  color: "#8C8C7A",
-                  textDecoration: "none",
-                  fontFamily: "Space Mono",
-                  fontSize: "13px",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  transition: "color 0.2s",
-                }}
-              >
-                {isRTL ? "→ العودة للمدونة" : "← Back to Blog"}
+              <aside className="article-aside">
+                <p className="article-aside-title">
+                  {isRTL ? "من نفس الموضوع" : locale === "fr" ? "Même sujet" : "More in this topic"}
+                </p>
+                <ul>
+                  {related.map((rel) => (
+                    <li key={rel.id}>
+                      <Link href={`/${locale}/blog/${rel.id}`}>
+                        {isRTL ? rel.titleAr : rel.titleEn}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link href={`/${locale}/blog`} className="article-aside-all">
+                  {isRTL ? "كل المقالات" : locale === "fr" ? "Tous les articles" : "All articles"}
+                  <span aria-hidden>{isRTL ? "←" : "→"}</span>
+                </Link>
+              </aside>
+            </div>
+          </Section>
+
+          <Section tone="ink" tight>
+            <div className="article-cta">
+              <div>
+                <h2>
+                  {isRTL
+                    ? "تريد تطبيق هذا على متجرك؟"
+                    : locale === "fr"
+                      ? "Appliquer cela à votre boutique ?"
+                      : "Want this applied to your store?"}
+                </h2>
+                <p>
+                  {isRTL
+                    ? "أرسل رابط متجرك ونبذة قصيرة، ونعود إليك بترتيب مقترح للأولويات."
+                    : locale === "fr"
+                      ? "Envoyez le lien de votre boutique et un court descriptif ; nous revenons avec un ordre de priorités."
+                      : "Send your store link and a short note, and we come back with a suggested order of priorities."}
+                </p>
+              </div>
+              <Link href={`/${locale}/store`}>
+                {isRTL ? "تصفح الخدمات" : locale === "fr" ? "Voir les prestations" : "Browse services"}
+                <span aria-hidden>{isRTL ? "←" : "→"}</span>
               </Link>
-              <div style={{ display: "flex", gap: "12px" }}>
-                <span style={{ color: "#8C8C7A", fontSize: "13px", fontFamily: "Space Mono" }}>
-                  {isRTL ? "مشاركة:" : "Share:"}
-                </span>
-                <a
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(isRTL ? article.titleAr : article.titleEn)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "#F0B100", textDecoration: "none", fontFamily: "Space Mono", fontSize: "13px" }}
-                >
-                  Twitter
-                </a>
-                <a
-                  href={`https://wa.me/?text=${encodeURIComponent(isRTL ? article.titleAr : article.titleEn)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "#F0B100", textDecoration: "none", fontFamily: "Space Mono", fontSize: "13px" }}
-                >
-                  WhatsApp
-                </a>
-              </div>
             </div>
-          </div>
-        </section>
-
-        {/* Related Articles */}
-        {related.length > 0 && (
-          <section style={{ background: "#FFFFFF", padding: "80px 0" }}>
-            <div className="max-w-[1400px] mx-auto px-8">
-              <h2
-                style={{
-                  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
-                  fontSize: "28px",
-                  fontWeight: 700,
-                  color: "#0A0A0A",
-                  marginBottom: "40px",
-                }}
-              >
-                {isRTL ? "مقالات ذات صلة" : "Related Articles"}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {related.map((rel) => (
-                  <Link key={rel.id} href={`/${locale}/blog/${rel.id}`} style={{ textDecoration: "none" }}>
-                    <div
-                      className="blog-related-card"
-                      style={{
-                        border: "1px solid #E8E6E1",
-                        overflow: "hidden",
-                        transition: "border-color 0.3s",
-                      }}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={rel.image}
-                        alt={isRTL ? rel.titleAr : rel.titleEn}
-                        style={{ height: "200px", width: "100%", objectFit: "cover", display: "block" }}
-                      />
-                      <div style={{ padding: "24px" }}>
-                        <div className="gold-badge mb-3" style={{ fontSize: "10px" }}>
-                          {isRTL ? rel.categoryAr : rel.categoryEn}
-                        </div>
-                        <h3
-                          style={{
-                            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
-                            fontSize: "17px",
-                            fontWeight: 700,
-                            color: "#0A0A0A",
-                            lineHeight: 1.4,
-                          }}
-                        >
-                          {isRTL ? rel.titleAr : rel.titleEn}
-                        </h3>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-      </main>
+          </Section>
+        </main>
+      </PageShell>
       <Footer />
 
       <style>{`
-        .article-content h2 {
-          font-family: 'ThmanyahSans', 'Zain', sans-serif;
-          font-size: 24px;
-          font-weight: 700;
-          color: #0A0A0A;
-          margin: 40px 0 16px;
+        .article-layout {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 280px;
+          gap: 64px;
+          align-items: start;
         }
+        .article-content {
+          background: #fff;
+          border: 1px solid #e6e2d8;
+          padding: 44px 48px;
+          max-width: 74ch;
+        }
+        .article-content h2 {
+          font-family: var(--font-arabic-display);
+          font-size: clamp(20px, 2.4vw, 27px);
+          letter-spacing: -0.02em;
+          color: #14140f;
+          margin: 40px 0 14px;
+          line-height: 1.3;
+        }
+        .article-content h2:first-child { margin-top: 0; }
         .article-content p {
-          margin-bottom: 20px;
+          color: #46433c;
+          font-size: 16.5px;
+          line-height: 2;
+          margin: 0 0 18px;
         }
         .article-content ul, .article-content ol {
-          margin: 16px 0 20px;
-          padding-${isRTL ? "right" : "left"}: 24px;
+          margin: 0 0 20px;
+          padding-${isRTL ? "right" : "left"}: 22px;
+          color: #46433c;
         }
-        .article-content li {
-          margin-bottom: 8px;
+        .article-content li { font-size: 16px; line-height: 1.95; margin-bottom: 10px; }
+        .article-content strong { color: #14140f; }
+        .article-content code {
+          font-family: 'Space Mono', monospace;
+          font-size: 13.5px;
+          background: #f4f2ec;
+          padding: 2px 6px;
+          color: #14140f;
         }
-        .article-content a {
-          color: #F0B100;
+
+        .article-aside { position: sticky; top: 130px; }
+        .article-aside-title {
+          font-family: 'Space Mono', monospace;
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #8b6900;
+          margin: 0 0 14px;
+        }
+        .article-aside ul {
+          list-style: none;
+          margin: 0 0 20px;
+          padding: 0;
+          border-top: 1px solid #e6e2d8;
+        }
+        .article-aside li { border-bottom: 1px solid #e6e2d8; }
+        .article-aside a {
+          display: block;
+          padding: 14px 0;
+          color: #46433c;
+          font-size: 15px;
+          line-height: 1.6;
           text-decoration: none;
+          transition: color .2s;
         }
-        .blog-related-card:hover {
-          border-color: #F0B100 !important;
+        .article-aside a:hover { color: #14140f; }
+        .article-aside-all {
+          display: inline-flex !important;
+          align-items: center;
+          gap: 8px;
+          font-weight: 700;
+          color: #8b6900 !important;
+        }
+
+        .article-cta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 40px;
+          flex-wrap: wrap;
+        }
+        .article-cta h2 {
+          font-family: var(--font-arabic-display);
+          font-size: 26px;
+          color: #fff;
+          margin: 0 0 10px;
+          letter-spacing: -0.02em;
+        }
+        .article-cta p { color: #a9a59b; font-size: 15.5px; line-height: 1.8; margin: 0; max-width: 52ch; }
+        .article-cta a {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          min-height: 52px;
+          padding-inline: 26px;
+          background: #f0b100;
+          color: #14140f;
+          font-weight: 800;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+
+        @media (max-width: 1000px) {
+          .article-layout { grid-template-columns: 1fr; gap: 40px; }
+          .article-aside { position: static; }
+        }
+        @media (max-width: 640px) {
+          .article-content { padding: 28px 22px; }
         }
       `}</style>
     </>
