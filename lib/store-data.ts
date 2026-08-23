@@ -87,22 +87,29 @@ export const PRODUCTS: Product[] = [
     nameEn: "Complete Salla Store Setup",
     shortDescAr: "متجر جاهز للبيع خلال 7 أيام — تصميم + منتجات + دفع + شحن",
     shortDescEn: "A ready-to-sell store in 7 days — design, products, payments & shipping",
-    descriptionAr: `متجر سلة متكامل جاهز لاستقبال أول طلب خلال 7 أيام، بسعر أقل من نصف متوسط السوق (4,000+ ر.س عند الوكالات الأخرى).
+    descriptionAr: `متجر سلة متكامل جاهز لاستقبال أول طلب خلال 7 أيام. الباقة مفصّلة بالكامل أدناه — لا بند مؤجَّل للمكالمة.
 
 ماذا ستستلم بالضبط؟
-1. متجر سلة مفعّل بالكامل باسم علامتك التجارية ونطاقك الخاص.
-2. تصميم واجهة احترافي متوافق مع الجوال (أكثر من 80% من مبيعات السعودية تتم من الجوال).
-3. رفع وتنسيق حتى 30 منتجاً بصور ووصف تسويقي محسّن لمحركات البحث.
-4. ربط بوابات الدفع: مدى، فيزا، Apple Pay، تابي وتمارا (تقسيط).
-5. ربط شركات الشحن وإعداد مناطق التوصيل والأسعار.
-6. إعداد صفحات السياسات (الاسترجاع، الشحن، الخصوصية) بصياغة متوافقة مع وزارة التجارة.
-7. اختبار كامل لرحلة الشراء من أول زيارة حتى إتمام الدفع.
-8. جلسة تدريب مسجلة لإدارة متجرك بنفسك.
+1. متجر سلة مفعّل باسم علامتك مع ربط نطاقك الخاص.
+2. تصميم واجهة يبدأ من الجوال، وحتى 6 بنرات احترافية للصفحة الرئيسية.
+3. بناء التصنيفات والأقسام وترتيب الكتالوج بحيث يصل العميل للمنتج في نقرتين.
+4. رفع وتنسيق حتى 30 منتجاً بصور مرتبة ووصف تسويقي مهيأ لمحركات البحث.
+5. تفعيل الدفع: مدى، فيزا، Apple Pay، التحويل البنكي، والتقسيط عبر تابي وتمارا.
+6. ربط شركات الشحن ومناطق التوصيل والأسعار وبوالص الشحن وتتبع الطلب للعميل.
+7. ضبط ضريبة القيمة المضافة والفوترة الإلكترونية بما يوافق متطلبات هيئة الزكاة والضريبة والجمارك.
+8. تركيب بكسل سناب شات وتيك توك وميتا، وربط Google Analytics 4 وSearch Console.
+9. تهيئة السيو قبل الإطلاق: العناوين والوصف والنص البديل للصور وخريطة الموقع.
+10. صفحات السياسات (الاسترجاع، الشحن، الخصوصية) بصياغة متوافقة مع وزارة التجارة.
+11. تفعيل أيقونة واتساب للتواصل المباشر من أي صفحة.
+12. اختبار رحلة الشراء كاملة بعملية شراء حقيقية قبل التسليم.
+13. جلسة تدريب مسجلة لإدارة متجرك بنفسك.
 
-لماذا نحن أرخص؟ لأننا متخصصون في سلة فقط في هذا القسم — لا نبدأ من الصفر في كل مشروع، بل نطبّق منهجية جاهزة صقلناها في أكثر من 86 متجراً.`,
-    descriptionEn: `A complete Salla store ready to take its first order within 7 days, at less than half the market average (agencies charge 4,000+ SAR).
+اشتراك منصة سلة يُدفع لسلة مباشرة وهو منفصل عن هذه الباقة.`,
+    descriptionEn: `A complete Salla store ready to take its first order within 7 days. The full scope is itemised below — nothing is deferred to the call.
 
-What you get: a fully activated store on your own domain, a mobile-first professional design, up to 30 products uploaded with SEO-optimized copy, payment gateways connected (Mada, Visa, Apple Pay, Tabby, Tamara), shipping companies configured, compliant policy pages, a full purchase-journey test, and a recorded training session so you can run the store yourself.`,
+You get: a store live under your brand with your own domain connected; a mobile-first design with up to 6 professional homepage banners; categories and catalogue structured so any product is two clicks away; 30 products uploaded with ordered imagery and search-ready copy; mada, Visa, Apple Pay, bank transfer and BNPL via Tabby and Tamara enabled; carriers, delivery zones, shipping labels and order tracking configured; VAT and ZATCA e-invoicing set up; Snapchat, TikTok and Meta pixels installed with Google Analytics 4 and Search Console connected; SEO handled before launch — titles, descriptions, image alt text and sitemap; policy pages compliant with Ministry of Commerce requirements; a WhatsApp contact button; the full checkout tested with a real purchase; and a recorded training session so you can run the store yourself.
+
+The Salla platform subscription is paid to Salla directly and is separate from this package.`,
     keywordsAr: [
       "تجهيز متجر سلة كامل",
       "إنشاء متجر سلة من الصفر",
@@ -122,14 +129,22 @@ What you get: a fully activated store on your own domain, a mobile-first profess
     badgeLabelAr: "الأكثر طلباً",
     badgeLabelEn: "Bestseller",
     features: [
-      { ar: "متجر مفعّل على نطاقك الخاص", en: "Store live on your own domain" },
+      { ar: "متجر مفعّل على نطاقك الخاص مع ربط الدومين", en: "Store live on your own domain, DNS connected" },
       { ar: "تصميم متوافق مع الجوال أولاً", en: "Mobile-first design" },
-      { ar: "رفع 30 منتجاً بوصف تسويقي", en: "30 products with marketing copy" },
-      { ar: "ربط مدى وتابي وتمارا وApple Pay", en: "Mada, Tabby, Tamara & Apple Pay" },
-      { ar: "ربط الشحن ومناطق التوصيل", en: "Shipping & delivery zones" },
+      { ar: "حتى 6 بنرات احترافية للرئيسية", en: "Up to 6 professional homepage banners" },
+      { ar: "بناء التصنيفات والأقسام وترتيب الكتالوج", en: "Categories, sections and catalogue structure" },
+      { ar: "رفع 30 منتجاً بوصف تسويقي وصور مرتبة", en: "30 products uploaded with marketing copy and ordered imagery" },
+      { ar: "تفعيل مدى وApple Pay وفيزا والتحويل البنكي", en: "mada, Apple Pay, Visa and bank transfer enabled" },
+      { ar: "تفعيل التقسيط: تابي وتمارا", en: "BNPL enabled: Tabby and Tamara" },
+      { ar: "ربط شركات الشحن ومناطق التوصيل وبوالص الشحن", en: "Carriers, delivery zones and shipping labels" },
+      { ar: "ضبط ضريبة القيمة المضافة والفوترة الإلكترونية", en: "VAT and ZATCA e-invoicing configured" },
+      { ar: "تركيب بكسل سناب شات وتيك توك وميتا", en: "Snapchat, TikTok and Meta pixels installed" },
+      { ar: "ربط Google Analytics 4 وSearch Console", en: "Google Analytics 4 and Search Console connected" },
+      { ar: "تهيئة سيو: العناوين والوصف وalt للصور وخريطة الموقع", en: "SEO: titles, descriptions, image alt text and sitemap" },
       { ar: "صفحات سياسات متوافقة نظامياً", en: "Compliant policy pages" },
-      { ar: "اختبار رحلة شراء كاملة", en: "Full checkout testing" },
-      { ar: "تدريب مسجّل على الإدارة", en: "Recorded management training" },
+      { ar: "تفعيل أيقونة واتساب للتواصل المباشر", en: "WhatsApp contact button enabled" },
+      { ar: "اختبار رحلة شراء كاملة بعملية حقيقية", en: "Full checkout tested with a real transaction" },
+      { ar: "تدريب مسجّل على إدارة المتجر", en: "Recorded store-management training" },
     ],
     deliveryDays: 7,
     rating: 4.9,
@@ -183,13 +198,15 @@ You get: a fully custom homepage matching your brand, a conversion-optimized pro
     badgeLabelAr: "أقل من السوق 70%",
     badgeLabelEn: "70% Below Market",
     features: [
-      { ar: "صفحة رئيسية مخصصة بالكامل", en: "Fully custom homepage" },
+      { ar: "صفحة رئيسية مخصصة بالكامل بهوية علامتك", en: "Fully custom homepage in your brand" },
       { ar: "صفحة منتج محسّنة للتحويل", en: "Conversion-optimized product page" },
-      { ar: "تخصيص السلة والدفع", en: "Custom cart & checkout" },
+      { ar: "تخصيص السلة وصفحة الدفع لتقليل هجر السلة", en: "Custom cart and checkout to cut abandonment" },
+      { ar: "بنرات وأقسام رئيسية بتنسيق مخصص", en: "Custom-styled banners and homepage sections" },
+      { ar: "تأثيرات CSS متحركة خفيفة لا تبطئ المتجر", en: "Light CSS motion that does not slow the store" },
       { ar: "تحسين سرعة التحميل", en: "Speed optimization" },
-      { ar: "اختبار على iOS وAndroid", en: "Tested on iOS & Android" },
+      { ar: "اختبار على iOS وAndroid", en: "Tested on iOS and Android" },
       { ar: "كود نظيف يتحمل تحديثات سلة", en: "Update-safe clean code" },
-      { ar: "مراجعتان مجانيتان", en: "Two free revisions" },
+      { ar: "مراجعتان مجانيتان بعد التسليم", en: "Two free revision rounds after handover" },
     ],
     deliveryDays: 5,
     rating: 4.9,
@@ -244,12 +261,14 @@ You get: a full technical audit (speed, indexing, crawl errors, broken links), S
     badgeLabelAr: "استثمار طويل المدى",
     badgeLabelEn: "Long-term Asset",
     features: [
-      { ar: "فحص فني شامل + تقرير", en: "Full technical audit + report" },
-      { ar: "بحث كلمات مفتاحية للسوق السعودي", en: "Saudi keyword research" },
-      { ar: "تحسين 20 صفحة منتج/تصنيف", en: "20 pages on-page SEO" },
-      { ar: "Schema للمنتجات في نتائج جوجل", en: "Product Schema markup" },
-      { ar: "إعداد Search Console + GA4", en: "Search Console + GA4 setup" },
-      { ar: "خطة محتوى 3 أشهر", en: "3-month content plan" },
+      { ar: "فحص تقني كامل مع تقرير أولويات", en: "Full technical audit with a prioritised report" },
+      { ar: "بحث كلمات مفتاحية للسوق السعودي", en: "Keyword research for the Saudi market" },
+      { ar: "تحسين 20 صفحة منتج/تصنيف", en: "20 product and category pages optimized" },
+      { ar: "عناوين ووصف ميتا مكتوبة لكل صفحة", en: "Meta titles and descriptions written per page" },
+      { ar: "نص بديل alt لصور المنتجات", en: "Alt text for product imagery" },
+      { ar: "Schema المنتجات وخريطة الموقع", en: "Product schema and sitemap" },
+      { ar: "ربط Search Console وGA4", en: "Search Console and GA4 connected" },
+      { ar: "خطة محتوى 3 أشهر", en: "Three-month content plan" },
       { ar: "تقرير قبل/بعد للترتيب", en: "Before/after ranking report" },
     ],
     deliveryDays: 10,
@@ -640,11 +659,13 @@ You get: payment gateways activated (Mada, Visa/MC, Apple Pay, STC Pay), install
     badgeLabelAr: "خلال 48 ساعة",
     badgeLabelEn: "48-Hour Setup",
     features: [
-      { ar: "مدى وفيزا وApple Pay وSTC Pay", en: "Mada, Visa, Apple Pay, STC Pay" },
-      { ar: "تقسيط تابي وتمارا", en: "Tabby & Tamara installments" },
-      { ar: "ربط الشحن ومناطق التوصيل", en: "Shipping + delivery zones" },
-      { ar: "فواتير متوافقة مع الزكاة والضريبة", en: "ZATCA-compliant invoices" },
-      { ar: "اختبار دفع حقيقي لكل بوابة", en: "Real test transactions" },
+      { ar: "مدى وفيزا وApple Pay وSTC Pay", en: "mada, Visa, Apple Pay and STC Pay" },
+      { ar: "التقسيط: تابي وتمارا وإمكان ومدفوع", en: "BNPL: Tabby, Tamara, Emkan and Madfu" },
+      { ar: "ربط شركات الشحن ومناطق التوصيل", en: "Carriers and delivery zones connected" },
+      { ar: "إعداد بوالص الشحن والتتبع للعميل", en: "Shipping labels and customer tracking" },
+      { ar: "فواتير متوافقة مع الفوترة الإلكترونية ZATCA", en: "ZATCA-compliant e-invoicing" },
+      { ar: "ضبط سياسات الاسترجاع داخل بوابة الدفع", en: "Refund policy configured inside the gateway" },
+      { ar: "عمليات شراء اختبارية حقيقية قبل التسليم", en: "Real test transactions before handover" },
     ],
     deliveryDays: 2,
     rating: 4.7,
