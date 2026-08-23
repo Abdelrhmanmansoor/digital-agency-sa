@@ -1,0 +1,226 @@
+/* «أي منصة تناسبك؟» — the decision the buyer actually arrives with.
+   Research into how Saudi merchants shop for this consistently shows the
+   first question is not "what do you charge" but "Salla, Zid or Shopify?".
+   The site answered it nowhere, so the section exists to answer it plainly —
+   including saying when a platform is the wrong choice. */
+
+.section {
+  background: #fff;
+  border-top: 1px solid #e6e2d8;
+  padding-block: 120px;
+}
+.shell {
+  width: min(1240px, calc(100% - 40px));
+  margin-inline: auto;
+}
+.head {
+  display: grid;
+  grid-template-columns: 1.15fr 0.75fr;
+  align-items: end;
+  gap: 72px;
+  margin-bottom: 52px;
+}
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8b6900;
+  margin: 0;
+}
+.kicker::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: #f0b100;
+}
+.head h2 {
+  font-family: var(--font-arabic-display);
+  font-size: clamp(30px, 3.6vw, 52px);
+  line-height: 1.14;
+  letter-spacing: -0.032em;
+  margin: 16px 0 0;
+  max-width: 20ch;
+  text-wrap: balance;
+  color: #14140f;
+}
+.head p {
+  color: #6e6a61;
+  font-size: 16px;
+  line-height: 1.9;
+  max-width: 56ch;
+  margin: 0;
+}
+
+/* ───────── Quick answer row ───────── */
+.answers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #e6e2d8;
+  border: 1px solid #e6e2d8;
+  margin-bottom: 44px;
+}
+.answer {
+  background: #fbfaf7;
+  padding: 28px 26px;
+}
+.answerName {
+  font-family: var(--font-arabic-display);
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: #14140f;
+  margin: 0 0 4px;
+}
+.answerLatin {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #a9a498;
+}
+.answerFit,
+.answerMiss {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 10px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  margin-top: 18px;
+}
+.answerFit {
+  color: #3e3b35;
+}
+.answerMiss {
+  color: #7c7870;
+}
+.answerFit::before,
+.answerMiss::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-top: 9px;
+}
+.answerFit::before {
+  background: #f0b100;
+}
+.answerMiss::before {
+  border: 1px solid #c4bfb2;
+}
+.answerLabel {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a9a498;
+  margin-bottom: 2px;
+}
+
+/* ───────── Matrix ───────── */
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid #e6e2d8;
+}
+.table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: #fff;
+}
+.table caption {
+  text-align: start;
+  padding: 20px 24px;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8d8a82;
+  border-bottom: 1px solid #e6e2d8;
+}
+.table th,
+.table td {
+  padding: 16px 24px;
+  text-align: start;
+  font-size: 14.5px;
+  line-height: 1.6;
+  border-bottom: 1px solid #eeeae0;
+  vertical-align: top;
+}
+.table thead th {
+  font-family: var(--font-arabic-display);
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: #14140f;
+  background: #fbfaf7;
+  border-bottom: 1px solid #e6e2d8;
+}
+.table thead th:first-child {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8d8a82;
+  font-weight: 400;
+}
+.rowLabel {
+  color: #14140f;
+  font-weight: 600;
+  width: 26%;
+}
+.table td {
+  color: #56534b;
+}
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.table tbody tr:hover td,
+.table tbody tr:hover .rowLabel {
+  background: #fffdf6;
+}
+
+/* ───────── Note ───────── */
+.note {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: 3px 1fr;
+  gap: 18px;
+}
+.note::before {
+  content: "";
+  background: #f0b100;
+}
+.note p {
+  margin: 0;
+  color: #6e6a61;
+  font-size: 15px;
+  line-height: 1.9;
+  max-width: 78ch;
+}
+
+@media (max-width: 1000px) {
+  .head,
+  .answers {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .answers {
+    gap: 1px;
+  }
+}
+@media (max-width: 640px) {
+  .section {
+    padding-block: 64px;
+  }
+  .answer {
+    padding: 24px 22px;
+  }
+  .table th,
+  .table td {
+    padding: 14px 18px;
+  }
+}

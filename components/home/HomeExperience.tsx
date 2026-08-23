@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useLocale } from "next-intl";
 import { HOME_FAQ } from "@/lib/home-faq";
 import Platforms from "./Platforms";
+import PlatformChooser from "./PlatformChooser";
 import styles from "./HomeExperience.module.css";
 
 const WHATSAPP = "201007835547";
@@ -24,6 +25,13 @@ const copy = {
       ["متجر الخدمات", "/store"],
       ["المدونة", "/blog"],
     ],
+    panelLabel: "المنصات التي نبني عليها",
+    panelPlatforms: [
+      ["سلة", "SALLA", "من 5 أيام"],
+      ["زد", "ZID", "من 7 أيام"],
+      ["شوبيفاي", "SHOPIFY", "من 10 أيام"],
+    ],
+    panelCta: "أي منصة تناسبك؟",
     start: "ابدأ مشروعك",
     eyebrow: "شريكك الرقمي لنمو التجارة الإلكترونية",
     title: "نبني متاجر رقمية واضحة، سريعة، ومهيأة للنمو.",
@@ -182,6 +190,13 @@ const copy = {
       ["Store", "/store"],
       ["Blog", "/blog"],
     ],
+    panelLabel: "Platforms we build on",
+    panelPlatforms: [
+      ["Salla", "SALLA", "from 5 days"],
+      ["Zid", "ZID", "from 7 days"],
+      ["Shopify", "SHOPIFY", "from 10 days"],
+    ],
+    panelCta: "Which one fits you?",
     start: "Start a project",
     eyebrow: "Your e-commerce growth partner",
     title: "We build clear, fast digital stores designed to grow.",
@@ -340,6 +355,13 @@ const copy = {
       ["Boutique", "/store"],
       ["Blog", "/blog"],
     ],
+    panelLabel: "Plateformes utilisées",
+    panelPlatforms: [
+      ["Salla", "SALLA", "dès 5 jours"],
+      ["Zid", "ZID", "dès 7 jours"],
+      ["Shopify", "SHOPIFY", "dès 10 jours"],
+    ],
+    panelCta: "Laquelle vous convient ?",
     start: "Démarrer",
     eyebrow: "Votre partenaire croissance e-commerce",
     title:
@@ -690,29 +712,30 @@ export default function HomeExperience() {
               </div>
               <p className={styles.note}>{t.note}</p>
             </div>
-            <div className={styles.heroPanel} aria-hidden="true">
+            {/* Was a mock browser window whose whole content was the numeral
+                "01" set 200px in Arial — decoration that said nothing, in the
+                most valuable space on the site. It now carries the three
+                platforms and their delivery windows, and links into the
+                section that explains how to choose between them. */}
+            <div className={styles.heroPanel}>
               <div className={styles.panelTop}>
-                <span />
-                <span />
-                <span />
-                <b>AM / COMMERCE</b>
+                <b>{t.panelLabel}</b>
               </div>
-              <div className={styles.panelBody}>
-                <span className={styles.panelLabel}>
-                  STRATEGY · DESIGN · GROWTH
-                </span>
-                <strong>01</strong>
-                <div className={styles.panelMetric}>
-                  <i>CONVERSION SYSTEM</i>
-                  <em>READY TO SCALE</em>
-                </div>
-              </div>
-              <div className={styles.panelBottom}>
-                <span>SALLA</span>
-                <span>ZID</span>
-                <span>SEO</span>
-                <span>CRO</span>
-              </div>
+              <ul className={styles.panelList}>
+                {t.panelPlatforms.map(([name, latin, time]) => (
+                  <li key={latin}>
+                    <span className={styles.panelName}>
+                      {name}
+                      <i>{latin}</i>
+                    </span>
+                    <span className={styles.panelTime}>{time}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href="#choose" className={styles.panelBottom}>
+                {t.panelCta}
+                <span aria-hidden>{locale === "ar" ? "←" : "→"}</span>
+              </a>
             </div>
           </div>
           <div className={`${styles.shell} ${styles.proof}`}>
@@ -729,6 +752,7 @@ export default function HomeExperience() {
             plain words claiming nothing, with the section that carries the
             core offer. */}
         <Platforms />
+        <PlatformChooser />
 
         <section id="services" className={styles.section} data-own-spacing>
           <div className={styles.shell}>

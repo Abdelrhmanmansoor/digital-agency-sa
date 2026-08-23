@@ -64,7 +64,7 @@
   padding-inline-end: 8px;
 }
 .locales a {
-  font-family: Arial, sans-serif;
+  font-family: "Space Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.08em;
 }
@@ -183,77 +183,72 @@
   border-bottom: 1px solid #4a4945;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 0 18px;
-}
-.panelTop span {
-  width: 7px;
-  height: 7px;
-  border: 1px solid #85827a;
-  border-radius: 50%;
+  padding: 0 24px;
 }
 .panelTop b {
-  font:
-    10px Arial,
-    sans-serif;
-  letter-spacing: 0.12em;
-  margin-inline-start: auto;
-  color: #85827a;
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8d8a82;
+  font-weight: 400;
 }
-.panelBody {
-  position: relative;
+.panelList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   flex: 1;
-  padding: 36px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
-.panelLabel {
-  font:
-    10px Arial,
-    sans-serif;
-  letter-spacing: 0.16em;
-  color: #8d8a82;
-}
-.panelBody strong {
-  font:
-    200px/0.8 Arial,
-    sans-serif;
-  color: #f2efe7;
-  letter-spacing: -0.1em;
-}
-.panelMetric {
-  border-top: 1px solid #4a4945;
-  padding-top: 18px;
+.panelList li {
+  flex: 1;
+  padding: 0 24px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #2e2d29;
 }
-.panelMetric i,
-.panelMetric em {
-  font:
-    9px Arial,
-    sans-serif;
-  letter-spacing: 0.12em;
+.panelName {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-arabic-display);
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #f2efe7;
+}
+.panelName i {
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
   font-style: normal;
-  color: #9c9991;
+  letter-spacing: 0.18em;
+  color: #85827a;
 }
-.panelMetric em {
+.panelTime {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
   color: var(--yellow);
+  white-space: nowrap;
 }
 .panelBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
   border-top: 1px solid #4a4945;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  transition: background 0.2s;
 }
-.panelBottom span {
-  padding: 18px 10px;
-  text-align: center;
-  border-inline-end: 1px solid #4a4945;
-  font:
-    10px Arial,
-    sans-serif;
-  letter-spacing: 0.12em;
-  color: #aaa79f;
+.panelBottom:hover {
+  background: #21201c;
 }
 .proof {
   border-top: 1px solid #373632;
@@ -272,8 +267,7 @@
 }
 .proof strong {
   font:
-    700 28px Arial,
-    sans-serif;
+    700 28px "Space Mono", monospace;
   color: #fff;
 }
 .proof span {
@@ -302,8 +296,7 @@
 }
 .platformRow span {
   font:
-    800 15px Arial,
-    sans-serif;
+    800 15px "Space Mono", monospace;
   letter-spacing: 0.08em;
   color: #393834;
 }
@@ -355,8 +348,7 @@
 }
 .serviceCard > span {
   font:
-    12px Arial,
-    sans-serif;
+    12px "Space Mono", monospace;
   color: #8b6900;
 }
 .serviceCard h3 {
@@ -402,8 +394,7 @@
   top: 18px;
   inset-inline-start: 20px;
   font:
-    11px Arial,
-    sans-serif;
+    11px "Space Mono", monospace;
   letter-spacing: 0.1em;
 }
 .projectVisual img {
@@ -493,8 +484,7 @@
 }
 .steps > article > span {
   font:
-    12px Arial,
-    sans-serif;
+    12px "Space Mono", monospace;
   color: var(--yellow);
 }
 .steps h3 {
@@ -534,8 +524,7 @@
 }
 .faqItem button b {
   font:
-    300 26px Arial,
-    sans-serif;
+    300 26px "Space Mono", monospace;
   color: #8b6900;
 }
 .faqItem p {
@@ -676,8 +665,7 @@
   justify-content: space-between;
   color: #d2b46c;
   font:
-    10px Arial,
-    sans-serif;
+    10px "Space Mono", monospace;
   letter-spacing: 0.14em;
   z-index: 2;
 }
@@ -715,8 +703,7 @@
 }
 .sidraStats strong {
   font:
-    700 26px Arial,
-    sans-serif;
+    700 26px "Space Mono", monospace;
   display: block;
 }
 .sidraStats span {
@@ -799,9 +786,6 @@
 }
 .heroPanel {
   animation: panelEnter 1s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.panelBody strong {
-  animation: numberBreathe 5s ease-in-out infinite;
 }
 .serviceCard:hover {
   transform: translateY(-6px);
@@ -918,8 +902,7 @@
   display: flex;
   justify-content: space-between;
   font:
-    10px Arial,
-    sans-serif;
+    10px "Space Mono", monospace;
   letter-spacing: 0.14em;
   color: #8f8c85;
 }
@@ -935,15 +918,13 @@
 }
 .reportScore strong {
   font:
-    700 112px/0.8 Arial,
-    sans-serif;
+    700 112px/0.8 "Space Mono", monospace;
   letter-spacing: -0.08em;
 }
 .reportScore span {
   color: #77746d;
   font:
-    14px Arial,
-    sans-serif;
+    14px "Space Mono", monospace;
 }
 .reportBars {
   display: grid;
@@ -970,8 +951,7 @@
   grid-template-columns: repeat(4, 1fr);
   margin-top: 28px;
   font:
-    9px Arial,
-    sans-serif;
+    9px "Space Mono", monospace;
   letter-spacing: 0.12em;
   color: #85827a;
 }
@@ -1062,9 +1042,6 @@
     min-height: 400px;
     max-width: 620px;
   }
-  .panelBody strong {
-    font-size: 150px;
-  }
   .sectionHead,
   .processGrid,
   .faqGrid {
@@ -1127,14 +1104,14 @@
     width: 100%;
   }
   .heroPanel {
-    min-height: 330px;
+    min-height: 0;
     box-shadow: 10px 10px 0 var(--yellow);
   }
-  .panelBody {
-    padding: 24px;
+  .panelName {
+    font-size: 26px;
   }
-  .panelBody strong {
-    font-size: 110px;
+  .panelList li {
+    padding: 20px 20px;
   }
   .panelBottom span {
     padding: 14px 4px;
