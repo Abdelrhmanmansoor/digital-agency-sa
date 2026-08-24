@@ -600,3 +600,89 @@ h1,h2,h3,h4,h5,h6 { font-family:var(--font-arabic-display); font-weight:700; lin
   *,*::before,*::after { animation-duration:0.01ms!important; animation-iteration-count:1!important; transition-duration:0.01ms!important; }
   html { scroll-behavior:auto; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   REDESIGN 2026 — SYSTEM EXTENSIONS
+   Adds the layers the original token set never declared: a spacing
+   scale, a container/grid system, elevation beyond three shadows,
+   a motion vocabulary, and the National Day accent.
+   Nothing here overrides an existing token — it only extends.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Spacing scale (4px base, section rhythm at the top end) ── */
+  --sp-1:  4px;   --sp-2:  8px;   --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 20px;   --sp-6: 24px;   --sp-8: 32px;  --sp-10: 40px;
+  --sp-12: 48px;  --sp-16: 64px;  --sp-20: 80px; --sp-24: 96px;
+  --sp-32: 128px;
+
+  /* Section rhythm — one pair of values every section uses, so no two
+     sections invent their own vertical spacing. */
+  --section-y: clamp(64px, 9vw, 128px);
+  --section-y-tight: clamp(48px, 6vw, 88px);
+
+  /* ── Container / grid ── */
+  --container: 1320px;
+  --container-narrow: 880px;
+  --gutter: clamp(16px, 4vw, 40px);
+
+  /* ── Breakpoints (documented; media queries are hand-written) ──
+     sm 480 · md 768 · lg 1024 · xl 1280 · 2xl 1536 */
+
+  /* ── Elevation — five steps, all neutral-tinted, never coloured ── */
+  --elev-0: none;
+  --elev-1: 0 1px 2px rgba(17,17,17,0.05);
+  --elev-2: 0 4px 16px rgba(17,17,17,0.06);
+  --elev-3: 0 12px 32px rgba(17,17,17,0.10);
+  --elev-4: 0 24px 64px -16px rgba(17,17,17,0.18);
+  --elev-ring: 0 0 0 1px var(--border);
+
+  /* ── Motion vocabulary ──
+     Durations are short on purpose: this is a commerce site, not a
+     showreel. Anything above 500ms is reserved for scroll reveals. */
+  --dur-1: 120ms;  /* tactile feedback: :active, checkbox */
+  --dur-2: 200ms;  /* hover, colour */
+  --dur-3: 320ms;  /* panels, accordions */
+  --dur-4: 520ms;  /* scroll reveal */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasis: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-spring:   cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  /* ── National Day 96 — Saudi green, used ONLY by that promo ── */
+  --sa-green:       #006C35;
+  --sa-green-deep:  #024A24;
+  --sa-green-light: #0E8A46;
+
+  /* Set before first paint by the announcement bar's inline script, so a
+     dismissed bar never costs a layout shift. */
+  --announce-h: 0px;
+}
+
+/* ═══ LAYOUT PRIMITIVES ═══ */
+.u-container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.u-container--narrow { max-width: var(--container-narrow); }
+.u-section { padding-block: var(--section-y); }
+.u-section--tight { padding-block: var(--section-y-tight); }
+
+/* ═══ SCROLL REVEAL — driven by IntersectionObserver, never a scroll
+   listener. The `no-js`/no-observer path leaves content visible. ═══ */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity var(--dur-4) var(--ease-emphasis), transform var(--dur-4) var(--ease-emphasis);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal].is-in { opacity: 1; transform: none; will-change: auto; }
+
+/* ═══ TACTILE FEEDBACK — every primary control gets the same 1px press ═══ */
+.btn-primary:active, .btn-dark:active, .btn-secondary:active { transform: translateY(1px); }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* The mobile action bar floats clear of the bottom edge; reserve its height
+   plus its offset so the last row of every page stays reachable above it. */
+@media (max-width: 767px) {
+  #locale-root { padding-bottom: calc(94px + env(safe-area-inset-bottom)); }
+}

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteShell from "@/components/layout/SiteShell";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ARTICLES, getArticle, relatedArticles, clusterOf } from "@/lib/articles";
@@ -93,9 +92,8 @@ export default async function BlogArticlePage({
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Header />
+      <SiteShell>
       <PageShell>
-        <main>
           <PageHero
             kicker={cluster[lang]}
             title={title}
@@ -178,9 +176,8 @@ export default async function BlogArticlePage({
               </Link>
             </div>
           </Section>
-        </main>
       </PageShell>
-      <Footer />
+      </SiteShell>
 
       <style>{`
         .article-layout {

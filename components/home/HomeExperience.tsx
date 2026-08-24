@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import { HOME_FAQ } from "@/lib/home-faq";
 import Platforms from "./Platforms";
 import PlatformChooser from "./PlatformChooser";
+import SectorSpotlight from "./SectorSpotlight";
 import styles from "./HomeExperience.module.css";
 
 const WHATSAPP = "201007835547";
@@ -579,129 +580,16 @@ export default function HomeExperience() {
   const t = copy[locale] ?? copy.en;
   const faq = HOME_FAQ[locale] ?? HOME_FAQ.en;
   const audit = auditCopy[locale] ?? auditCopy.en;
-  const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const whatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد استشارة بخصوص مشروعي الرقمي." : "Hello, I would like a consultation about my digital project.")}`;
   const auditWhatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد التحليل المجاني لمتجري. رابط المتجر: " : "Hello, I would like the free store audit. Store URL: ")}`;
 
-  /* Mobile menu: close on Escape and stop the page scrolling behind it. */
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    const items = document.querySelectorAll<HTMLElement>("[data-reveal]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.revealVisible);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -50px" },
-    );
-    items.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
-  }, []);
+  /* The scroll reveal is handled once for the whole document by
+     RevealRoot; this file used to run a second observer over the same
+     [data-reveal] nodes. */
 
   return (
     <div className={styles.site}>
-      <a href="#main" className="skip-link">
-        {locale === "ar" ? "تخطَّ إلى المحتوى" : locale === "fr" ? "Aller au contenu" : "Skip to content"}
-      </a>
-      <header className={styles.header}>
-        <div className={styles.shell}>
-          <nav className={styles.nav} aria-label={t.menu}>
-            <Link
-              href={`/${locale}`}
-              className={styles.brand}
-              aria-label="AM Design"
-            >
-              <Image
-                src="/logo.png"
-                alt="AM Design"
-                width={178}
-                height={70}
-                priority
-              />
-            </Link>
-            <div className={styles.navLinks}>
-              {t.nav.map(([label, href]) =>
-                href.startsWith("#") ? (
-                  <a key={href} href={href}>
-                    {label}
-                  </a>
-                ) : (
-                  <Link key={href} href={`/${locale}${href}`}>
-                    {label}
-                  </Link>
-                ),
-              )}
-            </div>
-            <div className={styles.navActions}>
-              <div className={styles.locales} aria-label="Language">
-                {(["ar", "en", "fr"] as const).map((code) => (
-                  <Link
-                    key={code}
-                    href={`/${code}`}
-                    className={locale === code ? styles.activeLocale : ""}
-                  >
-                    {code.toUpperCase()}
-                  </Link>
-                ))}
-              </div>
-              <a
-                href={whatsapp}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.headerCta}
-              >
-                {t.start}
-              </a>
-              <button
-                className={styles.menuButton}
-                onClick={() => setMenuOpen(!menuOpen)}
-                aria-expanded={menuOpen}
-                aria-label={t.menu}
-              >
-                <span />
-                <span />
-              </button>
-            </div>
-          </nav>
-          {menuOpen && (
-            <div className={styles.mobileMenu}>
-              {t.nav.map(([label, href]) =>
-                href.startsWith("#") ? (
-                  <a key={href} href={href} onClick={() => setMenuOpen(false)}>
-                    {label}
-                  </a>
-                ) : (
-                  <Link key={href} href={`/${locale}${href}`} onClick={() => setMenuOpen(false)}>
-                    {label}
-                  </Link>
-                ),
-              )}
-              <a href={whatsapp} target="_blank" rel="noreferrer" onClick={() => setMenuOpen(false)}>
-                {t.start}
-              </a>
-            </div>
-          )}
-        </div>
-      </header>
-
-      <main id="main">
         <section className={styles.hero} data-own-spacing>
           <div className={`${styles.shell} ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
@@ -901,6 +789,10 @@ export default function HomeExperience() {
           </div>
         </section>
 
+        {/* Bridge into the legal sector page — the one part of the offer
+            that is not e-commerce, and it was reachable from nowhere. */}
+        <SectorSpotlight />
+
         <section className={styles.auditSection} data-own-spacing>
           <div
             className={`${styles.shell} ${styles.auditGrid} ${styles.reveal}`}
@@ -1028,48 +920,6 @@ export default function HomeExperience() {
             </a>
           </div>
         </section>
-      </main>
-
-      <footer className={styles.footer}>
-        <div className={`${styles.shell} ${styles.footerMain}`}>
-          <div>
-            <Image src="/logo.png" alt="AM Design" width={160} height={63} />
-            <p>{t.footerText}</p>
-          </div>
-          <nav aria-label={t.menu}>
-            {t.nav.map(([label, href]) =>
-              href.startsWith("#") ? (
-                <a key={href} href={href}>
-                  {label}
-                </a>
-              ) : (
-                <Link key={href} href={`/${locale}${href}`}>
-                  {label}
-                </Link>
-              ),
-            )}
-            <Link href={`/${locale}/policy`}>
-              {locale === "ar" ? "الشروط والخصوصية" : locale === "fr" ? "Conditions & confidentialité" : "Terms & Privacy"}
-            </Link>
-          </nav>
-          <div className={styles.footerContact}>
-            <a href="mailto:mansoor77soliman@gmail.com">
-              mansoor77soliman@gmail.com
-            </a>
-            <a href={whatsapp}>+20 100 783 5547</a>
-          </div>
-        </div>
-        <div className={`${styles.shell} ${styles.footerBottom}`}>
-          <span>
-            © {new Date().getFullYear()} AM Design. {t.rights}
-          </span>
-          <div>
-            <a href="https://www.instagram.com/amdesign.ksa/">Instagram</a>
-            <a href="https://x.com/am_designing">X</a>
-            <a href="https://www.tiktok.com/@amdesigne.sa">TikTok</a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

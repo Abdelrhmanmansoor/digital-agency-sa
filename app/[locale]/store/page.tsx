@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteShell from "@/components/layout/SiteShell";
 import StoreContent from "@/components/store/StoreContent";
 import FloatingActions from "@/components/home/FloatingActions";
 import ScrollProgress from "@/components/layout/ScrollProgress";
@@ -155,11 +154,9 @@ export default async function StorePage({ params }: { params: Promise<{ locale: 
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang, locale)) }}
       />
       <ScrollProgress />
-      <Header />
-      <main>
+      <SiteShell>
         <StoreContent />
-      </main>
-      <Footer />
+      </SiteShell>
       <FloatingActions />
     </>
   );

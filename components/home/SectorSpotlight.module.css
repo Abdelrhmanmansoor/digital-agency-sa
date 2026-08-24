@@ -1,0 +1,88 @@
+/* Homepage bridge into the legal sector page.
+   A split band rather than a third card in a row of three: it has to read as
+   a different kind of offer from the e-commerce work above it. */
+.root { background: var(--bg-section); border-block: 1px solid var(--border); }
+.shell { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 0.85fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  padding-block: var(--section-y);
+}
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 36px; } }
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--yellow-deep);
+}
+.kicker::before { content: ""; width: 22px; height: 2px; border-radius: 2px; background: var(--yellow); }
+
+.title {
+  font-size: clamp(26px, 3.6vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 14px 0 0;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+.body { margin-top: 16px; font-size: clamp(15px, 1.5vw, 17px); line-height: 1.85; color: var(--muted); max-width: 56ch; }
+
+.points { list-style: none; margin: 24px 0 0; padding: 0; display: grid; gap: 11px; }
+.points li { display: flex; gap: 10px; font-size: 15px; line-height: 1.6; color: var(--charcoal); }
+.points svg { color: var(--yellow-deep); flex-shrink: 0; margin-top: 3px; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 50px;
+  padding: 0 24px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 15.5px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background-color var(--dur-2) var(--ease-standard), transform var(--dur-1) var(--ease-standard);
+}
+.primary:hover { background: #2A2A2A; }
+.primary:active { transform: translateY(1px); }
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 0 22px;
+  border-radius: 12px;
+  border: 1px solid var(--border-mid);
+  background: #fff;
+  color: var(--ink);
+  font-size: 15.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color var(--dur-2) var(--ease-standard), background-color var(--dur-2) var(--ease-standard);
+}
+.secondary:hover { border-color: var(--ink); background: var(--bg-card2); }
+
+/* Practice-area chips double as a preview of the page's own grid. */
+.chips { display: flex; flex-wrap: wrap; gap: 9px; }
+.chip {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--charcoal);
+  transition: border-color var(--dur-2) var(--ease-standard), color var(--dur-2) var(--ease-standard), transform var(--dur-2) var(--ease-standard);
+}
+.chip:nth-child(3n) { border-color: rgba(240, 177, 0, 0.4); color: var(--yellow-deep); background: var(--yellow-tint); }
+.root:hover .chip { border-color: var(--border-mid); }
+.chipMore { font-family: var(--font-mono); font-size: 13px; color: var(--warm-gray); align-self: center; padding-inline: 6px; }

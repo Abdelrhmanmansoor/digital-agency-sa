@@ -778,7 +778,11 @@
     opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.revealVisible {
+/* Two selectors, one behaviour: `.revealVisible` is the name this module
+   used, `.is-in` is what the site-wide RevealRoot observer adds. Keeping
+   both means the homepage does not need an observer of its own. */
+.revealVisible,
+.reveal:global(.is-in) {
   opacity: 1;
   transform: translateY(0);
 }

@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteShell from "@/components/layout/SiteShell";
 import FloatingActions from "@/components/home/FloatingActions";
 import ProductDetailClient from "./ProductDetailClient";
 import { getProductBySlug, PRODUCTS } from "@/lib/store-data";
@@ -108,11 +107,9 @@ export default async function ProductPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Header />
-      <main>
+      <SiteShell>
         <ProductDetailClient product={product} />
-      </main>
-      <Footer />
+      </SiteShell>
       <FloatingActions />
     </>
   );

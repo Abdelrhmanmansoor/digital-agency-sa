@@ -109,7 +109,7 @@ export default function PolicyClient({ locale }: { locale: string }) {
 
   return (
     <PageShell>
-      <main>
+      <div>
         <PageHero
           kicker={t.kicker}
           title={t.title}
@@ -179,7 +179,7 @@ export default function PolicyClient({ locale }: { locale: string }) {
             </div>
           </div>
         </Section>
-      </main>
+      </div>
 
       <style>{`
         .policy-layout {

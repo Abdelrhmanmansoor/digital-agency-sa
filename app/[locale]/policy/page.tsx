@@ -1,7 +1,6 @@
 import { getLocale } from "next-intl/server";
 import PolicyClient from "./PolicyClient";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteShell from "@/components/layout/SiteShell";
 import { SITE_URL, hreflangMap } from "@/lib/site";
 
 /* The page had a title but no description, so it inherited the generic
@@ -37,9 +36,9 @@ export default async function PolicyPage({ params }: { params: Promise<{ locale:
   const { locale } = await params;
   return (
     <>
-      <Header />
+      <SiteShell>
       <PolicyClient locale={locale} />
-      <Footer />
+      </SiteShell>
     </>
   );
 }

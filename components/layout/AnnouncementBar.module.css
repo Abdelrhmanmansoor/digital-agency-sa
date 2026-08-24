@@ -1,0 +1,118 @@
+/* National Day 96 promo strip.
+   Hidden by default and switched on by the pre-paint script, so a visitor
+   who dismissed it — or who arrives outside the campaign window — never
+   sees it flash and never pays a layout shift for it. */
+.bar { display: none; }
+:global(html[data-nd="on"]) .bar { display: block; }
+
+.bar {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(100deg, var(--sa-green-deep) 0%, var(--sa-green) 46%, var(--sa-green-light) 100%);
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+
+/* A single slow highlight sweep. It is the only perpetual animation on the
+   bar, it moves with transform alone, and it stops for reduced motion. */
+.bar::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -40%;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.13), transparent);
+  transform: translate3d(0, 0, 0);
+  animation: sweep 7s var(--ease-standard) infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes sweep {
+  0%, 55% { transform: translate3d(0, 0, 0); }
+  100%    { transform: translate3d(350%, 0, 0); }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 7px var(--gutter);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.flag { flex-shrink: 0; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,0.35); }
+
+.text { font-weight: 700; letter-spacing: -0.01em; }
+.sub { font-weight: 400; color: rgba(255, 255, 255, 0.78); }
+
+/* Fixed min-width: the countdown mounts on the client, and reserving its
+   box up front keeps the row from reflowing when the number appears. */
+.count {
+  min-width: 116px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  white-space: nowrap;
+}
+
+.cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  color: var(--sa-green-deep);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 7px 15px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform var(--dur-2) var(--ease-standard), box-shadow var(--dur-2) var(--ease-standard);
+}
+.cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22); }
+.cta:active { transform: translateY(0); }
+
+.dismiss {
+  position: absolute;
+  inset-inline-end: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  transition: background var(--dur-2) var(--ease-standard), color var(--dur-2) var(--ease-standard);
+}
+.dismiss:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
+
+@media (max-width: 900px) {
+  .sub { display: none; }
+}
+@media (max-width: 640px) {
+  .inner { gap: 10px; font-size: 13px; padding-inline: 44px 44px; justify-content: center; }
+  .count { display: none; }
+  .cta { padding: 6px 12px; font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar::after { animation: none; display: none; }
+}
+
+[dir="rtl"] .cta svg { transform: scaleX(-1); }

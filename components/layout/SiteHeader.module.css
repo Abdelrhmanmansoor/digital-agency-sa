@@ -1,0 +1,421 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   SITE HEADER
+   Sticky rather than fixed: the browser keeps the space, so there is no
+   spacer div to keep in sync and no layout shift when the promo strip is
+   dismissed. The compact state is driven by an IntersectionObserver on a
+   sentinel above the bar, never a scroll listener.
+   ═══════════════════════════════════════════════════════════════════════ */
+.sentinel { height: 1px; margin-bottom: -1px; }
+
+.root {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: saturate(160%) blur(14px);
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow var(--dur-3) var(--ease-standard), background-color var(--dur-3) var(--ease-standard);
+}
+/* No backdrop-filter support: fall back to an opaque bar rather than a
+   half-transparent one that lets the page show through. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .root { background: #fff; }
+}
+.root[data-stuck="true"] {
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--elev-2);
+}
+
+.bar {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 76px;
+  transition: height var(--dur-3) var(--ease-standard);
+}
+.root[data-stuck="true"] .bar { height: 62px; }
+
+.logo { display: flex; align-items: center; flex-shrink: 0; margin-inline-end: 8px; }
+.logo img {
+  width: 112px;
+  height: auto;
+  object-fit: contain;
+  transition: width var(--dur-3) var(--ease-standard);
+}
+.root[data-stuck="true"] .logo img { width: 94px; }
+
+/* ── Desktop navigation ── */
+.nav { display: none; align-items: center; gap: 2px; flex: 1; }
+@media (min-width: 1080px) { .nav { display: flex; } }
+
+.navItem { position: relative; }
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 13px;
+  border: 0;
+  background: transparent;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--charcoal);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--dur-2) var(--ease-standard), background-color var(--dur-2) var(--ease-standard);
+}
+.navLink:hover, .navLink[data-open="true"] { color: var(--ink); background: var(--bg-card2); }
+.navLink[aria-current="page"] { color: var(--ink); }
+.navLink[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  inset-inline: 13px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--yellow);
+}
+.chev { transition: transform var(--dur-2) var(--ease-standard); }
+.navLink[data-open="true"] .chev { transform: rotate(180deg); }
+
+/* ── Dropdown panel ── */
+.panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  inset-inline-start: -8px;
+  width: min(620px, calc(100vw - 2 * var(--gutter)));
+  padding: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--elev-4);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  opacity: 0;
+  transform: translate3d(0, -6px, 0);
+  pointer-events: none;
+  transition: opacity var(--dur-2) var(--ease-standard), transform var(--dur-2) var(--ease-standard);
+}
+.panel[data-open="true"] { opacity: 1; transform: none; pointer-events: auto; }
+
+.panelLink {
+  display: block;
+  padding: 11px 13px;
+  border-radius: 11px;
+  text-decoration: none;
+  transition: background-color var(--dur-2) var(--ease-standard);
+}
+.panelLink:hover { background: var(--bg-card2); }
+.panelTitle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.panelHint { font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+.panelBadge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--yellow-tint);
+  border: 1px solid rgba(240, 177, 0, 0.42);
+  color: var(--yellow-deep);
+}
+
+/* ── Right-hand actions ── */
+.actions { display: flex; align-items: center; gap: 8px; margin-inline-start: auto; }
+
+.iconBtn {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-mid);
+  border-radius: 11px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--dur-2) var(--ease-standard), background-color var(--dur-2) var(--ease-standard), transform var(--dur-1) var(--ease-standard);
+}
+.iconBtn:hover { border-color: var(--ink); background: var(--bg-card2); }
+.iconBtn:active { transform: scale(0.96); }
+.hideSm { display: none; }
+@media (min-width: 768px) { .hideSm { display: inline-flex; } }
+
+.count {
+  position: absolute;
+  top: -6px;
+  inset-inline-end: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  background: var(--yellow);
+  color: #111;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta {
+  display: none;
+  align-items: center;
+  gap: 7px;
+  height: 42px;
+  padding: 0 20px;
+  border-radius: 11px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--dur-2) var(--ease-standard), transform var(--dur-1) var(--ease-standard);
+}
+.cta:hover { background: #2A2A2A; }
+.cta:active { transform: translateY(1px); }
+@media (min-width: 900px) { .cta { display: inline-flex; } }
+
+.burger { display: inline-flex; }
+@media (min-width: 1080px) { .burger { display: none; } }
+
+/* ═══ MOBILE DRAWER — built for thumbs, not a shrunken desktop menu ═══ */
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  background: rgba(17, 17, 17, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-3) var(--ease-standard);
+}
+.scrim[data-open="true"] { opacity: 1; pointer-events: auto; }
+
+.drawer {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
+  z-index: 960;
+  width: min(420px, 100vw);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: var(--elev-4);
+  transform: translateX(var(--drawer-out, 102%));
+  transition: transform var(--dur-3) var(--ease-emphasis);
+  overscroll-behavior: contain;
+}
+:global([dir="rtl"]) .drawer { --drawer-out: -102%; }
+:global([dir="ltr"]) .drawer { --drawer-out: 102%; }
+.drawer[data-open="true"] { transform: translateX(0); }
+
+.drawerHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.drawerBody { flex: 1; overflow-y: auto; padding: 10px 12px 24px; -webkit-overflow-scrolling: touch; }
+
+/* Touch targets never go below 54px here, which is the whole reason the
+   mobile menu is a separate build rather than the desktop one at 90%. */
+.mLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 54px;
+  padding: 14px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+}
+.mLink:active { background: var(--bg-card2); }
+.mSub { padding-inline-start: 10px; }
+.mSubLink {
+  display: block;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--charcoal);
+  text-decoration: none;
+}
+.mSubLink:active { background: var(--bg-card2); }
+.mGroup { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur-3) var(--ease-standard); }
+.mGroup[data-open="true"] { grid-template-rows: 1fr; }
+.mGroupInner { overflow: hidden; }
+
+.drawerFoot {
+  flex-shrink: 0;
+  padding: 14px 18px calc(14px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: 10px;
+}
+.locales { display: flex; gap: 6px; justify-content: center; }
+.locale {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--warm-gray);
+  text-decoration: none;
+}
+.locale[aria-current="true"] { color: var(--ink); font-weight: 800; background: var(--bg-card2); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE ACTION BAR — floating glass pill
+   Not a full-width strip glued to the bottom edge: a detached capsule that
+   sits above the page the way a physical control would, with the same
+   material Apple uses for its own bars — a real backdrop blur plus a
+   saturation lift, a specular hairline along the top edge, and a shadow
+   soft enough to read as height rather than as a border.
+   ═══════════════════════════════════════════════════════════════════════ */
+.tabbar {
+  position: fixed;
+  z-index: 880;
+  inset-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right));
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  margin-inline: auto;
+  max-width: 420px;
+  height: 66px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  padding-inline: 6px;
+  border-radius: 999px;
+  isolation: isolate;
+
+  /* The glass itself. The translucency is deliberately mild: at 0.72 the
+     page reads through it, but Arabic text underneath never fights the
+     icons for legibility the way it does at 0.5. */
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(26px) saturate(190%);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 18px 44px -12px rgba(17, 17, 17, 0.26),
+    0 6px 14px -6px rgba(17, 17, 17, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  /* Enters from below on first paint so the bar announces itself once
+     rather than appearing to have always been there. */
+  animation: tabbarIn 620ms var(--ease-emphasis) both;
+}
+@keyframes tabbarIn {
+  from { opacity: 0; transform: translate3d(0, 22px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Without backdrop-filter the translucent fill would show raw page content
+   through it, so those browsers get an opaque capsule instead. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .tabbar { background: #fff; border-color: var(--border); }
+}
+
+@media (min-width: 768px) { .tabbar { display: none; } }
+
+/* ── Sliding highlight ──
+   One element that travels between the four slots, rather than four circles
+   fading in and out. `--dir` flips the travel direction for RTL, because
+   translateX is physical and the grid is not. */
+.tabPill {
+  position: absolute;
+  inset-block: 7px;
+  inset-inline-start: 6px;
+  width: calc((100% - 12px) / 4);
+  border-radius: 999px;
+  background: var(--yellow);
+  box-shadow: 0 6px 16px -4px rgba(240, 177, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateX(calc(var(--tab-i, 0) * 100% * var(--dir, 1)));
+  transition: transform 460ms var(--ease-spring), opacity var(--dur-2) var(--ease-standard);
+  z-index: 0;
+  pointer-events: none;
+}
+:global([dir="rtl"]) .tabPill { --dir: -1; }
+/* No tab matches the current route (a blog article, the policy page), so
+   there is nothing truthful to highlight. */
+.tabPill[data-hidden="true"] { opacity: 0; }
+
+.tab {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  border-radius: 999px;
+  color: var(--warm-gray);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--dur-2) var(--ease-standard), transform var(--dur-1) var(--ease-standard);
+}
+.tab:active { transform: scale(0.9); }
+.tab[aria-current="page"] { color: #111; }
+/* WhatsApp keeps its own colour only while it is not the highlighted slot. */
+.tab[data-accent="true"]:not([aria-current="page"]) { color: var(--sa-green); }
+
+.tabCount {
+  position: absolute;
+  top: 8px;
+  inset-inline-end: calc(50% - 18px);
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  border: 2px solid #fff;
+  background: var(--ink);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* On the highlighted slot the yellow pill is behind the badge, so the badge
+   inverts to stay legible against it. */
+.tab[aria-current="page"] .tabCount { background: #111; border-color: var(--yellow); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tabbar { animation: none; }
+  .tabPill { transition: none; }
+}

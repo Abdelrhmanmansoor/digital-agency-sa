@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteShell from "@/components/layout/SiteShell";
 import SuccessClient from "./SuccessClient";
 
 export async function generateMetadata({
@@ -16,11 +15,9 @@ export async function generateMetadata({
 export default function OrderSuccessPage() {
   return (
     <>
-      <Header />
-      <main style={{ background: "#FAFAF8", minHeight: "60vh" }}>
+      <SiteShell style={{ background: "#FAFAF8", minHeight: "60vh" }}>
         <SuccessClient />
-      </main>
-      <Footer />
+      </SiteShell>
     </>
   );
 }

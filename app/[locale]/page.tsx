@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeExperience from "@/components/home/HomeExperience";
+import SiteShell from "@/components/layout/SiteShell";
 import { HOME_FAQ } from "@/lib/home-faq";
 import { SITE_URL } from "@/lib/site";
 
@@ -55,5 +56,5 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "AM Design", item: `${SITE_URL}/${lang}` }] },
     ],
   };
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><HomeExperience /></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><SiteShell><HomeExperience /></SiteShell></>;
 }

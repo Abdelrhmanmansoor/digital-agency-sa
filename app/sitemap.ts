@@ -10,6 +10,7 @@ import { SITE_URL, LOCALES } from "@/lib/site";
 const ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
   { path: "/store", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/solutions/legal", priority: 0.9, changeFrequency: "monthly" },
   { path: "/sidra-theme", priority: 0.9, changeFrequency: "monthly" },
   { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
   { path: "/policy", priority: 0.3, changeFrequency: "yearly" },

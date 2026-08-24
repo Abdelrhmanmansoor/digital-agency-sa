@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteShell from "@/components/layout/SiteShell";
 import Link from "next/link";
 import BlogIndex from "@/components/blog/BlogIndex";
 import { ARTICLES } from "@/lib/articles";
@@ -107,8 +106,7 @@ export default async function BlogPage({
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Header />
-      <main>
+      <SiteShell>
         {/* Header block — white identity, matching the rest of the site.
             This page used to open on a near-black hero left over from the
             previous palette, so the blog read as a different product. */}
@@ -158,8 +156,7 @@ export default async function BlogPage({
             <BlogIndex locale={locale} />
           </div>
         </section>
-      </main>
-      <Footer />
+      </SiteShell>
     </>
   );
 }

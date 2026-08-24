@@ -26,6 +26,11 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.salla.sa" },
       { protocol: "https", hostname: "media.zid.store" },
       { protocol: "https", hostname: "cdn.simpleicons.org" },
+      /* WordPress.com's public mShots service renders a live screenshot of any
+         public URL. It is how the legal solutions page shows real reference
+         sites without redistributing anyone's artwork; the component falls
+         back to a drawn placeholder whenever a shot is not ready. */
+      { protocol: "https", hostname: "s.wordpress.com" },
     ],
     formats: ["image/webp", "image/avif"],
   },
