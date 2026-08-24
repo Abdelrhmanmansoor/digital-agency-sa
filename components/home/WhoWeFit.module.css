@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   WHO THIS IS FOR
+   A self-selection section. The visitor recognises their own situation in
+   one of the rows and stops wondering whether the agency does "their kind"
+   of work — which is the single most common reason a qualified lead leaves
+   an agency site without contacting anyone.
+
+   The second half is the part competitors leave out: who this is NOT for.
+   Saying it costs a handful of bad-fit enquiries and buys credibility with
+   everyone else.
+   ═══════════════════════════════════════════════════════════════════════ */
+.root { background: #fff; }
+.shell { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.inner { padding-block: var(--section-y); }
+
+.head { max-width: 760px; margin-bottom: clamp(30px, 4vw, 48px); }
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--yellow-deep);
+}
+.kicker::before { content: ""; width: 22px; height: 2px; border-radius: 2px; background: var(--yellow); }
+.title { font-size: clamp(26px, 3.6vw, 44px); line-height: 1.14; letter-spacing: -0.03em; margin: 14px 0 0; max-width: 22ch; text-wrap: balance; }
+.lead { margin-top: 14px; font-size: clamp(15px, 1.5vw, 17px); line-height: 1.85; color: var(--muted); max-width: 62ch; }
+
+/* Two columns of rows rather than six cards: the whole point is that the
+   visitor scans for the one line that describes them, and a card grid slows
+   that scan down. */
+.list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 860px) { .list { grid-template-columns: 1fr; } }
+
+.item {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  transition: border-color var(--dur-2) var(--ease-standard), transform var(--dur-2) var(--ease-standard), box-shadow var(--dur-2) var(--ease-standard);
+}
+.item:hover { border-color: var(--border-mid); transform: translateY(-3px); box-shadow: var(--elev-2); }
+
+.mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-content: center;
+  border-radius: 11px;
+  background: var(--yellow-tint);
+  border: 1px solid rgba(240, 177, 0, 0.34);
+  color: var(--yellow-deep);
+}
+.itemTitle { font-size: 16.5px; font-weight: 700; line-height: 1.5; letter-spacing: -0.015em; }
+.itemBody { margin-top: 7px; font-size: 14px; line-height: 1.78; color: var(--muted); }
+.itemLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 11px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--yellow);
+  padding-bottom: 1px;
+}
+.itemLink:hover { color: var(--yellow-deep); }
+
+/* ── The honest half ── */
+.not {
+  margin-top: clamp(28px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(24px, 3vw, 34px);
+  border: 1px solid var(--border);
+  border-inline-start: 3px solid var(--ink);
+  border-radius: 16px;
+  background: var(--bg-section);
+  align-items: start;
+}
+@media (max-width: 860px) { .not { grid-template-columns: 1fr; gap: 16px; } }
+.notTitle { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+.notLead { margin-top: 8px; font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+.notList { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.notList li { display: flex; gap: 11px; font-size: 14.5px; line-height: 1.7; color: var(--charcoal); }
+.notList svg { color: var(--warm-gray); flex-shrink: 0; margin-top: 4px; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(28px, 4vw, 40px); align-items: center; }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 52px;
+  padding-inline: 26px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 15.5px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background-color var(--dur-2) var(--ease-standard), transform var(--dur-1) var(--ease-standard);
+}
+.cta:hover { background: #2A2A2A; }
+.cta:active { transform: translateY(1px); }
+.ctaNote { font-size: 13.5px; color: var(--muted); }

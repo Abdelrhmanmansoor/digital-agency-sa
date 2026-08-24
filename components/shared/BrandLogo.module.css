@@ -1,0 +1,53 @@
+/* One rendering path for three very different logo sources, so a Simple
+   Icons glyph, an official SVG and a drawn wordmark all sit on the same
+   optical baseline instead of each bringing its own height. */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: var(--logo-h, 26px);
+  object-fit: contain;
+}
+
+/* Monochrome by default, colour on hover: a wall of full-colour logos
+   competes with the page's single accent, and reads as a sponsor list. */
+.dim .img {
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: filter var(--dur-3) var(--ease-standard), opacity var(--dur-3) var(--ease-standard);
+}
+.dim:hover .img,
+.dim:focus-visible .img { filter: none; opacity: 1; }
+
+/* Drawn wordmark for the brands Simple Icons does not carry. Not an
+   imitation of the official lockup: a neutral chip that names the brand in
+   its own colour, which is what a payment rail row needs to communicate. */
+.mark {
+  display: inline-flex;
+  align-items: center;
+  height: var(--logo-h, 26px);
+  padding-inline: 11px;
+  border-radius: 7px;
+  border: 1px solid currentColor;
+  font-family: var(--font-body);
+  font-size: calc(var(--logo-h, 26px) * 0.42);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  line-height: 1;
+}
+.mark { color: var(--brand, var(--ink)); }
+.dim .mark {
+  color: var(--warm-gray);
+  opacity: 0.75;
+  transition: color var(--dur-3) var(--ease-standard), opacity var(--dur-3) var(--ease-standard);
+}
+.dim:hover .mark,
+.dim:focus-visible .mark { color: var(--brand, var(--ink)); opacity: 1; }

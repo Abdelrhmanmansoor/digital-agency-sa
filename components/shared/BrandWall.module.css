@@ -1,0 +1,74 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   BRAND WALL
+   Five grouped rows rather than one undifferentiated logo soup. The group
+   heading is the point: "we build on these" and "the checkout accepts
+   these" are different claims, and a single wall of marks makes them look
+   like the same one.
+   ═══════════════════════════════════════════════════════════════════════ */
+.root { background: var(--bg-section); border-block: 1px solid var(--border); }
+.shell { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.inner { padding-block: var(--section-y); }
+
+.head { max-width: 720px; margin-bottom: clamp(32px, 4vw, 52px); }
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--yellow-deep);
+}
+.kicker::before { content: ""; width: 22px; height: 2px; border-radius: 2px; background: var(--yellow); }
+.title { font-size: clamp(26px, 3.6vw, 44px); line-height: 1.14; letter-spacing: -0.03em; margin: 14px 0 0; text-wrap: balance; }
+.lead { margin-top: 14px; font-size: clamp(15px, 1.5vw, 17px); line-height: 1.85; color: var(--muted); max-width: 62ch; }
+
+.groups { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
+
+.group {
+  background: #fff;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(22px, 3vw, 32px);
+  align-items: start;
+}
+@media (max-width: 860px) { .group { grid-template-columns: 1fr; gap: 16px; } }
+
+.groupTitle { font-size: 17px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 7px; }
+.groupNote { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+
+/* A wrapping flow, not a fixed grid: the marks have wildly different aspect
+   ratios and a rigid grid would pad half of them with dead space. */
+.marks { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 104px;
+  height: 60px;
+  padding-inline: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color var(--dur-2) var(--ease-standard), transform var(--dur-2) var(--ease-standard), box-shadow var(--dur-2) var(--ease-standard);
+}
+.slot:hover { border-color: var(--border-mid); transform: translateY(-2px); box-shadow: var(--elev-2); }
+
+/* ── Compact inline strip, for the home and store pages ── */
+.strip { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 26px; }
+.stripLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-inline-end: 6px;
+}
+.stripDark .stripLabel { color: rgba(255, 255, 255, 0.5); }
+/* On the dark bands the marks need to be light, not grey-on-black. */
+.stripDark .strip :global(img) { filter: grayscale(1) brightness(0) invert(1); opacity: 0.62; }
+.stripDark .strip a:hover :global(img) { filter: none; opacity: 1; }
+
+.note { margin-top: 20px; font-size: 12.5px; line-height: 1.8; color: var(--warm-gray); max-width: 78ch; }

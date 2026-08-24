@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { useLocale } from "next-intl";
 import Link from "next/link";
 import { getWhatsAppLink } from "@/lib/utils";
-import PaymentLogos from "@/components/shared/PaymentLogos";
+import { BrandStrip } from "@/components/shared/BrandWall";
+import { CHECKOUT_BRANDS, PLATFORM_BRANDS } from "@/lib/brands";
 import { useCart } from "@/components/store/CartContext";
 import StoreCatalog from "./StoreCatalog";
 import { PRODUCTS, COMPETITOR_COMPARISON } from "@/lib/store-data";
@@ -539,7 +540,16 @@ export default function StoreContent() {
       {/* Payment Methods */}
       <section style={{ background: "#f8fafc", padding: "60px 0" }}>
         <div className="max-w-[1400px] mx-auto px-8">
-          <PaymentLogos variant="grid" showTitle={true} />
+          {/* Real rails, from the brand registry, so this row and the footer
+              can never advertise a different set of payment methods. */}
+          <BrandStrip brands={CHECKOUT_BRANDS} label={isAr ? "طرق الدفع المتاحة" : "Accepted payment methods"} height={24} />
+          <div style={{ marginTop: 22 }}>
+            <BrandStrip
+              brands={PLATFORM_BRANDS}
+              label={isAr ? "المنصات التي نبني عليها" : "Platforms we build on"}
+              height={24}
+            />
+          </div>
         </div>
       </section>
     </div>

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
 import { AGENCY_INFO, getWhatsAppLink } from "@/lib/utils";
+import { CHECKOUT_BRANDS } from "@/lib/brands";
+import { BrandStrip } from "@/components/shared/BrandWall";
 import { ACCOUNT_LINKS, COMPANY_LINKS, LEGAL_LINKS, SERVICE_LINKS, SOLUTION_LINKS, l, pick } from "@/lib/navigation";
 import styles from "./SiteFooter.module.css";
 
@@ -25,7 +27,7 @@ const copy = {
     phone: "واتساب",
     email: "البريد",
     location: "الموقع",
-    description: "وكالة رقمية سعودية متخصصة في تصميم وتطوير المتاجر الإلكترونية على سلة وزد، وتحسين التحويل والتسويق حولها.",
+    description: "وكالة رقمية متخصصة في تصميم وتطوير المتاجر الإلكترونية على سلة وزد، وتحسين التحويل والتسويق حولها. مقرّنا القاهرة، ونخدم السوق السعودي والخليجي.",
     rights: "جميع الحقوق محفوظة",
     trust: [
       "دفع آمن عبر بوابات معتمدة",
@@ -50,7 +52,7 @@ const copy = {
     phone: "WhatsApp",
     email: "Email",
     location: "Location",
-    description: "A Saudi digital agency building Salla and Zid storefronts, then improving conversion and marketing around them.",
+    description: "A digital agency building Salla and Zid storefronts, then improving conversion and marketing around them. Based in Cairo, serving Saudi Arabia and the Gulf.",
     rights: "All rights reserved",
     trust: ["Secure payment via licensed gateways", "Contract and invoice on every project", "Support after handover"],
     pay: "Payment methods",
@@ -71,7 +73,7 @@ const copy = {
     phone: "WhatsApp",
     email: "E-mail",
     location: "Localisation",
-    description: "Agence digitale saoudienne spécialisée dans les boutiques Salla et Zid, la conversion et le marketing.",
+    description: "Agence digitale spécialisée dans les boutiques Salla et Zid, la conversion et le marketing. Basée au Caire, au service de l'Arabie saoudite et du Golfe.",
     rights: "Tous droits réservés",
     trust: ["Paiement sécurisé via passerelles agréées", "Contrat et facture sur chaque projet", "Support après livraison"],
     pay: "Moyens de paiement",
@@ -94,9 +96,9 @@ const SOCIAL = [
   { name: "TikTok", href: AGENCY_INFO.social.tiktok, path: "M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.88-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 1 0 6.33 6.34V8.69a8.19 8.19 0 0 0 4.83 1.56V6.8a4.84 4.84 0 0 1-1.06-.11Z" },
 ];
 
-/* Card networks the checkout actually offers. Drawn as wordmarks rather
-   than fetched logos so the row costs nothing and can never 404. */
-const PAYMENTS = ["mada", "VISA", "Mastercard", "Apple Pay", "STC Pay", "Tamara"];
+/* The rails the checkout accepts come from the brand registry now, so this
+   row can never drift from the ones the store page and the product pages
+   advertise. */
 
 export default function SiteFooter() {
   const locale = useLocale();
@@ -185,7 +187,9 @@ export default function SiteFooter() {
           </div>
           <div className={styles.contactItem}>
             <span className={styles.contactLabel}>{t.location}</span>
-            <span className={styles.contactValue}>{AGENCY_INFO.address}</span>
+            <span className={styles.contactValue}>
+              {locale === "en" ? AGENCY_INFO.addressEn : locale === "fr" ? AGENCY_INFO.addressFr : AGENCY_INFO.address}
+            </span>
           </div>
           <ul style={{ listStyle: "none", margin: "4px 0 0", padding: 0 }}>
             {ACCOUNT_LINKS.map((leaf) => (
@@ -212,12 +216,8 @@ export default function SiteFooter() {
               </span>
             ))}
           </div>
-          <div className={styles.pays} role="list" aria-label={t.pay}>
-            {PAYMENTS.map((p) => (
-              <span key={p} role="listitem" className={styles.pay} dir="ltr">
-                {p}
-              </span>
-            ))}
+          <div className={styles.pays}>
+            <BrandStrip brands={CHECKOUT_BRANDS} label={t.pay} dark height={20} />
           </div>
         </div>
       </div>

@@ -16,7 +16,14 @@ export const AGENCY_INFO = {
   whatsapp: WHATSAPP_NUMBER,
   email: "mansoor77soliman@gmail.com",
   phone: WHATSAPP_NUMBER,
-  address: "المملكة العربية السعودية",
+  /* Where the agency actually is. The market it serves is Saudi Arabia and
+     the Gulf; the two are declared separately in the structured data
+     (address vs areaServed) rather than conflated into one claim. */
+  address: "جمهورية مصر العربية — القاهرة",
+  addressEn: "Cairo, Egypt",
+  addressFr: "Le Caire, Égypte",
+  city: "Cairo",
+  countryCode: "EG",
   social: {
     instagram: "https://www.instagram.com/amdesign.ksa/",
     twitter: "https://x.com/am_designing",

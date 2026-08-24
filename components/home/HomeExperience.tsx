@@ -7,6 +7,8 @@ import { useLocale } from "next-intl";
 import { HOME_FAQ } from "@/lib/home-faq";
 import Platforms from "./Platforms";
 import PlatformChooser from "./PlatformChooser";
+import BrandWall from "@/components/shared/BrandWall";
+import WhoWeFit from "./WhoWeFit";
 import SectorSpotlight from "./SectorSpotlight";
 import styles from "./HomeExperience.module.css";
 
@@ -651,6 +653,11 @@ export default function HomeExperience() {
           </div>
         </section>
 
+        {/* Self-selection before the service list. A visitor who cannot tell
+            whether the agency handles "their kind" of work leaves before
+            reaching the services at all. */}
+        <WhoWeFit />
+
         {/* Replaced a filler strip that read "SALLA ZID GOOGLE META" as four
             plain words claiming nothing, with the section that carries the
             core offer. */}
@@ -691,6 +698,10 @@ export default function HomeExperience() {
             </div>
           </div>
         </section>
+
+        {/* The platforms, ad networks, payment rails and tools the work
+            actually runs on — named, logoed and linked. */}
+        <BrandWall />
 
         <section id="sidra" className={styles.sidraSection} data-own-spacing>
           <div
