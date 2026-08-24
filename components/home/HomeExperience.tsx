@@ -40,10 +40,13 @@ const copy = {
     primary: "اطلب استشارة مجانية",
     secondary: "استعرض خدماتنا",
     note: "رد خلال أقل من ساعة · نخدم جميع مناطق السعودية",
+    /* "سلة + زد" was a label sitting in a number slot, and "5.0" a perfect
+       rating with nothing behind it. Both replaced with facts the site can
+       stand behind. */
     proof: [
       ["+300", "مشروع منجز"],
-      ["سلة + زد", "خبرة متخصصة"],
-      ["5.0", "تقييم العملاء"],
+      ["3", "منصات نبني عليها"],
+      ["< ساعة", "متوسط زمن الرد"],
     ],
     trusted: "خبرة عملية عبر منصات التجارة والإعلان",
     servicesKicker: "الخدمات الأساسية",
@@ -53,41 +56,36 @@ const copy = {
     services: [
       [
         "01",
-        "تصميم وتطوير متاجر سلة وزد",
-        "تصميم واجهة مخصصة، تحسين تجربة الشراء، إعداد الدفع والشحن، وتهيئة المتجر للإطلاق.",
-      ],
-      [
-        "02",
         "الهوية والتصميم الإبداعي",
         "هوية بصرية متماسكة وتطبيقات رقمية تمنح علامتك حضورًا واضحًا ويمكن تذكره.",
       ],
       [
-        "03",
+        "02",
         "تحسين التحويل وSEO",
         "بنية محتوى وصفحات منتجات أسرع وأوضح، مع تحسين تقني يساعد العملاء ومحركات البحث.",
       ],
       [
-        "04",
+        "03",
         "التسويق وإدارة الحملات",
         "إعلانات مبنية على البيانات في Google وMeta وSnapchat مع متابعة مستمرة للنتائج.",
       ],
       [
-        "05",
+        "04",
         "التطبيقات والحلول المخصصة",
         "تصميم وبرمجة تطبيقات ولوحات تحكم ومنصات رقمية مبنية حول طريقة عمل مشروعك.",
       ],
       [
-        "06",
+        "05",
         "الأتمتة وربط الأنظمة",
         "ربط الأدوات والبيانات وأتمتة المهام المتكررة لتقليل الوقت والأخطاء التشغيلية.",
       ],
       [
-        "07",
+        "06",
         "المحتوى والتصوير بالذكاء الاصطناعي",
         "صور منتجات ومحتوى إعلاني وتصاميم سوشيال تحافظ على هوية العلامة وجودة العرض.",
       ],
       [
-        "08",
+        "07",
         "تصميم البوثات وتجهيز المعارض",
         "تصور بصري متكامل للبوث وتجهيز نقاط العرض بما يخدم العلامة وتجربة الزائر.",
       ],
@@ -207,8 +205,8 @@ const copy = {
     note: "Reply in under an hour · Serving all Saudi Arabia",
     proof: [
       ["+300", "Projects delivered"],
-      ["Salla + Zid", "Specialized expertise"],
-      ["5.0", "Client rating"],
+      ["3", "Platforms we build on"],
+      ["< 1 hr", "Average reply time"],
     ],
     trusted: "Hands-on experience across commerce and advertising platforms",
     servicesKicker: "Core services",
@@ -218,41 +216,36 @@ const copy = {
     services: [
       [
         "01",
-        "Salla & Zid store design",
-        "Custom interfaces, smoother purchasing, payment and shipping setup, and launch readiness.",
-      ],
-      [
-        "02",
         "Brand identity & creative",
         "A cohesive identity and digital system that makes your brand clear and memorable.",
       ],
       [
-        "03",
+        "02",
         "Conversion & SEO",
         "Faster, clearer product journeys with technical optimization for customers and search engines.",
       ],
       [
-        "04",
+        "03",
         "Marketing & campaigns",
         "Data-led Google, Meta and Snapchat campaigns with continuous performance review.",
       ],
       [
-        "05",
+        "04",
         "Custom apps & platforms",
         "Purpose-built apps, dashboards and digital platforms shaped around your workflow.",
       ],
       [
-        "06",
+        "05",
         "Automation & integrations",
         "Connected tools and automated repetitive tasks that reduce time and operating errors.",
       ],
       [
-        "07",
+        "06",
         "AI content & product visuals",
         "Product imagery, campaign assets and social content aligned with your brand.",
       ],
       [
-        "08",
+        "07",
         "Booths & exhibition design",
         "Complete booth concepts and branded display experiences for events and exhibitions.",
       ],
@@ -373,8 +366,8 @@ const copy = {
     note: "Réponse en moins d’une heure · Toute l’Arabie saoudite",
     proof: [
       ["+300", "Projets livrés"],
-      ["Salla + Zid", "Expertise spécialisée"],
-      ["5.0", "Note clients"],
+      ["3", "Plateformes utilisées"],
+      ["< 1 h", "Délai de réponse moyen"],
     ],
     trusted:
       "Une expérience concrète des plateformes e-commerce et publicitaires",
@@ -385,41 +378,36 @@ const copy = {
     services: [
       [
         "01",
-        "Design Salla & Zid",
-        "Interfaces sur mesure, achat fluide, paiement, livraison et préparation au lancement.",
-      ],
-      [
-        "02",
         "Identité & création",
         "Une identité cohérente qui rend votre marque claire et mémorable.",
       ],
       [
-        "03",
+        "02",
         "Conversion & SEO",
         "Des parcours produits plus rapides et une optimisation technique pour les clients et la recherche.",
       ],
       [
-        "04",
+        "03",
         "Marketing & campagnes",
         "Campagnes Google, Meta et Snapchat pilotées par les données.",
       ],
       [
-        "05",
+        "04",
         "Applications sur mesure",
         "Applications, tableaux de bord et plateformes adaptés à vos opérations.",
       ],
       [
-        "06",
+        "05",
         "Automatisation & intégrations",
         "Outils connectés et tâches répétitives automatisées.",
       ],
       [
-        "07",
+        "06",
         "Contenu & visuels IA",
         "Images produits, campagnes et contenus sociaux cohérents avec la marque.",
       ],
       [
-        "08",
+        "07",
         "Stands & expositions",
         "Concepts de stands et expériences de marque pour les événements.",
       ],
@@ -527,6 +515,15 @@ const auditCopy = {
       "SEO وبنية الصفحات",
       "فرص رفع معدل التحويل",
     ],
+    reportLabel: "محتويات التقرير",
+    reportFree: "مجاني",
+    report: [
+      ["السرعة والجوال", "ما الذي يؤخر ظهور المحتوى، وكيف يبدو المتجر على شاشة صغيرة."],
+      ["رحلة الشراء", "أين يتعثر العميل بين المنتج وإتمام الطلب."],
+      ["بنية الصفحات والسيو", "ما هو مفهرس، وما يتنافس مع نفسه، وما هو غائب."],
+      ["فرص رفع التحويل", "تعديلات مرتبة بحسب أثرها المتوقع لا بحسب سهولتها."],
+    ],
+    reportTurnaround: "يصلك خلال يومي عمل · بدون التزام",
     action: "اطلب تحليل متجرك مجانًا",
     note: "تقرير مختصر ومفيد · بدون مكالمات بيع مزعجة",
   },
@@ -541,6 +538,15 @@ const auditCopy = {
       "SEO & page structure",
       "Conversion opportunities",
     ],
+    reportLabel: "What the report covers",
+    reportFree: "Free",
+    report: [
+      ["Speed & mobile", "What delays content appearing, and how the store reads on a small screen."],
+      ["Purchase journey", "Where customers stall between the product and the completed order."],
+      ["Page structure & SEO", "What is indexed, what competes with itself, and what is missing."],
+      ["Conversion opportunities", "Changes ranked by expected impact, not by how easy they are."],
+    ],
+    reportTurnaround: "Delivered within two working days · No obligation",
     action: "Request your free store audit",
     note: "A concise, useful report · No pushy sales calls",
   },
@@ -554,6 +560,15 @@ const auditCopy = {
       "SEO et structure des pages",
       "Opportunités de conversion",
     ],
+    reportLabel: "Contenu du rapport",
+    reportFree: "Gratuit",
+    report: [
+      ["Vitesse et mobile", "Ce qui retarde l’affichage et le rendu sur petit écran."],
+      ["Parcours d’achat", "Où le client bloque entre le produit et la commande."],
+      ["Structure et SEO", "Ce qui est indexé, ce qui se concurrence, ce qui manque."],
+      ["Opportunités de conversion", "Des changements classés par impact attendu."],
+    ],
+    reportTurnaround: "Livré sous deux jours ouvrés · Sans engagement",
     action: "Demander l’audit gratuit",
     note: "Un rapport concis · Aucun appel commercial insistant",
   },
@@ -766,18 +781,22 @@ export default function HomeExperience() {
               </div>
               <p>{t.servicesIntro}</p>
             </div>
-            <div className={styles.serviceGrid}>
+            {/* Platforms, the chooser and Work are all panel grids. A fourth
+                in sequence made the page read as one repeated rhythm, so the
+                services run as an index of rows instead. */}
+            <div className={styles.serviceIndex}>
               {t.services.map(([number, title, body]) => (
                 <article
                   key={number}
-                  className={`${styles.serviceCard} ${styles.reveal}`}
+                  className={`${styles.serviceRow} ${styles.reveal}`}
+                  style={{ ["--edge" as string]: locale === "ar" ? "right" : "left" }}
                   data-reveal
                 >
                   <span>{number}</span>
                   <h3>{title}</h3>
                   <p>{body}</p>
-                  <a href={whatsapp} aria-label={`${t.start}: ${title}`}>
-                    ↗
+                  <a href={whatsapp} target="_blank" rel="noreferrer" aria-label={`${t.start}: ${title}`}>
+                    <b aria-hidden>{locale === "ar" ? "←" : "→"}</b>
                   </a>
                 </article>
               ))}
@@ -905,30 +924,28 @@ export default function HomeExperience() {
               </a>
               <small>{audit.note}</small>
             </div>
-            <div className={styles.auditReport} aria-hidden="true">
+            {/* This was a mock scorecard reading "84 / 100" over four bars at
+                88/72/81/64% and "4 PRIORITY ACTIONS" — numbers describing no
+                real store, drawn as though they did. It now shows what the
+                report actually contains. */}
+            <div className={styles.auditReport}>
               <div className={styles.reportHead}>
-                <span>STORE / GROWTH AUDIT</span>
-                <b>FREE</b>
+                <span>{audit.reportLabel}</span>
+                <b>{audit.reportFree}</b>
               </div>
-              <div className={styles.reportScore}>
-                <strong>84</strong>
-                <span>/ 100</span>
-              </div>
-              <div className={styles.reportBars}>
-                <i style={{ width: "88%" }} />
-                <i style={{ width: "72%" }} />
-                <i style={{ width: "81%" }} />
-                <i style={{ width: "64%" }} />
-              </div>
-              <div className={styles.reportLabels}>
-                <span>UX</span>
-                <span>SPEED</span>
-                <span>SEO</span>
-                <span>CRO</span>
-              </div>
+              <ol className={styles.reportList}>
+                {audit.report.map(([axis, line], i) => (
+                  <li key={axis}>
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    <div>
+                      <strong>{axis}</strong>
+                      <em>{line}</em>
+                    </div>
+                  </li>
+                ))}
+              </ol>
               <div className={styles.reportFoot}>
-                <span>4 PRIORITY ACTIONS</span>
-                <b>READY</b>
+                <span>{audit.reportTurnaround}</span>
               </div>
             </div>
           </div>

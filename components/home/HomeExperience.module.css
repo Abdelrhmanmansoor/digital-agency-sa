@@ -328,50 +328,72 @@
   color: var(--muted);
   line-height: 1.8;
 }
-.serviceGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+/* An index, not a card grid: numbered rows separated by hairlines, so the
+   services section reads differently from the panel grids either side of it. */
+.serviceIndex {
   border-top: 1px solid var(--line);
-  border-inline-start: 1px solid var(--line);
 }
-.serviceCard {
-  background: #fff;
-  min-height: 310px;
-  padding: 36px;
-  position: relative;
-  border-inline-end: 1px solid var(--line);
+.serviceRow {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) minmax(0, 1.15fr) 64px;
+  gap: 28px;
+  align-items: center;
+  padding: 30px 0;
   border-bottom: 1px solid var(--line);
-  transition: 0.25s;
+  position: relative;
+  transition: background 0.25s ease;
 }
-.serviceCard:hover {
-  background: #fffcf3;
+.serviceRow::after {
+  content: "";
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline: 0;
+  height: 2px;
+  background: var(--yellow);
+  transform: scaleX(0);
+  transform-origin: var(--edge, left);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.serviceCard > span {
-  font:
-    12px "Space Mono", monospace;
+.serviceRow:hover::after,
+.serviceRow:focus-within::after {
+  transform: scaleX(1);
+}
+.serviceRow:hover {
+  background: #fffdf4;
+}
+.serviceRow > span {
+  font: 12px "Space Mono", monospace;
+  letter-spacing: 0.14em;
   color: #8b6900;
 }
-.serviceCard h3 {
-  font-size: 25px;
-  margin: 50px 0 14px;
+.serviceRow h3 {
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
-.serviceCard p {
-  max-width: 510px;
+.serviceRow p {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.8;
+  margin: 0;
 }
-.serviceCard a {
-  position: absolute;
-  inset-inline-end: 28px;
-  top: 28px;
-  width: 42px;
-  height: 42px;
+.serviceRow a {
+  justify-self: end;
+  width: 46px;
+  height: 46px;
   border: 1px solid var(--line);
   display: grid;
   place-items: center;
-  color: #111;
+  color: #11110f;
   text-decoration: none;
+  font-size: 17px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.serviceRow a:hover {
+  background: #11110f;
+  border-color: #11110f;
+  color: #fff;
 }
 .workSection {
   background: #fff;
@@ -760,7 +782,7 @@
   opacity: 1;
   transform: translateY(0);
 }
-.serviceGrid article:nth-child(2n),
+.serviceIndex article:nth-child(2n),
 .workGrid article:nth-child(2),
 .workGrid article:nth-child(5) {
   transition-delay: 0.08s;
@@ -786,11 +808,6 @@
 }
 .heroPanel {
   animation: panelEnter 1s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.serviceCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 48px rgba(17, 17, 15, 0.08);
-  z-index: 2;
 }
 .projectCard {
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -892,77 +909,75 @@
   background: #11110f;
   color: #fff;
   border: 1px solid #11110f;
-  padding: 34px;
+  padding: 30px 30px 24px;
   box-shadow: 22px 22px 0 rgba(17, 17, 15, 0.14);
-  position: relative;
-  animation: reportFloat 6s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
 }
 .reportHead,
 .reportFoot {
   display: flex;
   justify-content: space-between;
-  font:
-    10px "Space Mono", monospace;
+  gap: 14px;
+  font: 10px "Space Mono", monospace;
   letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: #8f8c85;
 }
 .reportHead b,
 .reportFoot b {
   color: #f0b100;
 }
-.reportScore {
+.reportHead {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #35342f;
+}
+/* A numbered contents list replaces the invented score chart: it says what
+   the report holds instead of drawing figures for a store nobody audited. */
+.reportList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
   display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin: 62px 0 46px;
+  flex-direction: column;
 }
-.reportScore strong {
-  font:
-    700 112px/0.8 "Space Mono", monospace;
-  letter-spacing: -0.08em;
-}
-.reportScore span {
-  color: #77746d;
-  font:
-    14px "Space Mono", monospace;
-}
-.reportBars {
+.reportList li {
+  flex: 1;
   display: grid;
-  gap: 20px;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 20px 0;
+  border-bottom: 1px solid #26251f;
 }
-.reportBars::before,
-.reportBars i {
-  content: "";
-  display: block;
-  height: 4px;
-  background: #35342f;
-  position: relative;
-}
-.reportBars i {
-  background: #f0b100;
-  transform-origin: left;
-  animation: barGrow 1.2s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-[dir="rtl"] .reportBars i {
-  transform-origin: right;
-}
-.reportLabels {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top: 28px;
-  font:
-    9px "Space Mono", monospace;
+.reportList li > span {
+  font: 11px "Space Mono", monospace;
   letter-spacing: 0.12em;
-  color: #85827a;
+  color: #f0b100;
+  padding-top: 3px;
+}
+.reportList strong {
+  display: block;
+  font-size: 16px;
+  color: #f2efe7;
+  margin-bottom: 6px;
+}
+.reportList em {
+  font-style: normal;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #97948d;
 }
 .reportFoot {
-  position: absolute;
-  bottom: 34px;
-  left: 34px;
-  right: 34px;
   padding-top: 18px;
-  border-top: 1px solid #393833;
 }
+
+.reportHead b,
+.reportFoot b {
+  color: #f0b100;
+}
+
 
 @keyframes heroEnter {
   from {
@@ -993,24 +1008,21 @@
     opacity: 1;
   }
 }
-@keyframes reportFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-9px);
-  }
-}
-@keyframes barGrow {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
 @media (max-width: 980px) {
+  .serviceRow {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 8px 18px;
+    padding: 24px 0;
+    align-items: start;
+  }
+  .serviceRow p {
+    grid-column: 2;
+  }
+  .serviceRow a {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 12px;
+  }
   .navLinks,
   .locales {
     display: none;
@@ -1148,13 +1160,8 @@
   .sectionHead {
     margin-bottom: 36px;
   }
-  .serviceGrid,
   .workGrid {
     grid-template-columns: 1fr;
-  }
-  .serviceCard {
-    min-height: 280px;
-    padding: 28px;
   }
   .sidraVisual {
     min-height: 390px;
@@ -1191,14 +1198,6 @@
     min-height: 420px;
     padding: 26px;
     box-shadow: 10px 10px 0 rgba(17, 17, 15, 0.14);
-  }
-  .reportScore strong {
-    font-size: 88px;
-  }
-  .reportFoot {
-    left: 26px;
-    right: 26px;
-    bottom: 26px;
   }
   .projectVisual {
     height: 300px;

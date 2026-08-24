@@ -4,7 +4,11 @@ import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: "AM Design | E-commerce Design & Growth", template: "%s | AM Design" },
+  /* No template here. The locale layout declares `template: "%s"` so each
+     page owns its full title, but the root template was still being applied
+     to the locale home page — which authors its own "| AM Design" — and
+     produced "… | AM Design | AM Design". */
+  title: "AM Design | E-commerce Design & Growth",
   description: "E-commerce design, development and growth for Salla and Zid stores in Saudi Arabia.",
   applicationName: "AM Design",
   authors: [{ name: "AM Design", url: SITE_URL }],
