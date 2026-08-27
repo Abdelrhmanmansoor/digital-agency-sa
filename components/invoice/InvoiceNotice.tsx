@@ -1,0 +1,121 @@
+import Image from "next/image";
+import styles from "./invoice.module.css";
+
+/* إشعار رسمي بإصدار فاتورة — صفحة مستقلة بلا هيدر/فوتر الموقع، على نهج
+   صفحة العرض التجاري: مستند واحد يُقرأ من أعلى إلى أسفل بلا تشتيت.
+   الملف الفعلي للفاتورة في /public/invoice، فيُخدم مباشرة من نفس النطاق. */
+
+const PDF = "/invoice/invoice-salla-design.pdf";
+
+const TRANSFER = [
+  { label: "اسم المستفيد", value: "ABDELRHMAN MANSOUR ALI SOLIMAN", ltr: true },
+  { label: "الدولة", value: "EGYPT", ltr: true },
+  { label: "عملة التحويل", value: "USD — الدولار الأمريكي", ltr: false },
+];
+
+export default function InvoiceNotice() {
+  return (
+    <div className={styles.page}>
+      <header className={styles.masthead}>
+        {/* الشعار كما هو دون أي تعديل — أبيض على الشريط الأسود */}
+        <Image
+          src="/logo.png"
+          alt="AM Design"
+          width={380}
+          height={136}
+          priority
+          sizes="190px"
+          className={styles.logo}
+        />
+      </header>
+
+      <div className={styles.wrap}>
+        <section className={styles.intro}>
+          <div className={styles.check} aria-hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 12.5 9.5 18 20 6.5" />
+            </svg>
+          </div>
+          <h1 className={styles.title}>تم إصدار فاتورة خدمات بنجاح</h1>
+          <p className={styles.lede}>إشعار رسمي خاص بخدمات تصميم متجر إلكتروني عبر منصة سلة.</p>
+        </section>
+
+        <section className={styles.card}>
+          <p className={styles.cardLabel}>إجمالي قيمة الفاتورة</p>
+          <p className={styles.amount}>
+            <span className={styles.amountNum}>300</span>
+            <span className={styles.amountUnit}>ريال سعودي</span>
+          </p>
+
+          <div className={styles.hair} aria-hidden />
+
+          <p className={styles.vat}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
+              <circle cx="12" cy="12" r="9.2" />
+              <path d="M12 11v5.4M12 7.6h.01" />
+            </svg>
+            <span>هذه الخدمة لا تخضع لضريبة القيمة المضافة</span>
+          </p>
+
+          {/* الملف يُفتح في تبويب جديد، و download يمنح المتصفح اسمًا واضحًا
+              عند الحفظ بدل الاسم الطويل في المسار. */}
+          <a className={styles.cta} href={PDF} target="_blank" rel="noopener noreferrer" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M12 3.5v11.5m0 0 4.2-4.2M12 15l-4.2-4.2" />
+              <path d="M4.5 17.5v1.2a1.8 1.8 0 0 0 1.8 1.8h11.4a1.8 1.8 0 0 0 1.8-1.8v-1.2" />
+            </svg>
+            <span>تحميل الفاتورة الرسمية</span>
+          </a>
+        </section>
+
+        <section className={styles.section}>
+          <div className={styles.sectionHead}>
+            <h2 className={styles.sectionTitle}>طريقة الدفع والتحويل</h2>
+          </div>
+
+          <div className={styles.methods}>
+            <div className={styles.method}>
+              <div className={styles.methodLogoBox}>
+                {/* الشعاران ملفا PNG بهوامش واسعة حول العلامة، والإطار في CSS
+                    هو ما يقصّها ويوحّد حجمها البصري. img عادي: المقاس هنا
+                    ثابت ولا يستفيد من مُحسِّن الصور. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className={`${styles.methodLogo} ${styles.logoWu}`} src="/invoice/western-union.png" alt="Western Union" loading="lazy" decoding="async" />
+              </div>
+            </div>
+
+            <div className={styles.method}>
+              {/* لا يوجد ملف شعار مرفق لمحفظة برق، فتُكتب بحروف الموقع */}
+              <span className={styles.barq}>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d="M13.6 2 5 13.4h5.2L9.4 22 19 10.2h-5.6L13.6 2Z" />
+                </svg>
+                محفظة برق
+              </span>
+            </div>
+
+            <div className={styles.method}>
+              <div className={styles.methodLogoBox}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className={`${styles.methodLogo} ${styles.logoStc}`} src="/invoice/stc-pay.png" alt="stc pay" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+
+          <dl className={styles.details}>
+            {TRANSFER.map((row) => (
+              <div className={styles.row} key={row.label}>
+                <dt className={styles.rowLabel}>{row.label}</dt>
+                <dd className={`${styles.rowValue}${row.ltr ? ` ${styles.ltr}` : ""}`}>{row.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <footer className={styles.footer}>
+          <p>يرجى الاحتفاظ بإثبات التحويل حتى تأكيد استلام الدفعة.</p>
+        </footer>
+      </div>
+    </div>
+  );
+}
