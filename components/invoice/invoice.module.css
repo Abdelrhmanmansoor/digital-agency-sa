@@ -281,30 +281,23 @@
   box-shadow: 0 10px 26px rgba(17, 17, 17, 0.06);
   transform: translateY(-2px);
 }
-/* الشعاران المرفقان PNG بهوامش بيضاء واسعة حول العلامة، فيُقصّان بصريًا
-   بتكبير الصورة داخل إطار ثابت بدل عرضها بمقاسها الكامل. */
-.methodLogoBox {
-  width: 100%;
-  height: 44px;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-}
-/* العلامة نفسها تشغل نسبة مختلفة من كل ملف (نحو 10% من ارتفاع ملف
-   ويسترن يونيون مقابل 21% في ملف stc pay)، فلو أُعطي الملفان الارتفاع
-   ذاته لبدت إحدى العلامتين ضعف الأخرى. الارتفاع هنا مقلوب تلك النسبة
-   حتى تتساويا بصريًا داخل الإطار. */
+/* الملفان الأصليان مربّعان 1000×1000 والعلامة داخلهما لا تشغل سوى شريط
+   في المنتصف، فقُصّا في المستودع إلى حدود العلامة نفسها. لذلك لا حاجة
+   لأي إطار قصّ هنا: ارتفاع لكل علامة، و max-width يمنع تجاوز البطاقة على
+   الشاشات المتوسطة حيث تبقى الأعمدة الثلاثة قائمة والبطاقة ضيقة. */
 .methodLogo {
   width: auto;
-  max-width: none;
+  height: var(--logo-h);
+  max-width: 100%;
   object-fit: contain;
-  height: var(--src-h);
 }
+/* ويسترن يونيون علامة عريضة ممتدة وstc pay مجمّعة وأقصر، فارتفاعان
+   مختلفان يعطيانهما وزنًا بصريًا متقاربًا. */
 .logoWu {
-  --src-h: 270px;
+  --logo-h: 21px;
 }
 .logoStc {
-  --src-h: 128px;
+  --logo-h: 31px;
 }
 
 /* علامة برق نصية — لا يوجد ملف شعار مرفق لها، فتُرسم بحروف الموقع */
@@ -376,6 +369,90 @@
   font-family: var(--font-mono, "Space Mono", monospace);
   font-size: clamp(13px, 2.3vw, 15px);
   letter-spacing: 0.01em;
+}
+
+/* ─────────────────────────── شعار الشريك ─────────────────────────── */
+
+/* شعار الجهة طالبة الخدمة، بين ترويسة الوكالة وبطاقة الفاتورة: يعرّف
+   لمن صدر الإشعار قبل أن يقرأ القارئ المبلغ. */
+.partner {
+  margin-top: clamp(6px, 2vw, 12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* السطر الفاصل يمتد على جانبَي الكلمة بدل خط كامل تحتها */
+.partnerLabel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 340px;
+  color: var(--ink-3);
+  font-size: 12.5px;
+  letter-spacing: 0.16em;
+}
+.partnerLabel::before,
+.partnerLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.partnerLogo {
+  width: auto;
+  height: clamp(86px, 17vw, 112px);
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* ─────────────────────────── الشكر ─────────────────────────── */
+
+.thanks {
+  margin-top: clamp(40px, 6vw, 58px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  font-family: var(--font-display, "ThmanyahDisplay", serif);
+  font-weight: 700;
+  font-size: clamp(18px, 3.2vw, 23px);
+  color: var(--ink);
+}
+.heart {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--gold);
+  transform-origin: center;
+  animation: beat 1.6s ease-in-out infinite;
+}
+/* نبضتان متتاليتان ثم سكون — إيقاع القلب لا الوميض المنتظم */
+@keyframes beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.22);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.16);
+  }
+  56% {
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .heart {
+    animation: none;
+  }
 }
 
 /* ─────────────────────────── التذييل ─────────────────────────── */

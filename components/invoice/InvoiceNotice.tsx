@@ -38,6 +38,20 @@ export default function InvoiceNotice() {
           </div>
           <h1 className={styles.title}>تم إصدار فاتورة خدمات بنجاح</h1>
           <p className={styles.lede}>إشعار رسمي خاص بخدمات تصميم متجر إلكتروني عبر منصة سلة.</p>
+
+          <div className={styles.partner}>
+            <span className={styles.partnerLabel}>مُقدَّم إلى</span>
+            {/* الملف مقصوص في المستودع إلى حدود العلامة (607×495)، وذهبي
+                على خلفية شفافة فيستقر كما هو على ورق الصفحة الفاتح. */}
+            <Image
+              src="/invoice/hibisca-logo.png"
+              alt="HIBISCA — The Power of Beauty"
+              width={607}
+              height={495}
+              sizes="140px"
+              className={styles.partnerLogo}
+            />
+          </div>
         </section>
 
         <section className={styles.card}>
@@ -75,13 +89,11 @@ export default function InvoiceNotice() {
 
           <div className={styles.methods}>
             <div className={styles.method}>
-              <div className={styles.methodLogoBox}>
-                {/* الشعاران ملفا PNG بهوامش واسعة حول العلامة، والإطار في CSS
-                    هو ما يقصّها ويوحّد حجمها البصري. img عادي: المقاس هنا
-                    ثابت ولا يستفيد من مُحسِّن الصور. */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={`${styles.methodLogo} ${styles.logoWu}`} src="/invoice/western-union.png" alt="Western Union" loading="lazy" decoding="async" />
-              </div>
+              {/* الملفان مقصوصان في المستودع إلى حدود العلامة، فيُعرضان
+                  بمقاسهما مباشرة. img عادي: مقاس ثابت صغير لا يستفيد من
+                  مُحسِّن الصور. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className={`${styles.methodLogo} ${styles.logoWu}`} src="/invoice/western-union.png" alt="Western Union" width={738} height={95} loading="lazy" decoding="async" />
             </div>
 
             <div className={styles.method}>
@@ -95,10 +107,8 @@ export default function InvoiceNotice() {
             </div>
 
             <div className={styles.method}>
-              <div className={styles.methodLogoBox}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className={`${styles.methodLogo} ${styles.logoStc}`} src="/invoice/stc-pay.png" alt="stc pay" loading="lazy" decoding="async" />
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className={`${styles.methodLogo} ${styles.logoStc}`} src="/invoice/stc-pay.png" alt="stc pay" width={712} height={218} loading="lazy" decoding="async" />
             </div>
           </div>
 
@@ -111,6 +121,13 @@ export default function InvoiceNotice() {
             ))}
           </dl>
         </section>
+
+        <p className={styles.thanks}>
+          <svg className={styles.heart} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path d="M12 20.7 4.3 13a4.9 4.9 0 0 1 0-6.9 4.7 4.7 0 0 1 6.8 0l.9.9.9-.9a4.7 4.7 0 0 1 6.8 0 4.9 4.9 0 0 1 0 6.9l-7.7 7.7Z" />
+          </svg>
+          <span>شكراً لتعاملكم معنا</span>
+        </p>
 
         <footer className={styles.footer}>
           <p>يرجى الاحتفاظ بإثبات التحويل حتى تأكيد استلام الدفعة.</p>
