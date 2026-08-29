@@ -1,6 +1,7 @@
 import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import RevealRoot from "./RevealRoot";
+import PromoPopup from "./PromoPopup";
 
 /* One frame for every public page.
    Before this existed the homepage rendered its own header and footer while
@@ -25,6 +26,10 @@ export default function SiteShell({
       </main>
       <SiteFooter />
       <RevealRoot />
+      {/* Campaign card. Retires itself on the date in the component, and only
+          ever renders on public pages — SiteShell does not wrap /admin or the
+          client dashboard. */}
+      <PromoPopup />
     </>
   );
 }
