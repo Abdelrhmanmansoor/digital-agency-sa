@@ -11,11 +11,10 @@
   position: sticky;
   top: 0;
   z-index: 900;
-  /* الخلفية الموسمية طبقة مطلقة داخل هذا العنصر؛ `isolation` تمنع
-     z-index الخاص بها من التسرّب إلى بقية الصفحة، و`overflow` يقصّها
-     على حدود الشريط. */
-  isolation: isolate;
-  overflow: hidden;
+  /* الخلفية الموسمية طبقة مطلقة داخل هذا العنصر — و`position: sticky`
+     وحدها كافية لتكون مرجعًا لها. لا `overflow: hidden` هنا مهما بدا
+     مغريًا: قوائم التنقل المنسدلة ودرج الجوال أبناء لهذا العنصر، وأي
+     قصّ عليه يبتلعها. الطبقة نفسها تقصّ صورتها داخليًا. */
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
