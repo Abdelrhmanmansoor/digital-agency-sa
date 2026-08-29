@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HOME_FAQ } from "@/lib/home-faq";
 import HomeFaq from "./HomeFaq";
-import ClientMarquee from "./ClientMarquee";
+import ClientLogos from "./ClientLogos";
 import ClientShowcase from "./ClientShowcase";
 import Platforms from "./Platforms";
 import PlatformChooser from "./PlatformChooser";
@@ -544,10 +544,10 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
           </div>
         </section>
 
-        {/* Twenty-one real client marks, immediately under the hero. The claim
-            in the headline is worth more once a visitor has seen who already
+        {/* Twenty real client marks, immediately under the hero. The claim in
+            the headline is worth more once a visitor has seen who already
             bought it, and this used to live only on a noindexed page. */}
-        <ClientMarquee locale={locale} />
+        <ClientLogos locale={locale} />
 
         {/* Self-selection before the service list. A visitor who cannot tell
             whether the agency handles "their kind" of work leaves before
