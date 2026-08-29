@@ -50,6 +50,8 @@ export const PROJECTS: Project[] = [
     domain: "avneum.com",
     logo: "/proposal/clients/avneum.png",
     shot: "/proposal/shots/avneum.jpg",
+    /* متوسط إضاءة الشعار 182/255 — يختفي على خلفية فاتحة */
+    logoOnDark: true,
   },
   {
     key: "roseparfume",
@@ -59,6 +61,8 @@ export const PROJECTS: Project[] = [
     domain: "roseparfume.com",
     logo: "/proposal/clients/roseparfume.png",
     shot: "/proposal/shots/roseparfume.jpg",
+    /* متوسط إضاءة الشعار 225/255 — يختفي على خلفية فاتحة */
+    logoOnDark: true,
   },
   {
     key: "khayala",
@@ -150,6 +154,8 @@ export const PROJECTS: Project[] = [
     domain: "ossagi-sa.com",
     logo: "/proposal/clients/ossagi.png",
     shot: "/proposal/shots/ossagi.jpg",
+    /* متوسط إضاءة الشعار 221/255 — يختفي على خلفية فاتحة */
+    logoOnDark: true,
   },
   {
     key: "essence",
@@ -195,6 +201,8 @@ export const PROJECTS: Project[] = [
     domain: "oud1scent.com",
     logo: "/proposal/clients/oud1scent.png",
     shot: "/proposal/shots/oud1scent.jpg",
+    /* متوسط إضاءة الشعار 202/255 — يختفي على خلفية فاتحة */
+    logoOnDark: true,
   },
   {
     key: "halahome",
@@ -204,6 +212,8 @@ export const PROJECTS: Project[] = [
     domain: "hala-home.com",
     logo: "/proposal/clients/halahome.png",
     shot: "/proposal/shots/halahome.jpg",
+    /* متوسط إضاءة الشعار 177/255 — يختفي على خلفية فاتحة */
+    logoOnDark: true,
   },
   {
     key: "gaadlegal",

@@ -10,6 +10,7 @@ import { useCart } from "@/components/store/CartContext";
 import { PRIMARY_NAV, l, pick, type NavGroup } from "@/lib/navigation";
 import { getWhatsAppLink } from "@/lib/utils";
 import AnnouncementBar from "./AnnouncementBar";
+import HeritageBanner from "./HeritageBanner";
 import styles from "./SiteHeader.module.css";
 
 /* The palette is a few kilobytes of index-building that no visitor needs
@@ -257,6 +258,8 @@ export default function SiteHeader() {
       <div ref={sentinelRef} className={styles.sentinel} aria-hidden />
 
       <div className={styles.root} data-stuck={stuck || undefined}>
+        {/* خلفية موسمية خلف شريط التنقل — لا تظهر خارج نافذة اليوم الوطني */}
+        <HeritageBanner variant="header" />
         <div className={styles.bar}>
           {/* Ink variant, not /logo.png. The supplied wordmark is white with a
               yellow swoosh; on this bar — rgba(255,255,255,0.86) over a white

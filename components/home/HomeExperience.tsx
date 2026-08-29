@@ -11,9 +11,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { HOME_FAQ } from "@/lib/home-faq";
 import HomeFaq from "./HomeFaq";
+import ClientMarquee from "./ClientMarquee";
+import ClientShowcase from "./ClientShowcase";
 import Platforms from "./Platforms";
 import PlatformChooser from "./PlatformChooser";
 import BrandWall from "@/components/shared/BrandWall";
+import HeritageBanner from "@/components/layout/HeritageBanner";
 import WhoWeFit from "./WhoWeFit";
 import SectorSpotlight from "./SectorSpotlight";
 import styles from "./HomeExperience.module.css";
@@ -118,46 +121,6 @@ const copy = {
     ],
     sidraDocs: "استعرض التوثيق الكامل",
     sidraOrder: "اطلب ثيم سِدرة",
-    workKicker: "نماذج مختارة",
-    workTitle: "أعمال تركّز على النتيجة، لا على الزخرفة.",
-    projects: [
-      [
-        "TF1",
-        "متجر إلكتروني",
-        "بناء تجربة تسوق أكثر وضوحًا وسرعة من الصفحة الأولى حتى إتمام الطلب.",
-        "/store-logos/tf1.png",
-      ],
-      [
-        "Hala Home",
-        "تجارة منزلية",
-        "هوية رقمية هادئة وتنظيم كتالوج يساعد العميل على اتخاذ القرار بسهولة.",
-        "/store-logos/hala-home.png",
-      ],
-      [
-        "Al Flamanki",
-        "مطاعم وضيافة",
-        "حضور رقمي متماسك يحافظ على شخصية العلامة في كل نقطة تواصل.",
-        "/store-logos/al-flamanki.png",
-      ],
-      [
-        "سِدرة",
-        "منتج رقمي لمنصة سلة",
-        "تصميم وتطوير ثيم مرن مع 46 مكوّنًا ومركز توثيق متكامل.",
-        "/sidra-theme-logo.png",
-      ],
-      [
-        "Salla Custom",
-        "تخصيص واجهات المتاجر",
-        "حلول وثيمات مخصصة تمنح المتجر شخصية واضحة وتجربة شراء أبسط.",
-        "/logos/Screenshot 2026-02-27 at 03-39-41 تخصيص الثيم.png",
-      ],
-      [
-        "Oud Campaign",
-        "تصوير وإعلان بالذكاء الاصطناعي",
-        "معالجة بصرية لحملة عطور فاخرة تحافظ على طابع المنتج وقيمة العلامة.",
-        "/logos/Luxury_arabian_oud_advertisement_composition_inspi_delpmaspu.png",
-      ],
-    ],
     processKicker: "منهجية العمل",
     processTitle: "مسار واضح من الفكرة إلى الإطلاق.",
     process: [
@@ -278,46 +241,6 @@ const copy = {
     ],
     sidraDocs: "Explore full documentation",
     sidraOrder: "Order SIDRA",
-    workKicker: "Selected work",
-    workTitle: "Work designed around outcomes, not decoration.",
-    projects: [
-      [
-        "TF1",
-        "E-commerce",
-        "A faster, clearer shopping journey from the first view through checkout.",
-        "/store-logos/tf1.png",
-      ],
-      [
-        "Hala Home",
-        "Home retail",
-        "A calm digital identity and organized catalog that simplifies decisions.",
-        "/store-logos/hala-home.png",
-      ],
-      [
-        "Al Flamanki",
-        "Hospitality",
-        "A cohesive presence that keeps the brand recognizable at every touchpoint.",
-        "/store-logos/al-flamanki.png",
-      ],
-      [
-        "SIDRA",
-        "Salla digital product",
-        "A flexible theme with 46 components and a complete documentation center.",
-        "/sidra-theme-logo.png",
-      ],
-      [
-        "Salla Custom",
-        "Storefront customization",
-        "Custom themes that give stores a distinct identity and simpler purchase journey.",
-        "/logos/Screenshot 2026-02-27 at 03-39-41 تخصيص الثيم.png",
-      ],
-      [
-        "Oud Campaign",
-        "AI campaign imagery",
-        "Premium oud campaign visuals aligned with the product and brand value.",
-        "/logos/Luxury_arabian_oud_advertisement_composition_inspi_delpmaspu.png",
-      ],
-    ],
     processKicker: "Our process",
     processTitle: "A clear route from idea to launch.",
     process: [
@@ -440,46 +363,6 @@ const copy = {
     ],
     sidraDocs: "Voir la documentation",
     sidraOrder: "Commander SIDRA",
-    workKicker: "Projets choisis",
-    workTitle: "Des créations pensées pour les résultats.",
-    projects: [
-      [
-        "TF1",
-        "E-commerce",
-        "Un parcours d’achat plus clair et plus rapide jusqu’au paiement.",
-        "/store-logos/tf1.png",
-      ],
-      [
-        "Hala Home",
-        "Maison",
-        "Une identité calme et un catalogue qui simplifie le choix.",
-        "/store-logos/hala-home.png",
-      ],
-      [
-        "Al Flamanki",
-        "Hospitalité",
-        "Une présence cohérente à chaque point de contact.",
-        "/store-logos/al-flamanki.png",
-      ],
-      [
-        "SIDRA",
-        "Produit Salla",
-        "Un thème flexible avec 46 composants et une documentation complète.",
-        "/sidra-theme-logo.png",
-      ],
-      [
-        "Salla Custom",
-        "Personnalisation boutique",
-        "Des thèmes distinctifs et un parcours d’achat simplifié.",
-        "/logos/Screenshot 2026-02-27 at 03-39-41 تخصيص الثيم.png",
-      ],
-      [
-        "Oud Campaign",
-        "Visuels publicitaires IA",
-        "Une campagne premium cohérente avec la valeur de la marque.",
-        "/logos/Luxury_arabian_oud_advertisement_composition_inspi_delpmaspu.png",
-      ],
-    ],
     processKicker: "Notre méthode",
     processTitle: "Un chemin clair, de l’idée au lancement.",
     process: [
@@ -598,6 +481,9 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
   return (
     <div className={styles.site}>
         <section className={styles.hero} data-own-spacing>
+          {/* اللوحة الموسمية خلف نص البطل. النسخة الطولية تحلّ محلّ
+              العريضة على الجوال حتى لا تُقتطع الأشخاص والقلعة. */}
+          <HeritageBanner variant="hero" />
           <div className={`${styles.shell} ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}>
@@ -657,6 +543,11 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
             ))}
           </div>
         </section>
+
+        {/* Twenty-one real client marks, immediately under the hero. The claim
+            in the headline is worth more once a visitor has seen who already
+            bought it, and this used to live only on a noindexed page. */}
+        <ClientMarquee locale={locale} />
 
         {/* Self-selection before the service list. A visitor who cannot tell
             whether the agency handles "their kind" of work leaves before
@@ -763,47 +654,12 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
           </div>
         </section>
 
-        <section
-          id="work"
-          className={`${styles.section} ${styles.workSection}`}
-          data-own-spacing
-        >
-          <div className={styles.shell}>
-            <div
-              className={`${styles.sectionHead} ${styles.reveal}`}
-              data-reveal
-            >
-              <div>
-                <p className={styles.kicker}>{t.workKicker}</p>
-                <h2>{t.workTitle}</h2>
-              </div>
-            </div>
-            <div className={styles.workGrid}>
-              {t.projects.map(([name, category, body, image], index) => (
-                <article
-                  key={name}
-                  className={`${styles.projectCard} ${styles.reveal}`}
-                  data-reveal
-                >
-                  <div
-                    className={`${styles.projectVisual} ${styles[`visual${index + 1}`]}`}
-                  >
-                    <span>0{index + 1}</span>
-                    <Image
-                      src={image}
-                      alt={`${name} project`}
-                      width={220}
-                      height={120}
-                    />
-                  </div>
-                  <p>{category}</p>
-                  <h3>{name}</h3>
-                  <div>{body}</div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Was three projects rendered as small logos on tinted plates. The
+            replacement carries twenty live client sites with real screenshots
+            and outbound links, the brand identities, the creative work and the
+            documented campaign numbers — all of which already existed in the
+            repo and appeared nowhere a visitor could reach. */}
+        <ClientShowcase locale={locale} />
 
         {/* Bridge into the legal sector page — the one part of the offer
             that is not e-commerce, and it was reachable from nowhere. */}

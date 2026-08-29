@@ -1,0 +1,266 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   CLIENT SHOWCASE
+   Four bands sharing one shell: live client sites, brand identities,
+   creative work, documented campaign numbers. Tokens only — no colour,
+   radius or shadow is hard-coded that globals.css already defines.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.root {
+  padding-block: clamp(64px, 8vw, 104px);
+  background: var(--bg-base);
+}
+.tinted { background: var(--bg-section); }
+.dark { background: var(--ink); }
+
+.shell {
+  width: 100%;
+  max-width: var(--container, 1200px);
+  margin-inline: auto;
+  padding-inline: var(--gutter, 20px);
+}
+
+/* ── Section heads ── */
+.head { max-width: 62ch; margin-bottom: clamp(28px, 4vw, 44px); }
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yellow-deep);
+  margin-bottom: 12px;
+}
+.h2 {
+  font-family: var(--font-arabic-display);
+  font-size: clamp(24px, 3.4vw, 38px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.lead {
+  margin-top: 12px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--warm-gray);
+}
+.dark .h2 { color: #fff; }
+.dark .lead { color: rgba(255, 255, 255, 0.68); }
+.dark .kicker { color: var(--yellow); }
+
+/* ── Live client sites ── */
+.siteGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+.siteCard { display: flex; }
+
+.siteLink {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+.siteLink:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-mid);
+}
+
+.shot {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-card2);
+  border-bottom: 1px solid var(--border);
+}
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Screenshots are captured at the top of each page, so anchor there rather
+     than letting a tall shot centre-crop onto the middle of the hero. */
+  object-position: top center;
+  transition: transform var(--transition-slow);
+}
+.siteLink:hover .shot img { transform: scale(1.03); }
+
+.cardBody {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px 18px;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+/* Near-white marks need the plate under them to be dark, or they disappear. */
+.markDark { background: var(--ink); border-color: var(--ink); }
+.mark img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+.meta { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.name {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.note {
+  font-size: 13px;
+  color: var(--warm-gray);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.visit {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--yellow-deep);
+}
+.visit b { transition: transform var(--transition-fast); }
+.siteLink:hover .visit b { transform: translate(2px, -2px); }
+
+/* ── Brand identity ── */
+.logoGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.logoCard {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+.logoCard img { display: block; width: 100%; height: auto; }
+.logoCard span {
+  display: block;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  border-top: 1px solid var(--border);
+}
+
+/* ── Creative work gallery ── */
+.gallery {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+.galleryItem {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card2);
+}
+.galleryItem img { display: block; width: 100%; height: auto; }
+.galleryItem span {
+  position: absolute;
+  inset-block-end: 10px;
+  inset-inline-start: 10px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.78);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  /* The plate sits on photography of unknown brightness, so it carries its own
+     contrast rather than relying on the image behind it. */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ── Documented results ── */
+.resultGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+.resultCard {
+  padding: 24px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.04);
+}
+.resultCard strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(28px, 3.6vw, 38px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--yellow);
+  margin-bottom: 10px;
+}
+.resultCard span {
+  display: block;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.resultCard em {
+  display: block;
+  font-style: normal;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ── Reveal, driven by the document-wide observer in RevealRoot ──
+   `.is-in` is the class that observer adds; it matches HomeExperience so the
+   two files stay in step. RevealRoot returns early under reduced motion and
+   never adds the class at all, so the query below is what keeps these
+   sections from sitting at opacity 0 forever for those visitors. */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 600ms var(--ease-out-expo), transform 600ms var(--ease-out-expo); }
+.reveal:global(.is-in) { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .siteLink, .shot img, .visit b { transition: none; }
+  .siteLink:hover { transform: none; }
+  .siteLink:hover .shot img { transform: none; }
+}
+
+@media (max-width: 640px) {
+  .siteGrid { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+  .logoGrid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}

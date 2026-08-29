@@ -11,6 +11,11 @@
   position: sticky;
   top: 0;
   z-index: 900;
+  /* الخلفية الموسمية طبقة مطلقة داخل هذا العنصر؛ `isolation` تمنع
+     z-index الخاص بها من التسرّب إلى بقية الصفحة، و`overflow` يقصّها
+     على حدود الشريط. */
+  isolation: isolate;
+  overflow: hidden;
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
@@ -28,6 +33,8 @@
 }
 
 .bar {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: var(--container);
   margin-inline: auto;

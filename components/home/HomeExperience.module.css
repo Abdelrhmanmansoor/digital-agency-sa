@@ -98,8 +98,16 @@
   display: none;
 }
 .hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: var(--black);
   color: #fff;
+}
+/* المحتوى فوق الطبقة الزخرفية دائمًا. */
+.hero > .shell {
+  position: relative;
+  z-index: 1;
 }
 .heroGrid {
   display: grid;
@@ -394,89 +402,6 @@
   background: #11110f;
   border-color: #11110f;
   color: #fff;
-}
-.workSection {
-  background: #fff;
-}
-.workGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-.projectVisual {
-  height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.projectVisual > span {
-  position: absolute;
-  top: 18px;
-  inset-inline-start: 20px;
-  font:
-    11px "Space Mono", monospace;
-  letter-spacing: 0.1em;
-}
-.projectVisual img {
-  width: 48%;
-  height: auto;
-  max-height: 125px;
-  object-fit: contain;
-  filter: grayscale(1);
-  mix-blend-mode: multiply;
-}
-.visual1 {
-  background: #e4dfd3;
-}
-.visual2 {
-  background: #efb800;
-}
-.visual3 {
-  background: #1b1b18;
-}
-.visual3 img {
-  filter: grayscale(1) invert(1);
-  mix-blend-mode: screen;
-}
-.visual3 > span {
-  color: #fff;
-}
-.visual4 {
-  background: #d8c8b5;
-}
-.visual5 {
-  background: #ebe8e1;
-}
-.visual6 {
-  background: #171612;
-}
-.visual5 img,
-.visual6 img {
-  width: 100%;
-  height: 100%;
-  max-height: none;
-  object-fit: cover;
-  filter: grayscale(0.2);
-  mix-blend-mode: normal;
-}
-.visual6 > span {
-  color: #fff;
-}
-.projectCard > p {
-  font-size: 12px;
-  color: #8b6900;
-  margin-top: 22px;
-}
-.projectCard h3 {
-  font-size: 28px;
-  margin: 6px 0;
-}
-.projectCard > div:last-child {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.7;
 }
 .processSection {
   background: #1a1a17;
@@ -786,14 +711,8 @@
   opacity: 1;
   transform: translateY(0);
 }
-.serviceIndex article:nth-child(2n),
-.workGrid article:nth-child(2),
-.workGrid article:nth-child(5) {
+.serviceIndex article:nth-child(2n) {
   transition-delay: 0.08s;
-}
-.workGrid article:nth-child(3),
-.workGrid article:nth-child(6) {
-  transition-delay: 0.16s;
 }
 .heroCopy > * {
   animation: heroEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -812,18 +731,6 @@
 }
 .heroPanel {
   animation: panelEnter 1s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.projectCard {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.projectCard:hover {
-  transform: translateY(-8px);
-}
-.projectVisual img {
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.projectCard:hover .projectVisual img {
-  transform: scale(1.045);
 }
 .primaryButton,
 .headerCta,
@@ -982,7 +889,6 @@
   color: #f0b100;
 }
 
-
 @keyframes heroEnter {
   from {
     opacity: 0;
@@ -1079,9 +985,6 @@
     min-height: 500px;
     max-width: 680px;
   }
-  .workGrid {
-    grid-template-columns: 1fr 1fr;
-  }
   .footerMain {
     grid-template-columns: 1fr 1fr;
   }
@@ -1164,9 +1067,6 @@
   .sectionHead {
     margin-bottom: 36px;
   }
-  .workGrid {
-    grid-template-columns: 1fr;
-  }
   .sidraVisual {
     min-height: 390px;
     padding: 44px;
@@ -1202,9 +1102,6 @@
     min-height: 420px;
     padding: 26px;
     box-shadow: 10px 10px 0 rgba(17, 17, 15, 0.14);
-  }
-  .projectVisual {
-    height: 300px;
   }
   .processGrid,
   .faqGrid {

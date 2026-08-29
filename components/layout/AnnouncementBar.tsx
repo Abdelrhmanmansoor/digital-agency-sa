@@ -20,14 +20,22 @@ export const ND = {
 };
 
 /* Runs before the bar is painted: decides visibility and reserves the
-   height in one pass, so neither showing nor hiding it costs a shift. */
+   height in one pass, so neither showing nor hiding it costs a shift.
+
+   It sets two flags, not one. `data-nd` drives the promo strip and is
+   switched off the moment a visitor dismisses it. `data-nd-season` drives
+   the seasonal artwork behind the header and the hero, and follows the
+   campaign dates alone — closing an offer bar should not strip the site of
+   its seasonal identity. */
 const PREPAINT = `(function(){try{
 var s="${ND.start}",e="${ND.end}",k="${ND.storageKey}",h=${ND.height};
 var n=new Date(Date.now()+(new Date().getTimezoneOffset()+180)*60000);
 var t=n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0");
-var on=t>=s&&t<=e&&localStorage.getItem(k)!=="1";
+var season=t>=s&&t<=e;
+var on=season&&localStorage.getItem(k)!=="1";
 var r=document.documentElement;
 r.dataset.nd=on?"on":"off";
+r.dataset.ndSeason=season?"on":"off";
 r.style.setProperty("--announce-h",(on?h:0)+"px");
 }catch(_){}})();`;
 
