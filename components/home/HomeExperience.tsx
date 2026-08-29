@@ -1,10 +1,16 @@
-"use client";
+/* Server component. This file used to open with "use client" for one reason:
+   `useLocale()`. That single hook pulled the entire homepage — every section,
+   and all three locales of every string in the `copy` table below — into the
+   client bundle, and dragged the five section components with it, since they
+   were client components for exactly the same reason.
 
-import { useState } from "react";
+   The locale now arrives as a prop from the route segment, which has always
+   known it. The only interactive piece, the FAQ accordion, lives in HomeFaq. */
+
 import Image from "next/image";
 import Link from "next/link";
-import { useLocale } from "next-intl";
 import { HOME_FAQ } from "@/lib/home-faq";
+import HomeFaq from "./HomeFaq";
 import Platforms from "./Platforms";
 import PlatformChooser from "./PlatformChooser";
 import BrandWall from "@/components/shared/BrandWall";
@@ -577,12 +583,11 @@ const auditCopy = {
   },
 } as const;
 
-export default function HomeExperience() {
-  const locale = useLocale() as keyof typeof copy;
-  const t = copy[locale] ?? copy.en;
+export default function HomeExperience({ locale: rawLocale }: { locale: string }) {
+  const locale = (rawLocale in copy ? rawLocale : "en") as keyof typeof copy;
+  const t = copy[locale];
   const faq = HOME_FAQ[locale] ?? HOME_FAQ.en;
   const audit = auditCopy[locale] ?? auditCopy.en;
-  const [openFaq, setOpenFaq] = useState(0);
   const whatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد استشارة بخصوص مشروعي الرقمي." : "Hello, I would like a consultation about my digital project.")}`;
   const auditWhatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد التحليل المجاني لمتجري. رابط المتجر: " : "Hello, I would like the free store audit. Store URL: ")}`;
 
@@ -656,13 +661,13 @@ export default function HomeExperience() {
         {/* Self-selection before the service list. A visitor who cannot tell
             whether the agency handles "their kind" of work leaves before
             reaching the services at all. */}
-        <WhoWeFit />
+        <WhoWeFit locale={locale} />
 
         {/* Replaced a filler strip that read "SALLA ZID GOOGLE META" as four
             plain words claiming nothing, with the section that carries the
             core offer. */}
-        <Platforms />
-        <PlatformChooser />
+        <Platforms locale={locale} />
+        <PlatformChooser locale={locale} />
 
         <section id="services" className={styles.section} data-own-spacing>
           <div className={styles.shell}>
@@ -701,7 +706,7 @@ export default function HomeExperience() {
 
         {/* The platforms, ad networks, payment rails and tools the work
             actually runs on — named, logoed and linked. */}
-        <BrandWall />
+        <BrandWall locale={locale} />
 
         <section id="sidra" className={styles.sidraSection} data-own-spacing>
           <div
@@ -802,7 +807,7 @@ export default function HomeExperience() {
 
         {/* Bridge into the legal sector page — the one part of the offer
             that is not e-commerce, and it was reachable from nowhere. */}
-        <SectorSpotlight />
+        <SectorSpotlight locale={locale} />
 
         <section className={styles.auditSection} data-own-spacing>
           <div
@@ -886,32 +891,7 @@ export default function HomeExperience() {
               <p className={styles.kicker}>{t.faqKicker}</p>
               <h2>{t.faqTitle}</h2>
             </div>
-            <div className={styles.faqList}>
-              {faq.map(([question, answer], index) => {
-                const isOpen = openFaq === index;
-                return (
-                  /* The answer stays mounted and is hidden with `hidden`
-                     rather than unmounted: the button now has something real
-                     to point `aria-controls` at, and the copy ships in the
-                     server HTML instead of appearing only on click. */
-                  <article key={question} className={styles.faqItem}>
-                    <button
-                      type="button"
-                      id={`faq-q-${index}`}
-                      onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                      aria-expanded={isOpen}
-                      aria-controls={`faq-a-${index}`}
-                    >
-                      <span>{question}</span>
-                      <b aria-hidden>{isOpen ? "−" : "+"}</b>
-                    </button>
-                    <p id={`faq-a-${index}`} role="region" aria-labelledby={`faq-q-${index}`} hidden={!isOpen}>
-                      {answer}
-                    </p>
-                  </article>
-                );
-              })}
-            </div>
+            <HomeFaq faq={faq} />
           </div>
         </section>
 

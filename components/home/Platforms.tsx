@@ -1,7 +1,9 @@
-"use client";
+/* Server component. It was a client component solely because it called
+   `useLocale()` — no state, no effects, no event handlers anywhere in the
+   file. The locale is passed down from the homepage instead, so none of this
+   markup or its three locales of copy reach the browser as JavaScript. */
 
 import Link from "next/link";
-import { useLocale } from "next-intl";
 import styles from "./Platforms.module.css";
 
 /* Scope of work per platform. These describe what building a store on each
@@ -263,8 +265,7 @@ const copy: Record<"ar" | "en" | "fr", Copy> = {
   },
 };
 
-export default function Platforms() {
-  const locale = useLocale();
+export default function Platforms({ locale }: { locale: string }) {
   const t = copy[locale as keyof typeof copy] ?? copy.en;
   const isRTL = locale === "ar";
 

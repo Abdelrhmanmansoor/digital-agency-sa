@@ -75,7 +75,7 @@ export default async function BlogArticlePage({
           "@type": "Organization",
           name: "AM Design",
           url: SITE_URL,
-          logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
+          logo: { "@type": "ImageObject", url: `${SITE_URL}/icon-512.png`, width: 512, height: 512 },
         },
       },
       {

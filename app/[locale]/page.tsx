@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: data.description,
     keywords: [...data.keywords],
     alternates: { canonical, languages: { "ar-SA": `${SITE_URL}/ar`, "en": `${SITE_URL}/en`, "fr": `${SITE_URL}/fr`, "x-default": `${SITE_URL}/ar` } },
-    openGraph: { title: data.title, description: data.description, url: canonical, siteName: "AM Design", type: "website", locale: lang === "ar" ? "ar_SA" : lang === "fr" ? "fr_FR" : "en_US", images: [{ url: `${SITE_URL}/og.png`, width: 1792, height: 936, alt: "AM Design — E-commerce built to grow" }] },
+    openGraph: { title: data.title, description: data.description, url: canonical, siteName: "AM Design", type: "website", locale: lang === "ar" ? "ar_SA" : lang === "fr" ? "fr_FR" : "en_US", images: [{ url: `${SITE_URL}/og.png`, width: 1200, height: 630, alt: "AM Design — E-commerce built to grow" }] },
     twitter: { card: "summary_large_image", title: data.title, description: data.description, images: [`${SITE_URL}/og.png`] },
   };
 }
@@ -60,5 +60,5 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "AM Design", item: `${SITE_URL}/${lang}` }] },
     ],
   };
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><SiteShell><HomeExperience /></SiteShell></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><SiteShell><HomeExperience locale={lang} /></SiteShell></>;
 }

@@ -15,7 +15,21 @@ export const metadata: Metadata = {
   creator: "AM Design",
   publisher: "AM Design",
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
-  icons: { icon: "/logo.png", apple: "/logo.png" },
+  /* /logo.png is a 3200x1144 white-on-transparent wordmark. As a favicon it
+     was both illegible (a 200:71 strip squeezed into a 16px box) and
+     invisible (white artwork on the light tab strips every desktop browser
+     uses), and as the Apple touch icon it made iOS composite 204 KB of
+     transparency onto a black home-screen tile. These are square, on the
+     brand yellow, at the sizes each surface actually asks for. */
+  icons: {
+    icon: [
+      { url: "/icon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  manifest: "/manifest.webmanifest",
   formatDetection: { telephone: false },
 };
 

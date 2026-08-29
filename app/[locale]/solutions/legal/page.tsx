@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       siteName: "AM Design",
       type: "website",
       locale: lang === "ar" ? "ar_SA" : lang === "fr" ? "fr_FR" : "en_US",
-      images: [{ url: `${SITE_URL}/og.png`, width: 1792, height: 936, alt: "AM Design" }],
+      images: [{ url: `${SITE_URL}/og.png`, width: 1200, height: 630, alt: "AM Design" }],
     },
     twitter: { card: "summary_large_image", title: data.title, description: data.description, images: [`${SITE_URL}/og.png`] },
   };

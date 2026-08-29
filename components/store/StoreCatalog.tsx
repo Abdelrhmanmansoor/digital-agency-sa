@@ -37,7 +37,7 @@ const copy = {
     monthly: "شهريًا",
     sar: "ر.س",
     save: (n: number) => `وفّر ${n.toLocaleString("en-US")}`,
-    orders: (n: number) => `${n} طلب/شهر`,
+    deliverables: (n: number) => `${n} مخرجات`,
     emptyTitle: "لا توجد خدمة مطابقة",
     emptyBody: "جرّب كلمة أبسط أو أعد ضبط التصنيف. إن كان ما تريده غير مدرج، أخبرنا وسنسعّره لك.",
     includes: "ما تشمله الباقة",
@@ -75,7 +75,7 @@ const copy = {
     monthly: "monthly",
     sar: "SAR",
     save: (n: number) => `Save ${n.toLocaleString("en-US")}`,
-    orders: (n: number) => `${n} orders/mo`,
+    deliverables: (n: number) => `${n} deliverables`,
     emptyTitle: "No matching service",
     emptyBody: "Try a simpler word or reset the category. If what you need is not listed, tell us and we will price it.",
     includes: "What the package includes",
@@ -116,16 +116,6 @@ function Icon({ d, size = 16 }: { d: string; size?: number }) {
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden focusable="false">
       <path d={d} />
     </svg>
-  );
-}
-
-function Stars({ rating }: { rating: number }) {
-  const rounded = Math.round(rating);
-  return (
-    <span className={styles.stars} aria-label={`${rating} / 5`}>
-      {"★".repeat(rounded)}
-      <span style={{ color: "var(--border-mid)" }}>{"★".repeat(5 - rounded)}</span>
-    </span>
   );
 }
 
@@ -432,10 +422,15 @@ export default function StoreCatalog() {
                         </h3>
                         <p className={styles.desc}>{desc}</p>
 
+                        {/* The first stat was a five-star rating rendered from a
+                            hard-coded number with no reviews behind it. It is now
+                            the number of deliverables in the package — a fact the
+                            quick view and the product page both spell out, so the
+                            card promises nothing the visitor cannot check. */}
                         <div className={styles.stats}>
                           <span className={styles.stat}>
-                            <Stars rating={product.rating} />
-                            {product.rating}
+                            <Icon d="M20 6 9 17l-5-5" size={13} />
+                            {t.deliverables(product.features.length)}
                           </span>
                           <span className={styles.stat}>
                             <Icon d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z M12 7v5l3 2" size={13} />

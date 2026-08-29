@@ -1,6 +1,8 @@
-"use client";
+/* Server component. It was a client component solely because it called
+   `useLocale()` — no state, no effects, no event handlers anywhere in the
+   file. The locale is passed down from the homepage instead, so none of this
+   markup or its three locales of copy reach the browser as JavaScript. */
 
-import { useLocale } from "next-intl";
 import { BRAND_GROUPS, type Brand } from "@/lib/brands";
 import BrandLogo from "./BrandLogo";
 import styles from "./BrandWall.module.css";
@@ -25,8 +27,7 @@ const copy = {
 } as const;
 
 /** The full grouped wall. Used on the home page. */
-export default function BrandWall() {
-  const locale = useLocale();
+export default function BrandWall({ locale }: { locale: string }) {
   const isAr = locale === "ar";
   const t = copy[isAr ? "ar" : "en"];
 

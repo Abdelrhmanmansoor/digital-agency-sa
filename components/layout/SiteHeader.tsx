@@ -258,8 +258,13 @@ export default function SiteHeader() {
 
       <div className={styles.root} data-stuck={stuck || undefined}>
         <div className={styles.bar}>
+          {/* Ink variant, not /logo.png. The supplied wordmark is white with a
+              yellow swoosh; on this bar — rgba(255,255,255,0.86) over a white
+              page — every letter of it was painting white on white, so the
+              brand name was invisible sitewide and only the swoosh showed.
+              /logo.png stays as-is for the dark footer and admin chrome. */}
           <Link href={href("/")} className={styles.logo} aria-label={t.home}>
-            <Image src="/logo.png" alt="AM Design" width={224} height={88} priority sizes="112px" />
+            <Image src="/logo-ink.png" alt="AM Design" width={224} height={88} priority sizes="112px" />
           </Link>
 
           <nav ref={navRef} className={styles.nav} aria-label={t.nav}>
@@ -310,7 +315,7 @@ export default function SiteHeader() {
       <div className={styles.scrim} data-open={drawerOpen || undefined} onClick={() => setDrawerOpen(false)} aria-hidden />
       <aside id="site-drawer" className={styles.drawer} data-open={drawerOpen || undefined} aria-label={t.menu} inert={!drawerOpen}>
         <div className={styles.drawerHead}>
-          <Image src="/logo.png" alt="AM Design" width={184} height={72} sizes="92px" style={{ width: 92, height: "auto" }} />
+          <Image src="/logo-ink.png" alt="AM Design" width={184} height={72} sizes="92px" style={{ width: 92, height: "auto" }} />
           <button type="button" className={styles.iconBtn} onClick={() => setDrawerOpen(false)} aria-label={t.closeMenu}>
             <Icon d={I.close} size={16} />
           </button>

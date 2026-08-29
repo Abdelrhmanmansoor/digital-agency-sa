@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
+/* Zain used to be requested here with eight weights plus two italics.
+   It is never a primary family anywhere in the project — it only ever sits
+   third in a stack behind the two self-hosted Thmanyah faces, so not one of
+   those files could ever paint a glyph. They were pure render-blocking
+   weight on every page. Space Mono stays: it is the primary family for
+   --font-mono, which the eyebrows and numerals actually use. */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;

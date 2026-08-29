@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useLocale } from "next-intl";
+import SiteShell from "@/components/layout/SiteShell";
 
 /* Previously this was a hard-coded Arabic dead end on a near-black
    background — off-identity, wrong language for /en and /fr, and offering a
@@ -50,6 +51,7 @@ export default function NotFound() {
   const t = copy[locale as keyof typeof copy] ?? copy.en;
 
   return (
+    <SiteShell>
     <div
       style={{
         minHeight: "70vh",
@@ -129,5 +131,6 @@ export default function NotFound() {
         ))}
       </div>
     </div>
+    </SiteShell>
   );
 }

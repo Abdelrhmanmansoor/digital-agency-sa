@@ -75,11 +75,12 @@ export default async function ProductPage({ params }: Props) {
         description: isAr ? product.shortDescAr : product.shortDescEn,
         sku: product.id,
         brand: { "@type": "Brand", name: "AM Design" },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: String(product.rating),
-          reviewCount: String(product.reviewCount),
-        },
+        /* No aggregateRating. It used to be emitted from two hard-coded
+           numbers in store-data.ts with no review system anywhere behind
+           them. Google requires ratings in Product markup to come from
+           genuine, first-party reviews; fabricated ones are a policy
+           violation that risks a manual action against the whole domain.
+           `offers` stays — the price and availability below are real. */
         offers: {
           "@type": "Offer",
           price: String(product.price),

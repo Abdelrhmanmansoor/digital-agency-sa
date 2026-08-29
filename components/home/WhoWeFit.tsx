@@ -1,7 +1,9 @@
-"use client";
+/* Server component. It was a client component solely because it called
+   `useLocale()` — no state, no effects, no event handlers anywhere in the
+   file. The locale is passed down from the homepage instead, so none of this
+   markup or its three locales of copy reach the browser as JavaScript. */
 
 import Link from "next/link";
-import { useLocale } from "next-intl";
 import { getWhatsAppLink } from "@/lib/utils";
 import styles from "./WhoWeFit.module.css";
 
@@ -122,8 +124,7 @@ const copy = {
   },
 } as const;
 
-export default function WhoWeFit() {
-  const locale = useLocale();
+export default function WhoWeFit({ locale }: { locale: string }) {
   const isAr = locale === "ar";
   const t = copy[isAr ? "ar" : "en"];
 

@@ -1,7 +1,9 @@
-"use client";
+/* Server component. It was a client component solely because it called
+   `useLocale()` — no state, no effects, no event handlers anywhere in the
+   file. The locale is passed down from the homepage instead, so none of this
+   markup or its three locales of copy reach the browser as JavaScript. */
 
 import Link from "next/link";
-import { useLocale } from "next-intl";
 import { PRACTICE_AREAS } from "@/lib/legal-data";
 import { getWhatsAppLink } from "@/lib/utils";
 import styles from "./SectorSpotlight.module.css";
@@ -41,8 +43,7 @@ const copy = {
   },
 } as const;
 
-export default function SectorSpotlight() {
-  const locale = useLocale();
+export default function SectorSpotlight({ locale }: { locale: string }) {
   const t = copy[locale === "ar" ? "ar" : "en"];
   const isAr = locale === "ar";
 

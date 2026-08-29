@@ -11,19 +11,6 @@ interface Props {
   product: Product;
 }
 
-/* ─── Star Rating Component ────────────────────────────────────────────────── */
-function Stars({ rating }: { rating: number }) {
-  return (
-    <div style={{ display: "flex", gap: "3px" }}>
-      {[1, 2, 3, 4, 5].map((s) => (
-        <svg key={s} width="16" height="16" viewBox="0 0 24 24" fill={s <= Math.floor(rating) ? "#F0B100" : "rgba(240,177,0,0.3)"}>
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-        </svg>
-      ))}
-    </div>
-  );
-}
-
 /* ─── Image Placeholder ────────────────────────────────────────────────────── */
 function ProductImage({ product, isAr }: { product: Product; isAr: boolean }) {
   const [imgError, setImgError] = useState(false);
@@ -282,21 +269,11 @@ export default function ProductDetailClient({ product }: Props) {
                 {name}
               </h1>
 
-              {/* Short description */}
-              <p style={{ fontSize: "18px", color: "rgba(26,26,26,0.75)", lineHeight: 1.7, marginBottom: "24px" }}>
+              {/* Short description. Carries the 32px the removed star row used
+                  to own, so the gap above the price block is unchanged. */}
+              <p style={{ fontSize: "18px", color: "rgba(26,26,26,0.75)", lineHeight: 1.7, marginBottom: "32px" }}>
                 {shortDesc}
               </p>
-
-              {/* Rating */}
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
-                <Stars rating={product.rating} />
-                <span style={{ fontFamily: "Space Mono, monospace", fontSize: "14px", color: "#8A6D00", fontWeight: 700 }}>
-                  {product.rating}
-                </span>
-                <span style={{ fontSize: "14px", color: "rgba(17,17,17,0.4)" }}>
-                  ({product.reviewCount} {isAr ? "تقييم" : "reviews"})
-                </span>
-              </div>
 
               {/* Price */}
               <div style={{ background: "rgba(240,177,0,0.05)", borderRadius: "14px", padding: "28px", marginBottom: "32px", border: "1px solid rgba(240,177,0,0.1)" }}>
