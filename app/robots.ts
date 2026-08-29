@@ -13,6 +13,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           "/admin",
           "/api/",
+          /* روابط الفواتير الخاصة — مستند لكل عميل على حدة. */
+          "/invoice/",
           "/*/dashboard",
           "/*/proposal",
           "/*/store/cart",

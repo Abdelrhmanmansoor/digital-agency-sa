@@ -59,6 +59,18 @@ const nextConfig: NextConfig = {
         source: "/fonts/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
+      /* الفواتير الخاصة: لا تُخزَّن في أي وسيط (متصفح، CDN، بروكسي) لأن
+         محتواها يخصّ عميلًا بعينه ويتغيّر بتغيّر حالة الفاتورة، و
+         X-Robots-Tag يمنع الفهرسة حتى لو وصل الزاحف إلى الرابط من مصدر
+         خارج robots.txt. */
+      {
+        source: "/invoice/:token*",
+        headers: [
+          { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, private" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive, nosnippet" },
+          { key: "Referrer-Policy", value: "no-referrer" },
+        ],
+      },
     ];
   },
 };

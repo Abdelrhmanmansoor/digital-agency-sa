@@ -3,9 +3,25 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/admin/AdminSidebar";
-import { InvoiceItem, PaymentMethodType, PaymentRecord, AdditionalCost, PaymentMethod } from "@/lib/db";
+import { InvoiceItem, PaymentMethodType, PaymentRecord, AdditionalCost, PaymentMethod, PaymentOption } from "@/lib/db";
+import PaymentOptionsEditor from "@/components/admin/PaymentOptionsEditor";
 
 const DEFAULT_VAT_RATE = 15;
+
+/* حقول الإضافات (العنوان، الخصم، كلمة الشكر) تتشارك ستايلًا واحدًا بدل
+   تكراره في كل حقل. */
+const EXTRA_INPUT: React.CSSProperties = {
+  width: "100%",
+  background: "rgba(255,255,255,0.05)",
+  border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: "8px",
+  padding: "10px 14px",
+  color: "#FAFAF7",
+  fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
+  fontSize: "14px",
+  boxSizing: "border-box",
+  outline: "none",
+};
 
 function today() {
   return new Date().toISOString().split("T")[0];
@@ -112,6 +128,14 @@ export default function NewInvoicePage() {
   // Additional costs
   const [additionalCosts, setAdditionalCosts] = useState<AdditionalCost[]>([]);
 
+  // ── عنوان الفاتورة، الخصم، ووسائل الدفع الظاهرة للعميل ───────────────────
+  const [titleAr, setTitleAr] = useState("");
+  const [titleEn, setTitleEn] = useState("");
+  const [thankYouAr, setThankYouAr] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [discountType, setDiscountType] = useState<"amount" | "percent">("amount");
+  const [paymentOptions, setPaymentOptions] = useState<PaymentOption[]>([]);
+
   // Notes
   const [notesAr, setNotesAr] = useState("");
   const [notes, setNotes] = useState("");
@@ -196,7 +220,13 @@ export default function NewInvoicePage() {
   // Calculations
   const subtotal = items.reduce((s, item) => s + item.total, 0);
   const additionalCostsTotal = additionalCosts.reduce((s, c) => s + (Number(c.amount) || 0), 0);
-  const taxableAmount = subtotal + additionalCostsTotal;
+  /* الخصم يُطبَّق قبل الضريبة — وهو الترتيب الذي تفترضه فاتورة ضريبية
+     صحيحة: الوعاء الخاضع للضريبة هو المبلغ بعد الخصم. */
+  const grossAmount = subtotal + additionalCostsTotal;
+  const discountAmount = parseFloat(
+    (discountType === "percent" ? (grossAmount * (Number(discount) || 0)) / 100 : Number(discount) || 0).toFixed(2)
+  );
+  const taxableAmount = Math.max(0, grossAmount - discountAmount);
   const vat = vatEnabled ? parseFloat(((taxableAmount * vatRate) / 100).toFixed(2)) : 0;
   const total = parseFloat((taxableAmount + vat).toFixed(2));
   const totalPaid = payments.reduce((s, p) => s + (Number(p.amount) || 0), 0);
@@ -228,6 +258,19 @@ export default function NewInvoicePage() {
       dueDate,
       notes: notes || undefined,
       notesAr: notesAr || undefined,
+      // عنوان الفاتورة وكلمة الشكر كما يراهما العميل
+      titleAr: titleAr || undefined,
+      titleEn: titleEn || undefined,
+      thankYouAr: thankYouAr || undefined,
+      // الخصم — تُحفظ القيمة المُدخلة والمحسوبة معًا حتى تُعرض النسبة للعميل
+      discount: discount > 0 ? Number(discount) : undefined,
+      discountType: discount > 0 ? discountType : undefined,
+      discountAmount: discountAmount > 0 ? discountAmount : undefined,
+      /* الإعفاء الضريبي مشتقّ من نفس مفتاح الضريبة أعلاه: إطفاؤه يعني أن
+         الفاتورة غير خاضعة، وتُطبع بذلك سطرًا صريحًا في صفحة العميل. */
+      vatExempt: !vatEnabled,
+      // وسائل الدفع الظاهرة في الرابط الخاص
+      paymentOptions: paymentOptions.length > 0 ? paymentOptions : undefined,
       // Legacy bank fields for backwards compatibility
       bankName: paymentMethod.bankName || undefined,
       iban: paymentMethod.iban || undefined,
@@ -415,6 +458,25 @@ export default function NewInvoicePage() {
               <label style={labelStyle}>رقم الجوال</label>
               {FIELD.input(clientPhone, setClientPhone, "tel", "+966...", "ltr")}
             </div>
+          </div>
+        </div>
+
+        {/* عنوان الفاتورة كما يظهر للعميل */}
+        <div style={sectionStyle}>
+          {sectionTitle("عنوان الفاتورة", "🏷️")}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+            <div>
+              <label style={labelStyle}>العنوان (عربي)</label>
+              {FIELD.input(titleAr, setTitleAr, "text", "خدمات تصميم وتطوير متجر إلكتروني")}
+            </div>
+            <div>
+              <label style={labelStyle}>العنوان (إنجليزي)</label>
+              {FIELD.input(titleEn, setTitleEn, "text", "E-commerce store design & development", "ltr")}
+            </div>
+          </div>
+          <div style={{ marginTop: "16px" }}>
+            <label style={labelStyle}>كلمة الشكر في التذييل (اختياري)</label>
+            {FIELD.input(thankYouAr, setThankYouAr, "text", "شكرًا لثقتكم بنا.")}
           </div>
         </div>
 
@@ -716,12 +778,40 @@ export default function NewInvoicePage() {
         {/* Totals */}
         <div style={sectionStyle}>
           {sectionTitle("ملخص الفاتورة", "🧾")}
+          {/* الخصم — اختياري، مبلغ أو نسبة */}
+          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "18px" }}>
+            <div style={{ width: "320px" }}>
+              <label style={labelStyle}>خصم (اختياري)</label>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <input
+                  type="number"
+                  min={0}
+                  value={discount || ""}
+                  onChange={(e) => setDiscount(Number(e.target.value) || 0)}
+                  placeholder="0"
+                  style={{ ...EXTRA_INPUT, flex: 1, fontFamily: "Space Mono, monospace" }}
+                />
+                <select
+                  value={discountType}
+                  onChange={(e) => setDiscountType(e.target.value as "amount" | "percent")}
+                  style={{ ...EXTRA_INPUT, width: "120px", cursor: "pointer" }}
+                >
+                  <option value="amount">مبلغ</option>
+                  <option value="percent">نسبة %</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <div style={{ width: "320px" }}>
               {[
                 { label: "المجموع الفرعي", value: `${subtotal.toFixed(2)} ${currencySymbol}`, color: "rgba(255,255,255,0.7)" },
                 ...(additionalCostsTotal > 0 ? [{ label: "+ المصروفات", value: `${additionalCostsTotal.toFixed(2)} ${currencySymbol}`, color: "#F59E0B" }] : []),
-                ...(vatEnabled ? [{ label: `ضريبة (${vatRate}%)`, value: `${vat.toFixed(2)} ${currencySymbol}`, color: "rgba(255,255,255,0.7)" }] : []),
+                ...(discountAmount > 0 ? [{ label: discountType === "percent" ? `− خصم (${discount}%)` : "− خصم", value: `${discountAmount.toFixed(2)} ${currencySymbol}`, color: "#22C55E" }] : []),
+                ...(vatEnabled
+                  ? [{ label: `ضريبة (${vatRate}%)`, value: `${vat.toFixed(2)} ${currencySymbol}`, color: "rgba(255,255,255,0.7)" }]
+                  : [{ label: "غير خاضعة للضريبة", value: "—", color: "rgba(255,255,255,0.45)" }]),
               ].map(({ label, value, color }) => (
                 <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
                   <span style={{ fontSize: "14px", color: "rgba(255,255,255,0.45)", fontFamily: "'ThmanyahSans', 'Zain', sans-serif" }}>{label}</span>
@@ -839,6 +929,16 @@ export default function NewInvoicePage() {
               </div>
             </div>
           )}
+        </div>
+
+        {/* وسائل الدفع التي يراها العميل في الرابط الخاص */}
+        <div style={sectionStyle}>
+          {sectionTitle("وسائل الدفع الظاهرة للعميل", "🔗")}
+          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", margin: "-12px 0 20px", lineHeight: 1.8 }}>
+            هذه هي الوسائل التي ستظهر في صفحة الفاتورة الخاصة بالعميل. الوسيلة المُطفأة لا تصل إلى المتصفح إطلاقًا.
+            قسم «طريقة الدفع» أعلاه يخصّ نموذج الطباعة الداخلي فقط.
+          </p>
+          <PaymentOptionsEditor options={paymentOptions} onChange={setPaymentOptions} />
         </div>
 
         {/* Previous Payments */}

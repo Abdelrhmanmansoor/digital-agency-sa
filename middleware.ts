@@ -14,6 +14,10 @@ export async function middleware(request: NextRequest) {
   if (
     pathname.startsWith("/api") ||
     pathname.startsWith("/admin") ||
+    /* روابط الفواتير الخاصة تعيش خارج شجرة اللغات: /invoice/<publicId>
+       بلا بادئة لغة. تمريرها إلى وسيط next-intl كان سيحوّلها إلى
+       /ar/invoice/<publicId> ويكسر الرابط المُرسل للعميل. */
+    pathname.startsWith("/invoice") ||
     pathname.startsWith("/_next") ||
     pathname.includes(".")
   ) {
@@ -45,5 +49,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|admin|_next|.*\\..*).*)"],
+  matcher: ["/((?!api|admin|invoice|_next|.*\\..*).*)"],
 };

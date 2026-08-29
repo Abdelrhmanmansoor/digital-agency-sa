@@ -610,10 +610,31 @@ function InvoiceBody({ invoice, accent }: { invoice: Invoice; accent: string }) 
               <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12.5px", color: "#F57C00" }}>{fmt(invoice.additionalCostsTotal || 0)} {currencySymbol}</span>
             </div>
           )}
-          <div style={{ display: "flex", justifyContent: "space-between", padding: "7px 2px", borderBottom: "1px solid #EEEBE5" }}>
-            <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "#777" }}>ضريبة القيمة المضافة ({invoice.vatRate}٪)</span>
-            <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12.5px", color: "#333" }}>{fmt(invoice.vat)} {currencySymbol}</span>
-          </div>
+          {/* الخصم — يُطبع فقط إن وُجد، ويسبق الضريبة لأنه يسبقها في الحساب */}
+          {(invoice.discountAmount || 0) > 0 && (
+            <div style={{ display: "flex", justifyContent: "space-between", padding: "7px 2px", borderBottom: "1px solid #EEEBE5" }}>
+              <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "#2F855A" }}>
+                الخصم{invoice.discountType === "percent" && invoice.discount ? ` (${invoice.discount}٪)` : ""}
+              </span>
+              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12.5px", color: "#2F855A" }}>
+                −{fmt(invoice.discountAmount || 0)} {currencySymbol}
+              </span>
+            </div>
+          )}
+          {/* فاتورة غير خاضعة للضريبة تُصرّح بذلك بدل إظهار سطر ضريبة بصفر */}
+          {invoice.vatExempt || invoice.vatRate === 0 ? (
+            <div style={{ display: "flex", justifyContent: "space-between", padding: "7px 2px", borderBottom: "1px solid #EEEBE5" }}>
+              <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "13px", color: "#777" }}>
+                غير خاضعة لضريبة القيمة المضافة
+              </span>
+              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12.5px", color: "#999" }}>—</span>
+            </div>
+          ) : (
+            <div style={{ display: "flex", justifyContent: "space-between", padding: "7px 2px", borderBottom: "1px solid #EEEBE5" }}>
+              <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "14px", color: "#777" }}>ضريبة القيمة المضافة ({invoice.vatRate}٪)</span>
+              <span style={{ fontFamily: "Space Mono, monospace", fontSize: "12.5px", color: "#333" }}>{fmt(invoice.vat)} {currencySymbol}</span>
+            </div>
+          )}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 16px", background: accent, borderRadius: "8px", marginTop: "10px" }}>
             <span style={{ fontFamily: "'ThmanyahSans', 'Zain', sans-serif", fontSize: "18px", fontWeight: 800, color: "#0A0A0A" }}>الإجمالي</span>
             <span style={{ fontFamily: "Space Mono, monospace", fontSize: "16px", fontWeight: 700, color: "#0A0A0A" }}>{fmt(invoice.total)} {currencySymbol}</span>

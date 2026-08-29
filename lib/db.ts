@@ -586,6 +586,41 @@ export interface PaymentMethod {
   walletHolder?: string;
 }
 
+/* ── خيارات الدفع الظاهرة للعميل ───────────────────────────────────────────
+   نظام `PaymentMethod` أعلاه بقي كما هو للفواتير القديمة. هذا النموذج الجديد
+   هو ما يراه العميل في الرابط الخاص: قائمة مفتوحة، كل وسيلة تُفعّل أو تُطفأ
+   على حدة، وكل حقل اختياري حتى تصلح البنية لأي وسيلة (تحويل بنكي، ويسترن
+   يونيون، باي بال، رابط Stripe، أو وسيلة مخصّصة بالكامل). */
+export type PaymentOptionKind =
+  | "bank"
+  | "western_union"
+  | "paypal"
+  | "stripe"
+  | "custom";
+
+export interface PaymentOption {
+  id: string;
+  kind: PaymentOptionKind;
+  /** يظهر للعميل كعنوان للبطاقة، مثل: «تحويل بنكي — الراجحي» */
+  label: string;
+  labelEn?: string;
+  /** الوسائل غير المفعّلة لا تُرسل إلى صفحة العميل إطلاقًا */
+  enabled: boolean;
+  accountHolder?: string;
+  accountNumber?: string;
+  iban?: string;
+  swift?: string;
+  bankName?: string;
+  country?: string;
+  /** بريد إلكتروني أو رقم محفظة أو أي معرّف دفع آخر */
+  identifier?: string;
+  /** تعليمات حرة تُعرض أسفل البطاقة */
+  instructions?: string;
+  instructionsEn?: string;
+  /** رابط دفع خارجي (Stripe / PayPal.me / أي بوابة) */
+  link?: string;
+}
+
 // Previous payment record
 export interface PaymentRecord {
   id: string;
@@ -646,6 +681,35 @@ export interface Invoice {
   // Related invoices (for tracking)
   relatedInvoices?: string[]; // Invoice numbers
   parentInvoice?: string; // If this is a follow-up invoice
+
+  // ── عنوان الفاتورة وهويتها البصرية ────────────────────────────────────────
+  titleAr?: string;
+  titleEn?: string;
+  /** مسار شعار بديل (افتراضيًا /logo-ink.png) */
+  logoUrl?: string;
+  thankYouAr?: string;
+  thankYouEn?: string;
+
+  // ── الخصم والإعفاء الضريبي ────────────────────────────────────────────────
+  discount?: number;                       // القيمة المُدخلة (مبلغ أو نسبة)
+  discountType?: "amount" | "percent";
+  discountAmount?: number;                 // القيمة المحسوبة بالعملة
+  /** فاتورة غير خاضعة لضريبة القيمة المضافة — تُطبع كسطر صريح للعميل */
+  vatExempt?: boolean;
+
+  // ── وسائل الدفع الظاهرة للعميل ────────────────────────────────────────────
+  paymentOptions?: PaymentOption[];
+
+  // ── الرابط الخاص القابل للمشاركة ──────────────────────────────────────────
+  /** معرّف عشوائي مشفّر (12 حرفًا) — هو ما يظهر في /invoice/<publicId> */
+  publicId?: string;
+  shareEnabled?: boolean;
+  /** SHA-256 لكلمة المرور + سرّ الخادم. لا تُخزّن كلمة المرور نفسها أبدًا. */
+  sharePasswordHash?: string;
+  shareExpiresAt?: string;
+  shareCreatedAt?: string;
+  lastViewedAt?: string;
+  viewCount?: number;
   
   createdAt: string;
   updatedAt: string;
@@ -656,6 +720,23 @@ export const invoicesDB = {
   getById: async (id: string) => {
     const all = await redisGet<Invoice[]>("invoices", []);
     return all.find((inv) => inv.id === id);
+  },
+  /* البحث بالمعرّف العام. القائمة كلها تحت مفتاح واحد في Redis، فالمسح
+     الخطّي هنا مقصود ورخيص عند هذا الحجم — ولا يحتاج فهرسًا إضافيًا. */
+  getByPublicId: async (publicId: string) => {
+    if (!publicId) return undefined;
+    const all = await redisGet<Invoice[]>("invoices", []);
+    return all.find((inv) => inv.publicId === publicId);
+  },
+  /** عدّاد مشاهدات خفيف — لا يكسر شيئًا إذا فشل */
+  recordView: async (id: string) => {
+    const all = await redisGet<Invoice[]>("invoices", []);
+    const updated = all.map((inv) =>
+      inv.id === id
+        ? { ...inv, viewCount: (inv.viewCount ?? 0) + 1, lastViewedAt: new Date().toISOString() }
+        : inv
+    );
+    await redisSet("invoices", updated);
   },
   create: async (data: Omit<Invoice, "id" | "number" | "createdAt" | "updatedAt">) => {
     const all = await redisGet<Invoice[]>("invoices", []);

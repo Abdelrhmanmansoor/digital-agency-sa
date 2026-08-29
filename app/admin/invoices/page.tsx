@@ -29,6 +29,8 @@ export default function InvoicesPage() {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
+  const [query, setQuery] = useState("");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<string | null>(null);
 
   useEffect(() => {
@@ -49,8 +51,33 @@ export default function InvoicesPage() {
     setDeleting(null);
   };
 
-  const filtered =
-    filter === "all" ? invoices : invoices.filter((inv) => inv.status === filter);
+  /* بحث واحد يغطي رقم الفاتورة واسم العميل والشركة — لا حاجة لأكثر من ذلك
+     عند هذا الحجم. */
+  const needle = query.trim().toLowerCase();
+  const filtered = invoices
+    .filter((inv) => filter === "all" || inv.status === filter)
+    .filter((inv) =>
+      !needle ||
+      [inv.number, inv.clientName, inv.clientCompany, inv.clientEmail]
+        .some((field) => (field ?? "").toLowerCase().includes(needle))
+    );
+
+  const copyLink = async (inv: Invoice) => {
+    if (!inv.publicId) return;
+    const url = `${window.location.origin}/invoice/${inv.publicId}`;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      const el = document.createElement("textarea");
+      el.value = url;
+      document.body.appendChild(el);
+      el.select();
+      try { document.execCommand("copy"); } catch { /* تجاهل */ }
+      document.body.removeChild(el);
+    }
+    setCopiedId(inv.id);
+    setTimeout(() => setCopiedId(null), 1800);
+  };
 
   return (
     <div>
@@ -85,6 +112,26 @@ export default function InvoicesPage() {
             </button>
           </Link>
         </div>
+
+        {/* Search */}
+        <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="ابحث برقم الفاتورة أو اسم العميل..."
+          style={{
+            width: "100%",
+            maxWidth: "420px",
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            borderRadius: "10px",
+            padding: "11px 16px",
+            color: "#FAFAF7",
+            fontSize: "14px",
+            fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
+            outline: "none",
+            marginBottom: "16px",
+          }}
+        />
 
         {/* Filter tabs */}
         <div style={{ display: "flex", gap: "8px", marginBottom: "24px" }}>
@@ -122,7 +169,7 @@ export default function InvoicesPage() {
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <thead>
                 <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-                  {["رقم الفاتورة", "العميل", "الإجمالي", "تاريخ الإصدار", "الحالة", "النموذج", "إجراءات"].map((h) => (
+                  {["رقم الفاتورة", "العميل", "الإجمالي", "تاريخ الإصدار", "الحالة", "الرابط الخاص", "إجراءات"].map((h) => (
                     <th
                       key={h}
                       style={{
@@ -185,9 +232,36 @@ export default function InvoicesPage() {
                       </span>
                     </td>
                     <td style={{ padding: "16px 20px" }}>
-                      <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", fontFamily: "Space Mono, monospace" }}>
-                        {inv.template}
-                      </span>
+                      {!inv.publicId ? (
+                        <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.25)", fontFamily: "Space Mono, monospace" }}>
+                          — لم يُنشأ
+                        </span>
+                      ) : (
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                          <button
+                            onClick={() => copyLink(inv)}
+                            title={`/invoice/${inv.publicId}`}
+                            style={{
+                              background: copiedId === inv.id ? "rgba(34,197,94,0.12)" : "rgba(255,255,255,0.05)",
+                              border: `1px solid ${copiedId === inv.id ? "rgba(34,197,94,0.35)" : "rgba(255,255,255,0.1)"}`,
+                              color: copiedId === inv.id ? "#22C55E" : "rgba(255,255,255,0.6)",
+                              borderRadius: "6px",
+                              padding: "6px 12px",
+                              fontSize: "12px",
+                              cursor: "pointer",
+                              fontFamily: "'ThmanyahSans', 'Zain', sans-serif",
+                            }}
+                          >
+                            {copiedId === inv.id ? "تم النسخ ✓" : "نسخ الرابط"}
+                          </button>
+                          {inv.shareEnabled === false && (
+                            <span style={{ fontSize: "11px", color: "#EF4444", fontFamily: "Space Mono, monospace" }}>موقوف</span>
+                          )}
+                          {inv.sharePasswordHash && (
+                            <span title="محمية بكلمة مرور" style={{ fontSize: "12px" }}>🔒</span>
+                          )}
+                        </div>
+                      )}
                     </td>
                     <td style={{ padding: "16px 20px" }}>
                       <div style={{ display: "flex", gap: "8px" }}>

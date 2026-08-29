@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import InvoicePrintView from "@/components/admin/InvoicePrintView";
+import InvoiceSharePanel from "@/components/admin/InvoiceSharePanel";
 import { Invoice } from "@/lib/db";
 
 const STATUS_LABELS: Record<string, string> = {
@@ -231,10 +232,14 @@ export default function InvoiceDetailPage() {
           </div>
         </div>
 
+        {/* الرابط الخاص للعميل */}
+        <InvoiceSharePanel invoice={invoice} />
+
         {/* Invoice preview */}
         <div
           ref={printRef}
           style={{
+            marginTop: "24px",
             background: "white",
             boxShadow: "0 4px 40px rgba(0,0,0,0.5)",
             borderRadius: "12px",
