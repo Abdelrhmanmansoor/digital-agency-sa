@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مركز مساعدة وكالتي</title>
+<meta name="description" content="الدليل الرسمي لثيم وكالتي على منصة سلة: التثبيت، الإعدادات، أقسام الصفحة الرئيسية، بطاقة المنتج، السلة، واتساب، الفوتر، وحل المشكلات.">
+<meta name="theme-color" content="#111318">
+<meta property="og:title" content="مركز مساعدة وكالتي">
+<meta property="og:description" content="كل ما تحتاجه لإعداد ثيم وكالتي على سلة، خطوة بخطوة.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111318'/%3E%3Cpath d='M8 10l4 12 4-9 4 9 4-12' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+  try { var t = localStorage.getItem('wk-help-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn" type="button" aria-label="القائمة" aria-controls="sidebar" aria-expanded="false" data-menu>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+  <a class="brand" href="#top">
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 10l4 12 4-9 4 9 4-12"/></svg></span>
+    <span class="brand-text"><b>وكالتي</b><small>مركز المساعدة</small></span>
+  </a>
+  <button class="search-trigger" type="button" data-search-open>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/></svg>
+    <span>ابحث في الدليل…</span>
+    <kbd>Ctrl K</kbd>
+  </button>
+  <button class="icon-btn" type="button" aria-label="تبديل الوضع الداكن" data-theme-toggle>
+    <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+  </button>
+</header>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar" aria-label="أقسام الدليل">
+    <div class="nav-group">
+      <p class="nav-title">البداية</p>
+      <a href="#start">نظرة عامة</a>
+      <a href="#quick">البداية السريعة</a>
+      <a href="#install">تفعيل الثيم</a>
+    </div>
+    <div class="nav-group">
+      <p class="nav-title">إعدادات الثيم</p>
+      <a href="#identity">الهوية والألوان</a>
+      <a href="#header">الهيدر</a>
+      <a href="#mobile-menu">قائمة الجوال</a>
+      <a href="#product-card">بطاقة المنتج</a>
+      <a href="#product-page">صفحة المنتج</a>
+      <a href="#cart">السلة</a>
+      <a href="#whatsapp">زر واتساب</a>
+      <a href="#bottom-nav">شريط التنقل السفلي</a>
+      <a href="#footer">الفوتر</a>
+    </div>
+    <div class="nav-group">
+      <p class="nav-title">الصفحة الرئيسية</p>
+      <a href="#home">إضافة الأقسام</a>
+      <a href="#blocks">دليل الأقسام</a>
+      <a href="#actions">وجهات الأزرار</a>
+      <a href="#media">مقاسات الصور والفيديو</a>
+    </div>
+    <div class="nav-group">
+      <p class="nav-title">المساعدة</p>
+      <a href="#troubleshoot">حل المشكلات</a>
+      <a href="#faq">الأسئلة الشائعة</a>
+      <a href="#support">الدعم والتواصل</a>
+      <a href="#changelog">سجل الإصدارات</a>
+    </div>
+  </nav>
+  <div class="scrim" data-scrim hidden></div>
+
+  <main id="main" class="content">
+    <span id="top"></span>
+
+    <section class="hero" id="start">
+      <p class="eyebrow">ثيم سلة · الإصدار 1.0</p>
+      <h1>دليل استخدام ثيم وكالتي</h1>
+      <p class="lead">ثيم لوكالات التسويق والإبداع الرقمي ومقدّمي الخدمات على سلة. يشرح هذا الدليل كل إعداد يظهر لك في محرر الثيم: ماذا يفعل، وأين تجده، وما الخيار المناسب لمتجرك.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#quick">ابدأ الإعداد</a>
+        <button class="btn" type="button" data-search-open>ابحث عن إعداد</button>
+      </div>
+      <ul class="facts">
+        <li><b>21</b><span>قسمًا للصفحة الرئيسية</span></li>
+        <li><b>9</b><span>مجموعات إعدادات</span></li>
+        <li><b>عربي وإنجليزي</b><span>RTL و LTR</span></li>
+        <li><b>بألوان متجرك</b><span>تلقائيًا من سلة</span></li>
+      </ul>
+    </section>
+
+    <section class="tasks" aria-labelledby="tasks-h">
+      <h2 id="tasks-h" class="h-sm">ماذا تريد أن تفعل؟</h2>
+      <div class="task-grid">
+        <a class="task" href="#header"><b>تغيير شكل الهيدر</b><span>الهيدر ← شكل الهيدر وطريقة ظهوره</span></a>
+        <a class="task" href="#blocks"><b>إضافة سلايدر أو بانر</b><span>الصفحة الرئيسية ← إضافة قسم</span></a>
+        <a class="task" href="#product-card"><b>تعديل بطاقة المنتج</b><span>بطاقة المنتج ← تصميم البطاقة</span></a>
+        <a class="task" href="#whatsapp"><b>تفعيل زر واتساب</b><span>زر واتساب ← إظهار زر واتساب</span></a>
+        <a class="task" href="#bottom-nav"><b>شريط سفلي للجوال</b><span>شريط التنقل السفلي ← التفعيل</span></a>
+        <a class="task" href="#footer"><b>تخصيص الفوتر</b><span>الفوتر ← الشكل والروابط والدفع</span></a>
+      </div>
+    </section>
+
+    <!-- QUICK START -->
+    <section id="quick" class="doc">
+      <h2>البداية السريعة</h2>
+      <p>عشر خطوات تكفي لتجهيز متجرك بالكامل. علّم كل خطوة بعد إنهائها، ويُحفظ تقدّمك في هذا المتصفح.</p>
+      <div class="progress" aria-hidden="true"><span data-progress-bar></span></div>
+      <p class="progress-label" data-progress-label>0 من 10</p>
+      <ol class="checklist" data-checklist>
+        <li><label><input type="checkbox" data-step="logo"><span><b>ارفع شعار المتجر</b> من لوحة سلة ← إعدادات المتجر. الثيم يستخدمه في الهيدر والفوتر تلقائيًا.</span></label></li>
+        <li><label><input type="checkbox" data-step="color"><span><b>اختر لون الهوية والخط</b> من إعدادات الثيم في سلة. كل الأقسام تأخذ هذا اللون.</span></label></li>
+        <li><label><input type="checkbox" data-step="bg"><span><b>حدّد لون خلفية الموقع</b> من «الهوية والخلفية». الافتراضي <code>#f7f7f5</code>.</span></label></li>
+        <li><label><input type="checkbox" data-step="menu"><span><b>جهّز القائمة الرئيسية</b> من لوحة سلة ← القوائم. الهيدر يقرؤها كما هي.</span></label></li>
+        <li><label><input type="checkbox" data-step="header"><span><b>اختر شكل الهيدر</b> واكتب رابط زر «ابدأ مشروعك». بدون رابط يختفي الزر.</span></label></li>
+        <li><label><input type="checkbox" data-step="hero"><span><b>أضف السلايدر الرئيسي</b> بصورتين لكل شريحة: واحدة للكمبيوتر وأخرى للجوال.</span></label></li>
+        <li><label><input type="checkbox" data-step="blocks"><span><b>رتّب أقسام الرئيسية</b>: خدماتك، أعمالك، الأرقام، آراء العملاء، الأسئلة الشائعة.</span></label></li>
+        <li><label><input type="checkbox" data-step="card"><span><b>اختر تصميم بطاقة المنتج</b> وأزرارها من «بطاقة المنتج».</span></label></li>
+        <li><label><input type="checkbox" data-step="wa"><span><b>فعّل زر واتساب</b> واكتب رسالة الترحيب والأسئلة السريعة.</span></label></li>
+        <li><label><input type="checkbox" data-step="test"><span><b>جرّب المتجر</b> على الجوال والكمبيوتر، بالعربية والإنجليزية، وأضف منتجًا للسلة.</span></label></li>
+      </ol>
+      <button class="link-btn" type="button" data-checklist-reset>مسح التقدّم</button>
+    </section>
+
+    <!-- INSTALL -->
+    <section id="install" class="doc">
+      <h2>تفعيل الثيم</h2>
+      <ol class="steps">
+        <li><b>ثبّت الثيم</b> من متجر ثيمات سلة، أو من الرابط الذي وصلك بعد الشراء.</li>
+        <li><b>افتح صفحة الثيمات</b> في لوحة تحكم سلة، واضغط «تخصيص» على ثيم وكالتي لفتح المحرر.</li>
+        <li><b>عدّل وعاين</b>: كل تغيير يظهر في المعاينة قبل النشر. ابدأ بإعدادات الثيم ثم الصفحة الرئيسية.</li>
+        <li><b>فعّل الثيم</b> عندما يعجبك الشكل. إعداداتك تبقى محفوظة حتى لو رجعت لثيم آخر ثم عدت.</li>
+      </ol>
+      <div class="note"><b>تلميح:</b> اختبر المعاينة على <code>/ar</code> و<code>/en</code> لترى الاتجاهين. الثيم يقلب التخطيط بالكامل بين العربية والإنجليزية.</div>
+    </section>
+
+    <!-- IDENTITY -->
+    <section id="identity" class="doc">
+      <h2>الهوية والألوان</h2>
+      <p>الثيم لا يفرض ألوانًا. يأخذ <b>اللون الأساسي والخط</b> من إعدادات سلة، ويطبّقهما على الأزرار والروابط والشارات وكل الأقسام. أي قسم فيه خيار «تلقائي من هوية المتجر» يتبع هذا اللون.</p>
+      <table class="settings">
+        <thead><tr><th>الإعداد</th><th>ماذا يفعل</th><th>الافتراضي</th></tr></thead>
+        <tbody>
+          <tr><td>لون خلفية الموقع</td><td>خلفية كل الصفحات. يُستخدم أيضًا لحساب ألوان النص المقروءة فوقها.</td><td><code>#f7f7f5</code></td></tr>
+          <tr><td>الخط</td><td>من إعدادات سلة العامة. يُطبّق على العناوين والنصوص.</td><td>خط المتجر</td></tr>
+          <tr><td>اللون الأساسي</td><td>من إعدادات سلة. يلوّن الأزرار والإبراز في كل الأقسام.</td><td>لون المتجر</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>نصيحة:</b> اختر خلفية فاتحة قريبة من الأبيض مع لون هوية داكن أو مشبع. الثيم يتحقق من تباين النص تلقائيًا في الأجزاء الحساسة مثل شريط التنقل السفلي.</div>
+    </section>
+
+    <!-- HEADER -->
+    <section id="header" class="doc">
+      <h2>الهيدر</h2>
+      <p>الشعار والقائمة يأتيان من لوحة سلة. من محرر الثيم تتحكم في الشكل وطريقة الظهور وزر التواصل.</p>
+      <table class="settings">
+        <thead><tr><th>الإعداد</th><th>الخيارات</th><th>متى تستخدمه</th></tr></thead>
+        <tbody>
+          <tr><td>شكل الهيدر</td><td>كلاسيكي · في المنتصف · مع بحث · مع تصنيفات</td><td>«مع بحث» للمتاجر الكبيرة، «في المنتصف» للهويات البسيطة.</td></tr>
+          <tr><td>طريقة ظهور الهيدر</td><td>زجاجي عائم · شفاف · خلفية ثابتة</td><td>«شفاف» يناسب سلايدرًا بصور داكنة. «ثابتة» أوضح مع الصور الفاتحة.</td></tr>
+          <tr><td>تثبيت الهيدر عند التمرير</td><td>تشغيل / إيقاف</td><td>مفعّل افتراضيًا ليبقى البحث والسلة في متناول العميل.</td></tr>
+          <tr><td>تصغير الهيدر عند التمرير</td><td>تشغيل / إيقاف</td><td>يظهر فقط عند تفعيل التثبيت.</td></tr>
+          <tr><td>شعار فاتح للظهور فوق الصور</td><td>صورة</td><td>يظهر فقط مع الهيدر الشفاف. استخدم نسخة بيضاء من شعارك.</td></tr>
+          <tr><td>نص زر «ابدأ مشروعك»</td><td>نص</td><td>غيّره إلى «اطلب عرض سعر» أو «احجز استشارة» حسب نشاطك.</td></tr>
+          <tr><td>رابط زر «ابدأ مشروعك»</td><td>رابط</td><td>إذا تركته فارغًا يختفي الزر.</td></tr>
+        </tbody>
+      </table>
+      <div class="note warn"><b>انتبه:</b> مع الهيدر الشفاف، إن لم ترفع شعارًا فاتحًا فقد يختفي شعارك الداكن فوق صورة داكنة.</div>
+    </section>
+
+    <!-- MOBILE MENU -->
+    <section id="mobile-menu" class="doc">
+      <h2>قائمة الجوال</h2>
+      <p>القائمة الجانبية التي تُفتح من زر القائمة على الجوال.</p>
+      <table class="settings">
+        <thead><tr><th>الإعداد</th><th>ماذا يفعل</th></tr></thead>
+        <tbody>
+          <tr><td>أيقونات الروابط</td><td>أيقونة لكل رابط في القائمة.</td></tr>
+          <tr><td>استخدام صور الروابط من قائمة سلة</td><td>يعرض الصور التي أرفقتها للروابط في لوحة سلة ← القوائم.</td></tr>
+          <tr><td>إظهار الشريط المتحرك ونصوصه</td><td>سطر متحرك أعلى القائمة لعرض أو رسالة قصيرة. اكتب كل نص في سطر.</td></tr>
+          <tr><td>زر البحث · طرق التواصل · أيقونات التواصل الاجتماعي</td><td>إظهار أو إخفاء كل جزء داخل القائمة.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- PRODUCT CARD -->
+    <section id="product-card" class="doc">
+      <h2>بطاقة المنتج</h2>
+      <p>بطاقة واحدة تُستخدم في كل مكان: التصنيفات، البحث، السلايدرات، وأقسام المنتجات. التغيير هنا يطبّق على المتجر كله.</p>
+      <div class="tabs" data-tabs>
+        <div class="tab-list" role="tablist">
+          <button role="tab" aria-selected="true" data-tab="pc-shape">الشكل</button>
+          <button role="tab" aria-selected="false" data-tab="pc-image">الصورة</button>
+          <button role="tab" aria-selected="false" data-tab="pc-info">المعلومات</button>
+          <button role="tab" aria-selected="false" data-tab="pc-buttons">الأزرار</button>
+          <button role="tab" aria-selected="false" data-tab="pc-mobile">الجوال</button>
+          <button role="tab" aria-selected="false" data-tab="pc-adv">متقدم</button>
+        </div>
+        <div class="tab-panel" role="tabpanel" data-panel="pc-shape">
+          <table class="settings"><tbody>
+            <tr><td>تصميم البطاقة</td><td>كلاسيكي · فاخر · عائم · زجاجي · صورة كاملة بالنص فوقها · زجاجي كامل</td></tr>
+            <tr><td>لون اللوحة الزجاجية</td><td>داكن · فاتح · بلون المتجر (للتصاميم الزجاجية)</td></tr>
+            <tr><td>حجم البطاقة</td><td>مضغوط · قياسي · واسع</td></tr>
+            <tr><td>استدارة الحواف · الظل · الحدود</td><td>«تلقائي» يختار القيمة المناسبة لكل تصميم.</td></tr>
+          </tbody></table>
+        </div>
+        <div class="tab-panel" role="tabpanel" data-panel="pc-image" hidden>
+          <table class="settings"><tbody>
+            <tr><td>نسبة الصورة</td><td>تلقائي · 1:1 · 3:4 · 4:5 · 4:3 · الأبعاد الأصلية</td></tr>
+            <tr><td>عرض الصورة داخل الإطار</td><td>حسب إعداد المتجر · ملء الإطار · إظهار الصورة كاملة</td></tr>
+          </tbody></table>
+          <div class="note"><b>نصيحة:</b> صوّر منتجاتك بنسبة واحدة، واختر نفس النسبة هنا. هكذا تصطف البطاقات بلا فراغات.</div>
+        </div>
+        <div class="tab-panel" role="tabpanel" data-panel="pc-info" hidden>
+          <table class="settings"><tbody>
+            <tr><td>الوصف المختصر · التقييم</td><td>إظهار أو إخفاء.</td></tr>
+            <tr><td>أقصى عدد أسطر لاسم المنتج</td><td>1 · 2 · 3</td></tr>
+            <tr><td>السعر قبل الخصم · نسبة الخصم · الشارات · المفضلة</td><td>إظهار أو إخفاء كل عنصر.</td></tr>
+            <tr><td>محاذاة المعلومات</td><td>البداية · الوسط</td></tr>
+          </tbody></table>
+        </div>
+        <div class="tab-panel" role="tabpanel" data-panel="pc-buttons" hidden>
+          <table class="settings"><tbody>
+            <tr><td>إظهار زر الشراء</td><td>تشغيل / إيقاف</td></tr>
+            <tr><td>خيارات المنتج على البطاقة</td><td>يعرض الخيارات (مثل الحجم أو اللون) لاختيارها مباشرة.</td></tr>
+            <tr><td>أزرار البطاقة</td><td>السلة فقط · السلة والعرض السريع · السلة والتفاصيل · بسيط</td></tr>
+            <tr><td>ظهور الزر الإضافي</td><td>دائمًا · عند مرور الماوس</td></tr>
+            <tr><td>شكل الزر</td><td>ممتلئ · بإطار · ناعم</td></tr>
+          </tbody></table>
+        </div>
+        <div class="tab-panel" role="tabpanel" data-panel="pc-mobile" hidden>
+          <table class="settings"><tbody>
+            <tr><td>حجم البطاقة على الجوال</td><td>تلقائي · مضغوط · قياسي</td></tr>
+            <tr><td>الوصف على الجوال</td><td>إظهار أو إخفاء</td></tr>
+            <tr><td>الشارات على الجوال</td><td>الأساسية فقط · كلها</td></tr>
+          </tbody></table>
+        </div>
+        <div class="tab-panel" role="tabpanel" data-panel="pc-adv" hidden>
+          <table class="settings"><tbody>
+            <tr><td>تأثير مرور الماوس</td><td>تلقائي · ارتفاع · تكبير · حدود · ظل · زجاجي · بدون</td></tr>
+            <tr><td>ألوان البطاقة</td><td>«تلقائي» يتبع هوية المتجر. «مخصص» يفتح ألوان الخلفية والنص والزر والحدود والشارة.</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT PAGE -->
+    <section id="product-page" class="doc">
+      <h2>صفحة المنتج</h2>
+      <p>تصميم مخصص لصفحات الخدمات والمنتجات. يمكنك إيقافه للرجوع لصفحة سلة الافتراضية.</p>
+      <table class="settings">
+        <thead><tr><th>الإعداد</th><th>ماذا يفعل</th></tr></thead>
+        <tbody>
+          <tr><td>تفعيل تصميم وكالتي لصفحة المنتج</td><td>المفتاح الرئيسي لهذا القسم.</td></tr>
+          <tr><td>طرق الدفع تحت زر الطلب</td><td>تطمئن العميل قبل الشراء.</td></tr>
+          <tr><td>رابط «استفسر عن الخدمة»</td><td>للخدمات التي تحتاج نقاشًا قبل الطلب.</td></tr>
+          <tr><td>العد التنازلي لانتهاء الخصم</td><td>يظهر عندما يكون للخصم تاريخ انتهاء في سلة.</td></tr>
+          <tr><td>شريط الشحن المجاني</td><td>يوضّح كم بقي للعميل ليحصل على شحن مجاني.</td></tr>
+          <tr><td>أقسام إضافية تحت الوصف</td><td>تبويبات مثل «ماذا ستستلم» أو «مدة التنفيذ».</td></tr>
+          <tr><td>مزايا الشراء</td><td>نقاط قصيرة بأيقونات: ضمان، دعم، تسليم سريع.</td></tr>
+          <tr><td>«يُشترى عادة معه»</td><td>منتجات مقترحة من سلة.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CART -->
+    <section id="cart" class="doc">
+      <h2>السلة</h2>
+      <table class="settings">
+        <thead><tr><th>الإعداد</th><th>الخيارات</th><th>الشرح</th></tr></thead>
+        <tbody>
+          <tr><td>تصميم وكالتي لصفحة السلة</td><td>تشغيل / إيقاف</td><td>إيقافه يعيد صفحة السلة الافتراضية من سلة.</td></tr>
+          <tr><td>بعد إضافة منتج للسلة</td><td>سلة جانبية · إشعار فقط</td><td>السلة الجانبية تعرض المنتجات والكوبون والإجمالي وزر إتمام الطلب دون مغادرة الصفحة.</td></tr>
+          <tr><td>فتح السلة الجانبية من أيقونة السلة</td><td>تشغيل / إيقاف</td><td>بدلًا من الانتقال لصفحة السلة.</td></tr>
+          <tr><td>«قد يعجبك أيضًا» داخل السلة الجانبية</td><td>تشغيل / إيقاف</td><td>اقتراحات على الشاشات الكبيرة. تختفي تلقائيًا إن لم توجد منتجات مقترحة.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- WHATSAPP -->
+    <section id="whatsapp" class="doc">
+      <h2>زر واتساب</h2>
+      <p>زر عائم يفتح محادثة واتساب. إن تركت الرقم فارغًا يستخدم الثيم رقم واتساب المسجّل في متجرك. وإن لم يوجد رقم أصلًا لا يظهر الزر.</p>
+      <div class="compare">
+        <div><h3>تفاعلي</h3><p>بطاقة محادثة فيها اسمك وصورتك وحالتك ورسالة ترحيب وحتى خمسة أسئلة سريعة، ثم ينتقل العميل لواتساب برسالته.</p></div>
+        <div><h3>بسيط</h3><p>الضغط يفتح واتساب مباشرة بالرسالة الجاهزة. مناسب لمن يريد أقل خطوات ممكنة.</p></div>
+      </div>
+      <table class="settings">
+        <thead><tr><th>الإعداد</th><th>الشرح</th></tr></thead>
+        <tbody>
+          <tr><td>رقم واتساب</td><td>مع رمز الدولة، مثل <code>9665XXXXXXXX</code>. اختياري.</td></tr>
+          <tr><td>مكان الزر · يظهر على</td><td>يمين أو يسار · كل الأجهزة أو الجوال فقط أو الكمبيوتر فقط.</td></tr>
+          <tr><td>الأسئلة السريعة</td><td>اكتب كل سؤال في سطر مستقل.</td></tr>
+          <tr><td>إرفاق رابط الصفحة بالرسالة</td><td>تعرف فورًا عن أي منتج يسأل العميل.</td></tr>
+          <tr><td>لفت الانتباه</td><td>نبض خفيف وفقاعة ترحيب مرة واحدة في الزيارة. يتوقف عند تفعيل «تقليل الحركة» في جهاز العميل.</td></tr>
+          <tr><td>الرد بمساعد ذكي</td><td>يعرض للعميل أن الرد من مساعد ذكي. لا يربط الثيم بأي خدمة ذكاء اصطناعي. للرد الآلي فعلًا اربط رقمك بتطبيق رد آلي لواتساب.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- BOTTOM NAV -->
+    <section id="bottom-nav" class="doc">
+      <h2>شريط التنقل السفلي</h2>
+      <p>شريط ثابت أسفل شاشة الجوال، فيه دائرة تتحرك للعنصر النشط. يرفع نفسه فوق مساحة النظام في الأجهزة الحديثة، ويختفي داخل تطبيق سلة للجوال.</p>
+      <details class="acc" open>
+        <summary>التصميم والحجم</summary>
+        <p>التصميم (مرتفع أو مسطح)، لون الدائرة (ممتلئ أو ناعم)، أسماء العناصر، أقصى عدد عناصر (3 إلى 5)، الارتفاع، حجم الأيقونات والدائرة، الاستدارة، المسافة عن الحواف، وقوة الظل.</p>
+      </details>
+      <details class="acc">
+        <summary>أين يظهر</summary>
+        <p>الجوال فقط أو الجوال والتابلت. يمكنك إخفاؤه في صفحة المنتج أو السلة أو صفحات الحساب، وإخفاؤه أثناء التمرير لأسفل.</p>
+      </details>
+      <details class="acc">
+        <summary>العناصر وعداد السلة</summary>
+        <p>أضف العناصر من «عناصر الشريط»: الرئيسية، التصنيفات، البحث، العروض، السلة، المفضلة، الحساب، أو رابط مخصص. عداد السلة: يظهر عند وجود منتجات، أو دائمًا، أو لا يظهر.</p>
+      </details>
+      <details class="acc">
+        <summary>الألوان</summary>
+        <p>«تلقائي» يبني الألوان من هوية المتجر ويضمن تباينًا مقروءًا. «يدوي» يستبدل فقط الألوان التي تملؤها، والباقي يبقى تلقائيًا.</p>
+      </details>
+      <details class="acc">
+        <summary>أزرار تطبيقات عائمة تغطيها الشاشة</summary>
+        <p>إن ثبّتّ تطبيقًا يضع زرًا عائمًا أسفل الشاشة (دردشة مثلًا) وغطّاه الشريط، اكتب معرّف الزر في «أزرار عائمة من تطبيقات تُرفع فوق الشريط». زر واتساب الخاص بالثيم يُرفع تلقائيًا.</p>
+      </details>
+    </section>
+
+    <!-- FOOTER -->
+    <section id="footer" class="doc">
+      <h2>الفوتر</h2>
+      <table class="settings">
+        <thead><tr><th>الإعداد</th><th>الخيارات</th></tr></thead>
+        <tbody>
+          <tr><td>شكل الفوتر</td><td>عائم بحواف دائرية · بعرض كامل</td></tr>
+          <tr><td>لون الخلفية · الشبكة الخلفية</td><td>لون حر · إظهار أو إخفاء نقش الشبكة</td></tr>
+          <tr><td>التوزيع · محاذاة الشعار</td><td>مقسّم أو في المنتصف · البداية أو الوسط</td></tr>
+          <tr><td>حجم الشعار · أعمدة الروابط · المسافات</td><td>صغير/متوسط/كبير · تلقائي أو 2 إلى 4 · عادية/مضغوطة/مريحة</td></tr>
+          <tr><td>لون النص</td><td>تلقائي حسب الخلفية · مخصص</td></tr>
+          <tr><td>قوائم قابلة للطي على الجوال</td><td>تشغيل / إيقاف</td></tr>
+          <tr><td>طرق الدفع</td><td>بطاقات ملونة · أحادية اللون · شريط · عبارة «دفع آمن» · سطر مستقل للتقسيط</td></tr>
+          <tr><td>المحتوى</td><td>شعار مخصص، وصف الوكالة، روابط إضافية بعنوانها، العنوان أو المدينة، لينكدإن، بيهانس</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>تلميح:</b> روابط التواصل الاجتماعي الأخرى ورقم التوثيق تأتي من بيانات متجرك في سلة، فلا تحتاج لإدخالها مرتين.</div>
+    </section>
+
+    <!-- HOME -->
+    <section id="home" class="doc">
+      <h2>إضافة الأقسام للصفحة الرئيسية</h2>
+      <ol class="steps">
+        <li>في محرر الثيم افتح <b>الصفحة الرئيسية</b>.</li>
+        <li>اضغط <b>إضافة قسم</b> واختر من القائمة.</li>
+        <li>اسحب الأقسام لترتيبها. القسم الأعلى يظهر أولًا.</li>
+        <li>كل قسم مستقل: يمكنك إضافة نفس القسم أكثر من مرة بإعدادات مختلفة.</li>
+      </ol>
+      <div class="note"><b>ترتيب مقترح لوكالة:</b> السلايدر الرئيسي ← الشريط المتحرك ← البطاقات المميزة (الخدمات) ← المحتوى مع صورة ← الإحصائيات ← الباقات والأسعار ← آراء العملاء ← الأسئلة الشائعة ← العنوان الترويجي.</div>
+    </section>
+
+    <section id="blocks" class="doc">
+      <h2>دليل الأقسام</h2>
+      <p>21 قسمًا. صفِّها حسب الهدف، واضغط على أي قسم لترى إعداداته.</p>
+      <div class="filter" role="group" aria-label="تصفية الأقسام" data-block-filter>
+        <button type="button" aria-pressed="true" data-cat="all">الكل</button>
+        <button type="button" aria-pressed="false" data-cat="hero">الواجهة والبنرات</button>
+        <button type="button" aria-pressed="false" data-cat="content">المحتوى</button>
+        <button type="button" aria-pressed="false" data-cat="trust">الثقة والأرقام</button>
+        <button type="button" aria-pressed="false" data-cat="sell">البيع</button>
+        <button type="button" aria-pressed="false" data-cat="contact">التواصل</button>
+      </div>
+      <div class="block-list" data-blocks></div>
+    </section>
+
+    <!-- ACTIONS -->
+    <section id="actions" class="doc">
+      <h2>وجهات الأزرار</h2>
+      <p>معظم الأقسام تسألك «عند الضغط على الزر يذهب العميل إلى». بدل لصق روابط، اختر الوجهة من القائمة فيبقى الرابط صحيحًا حتى لو غيّرت اسم المنتج أو التصنيف.</p>
+      <table class="settings">
+        <thead><tr><th>الوجهة</th><th>ما تحتاج إدخاله</th></tr></thead>
+        <tbody>
+          <tr><td>الصفحة الرئيسية · جميع المنتجات</td><td>لا شيء</td></tr>
+          <tr><td>منتج محدد · تصنيف محدد · ماركة · صفحة تعريفية</td><td>اختره من القائمة</td></tr>
+          <tr><td>مسار داخل المتجر</td><td>مثل <code>/offers</code></td></tr>
+          <tr><td>رابط خارجي</td><td>رابط كامل يبدأ بـ <code>https://</code></td></tr>
+          <tr><td>واتساب</td><td>الرقم مع رمز الدولة، ورسالة جاهزة اختيارية</td></tr>
+          <tr><td>هاتف · بريد إلكتروني</td><td>الرقم أو البريد</td></tr>
+          <tr><td>قسم في نفس الصفحة</td><td>«معرّف القسم» الذي كتبته في القسم الهدف</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>الانتقال لقسم:</b> اكتب معرّفًا قصيرًا بالإنجليزية في حقل «معرّف القسم» داخل القسم الهدف، مثل <code>pricing</code>، ثم اختر نفس المعرّف في الزر.</div>
+    </section>
+
+    <!-- MEDIA -->
+    <section id="media" class="doc">
+      <h2>مقاسات الصور والفيديو</h2>
+      <p>مقاسات موصى بها تعطي صورة حادة دون إبطاء المتجر. استخدم WebP أو JPG مضغوطًا.</p>
+      <table class="settings">
+        <thead><tr><th>المكان</th><th>الكمبيوتر</th><th>الجوال</th></tr></thead>
+        <tbody>
+          <tr><td>السلايدر الرئيسي (ملء الشاشة)</td><td>1920 × 1080</td><td>1080 × 1350 (4:5)</td></tr>
+          <tr><td>البانر التفاعلي المتقدم</td><td>1920 × 820</td><td>1080 × 1350 (4:5)</td></tr>
+          <tr><td>البنرات المقسمة</td><td>1200 × 1500</td><td>1080 × 1350</td></tr>
+          <tr><td>صور البطاقات والمعرض</td><td>1200 × 900 أو 1200 × 1200</td><td>نفس الصورة</td></tr>
+          <tr><td>صور المنتجات</td><td>1200 × 1200 أو 1200 × 1500</td><td>نفس الصورة</td></tr>
+          <tr><td>الشعارات في الشريط المتحرك</td><td>PNG أو SVG بخلفية شفافة، ارتفاع 120px</td><td>نفس الصورة</td></tr>
+        </tbody>
+      </table>
+      <div class="note"><b>الفيديو:</b> MP4 بترميز H.264 أقل من 8MB، وبدون صوت إن كان تلقائي التشغيل. ارفع دائمًا صورة غلاف تظهر قبل تحميل الفيديو. «نقطة التركيز» في السلايدر تحدد الجزء الذي يبقى ظاهرًا عند قص الصورة.</div>
+    </section>
+
+    <!-- TROUBLESHOOT -->
+    <section id="troubleshoot" class="doc">
+      <h2>حل المشكلات</h2>
+      <div class="acc-group" data-faq-group>
+        <details class="acc"><summary>زر «ابدأ مشروعك» لا يظهر</summary><p>الزر يظهر فقط عندما تكتب له رابطًا في إعدادات الهيدر.</p></details>
+        <details class="acc"><summary>شعاري لا يظهر فوق السلايدر</summary><p>مع الهيدر الشفاف ارفع «شعار فاتح للظهور فوق الصور»، أو غيّر طريقة الظهور إلى «زجاجي عائم».</p></details>
+        <details class="acc"><summary>زر واتساب لا يظهر</summary><p>تأكد من تفعيل «إظهار زر واتساب»، ومن وجود رقم في الإعداد أو في بيانات متجرك، ومن خيار «يظهر على» المناسب لجهازك.</p></details>
+        <details class="acc"><summary>الصورة مقصوصة في السلايدر أو البانر</summary><p>ارفع صورة مخصصة للجوال، واضبط نقطة التركيز أو «تركيز الصورة». أو اختر «احتواء» بدل «ملء الإطار».</p></details>
+        <details class="acc"><summary>الحركة لا تعمل على جهازي</summary><p>إن كان «تقليل الحركة» مفعّلًا في نظام جهازك، يوقف الثيم الحركات المستمرة احترامًا لهذا الإعداد. بعض الحركات معطّلة على الجوال افتراضيًا ويمكن تفعيلها من القسم نفسه.</p></details>
+        <details class="acc"><summary>شريط التنقل السفلي يغطي زر تطبيق آخر</summary><p>أضف معرّف ذلك الزر في «أزرار عائمة من تطبيقات تُرفع فوق الشريط»، أو أخفِ الشريط في الصفحة التي يظهر فيها الزر.</p></details>
+        <details class="acc"><summary>«قد يعجبك أيضًا» فارغة في السلة الجانبية</summary><p>تعتمد على المنتجات ذات الصلة في سلة. إن لم توجد، تُخفى اللوحة تلقائيًا.</p></details>
+        <details class="acc"><summary>التغييرات لا تظهر في المتجر</summary><p>احفظ ثم انشر من المحرر، وحدّث الصفحة. إن كنت تعاين نسخة غير مفعّلة، فعّل الثيم أولًا.</p></details>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="doc">
+      <h2>الأسئلة الشائعة</h2>
+      <div class="acc-group">
+        <details class="acc"><summary>هل يدعم الثيم اللغة الإنجليزية؟</summary><p>نعم. الثيم يعمل بالعربية من اليمين لليسار وبالإنجليزية من اليسار لليمين، والتخطيط ينقلب تلقائيًا.</p></details>
+        <details class="acc"><summary>هل تعمل تطبيقات سلة المثبتة مع الثيم؟</summary><p>نعم. الثيم يحافظ على أماكن التطبيقات في الصفحات، وعلى وظائف سلة الأصلية: السلة، الحساب، تسجيل الدخول، العروض.</p></details>
+        <details class="acc"><summary>هل يناسب متجر منتجات وليس وكالة؟</summary><p>نعم. الأقسام عامة: بطاقات، بنرات، فيديو، أسعار، أسئلة. غيّر النصوص الافتراضية لتناسب نشاطك.</p></details>
+        <details class="acc"><summary>هل أحتاج خبرة برمجية؟</summary><p>لا. كل شيء من محرر الثيم في سلة، بدون كود.</p></details>
+        <details class="acc"><summary>هل الثيم سريع على الجوال؟</summary><p>يُعرض من الخادم ويحمّل الصور حسب الحاجة. ساعده بصور مضغوطة بالمقاسات الموصى بها وفيديوهات قصيرة.</p></details>
+        <details class="acc"><summary>هل أفقد إعداداتي عند التحديث؟</summary><p>لا. إعداداتك محفوظة في سلة وتبقى بعد تحديثات الثيم.</p></details>
+      </div>
+    </section>
+
+    <!-- SUPPORT -->
+    <section id="support" class="doc">
+      <h2>الدعم والتواصل</h2>
+      <p>لم تجد إجابتك؟ راسلنا وسنساعدك.</p>
+      <div class="contact">
+        <a class="contact-card" href="mailto:mansoor77soliman@gmail.com?subject=%D8%AF%D8%B9%D9%85%20%D8%AB%D9%8A%D9%85%20%D9%88%D9%83%D8%A7%D9%84%D8%AA%D9%8A">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <span><b>البريد الإلكتروني</b><small dir="ltr">mansoor77soliman@gmail.com</small></span>
+        </a>
+        <button class="contact-card" type="button" data-copy="mansoor77soliman@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+          <span><b>نسخ البريد</b><small>للصقه في تطبيق البريد</small></span>
+        </button>
+      </div>
+      <p class="h-sm">لنساعدك أسرع، أرسل معك:</p>
+      <ul class="plain">
+        <li>رابط متجرك.</li>
+        <li>الصفحة والجهاز اللذين تظهر فيهما المشكلة (جوال أو كمبيوتر، والمتصفح).</li>
+        <li>لقطة شاشة، واسم القسم أو الإعداد الذي عدّلته.</li>
+      </ul>
+    </section>
+
+    <!-- CHANGELOG -->
+    <section id="changelog" class="doc">
+      <h2>سجل الإصدارات</h2>
+      <div class="release">
+        <p class="release-v">1.0.0 <span>الإصدار الأول</span></p>
+        <ul>
+          <li>21 قسمًا للصفحة الرئيسية، منها السلايدر الرئيسي والبانر التفاعلي المتقدم وكوّن باقتك وبطاقات المنتجات بالفيديو.</li>
+          <li>أربعة أشكال للهيدر وثلاث طرق ظهور.</li>
+          <li>بطاقة منتج بستة تصاميم، وصفحة منتج وسلة جانبية مخصصة.</li>
+          <li>زر واتساب تفاعلي، وشريط تنقل سفلي للجوال، وفوتر قابل للتخصيص.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="page-foot">
+      <p>ثيم وكالتي لمنصة سلة · مركز المساعدة</p>
+      <button class="link-btn" type="button" onclick="window.print()">حفظ الدليل PDF</button>
+    </footer>
+  </main>
+</div>
+
+<div class="search-modal" data-search hidden>
+  <div class="search-box" role="dialog" aria-modal="true" aria-label="البحث في الدليل">
+    <div class="search-input">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/></svg>
+      <input type="search" placeholder="مثال: واتساب، الهيدر الشفاف، نسبة الصورة" autocomplete="off" data-search-input aria-controls="search-results">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="search-results" id="search-results" role="listbox" data-search-results></ul>
+  </div>
+</div>
+
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+
+<script src="assets/app.js" defer></script>
+</body>
+</html>
