@@ -15,6 +15,8 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",
           /* روابط الفواتير الخاصة — مستند لكل عميل على حدة. */
           "/invoice/",
+          /* مناطق العملاء — تقارير خاصة بكل عميل. */
+          "/clients/",
           "/*/dashboard",
           "/*/proposal",
           "/*/store/cart",

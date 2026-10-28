@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>إيفارا لاين · منطقة العميل</title>
+<meta name="description" content="تقرير تحليل سلوك الزوار لمتجر إيفارا لاين — أسبوع 22–28 أكتوبر 2026، من إعداد سليمان.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#cb635d">
+<link rel="icon" href="/clients/ivaraline/ivara-logo.webp">
+<link rel="preload" href="/fonts/thmanyahsans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/thmanyahsans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Thmanyah Sans"; src: url("/fonts/thmanyahsans-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Thmanyah Sans"; src: url("/fonts/thmanyahsans-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Thmanyah Sans"; src: url("/fonts/thmanyahsans-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Thmanyah Serif"; src: url("/fonts/thmanyahserifdisplay-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --bg: #faf6f2;
+  --surface: #ffffff;
+  --surface-2: #f4ece5;
+  --text: #2a1e1b;
+  --muted: #7a6a64;
+  --line: #ece1d8;
+  --brand: #cb635d;
+  --brand-ink: #a9443e;
+  --brand-soft: #f8e6e3;
+  --bar: #d9c9bd;
+  --good: #3f7d58;
+  --good-soft: #e5f1e9;
+  --shadow: 0 1px 2px rgba(42, 30, 27, .04), 0 10px 30px rgba(42, 30, 27, .06);
+  --radius: 16px;
+  --logo-filter: none;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161211; --surface: #1f1918; --surface-2: #2a2220; --text: #f3ebe7; --muted: #b3a39d;
+    --line: #362c29; --brand: #e07d76; --brand-ink: #f09a93; --brand-soft: #3a2422; --bar: #55463f;
+    --good: #7cc596; --good-soft: #1d2e23;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.25);
+    --logo-filter: invert(1) hue-rotate(180deg);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161211; --surface: #1f1918; --surface-2: #2a2220; --text: #f3ebe7; --muted: #b3a39d;
+  --line: #362c29; --brand: #e07d76; --brand-ink: #f09a93; --brand-soft: #3a2422; --bar: #55463f;
+  --good: #7cc596; --good-soft: #1d2e23;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.25);
+  --logo-filter: invert(1) hue-rotate(180deg);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: "Thmanyah Sans", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  font-size: 17px; line-height: 1.85;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--brand-ink); }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; gap: 16px; height: 68px; }
+.agency { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--muted); font-size: 14px; }
+.agency img { height: 34px; width: auto; filter: var(--logo-filter); }
+.agency span { border-inline-start: 1px solid var(--line); padding-inline-start: 12px; }
+.topbar .spacer { flex: 1; }
+.icon-btn {
+  display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer;
+}
+.icon-btn svg { width: 18px; height: 18px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px;
+  border-radius: 12px; font: inherit; font-size: 15px; font-weight: 500; text-decoration: none;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer; white-space: nowrap;
+}
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn.primary:hover { background: var(--brand-ink); border-color: var(--brand-ink); }
+.btn:not(.primary):hover { background: var(--surface-2); }
+.topbar .btn { height: 40px; padding: 0 14px; font-size: 14px; }
+
+/* ---------- hero ---------- */
+.hero { padding: 56px 0 40px; }
+.hero-card {
+  position: relative; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow);
+  padding: 44px 40px 36px;
+}
+.hero-card::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--brand);
+}
+.client-logo { width: 260px; max-width: 70%; margin-bottom: 28px; }
+.eyebrow { color: var(--brand-ink); font-weight: 700; font-size: 14px; letter-spacing: 0; margin: 0 0 6px; }
+h1 {
+  font-family: "Thmanyah Serif", "Thmanyah Sans", serif; font-weight: 700;
+  font-size: clamp(30px, 5vw, 46px); line-height: 1.3; margin: 0 0 14px;
+}
+.lede { color: var(--muted); max-width: 680px; margin: 0 0 26px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+.meta li {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 14px;
+  background: var(--surface-2); border-radius: 999px; padding: 4px 14px;
+}
+.meta b { font-weight: 500; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* ---------- layout ---------- */
+.layout { display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: start; padding-bottom: 64px; }
+.toc { position: sticky; top: 92px; }
+.toc p { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+.toc ol { list-style: none; margin: 0; padding: 0; border-inline-start: 2px solid var(--line); }
+.toc a {
+  display: block; padding: 6px 14px; margin-inline-start: -2px; border-inline-start: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: 15px;
+}
+.toc a:hover { color: var(--text); }
+.toc a.active { color: var(--brand-ink); border-color: var(--brand); font-weight: 500; }
+
+section { margin-bottom: 56px; }
+h2 {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 26px; line-height: 1.4; margin: 0 0 18px;
+}
+h2 .num {
+  display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px;
+  background: var(--brand-soft); color: var(--brand-ink); font-size: 15px; font-weight: 700; flex: none;
+}
+h3 { font-size: 18px; margin: 0 0 6px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+
+/* summary */
+.summary { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.summary li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+.summary .dot {
+  width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
+  background: var(--brand-soft); color: var(--brand-ink); margin-top: 3px;
+}
+.summary .dot svg { width: 16px; height: 16px; }
+.notice {
+  display: flex; gap: 12px; align-items: flex-start; margin-top: 18px; padding: 14px 18px;
+  border-radius: 12px; background: var(--surface-2); font-size: 15px; color: var(--muted);
+}
+.notice svg { width: 20px; height: 20px; flex: none; margin-top: 4px; color: var(--brand-ink); }
+
+/* KPIs */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.kpi .v { font-size: 38px; font-weight: 700; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.kpi .l { color: var(--muted); font-size: 14px; }
+.kpi.flag .v { color: var(--brand-ink); }
+
+/* funnel */
+.funnel { display: grid; gap: 6px; }
+.step { display: grid; grid-template-columns: 130px 1fr 112px; gap: 16px; align-items: center; }
+.step .name { font-weight: 700; }
+.step .track { height: 40px; background: var(--surface-2); border-radius: 10px; overflow: hidden; }
+.step .fill { height: 100%; background: var(--bar); border-radius: 10px; min-width: 4px; }
+.step:first-child .fill { background: var(--brand); }
+.step .val { font-variant-numeric: tabular-nums; }
+.step .val b { font-size: 20px; }
+.step .val small { color: var(--muted); font-size: 13px; }
+.step.zero .fill { background: var(--brand-ink); width: 4px; }
+.step.zero .val b { color: var(--brand-ink); }
+.drop { grid-column: 2; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; padding-inline-start: 6px; }
+.drop svg { width: 14px; height: 14px; color: var(--brand-ink); }
+
+/* product listing */
+.split { display: grid; grid-template-columns: 1fr 260px; gap: 28px; align-items: start; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 4px 0 20px; }
+.compare .card { padding: 18px 20px; }
+.compare .big { font-size: 32px; font-weight: 700; line-height: 1.2; }
+.compare .delta { display: inline-block; margin-top: 4px; font-size: 13px; padding: 1px 10px; border-radius: 999px; background: var(--good-soft); color: var(--good); }
+.finding { padding: 16px 0; border-top: 1px solid var(--line); }
+.finding:first-of-type { border-top: 0; }
+.finding p { margin: 0; }
+.tag { display: inline-block; font-size: 12px; font-weight: 700; padding: 0 10px; border-radius: 999px; background: var(--brand-soft); color: var(--brand-ink); margin-bottom: 6px; }
+figure { margin: 0; }
+.phone {
+  border: 8px solid #2a1e1b; border-radius: 28px; overflow: hidden; background: #2a1e1b;
+  box-shadow: var(--shadow); max-width: 260px; margin-inline: auto;
+}
+figcaption { font-size: 13px; color: var(--muted); text-align: center; margin-top: 10px; line-height: 1.6; }
+
+/* recommendations */
+.recs { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: rec; }
+.recs li {
+  counter-increment: rec; display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px;
+}
+.recs li::before {
+  content: counter(rec); display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px;
+  background: var(--brand); color: #fff; font-size: 20px; font-weight: 700;
+}
+.recs p { margin: 0; color: var(--muted); }
+.recs .area { font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 0 10px; margin-inline-start: 8px; font-weight: 500; vertical-align: middle; }
+
+/* next steps */
+.next { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.next .card p { margin: 0; color: var(--muted); }
+.next .ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand-ink); margin-bottom: 12px; }
+.next .ico svg { width: 20px; height: 20px; }
+
+/* report archive */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.timeline li {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px;
+}
+.timeline .badge { font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--good-soft); color: var(--good); }
+.timeline .badge.wait { background: var(--surface-2); color: var(--muted); }
+.timeline .t { flex: 1; min-width: 200px; }
+.timeline .t small { display: block; color: var(--muted); font-size: 13px; }
+.timeline li.upcoming { border-style: dashed; background: transparent; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+footer img { height: 28px; width: auto; filter: var(--logo-filter); }
+
+@media (max-width: 920px) {
+  .layout { grid-template-columns: 1fr; }
+  .toc { display: none; }
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+  .split { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .hero { padding: 24px 0 28px; }
+  .hero-card { padding: 32px 20px 24px; border-radius: 20px; }
+  .agency span, .topbar .btn .lbl { display: none; }
+  .step { grid-template-columns: 92px 1fr 72px; gap: 10px; }
+  .step .val small { display: block; }
+  .compare, .next { grid-template-columns: 1fr; }
+  .kpi .v { font-size: 30px; }
+  .actions .btn { flex: 1; justify-content: center; }
+  h2 { font-size: 22px; }
+}
+@media print {
+  .topbar, .toc, .actions, .no-print { display: none !important; }
+  body { background: #fff; font-size: 13px; }
+  .layout { display: block; }
+  .hero-card, .card, .kpi, .recs li { box-shadow: none; break-inside: avoid; }
+  section { break-inside: avoid-page; margin-bottom: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+<script>
+  try { var t = localStorage.getItem('client-zone-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="agency" href="/ar" aria-label="سليمان — الصفحة الرئيسية">
+      <img src="/logo-ink.png" alt="سليمان" width="95" height="34">
+      <span>منطقة العميل</span>
+    </a>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="theme" type="button" aria-label="تبديل الوضع الليلي">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+    <a class="btn" href="/clients/ivaraline/ivaraline-report-2026-10.pdf" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+      <span class="lbl">تحميل PDF</span>
+    </a>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <div class="hero-card">
+    <img class="client-logo" src="/clients/ivaraline/ivara-logo.webp" alt="IVARA LINE" width="721" height="279">
+    <p class="eyebrow">التقرير رقم 01 · قياس أولي</p>
+    <h1>تقرير تحليل سلوك الزوار</h1>
+    <p class="lede">قراءة لأسبوع كامل من جلسات زوار متجر إيفارا لاين: من أين يدخلون، وأين يتوقفون، وما الذي يمنعهم من إكمال الطلب — مع التوصيات التي نعمل عليها.</p>
+    <ul class="meta">
+      <li><b>المتجر</b> <a href="https://ivaraline.com/" target="_blank" rel="noopener">ivaraline.com</a></li>
+      <li><b>الفترة</b> 22 – 28 أكتوبر 2026</li>
+      <li><b>الشريحة</b> زيارات الجوال</li>
+      <li><b>المصدر</b> Hotjar / Contentsquare</li>
+    </ul>
+    <div class="actions">
+      <a class="btn primary" href="/clients/ivaraline/ivaraline-report-2026-10.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+        تحميل التقرير الأصلي (PDF)
+      </a>
+      <a class="btn" href="#recs">انتقل إلى التوصيات</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap layout">
+  <nav class="toc" aria-label="محتويات التقرير">
+    <p>محتويات التقرير</p>
+    <ol>
+      <li><a href="#summary">الملخص</a></li>
+      <li><a href="#kpis">المؤشرات الرئيسية</a></li>
+      <li><a href="#journey">أين يتوقف الزائر؟</a></li>
+      <li><a href="#listing">صفحة جميع المنتجات</a></li>
+      <li><a href="#recs">أهم التوصيات</a></li>
+      <li><a href="#next">الخطوات القادمة</a></li>
+      <li><a href="#archive">سجل التقارير</a></li>
+    </ol>
+  </nav>
+
+  <main id="main">
+    <section id="summary">
+      <h2><span class="num">1</span>ملخص سريع</h2>
+      <div class="card">
+        <ul class="summary">
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16M8 15l4-4 3 3 5-6"/></svg></span>
+            <span><strong>صفحة جميع المنتجات هي أكثر صفحة تجذب الزوار</strong> بعد الرئيسية، لكن معدل الارتداد فيها ما زال مرتفعًا.</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg></span>
+            <span>من مراجعتنا لتسجيلات الجلسات اتضح وجود <strong>تردد واضح لدى المستخدمين</strong>، وأغلبهم لا يكملون إلى صفحة الدفع.</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg></span>
+            <span>نوصي <strong>بمراجعة خيارات المنتجات وزيادتها</strong>، خاصة أن عددًا من المنتجات الأكثر طلبًا كان نافدًا.</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span>
+            <span>يجري <strong>التحقق من أي أسباب تقنية محتملة</strong>، رغم أن مؤشرات السرعة والأداء الحالية جيدة ولا تشير إلى مشكلة.</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></span>
+            <span>سيتم <strong>القياس بشكل دوري</strong> بإذن الله، لأن فترة الاختبار الحالية غير كافية، والمتابعة مستمرة.</span></li>
+        </ul>
+        <div class="notice">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+          <span>هذا التحليل أُجري على <strong>فترة قصيرة (أسبوع واحد)</strong>، لذلك نتائجه مؤشرات أولية وليست حكمًا نهائيًا.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="kpis">
+      <h2><span class="num">2</span>المؤشرات الرئيسية</h2>
+      <div class="kpis">
+        <div class="kpi"><div class="v">371</div><div class="l">جلسة خلال الأسبوع</div></div>
+        <div class="kpi"><div class="v">94%</div><div class="l">من الزيارات عبر الجوال</div></div>
+        <div class="kpi flag"><div class="v">72%</div><div class="l">ارتداد الصفحة الرئيسية</div></div>
+        <div class="kpi"><div class="v">1.9</div><div class="l">صفحة لكل جلسة</div></div>
+      </div>
+    </section>
+
+    <section id="journey">
+      <h2><span class="num">3</span>أين يتوقف الزائر؟</h2>
+      <p>من بين 244 جلسة بدأت من الصفحة الرئيسية، وصلت 50 جلسة فقط إلى صفحات المنتجات، ولم تصل أي جلسة إلى السلة عبر هذا المسار.</p>
+      <div class="card">
+        <div class="funnel" role="list" aria-label="مسار الزائر من الرئيسية إلى السلة">
+          <div class="step" role="listitem">
+            <span class="name">الرئيسية</span>
+            <div class="track"><div class="fill" style="width:100%"></div></div>
+            <span class="val"><b>244</b> <small>جلسة</small></span>
+          </div>
+          <div class="drop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>خرجت 194 جلسة قبل الوصول للمنتجات</div>
+          <div class="step" role="listitem">
+            <span class="name">صفحات المنتجات</span>
+            <div class="track"><div class="fill" style="width:20.5%"></div></div>
+            <span class="val"><b>50</b> <small>(20.5%)</small></span>
+          </div>
+          <div class="drop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>فتحت 26 جلسة منها صفحة منتج</div>
+          <div class="step" role="listitem">
+            <span class="name">صفحة المنتج</span>
+            <div class="track"><div class="fill" style="width:10.7%"></div></div>
+            <span class="val"><b>26</b> <small>(10.7%)</small></span>
+          </div>
+          <div class="drop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>لم تُضف أي جلسة إلى السلة عبر هذا المسار</div>
+          <div class="step zero" role="listitem">
+            <span class="name">السلة</span>
+            <div class="track"><div class="fill"></div></div>
+            <span class="val"><b>0</b></span>
+          </div>
+        </div>
+        <div class="notice">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+          <span>ملاحظة: خيار «اشترِ الآن» و Apple Pay قد يتجاوزان صفحة السلة، لذلك سيتم ضبط قياس المبيعات بدقة في الفترة القادمة.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="listing">
+      <h2><span class="num">4</span>صفحة جميع المنتجات</h2>
+      <div class="split">
+        <div>
+          <p>صفحة المنتجات هي أفضل مدخل للمتجر: الزائر فيها يتصفح أكثر ويرتد أقل من الرئيسية.</p>
+          <div class="compare">
+            <div class="card">
+              <div class="big">68%</div>
+              <div class="l">متوسط ما يتصفحه الزائر من الصفحة</div>
+            </div>
+            <div class="card">
+              <div class="big">52%</div>
+              <div class="l">معدل الارتداد</div>
+              <span class="delta">مقابل 72% في الرئيسية</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="finding">
+              <span class="tag">السبب الأوضح</span>
+              <p>في اللقطة المجاورة، أغلب المنتجات الظاهرة نافدة. وأحد المنتجات النافدة حصل على نقرات في نحو <strong>19%</strong> من جلسات الصفحة، أي أن الطلب موجود لكن المنتج غير متاح.</p>
+            </div>
+            <div class="finding">
+              <span class="tag">في صفحة المنتج</span>
+              <p><strong>17%</strong> من الزوار يتفاعلون مع أزرار الشراء، واختيار المقاس هو أكثر عنصر يُضغط عليه بشكل متكرر، وهو ما يتفق مع التردد الذي ظهر في تسجيلات الجلسات.</p>
+            </div>
+          </div>
+        </div>
+        <figure>
+          <div class="phone"><img src="/clients/ivaraline/product-listing.webp" alt="لقطة من صفحة المنتجات على الجوال تظهر فيها منتجات نافدة" width="430" height="930" loading="lazy"></div>
+          <figcaption>صفحة منتجات على الجوال — المنتجات الرمادية المختومة نافدة.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="recs">
+      <h2><span class="num">5</span>أهم التوصيات</h2>
+      <ol class="recs">
+        <li><div><h3>زيادة خيارات المنتجات وإعادة توفير الأكثر طلبًا <span class="area">المخزون</span></h3><p>مع عرض المتاح أولًا وإضافة زر «أعلمني عند التوفر».</p></div></li>
+        <li><div><h3>تقليل تردد الشراء <span class="area">صفحة المنتج</span></h3><p>وضع اختيار المقاس فوق زر الشراء مباشرة، مع جدول أطوال واضح.</p></div></li>
+        <li><div><h3>إظهار المنتجات مبكرًا في الصفحة الرئيسية <span class="area">الرئيسية</span></h3><p>بدل أن تكون بعد شاشتين من التمرير.</p></div></li>
+        <li><div><h3>توجيه الإعلانات إلى صفحة المنتج المعلن عنه <span class="area">الإعلانات</span></h3><p>مباشرة، لا إلى الصفحة الرئيسية.</p></div></li>
+        <li><div><h3>ضبط قياس المبيعات <span class="area">القياس</span></h3><p>حتى نعرف بدقة عدد من أتم الطلب فعلًا.</p></div></li>
+      </ol>
+    </section>
+
+    <section id="next">
+      <h2><span class="num">6</span>الخطوات القادمة</h2>
+      <div class="next">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7M21 4v5h-5"/></svg></div>
+          <h3>القياس الدوري</h3>
+          <p>متابعة نفس المؤشرات بشكل دوري ومقارنتها بهذا الأسبوع كنقطة أساس، بعد تطبيق كل تحسين.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+          <h3>التحقق التقني</h3>
+          <p>تجربة الشراء يدويًا على آيفون وأندرويد، ومعالجة اهتزاز عناصر صفحة المنتجات أثناء التحميل.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="archive">
+      <h2><span class="num">7</span>سجل التقارير</h2>
+      <ol class="timeline">
+        <li>
+          <span class="badge">منشور</span>
+          <span class="t"><strong>التقرير 01 — تحليل سلوك الزوار</strong><small>22 – 28 أكتوبر 2026 · نقطة الأساس</small></span>
+          <a class="btn" href="/clients/ivaraline/ivaraline-report-2026-10.pdf" download>PDF</a>
+        </li>
+        <li class="upcoming">
+          <span class="badge wait">قادم</span>
+          <span class="t"><strong>التقرير 02 — قياس المتابعة</strong><small>مقارنة بنقطة الأساس بعد تطبيق التحسينات</small></span>
+        </li>
+      </ol>
+    </section>
+
+    <div class="card no-print" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between">
+      <div><h3>عندك سؤال عن التقرير؟</h3><p style="margin:0;color:var(--muted)">فريقنا متاح لمناقشة النتائج وأولويات التنفيذ.</p></div>
+      <a class="btn primary" href="https://wa.me/201007835547?text=%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%AA%D9%82%D8%B1%D9%8A%D8%B1%20%D8%A5%D9%8A%D9%81%D8%A7%D8%B1%D8%A7%20%D9%84%D8%A7%D9%8A%D9%86" target="_blank" rel="noopener">تواصل عبر واتساب</a>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>مصدر البيانات: لوحات تحليل سلوك الزوار (Hotjar / Contentsquare) وتسجيلات الجلسات، 22–28 أكتوبر 2026.</span>
+    <img src="/logo-ink.png" alt="سليمان" width="78" height="28">
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  document.getElementById('theme').addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = dark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('client-zone-theme', next); } catch (e) {}
+  });
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  if (!('IntersectionObserver' in window) || !links.length) return;
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.remove('active'); });
+      var a = byId[e.target.id]; if (a) a.classList.add('active');
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  Object.keys(byId).forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
+})();
+</script>
+</body>
+</html>

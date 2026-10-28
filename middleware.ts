@@ -18,6 +18,9 @@ export async function middleware(request: NextRequest) {
        بلا بادئة لغة. تمريرها إلى وسيط next-intl كان سيحوّلها إلى
        /ar/invoice/<publicId> ويكسر الرابط المُرسل للعميل. */
     pathname.startsWith("/invoice") ||
+    /* مناطق العملاء صفحات ثابتة في public/clients/<slug>/ بلا بادئة لغة،
+       وتمريرها إلى next-intl كان سيحوّلها إلى /ar/clients/... فتُكسر. */
+    pathname.startsWith("/clients") ||
     pathname.startsWith("/_next") ||
     pathname.includes(".")
   ) {
@@ -49,5 +52,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|admin|invoice|_next|.*\\..*).*)"],
+  matcher: ["/((?!api|admin|invoice|clients|_next|.*\\..*).*)"],
 };

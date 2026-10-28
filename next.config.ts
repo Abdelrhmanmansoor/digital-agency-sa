@@ -50,6 +50,13 @@ const nextConfig: NextConfig = {
     }));
   },
 
+  /* Client zones are static pages under public/clients/<slug>/index.html.
+     Next serves public files by exact path only, so the folder URL that gets
+     sent to the client is mapped onto its index.html here. */
+  async rewrites() {
+    return [{ source: "/clients/:slug", destination: "/clients/:slug/index.html" }];
+  },
+
   async headers() {
     return [
       { source: "/(.*)", headers: securityHeaders },
@@ -63,6 +70,15 @@ const nextConfig: NextConfig = {
          محتواها يخصّ عميلًا بعينه ويتغيّر بتغيّر حالة الفاتورة، و
          X-Robots-Tag يمنع الفهرسة حتى لو وصل الزاحف إلى الرابط من مصدر
          خارج robots.txt. */
+      /* مناطق العملاء: تقارير تخصّ عميلًا بعينه، لا تُفهرس ولا تُمرَّر
+         عبر المُحيل إلى المواقع الخارجية. */
+      {
+        source: "/clients/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
+          { key: "Referrer-Policy", value: "no-referrer" },
+        ],
+      },
       {
         source: "/invoice/:token*",
         headers: [
