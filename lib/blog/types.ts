@@ -13,7 +13,8 @@ export type ClusterId =
   | "shipping"
   | "design"
   | "marketing"
-  | "seo";
+  | "seo"
+  | "news";
 
 export type Article = {
   /** URL slug — also the article id. */
@@ -28,6 +29,11 @@ export type Article = {
   readTime: number;
   contentAr: string;
   contentEn: string;
+  /** Search phrases the article is written to answer; emitted as meta keywords. */
+  keywordsAr?: string[];
+  keywordsEn?: string[];
+  /** Question/answer pairs shown at the end of the Arabic article and emitted as FAQPage. */
+  faqAr?: [string, string][];
 };
 
 export type Cluster = {
@@ -104,6 +110,14 @@ export const CLUSTERS: Cluster[] = [
     fr: "Visibilité sur les moteurs",
     blurbAr: "سيو المتاجر: صفحات المنتجات والتصنيفات والسرعة وأدوات القياس.",
     blurbEn: "E-commerce SEO: product and category pages, speed and measurement.",
+  },
+  {
+    id: "news",
+    ar: "أخبار سلة وزد",
+    en: "Salla & Zid news",
+    fr: "Actualités Salla & Zid",
+    blurbAr: "تحديثات المنصتين وما تعنيه عمليًا لمتجرك — من مصادرها الرسمية، بلا تهويل.",
+    blurbEn: "Platform updates and what they mean for your store in practice — from official sources, without hype.",
   },
 ];
 

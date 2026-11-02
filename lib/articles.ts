@@ -13,7 +13,30 @@ import { SHIPPING } from "./blog/c5-shipping";
 import { DESIGN } from "./blog/c6-design";
 import { MARKETING } from "./blog/c7-marketing";
 import { SEO } from "./blog/c8-seo";
+import { NEWS } from "./blog/c9-news";
+import { GUIDES } from "./blog/c10-guides";
+import { DEPTH_NEWS } from "./blog/depth-news";
+import { DEPTH_GUIDES } from "./blog/depth-guides";
 import type { Article, ClusterId } from "./blog/types";
+
+/* Long-form depth: a practical section and an FAQ appended to the Arabic
+   body of the newer articles. Kept in separate files so each article file
+   stays readable; the FAQ also feeds the FAQPage markup on the article. */
+const DEPTH = { ...DEPTH_NEWS, ...DEPTH_GUIDES };
+
+const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+function withDepth(a: Article): Article {
+  const d = DEPTH[a.id];
+  if (!d) return a;
+  const faq = d.faqAr.length
+    ? `<h2>أسئلة شائعة</h2>${d.faqAr.map(([q, ans]) => `<h3>${esc(q)}</h3><p>${esc(ans)}</p>`).join("")}`
+    : "";
+  const contentAr = a.contentAr + d.bodyAr + faq;
+  /* Reading time from the real length (~180 Arabic words a minute), not a guess. */
+  const words = contentAr.replace(/<[^>]+>/g, " ").split(/s+/).filter(Boolean).length;
+  return { ...a, contentAr, faqAr: d.faqAr, readTime: Math.max(3, Math.round(words / 180)) };
+}
 
 export type { Article, Cluster, ClusterId } from "./blog/types";
 export { CLUSTERS, clusterOf } from "./blog/types";
@@ -28,7 +51,11 @@ export const ARTICLES: Article[] = [
   ...DESIGN,
   ...MARKETING,
   ...SEO,
-].sort((a, b) => b.date.localeCompare(a.date));
+  ...NEWS,
+  ...GUIDES,
+]
+  .map(withDepth)
+  .sort((a, b) => b.date.localeCompare(a.date));
 
 export function getArticle(id: string): Article | undefined {
   return ARTICLES.find((a) => a.id === id);

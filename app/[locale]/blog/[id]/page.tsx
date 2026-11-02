@@ -26,9 +26,12 @@ export async function generateMetadata({
   const description = isAr ? article.excerptAr : article.excerptEn;
   const canonical = `${SITE_URL}/${locale}/blog/${article.id}`;
 
+  const keywords = isAr ? article.keywordsAr : article.keywordsEn;
+
   return {
     title,
     description,
+    ...(keywords?.length ? { keywords } : {}),
     alternates: { canonical, languages: hreflangMap(`/blog/${article.id}`) },
     openGraph: {
       type: "article",
@@ -80,6 +83,16 @@ export default async function BlogArticlePage({
           logo: { "@type": "ImageObject", url: `${SITE_URL}/icon-512.png`, width: 512, height: 512 },
         },
       },
+      ...(isRTL && article.faqAr?.length
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${canonical}#faq`,
+              inLanguage: "ar",
+              mainEntity: article.faqAr.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+            },
+          ]
+        : []),
       {
         "@type": "BreadcrumbList",
         itemListElement: [
