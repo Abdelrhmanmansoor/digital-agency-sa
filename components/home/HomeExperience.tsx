@@ -18,6 +18,7 @@ import { SERVICE_CATEGORIES } from "@/lib/categories";
 import { MARKETS } from "@/lib/markets";
 import HomeFaq from "./HomeFaq";
 import CategorySlider from "./CategorySlider";
+import Principles from "./Principles";
 import styles from "./HomeExperience.module.css";
 
 type Lang = "ar" | "en" | "fr";
@@ -381,6 +382,9 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
           />
         </div>
       </section>
+
+      {/* ═══ PRINCIPLES — the verses the work answers to ═══ */}
+      <Principles lang={lang} />
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className={styles.section} data-own-spacing>

@@ -124,25 +124,10 @@
 .onPaper {
   background: var(--paper);
 }
-.onSurface {
-  background: var(--surface);
-  border-block: 1px solid var(--line);
-}
+/* Every tone now sits on the page; "surface" and "ink" only add a rule. */
+.onSurface,
 .onInk {
-  background: var(--ink);
-  color: #fff;
-}
-.onInk .sectionTitle,
-.onInk h2,
-.onInk h3 {
-  color: #fff;
-}
-.onInk .sectionLead,
-.onInk p {
-  color: #a9a59b;
-}
-.onInk .kicker {
-  color: #e0b53c;
+  border-top: 1px solid var(--line);
 }
 
 .sectionHead {

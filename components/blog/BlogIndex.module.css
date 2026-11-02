@@ -55,19 +55,13 @@
 .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--border-mid); }
 .card article { height: 100%; display: flex; flex-direction: column; gap: 12px; padding: 26px 24px; }
 
-/* Lead story */
+/* Lead story: wider, larger type — no panel. */
 @media (min-width: 1100px) {
-  .card:first-child { grid-column: span 2; }
-  .card:first-child article {
-    padding: 34px 32px;
-    background-color: var(--night);
-    background-image: radial-gradient(90% 90% at 100% 0%, rgba(242, 183, 5, 0.16), transparent 60%), var(--pattern-grid);
-    border-radius: inherit;
-    color: #fff;
-  }
-  .card:first-child h2 { color: #fff; font-size: 30px; max-width: 22ch; }
-  .card:first-child p { color: rgba(255, 255, 255, 0.68); font-size: 15.5px; max-width: 56ch; }
-  .card:first-child .top { border-color: rgba(255, 255, 255, 0.12); }
+  .card:first-child { grid-column: span 2; border-color: var(--ink); }
+  .card:first-child h2 { font-size: 28px; max-width: 24ch; }
+}
+
+.top { border-color: rgba(255, 255, 255, 0.12); }
   .card:first-child .cluster, .card:first-child .go { color: var(--yellow); }
   .card:first-child .top time, .card:first-child .foot { color: rgba(255, 255, 255, 0.5); }
 }
@@ -80,4 +74,3 @@
 .foot { margin-top: auto; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: var(--muted); }
 .go { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--bg-card2); color: var(--ink); font-size: 14px; transition: background 0.2s, color 0.2s; }
 .card:hover .go { background: var(--ink); color: #fff; }
-.card:first-child:hover .go { background: var(--yellow); color: var(--ink); }

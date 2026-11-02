@@ -1,0 +1,57 @@
+/* Minimal by intent: no panel, no background — the verse sits on the page
+   itself, and the only colour is the gold of the brackets and the progress. */
+.section { padding-block: clamp(72px, 10vw, 128px); }
+.shell { width: 100%; max-width: 980px; margin-inline: auto; padding-inline: var(--gutter); text-align: center; }
+
+.head { margin-bottom: clamp(36px, 5vw, 56px); }
+.kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--yellow-deep); margin-bottom: 14px; }
+.kicker::before, .kicker::after { content: ""; width: 18px; height: 1px; background: currentColor; }
+.head h2 { font-size: clamp(26px, 3.4vw, 40px); font-weight: 600; line-height: 1.25; }
+.head > p:last-child { margin: 10px auto 0; max-width: 56ch; font-size: 15.5px; line-height: 1.85; color: var(--muted); }
+
+.card { display: grid; gap: clamp(28px, 4vw, 44px); }
+
+.stage { display: flex; align-items: center; justify-content: center; min-height: 300px; }
+.figure { margin: 0; width: 100%; }
+
+.verse { margin: 0; font-size: clamp(30px, 4.6vw, 56px); line-height: 2; color: var(--ink); word-spacing: 0.12em; }
+.bracket { color: var(--yellow-deep); font-size: 0.9em; margin-inline: 0.2em; opacity: 0; animation: rise 0.8s var(--ease-out-expo) forwards; }
+.bracket:last-child { animation-delay: 0.9s; }
+
+.word { display: inline-block; opacity: 0; transform: translateY(14px); filter: blur(6px); animation: rise 0.9s var(--ease-out-expo) forwards; }
+@keyframes rise { to { opacity: 1; transform: none; filter: none; } }
+
+.source { margin-top: 14px; font-size: 13px; color: var(--yellow-deep); opacity: 0; animation: rise 0.8s 0.9s var(--ease-out-expo) forwards; }
+.meaning { margin: 12px auto 0; max-width: 56ch; font-size: 15px; line-height: 1.8; color: var(--muted); font-style: italic; opacity: 0; animation: rise 0.8s 1s var(--ease-out-expo) forwards; }
+
+.practice { margin: 26px auto 0; max-width: 520px; display: grid; gap: 4px; opacity: 0; animation: rise 0.8s 1.1s var(--ease-out-expo) forwards; }
+.practice span { display: none; }
+.practice b { font-size: 17px; font-weight: 600; }
+.practice p { font-size: 15px; line-height: 1.8; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .word, .bracket, .source, .meaning, .practice { animation: none; opacity: 1; transform: none; filter: none; }
+}
+
+/* Principle index: five quiet labels over hairline progress rules. */
+.list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.list button {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+.list button:hover, .list button[aria-current="true"] { color: var(--ink); }
+.num { display: none; }
+.itemTitle { order: 2; font-size: 13.5px; font-weight: 500; }
+@media (max-width: 700px) { .itemTitle { display: none; } }
+.bar { order: 1; height: 2px; border-radius: 2px; background: var(--border); overflow: hidden; width: 100%; }
+.bar i { display: block; height: 100%; background: var(--ink); transform-origin: right; transform: scaleX(0); }
+:global([dir="ltr"]) .bar i { transform-origin: left; }
