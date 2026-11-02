@@ -15,7 +15,7 @@ export const STORE_FAQ: Record<"ar" | "en" | "fr", StoreFaq[]> = {
   ar: [
     {
       q: "كيف أطلب الخدمة؟",
-      a: "اضغط على «اشتري الآن» أو «التفاصيل» في أي خدمة، وسيتواصل معك فريقنا فورًا لتأكيد التفاصيل قبل البدء.",
+      a: "اضغط «اطلب عبر واتساب» على أي منتج، فتُفتح محادثة فيها اسم المنتج وسعره. نؤكد معك التفاصيل والنطاق، ثم نبدأ.",
     },
     {
       q: "كم يكلف تصميم متجر سلة؟",
@@ -37,7 +37,7 @@ export const STORE_FAQ: Record<"ar" | "en" | "fr", StoreFaq[]> = {
   en: [
     {
       q: "How do I order?",
-      a: "Click “Buy Now” or “Details” on any service and our team contacts you to confirm the details before we start.",
+      a: "Press “Order on WhatsApp” on any product. A conversation opens with the product name and price already written; we confirm the scope with you, then start.",
     },
     {
       q: "How much does a Salla store design cost?",
@@ -59,7 +59,7 @@ export const STORE_FAQ: Record<"ar" | "en" | "fr", StoreFaq[]> = {
   fr: [
     {
       q: "Comment commander ?",
-      a: "Cliquez sur « Acheter » ou « Détails » sur une prestation : notre équipe vous contacte pour confirmer les détails avant de commencer.",
+      a: "Appuyez sur « Commander sur WhatsApp » : la conversation s’ouvre avec le nom et le prix du produit. Nous confirmons le périmètre, puis nous commençons.",
     },
     {
       q: "Combien coûte le design d’une boutique Salla ?",

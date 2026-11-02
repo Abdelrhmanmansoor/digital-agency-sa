@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { CartProvider } from "@/components/store/CartContext";
 
 /* `template: "%s"` is deliberate: it cancels the root layout's
    "%s | AM Design" so each page owns its full title. The fallback title and
@@ -56,7 +55,6 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
-      <CartProvider>
         {/* Wrapper div carries dir + lang — CSS [dir="rtl"] selectors work from here down */}
         <div
           dir={dir}
@@ -67,7 +65,6 @@ export default async function LocaleLayout({
         >
           {children}
         </div>
-      </CartProvider>
     </NextIntlClientProvider>
   );
 }

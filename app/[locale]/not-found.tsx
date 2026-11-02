@@ -3,45 +3,52 @@
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import SiteShell from "@/components/layout/SiteShell";
+import { getWhatsAppLink } from "@/lib/utils";
+import styles from "./not-found.module.css";
 
-/* Previously this was a hard-coded Arabic dead end on a near-black
-   background — off-identity, wrong language for /en and /fr, and offering a
-   single link back to the homepage. */
+/* A lost visitor is still a lead: the page offers the four places most
+   people were heading, and a direct line for the ones who were not. */
 const copy = {
   ar: {
     kicker: "خطأ 404",
-    title: "الصفحة غير موجودة",
-    body: "الرابط الذي فتحته قد يكون قديمًا أو تغيّر. جرّب أحد المسارات التالية:",
-    home: "الصفحة الرئيسية",
+    title: "هذه الصفحة غير موجودة",
+    body: "ربما تغيّر الرابط أو انتقلت الصفحة. هذه أقرب الوجهات لما كنت تبحث عنه:",
+    home: "العودة للرئيسية",
+    ask: "اسألنا على واتساب",
+    hello: "مرحبًا، كنت أبحث عن صفحة في موقعكم ولم أجدها.",
     links: [
-      ["الخدمات", "#services"],
-      ["ثيم سِدرة", "/sidra-theme"],
-      ["متجر الخدمات", "/store"],
+      ["المنتجات والأسعار", "/store"],
+      ["أعمالنا", "/#work"],
+      ["متاجر الإمارات", "/markets/uae"],
       ["المدونة", "/blog"],
     ],
   },
   en: {
     kicker: "Error 404",
     title: "This page doesn’t exist",
-    body: "The link you opened may be outdated or have changed. Try one of these instead:",
-    home: "Homepage",
+    body: "The link may have changed or the page moved. These are the closest places to what you were after:",
+    home: "Back to home",
+    ask: "Ask us on WhatsApp",
+    hello: "Hello, I was looking for a page on your site and could not find it.",
     links: [
-      ["Services", "#services"],
-      ["SIDRA theme", "/sidra-theme"],
-      ["Store", "/store"],
-      ["Blog", "/blog"],
+      ["Products and prices", "/store"],
+      ["Our work", "/#work"],
+      ["UAE stores", "/markets/uae"],
+      ["Journal", "/blog"],
     ],
   },
   fr: {
     kicker: "Erreur 404",
     title: "Cette page n’existe pas",
-    body: "Le lien que vous avez ouvert est peut-être obsolète. Essayez plutôt :",
-    home: "Accueil",
+    body: "Le lien a peut-être changé. Voici les destinations les plus proches :",
+    home: "Retour à l’accueil",
+    ask: "Nous écrire sur WhatsApp",
+    hello: "Bonjour, je cherchais une page sur votre site sans la trouver.",
     links: [
-      ["Services", "#services"],
-      ["Thème SIDRA", "/sidra-theme"],
-      ["Boutique", "/store"],
-      ["Blog", "/blog"],
+      ["Produits et tarifs", "/store"],
+      ["Réalisations", "/#work"],
+      ["Boutiques EAU", "/markets/uae"],
+      ["Journal", "/blog"],
     ],
   },
 } as const;
@@ -52,85 +59,26 @@ export default function NotFound() {
 
   return (
     <SiteShell>
-    <div
-      style={{
-        minHeight: "70vh",
-        background: "#FFFFFF",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        padding: "72px 24px",
-      }}
-    >
-      <p
-        style={{
-          fontFamily: "Space Mono, monospace",
-          fontSize: "13px",
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: "#8A6D00",
-          marginBottom: "18px",
-        }}
-      >
-        {t.kicker}
-      </p>
-      <h1
-        style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "clamp(30px, 5vw, 48px)",
-          fontWeight: 700,
-          color: "#111111",
-          marginBottom: "14px",
-        }}
-      >
-        {t.title}
-      </h1>
-      <p style={{ color: "#6B6B6B", fontSize: "16px", lineHeight: 1.85, maxWidth: "46ch", marginBottom: "30px" }}>
-        {t.body}
-      </p>
-
-      <Link
-        href={`/${locale}`}
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          minHeight: "48px",
-          padding: "0 30px",
-          background: "#F0B100",
-          color: "#111111",
-          fontWeight: 800,
-          borderRadius: "10px",
-          textDecoration: "none",
-        }}
-      >
-        {t.home}
-      </Link>
-
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "center", marginTop: "26px" }}>
-        {t.links.map(([label, href]) => (
-          <Link
-            key={href}
-            href={href.startsWith("#") ? `/${locale}${href}` : `/${locale}${href}`}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              minHeight: "44px",
-              padding: "0 18px",
-              border: "1px solid #EAEAE6",
-              borderRadius: "999px",
-              color: "#111111",
-              fontSize: "14px",
-              fontWeight: 600,
-              textDecoration: "none",
-            }}
-          >
-            {label}
+      <section className={styles.page}>
+        <p className={styles.kicker}>{t.kicker}</p>
+        <h1>{t.title}</h1>
+        <p className={styles.body}>{t.body}</p>
+        <div className={styles.links}>
+          {t.links.map(([label, href]) => (
+            <Link key={href} href={`/${locale}${href}`}>
+              {label}
+            </Link>
+          ))}
+        </div>
+        <div className={styles.actions}>
+          <Link href={`/${locale}`} className="btn-primary">
+            {t.home}
           </Link>
-        ))}
-      </div>
-    </div>
+          <a href={getWhatsAppLink(t.hello)} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+            {t.ask}
+          </a>
+        </div>
+      </section>
     </SiteShell>
   );
 }

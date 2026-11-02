@@ -1,772 +1,591 @@
-/* Server component. This file used to open with "use client" for one reason:
-   `useLocale()`. That single hook pulled the entire homepage — every section,
-   and all three locales of every string in the `copy` table below — into the
-   client bundle, and dragged the five section components with it, since they
-   were client components for exactly the same reason.
+/* Server component. The homepage, rebuilt around one job: move a visitor from
+   "who are these people" to a WhatsApp conversation in as few screens as the
+   decision honestly needs.
 
-   The locale now arrives as a prop from the route segment, which has always
-   known it. The only interactive piece, the FAQ accordion, lives in HomeFaq. */
+   What was cut, and why: the platform chooser, the "who we fit" grid, the
+   tools brand wall, the SIDRA feature block and the legal-sector bridge all
+   answered questions a visitor was not asking yet. SIDRA and the legal page
+   keep their own URLs and sit in the footer. Every figure left on the page is
+   one the business can stand behind. */
 
 import Image from "next/image";
 import Link from "next/link";
 import { HOME_FAQ } from "@/lib/home-faq";
+import { PRODUCTS } from "@/lib/store-data";
+import { PROJECTS, RESULTS } from "@/components/proposal/data";
+import { getWhatsAppLink } from "@/lib/utils";
+import { SERVICE_CATEGORIES } from "@/lib/categories";
+import { MARKETS } from "@/lib/markets";
 import HomeFaq from "./HomeFaq";
-import ClientLogos from "./ClientLogos";
-import ClientShowcase from "./ClientShowcase";
-import Platforms from "./Platforms";
-import PlatformChooser from "./PlatformChooser";
-import BrandWall from "@/components/shared/BrandWall";
-import HeritageBanner from "@/components/layout/HeritageBanner";
-import WhoWeFit from "./WhoWeFit";
-import SectorSpotlight from "./SectorSpotlight";
+import CategorySlider from "./CategorySlider";
 import styles from "./HomeExperience.module.css";
 
-const WHATSAPP = "201007835547";
+type Lang = "ar" | "en" | "fr";
 
 const copy = {
   ar: {
-    /* Was five same-page anchors. /sidra-theme, /store and /blog are real
-       pages with their own content and were reachable only from the footer
-       (or, for SIDRA, one mid-page button) — nothing linked them from the
-       top of the site. */
-    nav: [
-      ["المنصات", "#platforms"],
-      ["الخدمات", "#services"],
-      ["ثيم سِدرة", "/sidra-theme"],
-      ["أعمالنا", "#work"],
-      ["متجر الخدمات", "/store"],
-      ["المدونة", "/blog"],
-    ],
-    panelLabel: "المنصات التي نبني عليها",
-    panelPlatforms: [
-      ["سلة", "SALLA", "من 5 أيام"],
-      ["زد", "ZID", "من 7 أيام"],
-      ["شوبيفاي", "SHOPIFY", "من 10 أيام"],
-    ],
-    panelCta: "أي منصة تناسبك؟",
-    start: "ابدأ مشروعك",
-    eyebrow: "شريكك الرقمي لنمو التجارة الإلكترونية",
-    title: "نبني متاجر رقمية واضحة، سريعة، ومهيأة للنمو.",
-    intro:
-      "نصمم ونطوّر متاجر سلة وزد، ونبني الهوية والتجربة والحملات حول هدف واحد: تحويل الزيارة إلى طلب.",
-    primary: "اطلب استشارة مجانية",
-    secondary: "استعرض خدماتنا",
-    note: "رد خلال أقل من ساعة · نخدم جميع مناطق السعودية",
-    /* "سلة + زد" was a label sitting in a number slot, and "5.0" a perfect
-       rating with nothing behind it. Both replaced with facts the site can
-       stand behind. */
+    mkKicker: "أسواق الخليج",
+    mkTitle: "نبني متاجر لتجار الخليج كله.",
+    mkLead: "من الإمارات إلى عُمان: متجر مضبوط على عملتك وضريبتك وشحنك، على سلة أو زد.",
+    catKicker: "التصنيفات",
+    catTitle: "كل ما يحتاجه متجرك، في مكان واحد.",
+    catLead: "اختر الخدمة لترى تفاصيلها وسعرها، أو اطلبها مباشرة على واتساب.",
+    catView: "عرض المنتج",
+    catAsk: "اطلب عبر واتساب",
+    catMsg: "مرحبًا، أريد الاستفسار عن خدمة: ",
+    catPrev: "السابق",
+    catNext: "التالي",
+    eyebrow: "وكالة رقمية للمتاجر والعلامات",
+    title: ["متاجر تبيع،", "وعلامات لا تُنسى"],
+    intro: "نصمم ونبني متاجر سلة وزد وهويات العلامات بعناية التفاصيل التي تمنح عميلك الثقة ليكمل الطلب.",
+    primary: "ابدأ على واتساب",
+    secondary: "تصفّح المنتجات",
+    builtOn: "نبني على",
+    statement: "أكثر من 300 مشروع لعلامات سعودية وخليجية — بعقد وفاتورة ودعم بعد التسليم.",
+    statementSide: "نختصر عليك الطريق: سعر معلن، مدة معلنة، وتواصل مباشر مع من ينفّذ.",
+    servicesKicker: "الخدمات",
+    servicesTitle: "أربع خدمات. كل واحدة بنطاق وسعر ومدة واضحة.",
+    from: "يبدأ من",
+    perMonth: "/ شهريًا",
+    sar: "ر.س",
+    details: "التفاصيل",
+    order: "اطلب الآن",
+    more: "خدمات أخرى",
+    workKicker: "أعمالنا",
+    workTitle: "متاجر تعمل الآن.",
+    workLead: "كل بطاقة تفتح الموقع الحقيقي — اللقطة من المتجر نفسه.",
+    visit: "زيارة الموقع",
+    proofKicker: "لماذا نحن",
+    proofTitle: "الثقة لا تُكتب. تُبنى بالتفاصيل.",
     proof: [
       ["+300", "مشروع منجز"],
-      ["3", "منصات نبني عليها"],
-      ["< ساعة", "متوسط زمن الرد"],
+      ["60 د", "أقصى زمن للرد في أوقات العمل"],
+      ["3", "منصات: سلة، زد، شوبيفاي"],
     ],
-    trusted: "خبرة عملية عبر منصات التجارة والإعلان",
-    servicesKicker: "الخدمات الأساسية",
-    servicesTitle: "كل ما يحتاجه متجرك، دون تشتيت.",
-    servicesIntro:
-      "اختصرنا خدماتنا في أربعة مسارات مترابطة؛ نبدأ من الأساس الصحيح ثم نقيس ونطوّر.",
-    services: [
-      [
-        "01",
-        "الهوية والتصميم الإبداعي",
-        "هوية بصرية متماسكة وتطبيقات رقمية تمنح علامتك حضورًا واضحًا ويمكن تذكره.",
-      ],
-      [
-        "02",
-        "تحسين التحويل وSEO",
-        "بنية محتوى وصفحات منتجات أسرع وأوضح، مع تحسين تقني يساعد العملاء ومحركات البحث.",
-      ],
-      [
-        "03",
-        "التسويق وإدارة الحملات",
-        "إعلانات مبنية على البيانات في Google وMeta وSnapchat مع متابعة مستمرة للنتائج.",
-      ],
-      [
-        "04",
-        "التطبيقات والحلول المخصصة",
-        "تصميم وبرمجة تطبيقات ولوحات تحكم ومنصات رقمية مبنية حول طريقة عمل مشروعك.",
-      ],
-      [
-        "05",
-        "الأتمتة وربط الأنظمة",
-        "ربط الأدوات والبيانات وأتمتة المهام المتكررة لتقليل الوقت والأخطاء التشغيلية.",
-      ],
-      [
-        "06",
-        "المحتوى والتصوير بالذكاء الاصطناعي",
-        "صور منتجات ومحتوى إعلاني وتصاميم سوشيال تحافظ على هوية العلامة وجودة العرض.",
-      ],
-      [
-        "07",
-        "تصميم البوثات وتجهيز المعارض",
-        "تصور بصري متكامل للبوث وتجهيز نقاط العرض بما يخدم العلامة وتجربة الزائر.",
-      ],
+    pillars: [
+      ["عقد وفاتورة رسمية", "نطاق مكتوب قبل البدء، وفاتورة لكل دفعة."],
+      ["دفع على مراحل", "لا تدفع المبلغ كاملًا قبل أن ترى العمل."],
+      ["دعم بعد التسليم", "نبقى معك بعد الإطلاق، لا نختفي بعد الدفعة الأخيرة."],
     ],
-    sidraKicker: "منتجنا لِمتاجر سلة",
-    sidraTitle: "ثيم سِدرة — متجر فاخر، مرن، وموثّق بالكامل.",
-    sidraBody:
-      "ثيم سعودي لمنصة سلة صُمم ليمنح العلامات التجارية تحكمًا واسعًا دون الحاجة إلى كتابة كود، مع توثيق عملي من التثبيت حتى التخصيص والدعم.",
-    sidraStats: [
-      ["46", "مكوّنًا للرئيسية"],
-      ["5", "أنماط لبطاقة المنتج"],
-      ["100%", "متجاوب مع الجوال"],
-    ],
-    sidraFeatures: [
-      "مكوّنات سحب وإفلات",
-      "تحكم مستقل للجوال",
-      "بحث وقائمة ضخمة",
-      "عروض خاطفة وكوبونات",
-      "تكاملات سلة الرسمية",
-      "دليل مقاسات وحل مشكلات",
-    ],
-    sidraDocs: "استعرض التوثيق الكامل",
-    sidraOrder: "اطلب ثيم سِدرة",
-    processKicker: "منهجية العمل",
-    processTitle: "مسار واضح من الفكرة إلى الإطلاق.",
+    resultsTitle: "أرقام من حملات أدرناها",
+    processKicker: "طريقة العمل",
+    processTitle: "ثلاث خطوات من أول رسالة إلى الإطلاق.",
     process: [
-      [
-        "01",
-        "نفهم",
-        "نراجع النشاط والجمهور والمنتج ونحدد الهدف القابل للقياس.",
-      ],
-      [
-        "02",
-        "نصمم ونبني",
-        "نحوّل الاستراتيجية إلى تجربة عملية، ثم نختبرها على جميع الشاشات.",
-      ],
-      [
-        "03",
-        "نطلق ونطوّر",
-        "نطلق المشروع، نراقب الأداء، ونرتب التحسينات بحسب أثرها.",
-      ],
+      ["01", "محادثة", "ترسل لنا فكرتك على واتساب، ونرد بنطاق وسعر ومدة خلال ساعة."],
+      ["02", "تنفيذ", "نصمم ونبني ونرسل لك المراحل لتراجعها قبل أي دفعة تالية."],
+      ["03", "إطلاق", "نختبر رحلة الشراء كاملة، ونسلّم، ونبقى للدعم."],
     ],
+    auditKicker: "ابدأ بلا التزام",
+    auditTitle: "تحليل مجاني لمتجرك الحالي",
+    auditBody: "نراجع السرعة ورحلة الشراء والسيو، ونرسل لك ملاحظات مرتبة حسب أثرها — خلال يومي عمل.",
+    auditCta: "اطلب التحليل المجاني",
     faqKicker: "الأسئلة الشائعة",
     faqTitle: "إجابات مباشرة قبل أن نبدأ.",
-    ctaKicker: "لديك مشروع جاد؟",
-    ctaTitle: "لنضع له أساسًا رقميًا يليق به.",
-    ctaBody:
-      "أرسل نبذة قصيرة عن نشاطك وما تريد تحقيقه، وسنعود إليك بخطوة أولى واضحة.",
-    ctaButton: "تحدث معنا عبر واتساب",
-    footerText: "تصميم وتطوير وتسويق المتاجر الإلكترونية في السعودية.",
-    rights: "جميع الحقوق محفوظة.",
-    menu: "القائمة",
+    hello: "مرحبًا، أريد استشارة بخصوص مشروعي.",
+    audit: "مرحبًا، أريد التحليل المجاني لمتجري. رابط المتجر: ",
+    orderMsg: "مرحبًا، أريد طلب خدمة: ",
   },
   en: {
-    nav: [
-      ["Platforms", "#platforms"],
-      ["Services", "#services"],
-      ["SIDRA theme", "/sidra-theme"],
-      ["Work", "#work"],
-      ["Store", "/store"],
-      ["Blog", "/blog"],
-    ],
-    panelLabel: "Platforms we build on",
-    panelPlatforms: [
-      ["Salla", "SALLA", "from 5 days"],
-      ["Zid", "ZID", "from 7 days"],
-      ["Shopify", "SHOPIFY", "from 10 days"],
-    ],
-    panelCta: "Which one fits you?",
-    start: "Start a project",
-    eyebrow: "Your e-commerce growth partner",
-    title: "We build clear, fast digital stores designed to grow.",
-    intro:
-      "We design and develop Salla and Zid stores, aligning identity, experience and campaigns around one goal: turning visits into orders.",
-    primary: "Book a free consultation",
-    secondary: "Explore services",
-    note: "Reply in under an hour · Serving all Saudi Arabia",
+    mkKicker: "Gulf markets",
+    mkTitle: "We build stores for merchants across the Gulf.",
+    mkLead: "From the UAE to Oman: a store set to your currency, tax and shipping, on Salla or Zid.",
+    catKicker: "Categories",
+    catTitle: "Everything your store needs, in one place.",
+    catLead: "Pick a service to see its details and price, or order it directly on WhatsApp.",
+    catView: "View product",
+    catAsk: "Ask on WhatsApp",
+    catMsg: "Hello, I would like to ask about: ",
+    catPrev: "Previous",
+    catNext: "Next",
+    eyebrow: "A digital agency for stores and brands",
+    title: ["Stores that sell,", "brands that stay"],
+    intro: "We design and build Salla and Zid stores and brand identities with the kind of detail that gives your customer the confidence to complete the order.",
+    primary: "Start on WhatsApp",
+    secondary: "Browse products",
+    builtOn: "We build on",
+    statement: "300+ projects for Saudi and Gulf brands — each with a contract, an invoice and support after handover.",
+    statementSide: "The short route: a published price, a published timeline, and a direct line to the people doing the work.",
+    servicesKicker: "Services",
+    servicesTitle: "Four services. Each with a clear scope, price and timeline.",
+    from: "From",
+    perMonth: "/ month",
+    sar: "SAR",
+    details: "Details",
+    order: "Order now",
+    more: "Other services",
+    workKicker: "Work",
+    workTitle: "Stores running right now.",
+    workLead: "Every card opens the live site — the screenshot comes from the store itself.",
+    visit: "Visit site",
+    proofKicker: "Why us",
+    proofTitle: "Trust is not written. It is built in the details.",
     proof: [
-      ["+300", "Projects delivered"],
-      ["3", "Platforms we build on"],
+      ["300+", "Projects delivered"],
       ["< 1 hr", "Average reply time"],
+      ["3", "Platforms: Salla, Zid, Shopify"],
     ],
-    trusted: "Hands-on experience across commerce and advertising platforms",
-    servicesKicker: "Core services",
-    servicesTitle: "Everything your store needs. Nothing it does not.",
-    servicesIntro:
-      "Four connected capabilities that give your store the right foundation, then improve it with evidence.",
-    services: [
-      [
-        "01",
-        "Brand identity & creative",
-        "A cohesive identity and digital system that makes your brand clear and memorable.",
-      ],
-      [
-        "02",
-        "Conversion & SEO",
-        "Faster, clearer product journeys with technical optimization for customers and search engines.",
-      ],
-      [
-        "03",
-        "Marketing & campaigns",
-        "Data-led Google, Meta and Snapchat campaigns with continuous performance review.",
-      ],
-      [
-        "04",
-        "Custom apps & platforms",
-        "Purpose-built apps, dashboards and digital platforms shaped around your workflow.",
-      ],
-      [
-        "05",
-        "Automation & integrations",
-        "Connected tools and automated repetitive tasks that reduce time and operating errors.",
-      ],
-      [
-        "06",
-        "AI content & product visuals",
-        "Product imagery, campaign assets and social content aligned with your brand.",
-      ],
-      [
-        "07",
-        "Booths & exhibition design",
-        "Complete booth concepts and branded display experiences for events and exhibitions.",
-      ],
+    pillars: [
+      ["Contract and invoice", "A written scope before we start, an invoice for every payment."],
+      ["Phased payments", "You never pay in full before you have seen the work."],
+      ["Support after handover", "We stay after launch rather than vanishing after the last payment."],
     ],
-    sidraKicker: "Our product for Salla",
-    sidraTitle: "SIDRA — a premium, flexible and fully documented Salla theme.",
-    sidraBody:
-      "A Saudi-built Salla theme offering broad no-code control, backed by practical documentation from installation and customization through support.",
-    sidraStats: [
-      ["46", "Homepage components"],
-      ["5", "Product card styles"],
-      ["100%", "Mobile responsive"],
-    ],
-    sidraFeatures: [
-      "Drag-and-drop sections",
-      "Independent mobile controls",
-      "Smart search & mega menu",
-      "Flash deals & coupons",
-      "Native Salla integrations",
-      "Sizing & troubleshooting guides",
-    ],
-    sidraDocs: "Explore full documentation",
-    sidraOrder: "Order SIDRA",
-    processKicker: "Our process",
-    processTitle: "A clear route from idea to launch.",
+    resultsTitle: "Numbers from campaigns we ran",
+    processKicker: "How we work",
+    processTitle: "Three steps from first message to launch.",
     process: [
-      [
-        "01",
-        "Understand",
-        "We study the business, audience and product, then set a measurable goal.",
-      ],
-      [
-        "02",
-        "Design & build",
-        "We turn strategy into a practical experience and test it across screens.",
-      ],
-      [
-        "03",
-        "Launch & improve",
-        "We launch, monitor performance and prioritize improvements by impact.",
-      ],
+      ["01", "Conversation", "Send us your idea on WhatsApp; we reply with scope, price and timeline within the hour."],
+      ["02", "Build", "We design and build, sending each stage for your review before the next payment."],
+      ["03", "Launch", "We test the full checkout, hand over, and stay on for support."],
     ],
+    auditKicker: "No commitment",
+    auditTitle: "A free audit of your current store",
+    auditBody: "We review speed, the purchase journey and SEO, and send notes ranked by impact — within two working days.",
+    auditCta: "Request the free audit",
     faqKicker: "FAQ",
     faqTitle: "Straight answers before we begin.",
-    ctaKicker: "Building something serious?",
-    ctaTitle: "Give it a digital foundation worthy of it.",
-    ctaBody:
-      "Send a short brief about your business and goal. We will return with a clear first step.",
-    ctaButton: "Talk to us on WhatsApp",
-    footerText: "E-commerce design, development and marketing in Saudi Arabia.",
-    rights: "All rights reserved.",
-    menu: "Menu",
+    hello: "Hello, I would like a consultation about my project.",
+    audit: "Hello, I would like the free store audit. Store URL: ",
+    orderMsg: "Hello, I would like to order: ",
   },
   fr: {
-    nav: [
-      ["Plateformes", "#platforms"],
-      ["Services", "#services"],
-      ["Thème SIDRA", "/sidra-theme"],
-      ["Projets", "#work"],
-      ["Boutique", "/store"],
-      ["Blog", "/blog"],
-    ],
-    panelLabel: "Plateformes utilisées",
-    panelPlatforms: [
-      ["Salla", "SALLA", "dès 5 jours"],
-      ["Zid", "ZID", "dès 7 jours"],
-      ["Shopify", "SHOPIFY", "dès 10 jours"],
-    ],
-    panelCta: "Laquelle vous convient ?",
-    start: "Démarrer",
-    eyebrow: "Votre partenaire croissance e-commerce",
-    title:
-      "Nous créons des boutiques claires, rapides et conçues pour grandir.",
-    intro:
-      "Nous concevons les boutiques Salla et Zid, en alignant identité, expérience et campagnes sur un objectif : convertir les visites en commandes.",
-    primary: "Consultation gratuite",
-    secondary: "Découvrir nos services",
-    note: "Réponse en moins d’une heure · Toute l’Arabie saoudite",
+    mkKicker: "Marchés du Golfe",
+    mkTitle: "Des boutiques pour les marchands de tout le Golfe.",
+    mkLead: "Des EAU à Oman : une boutique réglée sur votre devise, votre TVA et vos livraisons.",
+    catKicker: "Catégories",
+    catTitle: "Tout ce dont votre boutique a besoin, au même endroit.",
+    catLead: "Choisissez un service pour voir détails et prix, ou commandez-le sur WhatsApp.",
+    catView: "Voir le produit",
+    catAsk: "Demander sur WhatsApp",
+    catMsg: "Bonjour, je souhaite des informations sur : ",
+    catPrev: "Précédent",
+    catNext: "Suivant",
+    eyebrow: "Agence digitale pour boutiques et marques",
+    title: ["Des boutiques qui vendent,", "des marques qui restent"],
+    intro: "Nous concevons des boutiques Salla et Zid et des identités de marque avec le soin du détail qui donne au client la confiance de commander.",
+    primary: "Démarrer sur WhatsApp",
+    secondary: "Voir les produits",
+    builtOn: "Nous construisons sur",
+    statement: "Plus de 300 projets pour des marques saoudiennes et du Golfe — avec contrat, facture et support après livraison.",
+    statementSide: "Le chemin court : un prix affiché, un délai affiché, et un contact direct avec ceux qui réalisent.",
+    servicesKicker: "Services",
+    servicesTitle: "Quatre services. Chacun avec un périmètre, un prix et un délai clairs.",
+    from: "Dès",
+    perMonth: "/ mois",
+    sar: "SAR",
+    details: "Détails",
+    order: "Commander",
+    more: "Autres services",
+    workKicker: "Réalisations",
+    workTitle: "Des boutiques en ligne aujourd’hui.",
+    workLead: "Chaque carte ouvre le site réel — la capture vient de la boutique elle-même.",
+    visit: "Voir le site",
+    proofKicker: "Pourquoi nous",
+    proofTitle: "La confiance ne s’écrit pas. Elle se construit dans les détails.",
     proof: [
-      ["+300", "Projets livrés"],
-      ["3", "Plateformes utilisées"],
+      ["300+", "Projets livrés"],
       ["< 1 h", "Délai de réponse moyen"],
+      ["3", "Plateformes : Salla, Zid, Shopify"],
     ],
-    trusted:
-      "Une expérience concrète des plateformes e-commerce et publicitaires",
-    servicesKicker: "Services essentiels",
-    servicesTitle: "Tout ce dont votre boutique a besoin. Rien de superflu.",
-    servicesIntro:
-      "Quatre expertises connectées pour construire une base solide puis l’améliorer avec les données.",
-    services: [
-      [
-        "01",
-        "Identité & création",
-        "Une identité cohérente qui rend votre marque claire et mémorable.",
-      ],
-      [
-        "02",
-        "Conversion & SEO",
-        "Des parcours produits plus rapides et une optimisation technique pour les clients et la recherche.",
-      ],
-      [
-        "03",
-        "Marketing & campagnes",
-        "Campagnes Google, Meta et Snapchat pilotées par les données.",
-      ],
-      [
-        "04",
-        "Applications sur mesure",
-        "Applications, tableaux de bord et plateformes adaptés à vos opérations.",
-      ],
-      [
-        "05",
-        "Automatisation & intégrations",
-        "Outils connectés et tâches répétitives automatisées.",
-      ],
-      [
-        "06",
-        "Contenu & visuels IA",
-        "Images produits, campagnes et contenus sociaux cohérents avec la marque.",
-      ],
-      [
-        "07",
-        "Stands & expositions",
-        "Concepts de stands et expériences de marque pour les événements.",
-      ],
+    pillars: [
+      ["Contrat et facture", "Un périmètre écrit avant de commencer, une facture par paiement."],
+      ["Paiement par étapes", "Vous ne payez jamais tout avant d’avoir vu le travail."],
+      ["Support après livraison", "Nous restons après le lancement."],
     ],
-    sidraKicker: "Notre produit Salla",
-    sidraTitle: "SIDRA — un thème premium, flexible et entièrement documenté.",
-    sidraBody:
-      "Un thème saoudien pour Salla offrant un contrôle no-code étendu, avec une documentation pratique de l’installation au support.",
-    sidraStats: [
-      ["46", "Composants d’accueil"],
-      ["5", "Styles de cartes produit"],
-      ["100%", "Responsive mobile"],
-    ],
-    sidraFeatures: [
-      "Sections glisser-déposer",
-      "Contrôles mobile indépendants",
-      "Recherche et mega menu",
-      "Offres flash et coupons",
-      "Intégrations Salla natives",
-      "Guides et dépannage",
-    ],
-    sidraDocs: "Voir la documentation",
-    sidraOrder: "Commander SIDRA",
-    processKicker: "Notre méthode",
-    processTitle: "Un chemin clair, de l’idée au lancement.",
+    resultsTitle: "Chiffres de campagnes menées",
+    processKicker: "Méthode",
+    processTitle: "Trois étapes du premier message au lancement.",
     process: [
-      [
-        "01",
-        "Comprendre",
-        "Nous étudions l’activité, le public et fixons un objectif mesurable.",
-      ],
-      [
-        "02",
-        "Concevoir",
-        "Nous transformons la stratégie en expérience testée sur tous les écrans.",
-      ],
-      [
-        "03",
-        "Lancer",
-        "Nous suivons la performance et priorisons les améliorations.",
-      ],
+      ["01", "Échange", "Envoyez votre idée sur WhatsApp ; réponse avec périmètre, prix et délai en une heure."],
+      ["02", "Réalisation", "Nous concevons et construisons, chaque étape validée avant le paiement suivant."],
+      ["03", "Lancement", "Nous testons tout le parcours d’achat, livrons et restons pour le support."],
     ],
+    auditKicker: "Sans engagement",
+    auditTitle: "Un audit gratuit de votre boutique",
+    auditBody: "Vitesse, parcours d’achat et SEO, avec des notes classées par impact — sous deux jours ouvrés.",
+    auditCta: "Demander l’audit gratuit",
     faqKicker: "FAQ",
     faqTitle: "Des réponses claires avant de commencer.",
-    ctaKicker: "Un projet sérieux ?",
-    ctaTitle: "Donnons-lui une base digitale à sa hauteur.",
-    ctaBody:
-      "Envoyez-nous une courte présentation de votre activité et de votre objectif.",
-    ctaButton: "Parler sur WhatsApp",
-    footerText:
-      "Design, développement et marketing e-commerce en Arabie saoudite.",
-    rights: "Tous droits réservés.",
-    menu: "Menu",
+    hello: "Bonjour, je souhaite une consultation pour mon projet.",
+    audit: "Bonjour, je souhaite l’audit gratuit. URL de la boutique : ",
+    orderMsg: "Bonjour, je souhaite commander : ",
   },
 } as const;
 
-const auditCopy = {
-  ar: {
-    kicker: "ابدأ بخطوة ذكية",
-    title: "تحليل مجاني لمتجرك يكشف فرص النمو قبل أن تنفق.",
-    body: "نراجع متجرك من منظور العميل ومحركات البحث، ثم نرسل لك ملاحظات عملية مرتبة حسب الأولوية — بلا التزام.",
-    points: [
-      "سرعة وتجربة الجوال",
-      "وضوح رحلة الشراء",
-      "SEO وبنية الصفحات",
-      "فرص رفع معدل التحويل",
-    ],
-    reportLabel: "محتويات التقرير",
-    reportFree: "مجاني",
-    report: [
-      ["السرعة والجوال", "ما الذي يؤخر ظهور المحتوى، وكيف يبدو المتجر على شاشة صغيرة."],
-      ["رحلة الشراء", "أين يتعثر العميل بين المنتج وإتمام الطلب."],
-      ["بنية الصفحات والسيو", "ما هو مفهرس، وما يتنافس مع نفسه، وما هو غائب."],
-      ["فرص رفع التحويل", "تعديلات مرتبة بحسب أثرها المتوقع لا بحسب سهولتها."],
-    ],
-    reportTurnaround: "يصلك خلال يومي عمل · بدون التزام",
-    action: "اطلب تحليل متجرك مجانًا",
-    note: "تقرير مختصر ومفيد · بدون مكالمات بيع مزعجة",
+/* The four flagship services, each backed by a real product in the store
+   so the price and the timeline shown here are the ones the order uses. */
+const FLAGSHIP = [
+  {
+    slug: "salla-store-setup",
+    title: { ar: "متجر سلة أو زد كامل", en: "A complete Salla or Zid store", fr: "Boutique Salla ou Zid complète" },
+    points: {
+      ar: ["تصميم يبدأ من الجوال", "دفع وشحن وتقسيط مفعّل", "اختبار شراء حقيقي قبل التسليم"],
+      en: ["Mobile-first design", "Payments, shipping and BNPL live", "Tested with a real purchase"],
+      fr: ["Design mobile d’abord", "Paiement, livraison, BNPL actifs", "Testé avec un vrai achat"],
+    },
   },
-  en: {
-    kicker: "Start smart",
-    title:
-      "A free store audit that finds growth opportunities before you spend.",
-    body: "We review your store through the eyes of customers and search engines, then send practical recommendations ranked by priority — no obligation.",
-    points: [
-      "Mobile speed & usability",
-      "Purchase journey clarity",
-      "SEO & page structure",
-      "Conversion opportunities",
-    ],
-    reportLabel: "What the report covers",
-    reportFree: "Free",
-    report: [
-      ["Speed & mobile", "What delays content appearing, and how the store reads on a small screen."],
-      ["Purchase journey", "Where customers stall between the product and the completed order."],
-      ["Page structure & SEO", "What is indexed, what competes with itself, and what is missing."],
-      ["Conversion opportunities", "Changes ranked by expected impact, not by how easy they are."],
-    ],
-    reportTurnaround: "Delivered within two working days · No obligation",
-    action: "Request your free store audit",
-    note: "A concise, useful report · No pushy sales calls",
+  {
+    slug: "salla-custom-theme",
+    title: { ar: "ثيم مخصص لعلامتك", en: "A theme made for your brand", fr: "Un thème à votre image" },
+    points: {
+      ar: ["واجهة لا تشبه غيرك", "صفحات منتج تبيع", "سرعة تحميل عالية"],
+      en: ["A storefront like no other", "Product pages that sell", "Fast loading"],
+      fr: ["Une vitrine unique", "Des fiches qui vendent", "Chargement rapide"],
+    },
   },
-  fr: {
-    kicker: "Commencez intelligemment",
-    title: "Un audit gratuit qui révèle les opportunités avant de dépenser.",
-    body: "Nous analysons votre boutique côté client et moteurs de recherche, puis envoyons des recommandations classées par priorité, sans engagement.",
-    points: [
-      "Vitesse et expérience mobile",
-      "Clarté du parcours d’achat",
-      "SEO et structure des pages",
-      "Opportunités de conversion",
-    ],
-    reportLabel: "Contenu du rapport",
-    reportFree: "Gratuit",
-    report: [
-      ["Vitesse et mobile", "Ce qui retarde l’affichage et le rendu sur petit écran."],
-      ["Parcours d’achat", "Où le client bloque entre le produit et la commande."],
-      ["Structure et SEO", "Ce qui est indexé, ce qui se concurrence, ce qui manque."],
-      ["Opportunités de conversion", "Des changements classés par impact attendu."],
-    ],
-    reportTurnaround: "Livré sous deux jours ouvrés · Sans engagement",
-    action: "Demander l’audit gratuit",
-    note: "Un rapport concis · Aucun appel commercial insistant",
+  {
+    slug: "brand-identity-design",
+    title: { ar: "هوية بصرية متكاملة", en: "A complete brand identity", fr: "Identité visuelle complète" },
+    points: {
+      ar: ["شعار وألوان وخطوط", "دليل استخدام الهوية", "تطبيقات السوشيال والتغليف"],
+      en: ["Logo, colour and type", "Brand guidelines", "Social and packaging applications"],
+      fr: ["Logo, couleurs, typographie", "Charte graphique", "Déclinaisons réseaux et emballage"],
+    },
   },
-} as const;
+  {
+    slug: "digital-marketing",
+    title: { ar: "تسويق وإدارة حملات", en: "Marketing and campaigns", fr: "Marketing et campagnes" },
+    points: {
+      ar: ["Google وMeta وSnapchat وTikTok", "تقارير أسبوعية واضحة", "تحسين مستمر حسب البيانات"],
+      en: ["Google, Meta, Snapchat, TikTok", "Clear weekly reports", "Continuous, data-led tuning"],
+      fr: ["Google, Meta, Snapchat, TikTok", "Rapports hebdomadaires", "Optimisation continue"],
+    },
+  },
+] as const;
+
+const SECONDARY = ["store-seo", "ai-product-photography", "landing-page-funnel", "custom-app-development", "automation-workflows", "social-media-management"];
+
+const WORK = ["essence", "lelast", "haraer", "jilanoud", "tooz", "ivaraline"]
+  .map((key) => PROJECTS.find((p) => p.key === key))
+  .filter((p): p is (typeof PROJECTS)[number] => Boolean(p && p.shot));
+
+/* Logos that are dark-on-transparent read cleanly as one ink silhouette;
+   the light ones are listed with `logoOnDark` and are skipped here. */
+const LOGOS = PROJECTS.filter(
+  (p) => p.logo && !p.logoOnDark && p.key !== "khayala" /* opaque black plate */ && /\/clients\/.+\.(png|svg)$/.test(p.logo)
+);
+
+const RESULT_EN: [string, string][] = [
+  ["reach from one awareness campaign", "UAE · 2.19 AED per 1,000"],
+  ["conversations with new customers", "UAE · 5.18 AED each"],
+  ["engagements on a single post", "$0.009 each"],
+];
+
+/* Western digits throughout, as Saudi banks and fintechs set prices. */
+function fmt(n: number) {
+  return n.toLocaleString("en-US");
+}
+
+function daysLabel(n: number, lang: Lang) {
+  if (lang === "ar") return `${n} ${n >= 3 && n <= 10 ? "أيام" : "يومًا"}`;
+  return `${n} ${lang === "fr" ? "jours" : "days"}`;
+}
 
 export default function HomeExperience({ locale: rawLocale }: { locale: string }) {
-  const locale = (rawLocale in copy ? rawLocale : "en") as keyof typeof copy;
-  const t = copy[locale];
-  const faq = HOME_FAQ[locale] ?? HOME_FAQ.en;
-  const audit = auditCopy[locale] ?? auditCopy.en;
-  const whatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد استشارة بخصوص مشروعي الرقمي." : "Hello, I would like a consultation about my digital project.")}`;
-  const auditWhatsapp = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(locale === "ar" ? "مرحبًا، أريد التحليل المجاني لمتجري. رابط المتجر: " : "Hello, I would like the free store audit. Store URL: ")}`;
-
-  /* The scroll reveal is handled once for the whole document by
-     RevealRoot; this file used to run a second observer over the same
-     [data-reveal] nodes. */
+  const lang = (rawLocale in copy ? rawLocale : "en") as Lang;
+  const t = copy[lang];
+  const faq = HOME_FAQ[lang] ?? HOME_FAQ.en;
+  const arrow = lang === "ar" ? "←" : "→";
+  const whatsapp = getWhatsAppLink(t.hello);
+  const name = (p: (typeof PRODUCTS)[number]) => (lang === "ar" ? p.nameAr : p.nameEn);
 
   return (
     <div className={styles.site}>
-        <section className={styles.hero} data-own-spacing>
-          {/* اللوحة الموسمية خلف نص البطل. النسخة الطولية تحلّ محلّ
-              العريضة على الجوال حتى لا تُقتطع الأشخاص والقلعة. */}
-          <HeritageBanner variant="hero" />
-          <div className={`${styles.shell} ${styles.heroGrid}`}>
-            <div className={styles.heroCopy}>
-              <p className={styles.eyebrow}>
-                <span />
-                {t.eyebrow}
-              </p>
-              <h1>{t.title}</h1>
-              <p className={styles.lead}>{t.intro}</p>
-              <div className={styles.heroActions}>
-                <a
-                  href={whatsapp}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={styles.primaryButton}
-                >
-                  {t.primary}
-                  <span>↗</span>
-                </a>
-                <a href="#services" className={styles.secondaryButton}>
-                  {t.secondary}
-                </a>
-              </div>
-              <p className={styles.note}>{t.note}</p>
-            </div>
-            {/* Was a mock browser window whose whole content was the numeral
-                "01" set 200px in Arial — decoration that said nothing, in the
-                most valuable space on the site. It now carries the three
-                platforms and their delivery windows, and links into the
-                section that explains how to choose between them. */}
-            <div className={styles.heroPanel}>
-              <div className={styles.panelTop}>
-                <b>{t.panelLabel}</b>
-              </div>
-              <ul className={styles.panelList}>
-                {t.panelPlatforms.map(([name, latin, time]) => (
-                  <li key={latin}>
-                    <span className={styles.panelName}>
-                      {name}
-                      <i>{latin}</i>
-                    </span>
-                    <span className={styles.panelTime}>{time}</span>
-                  </li>
-                ))}
-              </ul>
-              <a href="#choose" className={styles.panelBottom}>
-                {t.panelCta}
-                <span aria-hidden>{locale === "ar" ? "←" : "→"}</span>
+      {/* ═══ HERO — the banner is the background; its cream floor runs
+          straight into the page, so there is no edge between them ═══ */}
+      <section className={styles.hero} data-own-spacing>
+        <picture className={styles.banner}>
+          <source media="(max-width: 760px)" srcSet="/hero/hero-mobile.webp" width={1086} height={1448} />
+          <img
+            src="/hero/hero-desktop.webp"
+            width={1672}
+            height={941}
+            alt={lang === "ar" ? "متجر إلكتروني بهوية سليمان على هاتف" : "A store built by AM Design on a phone"}
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
+
+        <div className={`${styles.shell} ${styles.heroInner}`}>
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow}>
+              <span aria-hidden />
+              {t.eyebrow}
+            </p>
+            <h1>
+              {t.title[0]}
+              <br />
+              <em>{t.title[1]}</em>
+            </h1>
+            <p className={styles.lead}>{t.intro}</p>
+            <div className={styles.heroActions}>
+              <a href={whatsapp} target="_blank" rel="noreferrer" className="btn-primary">
+                <span className={styles.dot} aria-hidden />
+                {t.primary}
               </a>
+              <Link href={`/${lang}/store`} className="btn-secondary">
+                {t.secondary}
+              </Link>
+            </div>
+            <div className={styles.builtOn}>
+              <span>{t.builtOn}</span>
+              <Image src="/logos/salla.svg" alt="Salla" width={64} height={22} />
+              <Image src="/logos/zid.svg" alt="Zid" width={48} height={22} />
             </div>
           </div>
-          <div className={`${styles.shell} ${styles.proof}`}>
+        </div>
+      </section>
+
+      <section className={styles.statementWrap} data-own-spacing>
+        <div className={`${styles.shell} ${styles.statement}`}>
+          <h2>{t.statement}</h2>
+          <p>{t.statementSide}</p>
+        </div>
+      </section>
+
+      {/* ═══ LOGOS ═══ */}
+      <section className={styles.logos} aria-label={lang === "ar" ? "عملاؤنا" : "Clients"} data-own-spacing>
+        <div className={styles.logoTrack}>
+          {[...LOGOS, ...LOGOS].map((p, i) => (
+            <span key={`${p.key}-${i}`} className={styles.logo} aria-hidden={i >= LOGOS.length || undefined}>
+              <Image src={p.logo!} alt={i < LOGOS.length ? p.name : ""} width={140} height={56} />
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ CATEGORIES — the visual index; each opens its product or a
+          WhatsApp conversation already naming the category ═══ */}
+      <section id="categories" className={styles.section} data-own-spacing>
+        <div className={styles.shell}>
+          <div className={styles.headSplit} data-reveal>
+            <div>
+              <p className={styles.kicker}>{t.catKicker}</p>
+              <h2>{t.catTitle}</h2>
+            </div>
+            <p>{t.catLead}</p>
+          </div>
+          <CategorySlider
+            dir={lang === "ar" ? "rtl" : "ltr"}
+            labels={{ prev: t.catPrev, next: t.catNext }}
+            items={SERVICE_CATEGORIES.map((c) => {
+              const title = c.title[lang];
+              return {
+                key: c.key,
+                title,
+                image: c.image,
+                cta: `${c.product ? t.catView : t.catAsk} ${arrow}`,
+                href: c.product ? `/${lang}/store/${c.product}` : getWhatsAppLink(`${t.catMsg}${title}`),
+                external: !c.product,
+              };
+            })}
+          />
+        </div>
+      </section>
+
+      {/* ═══ SERVICES ═══ */}
+      <section id="services" className={styles.section} data-own-spacing>
+        <div className={styles.shell}>
+          <div className={styles.head} data-reveal>
+            <p className={styles.kicker}>{t.servicesKicker}</p>
+            <h2>{t.servicesTitle}</h2>
+          </div>
+
+          <div className={styles.services}>
+            {FLAGSHIP.map((item, i) => {
+              const product = PRODUCTS.find((p) => p.slug === item.slug)!;
+              return (
+                <article key={item.slug} className={styles.service} data-reveal data-reveal-delay={String(i * 60)}>
+                  <div className={styles.serviceTop}>
+                    <span className={styles.serviceNum}>{String(i + 1).padStart(2, "0")}</span>
+                    <span className={styles.serviceDays}>
+                      {product.isMonthly ? (lang === "ar" ? "اشتراك شهري" : lang === "fr" ? "Mensuel" : "Monthly") : daysLabel(product.deliveryDays, lang)}
+                    </span>
+                  </div>
+                  <h3>{item.title[lang]}</h3>
+                  <ul>
+                    {item.points[lang].map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                  <div className={styles.servicePrice}>
+                    <span>{t.from}</span>
+                    <strong>
+                      {fmt(product.price)} <small>{t.sar}</small>
+                    </strong>
+                    {product.isMonthly && <em>{t.perMonth}</em>}
+                  </div>
+                  <div className={styles.serviceActions}>
+                    <a href={getWhatsAppLink(`${t.orderMsg}${name(product)}`)} target="_blank" rel="noreferrer" className={styles.serviceOrder}>
+                      {t.order}
+                    </a>
+                    <Link href={`/${lang}/store/${product.slug}`} className={styles.serviceLink}>
+                      {t.details} <span aria-hidden>{arrow}</span>
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className={styles.secondary} data-reveal>
+            <span>{t.more}</span>
+            {SECONDARY.map((slug) => {
+              const p = PRODUCTS.find((x) => x.slug === slug);
+              if (!p) return null;
+              return (
+                <Link key={slug} href={`/${lang}/store/${slug}`}>
+                  {name(p)}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ WORK ═══ */}
+      <section id="work" className={`${styles.section} ${styles.work}`} data-own-spacing>
+        <div className={styles.shell}>
+          <div className={styles.headSplit} data-reveal>
+            <div>
+              <p className={styles.kicker}>{t.workKicker}</p>
+              <h2>{t.workTitle}</h2>
+            </div>
+            <p>{t.workLead}</p>
+          </div>
+          <div className={styles.workGrid}>
+            {WORK.map((p, i) => (
+              <a key={p.key} href={p.url} target="_blank" rel="noreferrer" className={styles.workCard} data-reveal data-reveal-delay={String((i % 3) * 60)}>
+                <div className={styles.workShot}>
+                  <Image src={p.shot!} alt={p.name} width={1280} height={800} sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 400px" />
+                </div>
+                <div className={styles.workMeta}>
+                  <div>
+                    <b>{p.name}</b>
+                    <span>{p.domain}</span>
+                  </div>
+                  <span className={styles.workVisit}>
+                    {t.visit} <i aria-hidden>↗</i>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ PROOF — night section ═══ */}
+      <section className={styles.night} data-own-spacing>
+        <div className={styles.shell}>
+          <div className={styles.headSplit} data-reveal>
+            <div>
+              <p className={styles.kicker}>{t.proofKicker}</p>
+              <h2>{t.proofTitle}</h2>
+            </div>
+          </div>
+
+          <div className={styles.stats}>
             {t.proof.map(([value, label]) => (
-              <div key={label}>
+              <div key={label} data-reveal>
                 <strong>{value}</strong>
                 <span>{label}</span>
               </div>
             ))}
           </div>
-        </section>
 
-        {/* Twenty real client marks, immediately under the hero. The claim in
-            the headline is worth more once a visitor has seen who already
-            bought it, and this used to live only on a noindexed page. */}
-        <ClientLogos locale={locale} />
+          <div className={styles.pillars}>
+            {t.pillars.map(([title, body], i) => (
+              <article key={title} data-reveal data-reveal-delay={String(i * 60)}>
+                <span className={styles.pillarIcon} aria-hidden>
+                  {["◆", "◇", "✦"][i]}
+                </span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
 
-        {/* Self-selection before the service list. A visitor who cannot tell
-            whether the agency handles "their kind" of work leaves before
-            reaching the services at all. */}
-        <WhoWeFit locale={locale} />
-
-        {/* Replaced a filler strip that read "SALLA ZID GOOGLE META" as four
-            plain words claiming nothing, with the section that carries the
-            core offer. */}
-        <Platforms locale={locale} />
-        <PlatformChooser locale={locale} />
-
-        <section id="services" className={styles.section} data-own-spacing>
-          <div className={styles.shell}>
-            <div
-              className={`${styles.sectionHead} ${styles.reveal}`}
-              data-reveal
-            >
-              <div>
-                <p className={styles.kicker}>{t.servicesKicker}</p>
-                <h2>{t.servicesTitle}</h2>
-              </div>
-              <p>{t.servicesIntro}</p>
-            </div>
-            {/* Platforms, the chooser and Work are all panel grids. A fourth
-                in sequence made the page read as one repeated rhythm, so the
-                services run as an index of rows instead. */}
-            <div className={styles.serviceIndex}>
-              {t.services.map(([number, title, body]) => (
-                <article
-                  key={number}
-                  className={`${styles.serviceRow} ${styles.reveal}`}
-                  style={{ ["--edge" as string]: locale === "ar" ? "right" : "left" }}
-                  data-reveal
-                >
-                  <span>{number}</span>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                  <a href={whatsapp} target="_blank" rel="noreferrer" aria-label={`${t.start}: ${title}`}>
-                    <b aria-hidden>{locale === "ar" ? "←" : "→"}</b>
-                  </a>
-                </article>
+          <div className={styles.results} data-reveal>
+            <p>{t.resultsTitle}</p>
+            <div>
+              {RESULTS.slice(0, 3).map((r, i) => (
+                <div key={r.value}>
+                  <strong>{r.value}</strong>
+                  <span>{lang === "ar" ? r.label : RESULT_EN[i][0]}</span>
+                  <small>{lang === "ar" ? r.meta : RESULT_EN[i][1]}</small>
+                </div>
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* The platforms, ad networks, payment rails and tools the work
-            actually runs on — named, logoed and linked. */}
-        <BrandWall locale={locale} />
-
-        <section id="sidra" className={styles.sidraSection} data-own-spacing>
-          <div
-            className={`${styles.shell} ${styles.sidraGrid} ${styles.reveal}`}
-            data-reveal
-          >
-            <div className={styles.sidraVisual}>
-              <div className={styles.sidraTop}>
-                <span>SIDRA / SALLA THEME</span>
-                <b>V1.0</b>
-              </div>
-              <Image
-                src="/sidra-theme-logo.png"
-                alt="SIDRA Salla theme"
-                width={360}
-                height={360}
-              />
-              <div className={styles.sidraVisualBottom}>
-                <span>MOBILE FIRST</span>
-                <span>NO CODE</span>
-                <span>RTL READY</span>
-              </div>
-            </div>
-            <div className={styles.sidraCopy}>
-              <p className={styles.kicker}>{t.sidraKicker}</p>
-              <h2>{t.sidraTitle}</h2>
-              <p className={styles.sidraBody}>{t.sidraBody}</p>
-              <div className={styles.sidraStats}>
-                {t.sidraStats.map(([value, label]) => (
-                  <div key={label}>
-                    <strong>{value}</strong>
-                    <span>{label}</span>
-                  </div>
-                ))}
-              </div>
-              <ul>
-                {t.sidraFeatures.map((feature) => (
-                  <li key={feature}>
-                    <span>✓</span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <div className={styles.sidraActions}>
-                <Link href={`/${locale}/sidra-theme`}>
-                  {t.sidraDocs}
-                  <span>↗</span>
-                </Link>
-                <a href={whatsapp} target="_blank" rel="noreferrer">
-                  {t.sidraOrder}
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Was three projects rendered as small logos on tinted plates. The
-            replacement carries twenty live client sites with real screenshots
-            and outbound links, the brand identities, the creative work and the
-            documented campaign numbers — all of which already existed in the
-            repo and appeared nowhere a visitor could reach. */}
-        <ClientShowcase locale={locale} />
-
-        {/* Bridge into the legal sector page — the one part of the offer
-            that is not e-commerce, and it was reachable from nowhere. */}
-        <SectorSpotlight locale={locale} />
-
-        <section className={styles.auditSection} data-own-spacing>
-          <div
-            className={`${styles.shell} ${styles.auditGrid} ${styles.reveal}`}
-            data-reveal
-          >
-            <div className={styles.auditCopy}>
-              <p className={styles.kicker}>{audit.kicker}</p>
-              <h2>{audit.title}</h2>
-              <p>{audit.body}</p>
-              <ul>
-                {audit.points.map((point) => (
-                  <li key={point}>
-                    <span>✓</span>
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <a href={auditWhatsapp} target="_blank" rel="noreferrer">
-                {audit.action}
-                <b>↗</b>
-              </a>
-              <small>{audit.note}</small>
-            </div>
-            {/* This was a mock scorecard reading "84 / 100" over four bars at
-                88/72/81/64% and "4 PRIORITY ACTIONS" — numbers describing no
-                real store, drawn as though they did. It now shows what the
-                report actually contains. */}
-            <div className={styles.auditReport}>
-              <div className={styles.reportHead}>
-                <span>{audit.reportLabel}</span>
-                <b>{audit.reportFree}</b>
-              </div>
-              <ol className={styles.reportList}>
-                {audit.report.map(([axis, line], i) => (
-                  <li key={axis}>
-                    <span>{String(i + 1).padStart(2, "0")}</span>
-                    <div>
-                      <strong>{axis}</strong>
-                      <em>{line}</em>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <div className={styles.reportFoot}>
-                <span>{audit.reportTurnaround}</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="process" className={styles.processSection} data-own-spacing>
-          <div
-            className={`${styles.shell} ${styles.processGrid} ${styles.reveal}`}
-            data-reveal
-          >
+      {/* ═══ GULF MARKETS — one landing page per country ═══ */}
+      <section className={styles.section} data-own-spacing>
+        <div className={styles.shell}>
+          <div className={styles.headSplit} data-reveal>
             <div>
-              <p className={styles.kicker}>{t.processKicker}</p>
-              <h2>{t.processTitle}</h2>
+              <p className={styles.kicker}>{t.mkKicker}</p>
+              <h2>{t.mkTitle}</h2>
             </div>
-            <div className={styles.steps}>
-              {t.process.map(([number, title, body]) => (
-                <article key={number}>
-                  <span>{number}</span>
-                  <div>
-                    <h3>{title}</h3>
-                    <p>{body}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <p>{t.mkLead}</p>
           </div>
-        </section>
-
-        <section id="faq" className={styles.section} data-own-spacing>
-          <div
-            className={`${styles.shell} ${styles.faqGrid} ${styles.reveal}`}
-            data-reveal
-          >
-            <div>
-              <p className={styles.kicker}>{t.faqKicker}</p>
-              <h2>{t.faqTitle}</h2>
-            </div>
-            <HomeFaq faq={faq} />
+          <div className={styles.markets}>
+            {MARKETS.map((m, i) => (
+              <Link key={m.slug} href={`/${lang}/markets/${m.slug}`} className={styles.market} data-reveal data-reveal-delay={String(i * 50)}>
+                <span className={styles.marketCode}>{m.slug === "uae" ? "AE" : m.slug === "oman" ? "OM" : m.slug === "kuwait" ? "KW" : m.slug === "qatar" ? "QA" : "BH"}</span>
+                <b>{m.name[lang === "ar" ? "ar" : "en"]}</b>
+                <small>{m.cities[lang === "ar" ? "ar" : "en"].slice(0, 2).join(lang === "ar" ? " · " : " · ")}</small>
+                <em>
+                  {m.platforms.includes("zid") ? (lang === "ar" ? "سلة · زد" : "Salla · Zid") : lang === "ar" ? "سلة" : "Salla"}
+                  <i aria-hidden>{arrow}</i>
+                </em>
+              </Link>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="contact" className={styles.ctaSection} data-own-spacing>
-          <div
-            className={`${styles.shell} ${styles.ctaInner} ${styles.reveal}`}
-            data-reveal
-          >
+      {/* ═══ PROCESS ═══ */}
+      <section id="process" className={styles.section} data-own-spacing>
+        <div className={styles.shell}>
+          <div className={styles.head} data-reveal>
+            <p className={styles.kicker}>{t.processKicker}</p>
+            <h2>{t.processTitle}</h2>
+          </div>
+          <ol className={styles.steps}>
+            {t.process.map(([num, title, body], i) => (
+              <li key={num} data-reveal data-reveal-delay={String(i * 80)}>
+                <span>{num}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </li>
+            ))}
+          </ol>
+
+          <div className={styles.audit} data-reveal>
             <div>
-              <p>{t.ctaKicker}</p>
-              <h2>{t.ctaTitle}</h2>
-              <span>{t.ctaBody}</span>
+              <p className={styles.kicker}>{t.auditKicker}</p>
+              <h3>{t.auditTitle}</h3>
+              <p>{t.auditBody}</p>
             </div>
-            <a href={whatsapp} target="_blank" rel="noreferrer">
-              {t.ctaButton}
-              <b>↗</b>
+            <a href={getWhatsAppLink(t.audit)} target="_blank" rel="noreferrer" className="btn-primary">
+              {t.auditCta}
+              <span aria-hidden>{arrow}</span>
             </a>
           </div>
-        </section>
+        </div>
+      </section>
+
+      {/* ═══ FAQ ═══ */}
+      <section id="faq" className={`${styles.section} ${styles.faq}`} data-own-spacing>
+        <div className={`${styles.shell} ${styles.faqGrid}`}>
+          <div data-reveal>
+            <p className={styles.kicker}>{t.faqKicker}</p>
+            <h2>{t.faqTitle}</h2>
+          </div>
+          <HomeFaq faq={faq} />
+        </div>
+      </section>
     </div>
   );
 }

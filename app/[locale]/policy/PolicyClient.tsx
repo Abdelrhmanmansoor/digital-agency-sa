@@ -120,11 +120,11 @@ export default function PolicyClient({ locale }: { locale: string }) {
             <span
               style={{
                 alignSelf: "start",
-                fontFamily: "Space Mono, monospace",
+                
                 fontSize: "11px",
                 letterSpacing: "0.1em",
                 color: "#8d8a82",
-                borderTop: "2px solid #f0b100",
+                borderTop: "2px solid #f2b705",
                 paddingTop: "12px",
               }}
             >
@@ -190,7 +190,7 @@ export default function PolicyClient({ locale }: { locale: string }) {
         }
         .policy-toc { position: sticky; top: 130px; }
         .policy-toc-title {
-          font-family: 'Space Mono', monospace;
+          font-weight: 600;
           font-size: 11px;
           letter-spacing: 0.14em;
           text-transform: uppercase;
@@ -214,7 +214,7 @@ export default function PolicyClient({ locale }: { locale: string }) {
           transition: color .2s;
         }
         .policy-toc a span {
-          font-family: 'Space Mono', monospace;
+          font-weight: 600;
           font-size: 11px;
           color: #a9a498;
         }
@@ -226,10 +226,12 @@ export default function PolicyClient({ locale }: { locale: string }) {
           gap: 1px;
           background: #e6e2d8;
           border: 1px solid #e6e2d8;
+          border-radius: 20px;
+          overflow: hidden;
         }
         .policy-section { background: #fff; padding: 40px 42px; scroll-margin-top: 130px; }
         .policy-index {
-          font-family: 'Space Mono', monospace;
+          font-weight: 600;
           font-size: 11px;
           letter-spacing: 0.16em;
           color: #8b6900;
@@ -241,7 +243,7 @@ export default function PolicyClient({ locale }: { locale: string }) {
           color: #14140f;
           margin: 14px 0 0;
           padding-bottom: 22px;
-          border-bottom: 2px solid #f0b100;
+          border-bottom: 2px solid #f2b705;
           display: inline-block;
         }
         .policy-section ul {
@@ -265,7 +267,7 @@ export default function PolicyClient({ locale }: { locale: string }) {
           width: 6px;
           height: 6px;
           margin-top: 11px;
-          background: #f0b100;
+          background: #f2b705;
           transform: rotate(45deg);
         }
         .policy-payments { background: #fff; padding: 40px 42px; }
@@ -292,7 +294,7 @@ export default function PolicyClient({ locale }: { locale: string }) {
           gap: 10px;
           min-height: 50px;
           padding-inline: 26px;
-          background: #f0b100;
+          background: #f2b705;
           color: #14140f;
           font-weight: 800;
           text-decoration: none;

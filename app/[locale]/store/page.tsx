@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SiteShell from "@/components/layout/SiteShell";
-import StoreContent from "@/components/store/StoreContent";
-import FloatingActions from "@/components/home/FloatingActions";
-import ScrollProgress from "@/components/layout/ScrollProgress";
+import ProductsCatalog from "@/components/store/ProductsCatalog";
+import styles from "@/components/store/Products.module.css";
 import { PRODUCTS } from "@/lib/store-data";
 import { STORE_FAQ } from "@/lib/store-faq";
 import { SITE_URL, hreflangMap } from "@/lib/site";
@@ -14,7 +14,7 @@ import { SITE_URL, hreflangMap } from "@/lib/site";
    price anchor and the phased-payment promise are real and stay. */
 const seo = {
   ar: {
-    title: "متجر الخدمات الرقمية | باقات تصميم متاجر سلة وزد بأسعار معلنة",
+    title: "منتجات AM Design | تصميم متاجر سلة وزد بأسعار معلنة",
     description:
       "خدمات المتاجر الإلكترونية بسعر ومدة معلنين: ثيم سلة مخصص من 399 ر.س، تجهيز متجر كامل من 1,099 ر.س، هوية بصرية، سيو، تصوير منتجات وتسويق.",
     listName: "متجر الخدمات الرقمية",
@@ -143,9 +143,37 @@ function buildJsonLd(lang: keyof typeof seo, locale: string) {
 }
 
 /* ─── Page Component ─────────────────────────────────────── */
+const head = {
+  ar: {
+    crumbs: "الرئيسية",
+    kicker: "المنتجات",
+    title: "منتجات بسعر ومدة معلنين.",
+    lead: "اختر ما يناسبك واطلبه مباشرة على واتساب — نؤكد التفاصيل ونبدأ. لا سلة ولا نماذج.",
+    assure: ["دفع على مراحل", "عقد وفاتورة رسمية", "دعم بعد التسليم"],
+    faq: "قبل أن تطلب",
+  },
+  en: {
+    crumbs: "Home",
+    kicker: "Products",
+    title: "Products with a published price and timeline.",
+    lead: "Pick what fits and order it directly on WhatsApp — we confirm the details and start. No cart, no forms.",
+    assure: ["Phased payments", "Contract and invoice", "Support after handover"],
+    faq: "Before you order",
+  },
+  fr: {
+    crumbs: "Accueil",
+    kicker: "Produits",
+    title: "Des produits à prix et délai affichés.",
+    lead: "Choisissez et commandez directement sur WhatsApp — nous confirmons et commençons. Ni panier, ni formulaire.",
+    assure: ["Paiement par étapes", "Contrat et facture", "Support après livraison"],
+    faq: "Avant de commander",
+  },
+} as const;
+
 export default async function StorePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const lang = (locale in seo ? locale : "en") as keyof typeof seo;
+  const t = head[lang];
 
   return (
     <>
@@ -153,11 +181,43 @@ export default async function StorePage({ params }: { params: Promise<{ locale: 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang, locale)) }}
       />
-      <ScrollProgress />
       <SiteShell>
-        <StoreContent />
+        <section className={styles.head} data-own-spacing>
+          <div className={styles.shell}>
+            <nav className={styles.crumbs} aria-label="Breadcrumb">
+              <Link href={`/${lang}`}>{t.crumbs}</Link>
+              <span aria-hidden>/</span>
+              <span>{t.kicker}</span>
+            </nav>
+            <p className={styles.kicker}>{t.kicker}</p>
+            <h1 className={styles.title}>{t.title}</h1>
+            <p className={styles.lead}>{t.lead}</p>
+            <ul className={styles.assure}>
+              {t.assure.map((a) => (
+                <li key={a}>{a}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className={styles.body} data-own-spacing>
+          <div className={styles.shell}>
+            <ProductsCatalog lang={lang} />
+
+            <div id="faq" className={styles.faq}>
+              <h2>{t.faq}</h2>
+              <div className={styles.faqList}>
+                {STORE_FAQ[lang].map((item) => (
+                  <details key={item.q}>
+                    <summary>{item.q}</summary>
+                    <p>{item.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </SiteShell>
-      <FloatingActions />
     </>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SiteShell from "@/components/layout/SiteShell";
 import Link from "next/link";
 import BlogIndex from "@/components/blog/BlogIndex";
+import { PageHero, PageShell, Section } from "@/components/layout/PageShell";
 import { ARTICLES } from "@/lib/articles";
 import { SITE_URL, LOCALES, hreflangMap } from "@/lib/site";
 
@@ -107,55 +108,18 @@ export default async function BlogPage({
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <SiteShell>
-        {/* Header block — white identity, matching the rest of the site.
-            This page used to open on a near-black hero left over from the
-            previous palette, so the blog read as a different product. */}
-        <section data-own-spacing style={{ background: "#FFFFFF", borderBottom: "1px solid #EAEAE6" }}>
-          <div className="max-w-[1400px] mx-auto px-4 md:px-8" style={{ paddingBlock: "56px 44px" }}>
-            <nav
-              aria-label={isRTL ? "مسار التنقل" : "Breadcrumb"}
-              style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "22px", fontSize: "13px" }}
-            >
-              <Link href={`/${locale}`} style={{ color: "#6B6B6B", textDecoration: "none" }}>
-                {isRTL ? "الرئيسية" : locale === "fr" ? "Accueil" : "Home"}
-              </Link>
-              <span aria-hidden style={{ color: "#DCDCD6" }}>/</span>
-              <span style={{ color: "#111111", fontWeight: 600 }}>{data.kicker}</span>
-            </nav>
-            <p
-              style={{
-                fontFamily: "Space Mono, monospace",
-                fontSize: "12px",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "#8A6D00",
-                marginBottom: "14px",
-              }}
-            >
-              {data.kicker}
-            </p>
-            <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(32px, 5vw, 56px)",
-                fontWeight: 700,
-                color: "#111111",
-                lineHeight: 1.15,
-                marginBottom: "18px",
-                maxWidth: "18ch",
-              }}
-            >
-              {data.h1}
-            </h1>
-            <p style={{ color: "#6B6B6B", fontSize: "17px", lineHeight: 1.85, maxWidth: "62ch" }}>{data.lead}</p>
-          </div>
-        </section>
-
-        <section data-own-spacing style={{ background: "#FAFAF8", paddingBlock: "48px 80px" }}>
-          <div className="max-w-[1400px] mx-auto px-4 md:px-8">
+        <PageShell>
+          <PageHero
+            crumbs={[{ label: isRTL ? "الرئيسية" : locale === "fr" ? "Accueil" : "Home", href: `/${locale}` }, { label: data.kicker }]}
+            crumbsLabel={isRTL ? "مسار التنقل" : "Breadcrumb"}
+            kicker={data.kicker}
+            title={data.h1}
+            lead={data.lead}
+          />
+          <Section tight>
             <BlogIndex locale={locale} />
-          </div>
-        </section>
+          </Section>
+        </PageShell>
       </SiteShell>
     </>
   );

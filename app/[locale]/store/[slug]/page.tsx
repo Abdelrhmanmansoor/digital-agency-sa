@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SiteShell from "@/components/layout/SiteShell";
-import FloatingActions from "@/components/home/FloatingActions";
-import ProductDetailClient from "./ProductDetailClient";
+import ProductDetail from "./ProductDetail";
+import { toLang } from "@/components/store/product-copy";
 import { getProductBySlug, PRODUCTS } from "@/lib/store-data";
 import { SITE_URL, hreflangMap } from "@/lib/site";
 
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = isAr ? product.shortDescAr : product.shortDescEn;
   /* The suffix was a hard-coded Arabic string appended to English and French
      titles too, and the page carried neither canonical nor hreflang. */
-  const suffix = isAr ? "متجر الخدمات الرقمية" : locale === "fr" ? "Boutique de services" : "Digital Services Store";
+  const suffix = isAr ? "منتجات AM Design" : "AM Design";
   const canonical = `${SITE_URL}/${locale}/store/${product.slug}`;
 
   return {
@@ -95,7 +95,7 @@ export default async function ProductPage({ params }: Props) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: isAr ? "الرئيسية" : "Home", item: `${SITE_URL}/${locale}` },
-          { "@type": "ListItem", position: 2, name: isAr ? "المتجر" : "Store", item: `${SITE_URL}/${locale}/store` },
+          { "@type": "ListItem", position: 2, name: isAr ? "المنتجات" : "Products", item: `${SITE_URL}/${locale}/store` },
           { "@type": "ListItem", position: 3, name: isAr ? product.nameAr : product.nameEn },
         ],
       },
@@ -109,9 +109,8 @@ export default async function ProductPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <SiteShell>
-        <ProductDetailClient product={product} />
+        <ProductDetail product={product} lang={toLang(locale)} />
       </SiteShell>
-      <FloatingActions />
     </>
   );
 }

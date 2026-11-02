@@ -12,7 +12,7 @@
    ═══════════════════════════════════════════════════════════════ */
 
 .shell {
-  --ink: #14140f;
+  --ink: #0b0c0e;
   --ink-soft: #2a2922;
   --paper: #fbfaf7;
   --paper-deep: #f4f2ec;
@@ -21,7 +21,7 @@
   --line-strong: #d4cfc2;
   --muted: #6e6a61;
   --muted-soft: #8d8a82;
-  --accent: #f0b100;
+  --accent: #f2b705;
   --accent-ink: #8b6900;
 
   background: var(--paper);

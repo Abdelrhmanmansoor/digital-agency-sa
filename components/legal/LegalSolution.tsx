@@ -206,7 +206,7 @@ export default function LegalSolution() {
       <section className={styles.hero} data-own-spacing>
         <div className={`${styles.shell} ${styles.heroGrid}`}>
           <div>
-            <p className={`${styles.kicker} ${styles.kickerLight}`}>{t.kicker}</p>
+            <p className={styles.kicker}>{t.kicker}</p>
             <h1 className={styles.h1}>{t.h1}</h1>
             <p className={styles.heroLead}>{t.lead}</p>
             <div className={styles.heroActions}>

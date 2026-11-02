@@ -95,20 +95,19 @@ export const SOLUTION_LINKS: NavLeaf[] = [
   },
 ];
 
-/* ─── Primary navigation ─── */
+/* ─── Primary navigation ───
+   Four destinations. Solutions and the SIDRA theme still have their pages
+   and live in the footer; the header carries only what moves a visitor
+   toward a conversation. */
 export const PRIMARY_NAV: NavGroup[] = [
   {
     label: { ar: "الخدمات", en: "Services", fr: "Services" },
     href: "/#services",
     children: SERVICE_LINKS,
   },
-  {
-    label: { ar: "الحلول", en: "Solutions", fr: "Solutions" },
-    children: SOLUTION_LINKS,
-  },
-  { label: { ar: "المتجر", en: "Store", fr: "Boutique" }, href: "/store" },
   { label: { ar: "أعمالنا", en: "Work", fr: "Réalisations" }, href: "/#work" },
-  { label: { ar: "المدونة", en: "Blog", fr: "Blog" }, href: "/blog" },
+  { label: { ar: "المنتجات", en: "Products", fr: "Produits" }, href: "/store" },
+  { label: { ar: "المدونة", en: "Journal", fr: "Journal" }, href: "/blog" },
 ];
 
 /* ─── Footer-only link sets ─── */
@@ -121,12 +120,20 @@ export const COMPANY_LINKS: NavLeaf[] = [
 ];
 
 export const ACCOUNT_LINKS: NavLeaf[] = [
-  { href: "/store", label: { ar: "متجر الخدمات", en: "Services store", fr: "Boutique de services" } },
-  { href: "/store/cart", label: { ar: "سلة المشتريات", en: "Cart", fr: "Panier" } },
+  { href: "/store", label: { ar: "كل المنتجات", en: "All products", fr: "Tous les produits" } },
   { href: "/dashboard", label: { ar: "بوابة العملاء", en: "Client portal", fr: "Espace client" } },
   { href: "/dashboard/orders", label: { ar: "متابعة الطلبات", en: "Track orders", fr: "Suivi des commandes" } },
 ];
 
 export const LEGAL_LINKS: NavLeaf[] = [
   { href: "/policy", label: { ar: "الشروط وسياسة الخصوصية", en: "Terms & privacy", fr: "Conditions & confidentialité" } },
+];
+
+/* ─── Gulf market landing pages (/markets/<slug>) ─── */
+export const MARKET_LINKS: NavLeaf[] = [
+  { href: "/markets/uae", label: { ar: "متاجر الإمارات", en: "UAE stores", fr: "Boutiques EAU" } },
+  { href: "/markets/oman", label: { ar: "متاجر عُمان", en: "Oman stores", fr: "Boutiques Oman" } },
+  { href: "/markets/kuwait", label: { ar: "متاجر الكويت", en: "Kuwait stores", fr: "Boutiques Koweït" } },
+  { href: "/markets/qatar", label: { ar: "متاجر قطر", en: "Qatar stores", fr: "Boutiques Qatar" } },
+  { href: "/markets/bahrain", label: { ar: "متاجر البحرين", en: "Bahrain stores", fr: "Boutiques Bahreïn" } },
 ];
