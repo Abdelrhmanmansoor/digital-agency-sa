@@ -116,101 +116,106 @@ export default function SiteFooter() {
 
   return (
     <footer className={styles.root}>
-      {/* ── Conversion card: the same sky as the banner, set on the night
-          floor, so the last thing on every page is the brand's first image. ── */}
-      <section className={styles.cta} data-own-spacing>
-        <div className={styles.ctaCard}>
-          <div className={styles.ctaCopy}>
-            <p className={styles.ctaKicker}>{t.kicker}</p>
-            <h2 className={styles.ctaTitle}>{t.title}</h2>
-            <div className={styles.ctaActions}>
-              <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                  <path d={WA_PATH} />
-                </svg>
-                {t.primary}
-              </a>
-              <Link href={href("/store")} className={styles.ctaGhost}>
-                {t.secondary}
-              </Link>
-            </div>
+      {/* ── The sky returns: the page fades into the same clouds the banner
+          opened with, and the last call to action sits in the open sky. ── */}
+      <section className={styles.sky} data-own-spacing>
+        <div className={styles.skyInner}>
+          <p className={styles.kicker}>
+            <span aria-hidden />
+            {t.kicker}
+          </p>
+          <h2 className={styles.title}>{t.title}</h2>
+          <div className={styles.actions}>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                <path d={WA_PATH} />
+              </svg>
+              {t.primary}
+            </a>
+            <Link href={href("/store")} className={styles.ghost}>
+              {t.secondary}
+            </Link>
           </div>
-          <ul className={styles.tiles}>
+          <ul className={styles.contact}>
             <li>
-              <span>{t.phone}</span>
-              <a href={whatsapp} target="_blank" rel="noopener noreferrer" dir="ltr">
-                {AGENCY_INFO.phone}
+              <a href={whatsapp} target="_blank" rel="noopener noreferrer">
+                <small>{t.phone}</small>
+                <b dir="ltr">{AGENCY_INFO.phone}</b>
               </a>
             </li>
             <li>
-              <span>{t.email}</span>
-              <a href={`mailto:${AGENCY_INFO.email}`}>{AGENCY_INFO.email}</a>
+              <a href={`mailto:${AGENCY_INFO.email}`}>
+                <small>{t.email}</small>
+                <b>{AGENCY_INFO.email}</b>
+              </a>
             </li>
             <li>
-              <span>{t.location}</span>
-              <b>{location}</b>
+              <span>
+                <small>{t.location}</small>
+                <b>{location}</b>
+              </span>
             </li>
           </ul>
         </div>
       </section>
 
-      {/* ── Directory ── */}
-      <div className={styles.main}>
-        <div className={styles.brand}>
-          <Image src="/logo.png" alt="AM Design" width={240} height={86} sizes="140px" style={{ width: 140, height: "auto" }} />
-          <p className={styles.brandText}>{t.description}</p>
-          <div className={styles.social}>
-            {SOCIAL.filter((x) => x.href).map((x) => (
-              <a key={x.name} href={x.href} target="_blank" rel="noopener noreferrer" aria-label={x.name}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                  <path d={x.path} />
-                </svg>
-              </a>
-            ))}
+      {/* ── Directory: one white panel on the cream floor ── */}
+      <div className={styles.floor}>
+        <div className={styles.panel}>
+          <div className={styles.brand}>
+            <Image src="/logo-ink.png" alt="AM Design" width={240} height={86} sizes="140px" style={{ width: 140, height: "auto" }} />
+            <p className={styles.brandText}>{t.description}</p>
+            <div className={styles.social}>
+              {SOCIAL.filter((x) => x.href).map((x) => (
+                <a key={x.name} href={x.href} target="_blank" rel="noopener noreferrer" aria-label={x.name}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d={x.path} />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className={styles.cols}>
+            <Column title={t.services} links={SERVICE_LINKS} />
+            <Column title={t.company} links={COMPANY_LINKS} />
+            <Column title={t.solutions} links={[...SOLUTION_LINKS, ...ACCOUNT_LINKS]} />
+            <Column title={t.markets} links={MARKET_LINKS} />
           </div>
         </div>
 
-        <div className={styles.cols}>
-          <Column title={t.services} links={SERVICE_LINKS} />
-          <Column title={t.company} links={COMPANY_LINKS} />
-          <Column title={t.solutions} links={[...SOLUTION_LINKS, ...ACCOUNT_LINKS]} />
-          <Column title={t.markets} links={MARKET_LINKS} />
-        </div>
-      </div>
-
-      {/* ── Assurances ── */}
-      <ul className={styles.trust}>
-        {t.trust.map((point, i) => (
-          <li key={point}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <path d={TRUST_ICONS[i] ?? TRUST_ICONS[0]} />
-            </svg>
-            {point}
-          </li>
-        ))}
-      </ul>
-
-      {/* ── Signature wordmark, cropped by the floor ── */}
-      <div className={styles.signature} aria-hidden>
-        <Image src="/logo.png" alt="" width={1600} height={572} sizes="(max-width: 1240px) 92vw, 1160px" />
-      </div>
-
-      <div className={styles.bottom}>
-        <span>
-          © {new Date().getFullYear()} {AGENCY_INFO.name}. {t.rights}.
-        </span>
-        <div className={styles.bottomLinks}>
-          {LEGAL_LINKS.map((leaf) => (
-            <Link key={leaf.href} href={href(leaf.href)}>
-              {pick(leaf.label, locale)}
-            </Link>
+        <ul className={styles.trust}>
+          {t.trust.map((point, i) => (
+            <li key={point}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d={TRUST_ICONS[i] ?? TRUST_ICONS[0]} />
+              </svg>
+              {point}
+            </li>
           ))}
-          <div className={styles.langs}>
-            {LOCALES.map((loc) => (
-              <Link key={loc.code} href={localeHref(loc.code)} lang={loc.code} hrefLang={loc.code} aria-current={locale === loc.code ? "true" : undefined}>
-                {loc.label}
+        </ul>
+
+        {/* ── The wordmark, set at full width and cut by the floor ── */}
+        <div className={styles.signature} aria-hidden>
+          <Image src="/logo-ink.png" alt="" width={1600} height={572} sizes="(max-width: 1240px) 92vw, 1160px" />
+        </div>
+
+        <div className={styles.bottom}>
+          <span>
+            © {new Date().getFullYear()} {AGENCY_INFO.name}. {t.rights}.
+          </span>
+          <div className={styles.bottomLinks}>
+            {LEGAL_LINKS.map((leaf) => (
+              <Link key={leaf.href} href={href(leaf.href)}>
+                {pick(leaf.label, locale)}
               </Link>
             ))}
+            <div className={styles.langs}>
+              {LOCALES.map((loc) => (
+                <Link key={loc.code} href={localeHref(loc.code)} lang={loc.code} hrefLang={loc.code} aria-current={locale === loc.code ? "true" : undefined}>
+                  {loc.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>
