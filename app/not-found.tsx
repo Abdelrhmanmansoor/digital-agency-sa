@@ -23,7 +23,7 @@ export default function RootNotFound() {
       lang="ar"
       style={{
         minHeight: "100dvh",
-        background: "#FFFFFF",
+        background: "linear-gradient(180deg, #cfe9f5 0%, #fbfaf7 70%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -34,7 +34,7 @@ export default function RootNotFound() {
     >
       <p
         style={{
-          fontFamily: "Space Mono, monospace",
+          
           fontSize: "13px",
           letterSpacing: "0.14em",
           textTransform: "uppercase",
@@ -70,10 +70,10 @@ export default function RootNotFound() {
               alignItems: "center",
               minHeight: "48px",
               padding: "0 26px",
-              background: code === "ar" ? "#F0B100" : "#FFFFFF",
-              border: code === "ar" ? "1px solid #F0B100" : "1px solid #EAEAE6",
-              borderRadius: "10px",
-              color: "#111111",
+              background: code === "ar" ? "#0B0C0E" : "#FFFFFF",
+              border: code === "ar" ? "1px solid #0B0C0E" : "1px solid #E8E4DA",
+              borderRadius: "999px",
+              color: code === "ar" ? "#FFFFFF" : "#0B0C0E",
               fontWeight: 700,
               fontSize: "15px",
               textDecoration: "none",

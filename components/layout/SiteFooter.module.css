@@ -1,201 +1,126 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   SITE FOOTER
-   Treated as the last conversion surface on every page, not as the place
-   where the page stops. The dark band at the top carries a single offer
-   and a single primary action; everything below it is navigation.
+   SITE FOOTER — night ink, khatam lattice, signature wordmark
    ═══════════════════════════════════════════════════════════════════════ */
-.root { background: var(--ink); color: #fff; }
-
-/* ── Final CTA band ── */
-.cta {
+.root {
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--night);
+  background-image:
+    radial-gradient(80% 50% at 50% 0%, rgba(242, 183, 5, 0.08), transparent 70%),
+    var(--pattern-khatam);
+  color: #fff;
 }
-/* A single soft warm wash behind the headline. One gradient, not five. */
-.cta::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 50%;
-  top: -40%;
-  width: 780px;
-  height: 780px;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(240, 177, 0, 0.16) 0%, transparent 62%);
-  pointer-events: none;
-}
-.ctaInner {
-  position: relative;
-  max-width: var(--container);
+
+/* ── CTA card: sits half over the page above ── */
+.cta { padding: clamp(56px, 8vw, 96px) var(--gutter) 0; }
+.ctaCard {
+  max-width: var(--shell);
   margin-inline: auto;
-  padding: clamp(56px, 8vw, 96px) var(--gutter);
   display: grid;
   gap: 28px;
-  justify-items: center;
-  text-align: center;
+  align-items: end;
+  padding: clamp(28px, 5vw, 56px);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(120% 140% at 0% 100%, rgba(242, 183, 5, 0.16), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
 }
-.ctaKicker {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--yellow);
-}
+@media (min-width: 900px) { .ctaCard { grid-template-columns: 1.4fr auto; } }
+
+.ctaKicker { font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--yellow); margin-bottom: 14px; }
 .ctaTitle {
   color: #fff;
-  font-size: clamp(30px, 4.6vw, 54px);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  max-width: 18ch;
-  text-wrap: balance;
+  font-size: clamp(26px, 3.6vw, 42px);
+  font-weight: 600;
+  line-height: 1.3;
+  max-width: 22ch;
 }
-.ctaBody {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: clamp(15px, 1.5vw, 18px);
-  line-height: 1.75;
-  max-width: 52ch;
-}
-.ctaActions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-.ctaPrimary,
-.ctaSecondary {
+.ctaActions { display: flex; flex-wrap: wrap; gap: 10px; }
+.ctaGhost {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  min-height: 52px;
-  padding: 0 28px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 800;
+  min-height: 50px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
   text-decoration: none;
-  transition: transform var(--dur-2) var(--ease-standard), background-color var(--dur-2) var(--ease-standard), box-shadow var(--dur-2) var(--ease-standard);
+  transition: border-color 0.2s, background 0.2s;
 }
-.ctaPrimary { background: var(--yellow); color: #111; }
-.ctaPrimary:hover { background: #FFC21F; transform: translateY(-2px); box-shadow: 0 14px 32px rgba(240, 177, 0, 0.24); }
-.ctaSecondary { background: rgba(255, 255, 255, 0.07); color: #fff; border: 1px solid rgba(255, 255, 255, 0.24); }
-.ctaSecondary:hover { background: rgba(255, 255, 255, 0.13); transform: translateY(-2px); }
-.ctaPrimary:active, .ctaSecondary:active { transform: translateY(0); }
-.ctaNote { font-size: 13.5px; color: rgba(255, 255, 255, 0.52); }
+.ctaGhost:hover { border-color: #fff; background: rgba(255, 255, 255, 0.06); }
 
-/* ── Link columns ── */
+/* ── Columns ── */
 .main {
-  max-width: var(--container);
+  max-width: var(--shell);
   margin-inline: auto;
-  padding: clamp(48px, 6vw, 72px) var(--gutter);
+  padding: clamp(56px, 7vw, 88px) var(--gutter) 40px;
   display: grid;
-  grid-template-columns: 1.5fr repeat(4, 1fr);
-  gap: 40px 32px;
+  gap: 40px 28px;
+  grid-template-columns: 1fr 1fr;
 }
-@media (max-width: 1080px) { .main { grid-template-columns: 1fr 1fr 1fr; } .brand { grid-column: 1 / -1; } }
-@media (max-width: 620px) { .main { grid-template-columns: 1fr 1fr; gap: 32px 20px; } }
+@media (min-width: 1000px) { .main { grid-template-columns: 1.4fr 1.1fr 0.9fr 1fr 0.9fr 1.1fr; } }
 
-.brand { max-width: 360px; }
-.brandLogo { filter: brightness(0) invert(1); opacity: 0.94; margin-bottom: 16px; }
-.brandText { color: rgba(255, 255, 255, 0.6); font-size: 14.5px; line-height: 1.85; margin-bottom: 22px; }
+.brand { grid-column: 1 / -1; }
+@media (min-width: 1000px) { .brand { grid-column: auto; } }
+.brandText { margin-top: 18px; max-width: 34ch; font-size: 14px; line-height: 1.85; color: rgba(255, 255, 255, 0.6); }
 
-.social { display: flex; gap: 9px; }
-.socialLink {
-  width: 42px;
-  height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 11px;
-  color: rgba(255, 255, 255, 0.66);
-  transition: color var(--dur-2) var(--ease-standard), border-color var(--dur-2) var(--ease-standard), background-color var(--dur-2) var(--ease-standard);
-}
-.socialLink:hover { color: #111; background: var(--yellow); border-color: var(--yellow); }
+.trust { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 10px; }
+.trust li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255, 255, 255, 0.78); }
+.trust li span { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
 
-.colTitle {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
-  margin-bottom: 16px;
-}
-.col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-.colLink {
-  display: block;
-  padding: 7px 0;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 14.5px;
-  text-decoration: none;
-  transition: color var(--dur-2) var(--ease-standard);
-}
+.colTitle { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); margin-bottom: 18px; }
+.col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.colLink { font-size: 14px; color: rgba(255, 255, 255, 0.82); text-decoration: none; transition: color 0.2s; }
 .colLink:hover { color: var(--yellow); }
 
-.contactItem { display: grid; gap: 3px; margin-bottom: 16px; }
-.contactLabel { font-size: 11.5px; color: rgba(255, 255, 255, 0.4); }
-.contactValue { color: #fff; font-size: 14.5px; text-decoration: none; transition: color var(--dur-2) var(--ease-standard); word-break: break-word; }
-.contactValue:hover { color: var(--yellow); }
-.mono { font-family: var(--font-mono); font-weight: 700; font-size: 15px; }
+.contact { display: grid; gap: 14px; margin: 0; }
+.contact dt { font-size: 12px; color: rgba(255, 255, 255, 0.45); margin-bottom: 2px; }
+.contact dd { margin: 0; font-size: 14px; color: #fff; overflow-wrap: anywhere; }
+.contact a { color: inherit; text-decoration: none; }
+.contact a:hover { color: var(--yellow); }
 
-/* ── Trust row ── */
-.trust {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
+.social { display: flex; gap: 8px; margin-top: 20px; }
+.social a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.85);
+  transition: border-color 0.2s, color 0.2s;
 }
-.trustInner {
-  max-width: var(--container);
+.social a:hover { border-color: var(--yellow); color: var(--yellow); }
+
+/* ── Signature ── */
+.signature {
+  max-width: var(--shell);
+  margin: 0 auto -6%;
+  padding-inline: var(--gutter);
+  opacity: 0.09;
+  -webkit-mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
+  mask-image: linear-gradient(180deg, #000 30%, transparent 92%);
+  pointer-events: none;
+}
+.signature img { width: 100%; height: auto; display: block; }
+
+/* ── Bottom ── */
+.bottom {
+  position: relative;
+  max-width: var(--shell);
   margin-inline: auto;
-  padding: 22px var(--gutter);
+  padding: 22px var(--gutter) calc(22px + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  gap: 12px 24px;
   justify-content: space-between;
-  gap: 18px;
-}
-.trustPoints { display: flex; flex-wrap: wrap; gap: 10px 22px; }
-.trustPoint {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.64);
-}
-.trustPoint svg { color: var(--yellow); flex-shrink: 0; }
-.pays { display: flex; flex-wrap: wrap; gap: 8px; }
-.pay {
-  height: 30px;
-  min-width: 50px;
-  padding: 0 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 7px;
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-
-/* ── Bottom bar ── */
-.bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); }
-.bottomInner {
-  max-width: var(--container);
-  margin-inline: auto;
-  padding: 18px var(--gutter) calc(18px + env(safe-area-inset-bottom));
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px 20px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.48);
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.5);
 }
 .bottomLinks { display: flex; flex-wrap: wrap; gap: 18px; }
-.bottomLink { color: rgba(255, 255, 255, 0.62); text-decoration: none; transition: color var(--dur-2) var(--ease-standard); }
-.bottomLink:hover { color: var(--yellow); }
-.bottomLink[aria-current="true"] { color: #fff; font-weight: 700; }
-
-@media (max-width: 767px) {
-  /* #locale-root already reserves the floating action bar's height, so the
-     footer only needs its own breathing room here. */
-  .bottomInner { padding-bottom: 22px; }
-}
+.bottomLinks a { color: rgba(255, 255, 255, 0.6); text-decoration: none; }
+.bottomLinks a:hover, .bottomLinks a[aria-current="true"] { color: #fff; }

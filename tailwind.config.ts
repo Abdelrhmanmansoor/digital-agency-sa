@@ -9,10 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#111111",
-        "royal-black": "#111111",
+        ink: "#0B0C0E",
+        "royal-black": "#0B0C0E",
         brand: {
-          DEFAULT: "#F0B100",
+          DEFAULT: "#F2B705",
           dark: "#D89E00",
           deep: "#8A6D00",
           tint: "rgba(240,177,0,0.10)",
@@ -20,7 +20,7 @@ const config: Config = {
         gold: "#B78A00",
         "gold-light": "#F3DFA0",
         "gold-dark": "#8A6D00",
-        cream: "#FAFAF8",
+        cream: "#FBFAF7",
         "cream-dark": "#F2F2F0",
         "warm-gray": "#6B6B6B",
         "dark-gray": "#333333",
@@ -29,11 +29,11 @@ const config: Config = {
       /* لا بد أن تطابق متغيّرات globals.css: أي فرق هنا يجعل عنصرًا يحمل
          className="font-display" يتجاوز خط العناوين بصمت. */
       fontFamily: {
-        display: ["ThmanyahDisplay", "ThmanyahSans", "Zain", "serif"],
-        body: ["ThmanyahSans", "Zain", "sans-serif"],
+        display: ["var(--font-plex)", "sans-serif"],
+        body: ["var(--font-plex)", "sans-serif"],
         mono: ["Space Mono", "monospace"],
-        arabic: ["ThmanyahSans", "Zain", "sans-serif"],
-        "arabic-display": ["ThmanyahDisplay", "ThmanyahSans", "Zain", "serif"],
+        arabic: ["var(--font-plex)", "sans-serif"],
+        "arabic-display": ["var(--font-plex)", "sans-serif"],
       },
       borderRadius: {
         DEFAULT: "10px",

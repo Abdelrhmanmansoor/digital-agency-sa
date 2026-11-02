@@ -43,11 +43,16 @@ const nextConfig: NextConfig = {
       "2": "snapchat-tiktok-ads-saudi",
       "3": "brand-identity-for-stores",
     };
-    return Object.entries(map).map(([from, to]) => ({
-      source: `/:locale(ar|en|fr)/blog/${from}`,
-      destination: `/:locale/blog/${to}`,
-      permanent: true,
-    }));
+    return [
+      ...Object.entries(map).map(([from, to]) => ({
+        source: `/:locale(ar|en|fr)/blog/${from}`,
+        destination: `/:locale/blog/${to}`,
+        permanent: true,
+      })),
+      /* The store no longer has a cart or checkout: every order is placed on
+         WhatsApp from the product page. Old links land on the catalogue. */
+      { source: "/:locale(ar|en|fr)/store/:path(cart|checkout)/:rest*", destination: "/:locale/store", permanent: true },
+    ];
   },
 
   /* Client zones are static pages under public/clients/<slug>/index.html.

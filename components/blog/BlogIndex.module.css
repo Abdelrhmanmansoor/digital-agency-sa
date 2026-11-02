@@ -1,0 +1,83 @@
+/* Journal index — the same pill filters and rounded cards as the products
+   page, so the two read as one site. The first card of every view is set
+   large as the lead story. */
+.filters {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 6px;
+  margin-bottom: 22px;
+  border-radius: 999px;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  width: fit-content;
+  max-width: 100%;
+  scrollbar-width: none;
+}
+.filters::-webkit-scrollbar { display: none; }
+.filters button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.filters button span { font-size: 11.5px; padding: 1px 7px; border-radius: 999px; background: rgba(11, 12, 14, 0.06); }
+.filters button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.filters button[aria-pressed="true"] span { background: rgba(255, 255, 255, 0.16); }
+
+.blurb { color: var(--muted); font-size: 15px; line-height: 1.85; max-width: 68ch; margin: 0 0 6px; }
+.count { font-size: 13px; color: var(--muted); margin: 0 0 22px; }
+
+.grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 700px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+.card {
+  display: block;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s, border-color 0.35s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--border-mid); }
+.card article { height: 100%; display: flex; flex-direction: column; gap: 12px; padding: 26px 24px; }
+
+/* Lead story */
+@media (min-width: 1100px) {
+  .card:first-child { grid-column: span 2; }
+  .card:first-child article {
+    padding: 34px 32px;
+    background-color: var(--night);
+    background-image: radial-gradient(90% 90% at 100% 0%, rgba(242, 183, 5, 0.16), transparent 60%), var(--pattern-khatam);
+    border-radius: inherit;
+    color: #fff;
+  }
+  .card:first-child h2 { color: #fff; font-size: 30px; max-width: 22ch; }
+  .card:first-child p { color: rgba(255, 255, 255, 0.68); font-size: 15.5px; max-width: 56ch; }
+  .card:first-child .top { border-color: rgba(255, 255, 255, 0.12); }
+  .card:first-child .cluster, .card:first-child .go { color: var(--yellow); }
+  .card:first-child .top time, .card:first-child .foot { color: rgba(255, 255, 255, 0.5); }
+}
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.cluster { font-size: 12px; font-weight: 600; color: var(--yellow-deep); }
+.top time { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.card h2 { font-size: 20px; font-weight: 600; line-height: 1.45; margin: 0; }
+.card p { color: var(--muted); font-size: 14.5px; line-height: 1.8; margin: 0; }
+.foot { margin-top: auto; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: var(--muted); }
+.go { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--bg-card2); color: var(--ink); font-size: 14px; transition: background 0.2s, color 0.2s; }
+.card:hover .go { background: var(--ink); color: #fff; }
+.card:first-child:hover .go { background: var(--yellow); color: var(--ink); }

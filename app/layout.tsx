@@ -1,6 +1,18 @@
 import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
+
+/* One family for the whole site, the way private banks set their pages:
+   IBM Plex Sans Arabic carries Arabic and Latin with matched metrics, so a
+   price, a heading and a paragraph all sit on the same rhythm. Self-hosted by
+   next/font, so there is no Google Fonts request on the critical path. */
+const plex = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-plex",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,7 +46,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#111111",
+  themeColor: "#0B0C0E",
   colorScheme: "light",
 };
 
@@ -47,13 +59,8 @@ const SET_LANG = `(function(){try{var m=location.pathname.match(/^\\/(ar|en|fr)(
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
+    <html lang="ar" dir="rtl" className={plex.variable} suppressHydrationWarning>
       <head>
-        {/* The stylesheet pulls Zain and Space Mono from Google Fonts via
-            @import; without these the browser cannot open the connection
-            until the CSS has already parsed. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script dangerouslySetInnerHTML={{ __html: SET_LANG }} />
       </head>
       <body>{children}</body>
