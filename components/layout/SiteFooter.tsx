@@ -20,6 +20,7 @@ const copy = {
     services: "الخدمات",
     solutions: "حلول ومنتجات",
     markets: "أسواق الخليج",
+    pay: "طرق الدفع المتاحة",
     contact: "تواصل",
     phone: "واتساب",
     email: "البريد",
@@ -38,6 +39,7 @@ const copy = {
     services: "Services",
     solutions: "Solutions & products",
     markets: "Gulf markets",
+    pay: "Ways to pay",
     contact: "Contact",
     phone: "WhatsApp",
     email: "Email",
@@ -56,6 +58,7 @@ const copy = {
     services: "Services",
     solutions: "Solutions & produits",
     markets: "Marchés du Golfe",
+    pay: "Moyens de paiement",
     contact: "Contact",
     phone: "WhatsApp",
     email: "E-mail",
@@ -80,6 +83,25 @@ const SOCIAL = [
   },
   { name: "X", href: AGENCY_INFO.social.twitter, path: "M18.24 2.25h3.31l-7.23 8.26 8.5 11.24H16.17l-4.71-6.23-5.4 6.23H2.74l7.73-8.83L1.25 2.25h6.83l4.71 6.23Zm-1.16 17.52h1.83L7.08 4.13H5.12Z" },
   { name: "TikTok", href: AGENCY_INFO.social.tiktok, path: "M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.88-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 1 0 6.33 6.34V8.69a8.19 8.19 0 0 0 4.83 1.56V6.8a4.84 4.84 0 0 1-1.06-.11Z" },
+];
+
+/* Every way a client can pay us. Logos are the issuers' own marks (Simple
+   Icons for the card networks and PayPal, the Barq app icon from its App
+   Store listing, the banks' and Western Union's files already in the repo);
+   mada is drawn as its two bars and wordmark. */
+const PAYMENTS: { name: string; src: string; wide?: boolean }[] = [
+  { name: "mada", src: "/payments/mada.svg", wide: true },
+  { name: "Visa", src: "/payments/visa.svg" },
+  { name: "Mastercard", src: "/payments/mastercard.svg" },
+  { name: "Apple Pay", src: "/payments/applepay.svg" },
+  { name: "STC Pay", src: "/payments/pm-stc-pay.png", wide: true },
+  { name: "Barq", src: "/payments/barq.png" },
+  { name: "PayPal", src: "/payments/paypal.svg" },
+  { name: "Western Union", src: "/payments/pm-western-union.png", wide: true },
+  { name: "Bank transfer", src: "/payments/bank-transfer.svg" },
+  { name: "Al Rajhi Bank", src: "/payments/pm-alrajhi.png", wide: true },
+  { name: "Alinma Bank", src: "/payments/pm-alinma.png", wide: true },
+  { name: "Bank Albilad", src: "/payments/pm-albilad.png", wide: true },
 ];
 
 /* Contract, phased payment, support — drawn as document, layers, headset. */
@@ -193,6 +215,19 @@ export default function SiteFooter() {
             </li>
           ))}
         </ul>
+
+        {/* ── Payment methods ── */}
+        <div className={styles.pay}>
+          <span className={styles.payLabel}>{t.pay}</span>
+          <ul>
+            {PAYMENTS.map((p) => (
+              <li key={p.name} data-wide={p.wide || undefined} title={p.name}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={p.src} alt={p.name} loading="lazy" decoding="async" />
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* ── The wordmark, set at full width and cut by the floor ── */}
         <div className={styles.signature} aria-hidden>

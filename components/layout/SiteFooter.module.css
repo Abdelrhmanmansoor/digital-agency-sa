@@ -134,6 +134,31 @@
 }
 .trust svg { flex-shrink: 0; color: var(--yellow-deep); }
 
+/* ── Payment methods ── */
+.pay {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px dashed rgba(11, 12, 14, 0.12);
+}
+.payLabel { font-size: 13px; font-weight: 600; color: var(--charcoal); }
+.pay ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.pay li {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 40px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(11, 12, 14, 0.07);
+}
+.pay li[data-wide] { width: 92px; }
+.pay img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
 /* ── Signature ── */
 .signature {
   margin: clamp(48px, 7vw, 88px) 0 -9%;
