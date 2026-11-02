@@ -68,8 +68,7 @@
    one thing per screen — never as a background wash.
 
    Type: IBM Plex Sans Arabic (next/font, see app/layout.tsx).
-   Pattern: an eight-point khatam lattice drawn as a single hairline
-   tile, used at a few percent on dark surfaces only.
+   Pattern: a 64px hairline grid, used at a few percent on dark surfaces.
    ═══════════════════════════════════════════════════════════════ */
 :root {
   /* Surfaces */
@@ -138,10 +137,10 @@
   --shadow:    0 10px 30px -12px rgba(11,12,14,0.12);
   --shadow-lg: 0 40px 80px -30px rgba(11,12,14,0.28);
 
-  /* Hairline khatam lattice. Stroke colour is set by the consumer via
-     `background-color` + mask, or used as-is on dark (white at 7%). */
-  --pattern-khatam: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.055' stroke-width='1'%3E%3Cpath d='M36 8 44 28 64 36 44 44 36 64 28 44 8 36 28 28Z'/%3E%3Cpath d='M16.2 16.2 36 22 55.8 16.2 50 36 55.8 55.8 36 50 16.2 55.8 22 36Z'/%3E%3Ccircle cx='36' cy='36' r='6'/%3E%3Cpath d='M0 0 8 8M72 0 64 8M0 72 8 64M72 72 64 64'/%3E%3C/g%3E%3C/svg%3E");
-  --pattern-khatam-ink: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%230B0C0E' stroke-opacity='.045' stroke-width='1'%3E%3Cpath d='M36 8 44 28 64 36 44 44 36 64 28 44 8 36 28 28Z'/%3E%3Cpath d='M16.2 16.2 36 22 55.8 16.2 50 36 55.8 55.8 36 50 16.2 55.8 22 36Z'/%3E%3Ccircle cx='36' cy='36' r='6'/%3E%3Cpath d='M0 0 8 8M72 0 64 8M0 72 8 64M72 72 64 64'/%3E%3C/g%3E%3C/svg%3E");
+  /* A 64px hairline grid, the quiet structure fintech surfaces use. The
+     light variant sits on dark sections, the ink one on ivory. */
+  --pattern-grid: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27%3E%3Cpath d=%27M64 0H0V64%27 fill=%27none%27 stroke=%27%23ffffff%27 stroke-opacity=%27.045%27/%3E%3C/svg%3E");
+  --pattern-grid-ink: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2764%27 height=%2764%27%3E%3Cpath d=%27M64 0H0V64%27 fill=%27none%27 stroke=%27%230B0C0E%27 stroke-opacity=%27.035%27/%3E%3C/svg%3E");
 
   /* Easing */
   --ease-custom:    cubic-bezier(0.4,0,0.2,1);

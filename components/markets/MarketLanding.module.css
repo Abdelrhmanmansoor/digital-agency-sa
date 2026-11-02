@@ -78,7 +78,7 @@
 .platform li::before { content: ""; position: absolute; inset-inline-start: 0; top: 0.6em; width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); }
 
 /* ── Setup (night) ── */
-.night { background-color: var(--night); background-image: radial-gradient(70% 50% at 50% 0%, rgba(242, 183, 5, 0.1), transparent 70%), var(--pattern-khatam); color: #fff; }
+.night { background-color: var(--night); background-image: radial-gradient(70% 50% at 50% 0%, rgba(242, 183, 5, 0.1), transparent 70%), var(--pattern-grid); color: #fff; }
 .night h2, .night h3 { color: #fff; }
 .night .kicker { color: var(--yellow); }
 .setup { display: grid; gap: 14px; }

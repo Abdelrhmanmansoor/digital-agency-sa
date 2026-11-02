@@ -189,7 +189,7 @@
   padding: 28px;
   border-radius: var(--radius-xl);
   background-color: var(--night);
-  background-image: radial-gradient(120% 70% at 100% 0%, rgba(242, 183, 5, 0.18), transparent 60%), var(--pattern-khatam);
+  background-image: radial-gradient(120% 70% at 100% 0%, rgba(242, 183, 5, 0.18), transparent 60%), var(--pattern-grid);
   color: #fff;
   box-shadow: var(--shadow-lg);
 }

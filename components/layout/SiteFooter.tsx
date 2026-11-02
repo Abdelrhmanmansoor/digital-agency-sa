@@ -82,6 +82,13 @@ const SOCIAL = [
   { name: "TikTok", href: AGENCY_INFO.social.tiktok, path: "M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-2.88-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 1 0 6.33 6.34V8.69a8.19 8.19 0 0 0 4.83 1.56V6.8a4.84 4.84 0 0 1-1.06-.11Z" },
 ];
 
+/* Contract, phased payment, support — drawn as document, layers, headset. */
+const TRUST_ICONS = [
+  "M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h4",
+  "M12 3 3 8l9 5 9-5zM3 13l9 5 9-5",
+  "M4 14v-2a8 8 0 0 1 16 0v2M4 14a2 2 0 0 0 2 2h1v-5H6a2 2 0 0 0-2 2zM20 14a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 2zM17 16v1a3 3 0 0 1-3 3h-2",
+];
+
 export default function SiteFooter() {
   const locale = useLocale();
   const pathname = usePathname();
@@ -105,86 +112,87 @@ export default function SiteFooter() {
     </nav>
   );
 
+  const location = locale === "en" ? AGENCY_INFO.addressEn : locale === "fr" ? AGENCY_INFO.addressFr : AGENCY_INFO.address;
+
   return (
     <footer className={styles.root}>
-      {/* ── Final conversion band ── */}
+      {/* ── Conversion card: the same sky as the banner, set on the night
+          floor, so the last thing on every page is the brand's first image. ── */}
       <section className={styles.cta} data-own-spacing>
         <div className={styles.ctaCard}>
           <div className={styles.ctaCopy}>
             <p className={styles.ctaKicker}>{t.kicker}</p>
             <h2 className={styles.ctaTitle}>{t.title}</h2>
+            <div className={styles.ctaActions}>
+              <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                  <path d={WA_PATH} />
+                </svg>
+                {t.primary}
+              </a>
+              <Link href={href("/store")} className={styles.ctaGhost}>
+                {t.secondary}
+              </Link>
+            </div>
           </div>
-          <div className={styles.ctaActions}>
-            <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="btn-gold">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d={WA_PATH} />
-              </svg>
-              {t.primary}
-            </a>
-            <Link href={href("/store")} className={styles.ctaGhost}>
-              {t.secondary}
-            </Link>
-          </div>
+          <ul className={styles.tiles}>
+            <li>
+              <span>{t.phone}</span>
+              <a href={whatsapp} target="_blank" rel="noopener noreferrer" dir="ltr">
+                {AGENCY_INFO.phone}
+              </a>
+            </li>
+            <li>
+              <span>{t.email}</span>
+              <a href={`mailto:${AGENCY_INFO.email}`}>{AGENCY_INFO.email}</a>
+            </li>
+            <li>
+              <span>{t.location}</span>
+              <b>{location}</b>
+            </li>
+          </ul>
         </div>
       </section>
 
-      {/* ── Columns ── */}
+      {/* ── Directory ── */}
       <div className={styles.main}>
         <div className={styles.brand}>
-          <Image src="/logo.png" alt="AM Design" width={240} height={86} sizes="128px" style={{ width: 128, height: "auto" }} />
+          <Image src="/logo.png" alt="AM Design" width={240} height={86} sizes="140px" style={{ width: 140, height: "auto" }} />
           <p className={styles.brandText}>{t.description}</p>
-          <ul className={styles.trust}>
-            {t.trust.map((point) => (
-              <li key={point}>
-                <span aria-hidden />
-                {point}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <Column title={t.services} links={SERVICE_LINKS} />
-        <Column title={t.company} links={COMPANY_LINKS} />
-        <Column title={t.solutions} links={[...SOLUTION_LINKS, ...ACCOUNT_LINKS]} />
-        <Column title={t.markets} links={MARKET_LINKS} />
-
-        <div className={styles.col}>
-          <h2 className={styles.colTitle}>{t.contact}</h2>
-          <dl className={styles.contact}>
-            <div>
-              <dt>{t.phone}</dt>
-              <dd>
-                <a href={whatsapp} target="_blank" rel="noopener noreferrer" dir="ltr">
-                  {AGENCY_INFO.phone}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt>{t.email}</dt>
-              <dd>
-                <a href={`mailto:${AGENCY_INFO.email}`}>{AGENCY_INFO.email}</a>
-              </dd>
-            </div>
-            <div>
-              <dt>{t.location}</dt>
-              <dd>{locale === "en" ? AGENCY_INFO.addressEn : locale === "fr" ? AGENCY_INFO.addressFr : AGENCY_INFO.address}</dd>
-            </div>
-          </dl>
           <div className={styles.social}>
-            {SOCIAL.filter((s) => s.href).map((s) => (
-              <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.name}>
+            {SOCIAL.filter((x) => x.href).map((x) => (
+              <a key={x.name} href={x.href} target="_blank" rel="noopener noreferrer" aria-label={x.name}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                  <path d={s.path} />
+                  <path d={x.path} />
                 </svg>
               </a>
             ))}
           </div>
         </div>
+
+        <div className={styles.cols}>
+          <Column title={t.services} links={SERVICE_LINKS} />
+          <Column title={t.company} links={COMPANY_LINKS} />
+          <Column title={t.solutions} links={[...SOLUTION_LINKS, ...ACCOUNT_LINKS]} />
+          <Column title={t.markets} links={MARKET_LINKS} />
+        </div>
       </div>
 
-      {/* ── Signature: the wordmark, set large and faded into the floor ── */}
+      {/* ── Assurances ── */}
+      <ul className={styles.trust}>
+        {t.trust.map((point, i) => (
+          <li key={point}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d={TRUST_ICONS[i] ?? TRUST_ICONS[0]} />
+            </svg>
+            {point}
+          </li>
+        ))}
+      </ul>
+
+      {/* ── Signature wordmark, cropped by the floor ── */}
       <div className={styles.signature} aria-hidden>
-        <Image src="/logo.png" alt="" width={1600} height={572} sizes="(max-width: 1240px) 90vw, 1100px" />
+        <Image src="/logo.png" alt="" width={1600} height={572} sizes="(max-width: 1240px) 92vw, 1160px" />
       </div>
 
       <div className={styles.bottom}>
@@ -197,11 +205,13 @@ export default function SiteFooter() {
               {pick(leaf.label, locale)}
             </Link>
           ))}
-          {LOCALES.map((loc) => (
-            <Link key={loc.code} href={localeHref(loc.code)} lang={loc.code} hrefLang={loc.code} aria-current={locale === loc.code ? "true" : undefined}>
-              {loc.label}
-            </Link>
-          ))}
+          <div className={styles.langs}>
+            {LOCALES.map((loc) => (
+              <Link key={loc.code} href={localeHref(loc.code)} lang={loc.code} hrefLang={loc.code} aria-current={locale === loc.code ? "true" : undefined}>
+                {loc.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

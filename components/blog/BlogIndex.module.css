@@ -61,7 +61,7 @@
   .card:first-child article {
     padding: 34px 32px;
     background-color: var(--night);
-    background-image: radial-gradient(90% 90% at 100% 0%, rgba(242, 183, 5, 0.16), transparent 60%), var(--pattern-khatam);
+    background-image: radial-gradient(90% 90% at 100% 0%, rgba(242, 183, 5, 0.16), transparent 60%), var(--pattern-grid);
     border-radius: inherit;
     color: #fff;
   }
