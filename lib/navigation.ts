@@ -93,6 +93,12 @@ export const SOLUTION_LINKS: NavLeaf[] = [
     label: { ar: "ثيم سِدرة لمنصة سلة", en: "SIDRA theme for Salla", fr: "Thème SIDRA pour Salla" },
     hint: { ar: "منتجنا الخاص: 46 مكوّنًا وتوثيق كامل", en: "Our own product: 46 blocks, fully documented", fr: "Notre produit : 46 blocs documentés" },
   },
+  {
+    href: "/salla-theme-coupons",
+    label: { ar: "كود خصم ثيمات سلة", en: "Salla theme coupons", fr: "Codes promo thèmes Salla" },
+    hint: { ar: "خصم 20% على 14 ثيم مدفوع", en: "20% off 14 paid themes", fr: "20 % sur 14 thèmes payants" },
+    badge: { ar: "خصم 20%", en: "20% off", fr: "-20 %" },
+  },
 ];
 
 /* ─── Primary navigation ───

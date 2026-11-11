@@ -13,6 +13,7 @@ const ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.S
   { path: "/store", priority: 0.9, changeFrequency: "weekly" },
   { path: "/solutions/legal", priority: 0.9, changeFrequency: "monthly" },
   { path: "/sidra-theme", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/salla-theme-coupons", priority: 0.9, changeFrequency: "weekly" },
   { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
   ...MARKETS.map((m) => ({ path: `/markets/${m.slug}`, priority: 0.9, changeFrequency: "monthly" as const })),
   { path: "/policy", priority: 0.3, changeFrequency: "yearly" },
