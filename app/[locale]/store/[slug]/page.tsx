@@ -51,8 +51,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "AM Design",
       type: "website",
       locale: isAr ? "ar_SA" : locale === "fr" ? "fr_FR" : "en_US",
+      images: [{ url: `${SITE_URL}/og.png`, width: 1200, height: 630, alt: title }],
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: { card: "summary_large_image", title, description, images: [`${SITE_URL}/og.png`] },
   };
 }
 
@@ -74,6 +75,11 @@ export default async function ProductPage({ params }: Props) {
         name: isAr ? product.nameAr : product.nameEn,
         description: isAr ? product.shortDescAr : product.shortDescEn,
         sku: product.id,
+        url: `${SITE_URL}/${locale}/store/${product.slug}`,
+        /* Google requires `image` for a Product to be eligible for product
+           snippets; the store has no per-product photography yet, so the
+           brand card stands in until it does. */
+        image: [product.image ? `${SITE_URL}${product.image}` : `${SITE_URL}/og.png`],
         brand: { "@type": "Brand", name: "AM Design" },
         /* No aggregateRating. It used to be emitted from two hard-coded
            numbers in store-data.ts with no review system anywhere behind
@@ -89,6 +95,7 @@ export default async function ProductPage({ params }: Props) {
             ? "https://schema.org/InStock"
             : "https://schema.org/OutOfStock",
           url: `${SITE_URL}/${locale}/store/${product.slug}`,
+          seller: { "@type": "Organization", name: "AM Design", url: SITE_URL },
         },
       },
       {

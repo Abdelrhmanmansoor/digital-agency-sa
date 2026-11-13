@@ -82,6 +82,16 @@ const copy = {
     auditCta: "اطلب التحليل المجاني",
     faqKicker: "الأسئلة الشائعة",
     faqTitle: "إجابات مباشرة قبل أن نبدأ.",
+    trust: ["عقد وفاتورة رسمية", "دفع على مراحل", "رد خلال ساعة"],
+    readyKicker: "جاهز للبيع من أول يوم",
+    readyTitle: "نسلّمك متجرًا مربوطًا بكل ما يحتاجه عميلك ليدفع.",
+    readyLead: "الدفع والتقسيط والشحن والتتبع — نفعّلها ونختبرها بطلب حقيقي قبل التسليم، لا نتركها لك بعد الإطلاق.",
+    readyPay: ["الدفع", "كل وسائل الدفع التي يثق بها العميل السعودي، مفعّلة ومختبرة."],
+    readyBnpl: ["التقسيط", "4", "دفعات", "نفعّل تمارا وتابي في متجرك، فيكمل عميلك الطلب الكبير بدل أن يؤجله."],
+    readyShip: ["الشحن", "شركات شحن مربوطة وأسعار مضبوطة حسب المدينة والوزن."],
+    readyTrack: ["التتبع والتسويق", "بكسلات الإعلانات وتحليلات جوجل وربط Merchant Center، لتعرف من أين يأتي كل طلب."],
+    ctaTitle: "متجرك القادم يبدأ برسالة.",
+    ctaBody: "أرسل فكرتك أو رابط متجرك الحالي، ونرد عليك بنطاق وسعر ومدة واضحة خلال ساعة في أوقات العمل.",
     hello: "مرحبًا، أريد استشارة بخصوص مشروعي.",
     audit: "مرحبًا، أريد التحليل المجاني لمتجري. رابط المتجر: ",
     orderMsg: "مرحبًا، أريد طلب خدمة: ",
@@ -144,6 +154,16 @@ const copy = {
     auditCta: "Request the free audit",
     faqKicker: "FAQ",
     faqTitle: "Straight answers before we begin.",
+    trust: ["Contract and invoice", "Phased payments", "Reply within the hour"],
+    readyKicker: "Ready to sell on day one",
+    readyTitle: "A store handed over wired to everything your customer needs to pay.",
+    readyLead: "Payments, instalments, shipping and tracking — switched on and tested with a real order before handover, not left for you after launch.",
+    readyPay: ["Payments", "Every method Saudi shoppers trust, live and tested."],
+    readyBnpl: ["Instalments", "4", "payments", "We switch on Tamara and Tabby, so customers complete the big order instead of postponing it."],
+    readyShip: ["Shipping", "Carriers connected and rates set by city and weight."],
+    readyTrack: ["Tracking and marketing", "Ad pixels, Google Analytics and Merchant Center, so you know where every order comes from."],
+    ctaTitle: "Your next store starts with a message.",
+    ctaBody: "Send your idea or your current store link; we reply with a clear scope, price and timeline within the hour during working hours.",
     hello: "Hello, I would like a consultation about my project.",
     audit: "Hello, I would like the free store audit. Store URL: ",
     orderMsg: "Hello, I would like to order: ",
@@ -206,6 +226,16 @@ const copy = {
     auditCta: "Demander l’audit gratuit",
     faqKicker: "FAQ",
     faqTitle: "Des réponses claires avant de commencer.",
+    trust: ["Contrat et facture", "Paiement par étapes", "Réponse en une heure"],
+    readyKicker: "Prête à vendre dès le premier jour",
+    readyTitle: "Une boutique livrée, reliée à tout ce dont votre client a besoin pour payer.",
+    readyLead: "Paiement, paiement fractionné, livraison et suivi — activés et testés avec une vraie commande avant la livraison.",
+    readyPay: ["Paiement", "Tous les moyens de paiement de confiance en Arabie saoudite, actifs et testés."],
+    readyBnpl: ["Paiement fractionné", "4", "versements", "Nous activons Tamara et Tabby : vos clients finalisent la grosse commande au lieu de la reporter."],
+    readyShip: ["Livraison", "Transporteurs connectés, tarifs réglés par ville et par poids."],
+    readyTrack: ["Suivi et marketing", "Pixels publicitaires, Google Analytics et Merchant Center, pour savoir d’où vient chaque commande."],
+    ctaTitle: "Votre prochaine boutique commence par un message.",
+    ctaBody: "Envoyez votre idée ou le lien de votre boutique ; réponse claire avec périmètre, prix et délai en une heure, aux heures ouvrées.",
     hello: "Bonjour, je souhaite une consultation pour mon projet.",
     audit: "Bonjour, je souhaite l’audit gratuit. URL de la boutique : ",
     orderMsg: "Bonjour, je souhaite commander : ",
@@ -252,6 +282,18 @@ const FLAGSHIP = [
     },
   },
 ] as const;
+
+/* What a handed-over store is already wired to. Payment marks are the
+   site's own files; carriers and tools are set as words, not borrowed logos. */
+const PAY_LOGOS = [
+  { name: "mada", src: "/payments/mada.svg" },
+  { name: "Visa", src: "/payments/visa.svg" },
+  { name: "Mastercard", src: "/payments/mastercard.svg" },
+  { name: "Apple Pay", src: "/payments/applepay.svg" },
+  { name: "STC Pay", src: "/payments/pm-stc-pay.png" },
+];
+const CARRIERS = ["SMSA", "Aramex", "J&T", "SPL", "RedBox"];
+const TRACKING = ["GA4", "Meta Pixel", "Snap Pixel", "TikTok Pixel", "Merchant Center"];
 
 const SECONDARY = ["store-seo", "ai-product-photography", "landing-page-funnel", "custom-app-development", "automation-workflows", "social-media-management"];
 
@@ -327,6 +369,14 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
                 {t.secondary}
               </Link>
             </div>
+            <ul className={styles.trust}>
+              {t.trust.map((item) => (
+                <li key={item}>
+                  <svg viewBox="0 0 16 16" aria-hidden width="14" height="14"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
             <div className={styles.builtOn}>
               <span>{t.builtOn}</span>
               <Image src="/logos/salla.svg" alt="Salla" width={64} height={22} />
@@ -442,6 +492,62 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
                 </Link>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ READY TO SELL — a bento of what the store ships wired to ═══ */}
+      <section id="ready" className={`${styles.section} ${styles.readyWrap}`} data-own-spacing>
+        <div className={styles.shell}>
+          <div className={styles.headSplit} data-reveal>
+            <div>
+              <p className={styles.kicker}>{t.readyKicker}</p>
+              <h2>{t.readyTitle}</h2>
+            </div>
+            <p>{t.readyLead}</p>
+          </div>
+          <div className={styles.bento}>
+            <article className={`${styles.tile} ${styles.tileBnpl}`} data-reveal>
+              <span className={styles.tileLabel}>{t.readyBnpl[0]}</span>
+              <p className={styles.tileBig}>
+                <strong>{t.readyBnpl[1]}</strong>
+                <span>{t.readyBnpl[2]}</span>
+              </p>
+              <p>{t.readyBnpl[3]}</p>
+              <div className={styles.chips}>
+                <span>Tamara</span>
+                <span>Tabby</span>
+              </div>
+            </article>
+            <article className={styles.tile} data-reveal data-reveal-delay="60">
+              <span className={styles.tileLabel}>{t.readyPay[0]}</span>
+              <p>{t.readyPay[1]}</p>
+              <div className={styles.payRow}>
+                {PAY_LOGOS.map((l) => (
+                  <span key={l.name}>
+                    <Image src={l.src} alt={l.name} width={56} height={22} />
+                  </span>
+                ))}
+              </div>
+            </article>
+            <article className={styles.tile} data-reveal data-reveal-delay="120">
+              <span className={styles.tileLabel}>{t.readyShip[0]}</span>
+              <p>{t.readyShip[1]}</p>
+              <div className={styles.chips}>
+                {CARRIERS.map((c) => (
+                  <span key={c}>{c}</span>
+                ))}
+              </div>
+            </article>
+            <article className={styles.tile} data-reveal data-reveal-delay="180">
+              <span className={styles.tileLabel}>{t.readyTrack[0]}</span>
+              <p>{t.readyTrack[1]}</p>
+              <div className={styles.chips}>
+                {TRACKING.map((c) => (
+                  <span key={c}>{c}</span>
+                ))}
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -588,6 +694,35 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
             <h2>{t.faqTitle}</h2>
           </div>
           <HomeFaq faq={faq} />
+        </div>
+      </section>
+
+      {/* ═══ CLOSING CTA — the page ends on the one action it exists for ═══ */}
+      <section className={styles.closing} data-own-spacing>
+        <div className={styles.shell}>
+          <div className={styles.closingCard} data-reveal>
+            <div>
+              <h2>{t.ctaTitle}</h2>
+              <p>{t.ctaBody}</p>
+              <ul className={styles.trust}>
+                {t.trust.map((item) => (
+                  <li key={item}>
+                    <svg viewBox="0 0 16 16" aria-hidden width="14" height="14"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles.closingActions}>
+              <a href={whatsapp} target="_blank" rel="noreferrer" className={styles.closingPrimary}>
+                <span className={styles.dot} aria-hidden />
+                {t.primary}
+              </a>
+              <a href={getWhatsAppLink(t.audit)} target="_blank" rel="noreferrer" className={styles.closingGhost}>
+                {t.auditCta} <span aria-hidden>{arrow}</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </div>

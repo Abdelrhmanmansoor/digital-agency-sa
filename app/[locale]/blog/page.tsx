@@ -4,7 +4,7 @@ import Link from "next/link";
 import BlogIndex from "@/components/blog/BlogIndex";
 import { PageHero, PageShell, Section } from "@/components/layout/PageShell";
 import { ARTICLES } from "@/lib/articles";
-import { SITE_URL, LOCALES, hreflangMap } from "@/lib/site";
+import { SITE_URL, LOCALES, hreflangMap, OG_IMAGE } from "@/lib/site";
 
 const seo = {
   ar: {
@@ -60,8 +60,9 @@ export async function generateMetadata({
       description: data.description,
       url: canonical,
       siteName: "AM Design",
+      images: [OG_IMAGE],
     },
-    twitter: { card: "summary_large_image", title: data.title, description: data.description },
+    twitter: { card: "summary_large_image", title: data.title, description: data.description, images: [OG_IMAGE.url] },
   };
 }
 

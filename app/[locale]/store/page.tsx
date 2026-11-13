@@ -5,7 +5,7 @@ import ProductsCatalog from "@/components/store/ProductsCatalog";
 import styles from "@/components/store/Products.module.css";
 import { PRODUCTS } from "@/lib/store-data";
 import { STORE_FAQ } from "@/lib/store-faq";
-import { SITE_URL, hreflangMap } from "@/lib/site";
+import { SITE_URL, hreflangMap, OG_IMAGE } from "@/lib/site";
 
 /* ─── SEO Metadata ───────────────────────────────────────── */
 /* Rewritten: the previous copy sold on "رخيص / cheap" and an unverifiable
@@ -79,8 +79,9 @@ export async function generateMetadata({
       siteName: "AM Design",
       locale: lang === "ar" ? "ar_SA" : lang === "fr" ? "fr_FR" : "en_US",
       type: "website",
+      images: [OG_IMAGE],
     },
-    twitter: { card: "summary_large_image", title: data.title, description: data.description },
+    twitter: { card: "summary_large_image", title: data.title, description: data.description, images: [OG_IMAGE.url] },
   };
 }
 

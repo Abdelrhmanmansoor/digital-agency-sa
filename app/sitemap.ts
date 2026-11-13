@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { PRODUCTS } from "@/lib/store-data";
 import { ARTICLES } from "@/lib/articles";
 import { MARKETS } from "@/lib/markets";
-import { SITE_URL, LOCALES } from "@/lib/site";
+import { SITE_URL, LOCALES, hreflangMap } from "@/lib/site";
 
 
 /* One entry per indexable route. `/tools` is intentionally absent: it only
@@ -19,13 +19,11 @@ const ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.S
   { path: "/policy", priority: 0.3, changeFrequency: "yearly" },
 ];
 
+/* Same hreflang map the pages emit in <head>. The sitemap used to declare
+   "ar" while every page declared "ar-SA", and Google treats a mismatch
+   between the two sources as conflicting annotations. */
 function alternates(path: string) {
-  return {
-    languages: {
-      ...Object.fromEntries(LOCALES.map((l) => [l, `${SITE_URL}/${l}${path}`])),
-      "x-default": `${SITE_URL}/ar${path}`,
-    },
-  };
+  return { languages: hreflangMap(path) };
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {

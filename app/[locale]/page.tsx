@@ -49,7 +49,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
          properties. Declaring a Saudi address for a Cairo operation is the
          kind of thing that gets a listing suppressed, so `address` carries
          the real location and `areaServed` carries the market. */
-      { "@type": "ProfessionalService", "@id": `${SITE_URL}/#agency`, name: "AM Design", url: SITE_URL, image: `${SITE_URL}/og.png`, telephone: "+201007835547", email: "mansoor77soliman@gmail.com", priceRange: "$$", address: { "@type": "PostalAddress", addressLocality: "Cairo", addressCountry: "EG" }, areaServed: [{ "@type": "Country", name: "Saudi Arabia" }, { "@type": "Country", name: "Egypt" }], sameAs: ["https://www.instagram.com/amdesign.ksa/", "https://x.com/am_designing", "https://www.tiktok.com/@amdesigne.sa"] },
+      { "@type": "ProfessionalService", "@id": `${SITE_URL}/#agency`, name: "AM Design", url: SITE_URL, logo: `${SITE_URL}/icon-512.png`, image: `${SITE_URL}/og.png`, telephone: "+201007835547", email: "mansoor77soliman@gmail.com", priceRange: "$$", address: { "@type": "PostalAddress", addressLocality: "Cairo", addressCountry: "EG" }, areaServed: [{ "@type": "Country", name: "Saudi Arabia" }, { "@type": "Country", name: "Egypt" }], sameAs: ["https://www.instagram.com/amdesign.ksa/", "https://x.com/am_designing", "https://www.tiktok.com/@amdesigne.sa"] },
       { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: "AM Design", publisher: { "@id": `${SITE_URL}/#agency` }, inLanguage: ["ar", "en", "fr"] },
       /* The service list now mirrors the eight tracks the page actually
          renders; it used to name four, half of which were not on the page. */

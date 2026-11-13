@@ -355,3 +355,116 @@
 }
 .faqItem button[aria-expanded="true"] b { background: var(--ink); color: #fff; border-color: var(--ink); }
 .faqItem p { padding: 0 0 24px; font-size: 15px; line-height: 1.9; color: var(--muted); max-width: 64ch; }
+
+/* ═════════ TRUST CHIPS — short promises under a call to action ═════════ */
+.trust { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.trust li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.trust svg { color: var(--success); flex-shrink: 0; }
+
+/* ═════════ READY TO SELL — bento ═════════ */
+.readyWrap { border-top: 1px solid var(--border); }
+.bento { display: grid; gap: 14px; }
+@media (min-width: 760px) { .bento { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) {
+  .bento { grid-template-columns: 1.1fr 1fr 1fr; }
+  .tileBnpl { grid-row: span 2; }
+  .bento > .tile:last-child { grid-column: span 2; }
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(22px, 3vw, 30px);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+.tile > p { font-size: 15px; line-height: 1.8; color: var(--muted); max-width: 46ch; }
+.tileLabel { font-size: 13px; font-weight: 600; color: var(--yellow-deep); }
+.tileBnpl { background: var(--ink); border-color: var(--ink); color: #fff; }
+.tileBnpl > p { color: rgba(255, 255, 255, 0.72); }
+.tileBnpl .tileLabel { color: var(--yellow); }
+.tile > .tileBig { display: flex; align-items: baseline; gap: 12px; margin: 6px 0; color: #fff; max-width: none; }
+.tileBig strong { font-size: clamp(88px, 11vw, 140px); font-weight: 700; line-height: 0.9; letter-spacing: -0.04em; color: var(--yellow); }
+.tileBig span { font-size: 22px; font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.chips span {
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-mid);
+  font-size: 13px;
+  font-weight: 500;
+  direction: ltr;
+}
+.tileBnpl .chips span { border-color: rgba(255, 255, 255, 0.24); color: #fff; font-weight: 600; }
+.payRow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+.payRow span {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+.payRow img { max-width: 52px; max-height: 22px; width: auto; height: auto; object-fit: contain; }
+
+/* ═════════ CLOSING CTA ═════════ */
+.closing { padding-block: 0 clamp(72px, 10vw, 120px); }
+.closingCard {
+  position: relative;
+  display: grid;
+  gap: 32px;
+  align-items: end;
+  padding: clamp(28px, 6vw, 72px);
+  border-radius: calc(var(--radius-lg) * 1.5);
+  background: var(--ink);
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+}
+.closingCard::before {
+  content: "";
+  position: absolute;
+  top: -45%;
+  inset-inline-end: -10%;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--yellow-glow), transparent 65%);
+  z-index: -1;
+}
+@media (min-width: 900px) { .closingCard { grid-template-columns: 1.4fr auto; } }
+.closingCard h2 { color: #fff; font-size: clamp(30px, 4.4vw, 54px); font-weight: 700; line-height: 1.18; letter-spacing: -0.02em; }
+.closingCard p { margin-top: 16px; font-size: 16px; line-height: 1.85; color: rgba(255, 255, 255, 0.72); max-width: 56ch; }
+.closingCard .trust li { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.closingCard .trust svg { color: var(--yellow); }
+.closingActions { display: flex; flex-direction: column; gap: 10px; min-width: 240px; }
+.closingPrimary, .closingGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+.closingPrimary { background: var(--yellow); color: var(--ink); }
+.closingPrimary .dot { background: var(--ink); }
+.closingPrimary:hover { background: #ffc81a; transform: translateY(-1px); }
+.closingGhost { border: 1px solid rgba(255, 255, 255, 0.28); color: #fff; }
+.closingGhost:hover { border-color: #fff; }

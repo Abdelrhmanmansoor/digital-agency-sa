@@ -23,3 +23,7 @@ export function hreflangMap(path: string) {
     "x-default": `${SITE_URL}/ar${path}`,
   };
 }
+
+/** The default share card. Pages without their own artwork use it so a link
+    pasted into WhatsApp, X or LinkedIn never unfurls as a bare URL. */
+export const OG_IMAGE = { url: `${SITE_URL}/og.png`, width: 1200, height: 630, alt: "AM Design" };

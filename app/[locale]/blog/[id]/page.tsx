@@ -5,7 +5,7 @@ import { getWhatsAppLink } from "@/lib/utils";
 import styles from "./Article.module.css";
 import { notFound } from "next/navigation";
 import { ARTICLES, getArticle, relatedArticles, clusterOf } from "@/lib/articles";
-import { SITE_URL, LOCALES, hreflangMap } from "@/lib/site";
+import { SITE_URL, LOCALES, hreflangMap, OG_IMAGE } from "@/lib/site";
 import { PageShell, PageHero, Section } from "@/components/layout/PageShell";
 
 export function generateStaticParams() {
@@ -40,8 +40,9 @@ export async function generateMetadata({
       url: canonical,
       siteName: "AM Design",
       publishedTime: article.date,
+      images: [OG_IMAGE],
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: { card: "summary_large_image", title, description, images: [OG_IMAGE.url] },
   };
 }
 
