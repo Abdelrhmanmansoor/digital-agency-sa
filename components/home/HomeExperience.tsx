@@ -12,7 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HOME_FAQ } from "@/lib/home-faq";
 import { PRODUCTS } from "@/lib/store-data";
-import { PROJECTS, RESULTS } from "@/components/proposal/data";
+import { PROJECTS, RESULTS, liveShot } from "@/components/proposal/data";
 import { getWhatsAppLink } from "@/lib/utils";
 import { SERVICE_CATEGORIES } from "@/lib/categories";
 import { MARKETS } from "@/lib/markets";
@@ -297,9 +297,9 @@ const TRACKING = ["GA4", "Meta Pixel", "Snap Pixel", "TikTok Pixel", "Merchant C
 
 const SECONDARY = ["store-seo", "ai-product-photography", "landing-page-funnel", "custom-app-development", "automation-workflows", "social-media-management"];
 
-const WORK = ["essence", "lelast", "haraer", "jilanoud", "tooz", "ivaraline"]
+const WORK = ["oud1scent", "tafasil", "rikaz", "jogh", "essence", "lelast", "haraer", "jilanoud", "tooz"]
   .map((key) => PROJECTS.find((p) => p.key === key))
-  .filter((p): p is (typeof PROJECTS)[number] => Boolean(p && p.shot));
+  .filter((p): p is (typeof PROJECTS)[number] => Boolean(p));
 
 /* Logos that are dark-on-transparent read cleanly as one ink silhouette;
    the light ones are listed with `logoOnDark` and are skipped here. */
@@ -566,7 +566,8 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
             {WORK.map((p, i) => (
               <a key={p.key} href={p.url} target="_blank" rel="noreferrer" className={styles.workCard} data-reveal data-reveal-delay={String((i % 3) * 60)}>
                 <div className={styles.workShot}>
-                  <Image src={p.shot!} alt={p.name} width={1280} height={800} sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 400px" />
+                  {/* eslint-disable-next-line @next/next/no-img-element -- a live capture, cached by the CDN, not a static asset */}
+                  <img src={liveShot(p)} alt={p.name} width={1440} height={900} loading="lazy" decoding="async" />
                 </div>
                 <div className={styles.workMeta}>
                   <div>

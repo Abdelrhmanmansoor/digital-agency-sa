@@ -14,6 +14,7 @@ import {
   DOCUMENTS,
   LOGOFOLIO,
   PROJECTS,
+  liveShot,
   RESULTS,
   WORK_GALLERY,
 } from "./data";
@@ -455,7 +456,7 @@ export default function Proposal() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   className={s.browserShot}
-                  src={TF1ONE.shot!}
+                  src={liveShot(TF1ONE!)}
                   alt="لقطة فعلية من منصة TF1ONE"
                   width={1280}
                   height={800}
@@ -550,7 +551,6 @@ export default function Proposal() {
                   className={[
                     s.projLogo,
                     p.logoOnDark ? s.projLogoDark : "",
-                    p.shot ? "" : s.projLogoTall,
                   ]
                     .filter(Boolean)
                     .join(" ")}
@@ -564,18 +564,16 @@ export default function Proposal() {
                   )}
                 </div>
 
-                {p.shot && (
-                  <div className={s.projShot}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={p.shot}
-                      alt={`لقطة من موقع ${p.name}`}
-                      loading="lazy"
-                      width={1280}
-                      height={800}
-                    />
-                  </div>
-                )}
+                <div className={s.projShot}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={liveShot(p)}
+                    alt={`لقطة من موقع ${p.name}`}
+                    loading="lazy"
+                    width={1440}
+                    height={900}
+                  />
+                </div>
 
                 <div className={s.projBody}>
                   <h3 className={s.projName}>{p.name}</h3>

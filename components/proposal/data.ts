@@ -224,6 +224,33 @@ export const PROJECTS: Project[] = [
     logo: null,
     shot: null,
   },
+  {
+    key: "tafasil",
+    name: "تفصيل عباية",
+    note: "عبايات نسائية",
+    url: "https://tafasil-abaya.com/",
+    domain: "tafasil-abaya.com",
+    logo: null,
+    shot: null,
+  },
+  {
+    key: "rikaz",
+    name: "ركاز سبورت",
+    note: "ملابس ومنتجات رياضية",
+    url: "https://rikazsport.com/",
+    domain: "rikazsport.com",
+    logo: null,
+    shot: null,
+  },
+  {
+    key: "jogh",
+    name: "جوخ",
+    note: "منتجات فاخرة",
+    url: "https://joghstore.com/ar/",
+    domain: "joghstore.com",
+    logo: null,
+    shot: null,
+  },
   /* TF1ONE يُعرض في قسم Case Study مستقل — يُستثنى من شبكة الأعمال */
   {
     key: "tf1one",
@@ -235,6 +262,12 @@ export const PROJECTS: Project[] = [
     shot: "/proposal/shots/tf1one.jpg",
   },
 ];
+
+/** Live screenshot of the client's site, refreshed daily by /api/shot.
+    `shot` above is only the fallback if the capture service is down. */
+export function liveShot(p: Pick<Project, "key">) {
+  return `/api/shot/${p.key}`;
+}
 
 /* ── شعارات علامات عملنا معها — من صفحة LOGOFOLIO في ملف الأعمال المرفق ── */
 export const LOGOFOLIO = [

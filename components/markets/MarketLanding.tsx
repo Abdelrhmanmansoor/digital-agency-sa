@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MARKETS, type Market } from "@/lib/markets";
 import { PRODUCTS } from "@/lib/store-data";
-import { PROJECTS } from "@/components/proposal/data";
+import { PROJECTS, liveShot } from "@/components/proposal/data";
 import { getWhatsAppLink } from "@/lib/utils";
 import { formatPrice } from "@/components/store/product-copy";
 import styles from "./MarketLanding.module.css";
@@ -151,7 +151,7 @@ export default function MarketLanding({ market: m, lang, locale }: { market: Mar
   const wa = getWhatsAppLink(t.hello(m));
   const arrow = lang === "ar" ? "←" : "→";
   const onlySalla = !m.platforms.includes("zid");
-  const work = WORK.map((k) => PROJECTS.find((p) => p.key === k)).filter((p): p is (typeof PROJECTS)[number] => Boolean(p?.shot));
+  const work = WORK.map((k) => PROJECTS.find((p) => p.key === k)).filter((p): p is (typeof PROJECTS)[number] => Boolean(p));
 
   return (
     <div className={styles.page}>
@@ -321,7 +321,8 @@ export default function MarketLanding({ market: m, lang, locale }: { market: Mar
             {work.map((p) => (
               <a key={p.key} href={p.url} target="_blank" rel="noreferrer" className={styles.workCard}>
                 <div>
-                  <Image src={p.shot!} alt={p.name} width={1280} height={800} sizes="(max-width: 800px) 92vw, 400px" />
+                  {/* eslint-disable-next-line @next/next/no-img-element -- a live capture, cached by the CDN */}
+                  <img src={liveShot(p)} alt={p.name} width={1440} height={900} loading="lazy" decoding="async" />
                 </div>
                 <b>{p.name}</b>
                 <span>{p.domain}</span>
