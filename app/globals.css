@@ -659,20 +659,69 @@ body { font-feature-settings:"kern","liga"; text-rendering:optimizeLegibility; }
 
 /* ═══ SCROLL REVEAL — driven by IntersectionObserver, never a scroll
    listener. The `no-js`/no-observer path leaves content visible. ═══ */
+/* Framer-style entrance: rise, sharpen out of a soft blur, settle. */
 [data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 18px, 0);
-  transition: opacity var(--dur-4) var(--ease-emphasis), transform var(--dur-4) var(--ease-emphasis);
+  transform: translate3d(0, 28px, 0) scale(0.985);
+  filter: blur(10px);
+  transition:
+    opacity 0.9s var(--ease-emphasis),
+    transform 1s var(--ease-emphasis),
+    filter 0.9s var(--ease-emphasis);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+  will-change: opacity, transform, filter;
 }
-[data-reveal].is-in { opacity: 1; transform: none; will-change: auto; }
+[data-reveal].is-in { opacity: 1; transform: none; filter: none; will-change: auto; }
+
+/* ═══ SCROLL PROGRESS — a hairline along the top edge ═══ */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 2px;
+  z-index: 1000;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--yellow), #ffd95a, var(--yellow-dark));
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+}
+[dir="rtl"] .scroll-progress { transform-origin: right; }
+
+/* ═══ CURSOR SPOTLIGHT — any [data-spot] card gets a soft glow that
+   follows the pointer (ScrollFx writes --mx/--my). ═══ */
+[data-spot] { position: relative; isolation: isolate; }
+[data-spot]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(242, 183, 5, 0.16), transparent 45%);
+  transition: opacity 0.4s var(--ease-custom);
+}
+[data-spot]:hover::after { opacity: 1; }
+
+/* ═══ SHINE — a light sweep across primary buttons on hover ═══ */
+.btn-primary, .btn-gold { overflow: hidden; isolation: isolate; }
+.btn-primary::after, .btn-gold::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 0.8s var(--ease-emphasis);
+}
+.btn-primary:hover::after, .btn-gold:hover::after { transform: translateX(120%); }
 
 /* ═══ TACTILE FEEDBACK — every primary control gets the same 1px press ═══ */
 .btn-primary:active, .btn-dark:active, .btn-secondary:active { transform: translateY(1px); }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+  .scroll-progress { display: none; }
 }
 
 /* The mobile action bar floats clear of the bottom edge; reserve its height

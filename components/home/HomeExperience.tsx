@@ -37,6 +37,10 @@ const copy = {
     catPrev: "السابق",
     catNext: "التالي",
     eyebrow: "وكالة رقمية للمتاجر والعلامات",
+    promoTag: "عرض",
+    promo: "خصم 50% على تصميم متجرك",
+    promoMsg: "مرحبًا، أريد الاستفادة من عرض خصم 50% على تصميم متجري.",
+    ticker: ["تصميم متاجر سلة", "تصميم متاجر زد", "ثيمات مخصصة", "هوية بصرية", "تحسين التحويل", "SEO للمتاجر", "إدارة الحملات"],
     title: ["متاجر تبيع،", "وعلامات لا تُنسى"],
     intro: "نصمم ونبني متاجر سلة وزد وهويات العلامات بعناية التفاصيل التي تمنح عميلك الثقة ليكمل الطلب.",
     primary: "ابدأ على واتساب",
@@ -109,6 +113,10 @@ const copy = {
     catPrev: "Previous",
     catNext: "Next",
     eyebrow: "A digital agency for stores and brands",
+    promoTag: "Offer",
+    promo: "50% off your store design",
+    promoMsg: "Hello, I would like to claim the 50% off store design offer.",
+    ticker: ["Salla store design", "Zid store design", "Custom themes", "Brand identity", "Conversion optimization", "E-commerce SEO", "Paid campaigns"],
     title: ["Stores that sell,", "brands that stay"],
     intro: "We design and build Salla and Zid stores and brand identities with the kind of detail that gives your customer the confidence to complete the order.",
     primary: "Start on WhatsApp",
@@ -181,6 +189,10 @@ const copy = {
     catPrev: "Précédent",
     catNext: "Suivant",
     eyebrow: "Agence digitale pour boutiques et marques",
+    promoTag: "Offre",
+    promo: "-50 % sur le design de votre boutique",
+    promoMsg: "Bonjour, je souhaite profiter de l’offre -50 % sur le design de ma boutique.",
+    ticker: ["Design Salla", "Design Zid", "Thèmes sur mesure", "Identité visuelle", "Optimisation de conversion", "SEO e-commerce", "Campagnes"],
     title: ["Des boutiques qui vendent,", "des marques qui restent"],
     intro: "Nous concevons des boutiques Salla et Zid et des identités de marque avec le soin du détail qui donne au client la confiance de commander.",
     primary: "Démarrer sur WhatsApp",
@@ -350,14 +362,25 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
 
         <div className={`${styles.shell} ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
+            <a href={getWhatsAppLink(t.promoMsg)} target="_blank" rel="noreferrer" className={styles.promo}>
+              <b>{t.promoTag}</b>
+              <span>{t.promo}</span>
+              <i aria-hidden>{arrow}</i>
+            </a>
             <p className={styles.eyebrow}>
               <span aria-hidden />
               {t.eyebrow}
             </p>
-            <h1>
-              {t.title[0]}
+            <h1 className={styles.heroTitle}>
+              {t.title[0].split(" ").map((w, i) => (
+                <span key={`a${i}`}><span className={styles.word} style={{ "--i": i } as React.CSSProperties}>{w}</span>{" "}</span>
+              ))}
               <br />
-              <em>{t.title[1]}</em>
+              <em>
+                {t.title[1].split(" ").map((w, i, arr) => (
+                  <span key={`b${i}`}><span className={styles.word} style={{ "--i": i + t.title[0].split(" ").length } as React.CSSProperties}>{w}</span>{i < arr.length - 1 ? " " : ""}</span>
+                ))}
+              </em>
             </h1>
             <p className={styles.lead}>{t.intro}</p>
             <div className={styles.heroActions}>
@@ -448,7 +471,7 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
             {FLAGSHIP.map((item, i) => {
               const product = PRODUCTS.find((p) => p.slug === item.slug)!;
               return (
-                <article key={item.slug} className={styles.service} data-reveal data-reveal-delay={String(i * 60)}>
+                <article key={item.slug} className={styles.service} data-spot data-reveal data-reveal-delay={String(i * 60)}>
                   <div className={styles.serviceTop}>
                     <span className={styles.serviceNum}>{String(i + 1).padStart(2, "0")}</span>
                     <span className={styles.serviceDays}>
@@ -507,7 +530,7 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
             <p>{t.readyLead}</p>
           </div>
           <div className={styles.bento}>
-            <article className={`${styles.tile} ${styles.tileBnpl}`} data-reveal>
+            <article className={`${styles.tile} ${styles.tileBnpl}`} data-spot data-reveal>
               <span className={styles.tileLabel}>{t.readyBnpl[0]}</span>
               <p className={styles.tileBig}>
                 <strong>{t.readyBnpl[1]}</strong>
@@ -519,7 +542,7 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
                 <span>Tabby</span>
               </div>
             </article>
-            <article className={styles.tile} data-reveal data-reveal-delay="60">
+            <article className={styles.tile} data-spot data-reveal data-reveal-delay="60">
               <span className={styles.tileLabel}>{t.readyPay[0]}</span>
               <p>{t.readyPay[1]}</p>
               <div className={styles.payRow}>
@@ -530,7 +553,7 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
                 ))}
               </div>
             </article>
-            <article className={styles.tile} data-reveal data-reveal-delay="120">
+            <article className={styles.tile} data-spot data-reveal data-reveal-delay="120">
               <span className={styles.tileLabel}>{t.readyShip[0]}</span>
               <p>{t.readyShip[1]}</p>
               <div className={styles.chips}>
@@ -539,7 +562,7 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
                 ))}
               </div>
             </article>
-            <article className={styles.tile} data-reveal data-reveal-delay="180">
+            <article className={styles.tile} data-spot data-reveal data-reveal-delay="180">
               <span className={styles.tileLabel}>{t.readyTrack[0]}</span>
               <p>{t.readyTrack[1]}</p>
               <div className={styles.chips}>
@@ -549,6 +572,22 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
               </div>
             </article>
           </div>
+        </div>
+      </section>
+
+      {/* ═══ TICKER — the services, set large, on a slow loop ═══ */}
+      <section className={styles.ticker} aria-label={t.servicesKicker} data-own-spacing>
+        <div className={styles.tickerTrack}>
+          {[0, 1].map((k) => (
+            <div key={k} className={styles.tickerRow} aria-hidden={k === 1 || undefined}>
+              {t.ticker.map((w, i) => (
+                <span key={w} className={i % 2 ? styles.tickerOutline : undefined}>
+                  {w}
+                  <i aria-hidden>✦</i>
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -605,7 +644,7 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
 
           <div className={styles.pillars}>
             {t.pillars.map(([title, body], i) => (
-              <article key={title} data-reveal data-reveal-delay={String(i * 60)}>
+              <article key={title} data-spot data-reveal data-reveal-delay={String(i * 60)}>
                 <span className={styles.pillarIcon} aria-hidden>
                   {["◆", "◇", "✦"][i]}
                 </span>
@@ -642,7 +681,7 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
           </div>
           <div className={styles.markets}>
             {MARKETS.map((m, i) => (
-              <Link key={m.slug} href={`/${lang}/markets/${m.slug}`} className={styles.market} data-reveal data-reveal-delay={String(i * 50)}>
+              <Link key={m.slug} href={`/${lang}/markets/${m.slug}`} className={styles.market} data-spot data-reveal data-reveal-delay={String(i * 50)}>
                 <span className={styles.marketCode}>{m.slug === "uae" ? "AE" : m.slug === "oman" ? "OM" : m.slug === "kuwait" ? "KW" : m.slug === "qatar" ? "QA" : "BH"}</span>
                 <b>{m.name[lang === "ar" ? "ar" : "en"]}</b>
                 <small>{m.cities[lang === "ar" ? "ar" : "en"].slice(0, 2).join(lang === "ar" ? " · " : " · ")}</small>
@@ -673,7 +712,7 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
             ))}
           </ol>
 
-          <div className={styles.audit} data-reveal>
+          <div className={styles.audit} data-spot data-reveal>
             <div>
               <p className={styles.kicker}>{t.auditKicker}</p>
               <h3>{t.auditTitle}</h3>

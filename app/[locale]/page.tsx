@@ -7,12 +7,12 @@ import { SITE_URL } from "@/lib/site";
 const seo = {
   ar: {
     title: "تصميم متاجر سلة وزد في السعودية | AM Design",
-    description: "تصميم وتطوير متاجر سلة وزد، تحسين التحويل وSEO، الهوية البصرية والتسويق الرقمي للمتاجر الإلكترونية في السعودية.",
-    keywords: ["تصميم متجر سلة", "تصميم متجر زد", "تطوير متجر إلكتروني", "تحسين متاجر سلة", "SEO للمتاجر الإلكترونية", "تصميم هوية تجارية", "تسويق المتاجر الإلكترونية", "شركة تصميم متاجر في السعودية"],
+    description: "تصميم متجر سلة وزد احترافي بخصم 50% لفترة محدودة: متجر كامل بهوية علامتك، دفع وتقسيط وشحن مفعّل، عقد وفاتورة ورد خلال ساعة. تحسين التحويل وSEO والتسويق للمتاجر في السعودية والخليج.",
+    keywords: ["تصميم متجر سلة", "تصميم متجر زد", "تطوير متجر إلكتروني", "تحسين متاجر سلة", "SEO للمتاجر الإلكترونية", "تصميم هوية تجارية", "تسويق المتاجر الإلكترونية", "شركة تصميم متاجر في السعودية", "عرض تصميم متجر سلة", "تصميم متجر إلكتروني بسعر مناسب", "مصمم متاجر سلة", "تصميم ثيم سلة"],
   },
   en: {
     title: "Salla & Zid Store Design Saudi Arabia | AM Design",
-    description: "Salla and Zid e-commerce design, development, conversion optimization, SEO, branding and digital marketing in Saudi Arabia.",
+    description: "Salla and Zid store design at 50% off for a limited time: a complete branded store with payments, BNPL and shipping live, a contract and a reply within the hour. Plus CRO, SEO and marketing across Saudi Arabia and the Gulf.",
     keywords: ["Salla store design", "Zid store design", "ecommerce agency Saudi Arabia", "ecommerce SEO Saudi Arabia", "conversion rate optimization", "digital marketing agency Saudi Arabia"],
   },
   fr: {
@@ -49,7 +49,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
          properties. Declaring a Saudi address for a Cairo operation is the
          kind of thing that gets a listing suppressed, so `address` carries
          the real location and `areaServed` carries the market. */
-      { "@type": "ProfessionalService", "@id": `${SITE_URL}/#agency`, name: "AM Design", url: SITE_URL, logo: `${SITE_URL}/icon-512.png`, image: `${SITE_URL}/og.png`, telephone: "+201007835547", email: "mansoor77soliman@gmail.com", priceRange: "$$", address: { "@type": "PostalAddress", addressLocality: "Cairo", addressCountry: "EG" }, areaServed: [{ "@type": "Country", name: "Saudi Arabia" }, { "@type": "Country", name: "Egypt" }], sameAs: ["https://www.instagram.com/amdesign.ksa/", "https://x.com/am_designing", "https://www.tiktok.com/@amdesigne.sa"] },
+      { "@type": "ProfessionalService", "@id": `${SITE_URL}/#agency`, name: "AM Design", url: SITE_URL, logo: `${SITE_URL}/icon-512.png`, image: `${SITE_URL}/og.png`, telephone: "+201007835547", email: "mansoor77soliman@gmail.com", priceRange: "$$", hasOfferCatalog: { "@id": `${SITE_URL}/#offers` }, knowsLanguage: ["ar", "en", "fr"], address: { "@type": "PostalAddress", addressLocality: "Cairo", addressCountry: "EG" }, areaServed: [{ "@type": "Country", name: "Saudi Arabia" }, { "@type": "Country", name: "Egypt" }], sameAs: ["https://www.instagram.com/amdesign.ksa/", "https://x.com/am_designing", "https://www.tiktok.com/@amdesigne.sa"] },
+      { "@type": "OfferCatalog", "@id": `${SITE_URL}/#offers`, name: lang === "ar" ? "عروض AM Design" : "AM Design offers", itemListElement: [{ "@type": "Offer", name: lang === "ar" ? "خصم 50% على تصميم متجر سلة أو زد" : "50% off Salla or Zid store design", url: `${SITE_URL}/${lang}`, seller: { "@id": `${SITE_URL}/#agency` }, areaServed: { "@type": "Country", name: "Saudi Arabia" }, itemOffered: { "@type": "Service", name: "Salla and Zid Store Design & Development", provider: { "@id": `${SITE_URL}/#agency` } } }] },
       { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: "AM Design", publisher: { "@id": `${SITE_URL}/#agency` }, inLanguage: ["ar", "en", "fr"] },
       /* The service list now mirrors the eight tracks the page actually
          renders; it used to name four, half of which were not on the page. */
