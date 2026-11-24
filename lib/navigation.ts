@@ -112,6 +112,7 @@ export const PRIMARY_NAV: NavGroup[] = [
     children: SERVICE_LINKS,
   },
   { label: { ar: "أعمالنا", en: "Work", fr: "Réalisations" }, href: "/#work" },
+  { label: { ar: "للمحامين", en: "Law firms", fr: "Avocats" }, href: "/solutions/legal" },
   { label: { ar: "المنتجات", en: "Products", fr: "Produits" }, href: "/store" },
   { label: { ar: "المدونة", en: "Journal", fr: "Journal" }, href: "/blog" },
 ];
@@ -133,6 +134,18 @@ export const ACCOUNT_LINKS: NavLeaf[] = [
 
 export const LEGAL_LINKS: NavLeaf[] = [
   { href: "/policy", label: { ar: "الشروط وسياسة الخصوصية", en: "Terms & privacy", fr: "Conditions & confidentialité" } },
+];
+
+/* ─── Lawyer landing pages (/solutions/legal/...) — linked from every
+   footer so each one is reachable within two clicks of any page ─── */
+export const LAWYER_LINKS: NavLeaf[] = [
+  { href: "/solutions/legal", label: { ar: "تصميم مواقع المحامين", en: "Law firm websites", fr: "Sites d'avocats" } },
+  { href: "/solutions/legal/city/riyadh", label: { ar: "مواقع محاماة الرياض", en: "Riyadh law firms", fr: "Avocats Riyad" } },
+  { href: "/solutions/legal/city/jeddah", label: { ar: "مواقع محاماة جدة", en: "Jeddah law firms", fr: "Avocats Djeddah" } },
+  { href: "/solutions/legal/city/dammam-khobar", label: { ar: "مواقع محاماة الدمام والخبر", en: "Dammam & Khobar", fr: "Dammam & Khobar" } },
+  { href: "/solutions/legal/practice/labor-lawyer-website", label: { ar: "موقع محامي عمالي", en: "Labour lawyer site", fr: "Avocat droit du travail" } },
+  { href: "/solutions/legal/practice/commercial-lawyer-website", label: { ar: "موقع محامي تجاري", en: "Commercial lawyer site", fr: "Avocat d'affaires" } },
+  { href: "/solutions/legal/practice/family-lawyer-website", label: { ar: "موقع محامي أحوال شخصية", en: "Family lawyer site", fr: "Avocat de la famille" } },
 ];
 
 /* ─── Gulf market landing pages (/markets/<slug>) ─── */

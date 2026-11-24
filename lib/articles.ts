@@ -15,6 +15,7 @@ import { MARKETING } from "./blog/c7-marketing";
 import { SEO } from "./blog/c8-seo";
 import { NEWS } from "./blog/c9-news";
 import { GUIDES } from "./blog/c10-guides";
+import { LEGAL } from "./blog/c11-legal";
 import { DEPTH_NEWS } from "./blog/depth-news";
 import { DEPTH_GUIDES } from "./blog/depth-guides";
 import type { Article, ClusterId } from "./blog/types";
@@ -53,6 +54,7 @@ export const ARTICLES: Article[] = [
   ...SEO,
   ...NEWS,
   ...GUIDES,
+  ...LEGAL,
 ]
   .map(withDepth)
   .sort((a, b) => b.date.localeCompare(a.date));

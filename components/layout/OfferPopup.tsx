@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
+import { usePathname } from "next/navigation";
 import { getWhatsAppLink } from "@/lib/utils";
 import { WA_PATH } from "./WhatsAppFab";
 import styles from "./OfferPopup.module.css";
@@ -13,7 +14,8 @@ import styles from "./OfferPopup.module.css";
 
 const DELAY_MS = 4000;
 const SNOOZE_DAYS = 3;
-const KEY = "am-offer50-dismissed";
+const STORE_KEY = "am-offer50-dismissed";
+const LEGAL_KEY = "am-offer-legal-dismissed";
 
 const copy = {
   ar: {
@@ -51,6 +53,37 @@ const copy = {
   },
 } as const;
 
+/* On the lawyer pages the store discount is irrelevant; lawyers get their
+   own offer — a free review of their site and a Google-visibility plan. */
+const legalCopy = {
+  ar: {
+    badge: "للمحامين ومكاتب المحاماة",
+    off: "",
+    big: "مجانًا",
+    title: "مراجعة موقع مكتبك + خطة ظهور في جوجل",
+    sub: "نراجع موقعك الحالي (أو فكرتك إن لم يكن لديك موقع) ونرسل لك خطة مكتوبة: صفحات التخصص، ملف جوجل التجاري، ومسار حجز الاستشارة — خلال يومي عمل.",
+    points: ["بلا التزام", "ملاحظات مكتوبة", "رد خلال ساعة"],
+    cta: "احجز المراجعة على واتساب",
+    later: "ربما لاحقًا",
+    close: "إغلاق",
+    msg: "مرحبًا، أنا محامٍ وأريد المراجعة المجانية لموقع مكتبي وخطة الظهور في جوجل.",
+  },
+  en: {
+    badge: "For lawyers and law firms",
+    off: "",
+    big: "FREE",
+    title: "Site review + Google visibility plan",
+    sub: "We review your current site (or your idea if you have none) and send a written plan: practice pages, Google Business Profile and the booking path — within two working days.",
+    points: ["No commitment", "Written notes", "Reply within the hour"],
+    cta: "Book the review on WhatsApp",
+    later: "Maybe later",
+    close: "Close",
+    msg: "Hello, I am a lawyer and would like the free site review and Google visibility plan.",
+  },
+} as const;
+
+let KEY = STORE_KEY;
+
 function isSnoozed() {
   try {
     if (sessionStorage.getItem(KEY)) return true;
@@ -76,7 +109,7 @@ function track(event: string) {
   try {
     w.gtag?.("event", event, { offer: "store_design_50" });
     w.dataLayer?.push({ event, offer: "store_design_50" });
-    if (event === "offer_whatsapp_click") w.fbq?.("track", "Lead", { content_name: "store_design_50" });
+    if (event.endsWith("offer_whatsapp_click")) w.fbq?.("track", "Lead", { content_name: "store_design_50" });
   } catch {
     /* analytics is optional */
   }
@@ -84,7 +117,11 @@ function track(event: string) {
 
 export default function OfferPopup() {
   const locale = useLocale();
-  const t = copy[(locale in copy ? locale : "en") as keyof typeof copy];
+  const pathname = usePathname() || "";
+  const legal = /\/solutions\/legal(\/|$)/.test(pathname);
+  KEY = legal ? LEGAL_KEY : STORE_KEY;
+  const base = copy[(locale in copy ? locale : "en") as keyof typeof copy];
+  const t = legal ? { ...base, ...legalCopy[locale === "ar" ? "ar" : "en"] } : { ...base, big: "50%" };
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -95,10 +132,10 @@ export default function OfferPopup() {
     const id = window.setTimeout(() => {
       lastFocus.current = document.activeElement;
       setOpen(true);
-      track("offer_popup_view");
+      track(legal ? "legal_offer_popup_view" : "offer_popup_view");
     }, DELAY_MS);
     return () => window.clearTimeout(id);
-  }, []);
+  }, [legal]);
 
   const close = useCallback(() => {
     snooze();
@@ -145,8 +182,8 @@ export default function OfferPopup() {
 
         <h2 id="offer-title" className={styles.title}>
           <span className={styles.big}>
-            <b>50%</b>
-            <small>{t.off}</small>
+            <b>{t.big}</b>
+            {t.off && <small>{t.off}</small>}
           </span>
           <span className={styles.line}>{t.title}</span>
         </h2>
@@ -168,7 +205,7 @@ export default function OfferPopup() {
           rel="noopener noreferrer"
           className={styles.cta}
           data-autofocus
-          onClick={() => { track("offer_whatsapp_click"); snooze(); setOpen(false); }}
+          onClick={() => { track(legal ? "legal_offer_whatsapp_click" : "offer_whatsapp_click"); snooze(); setOpen(false); }}
         >
           <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden><path d={WA_PATH} /></svg>
           {t.cta}

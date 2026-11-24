@@ -14,6 +14,7 @@ import {
   REFERENCES,
   type Pair,
 } from "@/lib/legal-data";
+import { CITY_LANDINGS, LEGAL_GROWTH, PRACTICE_LANDINGS } from "@/lib/legal-landing";
 import ReferenceCard from "./ReferenceCard";
 import styles from "./LegalSolution.module.css";
 
@@ -313,12 +314,14 @@ export default function LegalSolution() {
           </div>
           <div className={styles.areas}>
             {PRACTICE_AREAS.map((area, i) => (
-              <a
+              <Link
                 key={area.key}
                 className={styles.area}
-                href={getWhatsAppLink(`${t.hello} (${p(area.name, locale)})`)}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={(() => {
+                  const landing = PRACTICE_LANDINGS.find((x) => x.area === area.key);
+                  return landing ? href(`/solutions/legal/practice/${landing.slug}`) : href("/solutions/legal#packages");
+                })()}
+                data-spot
                 data-reveal
                 data-reveal-delay={(i % 4) * 45}
               >
@@ -331,7 +334,15 @@ export default function LegalSolution() {
                   </span>
                 </span>
                 <span className={styles.areaHint}>{p(area.hint, locale)}</span>
-              </a>
+              </Link>
+            ))}
+          </div>
+          <div className={styles.cityStrip} data-reveal>
+            <b>{locale === "ar" ? "مواقع مكاتب المحاماة حسب المدينة:" : "Law firm websites by city:"}</b>
+            {CITY_LANDINGS.map((c) => (
+              <Link key={c.slug} href={href(`/solutions/legal/city/${c.slug}`)}>
+                {p(c.name, locale)}
+              </Link>
             ))}
           </div>
         </div>
@@ -399,7 +410,7 @@ export default function LegalSolution() {
           </div>
           <div className={styles.packs}>
             {PACKAGES.map((pack, i) => (
-              <article key={pack.key} className={styles.pack} data-best={pack.best || undefined} data-reveal data-reveal-delay={i * 70}>
+              <article key={pack.key} className={styles.pack} data-best={pack.best || undefined} data-spot data-reveal data-reveal-delay={i * 70}>
                 {pack.best && <span className={styles.packBest}>{locale === "ar" ? "الأكثر طلبًا" : "Most requested"}</span>}
                 <h3 className={styles.packName}>{p(pack.name, locale)}</h3>
                 <p className={styles.packSummary}>{p(pack.summary, locale)}</p>
@@ -441,6 +452,32 @@ export default function LegalSolution() {
               {locale === "ar" ? "أو تصفّح متجر الخدمات" : "Or browse the services store"}
             </Link>
           </p>
+
+          <div className={styles.growth}>
+            <div className={styles.growthHead} data-reveal>
+              <p className={styles.kicker}>{locale === "ar" ? "بعد الإطلاق" : "After launch"}</p>
+              <h3 className={styles.h2}>{locale === "ar" ? "خدمات نمو شهرية لمكتبك" : "Monthly growth for your firm"}</h3>
+            </div>
+            <div className={styles.growthGrid}>
+              {LEGAL_GROWTH.map((g, i) => (
+                <Link key={g.slug} href={href(`/store/${g.slug}`)} className={styles.growthCard} data-spot data-reveal data-reveal-delay={i * 60}>
+                  <b>{p(g.name, locale)}</b>
+                  <span>{p(g.body, locale)}</span>
+                  <em>{locale === "ar" ? "التفاصيل والسعر ←" : "Details and price →"}</em>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.reviewBand} data-reveal>
+            <div>
+              <h3>{locale === "ar" ? "مراجعة مجانية لموقع مكتبك الحالي" : "A free review of your current firm website"}</h3>
+              <p>{locale === "ar" ? "نراجع الظهور في جوجل والسرعة ومسار حجز الاستشارة، ونرسل لك ملاحظات مكتوبة مرتبة حسب أثرها — خلال يومي عمل وبلا التزام." : "We review Google visibility, speed and the booking path, and send written notes ranked by impact — within two working days, no commitment."}</p>
+            </div>
+            <a href={getWhatsAppLink(locale === "ar" ? "مرحبًا، أريد المراجعة المجانية لموقع مكتب المحاماة. رابط الموقع: " : "Hello, I would like the free law firm website review. Site: ")} target="_blank" rel="noopener noreferrer" className={styles.reviewCta}>
+              {locale === "ar" ? "اطلب المراجعة على واتساب" : "Request it on WhatsApp"}
+            </a>
+          </div>
         </div>
       </section>
 

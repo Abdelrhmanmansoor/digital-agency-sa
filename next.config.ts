@@ -52,6 +52,9 @@ const nextConfig: NextConfig = {
       /* The store no longer has a cart or checkout: every order is placed on
          WhatsApp from the product page. Old links land on the catalogue. */
       { source: "/:locale(ar|en|fr)/store/:path(cart|checkout)/:rest*", destination: "/:locale/store", permanent: true },
+      /* Short, shareable links for lawyer campaigns (WhatsApp, X, ads). */
+      { source: "/:locale(ar|en|fr)/:p(lawyers|law|mohami|lawyer-websites)", destination: "/:locale/solutions/legal", permanent: true },
+      { source: "/:p(lawyers|law|mohami|lawyer-websites)", destination: "/ar/solutions/legal", permanent: true },
     ];
   },
 

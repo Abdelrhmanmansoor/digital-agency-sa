@@ -307,6 +307,15 @@ const PAY_LOGOS = [
 const CARRIERS = ["SMSA", "Aramex", "J&T", "SPL", "RedBox"];
 const TRACKING = ["GA4", "Meta Pixel", "Snap Pixel", "TikTok Pixel", "Merchant Center"];
 
+const LAW_LINKS = [
+  { href: "/solutions/legal/city/riyadh", ar: "الرياض", en: "Riyadh" },
+  { href: "/solutions/legal/city/jeddah", ar: "جدة", en: "Jeddah" },
+  { href: "/solutions/legal/city/dammam-khobar", ar: "الدمام والخبر", en: "Dammam & Khobar" },
+  { href: "/solutions/legal/practice/labor-lawyer-website", ar: "محامي عمالي", en: "Labour law" },
+  { href: "/solutions/legal/practice/commercial-lawyer-website", ar: "محامي تجاري", en: "Commercial" },
+  { href: "/solutions/legal/practice/family-lawyer-website", ar: "أحوال شخصية", en: "Family law" },
+];
+
 const SECONDARY = ["store-seo", "ai-product-photography", "landing-page-funnel", "custom-app-development", "automation-workflows", "social-media-management"];
 
 const WORK = ["oud1scent", "tafasil", "rikaz", "jogh", "essence", "lelast", "haraer", "jilanoud", "tooz"]
@@ -664,6 +673,32 @@ export default function HomeExperience({ locale: rawLocale }: { locale: string }
                   <small>{lang === "ar" ? r.meta : RESULT_EN[i][1]}</small>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ LAW FIRMS — the second audience, with its own landing pages ═══ */}
+      <section className={styles.section} data-own-spacing>
+        <div className={styles.shell}>
+          <div className={styles.lawCard} data-reveal>
+            <div>
+              <p className={styles.kicker}>{lang === "ar" ? "للمحامين ومكاتب المحاماة" : lang === "fr" ? "Pour les avocats" : "For lawyers and law firms"}</p>
+              <h2>{lang === "ar" ? "موقع لمكتبك يحوّل الباحث عن محامٍ إلى موعد استشارة." : lang === "fr" ? "Un site qui transforme une recherche d’avocat en rendez-vous." : "A site that turns a search for a lawyer into a booked consultation."}</h2>
+              <p>{lang === "ar" ? "صفحة لكل تخصص ومدينة تترتب في جوجل، ملفات المحامين، وحجز استشارة على واتساب. باقات من 2,900 ر.س." : "A page per practice area and city that can rank, lawyer profiles, and WhatsApp booking. Packages from 2,900 SAR."}</p>
+              <div className={styles.lawLinks}>
+                {LAW_LINKS.map((l) => (
+                  <Link key={l.href} href={`/${lang}${l.href}`}>{l[lang === "ar" ? "ar" : "en"]}</Link>
+                ))}
+              </div>
+            </div>
+            <div className={styles.lawActions}>
+              <Link href={`/${lang}/solutions/legal`} className="btn-gold">
+                {lang === "ar" ? "باقات مواقع المحامين" : "Law firm packages"} <span aria-hidden>{arrow}</span>
+              </Link>
+              <a href={getWhatsAppLink(lang === "ar" ? "مرحبًا، أنا محامٍ وأريد المراجعة المجانية لموقع مكتبي." : "Hello, I am a lawyer and would like the free site review.")} target="_blank" rel="noreferrer" className={styles.lawGhost}>
+                {lang === "ar" ? "مراجعة مجانية لموقعك" : "Free site review"}
+              </a>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
 import { AGENCY_INFO, getWhatsAppLink } from "@/lib/utils";
-import { ACCOUNT_LINKS, COMPANY_LINKS, LEGAL_LINKS, MARKET_LINKS, SERVICE_LINKS, SOLUTION_LINKS, l, pick } from "@/lib/navigation";
+import { ACCOUNT_LINKS, COMPANY_LINKS, LAWYER_LINKS, LEGAL_LINKS, MARKET_LINKS, SERVICE_LINKS, SOLUTION_LINKS, l, pick } from "@/lib/navigation";
 import { WA_PATH } from "./WhatsAppFab";
 import styles from "./SiteFooter.module.css";
 
@@ -20,6 +20,7 @@ const copy = {
     services: "الخدمات",
     solutions: "حلول ومنتجات",
     markets: "أسواق الخليج",
+    lawyers: "للمحامين",
     pay: "طرق الدفع المتاحة",
     contact: "تواصل",
     phone: "واتساب",
@@ -39,6 +40,7 @@ const copy = {
     services: "Services",
     solutions: "Solutions & products",
     markets: "Gulf markets",
+    lawyers: "For law firms",
     pay: "Ways to pay",
     contact: "Contact",
     phone: "WhatsApp",
@@ -58,6 +60,7 @@ const copy = {
     services: "Services",
     solutions: "Solutions & produits",
     markets: "Marchés du Golfe",
+    lawyers: "Cabinets d’avocats",
     pay: "Moyens de paiement",
     contact: "Contact",
     phone: "WhatsApp",
@@ -201,6 +204,7 @@ export default function SiteFooter() {
             <Column title={t.services} links={SERVICE_LINKS} />
             <Column title={t.company} links={COMPANY_LINKS} />
             <Column title={t.solutions} links={[...SOLUTION_LINKS, ...ACCOUNT_LINKS]} />
+            <Column title={t.lawyers} links={LAWYER_LINKS} />
             <Column title={t.markets} links={MARKET_LINKS} />
           </div>
         </div>

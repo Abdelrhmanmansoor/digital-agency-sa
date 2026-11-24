@@ -14,7 +14,8 @@ export type ClusterId =
   | "design"
   | "marketing"
   | "seo"
-  | "news";
+  | "news"
+  | "legal";
 
 export type Article = {
   /** URL slug — also the article id. */
@@ -120,6 +121,15 @@ export const CLUSTERS: Cluster[] = [
     blurbEn: "Platform updates and what they mean for your store in practice — from official sources, without hype.",
   },
 ];
+
+CLUSTERS.push({
+  id: "legal",
+  ar: "تسويق مكاتب المحاماة",
+  en: "Law firm marketing",
+  fr: "Marketing des cabinets d’avocats",
+  blurbAr: "كيف يجلب موقع المحامي موكّلين: صفحات التخصص، ملف جوجل، والضوابط المهنية.",
+  blurbEn: "How a law firm site brings in clients: practice pages, Google profile and professional limits.",
+});
 
 export function clusterOf(id: ClusterId): Cluster {
   return CLUSTERS.find((c) => c.id === id) ?? CLUSTERS[0];
